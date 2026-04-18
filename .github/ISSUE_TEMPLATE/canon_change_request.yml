@@ -1,0 +1,35 @@
+name: Canon change request
+description: Request a controlled change to source truth
+title: "[CANON] "
+labels: ["canon-change"]
+body:
+  - type: textarea
+    id: target
+    attributes:
+      label: Canonical target
+      description: Which canonical file or ID is affected?
+      placeholder: source/story_blueprint.md, C01, SC0048, LOC003
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Why is this canonical change necessary?
+    validations:
+      required: true
+
+  - type: textarea
+    id: downstream_impact
+    attributes:
+      label: Downstream impact
+      description: Which planning, prompt, continuity, or evidence records will be affected?
+    validations:
+      required: true
+
+  - type: textarea
+    id: rollback
+    attributes:
+      label: Rollback strategy
+      description: If rejected, how will affected records be restored?

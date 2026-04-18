@@ -1,0 +1,57 @@
+scene_id: SC0082
+sequence_id: SEQ17
+phase_id: PH_CRUCIBLE
+title: The ORACLE PRIME monitor on the secondary console — a network terminal the relay station had, still
+  has, still connected on a read-only commercial data feed — u
+purpose: Placeholder scaffold seeded from the retrieval map; replace with canonical scene purpose.
+dramatic_function: TBD dramatic function derived during scene-card enrichment.
+location_id: LOC001
+location_text_raw: null
+time_of_day: UNKNOWN
+time_of_day_text_raw: null
+weather: TBD
+characters_present:
+- C01
+characters_explicit_dialogue:
+- ZARA
+- NADIA
+characters_explicit_mentions: []
+primary_pov_character: C01
+continuity_refs:
+  wardrobe: []
+  props: []
+  prior_scenes:
+  - SC0081
+  next_expected_links:
+  - SC0083
+  time_continuity_note: TBD continuity note.
+visual_targets:
+  palette: TBD visual palette
+  lens_bias: TBD lens bias
+  framing_bias: TBD framing bias
+  movement_bias: TBD movement bias
+  lighting_bias: TBD lighting bias
+promptability_score: 3
+excerpt_ref: scene_excerpt.md
+screen_excerpt_ref: scene_excerpt.md
+prompt_brief_ref: prompt_brief.md
+review_notes_ref: review_notes.md
+source_line_start: 6722
+source_line_end: 6799
+source_line_count: 78
+anchor_first_nonblank: The ORACLE PRIME monitor on the secondary console — a network terminal the relay
+  station had, still has, still connected on a read-only commercial data feed — updates.
+anchor_last_nonblank: Behind her, two sets of footsteps. The sweep team. They are fast.
+boundary_start_kind: dash
+boundary_end_kind: dash
+mapping_confidence: inferred
+notes_grounding:
+- Hydrated from retrieval map and scene_excerpt.md only.
+- Title derived from opening anchor sentence.
+- Scene begins without a clear opening slugline; raw location/time left empty.
+- A later explicit slugline exists inside the excerpt and should be reviewed manually.
+- Retrieval map marks this scene as inferred confidence.
+- Numbered Fountain marker present for this scene.
+status: scaffolded
+review_status: needs_human_review
+canon_lock: false

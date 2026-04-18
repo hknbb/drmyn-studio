@@ -1,0 +1,26 @@
+[project]
+name = "closing-price-phase1"
+version = "0.1.0"
+description = "Zone 1 / Phase 1 canonical workflow validation and tooling"
+requires-python = ">=3.11"
+dependencies = [
+    "jsonschema>=4.21.0",
+    "PyYAML>=6.0.1",
+    "yamllint>=1.35.0",
+    "pandas>=2.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "mypy>=1.9.0",
+    "ruff>=0.4.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+strict = false

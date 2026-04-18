@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-wheel-metadata/
+*.egg
+
+# Virtual environments
+.env
+.env.*
+
+# Test / coverage
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+*.cover
+.tmp_source_spine_tests/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Artifact bundles (generated, not committed)
+*.zip
+evidence/provenance/*/
+
+# Validation reports (generated, not committed to main)
+evidence/validation_reports/*.json
+evidence/validation_reports/*.md
+!evidence/validation_reports/scene_hydration_report.json
+!evidence/validation_reports/canon_hydration_queue.json
+!evidence/validation_reports/canon_hydration_queue.md
+
+# devcontainer local overrides
+.devcontainer/
+
+# OS
+.DS_Store
+desktop.ini

@@ -1,0 +1,81 @@
+character_id: C03
+display_name: "Birta"
+cue_name: "BIRTA"
+role: SUPPORTING
+source_truth_reference:
+  source_character_id: C23
+  source_name: "BIRTA"
+  source_files:
+    - source/story_blueprint.md
+    - source/character_dossier.md
+  planning_layer_note: "Compact Phase 2 planning ID C03 maps to source-truth world character C23."
+canonical_name: "BIRTA"
+aliases:
+  - "Nadia's household attendant"
+role_label: "Supporting domestic anchor"
+story_function: "Small humanizing anchor inside the Vale residence; her presence makes the house feel lived in enough for the surveillance distortions to matter."
+arc_baseline:
+  wound: "EVIDENCE_THIN: no standalone wound is source-authored; source only grounds long service, age, and that she has nowhere else to be."
+  mask: "Practical domestic steadiness and mild teasing that keep alarm from taking over the room."
+  want: "TODO_REVIEW: no independent want is source-authored beyond maintaining household routine and Jin's care."
+  need: "TODO_REVIEW: no independent need is source-authored."
+  initial_arc_phase: MASK
+want: "TODO_REVIEW - preserve household routine and Jin's care as far as her small authority allows."
+need: "UNRESOLVED - no source-authored transformational need."
+wound: "EVIDENCE_THIN - source does not give Birta an explicit private wound."
+mask: "Domestic steadiness and work rhythm that keep her distress from surfacing immediately."
+voice_fingerprint:
+  lexicon:
+    - "plain domestic observation"
+    - "light teasing correction"
+    - "household shorthand"
+  rhythm: "Short, direct lines with lived-in familiarity; she can tease without losing authority."
+  default_tactic: "Gentle observation that says more than direct confrontation would."
+  status_signals:
+    - "Carries household labor with quiet authority."
+    - "Speaks to Nadia as someone who has seen many mornings like this."
+  verbal_tic: "UNRESOLVED - the dossier gives a private pet name for Jin but the pilot excerpt does not reveal it."
+voice_register: "Domestic plain-speech with lived familiarity."
+voice_rhythm: "Brief and practical, but not clipped enough to feel hostile."
+default_tactic: "Gentle observation."
+status_signal:
+  - "Tray-carrying authority"
+  - "Ease inside the corridor routine"
+verbal_tic: "UNRESOLVED - private pet name for Jin exists in source but is not heard in the pilot excerpt."
+stress_tell: "Alarm becomes visible through adjustment behavior and a sharper emphasis on routine."
+concealment_tell: "Returns to tasks such as linens or breakfast coverage rather than pressing the feared subject."
+vulnerability_tell: "EVIDENCE_THIN - only broader distress at household change is source-grounded."
+visual_profile:
+  age_range: "70s"
+  screen_presence: "Compact, work-shaped, and quietly authoritative; she reads as someone who has carried the house's routine for years."
+  costume_logic: "Practical domestic working clothes suitable for carrying linens and moving the corridor efficiently; exact garment breakdown remains unresolved."
+  silhouette: "Compact working silhouette with no wasted ornament."
+  color_bias: "Muted domestic/service neutrals."
+  hair_makeup_notes: "Age and use should read honestly; avoid caricature or over-styled housekeeper coding."
+visual_age_range: "70s"
+silhouette_notes: "Compact and capable; she should read as someone used to carrying things."
+costume_logic: "Domestic workwear first, not stylized nostalgia."
+color_bias: "Muted neutrals that sit inside the Vale residence without calling attention to themselves."
+associated_props: []
+associated_locations:
+  - LOC001
+relationship_keys:
+  - "Nadia: household familiarity and low-key concern."
+  - "Jin: intimate care anchor through routine, formula, and private naming."
+known_scene_anchors:
+  - SC0001
+do_not_invent_notes:
+  - "Do not invent a larger subplot or independent backstory beyond service history and distress at change."
+  - "Do not turn her into comic relief."
+unresolved_questions:
+  - "TODO_REVIEW: whether planning should record Jin's private pet name once a source scene actually speaks it."
+  - "UNRESOLVED: exact garment breakdown for WD004 is not specified in source."
+continuity_refs:
+  wardrobe_ids:
+    - WD004
+  prop_ids: []
+  key_scene_ids:
+    - SC0001
+status: review
+review_status: pending
+canon_lock: false

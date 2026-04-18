@@ -1,0 +1,346 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/scene_card.schema.json",
+  "title": "Closing Price Phase 1 Scene Card",
+  "description": "Canonical planning record for Zone 1 / Phase 1 scene preparation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scene_id",
+    "sequence_id",
+    "phase_id",
+    "title",
+    "purpose",
+    "location_id",
+    "time_of_day",
+    "characters_present",
+    "continuity_refs",
+    "visual_targets",
+    "promptability_score",
+    "status",
+    "review_status",
+    "canon_lock"
+  ],
+  "properties": {
+    "scene_id": {
+      "type": "string",
+      "pattern": "^SC\\d{4}$"
+    },
+    "sequence_id": {
+      "type": "string",
+      "pattern": "^SEQ\\d{2}$"
+    },
+    "phase_id": {
+      "type": "string",
+      "enum": [
+        "PH_EQUILIBRIUM",
+        "PH_CONFRONTATION",
+        "PH_INVERSION",
+        "PH_CRUCIBLE",
+        "PH_RESOLUTION"
+      ]
+    },
+    "beat_id": {
+      "type": "string",
+      "pattern": "^B\\d{2}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 160
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 1200
+    },
+    "dramatic_function": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 500
+    },
+    "location_id": {
+      "type": "string",
+      "pattern": "^LOC\\d{3}$"
+    },
+    "time_of_day": {
+      "type": "string",
+      "enum": [
+        "DAWN",
+        "MORNING",
+        "NOON",
+        "AFTERNOON",
+        "DUSK",
+        "EVENING",
+        "NIGHT",
+        "UNKNOWN"
+      ]
+    },
+    "weather": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "characters_present": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^C\\d{2}$"
+      }
+    },
+    "primary_pov_character": {
+      "type": "string",
+      "pattern": "^C\\d{2}$"
+    },
+    "continuity_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "wardrobe",
+        "props",
+        "prior_scenes",
+        "next_expected_links"
+      ],
+      "properties": {
+        "wardrobe": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^WD\\d{3}$"
+          }
+        },
+        "props": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^PROP\\d{3}$"
+          }
+        },
+        "prior_scenes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^SC\\d{4}$"
+          }
+        },
+        "next_expected_links": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^SC\\d{4}$"
+          }
+        },
+        "time_continuity_note": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "camera_grammar_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "visual_targets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "palette",
+        "lens_bias",
+        "framing_bias"
+      ],
+      "properties": {
+        "palette": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 300
+        },
+        "lens_bias": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 300
+        },
+        "framing_bias": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 300
+        },
+        "movement_bias": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "lighting_bias": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "reference_pack_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "promptability_score": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "screen_excerpt_ref": {
+      "type": "string",
+      "default": "scene_excerpt.md"
+    },
+    "excerpt_ref": {
+      "type": "string",
+      "default": "scene_excerpt.md"
+    },
+    "prompt_brief_ref": {
+      "type": "string",
+      "default": "prompt_brief.md"
+    },
+    "review_notes_ref": {
+      "type": "string",
+      "default": "review_notes.md"
+    },
+    "source_line_start": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "source_line_end": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "source_line_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "anchor_first_nonblank": {
+      "type": "string",
+      "maxLength": 1200
+    },
+    "anchor_last_nonblank": {
+      "type": "string",
+      "maxLength": 1200
+    },
+    "boundary_start_kind": {
+      "type": "string",
+      "enum": [
+        "slug",
+        "cont_slug",
+        "dash",
+        "cut"
+      ]
+    },
+    "boundary_end_kind": {
+      "type": "string",
+      "enum": [
+        "slug",
+        "cont_slug",
+        "dash",
+        "cut",
+        "eof"
+      ]
+    },
+    "mapping_confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "inferred"
+      ]
+    },
+    "location_text_raw": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 500
+    },
+    "time_of_day_text_raw": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 120
+    },
+    "characters_explicit_dialogue": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 120
+      }
+    },
+    "characters_explicit_mentions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 120
+      }
+    },
+    "notes_grounding": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 500
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "scaffolded",
+        "draft",
+        "review",
+        "approved",
+        "locked",
+        "deprecated"
+      ]
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "needs_human_review",
+        "pending",
+        "changes_requested",
+        "approved",
+        "rejected"
+      ]
+    },
+    "canon_lock": {
+      "type": "boolean"
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "approved_by": { "type": "string" },
+        "approved_at": { "type": "string", "format": "date-time" },
+        "approval_note": { "type": "string", "maxLength": 1000 }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "created_by": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_by": { "type": "string" },
+        "updated_at": { "type": "string", "format": "date-time" },
+        "source_refs": { "type": "array", "items": { "type": "string" } },
+        "git_commit": { "type": "string", "pattern": "^[a-f0-9]{7,40}$" }
+      }
+    }
+  }
+}

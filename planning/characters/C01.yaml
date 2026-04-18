@@ -1,0 +1,99 @@
+character_id: C01
+display_name: "Nadia Vale"
+cue_name: "NADIA"
+role: PROTAGONIST
+source_truth_reference:
+  source_character_id: C01
+  source_name: "NADIA VALE"
+  source_files:
+    - source/story_blueprint.md
+    - source/character_dossier.md
+canonical_name: "NADIA VALE"
+aliases:
+  - "Nadia Karev"
+role_label: "Protagonist"
+story_function: "Primary identification point and the story's tactical intelligence engine; the planning layer tracks her as the body under surveillance, the mother trying to recover Jin, and the person whose private control habits become survival method."
+arc_baseline:
+  wound: "Former military medic whose compliance with a superior's bad order cost a patient who might have lived; the guilt hardened into a belief that staying inside a system is safer than breaking it."
+  mask: "Controlled composure and tactical patience; she performs calm endurance inside Roman's world while suppressing the fury and agency underneath it."
+  want: "Get Jin back and escape Roman's reach permanently."
+  need: "Act from her own authority instead of surviving inside someone else's system."
+  initial_arc_phase: MASK
+want: "Recover Jin from Roman's custody and reach safety beyond Roman's reach."
+need: "Stop treating compliance as protection."
+wound: "Compliance with authority once cost a life; she rebuilt herself inside another controlled system and calls that safety."
+mask: "Precise stillness, careful speech, and domestic performance that hide active threat-mapping."
+voice_fingerprint:
+  lexicon:
+    - "medical precision"
+    - "clinical brevity"
+    - "sparse emotional vocabulary"
+  rhythm: "Short declarative sentences under pressure; longer, careful constructions when assessing; silence functions as punctuation."
+  default_tactic: "Assessment before response."
+  status_signals:
+    - "Claims authority through stillness and exact eye contact."
+    - "Turns toward threats instead of away from them."
+  verbal_tic: "May quietly echo the last operative word she heard before answering when she is still parsing the situation."
+voice_register: "Medical precision under stress; careful, slightly formal social language when performing domestic control."
+voice_rhythm: "Short declaratives in action mode; fuller constructions in assessment mode; no trailing off."
+default_tactic: "Assessment before response."
+status_signal:
+  - "Stillness as authority"
+  - "Precise eye contact"
+  - "Physical orientation toward the threat"
+verbal_tic: "Quiet echo of the last operative word when she is still processing."
+stress_tell: "Touches fingertips to the inside of her wrist for an automatic pulse check."
+concealment_tell: "Posture sharpens into military uprightness."
+vulnerability_tell: "Gaze drops to mid-distance and stops tracking motion."
+visual_profile:
+  age_range: "early to mid 30s"
+  screen_presence: "Controlled, observant, and physically exact; reads as contained until the pressure reveals how active the containment is."
+  costume_logic: "Elite domestic presentation in early Vale residence scenes, but always practical enough to move; avoid ornamental softness that would fight the medic/survivor baseline."
+  silhouette: "Lean, upright, economical silhouette with no wasted motion."
+  color_bias: "Muted neutrals and controlled domestic tones; avoid decorative saturation."
+  hair_makeup_notes: "Natural restraint over glamor; fatigue, vigilance, and later physical cost should remain legible."
+visual_age_range: "early to mid 30s"
+silhouette_notes: "Lean, upright, deliberate; the body reads like someone trained to conserve movement."
+costume_logic: "Composed domestic/elite control early, always grounded in mobility and self-management."
+color_bias: "Muted domestic neutrals; color should come from environment, not styling flourish."
+associated_props:
+  - PROP001
+  - PROP003
+associated_locations:
+  - LOC001
+  - LOC002
+  - LOC004
+relationship_keys:
+  - "Roman: marriage as predator system and ownership frame."
+  - "Marcus: genuine love, guilt, and posthumous tactical inheritance."
+  - "Jin: emotional center and reason to keep moving."
+  - "Birta: small human domestic anchor inside the house."
+known_scene_anchors:
+  - SC0001
+  - SC0003
+  - SC0006
+  - SC0008
+  - SC0009
+do_not_invent_notes:
+  - "Do not soften her into generalized maternal warmth; she is specific, observant, and physically exact."
+  - "Do not erase the compliance wound or the pulse-check habit."
+  - "Do not style her as action-invulnerable or fashion-forward."
+unresolved_questions:
+  - "TODO_REVIEW: exact hair/makeup progression after the pilot setup cluster is not yet locked in planning."
+  - "UNRESOLVED: precise garment breakdown for the night/private look remains a later wardrobe pass."
+continuity_refs:
+  wardrobe_ids:
+    - WD001
+    - WD002
+  prop_ids:
+    - PROP001
+    - PROP003
+  key_scene_ids:
+    - SC0001
+    - SC0003
+    - SC0006
+    - SC0008
+    - SC0009
+status: review
+review_status: pending
+canon_lock: false

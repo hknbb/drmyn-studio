@@ -1,0 +1,163 @@
+name: "Phase 2 — Still Set"
+description: "Generate and curate a still set for a selected scene."
+title: "[P2][Still Set] "
+labels: ["phase-2", "asset-still", "review-needed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to generate and curate a **Phase 2 still set** for a selected scene.
+
+        Typical outputs:
+        - 1 establishing still
+        - 2 character-centered stills
+        - 1 detail/prop still
+        - 1 tonal alternative
+        - 1 contact sheet
+        - 1 selection log
+
+  - type: input
+    id: scene_id
+    attributes:
+      label: Scene ID
+      placeholder: "SC0001"
+    validations:
+      required: true
+
+  - type: input
+    id: scene_title
+    attributes:
+      label: Scene title
+      placeholder: "From the Master's Gaze"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: batch
+    attributes:
+      label: Batch
+      options:
+        - Batch 01
+        - Batch 02
+        - Batch 03
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tool
+    attributes:
+      label: Primary tool
+      options:
+        - Midjourney
+        - Nano Banana Pro
+        - GPT Image
+        - Mixed
+    validations:
+      required: true
+
+  - type: textarea
+    id: canonical_inputs
+    attributes:
+      label: Canonical inputs
+      placeholder: |
+        planning/scenes/SC0001/scene_card.yaml
+        planning/scenes/SC0001/scene_excerpt.md
+        planning/scenes/SC0001/prompt_brief.md
+        visual_dev/characters/C01/approved/
+        visual_dev/locations/LOC001/approved/
+      render: markdown
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: required_outputs
+    attributes:
+      label: Required outputs
+      options:
+        - label: Establishing still
+        - label: Character-centered still A
+        - label: Character-centered still B
+        - label: Detail/prop still
+        - label: Tonal alternative
+        - label: Contact sheet
+        - label: Selection log
+
+  - type: textarea
+    id: output_paths
+    attributes:
+      label: Output paths
+      placeholder: |
+        visual_dev/stills/SC0001/raw/
+        visual_dev/stills/SC0001/shortlisted/
+        visual_dev/stills/SC0001/approved/
+        visual_dev/stills/SC0001/contact_sheet/
+        visual_dev/stills/SC0001/selection_notes.md
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: review_criteria
+    attributes:
+      label: Review criteria
+      placeholder: |
+        - screenplay information preserved
+        - character identity readable
+        - spatial relations legible
+        - tonal register correct
+        - continuity does not visibly break
+      render: markdown
+    validations:
+      required: true
+
+  - type: dropdown
+    id: continuity_risk
+    attributes:
+      label: Continuity risk
+      options:
+        - Low
+        - Medium
+        - High
+    validations:
+      required: true
+
+  - type: dropdown
+    id: evidence_relevance
+    attributes:
+      label: Article 3 evidence relevance
+      options:
+        - No
+        - Candidate
+        - Approved
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: panel_candidate
+    attributes:
+      label: Evidence panel usage
+      options:
+        - label: This still set is a candidate for Article 3 evidence panels
+
+  - type: input
+    id: freeze_target
+    attributes:
+      label: Target freeze
+      placeholder: "visual-z1p2-batch1-r1"
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      render: markdown
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+    validations:
+      required: false

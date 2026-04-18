@@ -1,0 +1,46 @@
+prop_id: PROP001
+name: "Jin's medical bracelet"
+narrative_function: "Continuity-critical infant identifier that later becomes a passive tracking anchor; it keeps Jin specific and materially present rather than abstract."
+visual_description: "Thin hospital-style plastic bracelet with printed ID strip; source evidence supports a white or pale blue/white appearance under changing light."
+category: CLOTHING_ACCESSORY
+canonical_name: "Jin's medical bracelet"
+aliases:
+  - "hospital bracelet"
+  - "bracelet tracker"
+prop_type: "infant continuity identifier"
+ownership_or_association: "Jin wears it; Nadia is listed as registrant and later tracks him through it."
+physical_description_grounded: "White plastic with printed ID strip in SC0003; later described as pale blue under morning light and as containing a passive ID chip."
+continuity_importance: "High"
+recurring_scene_ids:
+  - SC0003
+  - SC0010
+  - SC0011
+  - SC0014
+  - SC0108
+  - SC0109
+related_characters:
+  - C01
+related_locations:
+  - LOC001
+handling_notes:
+  - "Nadia repeatedly adjusts the clasp with practiced familiarity."
+  - "Keep it ordinary and medically plausible, not tech-futuristic."
+visual_stability_notes:
+  - "Do not drift between decorative colors; continuity bible flags white vs blue/white wording as needing standardized review."
+future_hero_prop_candidate: true
+continuity_state:
+  initial_state: "Worn by Jin in early Vale residence scenes; Nadia is the named registrant."
+  state_changes: []
+owner_character_id: C01
+scene_refs:
+  - SC0003
+  - SC0010
+  - SC0011
+  - SC0014
+  - SC0108
+  - SC0109
+unresolved_questions:
+  - "TODO_REVIEW: standardize final wording for white versus pale blue/white appearance."
+status: review
+review_status: pending
+canon_lock: false

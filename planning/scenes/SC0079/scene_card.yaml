@@ -1,0 +1,53 @@
+scene_id: SC0079
+sequence_id: SEQ16
+phase_id: PH_CRUCIBLE
+title: KASPAR TERMINAL — STORAGE CORRIDOR
+purpose: Placeholder scaffold seeded from the retrieval map; replace with canonical scene purpose.
+dramatic_function: TBD dramatic function derived during scene-card enrichment.
+location_id: LOC001
+location_text_raw: KASPAR TERMINAL — STORAGE CORRIDOR
+time_of_day: NIGHT
+time_of_day_text_raw: NIGHT
+weather: TBD
+characters_present:
+- C01
+characters_explicit_dialogue:
+- NADIA
+- ZARA
+characters_explicit_mentions: []
+primary_pov_character: C01
+continuity_refs:
+  wardrobe: []
+  props: []
+  prior_scenes:
+  - SC0078
+  next_expected_links:
+  - SC0080
+  time_continuity_note: TBD continuity note.
+visual_targets:
+  palette: TBD visual palette
+  lens_bias: TBD lens bias
+  framing_bias: TBD framing bias
+  movement_bias: TBD movement bias
+  lighting_bias: TBD lighting bias
+promptability_score: 3
+excerpt_ref: scene_excerpt.md
+screen_excerpt_ref: scene_excerpt.md
+prompt_brief_ref: prompt_brief.md
+review_notes_ref: review_notes.md
+source_line_start: 6450
+source_line_end: 6585
+source_line_count: 136
+anchor_first_nonblank: INT. KASPAR TERMINAL — STORAGE CORRIDOR — NIGHT
+anchor_last_nonblank: Tell me the route.
+boundary_start_kind: slug
+boundary_end_kind: slug
+mapping_confidence: high
+notes_grounding:
+- Hydrated from retrieval map and scene_excerpt.md only.
+- Title derived from opening slugline location.
+- Opening slugline provided grounded location/time extraction.
+- Numbered Fountain marker present for this scene.
+status: scaffolded
+review_status: needs_human_review
+canon_lock: false

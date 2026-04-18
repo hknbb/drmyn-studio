@@ -1,0 +1,40 @@
+prop_id: PROP004
+name: "Marcus's burner phone"
+narrative_function: "PL03 payoff object that carries Marcus's recorded warning and the intelligence package Nadia needs to fight Roman's machine."
+visual_description: "Industrial-grade handset with no manufacturer markings, retrieved from a locked case and unlocked with a numeric code."
+category: DEVICE
+canonical_name: "Marcus's burner phone"
+aliases:
+  - "OTTO phone"
+  - "message phone"
+  - "encrypted handset"
+prop_type: "intelligence delivery device"
+ownership_or_association: "Marcus seeded it through OTTO for Nadia."
+physical_description_grounded: "Handset without visible branding, containing a single audio file and an encrypted partition."
+continuity_importance: "High"
+recurring_scene_ids:
+  - SC0046
+  - SC0047
+related_characters:
+  - C01
+  - C05
+related_locations:
+  - LOC004
+handling_notes:
+  - "Keep the device durable and unflashy; it should read as operational, not consumer-smart."
+  - "The code access and encrypted partition are as important as the handset body."
+visual_stability_notes:
+  - "Avoid speculative futuristic UI language; the phone is grounded, stripped-down hardware."
+future_hero_prop_candidate: true
+continuity_state:
+  initial_state: "Reached through Marcus's contact-drop chain and activated by Nadia with the access code 7-3-1-1-4."
+  state_changes: []
+owner_character_id: C05
+scene_refs:
+  - SC0046
+  - SC0047
+unresolved_questions:
+  - "TODO_REVIEW: exact handset color/material is not source-authored beyond industrial-grade anonymity."
+status: review
+review_status: pending
+canon_lock: false

@@ -1,0 +1,9 @@
+record_type: wardrobe_state
+version: "0.1.0"
+canon_lock: false
+
+entries:
+  - scene_id: SC0001
+    wardrobe_id: WD001
+    state: "initial"
+    notes: ""

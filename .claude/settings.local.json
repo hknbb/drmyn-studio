@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install *)",
+      "Read(//mnt/c/Users/babac/**)",
+      "Bash(python3 -m pip install jsonschema PyYAML pandas --quiet)",
+      "Bash(python scripts/validate_phase1.py --source-dir source --planning-dir planning --prompts-dir prompts --schemas-dir schemas --evidence-dir evidence --report-json evidence/validation_reports/phase1_validation_report.json --report-md evidence/validation_reports/phase1_validation_report.md)",
+      "Bash(python scripts/check_referential_integrity.py --planning-dir planning --prompts-dir prompts --output evidence/validation_reports/referential_integrity_report.json)",
+      "Bash(python scripts/build_manifests.py --planning-dir planning --output-dir planning/manifests)",
+      "Bash(python -c ' *)",
+      "Bash(cp \"C:\\\\Users\\\\babac\\\\Downloads\\\\phase2_workflows_bundle_extracted\\\\phase2_workflows\\\\.github\\\\workflows\\\\phase2-taxonomy-bootstrap.yml\" \"C:\\\\Users\\\\babac\\\\NexusZeroClosingPriceProduction\\\\.github\\\\workflows\\\\phase2-taxonomy-bootstrap.yml\")",
+      "Bash(cp \"C:\\\\Users\\\\babac\\\\Downloads\\\\phase2_workflows_bundle_extracted\\\\phase2_workflows\\\\.github\\\\workflows\\\\phase2-project-sync.yml\" \"C:\\\\Users\\\\babac\\\\NexusZeroClosingPriceProduction\\\\.github\\\\workflows\\\\phase2-project-sync.yml\")",
+      "Bash(cp \"C:\\\\Users\\\\babac\\\\Downloads\\\\phase2_workflows_bundle_extracted\\\\phase2_workflows\\\\.github\\\\workflows\\\\phase2-label-guard.yml\" \"C:\\\\Users\\\\babac\\\\NexusZeroClosingPriceProduction\\\\.github\\\\workflows\\\\phase2-label-guard.yml\")",
+      "Bash(python scripts/stage_a_closure_audit.py --root .)",
+      "Bash(python scripts/build_canon_hydration_queue.py --root . --report-json evidence/validation_reports/canon_hydration_queue.json --report-md evidence/validation_reports/canon_hydration_queue.md)",
+      "Bash(python scripts/build_pilot_scene_review_packets.py --scenes-root planning/scenes --output-root evidence/article3/pilot_scene_review_packets)"
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+location_id: LOC003
+name: "Roman's Operational Floor"
+category: OFFICE
+recurring: true
+geography:
+  city: "Vardova"
+  country: "UNRESOLVED - fictional state context not named in source"
+  interior_exterior: INT
+canonical_name: "Vale Enterprise Building - Roman's Operational Floor"
+aliases:
+  - "Vale Enterprise Building"
+  - "Roman's operational floor"
+  - "trading floor"
+location_type: "Institutional control environment"
+narrative_function: "Operational macro-space where Roman and Dimitri treat violence and betting as management problems."
+architectural_character: "High-ceilinged workspace engineered not to look like a command center even though it functions like one."
+material_profile:
+  - "muted corporate surfaces"
+  - "screens"
+  - "low cabinet"
+  - "glass"
+texture_profile:
+  - "expensive restraint"
+  - "financial-display cleanliness"
+  - "controlled institutional finish"
+lighting_behavior: "Daytime institutional clarity with outside city light and low-resolution feed glow."
+day_night_variation: "Pilot evidence grounds a daytime version only."
+spatial_feel: "Open, calm, and system-owned."
+emotional_register: "Cold institutional intelligence."
+recurring_anchor_objects:
+  - PROP005
+  - "low-resolution feed wall"
+  - "low cabinet collection"
+stable_visual_rules:
+  - "It must read as a workspace first, command center second."
+  - "Broadcast/odds infrastructure should stay integrated, not flashy."
+non_invention_rules:
+  - "Do not push the room into sci-fi trading-floor spectacle."
+  - "Do not decorate it like a luxury penthouse office."
+visual_profile:
+  palette: "Muted corporate neutrals, controlled glass, and low-contrast screen light."
+  architecture_logic: "Macro-space built to conceal operational power inside professional calm."
+  camera_behavior: "Use scale, stillness, and screen/cabinet relations to show Roman's command without over-covering."
+  lighting_logic: "Institutional daylight and screen spill, nothing theatrical."
+  sound_texture: "Quiet corporate HVAC, distant operations, and subdued room tone."
+  spatial_motifs:
+    - "distance across polished floor"
+    - "screen walls"
+    - "cabinet as curated evidence node"
+continuity_constraints:
+  persistent_objects:
+    - PROP005
+  entry_exit_logic: "Dimitri enters from a side corridor and Roman moves between screen wall and low cabinet; that movement should remain spatially legible."
+  time_of_day_constraints: "Daytime macro-space in pilot evidence."
+  weather_sensitivity: "Low indoors; outside city light functions as context, not mood event."
+  damage_state_logic: "Before later escalation this room remains controlled and undamaged."
+related_scene_ids:
+  - SC0002
+known_character_associations:
+  - C02
+  - C04
+scene_refs:
+  - SC0002
+unresolved_questions:
+  - "TODO_REVIEW: later screenplay references may justify expanding LOC003 into a broader Roman office environments bucket."
+status: review
+review_status: pending
+canon_lock: false

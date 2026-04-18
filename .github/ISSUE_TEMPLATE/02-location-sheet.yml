@@ -1,0 +1,156 @@
+name: "Phase 2 — Location Sheet"
+description: "Create or revise a location reference sheet for Phase 2 visual development."
+title: "[P2][Location Sheet] "
+labels: ["phase-2", "asset-location", "review-needed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to create or revise a **Phase 2 location reference sheet**.
+
+        Typical outputs:
+        - frontal view
+        - angled-left view
+        - angled-right view
+        - reverse-wide view
+        - environmental detail close-ups
+        - contact sheet
+        - notes file
+
+  - type: input
+    id: location_id
+    attributes:
+      label: Location ID
+      placeholder: "LOC001"
+    validations:
+      required: true
+
+  - type: input
+    id: location_name
+    attributes:
+      label: Location name
+      placeholder: "Vale Residence"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: batch
+    attributes:
+      label: Batch
+      options:
+        - Batch 01
+        - Batch 02
+        - Batch 03
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tool
+    attributes:
+      label: Primary tool
+      options:
+        - Nano Banana Pro
+        - Midjourney
+        - GPT Image
+        - Mixed
+    validations:
+      required: true
+
+  - type: textarea
+    id: canonical_inputs
+    attributes:
+      label: Canonical inputs
+      placeholder: |
+        planning/locations/LOC001.yaml
+        source/style_bible.md
+        planning/scenes/SC0001/scene_card.yaml
+        planning/props/PROP003.yaml
+      render: markdown
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: required_outputs
+    attributes:
+      label: Required outputs
+      options:
+        - label: Frontal view
+        - label: Angled-left view
+        - label: Angled-right view
+        - label: Reverse-wide view
+        - label: Detail close-up 1
+        - label: Detail close-up 2
+        - label: Detail close-up 3
+        - label: Contact sheet
+        - label: Notes file
+
+  - type: textarea
+    id: output_paths
+    attributes:
+      label: Output paths
+      placeholder: |
+        visual_dev/locations/LOC001/reference_sheet/
+        visual_dev/locations/LOC001/approved/
+        visual_dev/locations/LOC001/notes.md
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: review_criteria
+    attributes:
+      label: Review criteria
+      placeholder: |
+        - geometry remains stable
+        - architecture is legible
+        - lighting is motivated
+        - recurring props preserved where required
+        - aligns with house style
+      render: markdown
+    validations:
+      required: true
+
+  - type: dropdown
+    id: continuity_risk
+    attributes:
+      label: Continuity risk
+      options:
+        - Low
+        - Medium
+        - High
+    validations:
+      required: true
+
+  - type: dropdown
+    id: evidence_relevance
+    attributes:
+      label: Article 3 evidence relevance
+      options:
+        - No
+        - Candidate
+        - Approved
+    validations:
+      required: true
+
+  - type: input
+    id: freeze_target
+    attributes:
+      label: Target freeze
+      placeholder: "visual-z1p2-batch1-r1"
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      render: markdown
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+    validations:
+      required: false

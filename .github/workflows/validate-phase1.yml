@@ -1,0 +1,94 @@
+name: Validate Zone 1 Phase 1
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+    paths:
+      - "source/**"
+      - "planning/**"
+      - "prompts/**"
+      - "schemas/**"
+      - "evidence/**"
+      - "scripts/**"
+      - ".github/workflows/validate-phase1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-phase1-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-phase1:
+    name: Validate Phase 1 planning records
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install validation dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install jsonschema PyYAML yamllint pandas
+
+      - name: Lint YAML
+        run: |
+          yamllint source planning prompts .github || true
+
+      - name: Ensure expected directories exist
+        run: |
+          test -d source
+          test -d planning
+          test -d prompts
+          test -d schemas
+          mkdir -p evidence/validation_reports
+
+      - name: Run Phase 1 validator
+        run: |
+          python scripts/validate_phase1.py \
+            --source-dir source \
+            --planning-dir planning \
+            --prompts-dir prompts \
+            --schemas-dir schemas \
+            --evidence-dir evidence \
+            --report-json evidence/validation_reports/phase1_validation_report.json \
+            --report-md evidence/validation_reports/phase1_validation_report.md
+
+      - name: Referential integrity check
+        run: |
+          python scripts/check_referential_integrity.py \
+            --planning-dir planning \
+            --prompts-dir prompts \
+            --output evidence/validation_reports/referential_integrity_report.json
+
+      - name: Rebuild manifests
+        run: |
+          python scripts/build_manifests.py \
+            --planning-dir planning \
+            --output-dir planning/manifests
+
+      - name: Check for dirty manifest diff
+        run: |
+          git diff --exit-code planning/manifests || (
+            echo "Manifest files are outdated. Please regenerate and commit them."
+            exit 1
+          )
+
+      - name: Upload validation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase1-validation-${{ github.run_number }}
+          path: |
+            evidence/validation_reports/
+            planning/manifests/
+          retention-days: 14

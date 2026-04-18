@@ -1,0 +1,56 @@
+scene_id: SC0069
+sequence_id: SEQ14
+phase_id: PH_INVERSION
+title: KASPAR TERMINAL — LOADING BAY BREAK AREA
+purpose: Placeholder scaffold seeded from the retrieval map; replace with canonical scene purpose.
+dramatic_function: TBD dramatic function derived during scene-card enrichment.
+location_id: LOC001
+location_text_raw: KASPAR TERMINAL — LOADING BAY BREAK AREA
+time_of_day: AFTERNOON
+time_of_day_text_raw: AFTERNOON
+weather: TBD
+characters_present:
+- C01
+characters_explicit_dialogue:
+- NESSA
+- NADIA
+characters_explicit_mentions:
+- NESSA
+primary_pov_character: C01
+continuity_refs:
+  wardrobe: []
+  props: []
+  prior_scenes:
+  - SC0068
+  next_expected_links:
+  - SC0070
+  time_continuity_note: TBD continuity note.
+visual_targets:
+  palette: TBD visual palette
+  lens_bias: TBD lens bias
+  framing_bias: TBD framing bias
+  movement_bias: TBD movement bias
+  lighting_bias: TBD lighting bias
+promptability_score: 3
+excerpt_ref: scene_excerpt.md
+screen_excerpt_ref: scene_excerpt.md
+prompt_brief_ref: prompt_brief.md
+review_notes_ref: review_notes.md
+source_line_start: 5533
+source_line_end: 5607
+source_line_count: 75
+anchor_first_nonblank: EXT. KASPAR TERMINAL — LOADING BAY BREAK AREA — AFTERNOON
+anchor_last_nonblank: Outside, through the corridor, through the loading bay, the camera above the door
+  is still running. Nessa has finished her lunch and gone back to work. The camera has no record of what
+  either of them thought about the exchange. It has a rec
+boundary_start_kind: slug
+boundary_end_kind: slug
+mapping_confidence: high
+notes_grounding:
+- Hydrated from retrieval map and scene_excerpt.md only.
+- Title derived from opening slugline location.
+- Opening slugline provided grounded location/time extraction.
+- Numbered Fountain marker present for this scene.
+status: scaffolded
+review_status: needs_human_review
+canon_lock: false

@@ -1,0 +1,91 @@
+name: "Phase 2 — General Visual Task"
+description: "Create a general visual-development task for Phase 2."
+title: "[P2][Task] "
+labels: ["phase-2", "task", "review-needed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for a **general Phase 2 visual-development task** that does not fit the more specific templates.
+
+  - type: input
+    id: task_title
+    attributes:
+      label: Task summary
+      placeholder: "Create comparison contact sheet for SC0001 tonal variants"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: asset_type
+    attributes:
+      label: Asset type
+      options:
+        - Character Pack
+        - Location Sheet
+        - Prop Pack
+        - Wardrobe Pack
+        - Still Set
+        - Motion Pair
+        - Evidence Panel
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: batch
+    attributes:
+      label: Batch
+      options:
+        - Batch 01
+        - Batch 02
+        - Batch 03
+    validations:
+      required: true
+
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: inputs
+    attributes:
+      label: Inputs
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_outputs
+    attributes:
+      label: Expected outputs
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: review_criteria
+    attributes:
+      label: Review criteria
+      render: markdown
+    validations:
+      required: true
+
+  - type: input
+    id: freeze_target
+    attributes:
+      label: Target freeze
+      placeholder: "visual-z1p2-batch1-r1"
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+    validations:
+      required: false

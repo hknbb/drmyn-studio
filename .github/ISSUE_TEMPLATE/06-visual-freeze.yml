@@ -1,0 +1,88 @@
+name: "Phase 2 — Visual Freeze"
+description: "Request a Phase 2 freeze for an approved visual batch."
+title: "[P2][Freeze] "
+labels: ["phase-2", "freeze-candidate", "pipeline", "review-needed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to request a **Phase 2 visual freeze** for a completed batch.
+
+  - type: input
+    id: freeze_tag
+    attributes:
+      label: Freeze tag
+      placeholder: "visual-z1p2-batch1-r1"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: batch
+    attributes:
+      label: Batch
+      options:
+        - Batch 01
+        - Batch 02
+        - Batch 03
+    validations:
+      required: true
+
+  - type: textarea
+    id: included_assets
+    attributes:
+      label: Included assets
+      description: List the asset packs, still sets, and motion pairs included in this freeze.
+      render: markdown
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: freeze_requirements
+    attributes:
+      label: Freeze requirements
+      options:
+        - label: Character packs approved
+          required: true
+        - label: Location sheets approved
+          required: true
+        - label: Required prop/wardrobe packs approved
+          required: true
+        - label: Scene still sets curated
+          required: true
+        - label: Motion pairs prepared
+          required: true
+        - label: Evidence panels exported where needed
+          required: true
+        - label: Selection logs updated
+          required: true
+        - label: Manifests up to date
+          required: true
+
+  - type: textarea
+    id: output_targets
+    attributes:
+      label: Freeze outputs
+      placeholder: |
+        manifests
+        approval records
+        evidence panel bundle
+        freeze summary
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: review_notes
+    attributes:
+      label: Final review notes
+      render: markdown
+    validations:
+      required: false
+
+  - type: textarea
+    id: blockers
+    attributes:
+      label: Remaining blockers or known limitations
+      render: markdown
+    validations:
+      required: false

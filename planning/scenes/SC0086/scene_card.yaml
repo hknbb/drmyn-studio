@@ -1,0 +1,56 @@
+scene_id: SC0086
+sequence_id: SEQ18
+phase_id: PH_CRUCIBLE
+title: The second filing had gone out at the same time as the first.
+purpose: Placeholder scaffold seeded from the retrieval map; replace with canonical scene purpose.
+dramatic_function: TBD dramatic function derived during scene-card enrichment.
+location_id: LOC001
+location_text_raw: null
+time_of_day: UNKNOWN
+time_of_day_text_raw: null
+weather: TBD
+characters_present:
+- C01
+characters_explicit_dialogue:
+- RIKO
+- OKAFOR
+characters_explicit_mentions: []
+primary_pov_character: C01
+continuity_refs:
+  wardrobe: []
+  props: []
+  prior_scenes:
+  - SC0085
+  next_expected_links:
+  - SC0087
+  time_continuity_note: TBD continuity note.
+visual_targets:
+  palette: TBD visual palette
+  lens_bias: TBD lens bias
+  framing_bias: TBD framing bias
+  movement_bias: TBD movement bias
+  lighting_bias: TBD lighting bias
+promptability_score: 3
+excerpt_ref: scene_excerpt.md
+screen_excerpt_ref: scene_excerpt.md
+prompt_brief_ref: prompt_brief.md
+review_notes_ref: review_notes.md
+source_line_start: 7016
+source_line_end: 7089
+source_line_count: 74
+anchor_first_nonblank: The second filing had gone out at the same time as the first. Different jurisdiction
+  — a Nordic financial regulatory body with an independent evidentiary standard that did not require the
+  same procedural authority the first notice had used.
+anchor_last_nonblank: The record is what matters. Not what he knows. What can be proven that he knew.
+boundary_start_kind: dash
+boundary_end_kind: slug
+mapping_confidence: medium
+notes_grounding:
+- Hydrated from retrieval map and scene_excerpt.md only.
+- Title derived from opening anchor sentence.
+- Scene begins without a clear opening slugline; raw location/time left empty.
+- Retrieval map marks this scene as medium confidence.
+- Numbered Fountain marker present for this scene.
+status: scaffolded
+review_status: needs_human_review
+canon_lock: false

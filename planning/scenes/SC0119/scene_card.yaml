@@ -1,0 +1,62 @@
+scene_id: SC0119
+sequence_id: SEQ24
+phase_id: PH_RESOLUTION
+title: Okafor stands.
+purpose: Placeholder scaffold seeded from the retrieval map; replace with canonical scene purpose.
+dramatic_function: TBD dramatic function derived during scene-card enrichment.
+location_id: LOC001
+location_text_raw: null
+time_of_day: UNKNOWN
+time_of_day_text_raw: null
+weather: TBD
+characters_present:
+- C01
+characters_explicit_dialogue:
+- TOBIAS
+- OKAFOR
+- CHEN MEI
+characters_explicit_mentions:
+- STATE DIGEST
+- ARRESTS
+- ACCOUNTS
+- EVIDENTIARY
+- NAMED
+primary_pov_character: C01
+continuity_refs:
+  wardrobe: []
+  props: []
+  prior_scenes:
+  - SC0118
+  next_expected_links:
+  - SC0120
+  time_continuity_note: TBD continuity note.
+visual_targets:
+  palette: TBD visual palette
+  lens_bias: TBD lens bias
+  framing_bias: TBD framing bias
+  movement_bias: TBD movement bias
+  lighting_bias: TBD lighting bias
+promptability_score: 3
+excerpt_ref: scene_excerpt.md
+screen_excerpt_ref: scene_excerpt.md
+prompt_brief_ref: prompt_brief.md
+review_notes_ref: review_notes.md
+source_line_start: 9624
+source_line_end: 9696
+source_line_count: 73
+anchor_first_nonblank: Okafor stands. Tobias does not. He is looking at the instruments again — not arranging
+  them now, just looking at them.
+anchor_last_nonblank: She works through them in order.
+boundary_start_kind: dash
+boundary_end_kind: dash
+mapping_confidence: inferred
+notes_grounding:
+- Hydrated from retrieval map and scene_excerpt.md only.
+- Title derived from opening anchor sentence.
+- Scene begins without a clear opening slugline; raw location/time left empty.
+- A later explicit slugline exists inside the excerpt and should be reviewed manually.
+- Retrieval map marks this scene as inferred confidence.
+- Numbered Fountain marker present for this scene.
+status: scaffolded
+review_status: needs_human_review
+canon_lock: false

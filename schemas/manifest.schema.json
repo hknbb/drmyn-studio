@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/manifest.schema.json",
+  "title": "Closing Price Phase 1 Canon Manifest",
+  "description": "Schema for canon freeze manifest produced by freeze_canon.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["tag", "created_at", "file_count", "files"],
+  "properties": {
+    "tag": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "git_commit": { "type": ["string", "null"] },
+    "file_count": { "type": "integer", "minimum": 0 },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256", "size_bytes"],
+        "properties": {
+          "path": { "type": "string" },
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "size_bytes": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

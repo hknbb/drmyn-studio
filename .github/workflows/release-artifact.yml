@@ -1,0 +1,41 @@
+name: Release Artifact Bundle
+
+on:
+  push:
+    tags:
+      - "canon-*"
+
+permissions:
+  contents: write
+
+jobs:
+  release-bundle:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install PyYAML pandas jsonschema
+
+      - name: Build artifact bundle
+        run: |
+          python scripts/export_artifact_bundle.py \
+            --source-dir source \
+            --planning-dir planning \
+            --prompts-dir prompts \
+            --evidence-dir evidence \
+            --output evidence/closing-price-phase1-artifact-bundle.zip
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: evidence/closing-price-phase1-artifact-bundle.zip

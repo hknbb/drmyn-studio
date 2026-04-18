@@ -1,0 +1,310 @@
+name: Phase 2 Project Sync
+
+on:
+  issues:
+    types:
+      - opened
+      - edited
+      - labeled
+      - unlabeled
+      - reopened
+      - milestoned
+      - demilestoned
+
+permissions:
+  contents: read
+  issues: read
+
+jobs:
+  sync-project:
+    if: contains(join(github.event.issue.labels.*.name, ','), 'phase-2')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Sync issue to Phase 2 Project
+        uses: actions/github-script@v7
+        env:
+          PROJECT_OWNER: ${{ vars.PHASE2_PROJECT_OWNER }}
+          PROJECT_NUMBER: ${{ vars.PHASE2_PROJECT_NUMBER }}
+        with:
+          github-token: ${{ secrets.PROJECT_TOKEN }}
+          script: |
+            const ownerLogin = process.env.PROJECT_OWNER;
+            const projectNumber = Number(process.env.PROJECT_NUMBER);
+            const issueNodeId = context.payload.issue.node_id;
+            const issueTitle = context.payload.issue.title;
+            const issueNumber = context.payload.issue.number;
+            const labels = context.payload.issue.labels.map(l => l.name);
+            const milestoneTitle = context.payload.issue.milestone?.title || null;
+
+            if (!ownerLogin || !projectNumber) {
+              core.setFailed("Missing PHASE2_PROJECT_OWNER or PHASE2_PROJECT_NUMBER.");
+              return;
+            }
+
+            function pickAssetType(labels) {
+              if (labels.includes("asset-character")) return "Character Pack";
+              if (labels.includes("asset-location")) return "Location Sheet";
+              if (labels.includes("asset-prop")) return "Prop Pack";
+              if (labels.includes("asset-wardrobe")) return "Wardrobe Pack";
+              if (labels.includes("asset-still")) return "Still Set";
+              if (labels.includes("asset-motion-pair")) return "Motion Pair";
+              if (labels.includes("asset-evidence")) return "Evidence Panel";
+              return null;
+            }
+
+            function pickBatch(milestoneTitle) {
+              if (!milestoneTitle) return null;
+              if (milestoneTitle.includes("Batch-01") || milestoneTitle.includes("Batch 01")) return "Batch 01";
+              if (milestoneTitle.includes("Batch-02") || milestoneTitle.includes("Batch 02")) return "Batch 02";
+              if (milestoneTitle.includes("Batch-03") || milestoneTitle.includes("Batch 03")) return "Batch 03";
+              return null;
+            }
+
+            function pickEvidence(labels) {
+              if (labels.includes("article3-evidence")) return "Candidate";
+              return "No";
+            }
+
+            function pickMotionReady(labels) {
+              if (labels.includes("asset-motion-pair")) return "Paired";
+              return "No";
+            }
+
+            function pickTargetFreeze(batch) {
+              if (batch === "Batch 01") return "visual-z1p2-batch1-r1";
+              if (batch === "Batch 02") return "visual-z1p2-batch2-r1";
+              if (batch === "Batch 03") return "visual-z1p2-batch3-r1";
+              return "";
+            }
+
+            function extractSceneId(title) {
+              const m = title.match(/SC\d{4}/);
+              return m ? m[0] : "";
+            }
+
+            function extractCharacterId(title) {
+              const m = title.match(/C\d{2}/);
+              return m ? m[0] : "";
+            }
+
+            function extractLocationId(title) {
+              const m = title.match(/LOC\d{3}/);
+              return m ? m[0] : "";
+            }
+
+            const projectQuery = `
+              query($owner: String!, $number: Int!) {
+                repositoryOwner(login: $owner) {
+                  __typename
+                  ... on User {
+                    projectV2(number: $number) {
+                      id
+                      fields(first: 50) {
+                        nodes {
+                          __typename
+                          ... on ProjectV2Field {
+                            id
+                            name
+                            dataType
+                          }
+                          ... on ProjectV2SingleSelectField {
+                            id
+                            name
+                            dataType
+                            options {
+                              id
+                              name
+                            }
+                          }
+                        }
+                      }
+                      items(first: 200) {
+                        nodes {
+                          id
+                          content {
+                            __typename
+                            ... on Issue {
+                              id
+                              number
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  ... on Organization {
+                    projectV2(number: $number) {
+                      id
+                      fields(first: 50) {
+                        nodes {
+                          __typename
+                          ... on ProjectV2Field {
+                            id
+                            name
+                            dataType
+                          }
+                          ... on ProjectV2SingleSelectField {
+                            id
+                            name
+                            dataType
+                            options {
+                              id
+                              name
+                            }
+                          }
+                        }
+                      }
+                      items(first: 200) {
+                        nodes {
+                          id
+                          content {
+                            __typename
+                            ... on Issue {
+                              id
+                              number
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+
+            const projectData = await github.graphql(projectQuery, {
+              owner: ownerLogin,
+              number: projectNumber
+            });
+
+            const project = projectData.repositoryOwner.projectV2;
+            if (!project) {
+              core.setFailed("Project not found.");
+              return;
+            }
+
+            const projectId = project.id;
+            let item = project.items.nodes.find(
+              n => n.content && n.content.__typename === "Issue" && n.content.id === issueNodeId
+            );
+
+            if (!item) {
+              const addMutation = `
+                mutation($projectId: ID!, $contentId: ID!) {
+                  addProjectV2ItemById(input: {
+                    projectId: $projectId,
+                    contentId: $contentId
+                  }) {
+                    item {
+                      id
+                    }
+                  }
+                }
+              `;
+
+              const added = await github.graphql(addMutation, {
+                projectId,
+                contentId: issueNodeId
+              });
+
+              item = { id: added.addProjectV2ItemById.item.id };
+              core.info(`Added issue #${issueNumber} to project.`);
+            } else {
+              core.info(`Issue #${issueNumber} already exists in project.`);
+            }
+
+            const fields = project.fields.nodes;
+
+            function findField(name) {
+              return fields.find(f => f.name === name);
+            }
+
+            function findOption(fieldName, optionName) {
+              const field = findField(fieldName);
+              if (!field || !field.options) return null;
+              return field.options.find(o => o.name === optionName) || null;
+            }
+
+            async function updateSingleSelect(fieldName, optionName) {
+              if (!optionName) return;
+              const field = findField(fieldName);
+              const option = findOption(fieldName, optionName);
+              if (!field || !option) {
+                core.warning(`Missing field or option: ${fieldName} -> ${optionName}`);
+                return;
+              }
+
+              const mutation = `
+                mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) {
+                  updateProjectV2ItemFieldValue(input: {
+                    projectId: $projectId,
+                    itemId: $itemId,
+                    fieldId: $fieldId,
+                    value: { singleSelectOptionId: $optionId }
+                  }) {
+                    projectV2Item {
+                      id
+                    }
+                  }
+                }
+              `;
+
+              await github.graphql(mutation, {
+                projectId,
+                itemId: item.id,
+                fieldId: field.id,
+                optionId: option.id
+              });
+
+              core.info(`Set ${fieldName} = ${optionName}`);
+            }
+
+            async function updateText(fieldName, textValue) {
+              if (!textValue) return;
+              const field = findField(fieldName);
+              if (!field) {
+                core.warning(`Missing field: ${fieldName}`);
+                return;
+              }
+
+              const mutation = `
+                mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $text: String!) {
+                  updateProjectV2ItemFieldValue(input: {
+                    projectId: $projectId,
+                    itemId: $itemId,
+                    fieldId: $fieldId,
+                    value: { text: $text }
+                  }) {
+                    projectV2Item {
+                      id
+                    }
+                  }
+                }
+              `;
+
+              await github.graphql(mutation, {
+                projectId,
+                itemId: item.id,
+                fieldId: field.id,
+                text: textValue
+              });
+
+              core.info(`Set ${fieldName} = ${textValue}`);
+            }
+
+            const assetType = pickAssetType(labels);
+            const batch = pickBatch(milestoneTitle);
+            const evidence = pickEvidence(labels);
+            const motionReady = pickMotionReady(labels);
+            const targetFreeze = pickTargetFreeze(batch);
+
+            await updateSingleSelect("Asset Type", assetType);
+            await updateSingleSelect("Batch", batch);
+            await updateSingleSelect("Article 3 Evidence", evidence);
+            await updateSingleSelect("Motion Ready", motionReady);
+
+            await updateText("Scene ID", extractSceneId(issueTitle));
+            await updateText("Character ID", extractCharacterId(issueTitle));
+            await updateText("Location ID", extractLocationId(issueTitle));
+            await updateText("Target Freeze", targetFreeze);

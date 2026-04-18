@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/prompt_record.schema.json",
+  "title": "Closing Price Phase 1 Prompt Record",
+  "description": "Versioned prompt record for GitHub-governed prompt lifecycle management.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "prompt_id",
+    "scene_id",
+    "prompt_type",
+    "lifecycle_stage",
+    "target_models",
+    "source_refs",
+    "prompt_text",
+    "status",
+    "canon_lock"
+  ],
+  "properties": {
+    "prompt_id": {
+      "type": "string",
+      "pattern": "^SC\\d{4}__[a-z0-9\\-]+__v\\d{2}$"
+    },
+    "scene_id": {
+      "type": "string",
+      "pattern": "^SC\\d{4}$"
+    },
+    "prompt_type": {
+      "type": "string",
+      "enum": [
+        "character",
+        "environment",
+        "shot_design",
+        "still_generation",
+        "video_generation",
+        "variation",
+        "repair",
+        "evaluation"
+      ]
+    },
+    "lifecycle_stage": {
+      "type": "string",
+      "enum": ["draft", "review", "approved", "locked", "deprecated"]
+    },
+    "target_models": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "maxLength": 120 }
+    },
+    "source_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scene_card", "scene_excerpt"],
+      "properties": {
+        "scene_card": { "type": "string" },
+        "scene_excerpt": { "type": "string" },
+        "character_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^C\\d{2}$" }
+        },
+        "location_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^LOC\\d{3}$" }
+        },
+        "prop_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^PROP\\d{3}$" }
+        }
+      }
+    },
+    "prompt_text": { "type": "string", "minLength": 1 },
+    "negative_prompt": { "type": "string" },
+    "generation_params": { "type": "object", "additionalProperties": true },
+    "expected_output": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "asset_type": {
+          "type": "string",
+          "enum": ["still", "clip", "image_set", "video_variant", "evaluation_text"]
+        },
+        "aspect_ratio": { "type": "string", "maxLength": 40 },
+        "duration_seconds": { "type": "number", "minimum": 0 },
+        "variation_count": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "approved", "locked", "deprecated"]
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["pending", "changes_requested", "approved", "rejected"]
+    },
+    "canon_lock": { "type": "boolean" },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "approved_by": { "type": "string" },
+        "approved_at": { "type": "string", "format": "date-time" },
+        "approval_note": { "type": "string", "maxLength": 1000 }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "created_by": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_by": { "type": "string" },
+        "updated_at": { "type": "string", "format": "date-time" },
+        "git_commit": { "type": "string", "pattern": "^[a-f0-9]{7,40}$" }
+      }
+    }
+  }
+}

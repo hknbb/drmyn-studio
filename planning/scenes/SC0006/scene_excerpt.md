@@ -1,0 +1,77 @@
+# SC0006 Scene Excerpt
+
+- Source file: `source/screenplay/closing_price.fountain`
+- Source lines: `376-442`
+- Retrieval map: `planning/manifests/closing_price_scene_retrieval_map.json`
+- Boundary: `slug -> slug`
+- Scene text SHA256: `adbf0f3113ebc622b338b056e38c853ae560a16360db131f1126d000ba9d454c`
+
+```fountain
+INT. NADIA'S PRIVATE STUDY — VALE RESIDENCE — NIGHT
+
+A small room. Books, a desk, a window onto the internal courtyard. The kind of space that exists by agreement — Roman would knock; she has never had to ask for that.
+
+NADIA works at the desk. Not dramatically. She is reading something, making notes in the margin. The room is quiet. The party from SC0005 is long over; the house has settled.
+
+She reaches for a book on the shelf behind her — a reference, something she needs for a specific page — and stops.
+
+Not dramatically. Her hand stops mid-reach.
+
+Above the north wall, the ventilation grille. The grille she has looked at a hundred times. A detail in the room's architecture that has never required attention.
+
+Something is different about it. A wire. The edge of a lens, barely visible, angled slightly down.
+
+She looks at it for exactly two seconds.
+
+Then she takes the book from the shelf — the one she was reaching for — and returns to her desk.
+
+---
+
+She reads. Or appears to.
+
+What she is actually doing is running the inventory:
+
+The grille is original to the room — she has photographs from the estate survey, three years ago, taken for insurance purposes. The wire is not original. The lens angle suggests a sightline covering the desk and the door to the corridor; the window is at the edge of the frame.
+
+When. The last time she was in this room with something worth recording was — she does not finish the thought. She catalogs what was said, in this room, in the past month. What she said. What she was reading. What she was doing.
+
+She sets down her pen.
+
+Her hands rest on the desk. Flat. Still.
+
+A breath — one, controlled, the kind that does not show in the chest if someone is watching the chest.
+
+Then she picks up the pen again.
+
+---
+
+She knows what she knows:
+
+The camera exists. Someone placed it. The placement is professional — the angle, the concealment. This is not domestic surveillance bought from a catalog. Someone who knows how to do this did this.
+
+She knows what she does not know:
+
+When. Whether it is live or passive. Whether there is only one.
+
+She knows what she will do:
+
+She will not remove it.
+
+Removing it announces that she found it. Leaving it in place is the only move that costs her opponent nothing while giving her everything — the knowledge that she knows, the ability to manage what the camera sees.
+
+She stands. Moves to the shelf. Takes a second book — a larger one, a reference volume she has not opened in six months — and places it on the shelf at a slight angle.
+
+The book's spine now narrows the camera's sightline by approximately four degrees. The desk remains visible. The door remains visible.
+
+She has not removed the camera. She has edited the room.
+
+She returns to her desk. Sits. Opens the book to the page she needed.
+
+After a moment, she begins reading.
+
+The room is quiet. The camera watches her read.
+
+What the camera cannot see, now, is the window. Through the window, the courtyard. Through the courtyard, the service entrance she has used twice in the past year.
+
+She already knew the camera was a variable. Now she has priced it.
+```

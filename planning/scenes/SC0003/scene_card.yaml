@@ -1,0 +1,57 @@
+scene_id: SC0003
+sequence_id: SEQ01
+phase_id: PH_EQUILIBRIUM
+beat_id: B03
+title: "Nadia and Jin, Mid-Morning"
+purpose: "Ground the film's emotional center in specific, physical maternal reality while showing that even Nadia's most private tenderness is shaped by vigilance."
+dramatic_function: "Intimate counterweight scene: love becomes a real resource, but only inside a room Nadia still scans for threat."
+location_id: LOC001
+location_text_raw: "VALE RESIDENCE - JIN'S ROOM - VARDOVA"
+time_of_day: MORNING
+time_of_day_text_raw: "MID-MORNING"
+weather: "Interior; daylight is present only as filtered morning light through closed curtains."
+characters_present:
+  - C01
+characters_explicit_dialogue:
+  - NADIA
+characters_explicit_mentions:
+  - NADIA
+  - JIN
+primary_pov_character: C01
+continuity_refs:
+  wardrobe:
+    - WD001
+  props:
+    - PROP001
+  prior_scenes:
+    - SC0001
+    - SC0002
+  next_expected_links:
+    - SC0004
+  time_continuity_note: "Later the same morning as SC0001; the film briefly cuts away to Roman's operational floor in SC0002 before returning to the residence."
+visual_targets:
+  palette: "Warm room tones, filtered morning light, and controlled domestic neutrals."
+  lens_bias: "Close, body-level coverage that stays with touch, bracelet detail, and floor-level intimacy."
+  framing_bias: "Crib edge, floor posture, hand-to-face contact, and the room scan that interrupts ease."
+  movement_bias: "Stillness first; shifts happen through small hand and shoulder adjustments."
+  lighting_bias: "Warm interior pocket against blocked morning light."
+promptability_score: 5
+excerpt_ref: scene_excerpt.md
+screen_excerpt_ref: scene_excerpt.md
+prompt_brief_ref: prompt_brief.md
+review_notes_ref: review_notes.md
+source_line_start: 160
+source_line_end: 207
+source_line_count: 48
+anchor_first_nonblank: "INT. VALE RESIDENCE - JIN'S ROOM - VARDOVA - MID-MORNING"
+anchor_last_nonblank: "The white-noise machine runs on."
+boundary_start_kind: slug
+boundary_end_kind: slug
+mapping_confidence: high
+notes_grounding:
+  - "Blueprint SC0003 intent used for purpose and dramatic function."
+  - "Compact planning cast tracks Nadia only; Jin remains explicit in mentions, props, and prompt-brief content."
+  - "PROP001 is the explicit bracelet anchor because the scene turns on Nadia adjusting and later visually re-checking it."
+status: review
+review_status: needs_human_review
+canon_lock: false

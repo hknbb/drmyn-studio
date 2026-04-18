@@ -1,0 +1,24 @@
+repos:
+  - repo: local
+    hooks:
+      - id: no-replace-me
+        name: No scaffold placeholder strings in live files
+        language: python
+        entry: python scripts/stage_a_closure_audit.py --root .
+        pass_filenames: false
+        always_run: false
+        stages: [pre-commit]
+        types_or: [text]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: "evidence/provenance/|source/screenplay/"
+      - id: end-of-file-fixer
+        exclude: "evidence/provenance/|source/screenplay/"
+      - id: check-yaml
+        exclude: "evidence/provenance/"
+      - id: check-json
+        exclude: "evidence/provenance/"
+      - id: check-merge-conflict

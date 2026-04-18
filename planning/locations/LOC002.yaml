@@ -1,0 +1,66 @@
+location_id: LOC002
+name: "Nadia's Private Study"
+category: HOME
+recurring: true
+geography:
+  city: "Vardova"
+  country: "UNRESOLVED - fictional state context not named in source"
+  interior_exterior: INT
+canonical_name: "Nadia's Private Study, Vale Residence"
+aliases:
+  - "Nadia's study"
+  - "Private study"
+location_type: "Private domestic workroom"
+narrative_function: "Surveillance discovery environment; the room where Nadia realizes the trap is already active and begins editing what the enemy can see."
+architectural_character: "Small, agreement-based private room inside the larger residence, with desk, books, corridor door, and courtyard window."
+material_profile:
+  - "books"
+  - "desk wood"
+  - "vent grille"
+  - "window glass"
+texture_profile:
+  - "quiet study order"
+  - "paper"
+  - "concealed surveillance hardware"
+lighting_behavior: "Night interior with controlled practical light; the room should remain readable enough to track the vent, shelf, desk, and window geometry."
+day_night_variation: "Only night is source-grounded in the pilot evidence."
+spatial_feel: "Small, private, and strategically legible."
+emotional_register: "Tense interior intelligence; composure under violation."
+recurring_anchor_objects:
+  - "desk"
+  - "bookshelf"
+  - "vent grille"
+  - "hidden camera"
+stable_visual_rules:
+  - "The room stays quiet and readable enough for Nadia's spatial analysis to matter."
+  - "The camera should feel professional and restrained, not gadget-showy."
+non_invention_rules:
+  - "Do not add ornate study dressing unsupported by the screenplay."
+  - "Do not overcomplicate the room beyond the explicit desk/door/window/vent relationship."
+visual_profile:
+  palette: "Muted domestic neutrals, book-spine variation, desk wood, and controlled night pools."
+  architecture_logic: "Private study nested inside the residence, defined by desk-work and one critical line of sight."
+  camera_behavior: "Frames should privilege the desk, corridor door, north-wall vent, and courtyard window as an operational diagram."
+  lighting_logic: "Low-key practical logic with enough clarity to read the concealment and the edited sightline."
+  sound_texture: "Settled house quiet after the party."
+  spatial_motifs:
+    - "desk to vent axis"
+    - "door/window sightline"
+    - "edited surveillance"
+continuity_constraints:
+  persistent_objects: []
+  entry_exit_logic: "Desk, north-wall vent, corridor door, shelf, and courtyard window remain the essential operational geometry."
+  time_of_day_constraints: "Night only in grounded pilot evidence, after SC0005's party has ended."
+  weather_sensitivity: "Minimal indoors; courtyard visibility matters more than weather display."
+  damage_state_logic: "No physical damage; the key continuity event is line-of-sight manipulation."
+related_scene_ids:
+  - SC0006
+known_character_associations:
+  - C01
+scene_refs:
+  - SC0006
+unresolved_questions:
+  - "TODO_REVIEW: whether later planning should treat the study as a one-scene location or keep it as a recurring set due to its surveillance importance."
+status: review
+review_status: pending
+canon_lock: false

@@ -1,0 +1,84 @@
+character_id: C04
+display_name: "Dimitri Koss"
+cue_name: "DIMITRI"
+role: OBSTACLE
+source_truth_reference:
+  source_character_id: C06
+  source_name: "DIMITRI KOSS"
+  source_files:
+    - source/story_blueprint.md
+    - source/character_dossier.md
+  planning_layer_note: "Compact Phase 2 planning ID C04 maps to source-truth world character C06."
+canonical_name: "DIMITRI KOSS"
+aliases: []
+role_label: "Operational antagonist support"
+story_function: "Roman's disciplined instrument and emerging fracture line; the planning layer tracks him as the procedural antagonist who turns information into action."
+arc_baseline:
+  wound: "Spent years as Roman's precision tool and knows the system will never grant him true power, only use and eventual disposal."
+  mask: "Loyal, efficient professionalism that frames self-interest as duty."
+  want: "Capture or inherit Roman's empire when the opening appears."
+  need: "Understand that the empire itself is poison, not just its current owner."
+  initial_arc_phase: MASK
+want: "Advance his own position under the cover of professional compliance."
+need: "See that replacing Roman would not cure the system."
+wound: "Years of disciplined service without real sovereignty hardened into ambition."
+mask: "Public deference and procedural competence that hide private calculation."
+voice_fingerprint:
+  lexicon:
+    - "military-bureaucratic precision"
+    - "procedure"
+    - "chain-of-command language"
+  rhythm: "Economical, unhurried, and exact; shortens further when threat sharpens."
+  default_tactic: "Frames self-interest as professional obligation."
+  status_signals:
+    - "Always knows the reporting structure in the room."
+    - "Moves with instrument-level efficiency."
+  verbal_tic: "Depersonalizes people by job title or function when he wants distance."
+voice_register: "Military-bureaucratic procedure language."
+voice_rhythm: "Economical, calm, and hard to read."
+default_tactic: "Compliance framing."
+status_signal:
+  - "Hierarchy awareness"
+  - "Quiet operational efficiency"
+verbal_tic: "Uses titles/functions instead of names when he wants depersonalization."
+stress_tell: "Checks timing, deadlines, or the sequence of next actions with more visible precision."
+concealment_tell: "Makes explicit public deference to Roman."
+vulnerability_tell: "Sentences shorten into operational bursts."
+visual_profile:
+  age_range: "40s"
+  screen_presence: "Controlled, precise, and hard-edged without overt theatricality."
+  costume_logic: "Operational executive wardrobe; disciplined tailoring, functional device handling, and minimal visible softness."
+  silhouette: "Lean instrument silhouette, sharpened by ledger, jacket, and contained posture."
+  color_bias: "Dark corporate neutrals with functional contrast."
+  hair_makeup_notes: "Polish should read professional, not fashion-forward."
+visual_age_range: "40s"
+silhouette_notes: "Instrumental rather than charismatic; narrow, exact, and ready to move."
+costume_logic: "Operational executive tailoring; avoid anything flashy."
+color_bias: "Dark, disciplined neutrals."
+associated_props: []
+associated_locations:
+  - LOC003
+relationship_keys:
+  - "Roman: instrument, subordinate, and future rival."
+  - "Nadia: target inside an intelligence problem he is already processing."
+  - "Marcus: part of the intelligence trail that will later expose Roman."
+known_scene_anchors:
+  - SC0002
+  - SC0007
+  - SC0009
+do_not_invent_notes:
+  - "Do not soften him into a straightforward ally-in-waiting."
+  - "Do not overstate emotional transparency; his threat is procedural."
+unresolved_questions:
+  - "TODO_REVIEW: compact planning set does not yet track a dedicated Dimitri wardrobe record."
+  - "UNRESOLVED: whether later visual planning should split his public-office look from field-command presentation."
+continuity_refs:
+  wardrobe_ids: []
+  prop_ids: []
+  key_scene_ids:
+    - SC0002
+    - SC0007
+    - SC0009
+status: review
+review_status: pending
+canon_lock: false

@@ -1,0 +1,85 @@
+character_id: C05
+display_name: "Marcus Chen"
+cue_name: "MARCUS"
+role: CATALYST
+source_truth_reference:
+  source_character_id: C03
+  source_name: "MARCUS CHEN"
+  source_files:
+    - source/story_blueprint.md
+    - source/character_dossier.md
+  planning_layer_note: "Compact Phase 2 planning ID C05 maps to source-truth world character C03."
+canonical_name: "MARCUS CHEN"
+aliases: []
+role_label: "Catalyst / ghost"
+story_function: "Emotional contrast and posthumous intelligence source; the planning layer tracks him where intimate memory and operational warning occupy the same space."
+arc_baseline:
+  wound: "Years spent near criminal systems while telling himself he was adjacent rather than complicit; loving Nadia made the contradiction fatal."
+  mask: "Controlled professionalism and understatement."
+  want: "Protect Nadia and Jin by removing Roman's power before it can be used."
+  need: "Be the sort of man whose love protects instead of destroys."
+  initial_arc_phase: MASK
+want: "Leave Nadia something actionable before he is gone."
+need: "Turn care into protection instead of merely proximity."
+wound: "He operated near criminal power long enough to blur his own line of complicity."
+mask: "Quiet, loyal-looking professionalism that hides documentation, fear, and love."
+voice_fingerprint:
+  lexicon:
+    - "intelligence-operational precision"
+    - "plain personal directness"
+    - "understatement"
+  rhythm: "Efficient and information-dense; facts first, emotional corollary trailing behind."
+  default_tactic: "Understatement."
+  status_signals:
+    - "Yields physical space deliberately."
+    - "Lets precision do the authority work."
+  verbal_tic: "Uses Nadia's maiden name 'Karev' when the feeling is real."
+voice_register: "Operational brevity in professional mode; plain and unguarded in personal mode."
+voice_rhythm: "Short, load-bearing speech; emotional content enters as small deviations."
+default_tactic: "Understatement."
+status_signal:
+  - "Deliberate yielding of space"
+  - "Calm technical precision"
+verbal_tic: "Private use of 'Karev.'"
+stress_tell: "Touches the back of his neck when he is holding something back."
+concealment_tell: "Becomes more attentive and careful rather than pulling away."
+vulnerability_tell: "Stillness takes on a final or weighted quality before Nadia understands why."
+visual_profile:
+  age_range: "late 30s to early 40s"
+  screen_presence: "Quiet, competent, and emotionally load-bearing without showmanship."
+  costume_logic: "Operationally plain private clothes that support unobtrusive meetings rather than open display."
+  silhouette: "Controlled, watchful, slightly held-back silhouette."
+  color_bias: "Muted dark neutrals and practical private-clothes restraint."
+  hair_makeup_notes: "Keep him grounded and real; do not saint him with idealized styling."
+visual_age_range: "late 30s to early 40s"
+silhouette_notes: "Quietly watchful, with a foot-back tactical habit rather than frontal swagger."
+costume_logic: "Plain operational private wear; secrecy and mobility over style."
+color_bias: "Muted dark neutrals."
+associated_props:
+  - PROP004
+associated_locations:
+  - LOC004
+relationship_keys:
+  - "Nadia: genuine love, withheld warning, posthumous tactical gift."
+  - "Roman: the system he observed and was killed trying to expose."
+known_scene_anchors:
+  - SC0004
+  - SC0008
+  - SC0009
+do_not_invent_notes:
+  - "Do not turn him into a spotless martyr."
+  - "Do not overwrite the warning-space intimacy with erotic stylization."
+unresolved_questions:
+  - "TODO_REVIEW: exact garment continuity between SC0004 and the inferred late-night scenes is not source-authored."
+  - "UNRESOLVED: whether LOC004 should ultimately split into distinct rented-room and anonymous-room records once later planning matures."
+continuity_refs:
+  wardrobe_ids: []
+  prop_ids:
+    - PROP004
+  key_scene_ids:
+    - SC0004
+    - SC0008
+    - SC0009
+status: review
+review_status: pending
+canon_lock: false

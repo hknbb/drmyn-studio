@@ -1,0 +1,35 @@
+prop_id: PROP003
+name: "Tilted Vardova skyline photo frame"
+narrative_function: "Intrusion cue that turns object misalignment into evidence of surveillance or tampering inside the house."
+visual_description: "Framed landscape photograph of the Vardova skyline at dusk, hung in the east-wing corridor and replaced at the wrong angle over a larger dust-shadow."
+category: SYMBOL
+canonical_name: "Vardova skyline photo frame"
+aliases:
+  - "tilted photo frame"
+  - "framed Vardova skyline"
+prop_type: "domestic surveillance cue"
+ownership_or_association: "Vale residence corridor object first read by Nadia."
+physical_description_grounded: "Third framed photograph in the corridor; landscape image, dusk skyline, misaligned by several degrees."
+continuity_importance: "Medium"
+recurring_scene_ids:
+  - SC0001
+related_characters:
+  - C01
+related_locations:
+  - LOC001
+handling_notes:
+  - "Its meaning is the wrong angle and the larger dust-shadow, not ornate frame design."
+visual_stability_notes:
+  - "Keep the frame plausible, residential, and specific enough that a small angle shift reads on camera."
+future_hero_prop_candidate: false
+continuity_state:
+  initial_state: "Hanging slightly off-angle in the east-wing corridor when Nadia notices it in SC0001."
+  state_changes: []
+owner_character_id: C01
+scene_refs:
+  - SC0001
+unresolved_questions:
+  - "UNRESOLVED: no later explicit recurrence is source-grounded, so later reappearance should not be assumed."
+status: review
+review_status: pending
+canon_lock: false

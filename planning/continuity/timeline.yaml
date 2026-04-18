@@ -1,0 +1,158 @@
+record_type: timeline
+version: "0.2.0"
+canon_lock: false
+# Stage A closure: pre-Omni story-time scaffold.
+# Entries are grounded only from pilot scene cards and explicit scene card
+# continuity_notes. Confidence labels:
+#   KNOWN       = directly stated in the scene card or source excerpt
+#   LIKELY      = consistent with scene card continuity_note and sequence logic
+#   UNRESOLVED  = cannot be grounded without a full scene-card review pass
+# Do not replace UNRESOLVED entries without a source-grounded human review.
+
+entries:
+  - scene_id: SC0001
+    story_time: "Day 1 — Early Morning"
+    time_of_day_raw: "EARLY MORNING"
+    phase_id: PH_EQUILIBRIUM
+    beat_id: B01
+    confidence: KNOWN
+    story_time_note: >
+      Opening canonical scene. Vale Residence, Vardova. Source-stated as EARLY MORNING
+      in the screenplay slugline. Nadia's domestic morning route begins here. Roman has
+      already left for the car per Birta's dialogue.
+    carry_over_from: []
+    carry_over_to:
+      - SC0002
+
+  - scene_id: SC0002
+    story_time: "Day 1 — Early Morning (concurrent or immediately following SC0001)"
+    time_of_day_raw: "MORNING"
+    phase_id: PH_EQUILIBRIUM
+    beat_id: B02
+    confidence: LIKELY
+    story_time_note: >
+      SC0001 time_continuity_note confirms the film briefly cuts to Roman's operational
+      floor before returning to the residence in SC0003. Likely concurrent with or
+      immediately following the end of SC0001. Exact story-time not grounded from a
+      read pilot scene card; requires human review of the SC0002 excerpt.
+    carry_over_from:
+      - SC0001
+    carry_over_to:
+      - SC0003
+
+  - scene_id: SC0003
+    story_time: "Day 1 — Mid-Morning"
+    time_of_day_raw: "MID-MORNING"
+    phase_id: PH_EQUILIBRIUM
+    beat_id: B03
+    confidence: KNOWN
+    story_time_note: >
+      Source-stated as MID-MORNING. Jin's Room, Vale Residence. SC0003 scene card
+      time_continuity_note confirms: "Later the same morning as SC0001; the film briefly
+      cuts away to Roman's operational floor in SC0002 before returning to the residence."
+    carry_over_from:
+      - SC0001
+      - SC0002
+    carry_over_to:
+      - SC0004
+
+  - scene_id: SC0004
+    story_time: "Day 1 — Late Morning (unresolved)"
+    time_of_day_raw: "UNRESOLVED"
+    phase_id: PH_EQUILIBRIUM
+    beat_id: B04
+    confidence: UNRESOLVED
+    story_time_note: >
+      Not a pilot scene. Story-time not grounded from a read scene card. Assumed to
+      follow SC0003 on Day 1 based on sequence logic. Requires human review of the
+      SC0004 scene excerpt to confirm.
+    carry_over_from:
+      - SC0003
+    carry_over_to:
+      - SC0005
+
+  - scene_id: SC0005
+    story_time: "Day 1 — Evening (unresolved)"
+    time_of_day_raw: "UNRESOLVED"
+    phase_id: PH_EQUILIBRIUM
+    beat_id: B05
+    confidence: UNRESOLVED
+    story_time_note: >
+      Not a pilot scene. SC0006 time_continuity_note states "the party is over and the
+      residence has settled into post-event quiet," so SC0005 likely contains the party
+      event itself. Exact time and story-day not confirmed from a read scene card.
+    carry_over_from:
+      - SC0004
+    carry_over_to:
+      - SC0006
+
+  - scene_id: SC0006
+    story_time: "Day 1 — Night (post-party)"
+    time_of_day_raw: "NIGHT"
+    phase_id: PH_EQUILIBRIUM
+    beat_id: B06
+    confidence: KNOWN
+    story_time_note: >
+      Source-stated as NIGHT. SC0006 scene card time_continuity_note confirms: "Later
+      the same night as SC0005; the party is over and the residence has settled into
+      post-event quiet." Nadia's Private Study, Vale Residence. Roman not physically
+      present.
+    carry_over_from:
+      - SC0005
+    carry_over_to:
+      - SC0007
+
+  - scene_id: SC0007
+    story_time: "Day 1 — Night (same night as SC0006, unresolved content)"
+    time_of_day_raw: "UNRESOLVED"
+    phase_id: PH_EQUILIBRIUM
+    beat_id: B07
+    confidence: LIKELY
+    story_time_note: >
+      Not a pilot scene. SC0008 time_continuity_note references "Roman's office aftermath"
+      from SC0007, confirming it occurs the same night and feeds directly into SC0008's
+      opening carry-over beat. Roman is present in SC0007 per that carry-over reference.
+      Exact scene content not confirmed from a read scene card.
+    carry_over_from:
+      - SC0006
+    carry_over_to:
+      - SC0008
+
+  - scene_id: SC0008
+    story_time: "Day 1 — Night (immediate carry-over from SC0007)"
+    time_of_day_raw: "NIGHT"
+    phase_id: PH_EQUILIBRIUM
+    beat_id: B08
+    confidence: KNOWN
+    story_time_note: >
+      Source-stated as NIGHT. SC0008 scene card time_continuity_note confirms: "Immediate
+      retrieval carry-over from SC0007's office aftermath, then later the same night in
+      the anonymous room with Marcus and Nadia." LOC004 (Anonymous Room). Boundary type:
+      dash-start/dash-end; mapping confidence inferred.
+    carry_over_from:
+      - SC0007
+    carry_over_to:
+      - SC0009
+
+  - scene_id: SC0009
+    story_time: "Day 1 — Night (carry-over from SC0008, same night)"
+    time_of_day_raw: "NIGHT"
+    phase_id: PH_EQUILIBRIUM
+    beat_id: B09
+    confidence: KNOWN
+    story_time_note: >
+      Source-stated as NIGHT. SC0009 scene card time_continuity_note confirms: "Carries
+      directly out of SC0008's anonymous-room aftermath before cutting the same night to
+      Roman's trophy room for the confirmation call." LOC001 (Roman's Trophy Room, Vale
+      Residence). Boundary type: dash-start/dash-end; mapping confidence inferred.
+      Note: older Phase 2 seed rows bucket SC0009 under LOC004; the scene card now
+      follows source authority (LOC001) per planning_hydration_report.
+    carry_over_from:
+      - SC0008
+    carry_over_to:
+      - SC0010
+
+remaining_entries_note: >
+  SC0010 through SC0120 have not been grounded for timeline purposes in Stage A. Their
+  entries will be populated during Stage B canon hydration passes as scene cards are
+  individually reviewed. Do not fabricate story-day or story-time for unreviewed scenes.

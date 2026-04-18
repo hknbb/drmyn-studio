@@ -1,0 +1,37 @@
+wardrobe_id: WD003
+name: "Roman tailored control suit"
+character_id: C02
+visual_description: "Disciplined tailored suiting for office, private-office, and trophy-room control scenes; exact shirt/tie/watch combination remains unapproved."
+semiotic_function: "Projects sovereign calm and institutional ownership."
+color_profile: "Dark tailored neutrals with controlled contrast."
+texture_notes: "Structured suiting surfaces; expensive without visual noise."
+associated_character: "Roman Vale"
+narrative_phase: "setup antagonist control presentation"
+silhouette: "Centered, tailored, and controlled."
+palette_bias: "Dark restraint over saturated luxury."
+material_notes: "Tailoring quality matters more than visible branding."
+wear_state: "Immaculate pilot baseline."
+continuity_constraints:
+  - "Should feel consistent across macro-office and private-room scenes."
+  - "Do not make the look ornamental enough to compete with Roman's stillness."
+scene_anchors:
+  - SC0002
+  - SC0007
+  - SC0008
+  - SC0009
+movement_notes: "Supports minimal but exact movement."
+weather_logic: "Interior control look; weather not driving."
+layering_notes: "Exact layering remains open pending later design pass."
+continuity_state:
+  initial_state: "Roman's early control-state wardrobe."
+  state_changes: []
+scene_refs:
+  - SC0002
+  - SC0007
+  - SC0008
+  - SC0009
+unresolved_questions:
+  - "TODO_REVIEW: whether later visual packs should lock one suit across all pilot Roman scenes or define two near-identical variants."
+status: review
+review_status: pending
+canon_lock: false

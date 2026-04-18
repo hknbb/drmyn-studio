@@ -1,0 +1,33 @@
+wardrobe_id: WD001
+name: "Nadia domestic control look"
+character_id: C01
+visual_description: "Controlled early-day domestic clothing with clean lines and movement-ready simplicity; exact garment pieces remain intentionally unresolved."
+semiotic_function: "Signals composed domestic performance under pressure rather than soft comfort."
+color_profile: "Muted domestic neutrals."
+texture_notes: "Clean, controlled fabrics with no decorative excess."
+associated_character: "Nadia Vale"
+narrative_phase: "SEQ01 setup domestic life"
+silhouette: "Lean, upright, contained."
+palette_bias: "Muting over saturation."
+material_notes: "Practical, polished, and quiet rather than luxurious for its own sake."
+wear_state: "Early-scene composed baseline."
+continuity_constraints:
+  - "Should support floor sitting, infant handling, and corridor movement without feeling styled for display."
+  - "Must remain consistent between SC0001 and SC0003."
+scene_anchors:
+  - SC0001
+  - SC0003
+movement_notes: "Nothing should fight Nadia's economy of motion."
+weather_logic: "Interior domestic baseline; weather does not drive the look."
+layering_notes: "Keep layering minimal and controlled."
+continuity_state:
+  initial_state: "Early domestic continuity state for the Vale residence morning cluster."
+  state_changes: []
+scene_refs:
+  - SC0001
+  - SC0003
+unresolved_questions:
+  - "TODO_REVIEW: exact garment breakdown remains open until later wardrobe design work."
+status: review
+review_status: pending
+canon_lock: false

@@ -1,0 +1,8 @@
+record_type: time_of_day
+version: "0.1.0"
+canon_lock: false
+
+entries:
+  - scene_id: SC0001
+    time_of_day: NIGHT
+    notes: ""

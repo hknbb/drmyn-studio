@@ -1,0 +1,9 @@
+record_type: props_state
+version: "0.1.0"
+canon_lock: false
+
+entries:
+  - scene_id: SC0001
+    prop_id: PROP001
+    state: "initial"
+    notes: ""

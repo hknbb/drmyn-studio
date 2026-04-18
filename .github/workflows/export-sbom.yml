@@ -1,0 +1,27 @@
+name: Export SBOM
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export-sbom:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate placeholder SBOM
+        run: |
+          mkdir -p evidence/provenance
+          bash scripts/make_sbom.sh evidence/provenance
+
+      - name: Upload SBOM artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-${{ github.run_number }}
+          path: evidence/provenance/sbom.json
+          retention-days: 30

@@ -1,0 +1,116 @@
+name: "Phase 2 — Evidence Panel"
+description: "Assemble an Article 3 evidence panel from approved Phase 2 assets."
+title: "[P2][Evidence Panel] "
+labels: ["phase-2", "asset-evidence", "article3-evidence", "review-needed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to assemble an **Article 3 evidence panel** from approved Phase 2 assets.
+
+  - type: dropdown
+    id: panel_type
+    attributes:
+      label: Panel type
+      options:
+        - prompt-to-still
+        - still-to-motion
+        - continuity comparison
+        - failure case
+        - utility matrix support
+    validations:
+      required: true
+
+  - type: dropdown
+    id: batch
+    attributes:
+      label: Batch
+      options:
+        - Batch 01
+        - Batch 02
+        - Batch 03
+    validations:
+      required: true
+
+  - type: textarea
+    id: source_assets
+    attributes:
+      label: Source assets
+      placeholder: |
+        approved stills
+        approved motion pairs
+        selected prompts
+        scene excerpts
+        selection logs
+      render: markdown
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: required_outputs
+    attributes:
+      label: Required outputs
+      options:
+        - label: Panel image or figure set
+        - label: Caption draft
+        - label: Source mapping note
+        - label: Evidence log entry
+
+  - type: textarea
+    id: output_paths
+    attributes:
+      label: Output paths
+      placeholder: |
+        evidence/panels/
+        evidence/article3/
+        evidence/selection_logs/
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: review_criteria
+    attributes:
+      label: Review criteria
+      placeholder: |
+        - transformation logic is clear
+        - sources are traceable
+        - figure is legible in manuscript context
+        - visual claim is supportable
+      render: markdown
+    validations:
+      required: true
+
+  - type: dropdown
+    id: evidence_status
+    attributes:
+      label: Evidence status
+      options:
+        - Candidate
+        - Approved
+        - Rejected
+    validations:
+      required: true
+
+  - type: input
+    id: freeze_target
+    attributes:
+      label: Target freeze
+      placeholder: "visual-z1p2-batch1-r1"
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      render: markdown
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+    validations:
+      required: false

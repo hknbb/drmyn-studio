@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/wardrobe_record.schema.json",
+  "title": "Closing Price Phase 1 Wardrobe Record",
+  "description": "Canonical wardrobe record for Zone 1 / Phase 1 continuity and planning.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "wardrobe_id",
+    "name",
+    "character_id",
+    "visual_description",
+    "status",
+    "canon_lock"
+  ],
+  "properties": {
+    "wardrobe_id": {
+      "type": "string",
+      "pattern": "^WD\\d{3}$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "character_id": {
+      "type": "string",
+      "pattern": "^C\\d{2}$"
+    },
+    "visual_description": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 800
+    },
+    "semiotic_function": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "color_profile": {
+      "type": "string",
+      "maxLength": 300
+    },
+    "texture_notes": {
+      "type": "string",
+      "maxLength": 300
+    },
+    "continuity_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "initial_state": { "type": "string", "maxLength": 400 },
+        "state_changes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["scene_id", "new_state"],
+            "properties": {
+              "scene_id": { "type": "string", "pattern": "^SC\\d{4}$" },
+              "new_state": { "type": "string", "maxLength": 400 }
+            }
+          }
+        }
+      }
+    },
+    "scene_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^SC\\d{4}$" }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "review", "approved", "locked", "deprecated"]
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["pending", "changes_requested", "approved", "rejected"]
+    },
+    "canon_lock": { "type": "boolean" },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "approved_by": { "type": "string" },
+        "approved_at": { "type": "string", "format": "date-time" },
+        "approval_note": { "type": "string", "maxLength": 1000 }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "created_by": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_by": { "type": "string" },
+        "updated_at": { "type": "string", "format": "date-time" },
+        "git_commit": { "type": "string", "pattern": "^[a-f0-9]{7,40}$" }
+      }
+    }
+  }
+}

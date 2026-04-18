@@ -1,0 +1,73 @@
+location_id: LOC004
+name: "Hidden Room / Anonymous Room"
+category: LIMINAL
+recurring: false
+geography:
+  city: "Vardova"
+  country: "UNRESOLVED - fictional state context not named in source"
+  interior_exterior: INT
+canonical_name: "Hidden Room / Anonymous Room continuity bucket"
+aliases:
+  - "Rented room - Vardova East Quarter"
+  - "Anonymous room"
+  - "Marcus/Nadia secret meeting space"
+location_type: "Liminal secret-meeting environment"
+narrative_function: "Intimacy-and-warning space that lets Marcus and Nadia occupy a private world outside Roman's house, while still under future threat."
+architectural_character: "Anonymous, temporary, and intentionally unowned: table, bed, window, and just enough privacy to matter."
+material_profile:
+  - "plain table and chairs"
+  - "bed"
+  - "single window"
+  - "curtain"
+texture_profile:
+  - "temporary shelter"
+  - "borrowed privacy"
+  - "city night quiet"
+lighting_behavior: "Afternoon or late-night practical light filtered through window/curtain; nothing expressive enough to break the room's anonymity."
+day_night_variation: "SC0004 grounds afternoon; SC0008-SC0009 ground a later-night variation."
+spatial_feel: "Simple, held, and slightly outside normal time."
+emotional_register: "Tender, tense, elegiac."
+recurring_anchor_objects:
+  - "table"
+  - "bed"
+  - "window"
+  - "Marcus's paper address reminder"
+stable_visual_rules:
+  - "Keep the room anonymous, simple, and operationally plausible."
+  - "Intimacy comes from posture and withholding, not romantic set dressing."
+non_invention_rules:
+  - "Do not over-style the room into a noir hideout."
+  - "Do not claim that every hidden-room excerpt is the exact same room without keeping that uncertainty visible."
+visual_profile:
+  palette: "Muted rented-room neutrals, city-night darks, and soft practical spill."
+  architecture_logic: "Unowned room logic: enough furniture to function, not enough character to claim ownership."
+  camera_behavior: "Hold to bed/table/window geometry and the charged quiet between two people who are not speaking the whole truth."
+  lighting_logic: "Low-key practical/night logic; preserve faces and bed-edge/table relations."
+  sound_texture: "Continuous city sound that becomes its own kind of quiet."
+  spatial_motifs:
+    - "bed edge"
+    - "window-held silence"
+    - "borrowed privacy"
+continuity_constraints:
+  persistent_objects: []
+  entry_exit_logic: "The room's anonymity matters more than external route mapping; in inferred-boundary scenes the room may be entered through editorial carry-over rather than a fresh slugline."
+  time_of_day_constraints: "Afternoon in SC0004, later-night or night in SC0008-SC0009."
+  weather_sensitivity: "Minimal indoors; city sound and offscreen atmosphere matter more than visible weather."
+  damage_state_logic: "No damage state is source-grounded; preserve temporary-use plainness instead."
+related_scene_ids:
+  - SC0004
+  - SC0008
+  - SC0009
+known_character_associations:
+  - C01
+  - C05
+scene_refs:
+  - SC0004
+  - SC0008
+  - SC0009
+unresolved_questions:
+  - "UNRESOLVED: SC0004's rented room and SC0008-SC0009's anonymous room may be the same place or a planning bucket of visually related secret rooms; do not collapse that uncertainty silently."
+  - "TODO_REVIEW: whether later pilot still work should separate the Roman-office carry-over beat in SC0008 from the hidden-room material."
+status: review
+review_status: pending
+canon_lock: false

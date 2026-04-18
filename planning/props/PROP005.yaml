@@ -1,0 +1,35 @@
+prop_id: PROP005
+name: "Roman collection wristwatch"
+narrative_function: "Status/provenance object inside Roman's curated collection logic; useful as a control-space detail that signals he archives judgment, not memory."
+visual_description: "A wristwatch seen inside Roman's low cabinet among other curated objects; exact make, era, and provenance remain unspecified."
+category: SYMBOL
+canonical_name: "Roman collection wristwatch"
+aliases:
+  - "cabinet wristwatch"
+  - "Roman watch"
+prop_type: "curated status object"
+ownership_or_association: "Associated with Roman's cabinet/collection world."
+physical_description_grounded: "Seen in SC0002 inside the low cabinet with a field badge and a cracked lens from glasses."
+continuity_importance: "Medium"
+recurring_scene_ids:
+  - SC0002
+related_characters:
+  - C02
+related_locations:
+  - LOC003
+handling_notes:
+  - "Do not overspecify brand or luxury detailing unsupported by text."
+visual_stability_notes:
+  - "The watch matters as one item in a curated evidence cluster, not as a glamour close-up by default."
+future_hero_prop_candidate: false
+continuity_state:
+  initial_state: "Visible inside Roman's low cabinet on the operational floor in SC0002."
+  state_changes: []
+owner_character_id: C02
+scene_refs:
+  - SC0002
+unresolved_questions:
+  - "UNRESOLVED: whether later collection/trophy-room scenes imply this exact watch recurs or only the same collection logic recurs."
+status: review
+review_status: pending
+canon_lock: false

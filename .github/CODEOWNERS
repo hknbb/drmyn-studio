@@ -1,0 +1,18 @@
+# Canonical source files
+/source/ @babac
+
+# Phase 1 planning records
+/planning/ @babac
+
+# Prompt governance
+/prompts/ @babac
+
+# Validation schemas and scripts
+/schemas/ @babac
+/scripts/ @babac
+
+# GitHub governance files
+/.github/ @babac
+
+# Documentation
+/docs/ @babac

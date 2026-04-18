@@ -1,0 +1,51 @@
+scene_id: SC0051
+sequence_id: SEQ11
+phase_id: PH_INVERSION
+title: EASTBOUND TRAIN — FORWARD-FACING SEAT
+purpose: Placeholder scaffold seeded from the retrieval map; replace with canonical scene purpose.
+dramatic_function: TBD dramatic function derived during scene-card enrichment.
+location_id: LOC001
+location_text_raw: EASTBOUND TRAIN — FORWARD-FACING SEAT
+time_of_day: MORNING
+time_of_day_text_raw: LATE MORNING
+weather: TBD
+characters_present:
+- C01
+characters_explicit_dialogue: []
+characters_explicit_mentions: []
+primary_pov_character: C01
+continuity_refs:
+  wardrobe: []
+  props: []
+  prior_scenes:
+  - SC0050
+  next_expected_links:
+  - SC0052
+  time_continuity_note: TBD continuity note.
+visual_targets:
+  palette: TBD visual palette
+  lens_bias: TBD lens bias
+  framing_bias: TBD framing bias
+  movement_bias: TBD movement bias
+  lighting_bias: TBD lighting bias
+promptability_score: 3
+excerpt_ref: scene_excerpt.md
+screen_excerpt_ref: scene_excerpt.md
+prompt_brief_ref: prompt_brief.md
+review_notes_ref: review_notes.md
+source_line_start: 4094
+source_line_end: 4156
+source_line_count: 63
+anchor_first_nonblank: INT. EASTBOUND TRAIN — FORWARD-FACING SEAT — LATE MORNING
+anchor_last_nonblank: She keeps reading.
+boundary_start_kind: slug
+boundary_end_kind: slug
+mapping_confidence: high
+notes_grounding:
+- Hydrated from retrieval map and scene_excerpt.md only.
+- Title derived from opening slugline location.
+- Opening slugline provided grounded location/time extraction.
+- Numbered Fountain marker present for this scene.
+status: scaffolded
+review_status: needs_human_review
+canon_lock: false

@@ -1,0 +1,126 @@
+record_type: camera_grammar
+version: "0.2.0"
+canon_lock: false
+# Stage A closure: pre-Omni camera grammar.
+# Rules are grounded in pilot scene card visual_targets and source bibles.
+# Compatible with the intended Stage B Omni migration direction but does not
+# use Omni-specific fields. Do not change rules without updating canon_lock.
+
+rules:
+  - id: CG01
+    label: restrained_coverage
+    category: framing
+    description: >
+      Default coverage is restrained and intimate. Wide establishing shots are
+      a marked choice, not the default. Camera earns distance; it does not start there.
+    applies_to_phases:
+      - PH_EQUILIBRIUM
+    restrictions:
+      - Do not open a scene at maximum focal distance without dramatic justification.
+    notes: >
+      Grounded in SC0001–SC0009 visual_targets. Style bible and continuity bible
+      establish this as the governing register for the Equilibrium phase.
+
+  - id: CG02
+    label: threshold_framing
+    category: framing
+    description: >
+      Thresholds, doorways, corridor depth, and off-axis frames are preferred over
+      symmetrical open-room coverage. The geometry of access and containment is the
+      primary visual grammar.
+    applies_to_phases:
+      - PH_EQUILIBRIUM
+    restrictions:
+      - Centered, unbroken symmetry is a marked tonal choice; justify before using.
+    notes: Grounded in SC0001 framing_bias. Applies throughout the Equilibrium phase.
+
+  - id: CG03
+    label: minimal_movement
+    category: movement
+    description: >
+      Camera movement is economical and character-motivated. Rack-and-track is reserved
+      for intentional reveals. Unmotivated drift or float is restricted.
+    applies_to_phases:
+      - PH_EQUILIBRIUM
+    restrictions:
+      - Do not use slow unmotivated drift as mood decoration.
+      - Movement begins only when a character action or object deviation earns it.
+    notes: Grounded in SC0001, SC0003, SC0008, SC0009 movement_bias.
+
+  - id: CG04
+    label: practical_lighting_logic
+    category: lighting
+    description: >
+      Lighting follows practical source logic. Warmth is contained to specific practical
+      sources and does not spread as ambient fill. No decorative glow without a diegetic
+      source.
+    applies_to_phases:
+      - PH_EQUILIBRIUM
+    restrictions:
+      - No source-less fill light used for atmospheric warmth.
+      - Night interiors use low-key selective definition, not general ambience.
+    notes: Grounded in SC0001, SC0003, SC0006, SC0008, SC0009 lighting_bias.
+
+  - id: CG05
+    label: object_and_body_priority
+    category: coverage
+    description: >
+      Object deviations and body micro-adjustments are primary coverage targets in the
+      Equilibrium phase. These beats must be legible in frame before a cut or wider pull.
+    applies_to_phases:
+      - PH_EQUILIBRIUM
+    restrictions:
+      - Do not cut away from a significant object or body beat before it has registered.
+    notes: >
+      Grounded in SC0001 (tilted photograph frame), SC0003 (bracelet), SC0006 (vent wire
+      and lens edge), SC0008 (edge-of-bed address handoff), SC0009 (document and glass
+      case). These are the concrete intrusion and continuity cues across the pilot set.
+
+  - id: CG06
+    label: sightline_preservation
+    category: framing
+    description: >
+      When a character is calculating a spatial or tactical relationship — surveillance
+      geometry, route logic, object placement — the camera must hold enough of that space
+      to make the logic legible to the audience before cutting.
+    applies_to_phases:
+      - PH_EQUILIBRIUM
+    restrictions:
+      - Do not cut to a reaction before the sightline geometry has been established.
+    notes: Grounded in SC0006 framing_bias (camera-sightline logic in the study).
+
+  - id: CG07
+    label: negative_space_intent
+    category: framing
+    description: >
+      Negative space is an expressive tool, not an error. Scenes with withheld information
+      or withheld speech should preserve compositional space around the primary figure to
+      carry that weight. Do not fill negative space with secondary blocking or extra cuts.
+    applies_to_phases:
+      - PH_EQUILIBRIUM
+    restrictions:
+      - Do not fill negative space with additional blocking or coverage cuts.
+    notes: >
+      Grounded in SC0008 and SC0009 visual_targets. Negative space is load-bearing in
+      both the Marcus/Nadia night scene and Roman's trophy-room recalibration.
+
+  - id: CG08
+    label: observational_register
+    category: coverage
+    description: >
+      The default camera register is observational rather than expressive. The camera
+      witnesses rather than editorializes. Expressive moves (Dutch angle, aggressive push)
+      are reserved for explicitly marked dramatic transitions.
+    applies_to_phases:
+      - PH_EQUILIBRIUM
+    restrictions:
+      - No expressive camera move without explicit scene-card or prompt-brief justification.
+    notes: >
+      Consistent with the tone across SC0001–SC0009 scene cards and the story_blueprint
+      dramatic register for the Equilibrium phase.
+
+compatibility_note: >
+  These rules are pre-Omni-migration. They are expressed in plain YAML and do not use
+  Omni schema fields. Stage B PR1 will add the Omni compatibility layer and may revise
+  or extend these rules. No rules should be changed here without advancing version,
+  documenting the change, and updating canon_lock when the rules are considered stable.

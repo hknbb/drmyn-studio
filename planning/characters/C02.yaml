@@ -1,0 +1,92 @@
+character_id: C02
+display_name: "Roman Vale"
+cue_name: "ROMAN"
+role: ANTAGONIST
+source_truth_reference:
+  source_character_id: C02
+  source_name: "ROMAN VALE"
+  source_files:
+    - source/story_blueprint.md
+    - source/character_dossier.md
+canonical_name: "ROMAN VALE"
+aliases:
+  - "Roman Valenkov"
+role_label: "Primary antagonist / system architect"
+story_function: "Architect of the ownership system that traps Nadia; in planning terms he anchors the operational, domestic, and collection-space visual logic of control."
+arc_baseline:
+  wound: "Raised around illegal betting culture and humiliation, he built an empire by becoming the thing he despised while insisting scale and polish made it different."
+  mask: "Patrician calm and total control; he behaves as if every outcome is already priced."
+  want: "Remain the unassailable sovereign of his own system."
+  need: "To confront that he is his father in a better suit."
+  initial_arc_phase: MASK
+want: "Keep personal and institutional control after the affair proves he mispriced his own marriage."
+need: "Recognition of what his empire really is, though the story does not grant it."
+wound: "Childhood exposure to criminal betting culture and humiliation calcified into a need for sovereign control."
+mask: "Unhurried authority that converts every human fact into transaction."
+voice_fingerprint:
+  lexicon:
+    - "finance vocabulary"
+    - "systems framing"
+    - "formal address"
+  rhythm: "Measured, unhurried, architecturally built sentences; he waits, then redirects."
+  default_tactic: "Reframing other people's emotional or factual claims as transactional variables."
+  status_signals:
+    - "Centers himself physically in rooms."
+    - "Uses attention as a scarce currency."
+  verbal_tic: "Begins corrections with a quiet 'Understand -'."
+voice_register: "Finance and systems vocabulary used as default human language."
+voice_rhythm: "Long, calm, fully built sentences; rarely interrupts."
+default_tactic: "Reframing."
+status_signal:
+  - "Centered seating or stance"
+  - "Deliberate stillness"
+  - "Measured allocation of attention"
+verbal_tic: "Quiet 'Understand -' before dismantling the other person's frame."
+stress_tell: "Becomes even more still; the stillness starts to look effortful."
+concealment_tell: "Switches into administrative language and process framing."
+vulnerability_tell: "Handles nearby objects without looking down at them."
+visual_profile:
+  age_range: "late 40s to 50s"
+  screen_presence: "Controlled institutional gravity; frightening because nothing in him appears hurried."
+  costume_logic: "Tailored corporate/private-control wardrobe with disciplined construction and no decorative looseness."
+  silhouette: "Tall or lengthened control silhouette; centered, composed, difficult to read."
+  color_bias: "Dark suiting neutrals, controlled whites, muted luxury restraint."
+  hair_makeup_notes: "Composure first; avoid florid villain cues or obvious theatrical aging."
+visual_age_range: "late 40s to 50s"
+silhouette_notes: "Tailored, centered, and room-owning rather than flamboyant."
+costume_logic: "Corporate control silhouette; exact tailoring matters more than brand display."
+color_bias: "Dark tailored neutrals with disciplined contrast."
+associated_props:
+  - PROP005
+associated_locations:
+  - LOC001
+  - LOC003
+relationship_keys:
+  - "Nadia: owner/asset marriage turning into hunter/prey."
+  - "Dimitri: instrument and potential rival."
+  - "Marcus: the man whose existence proves Roman mispriced the marriage."
+known_scene_anchors:
+  - SC0002
+  - SC0007
+  - SC0008
+  - SC0009
+do_not_invent_notes:
+  - "Do not reduce him to shouting rage; the threat stays cold and procedural."
+  - "Do not over-design him as a glossy luxury villain."
+  - "Do not claim physical helplessness; later source evidence says he is capable when cornered."
+unresolved_questions:
+  - "TODO_REVIEW: exact age presentation and tailoring breakdown for Phase 2 visual packs remain unapproved."
+  - "UNRESOLVED: whether the collection wristwatch tracked in PROP005 should remain the same object once trophy-room evidence is fully hydrated."
+continuity_refs:
+  wardrobe_ids:
+    - WD003
+  prop_ids:
+    - PROP005
+  key_scene_ids:
+    - SC0002
+    - SC0007
+    - SC0008
+    - SC0009
+status: review
+review_status: pending
+canon_lock: false

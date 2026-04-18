@@ -1,0 +1,37 @@
+wardrobe_id: WD002
+name: "Nadia guarded private-hours look"
+character_id: C01
+visual_description: "Private-hours clothing that reads discreet, self-contained, and movement-capable; source does not authorize an exact garment breakdown."
+semiotic_function: "Carries secrecy, vigilance, and interior control across the study discovery and late Marcus scenes."
+color_profile: "Dark or low-key neutrals; exact tones unresolved."
+texture_notes: "Matte, quiet surfaces; no decorative noise."
+associated_character: "Nadia Vale"
+narrative_phase: "late setup / private warning space"
+silhouette: "Contained, discreet, and close to the body."
+palette_bias: "Low-contrast night restraint."
+material_notes: "Should feel private and unobtrusive rather than formal."
+wear_state: "Composed private baseline before game-launch degradation."
+continuity_constraints:
+  - "Must bridge SC0006 and the inferred late-night memory scenes without implying unsupported costume changes."
+  - "Do not over-style it into glamour or eroticized intimacy."
+scene_anchors:
+  - SC0004
+  - SC0006
+  - SC0008
+  - SC0009
+movement_notes: "Should permit desk work, standing still, and bed-edge stillness."
+weather_logic: "Interior and night-oriented; weather not source-driving."
+layering_notes: "UNRESOLVED - exact outer layer or absence of one is not source-authored."
+continuity_state:
+  initial_state: "Guarded private-hours continuity bucket for the study and hidden-room scenes."
+  state_changes: []
+scene_refs:
+  - SC0004
+  - SC0006
+  - SC0008
+  - SC0009
+unresolved_questions:
+  - "UNRESOLVED: whether SC0004 and SC0008-SC0009 should share one exact look or only a closely related private-hours logic."
+status: review
+review_status: pending
+canon_lock: false

@@ -1,0 +1,31 @@
+wardrobe_id: WD004
+name: "Birta domestic working attire"
+character_id: C03
+visual_description: "Practical domestic workwear suited to carrying linens and moving the corridor efficiently; exact garment pieces remain unresolved."
+semiotic_function: "Keeps Birta grounded as a working domestic presence rather than decorative background."
+color_profile: "Muted house-service neutrals."
+texture_notes: "Workable fabrics with lived-in practicality."
+associated_character: "Birta"
+narrative_phase: "pre-game domestic routine"
+silhouette: "Compact, work-shaped, and unornamented."
+palette_bias: "Low-key neutrals."
+material_notes: "Should feel durable and unshowy."
+wear_state: "Routine household baseline."
+continuity_constraints:
+  - "Must support tray carrying, linen handling, and quiet corridor movement."
+  - "Avoid caricature or nostalgic over-design."
+scene_anchors:
+  - SC0001
+movement_notes: "Nothing should impede the compact authority of her movement."
+weather_logic: "Interior-only in grounded pilot evidence."
+layering_notes: "UNRESOLVED - apron/cardigan specifics not source-authored."
+continuity_state:
+  initial_state: "Domestic working attire baseline for Birta's Vale residence appearance."
+  state_changes: []
+scene_refs:
+  - SC0001
+unresolved_questions:
+  - "TODO_REVIEW: exact garment breakdown should wait for later wardrobe design rather than be guessed here."
+status: review
+review_status: pending
+canon_lock: false

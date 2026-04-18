@@ -1,0 +1,23 @@
+{
+  "project_slug": "closing_price",
+  "project_title": "CLOSING PRICE",
+  "version": "1.0.0-source",
+  "modes": {
+    "script_mode": "SPEC",
+    "narrator_mode": "NONE",
+    "narrator_character": null,
+    "export_formats": ["fountain"],
+    "operating_mode": "PRODUCTION"
+  },
+  "targets": {
+    "scene_count_min": 120,
+    "scene_count_max": 120,
+    "page_count_target": 102
+  },
+  "quality_policy": {
+    "min_inspector_score": 7,
+    "dialogue_clarity": true,
+    "no_subtext_labels": true,
+    "smoke_test_mode": false
+  }
+}

@@ -1,0 +1,89 @@
+location_id: LOC001
+name: "Vale Residence, Vardova"
+category: HOME
+recurring: true
+geography:
+  city: "Vardova"
+  country: "UNRESOLVED - fictional state context not named in source"
+  interior_exterior: INT
+canonical_name: "Vale Residence, Vardova"
+aliases:
+  - "Kitchen passage"
+  - "East-wing corridor"
+  - "Jin's room"
+  - "Jin's nursery"
+  - "Main reception"
+  - "Roman's private office"
+  - "Roman's trophy room"
+location_type: "Elite domestic control environment"
+narrative_function: "Marriage cage, infant-space anchor, and the first arena where surveillance reveals itself through small domestic disturbance."
+architectural_character: "Large elite residence organized into wings, corridors, private rooms, and curated formal rooms; control is built into layout and presentation."
+material_profile:
+  - "pale stone"
+  - "muted domestic luxury surfaces"
+  - "glass"
+  - "corporate art"
+  - "nursery textiles"
+texture_profile:
+  - "expensive underuse"
+  - "dust-shadow evidence"
+  - "folded linens"
+  - "quiet nursery warmth"
+lighting_behavior: "Controlled, filtered, and often partially blocked; domestic warmth appears most clearly in Jin's room and nursery, not in the house at large."
+day_night_variation: "Early morning and mid-morning remain pale and filtered; evening/night interior scenes stay composed and withheld rather than cozy."
+spatial_feel: "Wide but constrained; the house offers size without freedom."
+emotional_register: "Contained dread, performed order, and small human warmth under pressure."
+recurring_anchor_objects:
+  - PROP001
+  - PROP003
+  - "white-noise machine"
+  - "crib"
+  - "formula tin"
+  - "folded linens"
+stable_visual_rules:
+  - "Wealth should read as curation and underuse, not warmth."
+  - "Domestic geometry should preserve route logic between corridor, nursery, and private rooms."
+  - "Signs of surveillance emerge through object disturbance and angle changes, not overt gadget display."
+non_invention_rules:
+  - "Do not turn the residence into gothic excess or villain-lair theatrics."
+  - "Do not over-decorate Jin's spaces beyond source-supported care detail."
+visual_profile:
+  palette: "Pale stone, muted creams, cold domestic neutrals, and warmer low-key pockets in Jin's rooms."
+  architecture_logic: "Winged elite residence built around curation, privacy, and oversight rather than intimacy."
+  camera_behavior: "Thresholds, corridor depth, doorways, and slight object deviations should carry the visual logic."
+  lighting_logic: "Filtered daylight and controlled practical pools; even warmth should feel contained."
+  sound_texture: "Quiet house ambience, softened staff movement, and nursery white noise."
+  spatial_motifs:
+    - "thresholds"
+    - "surveillance geometry"
+    - "curated domestic order"
+continuity_constraints:
+  persistent_objects:
+    - PROP001
+    - PROP003
+  entry_exit_logic: "Kitchen passage to east-wing corridor to Jin's room is explicit in SC0001; private rooms and Roman spaces live inside the same controlled domestic system."
+  time_of_day_constraints: "Grounded evidence covers early morning, mid-morning, evening, and night versions of the same residence."
+  weather_sensitivity: "Low indoors; daylight character changes matter more than weather display."
+  damage_state_logic: "Before the game launch, the house remains curated; disturbance should register through detail shifts rather than overt damage."
+related_scene_ids:
+  - SC0001
+  - SC0003
+  - SC0005
+  - SC0007
+  - SC0009
+known_character_associations:
+  - C01
+  - C02
+  - C03
+scene_refs:
+  - SC0001
+  - SC0003
+  - SC0005
+  - SC0007
+  - SC0009
+unresolved_questions:
+  - "TODO_REVIEW: exact floor-plan continuity between nursery spaces and Roman's private rooms remains downstream work."
+  - "UNRESOLVED: whether 'Jin's room' and 'Jin's nursery' should stay alias-level distinctions or later split into separate planning environments."
+status: review
+review_status: pending
+canon_lock: false

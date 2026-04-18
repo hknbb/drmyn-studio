@@ -1,0 +1,160 @@
+name: "Phase 2 — Character Pack"
+description: "Create or revise a character reference pack for Phase 2 visual development."
+title: "[P2][Character Pack] "
+labels: ["phase-2", "asset-character", "review-needed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to create or revise a **Phase 2 character reference pack**.
+
+        Expected outputs usually include:
+        - front portrait
+        - left profile
+        - right profile
+        - three-quarter portrait
+        - low-light variation
+        - daylight/overcast variation
+        - contact sheet
+        - notes file
+
+  - type: input
+    id: character_id
+    attributes:
+      label: Character ID
+      description: Enter the canonical character ID.
+      placeholder: "C01"
+    validations:
+      required: true
+
+  - type: input
+    id: display_name
+    attributes:
+      label: Display name
+      description: Enter the character display name.
+      placeholder: "Nadia"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: batch
+    attributes:
+      label: Batch
+      description: Select the intended Phase 2 batch.
+      options:
+        - Batch 01
+        - Batch 02
+        - Batch 03
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tool
+    attributes:
+      label: Primary tool
+      description: Select the primary generation tool.
+      options:
+        - Midjourney
+        - Nano Banana Pro
+        - GPT Image
+        - Mixed
+    validations:
+      required: true
+
+  - type: textarea
+    id: canonical_inputs
+    attributes:
+      label: Canonical inputs
+      description: List the planning files and references that must be used.
+      placeholder: |
+        planning/characters/C01.yaml
+        source/style_bible.md
+        planning/wardrobe/WD001.yaml
+        planning/scenes/SC0001/scene_card.yaml
+      render: markdown
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: required_outputs
+    attributes:
+      label: Required outputs
+      description: Check all expected deliverables.
+      options:
+        - label: Front portrait
+        - label: Left profile
+        - label: Right profile
+        - label: Three-quarter portrait
+        - label: Low-light variation
+        - label: Daylight/overcast variation
+        - label: Contact sheet
+        - label: Notes file
+
+  - type: textarea
+    id: output_paths
+    attributes:
+      label: Output paths
+      description: Specify the expected repository paths.
+      placeholder: |
+        visual_dev/characters/C01/reference_pack/
+        visual_dev/characters/C01/contact_sheet/
+        visual_dev/characters/C01/approved/
+        visual_dev/characters/C01/notes.md
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: review_criteria
+    attributes:
+      label: Review criteria
+      description: Define what makes this pack acceptable.
+      placeholder: |
+        - identity consistency across angles
+        - stable silhouette
+        - lighting changes do not break identity
+        - wardrobe logic matches continuity
+        - aligns with house style
+      render: markdown
+    validations:
+      required: true
+
+  - type: dropdown
+    id: evidence_relevance
+    attributes:
+      label: Article 3 evidence relevance
+      options:
+        - No
+        - Candidate
+        - Approved
+    validations:
+      required: true
+
+  - type: input
+    id: freeze_target
+    attributes:
+      label: Target freeze
+      placeholder: "visual-z1p2-batch1-r1"
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: List blocking issues or prerequisite approvals.
+      placeholder: |
+        Depends on:
+        - character sheet approval
+        - wardrobe pack approval
+      render: markdown
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+      description: Add continuity, styling, or production notes.
+    validations:
+      required: false

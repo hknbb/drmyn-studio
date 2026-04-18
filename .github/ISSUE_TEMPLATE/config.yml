@@ -1,0 +1,10 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: Phase 2 workflow questions
+    url: https://github.com/babac/NexusZeroClosingPriceProduction/discussions
+    about: Use Discussions for open workflow questions, planning clarifications, and non-actionable conversation.
+
+  - name: Security and sensitive disclosures
+    url: https://github.com/babac/NexusZeroClosingPriceProduction/security/policy
+    about: Report security-related or sensitive issues outside the normal issue tracker.

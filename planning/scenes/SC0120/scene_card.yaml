@@ -1,0 +1,55 @@
+scene_id: SC0120
+sequence_id: SEQ24
+phase_id: PH_RESOLUTION
+title: 'The approach is the one she uses for everything that requires precision without sentiment: triage
+  first.'
+purpose: Placeholder scaffold seeded from the retrieval map; replace with canonical scene purpose.
+dramatic_function: TBD dramatic function derived during scene-card enrichment.
+location_id: LOC001
+location_text_raw: null
+time_of_day: UNKNOWN
+time_of_day_text_raw: null
+weather: TBD
+characters_present:
+- C01
+characters_explicit_dialogue: []
+characters_explicit_mentions: []
+primary_pov_character: C01
+continuity_refs:
+  wardrobe: []
+  props: []
+  prior_scenes:
+  - SC0119
+  next_expected_links: []
+  time_continuity_note: TBD continuity note.
+visual_targets:
+  palette: TBD visual palette
+  lens_bias: TBD lens bias
+  framing_bias: TBD framing bias
+  movement_bias: TBD movement bias
+  lighting_bias: TBD lighting bias
+promptability_score: 3
+excerpt_ref: scene_excerpt.md
+screen_excerpt_ref: scene_excerpt.md
+prompt_brief_ref: prompt_brief.md
+review_notes_ref: review_notes.md
+source_line_start: 9700
+source_line_end: 9775
+source_line_count: 76
+anchor_first_nonblank: 'The approach is the one she uses for everything that requires precision without
+  sentiment: triage first. The documents in the first folder are foundational — the ones that generate
+  the others, the ones that must be memorized first because e'
+anchor_last_nonblank: He looks at the light at its source.
+boundary_start_kind: dash
+boundary_end_kind: eof
+mapping_confidence: medium
+notes_grounding:
+- Hydrated from retrieval map and scene_excerpt.md only.
+- Title derived from opening anchor sentence.
+- Scene begins without a clear opening slugline; raw location/time left empty.
+- A later explicit slugline exists inside the excerpt and should be reviewed manually.
+- Retrieval map marks this scene as medium confidence.
+- Numbered Fountain marker present for this scene.
+status: scaffolded
+review_status: needs_human_review
+canon_lock: false

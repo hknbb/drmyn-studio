@@ -1,0 +1,149 @@
+name: "Phase 2 — Motion Pair"
+description: "Prepare a motion-ready start/end frame pair for image-to-video handoff."
+title: "[P2][Motion Prep] "
+labels: ["phase-2", "phase-2-motion-prep", "asset-motion-pair", "review-needed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to prepare a **motion-ready start/end frame pair** for image-to-video handoff.
+
+        Typical outputs:
+        - approved start frame
+        - approved end frame
+        - motion note file
+        - paired reference record
+
+  - type: input
+    id: scene_id
+    attributes:
+      label: Scene ID
+      placeholder: "SC0006"
+    validations:
+      required: true
+
+  - type: input
+    id: shot_purpose
+    attributes:
+      label: Shot purpose
+      placeholder: "Surveillance reveal close-up transition"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: batch
+    attributes:
+      label: Batch
+      options:
+        - Batch 01
+        - Batch 02
+        - Batch 03
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tool
+    attributes:
+      label: Target handoff tool
+      options:
+        - Veo
+        - Kling
+        - Runway
+        - Mixed
+    validations:
+      required: true
+
+  - type: textarea
+    id: canonical_inputs
+    attributes:
+      label: Canonical inputs
+      placeholder: |
+        approved stills
+        planning/scenes/SC0006/scene_card.yaml
+        planning/scenes/SC0006/prompt_brief.md
+        continuity notes
+      render: markdown
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: required_outputs
+    attributes:
+      label: Required outputs
+      options:
+        - label: Approved start frame
+        - label: Approved end frame
+        - label: Motion notes file
+        - label: Paired reference record
+
+  - type: textarea
+    id: output_paths
+    attributes:
+      label: Output paths
+      placeholder: |
+        visual_dev/motion_prep/SC0006/start_frames/
+        visual_dev/motion_prep/SC0006/end_frames/
+        visual_dev/motion_prep/SC0006/paired/
+        visual_dev/motion_prep/SC0006/motion_notes.md
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: review_criteria
+    attributes:
+      label: Review criteria
+      placeholder: |
+        - start and end preserve identity
+        - composition allows motion
+        - negative space supports direction
+        - frame complexity remains manageable
+        - usable for image-to-video handoff
+      render: markdown
+    validations:
+      required: true
+
+  - type: dropdown
+    id: motion_ready
+    attributes:
+      label: Motion readiness target
+      options:
+        - Start Only
+        - End Only
+        - Paired
+    validations:
+      required: true
+
+  - type: dropdown
+    id: evidence_relevance
+    attributes:
+      label: Article 3 evidence relevance
+      options:
+        - No
+        - Candidate
+        - Approved
+    validations:
+      required: true
+
+  - type: input
+    id: freeze_target
+    attributes:
+      label: Target freeze
+      placeholder: "visual-z1p2-batch1-r1"
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      render: markdown
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+    validations:
+      required: false

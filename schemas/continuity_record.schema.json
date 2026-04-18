@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/continuity_record.schema.json",
+  "title": "Closing Price Phase 1 Continuity Record",
+  "description": "Generic continuity record for timeline, time-of-day, weather, props-state, or wardrobe-state tracking.",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "record_type": {
+      "type": "string",
+      "enum": ["timeline", "time_of_day", "weather", "props_state", "wardrobe_state", "camera_grammar"]
+    },
+    "version": { "type": "string" },
+    "canon_lock": { "type": "boolean" }
+  }
+}

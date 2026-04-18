@@ -1,0 +1,54 @@
+scene_id: SC0017
+sequence_id: SEQ04
+phase_id: PH_EQUILIBRIUM
+title: She looks at the space the way someone looks at a space when they are deciding what it means.
+purpose: Placeholder scaffold seeded from the retrieval map; replace with canonical scene purpose.
+dramatic_function: TBD dramatic function derived during scene-card enrichment.
+location_id: LOC001
+location_text_raw: null
+time_of_day: UNKNOWN
+time_of_day_text_raw: null
+weather: TBD
+characters_present:
+- C01
+characters_explicit_dialogue: []
+characters_explicit_mentions: []
+primary_pov_character: C01
+continuity_refs:
+  wardrobe: []
+  props: []
+  prior_scenes:
+  - SC0016
+  next_expected_links:
+  - SC0018
+  time_continuity_note: TBD continuity note.
+visual_targets:
+  palette: TBD visual palette
+  lens_bias: TBD lens bias
+  framing_bias: TBD framing bias
+  movement_bias: TBD movement bias
+  lighting_bias: TBD lighting bias
+promptability_score: 3
+excerpt_ref: scene_excerpt.md
+screen_excerpt_ref: scene_excerpt.md
+prompt_brief_ref: prompt_brief.md
+review_notes_ref: review_notes.md
+source_line_start: 1320
+source_line_end: 1402
+source_line_count: 83
+anchor_first_nonblank: 'She looks at the space the way someone looks at a space when they are deciding
+  what it means. Not aesthetically. Categorically. She is building a taxonomy: structures that could provide
+  shelter, structures that could collapse on you, struct'
+anchor_last_nonblank: She is in the game.
+boundary_start_kind: dash
+boundary_end_kind: slug
+mapping_confidence: medium
+notes_grounding:
+- Hydrated from retrieval map and scene_excerpt.md only.
+- Title derived from opening anchor sentence.
+- Scene begins without a clear opening slugline; raw location/time left empty.
+- Retrieval map marks this scene as medium confidence.
+- Numbered Fountain marker present for this scene.
+status: scaffolded
+review_status: needs_human_review
+canon_lock: false

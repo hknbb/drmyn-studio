@@ -1,0 +1,60 @@
+scene_id: SC0008
+sequence_id: SEQ01
+phase_id: PH_EQUILIBRIUM
+beat_id: B08
+title: "Marcus and Nadia's Last Night Together"
+purpose: "Complete the emotional establishment of the Marcus/Nadia relationship and plant the address reminder that will matter later without breaking the night's temporary shelter."
+dramatic_function: "Elegiac intimacy scene with a carry-over threat beat: Roman's office aftermath bleeds into the retrieval span, then the scene settles into Marcus and Nadia's private last night."
+location_id: LOC004
+location_text_raw: "ANONYMOUS ROOM"
+time_of_day: NIGHT
+time_of_day_text_raw: "NIGHT"
+weather: "Interior; exterior weather not source-stated."
+characters_present:
+  - C01
+  - C02
+  - C05
+characters_explicit_dialogue:
+  - MARCUS
+  - NADIA
+characters_explicit_mentions:
+  - DIMITRI
+  - MARCUS
+  - NADIA
+  - ROMAN
+primary_pov_character: C01
+continuity_refs:
+  wardrobe:
+    - WD002
+  props: []
+  prior_scenes:
+    - SC0007
+  next_expected_links:
+    - SC0009
+  time_continuity_note: "Immediate retrieval carry-over from SC0007's office aftermath, then later the same night in the anonymous room with Marcus and Nadia."
+visual_targets:
+  palette: "Quiet night interiors, soft bed-space shadows, and city-muted darkness with no decorative flourish."
+  lens_bias: "Intimate body-level coverage that can hold both stillness in bed and the later edge-of-bed address handoff."
+  framing_bias: "Ceiling-facing two-shot calm, bed-edge separation, and enough negative space to preserve what is unsaid."
+  movement_bias: "Low-motion scene built from breathing, head turns, and Marcus's shift to the edge of the bed."
+  lighting_bias: "Late-night interior softness that still preserves the difference between private tenderness and withheld information."
+promptability_score: 4
+excerpt_ref: scene_excerpt.md
+screen_excerpt_ref: scene_excerpt.md
+prompt_brief_ref: prompt_brief.md
+review_notes_ref: review_notes.md
+source_line_start: 530
+source_line_end: 611
+source_line_count: 82
+anchor_first_nonblank: "Roman remains. He picks up the glass of water - the first time he has touched it - and drinks."
+anchor_last_nonblank: "She does not ask because asking would open something, and she has made the decision - not consciously, the way these decisions are actually made - to protect the night from what is outside it."
+boundary_start_kind: dash
+boundary_end_kind: dash
+mapping_confidence: inferred
+notes_grounding:
+  - "Blueprint SC0008 intent used for purpose and dramatic function."
+  - "Scene card retains LOC004 because the only explicit in-scene slugline after the carry-over beat is INT. ANONYMOUS ROOM - NIGHT and the project seed already groups this memory/intimacy space under LOC004."
+  - "Roman is physically present only in the opening carry-over beat from SC0007; Dimitri is mentioned there but not physically present in this retrieval span."
+status: review
+review_status: needs_human_review
+canon_lock: false

@@ -1,0 +1,59 @@
+scene_id: SC0009
+sequence_id: SEQ01
+phase_id: PH_EQUILIBRIUM
+beat_id: B09
+title: "Roman Confirms the Betrayal"
+purpose: "Show Roman absorbing the paternity confirmation and converting it immediately into operational action, while the opening carry-over beat preserves the last fragile aftermath of Marcus and Nadia's night."
+dramatic_function: "Decision scene: private tenderness gives way to Roman's system logic as betrayal becomes transaction and preparation."
+location_id: LOC001
+location_text_raw: "ROMAN'S TROPHY ROOM - VALE RESIDENCE"
+time_of_day: NIGHT
+time_of_day_text_raw: "NIGHT"
+weather: "Interior; exterior weather not source-stated."
+characters_present:
+  - C01
+  - C02
+  - C05
+characters_explicit_dialogue:
+  - DIMITRI
+  - ROMAN
+characters_explicit_mentions:
+  - ROMAN
+primary_pov_character: C02
+continuity_refs:
+  wardrobe:
+    - WD002
+    - WD003
+  props:
+    - PROP005
+  prior_scenes:
+    - SC0008
+  next_expected_links:
+    - SC0010
+  time_continuity_note: "Carries directly out of SC0008's anonymous-room aftermath before cutting the same night to Roman's trophy room for the confirmation call."
+visual_targets:
+  palette: "Curated private-room darkness, glass reflections, shelf objects, and hard-controlled night interior tones."
+  lens_bias: "Reserved observational coverage that lets Roman's stillness, object handling, and the partial document visibility do the work."
+  framing_bias: "Shelves, cabinet logic, glass case isolation, and enough space around Roman to emphasize system recalibration rather than overt grief."
+  movement_bias: "Minimal deliberate movement through the room, then a clean stop for the call."
+  lighting_bias: "Private-room night lighting with selective object definition; the document and case should read clearly without becoming exposition inserts."
+promptability_score: 4
+excerpt_ref: scene_excerpt.md
+screen_excerpt_ref: scene_excerpt.md
+prompt_brief_ref: prompt_brief.md
+review_notes_ref: review_notes.md
+source_line_start: 615
+source_line_end: 687
+source_line_count: 73
+anchor_first_nonblank: "He lies back down. His arm comes around her. She puts her hand on his chest."
+anchor_last_nonblank: "The call ends."
+boundary_start_kind: dash
+boundary_end_kind: dash
+mapping_confidence: inferred
+notes_grounding:
+  - "Blueprint SC0009 intent used for purpose and dramatic function."
+  - "The retrieval span opens on a carry-over aftermath beat in the anonymous room, but the first explicit slugline inside the scene is INT. ROMAN'S TROPHY ROOM - VALE RESIDENCE - NIGHT, so the planning location is grounded to LOC001."
+  - "This creates a project-memory conflict with older Phase 2 seed rows that bucket SC0009 under LOC004; the report records that conflict instead of forcing the scene card to follow the older bucket."
+status: review
+review_status: needs_human_review
+canon_lock: false

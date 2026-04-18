@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/prop_record.schema.json",
+  "title": "Closing Price Phase 1 Prop Record",
+  "description": "Canonical prop record for Zone 1 / Phase 1 continuity and planning.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "prop_id",
+    "name",
+    "narrative_function",
+    "visual_description",
+    "status",
+    "canon_lock"
+  ],
+  "properties": {
+    "prop_id": {
+      "type": "string",
+      "pattern": "^PROP\\d{3}$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "narrative_function": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 800
+    },
+    "visual_description": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 800
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "DOCUMENT",
+        "DEVICE",
+        "WEAPON",
+        "FURNITURE",
+        "CLOTHING_ACCESSORY",
+        "FOOD_DRINK",
+        "VEHICLE_PART",
+        "SYMBOL",
+        "OTHER"
+      ]
+    },
+    "continuity_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "initial_state": { "type": "string", "maxLength": 400 },
+        "state_changes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["scene_id", "new_state"],
+            "properties": {
+              "scene_id": { "type": "string", "pattern": "^SC\\d{4}$" },
+              "new_state": { "type": "string", "maxLength": 400 }
+            }
+          }
+        }
+      }
+    },
+    "owner_character_id": {
+      "type": "string",
+      "pattern": "^C\\d{2}$"
+    },
+    "scene_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^SC\\d{4}$" }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "review", "approved", "locked", "deprecated"]
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["pending", "changes_requested", "approved", "rejected"]
+    },
+    "canon_lock": { "type": "boolean" },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "approved_by": { "type": "string" },
+        "approved_at": { "type": "string", "format": "date-time" },
+        "approval_note": { "type": "string", "maxLength": 1000 }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "created_by": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_by": { "type": "string" },
+        "updated_at": { "type": "string", "format": "date-time" },
+        "git_commit": { "type": "string", "pattern": "^[a-f0-9]{7,40}$" }
+      }
+    }
+  }
+}
