@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/element_set_record.schema.json",
+  "title": "Closing Price Stage B Element Set Record",
+  "description": "Curated element set used for one scene or one generation context. Introduced in Stage B PR1 as additive groundwork; folder scaffolding follows in PR2.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "element_set_id",
+    "scene_id",
+    "status",
+    "canon_lock"
+  ],
+  "properties": {
+    "element_set_id": {
+      "type": "string",
+      "description": "Stable identifier for this element set.",
+      "pattern": "^ES\\d{4}$"
+    },
+    "scene_id": {
+      "type": "string",
+      "description": "Scene this element set belongs to.",
+      "pattern": "^SC\\d{4}$"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "review", "approved", "locked", "deprecated"]
+    },
+    "slot_budget_mode": {
+      "type": "string",
+      "description": "How slot count is managed for this set.",
+      "enum": ["fixed", "flexible", "unlimited"]
+    },
+    "max_slots": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Maximum number of element slots permitted in this set."
+    },
+    "slots_used": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of slots currently occupied."
+    },
+    "element_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "description": "Ordered list of element identifiers or relative paths in this set.",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+      }
+    },
+    "tagged_elements": {
+      "type": "array",
+      "description": "Elements annotated with semantic tags for generation routing.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["element_ref", "tag"],
+        "properties": {
+          "element_ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "tag": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "notes": {
+            "type": "string",
+            "maxLength": 500
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "canon_lock": {
+      "type": "boolean"
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "created_by": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_by": { "type": "string" },
+        "updated_at": { "type": "string", "format": "date-time" },
+        "git_commit": { "type": "string", "pattern": "^[a-f0-9]{7,40}$" }
+      }
+    }
+  }
+}

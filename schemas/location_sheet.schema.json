@@ -107,6 +107,26 @@
         "approval_note": { "type": "string", "maxLength": 1000 }
       }
     },
+    "kling_element_id": {
+      "type": "string",
+      "description": "Kling platform element identifier for this location's canonical visual element.",
+      "maxLength": 200
+    },
+    "canonical_pack_path": {
+      "type": "string",
+      "description": "Relative path to the canonical element pack for this location.",
+      "maxLength": 500
+    },
+    "lighting_variants": {
+      "type": "array",
+      "description": "List of lighting variant identifiers or descriptors for this location.",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 120
+      }
+    },
     "provenance": {
       "type": "object",
       "additionalProperties": false,
