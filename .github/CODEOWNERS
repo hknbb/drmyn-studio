@@ -1,18 +1,18 @@
 # Canonical source files
-/source/ @babac
+/source/ @hknbb
 
 # Phase 1 planning records
-/planning/ @babac
+/planning/ @hknbb
 
 # Prompt governance
-/prompts/ @babac
+/prompts/ @hknbb
 
 # Validation schemas and scripts
-/schemas/ @babac
-/scripts/ @babac
+/schemas/ @hknbb
+/scripts/ @hknbb
 
 # GitHub governance files
-/.github/ @babac
+/.github/ @hknbb
 
 # Documentation
-/docs/ @babac
+/docs/ @hknbb

@@ -18,5 +18,7 @@ keywords:
   - previsualization
 license: "MIT"
 authors:
-  - alias: "hknbb"
+  - family-names: "Babacan"
+    given-names: "Hakan"
+    orcid: "https://orcid.org/0009-0006-5152-7728"
     affiliation: "Independent Research"
