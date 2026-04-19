@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/lipsync_record.schema.json",
+  "title": "Closing Price Stage B Lipsync Record",
+  "description": "Lipsync / post-dialogue record for one shot or scene segment. Introduced in Stage B PR1 as additive groundwork.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "lipsync_id",
+    "scene_id",
+    "model",
+    "qc_status",
+    "created_utc"
+  ],
+  "properties": {
+    "lipsync_id": {
+      "type": "string",
+      "description": "Stable unique identifier for this lipsync record.",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "scene_id": {
+      "type": "string",
+      "description": "Scene this lipsync record belongs to.",
+      "pattern": "^SC\\d{4}$"
+    },
+    "shot_id": {
+      "type": "string",
+      "description": "Shot or segment identifier within the scene, if applicable.",
+      "maxLength": 120
+    },
+    "source_dialogue_ref": {
+      "type": "string",
+      "description": "Reference to the source dialogue passage (e.g. line range, cue label, or scene_excerpt offset).",
+      "maxLength": 500
+    },
+    "audio_ref": {
+      "type": "string",
+      "description": "Relative path to the source audio file used for lipsync input.",
+      "maxLength": 500
+    },
+    "model": {
+      "type": "string",
+      "description": "Lipsync model identifier used to generate this record.",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "model_version": {
+      "type": "string",
+      "description": "Specific version of the lipsync model used.",
+      "maxLength": 80
+    },
+    "output_ref": {
+      "type": "string",
+      "description": "Relative path to the lipsync output file.",
+      "maxLength": 500
+    },
+    "qc_status": {
+      "type": "string",
+      "description": "Quality-control outcome for this lipsync output.",
+      "enum": ["pending", "pass", "fail", "held"]
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "created_utc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp when this record was created."
+    }
+  }
+}

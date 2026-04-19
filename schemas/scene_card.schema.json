@@ -330,6 +330,29 @@
         "approval_note": { "type": "string", "maxLength": 1000 }
       }
     },
+    "omni_set_ref": {
+      "type": "string",
+      "description": "Reference to the element set record used for Omni generation for this scene.",
+      "maxLength": 200
+    },
+    "element_slot_allocation": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Slot budget allocation metadata for Omni element sets."
+    },
+    "shot_list_omni": {
+      "type": "array",
+      "description": "Ordered list of Omni shot plan objects for this scene.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "lipsync_plan": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Lipsync planning metadata for this scene."
+    },
     "provenance": {
       "type": "object",
       "additionalProperties": false,

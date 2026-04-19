@@ -35,7 +35,16 @@
         "video_generation",
         "variation",
         "repair",
-        "evaluation"
+        "evaluation",
+        "t2i_character_element",
+        "t2i_location_element",
+        "t2i_prop_element",
+        "t2i_style_reference",
+        "omni_instruction",
+        "lipsync_audio",
+        "lipsync_shot",
+        "color_lut",
+        "sfx_design"
       ]
     },
     "lifecycle_stage": {

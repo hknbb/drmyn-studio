@@ -36,6 +36,6 @@ jobs:
             --output evidence/closing-price-phase1-artifact-bundle.zip
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: evidence/closing-price-phase1-artifact-bundle.zip

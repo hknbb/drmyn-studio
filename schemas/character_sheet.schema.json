@@ -137,6 +137,21 @@
         "approval_note": { "type": "string", "maxLength": 1000 }
       }
     },
+    "kling_element_id": {
+      "type": "string",
+      "description": "Kling platform element identifier for this character's canonical visual element.",
+      "maxLength": 200
+    },
+    "canonical_pack_path": {
+      "type": "string",
+      "description": "Relative path to the canonical element pack for this character.",
+      "maxLength": 500
+    },
+    "voice_clone_ref": {
+      "type": "string",
+      "description": "Reference identifier for the voice clone asset used in lipsync.",
+      "maxLength": 200
+    },
     "provenance": {
       "type": "object",
       "additionalProperties": false,

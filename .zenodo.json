@@ -4,7 +4,8 @@
   "description": "Canonical planning, prompt governance, validation, and reproducibility package for Zone 1 / Phase 1 of the Closing Price workflow. Includes scene cards, character and location records, continuity files, prompt lifecycle infrastructure, JSON schema validation, and Stage A foundation closure artifacts.",
   "creators": [
     {
-      "name": "hknbb",
+      "name": "Babacan, Hakan",
+      "orcid": "0009-0006-5152-7728",
       "affiliation": "Independent Research"
     }
   ],

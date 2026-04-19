@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/omni_generation_record.schema.json",
+  "title": "Closing Price Stage B Omni Generation Record",
+  "description": "Reproducible provenance record for a single Omni generation run. Introduced in Stage B PR1 as additive groundwork.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "generation_id",
+    "scene_id",
+    "model",
+    "selection_status",
+    "created_utc"
+  ],
+  "properties": {
+    "generation_id": {
+      "type": "string",
+      "description": "Stable unique identifier for this generation run.",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "scene_id": {
+      "type": "string",
+      "description": "Scene this generation belongs to.",
+      "pattern": "^SC\\d{4}$"
+    },
+    "element_set_id": {
+      "type": "string",
+      "description": "Element set used as input context for this run.",
+      "pattern": "^ES\\d{4}$"
+    },
+    "instruction_text_hash": {
+      "type": "string",
+      "description": "SHA-256 hash of the instruction text used for this run, for reproducibility auditing.",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "model": {
+      "type": "string",
+      "description": "Generation model identifier (e.g. kling, runway, pika).",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "model_version": {
+      "type": "string",
+      "description": "Specific version string of the model used.",
+      "maxLength": 80
+    },
+    "duration_seconds": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Duration of the generated output in seconds."
+    },
+    "resolution": {
+      "type": "string",
+      "description": "Output resolution (e.g. 1920x1080, 1080x1920).",
+      "maxLength": 40
+    },
+    "native_audio": {
+      "type": "boolean",
+      "description": "Whether the generation includes native model-generated audio."
+    },
+    "seed": {
+      "description": "Generation seed for reproducibility. May be integer or string depending on model.",
+      "oneOf": [
+        { "type": "integer" },
+        { "type": "string", "maxLength": 80 }
+      ]
+    },
+    "cfg_scale": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Classifier-free guidance scale used for this run."
+    },
+    "negative_prompt": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Negative prompt text applied during generation."
+    },
+    "output_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "description": "Relative paths or identifiers for output files produced by this run.",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+      }
+    },
+    "credit_cost": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Credits or API units consumed by this generation run."
+    },
+    "rejection_reasons": {
+      "type": "array",
+      "description": "Human-readable reasons this output was not selected, if applicable.",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+      }
+    },
+    "selection_status": {
+      "type": "string",
+      "description": "Outcome of the review process for this generation.",
+      "enum": ["pending", "selected", "rejected", "held"]
+    },
+    "created_utc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp when this generation was produced."
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 2000
+    }
+  }
+}
