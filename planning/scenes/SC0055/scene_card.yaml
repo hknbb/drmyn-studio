@@ -50,3 +50,16 @@ notes_grounding:
 status: scaffolded
 review_status: needs_human_review
 canon_lock: false
+omni_set_ref: visual_dev/omni_sets/SC0055/
+element_slot_allocation:
+  max_slots: 7
+  slots_used: 0
+  allocation: []
+  slots_free: 7
+  economy_notes: "Pending Stage C pilot review."
+shot_list_omni: []
+lipsync_plan:
+  sync_bearing_shots: []
+  sync_free_shots: []
+  default_model: lipsync-2
+  model_overrides: {}
