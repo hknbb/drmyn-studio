@@ -14,3 +14,9 @@
 
 # Treat ZIP as binary
 *.zip binary
+
+# Canonical element image assets — Git LFS (visual_dev/elements/ only)
+visual_dev/elements/**/*.png  filter=lfs diff=lfs merge=lfs -text
+visual_dev/elements/**/*.jpg  filter=lfs diff=lfs merge=lfs -text
+visual_dev/elements/**/*.jpeg filter=lfs diff=lfs merge=lfs -text
+visual_dev/elements/**/*.webp filter=lfs diff=lfs merge=lfs -text
