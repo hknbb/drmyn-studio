@@ -12,8 +12,8 @@ Source text grounds **two distinct bracelet states** — not a single ambiguous 
 | Check-up replacement bracelet | **Pale blue** | SC0010, SC0011, SC0014 | *"The hospital bracelet from his last check-up — a pale blue band"* (lines 690–774) |
 | Later appearances | **Ungrounded** | SC0108, SC0109 | Not mentioned in available excerpts |
 
-These are different physical bracelets. Hospital bracelets are applied at each visit; SC0010
-explicitly describes the later bracelet as "from his last check-up", marking it as a replacement.
+These are different physical bracelets. SC0010 explicitly describes the later bracelet as
+"from his last check-up", indicating it is a replacement from a more recent medical visit.
 
 ## What Is Needed
 
