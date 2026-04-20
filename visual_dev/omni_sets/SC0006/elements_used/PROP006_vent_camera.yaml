@@ -1,0 +1,17 @@
+element_ref: PROP006_vent_camera
+element_type: prop
+prop_id: PROP006
+canonical_name: Vent-grille surveillance device
+planning_record: planning/props/PROP006.yaml
+pack_path_expected: visual_dev/elements/props/PROP006/
+status: descriptor_only
+notes: >
+  No element pack committed. Grounded from planning/props/PROP006.yaml and
+  SC0006 scene excerpt (source lines 376-442).
+  Device is concealed within the north-wall ventilation grille, LOC002. A wire
+  and the edge of a lens are the only visible details; the lens is angled slightly
+  downward, covering desk and corridor door with the window at frame edge.
+  Placement is characterised as professional in the source text; brand, model,
+  and live-vs-passive status are all explicitly unresolved. Nadia leaves the
+  device in place and edits the room sightline instead of removing it.
+  SC0006 only; no confirmed recurrence in later scenes.

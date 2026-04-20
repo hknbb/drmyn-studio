@@ -1,0 +1,49 @@
+prop_id: PROP006
+name: "Vent-grille surveillance device"
+narrative_function: "Proof-of-violation object that triggers Nadia's shift from passive endurance to active tactical control; the discovery converts a private room into a managed variable."
+visual_description: "A small lens with an associated wire, positioned within or immediately behind the north-wall ventilation grille of Nadia's Private Study. Lens edge barely visible at the grille face, angled slightly downward. Wire is not part of the original grille architecture."
+category: DEVICE
+canonical_name: "Vent-grille surveillance device"
+aliases:
+  - "hidden camera"
+  - "study camera"
+  - "vent camera"
+prop_type: "concealed surveillance device"
+ownership_or_association: "Installed by an unidentified party inside the Vale Residence; Roman is implicated through context but authorship is not named in-scene."
+physical_description_grounded: >
+  Lens edge visible at face of north-wall ventilation grille, LOC002, angled slightly
+  downward. An associated wire is present and is not part of the grille's original
+  architecture (established by Nadia's reference to estate-survey photographs taken
+  three years prior). The device is professional in placement quality; the text states
+  explicitly that it is not domestic surveillance bought from a catalog.
+continuity_importance: "High"
+recurring_scene_ids:
+  - SC0006
+related_characters:
+  - C01
+related_locations:
+  - LOC002
+handling_notes:
+  - "Do not specify brand, model, manufacturer, or sensor type; none are source-stated."
+  - "The device must read as near-invisible within the existing grille; it is a wire and a lens edge, not a standalone unit."
+  - "Do not characterize it as live, passive, wireless, or wired beyond what the text states; live-vs-passive is explicitly listed as unknown by Nadia."
+  - "Placement quality is the only positively stated characteristic beyond physical position."
+visual_stability_notes:
+  - "Defining visual quality is near-invisibility; the lens registers as a barely-visible edge detail at the grille face, not as conspicuous hardware."
+  - "The grille itself is original to the room and should remain architecturally plausible for an elite domestic interior."
+future_hero_prop_candidate: false
+continuity_state:
+  initial_state: "In place, undiscovered, when Nadia enters the study in SC0006. Nadia discovers it and leaves it in place, narrowing its sightline by repositioning a book on the shelf."
+  state_changes:
+    - scene: SC0006
+      change: "Sightline narrowed by approximately four degrees by Nadia's deliberate repositioning of a reference volume on the shelf. Device itself is not touched or removed."
+owner_character_id: null
+scene_refs:
+  - SC0006
+unresolved_questions:
+  - "UNRESOLVED: whether the device is live-recording or passive is explicitly listed as unknown in the scene text; do not resolve without further source evidence."
+  - "UNRESOLVED: who placed it is implied (Roman's world) but not named in-scene; do not collapse that ambiguity."
+  - "TODO_REVIEW: whether other rooms in the residence carry similar devices is raised by Nadia's inventory logic but not confirmed."
+status: review
+review_status: pending
+canon_lock: false
