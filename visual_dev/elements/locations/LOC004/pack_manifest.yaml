@@ -1,0 +1,27 @@
+element_id: LOC004
+element_type: location
+canonical_name: Hidden Room / Anonymous Room
+planning_record: planning/locations/LOC004.yaml
+pack_status: metadata_only
+image_seeding_blocked: true
+image_seeding_note: >
+  No source images committed to repo. LFS-tracked per .gitattributes for
+  *.png / *.jpg / *.jpeg / *.webp once images are committed. Image seeding
+  is a downstream task.
+text_assets:
+  - pack_manifest.yaml
+  - source_notes.md
+pilot_scene_usage:
+  - scene: SC0008
+    time_of_day: late night
+    context: bed, table, window, curtain; muted rented-room neutrals; intimacy register
+  - scene: SC0009
+    context: carry-over beat from SC0008 anonymous-room aftermath; not primary setting
+unresolved_note: >
+  UNRESOLVED: SC0004 rented room and SC0008 anonymous room may or may not be the
+  same physical location. Do not collapse that uncertainty in image selection or
+  generation routing. Label images by scene context if committed.
+provenance:
+  created_by: hknbb
+  created_at: "2026-04-20T09:11:35Z"
+  stage: B PR4C
