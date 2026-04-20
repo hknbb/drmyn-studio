@@ -7,8 +7,8 @@ image_seeding_blocked: true
 image_seeding_note: >
   No source images committed to repo. LFS-tracked per .gitattributes for
   *.png / *.jpg / *.jpeg / *.webp once images are committed. Image seeding
-  is a downstream task. Color ambiguity (white vs pale blue/white) must be
-  resolved in planning before reference images are committed.
+  is a downstream task. Color resolved at planning layer (PR4F): two bracelet
+  states required — white plastic (SC0003) and pale blue band (SC0010-SC0014).
 text_assets:
   - pack_manifest.yaml
   - source_notes.md

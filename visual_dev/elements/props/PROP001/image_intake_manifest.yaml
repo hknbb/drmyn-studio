@@ -1,32 +1,43 @@
 element_id: PROP001
 element_type: prop
 canonical_name: "Jin's medical bracelet"
-intake_status: blocked_pending_color_decision
-image_count_expected: 1_to_3
+intake_status: not_yet_collected
+image_count_expected: 2_to_4
 lfs_ready: true
 lfs_note: "*.png / *.jpg / *.jpeg / *.webp in this folder are LFS-tracked per .gitattributes (PR4B)."
 source_status: no_source_images_in_repo
 copyright_review: pending
 provenance_review: pending
 color_decision_gate:
-  status: unresolved
-  options:
-    - white
-    - pale_blue_white
-  resolution_required_before_image_seeding: true
-  rationale: >
-    Any reference image committed here becomes the color ground truth for all future
-    appearances (SC0003, SC0010, SC0011, SC0014, SC0108, SC0109). Committing the wrong
-    color creates a continuity error across six scenes. The planning record flags this
-    as a TODO_REVIEW; a human reviewer must resolve it before any image is selected.
+  status: resolved
+  resolved_in: B PR4F
+  resolution: >
+    Source text grounds two distinct bracelet states. SC0003: "The bracelet is white
+    plastic with a small printed ID strip." SC0010: "The hospital bracelet from his
+    last check-up — a pale blue band." SC0011 and SC0014 confirm the pale blue bracelet
+    is the same object adjusted in SC0010. These are different physical bracelets, not
+    the same object under different lighting. No human reviewer required.
+  image_groups_required:
+    - group: sc0003_state
+      color: white_plastic
+      scenes: [SC0003]
+      description: "White plastic with printed ID strip; birth/registration bracelet."
+    - group: sc0010_to_sc0014_state
+      color: pale_blue
+      scenes: [SC0010, SC0011, SC0014]
+      description: "Pale blue band; replacement bracelet from a later check-up."
+    - group: sc0108_sc0109_state
+      color: ungrounded
+      scenes: [SC0108, SC0109]
+      description: "Color state not yet grounded in available source excerpts. Do not assume."
 image_requirements:
   - "Thin hospital-style plastic bracelet with printed ID strip"
   - "Plain, medically plausible — not jewellery, not tech-futuristic"
   - "Clasp detail legible (Nadia adjusts it repeatedly)"
-  - "Photographed in neutral light to avoid color-casting ambiguity"
+  - "Photographed in neutral light against the resolved color specification"
 open_blockers:
-  - "HARD GATE: White vs pale blue/white color decision must be resolved by a human reviewer before any image is committed."
   - "No source images available in repo."
+  - "SC0108 and SC0109 bracelet color state is ungrounded; do not commit images for those scenes without further source evidence."
 intake_ready_to_proceed: false
 provenance:
   created_by: hknbb

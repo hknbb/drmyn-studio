@@ -1,7 +1,12 @@
 prop_id: PROP001
 name: "Jin's medical bracelet"
 narrative_function: "Continuity-critical infant identifier that later becomes a passive tracking anchor; it keeps Jin specific and materially present rather than abstract."
-visual_description: "Thin hospital-style plastic bracelet with printed ID strip; source evidence supports a white or pale blue/white appearance under changing light."
+visual_description: >
+  Thin hospital-style plastic bracelet with printed ID strip. Source evidence grounds two
+  distinct bracelet states: (1) white plastic in SC0003 — the birth/registration bracelet,
+  Nadia listed as registrant; (2) pale blue band in SC0010, SC0011, SC0014 — a replacement
+  bracelet from a later medical check-up, explicitly described as "from his last check-up"
+  in SC0010. These are different physical bracelets, not the same object under different lighting.
 category: CLOTHING_ACCESSORY
 canonical_name: "Jin's medical bracelet"
 aliases:
@@ -9,7 +14,14 @@ aliases:
   - "bracelet tracker"
 prop_type: "infant continuity identifier"
 ownership_or_association: "Jin wears it; Nadia is listed as registrant and later tracks him through it."
-physical_description_grounded: "White plastic with printed ID strip in SC0003; later described as pale blue under morning light and as containing a passive ID chip."
+physical_description_grounded: >
+  SC0003: "The bracelet is white plastic with a small printed ID strip. His name. Her name
+  listed as registrant." (source lines 159-206). SC0010: "The hospital bracelet from his
+  last check-up — a pale blue band, his name printed on it in small type." (source lines
+  690-774). SC0011 and SC0014 confirm the pale blue bracelet as the same object she
+  adjusted in SC0010. The "pale blue" wording is consistent and unqualified across all
+  three later scenes; the "pale blue/white" phrasing in earlier planning records was
+  imprecise and is now superseded.
 continuity_importance: "High"
 recurring_scene_ids:
   - SC0003
@@ -26,11 +38,16 @@ handling_notes:
   - "Nadia repeatedly adjusts the clasp with practiced familiarity."
   - "Keep it ordinary and medically plausible, not tech-futuristic."
 visual_stability_notes:
-  - "Do not drift between decorative colors; continuity bible flags white vs blue/white wording as needing standardized review."
+  - "SC0003 bracelet is white plastic. SC0010–SC0014 bracelet is pale blue — a replacement from a later check-up. Do not conflate the two states or drift either color."
 future_hero_prop_candidate: true
 continuity_state:
-  initial_state: "Worn by Jin in early Vale residence scenes; Nadia is the named registrant."
-  state_changes: []
+  initial_state: "White plastic hospital bracelet; Nadia listed as registrant. Worn by Jin in SC0003."
+  state_changes:
+    - transition: "Between SC0003 and SC0010 (exact scene not specified)"
+      new_state: >
+        Pale blue band from a later check-up. SC0010 explicitly describes it as "from his
+        last check-up", indicating a replacement bracelet applied at a more recent medical
+        visit. This pale blue bracelet is the same object in SC0011 and SC0014.
 owner_character_id: C01
 scene_refs:
   - SC0003
@@ -40,7 +57,8 @@ scene_refs:
   - SC0108
   - SC0109
 unresolved_questions:
-  - "TODO_REVIEW: standardize final wording for white versus pale blue/white appearance."
+  - "RESOLVED (PR4F): white vs pale blue/white color wording standardized from source text. SC0003 = white plastic; SC0010-SC0014 = pale blue band (replacement bracelet). See physical_description_grounded."
+  - "UNRESOLVED: SC0108 and SC0109 scene excerpts do not explicitly mention the bracelet; color state for those scenes is ungrounded and should not be assumed without further source evidence."
 status: review
 review_status: pending
 canon_lock: false
