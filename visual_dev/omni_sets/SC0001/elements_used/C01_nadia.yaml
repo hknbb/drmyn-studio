@@ -1,0 +1,12 @@
+element_ref: C01_nadia
+element_type: character
+character_id: C01
+display_name: Nadia Vale
+tag: protagonist
+planning_record: planning/characters/C01.yaml
+pack_path_expected: visual_dev/elements/characters/C01/
+status: descriptor_only
+notes: >
+  No element pack committed. Grounded from planning/characters/C01.yaml.
+  Visual: lean, early-to-mid 30s, muted domestic neutrals, military-precise movement.
+  SC0001: WD001, early-morning corridor route, surveillance-geometry framing.

@@ -1,0 +1,14 @@
+element_ref: LOC001_trophy_room
+element_type: location
+location_id: LOC001
+canonical_name: Vale Residence, Vardova
+sub_area: Roman's trophy room
+planning_record: planning/locations/LOC001.yaml
+pack_path_expected: visual_dev/elements/locations/LOC001/
+status: descriptor_only
+notes: >
+  No element pack committed. Grounded from planning/locations/LOC001.yaml.
+  SC0009 sub-area: Roman's trophy room. Curated private-room darkness, glass cases,
+  shelf objects, hard-controlled night tones. First slugline: INT. ROMAN'S TROPHY ROOM
+  - VALE RESIDENCE - NIGHT. Cabinet and glass-case geometry should emphasize
+  system-recalibration register rather than grief or overt loss.

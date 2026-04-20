@@ -1,0 +1,20 @@
+element_set_id: ES0001
+scene_id: SC0001
+status: draft
+canon_lock: false
+slot_budget_mode: fixed
+max_slots: 7
+slots_used: 0
+element_refs:
+  - visual_dev/omni_sets/SC0001/elements_used/C01_nadia.yaml
+  - visual_dev/omni_sets/SC0001/elements_used/C03_birta.yaml
+  - visual_dev/omni_sets/SC0001/elements_used/LOC001_vale_residence.yaml
+  - visual_dev/omni_sets/SC0001/elements_used/PROP003_photo_frame.yaml
+notes: >
+  Draft pilot element set seeded from verified scene card and planning records.
+  No element packs committed; element_refs are descriptor stubs only.
+  slots_used stays 0 until actual generation assignments are recorded.
+  Scene: Vale Residence - Kitchen Passage, early morning. Surveillance-discovery register.
+provenance:
+  created_by: hknbb
+  created_at: "2026-04-20T00:00:00Z"

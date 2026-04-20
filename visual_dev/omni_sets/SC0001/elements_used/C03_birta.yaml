@@ -1,0 +1,12 @@
+element_ref: C03_birta
+element_type: character
+character_id: C03
+display_name: Birta
+tag: supporting
+planning_record: planning/characters/C03.yaml
+pack_path_expected: visual_dev/elements/characters/C03/
+status: descriptor_only
+notes: >
+  No element pack committed. Grounded from planning/characters/C03.yaml.
+  Visual: 70s, compact domestic silhouette, muted service neutrals, WD004.
+  SC0001: corridor routine, tray-carrying, familiar domestic ease.

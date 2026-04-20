@@ -1,0 +1,12 @@
+element_ref: LOC001_vale_residence
+element_type: location
+location_id: LOC001
+canonical_name: Vale Residence, Vardova
+sub_area: Kitchen passage / east-wing corridor
+planning_record: planning/locations/LOC001.yaml
+pack_path_expected: visual_dev/elements/locations/LOC001/
+status: descriptor_only
+notes: >
+  No element pack committed. Grounded from planning/locations/LOC001.yaml.
+  SC0001 sub-area: kitchen passage to east-wing corridor. Pale stone, surveillance geometry,
+  filtered early daylight. Key visual: PROP003 at wrong angle in corridor.

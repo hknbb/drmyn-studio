@@ -1,0 +1,22 @@
+element_set_id: ES0008
+scene_id: SC0008
+status: draft
+canon_lock: false
+slot_budget_mode: fixed
+max_slots: 7
+slots_used: 0
+element_refs:
+  - visual_dev/omni_sets/SC0008/elements_used/C01_nadia.yaml
+  - visual_dev/omni_sets/SC0008/elements_used/C02_roman.yaml
+  - visual_dev/omni_sets/SC0008/elements_used/C05_marcus.yaml
+  - visual_dev/omni_sets/SC0008/elements_used/LOC004_anonymous_room.yaml
+notes: >
+  Draft pilot element set seeded from verified scene card and planning records.
+  No element packs committed; element_refs are descriptor stubs only.
+  slots_used stays 0 until actual generation assignments are recorded.
+  Scene: Anonymous Room, night. Elegiac intimacy with carry-over from Roman's office.
+  C02 Roman is present in the opening carry-over beat from SC0007 only; the primary
+  intimate material is Nadia and Marcus. Generation routing must preserve that split.
+provenance:
+  created_by: hknbb
+  created_at: "2026-04-20T00:00:00Z"

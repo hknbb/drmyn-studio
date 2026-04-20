@@ -1,0 +1,12 @@
+element_ref: PROP005_wristwatch
+element_type: prop
+prop_id: PROP005
+canonical_name: Roman collection wristwatch
+planning_record: planning/props/PROP005.yaml
+pack_path_expected: visual_dev/elements/props/PROP005/
+status: descriptor_only
+notes: >
+  No element pack committed. Grounded from planning/props/PROP005.yaml.
+  Status object in Roman's curated collection. SC0009: trophy-room context; exact
+  make and provenance unspecified — do not overspecify brand or luxury detailing.
+  Matters as one item in the evidence cluster, not as a glamour close-up.

@@ -1,0 +1,12 @@
+element_ref: LOC002_private_study
+element_type: location
+location_id: LOC002
+canonical_name: "Nadia's Private Study, Vale Residence"
+planning_record: planning/locations/LOC002.yaml
+pack_path_expected: visual_dev/elements/locations/LOC002/
+status: descriptor_only
+notes: >
+  No element pack committed. Grounded from planning/locations/LOC002.yaml.
+  SC0006: desk, bookshelf, north-wall vent grille, corridor door, courtyard window.
+  Operational diagram: desk-to-vent axis is the primary sightline. Low-key practical
+  night light; post-party house quiet. Only night register is source-grounded here.

@@ -1,0 +1,22 @@
+element_set_id: ES0009
+scene_id: SC0009
+status: draft
+canon_lock: false
+slot_budget_mode: fixed
+max_slots: 7
+slots_used: 0
+element_refs:
+  - visual_dev/omni_sets/SC0009/elements_used/C01_nadia.yaml
+  - visual_dev/omni_sets/SC0009/elements_used/C02_roman.yaml
+  - visual_dev/omni_sets/SC0009/elements_used/C05_marcus.yaml
+  - visual_dev/omni_sets/SC0009/elements_used/LOC001_trophy_room.yaml
+  - visual_dev/omni_sets/SC0009/elements_used/PROP005_wristwatch.yaml
+notes: >
+  Draft pilot element set seeded from verified scene card and planning records.
+  No element packs committed; element_refs are descriptor stubs only.
+  slots_used stays 0 until actual generation assignments are recorded.
+  Scene: Roman's Trophy Room, night. Betrayal confirmed; becomes transaction.
+  C01 and C05 are carry-over from SC0008; C02 Roman is primary in trophy-room material.
+provenance:
+  created_by: hknbb
+  created_at: "2026-04-20T00:00:00Z"
