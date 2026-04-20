@@ -1,0 +1,34 @@
+element_id: PROP001
+element_type: prop
+canonical_name: "Jin's medical bracelet"
+intake_status: blocked_pending_color_decision
+image_count_expected: 1_to_3
+lfs_ready: true
+lfs_note: "*.png / *.jpg / *.jpeg / *.webp in this folder are LFS-tracked per .gitattributes (PR4B)."
+source_status: no_source_images_in_repo
+copyright_review: pending
+provenance_review: pending
+color_decision_gate:
+  status: unresolved
+  options:
+    - white
+    - pale_blue_white
+  resolution_required_before_image_seeding: true
+  rationale: >
+    Any reference image committed here becomes the color ground truth for all future
+    appearances (SC0003, SC0010, SC0011, SC0014, SC0108, SC0109). Committing the wrong
+    color creates a continuity error across six scenes. The planning record flags this
+    as a TODO_REVIEW; a human reviewer must resolve it before any image is selected.
+image_requirements:
+  - "Thin hospital-style plastic bracelet with printed ID strip"
+  - "Plain, medically plausible — not jewellery, not tech-futuristic"
+  - "Clasp detail legible (Nadia adjusts it repeatedly)"
+  - "Photographed in neutral light to avoid color-casting ambiguity"
+open_blockers:
+  - "HARD GATE: White vs pale blue/white color decision must be resolved by a human reviewer before any image is committed."
+  - "No source images available in repo."
+intake_ready_to_proceed: false
+provenance:
+  created_by: hknbb
+  created_at: "2026-04-20T09:11:35Z"
+  stage: B PR4E
