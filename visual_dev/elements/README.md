@@ -1,7 +1,7 @@
 # visual_dev/elements — Canonical Element Packs
 
 Introduced in **Stage B PR2** as folder scaffolding only.
-No element packs are stored here yet; population is a PR3 task.
+No element packs are stored here yet; population is a PR4 task.
 
 ## Sub-folders
 
@@ -18,8 +18,9 @@ No element packs are stored here yet; population is a PR3 task.
 |---|---|
 | Canonical reference packs (small images, YAML descriptors) | This repo / Git LFS |
 | Generated video clips, rendered outputs | External DVC-style storage (not yet configured) |
-| Kling / Runway / Pika source binaries | Platform storage; paths logged in `omni_generation_record` JSON |
+| Kling / Runway / Pika source binaries | Platform storage; paths logged in `omni_generation_record` files |
 
 **Do not commit large binaries directly to this folder.**
-LFS tracking rules are defined in `.gitattributes`.
-External storage integration will be wired in a later phase.
+Git LFS is not yet configured in this repo; large-file tracking will be
+added in a later phase before any binary assets are committed.
+External storage integration will be wired at the same time.

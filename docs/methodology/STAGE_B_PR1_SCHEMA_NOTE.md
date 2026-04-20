@@ -62,5 +62,5 @@ All changes are strictly additive. No field was removed or made required. All ex
 
 ## Next Steps
 
-- **PR2:** Folder scaffolding for element sets and generation records under `visual_dev/` and `production/`
-- **PR3:** Scene card field population for pilot scenes (SC0001, SC0003, SC0006, SC0008, SC0009)
+- **PR2:** Folder scaffolding for element sets and generation records under `visual_dev/` and `post/`, plus `deliverables/`
+- **PR3:** Scene card Omni field hydration across all 120 scene cards (`omni_set_ref`, `element_slot_allocation`, `shot_list_omni`, `lipsync_plan`)
