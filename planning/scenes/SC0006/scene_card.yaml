@@ -20,7 +20,8 @@ primary_pov_character: C01
 continuity_refs:
   wardrobe:
     - WD002
-  props: []
+  props:
+    - PROP006
   prior_scenes:
     - SC0005
   next_expected_links:
@@ -47,7 +48,7 @@ boundary_end_kind: slug
 mapping_confidence: high
 notes_grounding:
   - "Blueprint SC0006 intent used for purpose and dramatic function."
-  - "No tracked prop ID is assigned because the surveillance camera/vent detail is explicit in-scene but not yet represented by an existing stable prop record."
+  - "Surveillance camera/vent detail is now tracked as PROP006 (vent-grille surveillance device); planning record at planning/props/PROP006.yaml, added Stage B PR4D."
   - "Roman is only an explicit mention through the room-rule line about knocking; he is not physically present."
 status: review
 review_status: needs_human_review
