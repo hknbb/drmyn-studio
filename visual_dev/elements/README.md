@@ -1,7 +1,10 @@
 # visual_dev/elements — Canonical Element Packs
 
-Introduced in **Stage B PR2** as folder scaffolding only.
-No element packs are stored here yet; population is a PR4 task.
+Folder scaffolding introduced in **Stage B PR2**.
+Metadata-only pilot packs added in **Stage B PR4C** for the five pilot scenes
+(characters C01–C03, C05; locations LOC001, LOC002, LOC004; props PROP001, PROP003).
+Each pack contains a `pack_manifest.yaml` and `source_notes.md`; no reference images
+are committed yet — image seeding remains blocked pending source assets.
 
 ## Sub-folders
 
