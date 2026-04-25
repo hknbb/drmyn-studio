@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Enforce Phase 2 label and basic taxonomy
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const owner = context.repo.owner;

@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Sync issue to Phase 2 Project
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         env:
           PROJECT_OWNER: ${{ vars.PHASE2_PROJECT_OWNER }}
           PROJECT_NUMBER: ${{ vars.PHASE2_PROJECT_NUMBER }}
