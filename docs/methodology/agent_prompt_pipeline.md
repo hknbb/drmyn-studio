@@ -87,17 +87,17 @@ feat/batch-9-scene-clip-locking
 ### Current Batch State
 
 ```
-active branch = feat/batch-7-langgraph-orchestration
-implemented through = Batch 7
-next branch = feat/batch-7.5-shot-list-omni-suggestion
+active branch = feat/batch-7.5-shot-list-omni-suggestion
+implemented through = Batch 7.5
+next branch = feat/batch-8-kling-omni-adapter
 ```
 
-Batch 7 adds `scripts/agents/state.py` and `scripts/agents/graph.py` as a
-LangGraph-compatible orchestration wrapper around already-implemented agents.
-If LangGraph is unavailable locally, the wrapper falls back to an invoke-style
-runner with the same control-flow behavior. It does not add Kling Omni
-generation, video take review, shot_list_omni suggestion, scene clip locking,
-automatic storyboard selection, binary movement, or lifecycle promotion.
+Batch 7.5 adds a metadata-only shot_list_omni suggestion layer. It reads a
+human-selected storyboard option and writes
+`visual_dev/storyboards/SC####/shot_list_omni_suggestion.yaml` for later human
+PR application to `scene_card.yaml`. It does not modify scene cards, select
+storyboard options, add Kling Omni generation, video take review, scene clip
+locking, binary movement, or lifecycle promotion.
 
 ---
 
@@ -1032,12 +1032,37 @@ The graph wrapper supports the same production-safe modes as Batch 6:
 - `generate-prompts`
 - `review-outputs`
 - `generate-storyboard-options`
+- `generate-shot-list-omni-suggestion`
 - `operator-next-step`
 
 It is a control-flow layer only. Existing agent boundaries remain authoritative:
 critic checks still gate prompt writing, review output still writes metadata
 only, storyboard selection remains human-gated, and lifecycle fields remain
 untouched.
+
+### Batch 7.5 Shot List Omni Suggestion
+
+After a human has selected a storyboard option, run:
+
+```bash
+python scripts/agents/run_pipeline.py \
+  --mode generate-shot-list-omni-suggestion \
+  --scene-id SC0001
+```
+
+Input:
+
+- `visual_dev/storyboards/SC####/storyboard_options.yaml`
+- `selected_option` must reference an existing option id
+
+Output:
+
+- `visual_dev/storyboards/SC####/shot_list_omni_suggestion.yaml`
+
+The suggestion file is metadata-only and contains `applied_to_scene_card:
+false` and `applied_at: null`. A human later applies the suggested
+`shot_list_omni` to `planning/scenes/SC####/scene_card.yaml` through PR review.
+Batch 7.5 does not unlock Kling by itself.
 
 ---
 

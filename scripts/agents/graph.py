@@ -16,6 +16,7 @@ from scripts.agents.operator_next_step import recommend_next_step
 from scripts.agents.run_pipeline import (
     PipelineError,
     run_generate_prompts,
+    run_generate_shot_list_omni_suggestion,
     run_generate_storyboard_options,
     run_refresh_model_guidance,
     run_review_outputs,
@@ -28,6 +29,7 @@ SUPPORTED_GRAPH_MODES = {
     "generate-prompts",
     "review-outputs",
     "generate-storyboard-options",
+    "generate-shot-list-omni-suggestion",
     "operator-next-step",
 }
 
@@ -113,6 +115,8 @@ def run_graph_state(state: PipelineState) -> PipelineState:
             return _run_pipeline_result(state, run_review_outputs)
         if state.mode == "generate-storyboard-options":
             return _run_pipeline_result(state, run_generate_storyboard_options)
+        if state.mode == "generate-shot-list-omni-suggestion":
+            return _run_pipeline_result(state, run_generate_shot_list_omni_suggestion)
     except (PipelineError, OSError, ValueError, ImportError) as exc:
         state.errors.append(str(exc))
     return state

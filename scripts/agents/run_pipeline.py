@@ -30,6 +30,7 @@ from scripts.agents.model_research import ModelResearchAgent, find_latest_snapsh
 from scripts.agents.neutral_brief import NeutralBriefAgent
 from scripts.agents.operator_next_step import recommend_next_step
 from scripts.agents.review_outputs import ImageReviewAgent, QUALITY_SCORE_FIELDS
+from scripts.agents.shot_list_omni_suggestion import ShotListOmniSuggestionAgent
 from scripts.agents.source_context import SourceContextAgent
 from scripts.agents.storyboard_options import StoryboardOptionsAgent
 from scripts.agents.writer import PromptWriter
@@ -183,6 +184,21 @@ def run_generate_storyboard_options(args: argparse.Namespace) -> PipelineResult:
         written_files=[_relative(result.storyboard_options_path, repo_root)],
         skipped=[],
         message="Storyboard options written with selected_option left null.",
+    )
+
+
+def run_generate_shot_list_omni_suggestion(args: argparse.Namespace) -> PipelineResult:
+    repo_root = args.repo_root.resolve()
+    if not args.scene_id:
+        raise PipelineError("generate-shot-list-omni-suggestion requires --scene-id.")
+    result = ShotListOmniSuggestionAgent(repo_root).build(args.scene_id)
+    return PipelineResult(
+        mode=args.mode,
+        written_files=[_relative(result.suggestion_path, repo_root)],
+        skipped=[],
+        message=(
+            "Shot list Omni suggestion written; scene_card.yaml remains human-gated."
+        ),
     )
 
 
@@ -401,6 +417,7 @@ def build_parser() -> argparse.ArgumentParser:
             "generate-prompts",
             "review-outputs",
             "generate-storyboard-options",
+            "generate-shot-list-omni-suggestion",
             "operator-next-step",
         ],
     )
@@ -433,6 +450,8 @@ def main(argv: list[str] | None = None) -> int:
             result = run_review_outputs(args)
         elif args.mode == "generate-storyboard-options":
             result = run_generate_storyboard_options(args)
+        elif args.mode == "generate-shot-list-omni-suggestion":
+            result = run_generate_shot_list_omni_suggestion(args)
         else:  # pragma: no cover - argparse choices prevent this
             raise PipelineError(f"Unsupported mode: {args.mode}")
     except (PipelineError, OSError, ValueError, ImportError) as exc:

@@ -16,11 +16,19 @@ storyboard_selection`.
 3. Prefer options marked `candidate`.
 4. Treat `blocked` and `evidence_thin` options as requiring human judgment or a
    separate source-fix PR.
-5. Record the intended human choice outside Batch 5.85 until the selection
-   workflow is explicitly implemented.
+5. After the human selection is recorded by the approved workflow, run the
+   shot list Omni suggestion helper for the scene.
+
+```bash
+python scripts/agents/run_pipeline.py \
+  --mode generate-shot-list-omni-suggestion \
+  --scene-id SC0001
+```
 
 ## Expected Outputs
 
 - A human decision ready for a later PR.
+- `shot_list_omni_suggestion.yaml` after a selected storyboard option exists.
 - No direct edit to `selected_option` from the guidance helper.
+- No direct edit to `scene_card.yaml` from the suggestion helper.
 - No storyboard image or video binaries from this batch.

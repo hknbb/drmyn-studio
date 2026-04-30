@@ -27,6 +27,7 @@ def _copy_schemas(repo_root: Path) -> None:
         "image_selection.schema.json",
         "asset_clearance.schema.json",
         "storyboard_option.schema.json",
+        "shot_list_omni_suggestion.schema.json",
         "batch_job.schema.json",
         "operator_session.schema.json",
     ):
