@@ -94,6 +94,9 @@ Files scoped to this branch only:
 - `scripts/agents/review_outputs.py`
 - `schemas/image_selection.schema.json`
 - `schemas/asset_clearance.schema.json`
+- `evidence/asset_clearance/.gitkeep`
+- `evidence/prompt_reviews/.gitkeep`
+- `tests/test_review_outputs.py`
 - focused tests for human-in-loop image review metadata
 - metadata-only writes under `visual_dev/` and `evidence/asset_clearance/`
 - no binary image/video commits, no direct pack promotion
@@ -1121,6 +1124,8 @@ Status is evaluated against the active batch branch `feat/batch-5-critic-writer`
 | `feat/batch-3-neutral-brief-generator` | Batch 3 implemented and pushed |
 | `feat/batch-4-model-adapters-run-records` | Batch 4 implemented and pushed |
 | `feat/batch-5-critic-writer` | Batch 5 implemented and pushed |
+
+Batch branch ancestry has been checked: `feat/batch-5-critic-writer` contains the prior Batch 0.1 through Batch 4 commits in order. `scripts/agents/run_pipeline.py` is intentionally absent until Batch 6, so CLI examples are target commands, not current executable entrypoints.
 
 ### What exists on `feat/batch-5-critic-writer`
 
