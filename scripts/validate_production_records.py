@@ -37,6 +37,7 @@ PACK_SUGGESTION_PATTERN = "visual_dev/elements/**/pack_manifest_update_suggestio
 ASSET_CLEARANCE_PATTERN = "evidence/asset_clearance/*.yaml"
 PROMPT_REVIEW_BRIEF_PATTERN = "evidence/prompt_reviews/*_brief.yaml"
 STORYBOARD_OPTIONS_PATTERN = "visual_dev/storyboards/SC*/storyboard_options.yaml"
+BATCH_JOB_PATTERN = "evidence/batch_jobs/*.yaml"
 
 FORBIDDEN_LIFECYCLE_KEYS = {"pack_status", "canon_lock", "approved", "locked"}
 PACK_SUGGESTION_REQUIRED_KEYS = {
@@ -97,6 +98,7 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         "pack_manifest_update_suggestion": sorted(repo_root.glob(PACK_SUGGESTION_PATTERN)),
         "prompt_review_brief": sorted(repo_root.glob(PROMPT_REVIEW_BRIEF_PATTERN)),
         "storyboard_options": sorted(repo_root.glob(STORYBOARD_OPTIONS_PATTERN)),
+        "batch_job": sorted(repo_root.glob(BATCH_JOB_PATTERN)),
     }
 
 
@@ -334,9 +336,11 @@ def run_validation(
     storyboard_options_schema = load_schema(
         repo_root / "schemas" / "storyboard_option.schema.json"
     )
+    batch_job_schema = load_schema(repo_root / "schemas" / "batch_job.schema.json")
     image_selection_validator = Draft202012Validator(image_selection_schema)
     asset_clearance_validator = Draft202012Validator(asset_clearance_schema)
     storyboard_options_validator = Draft202012Validator(storyboard_options_schema)
+    batch_job_validator = Draft202012Validator(batch_job_schema)
 
     grouped_files = collect_production_files(repo_root)
     total = sum(len(files) for files in grouped_files.values())
@@ -371,6 +375,13 @@ def run_validation(
                     repo_root=repo_root,
                     record_type=record_type,
                     validator=storyboard_options_validator,
+                )
+            elif record_type == "batch_job":
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=batch_job_validator,
                 )
             else:
                 file_issues = [

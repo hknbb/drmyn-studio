@@ -60,6 +60,7 @@ def _copy_production_schemas(repo_root: Path) -> None:
         "image_selection.schema.json",
         "asset_clearance.schema.json",
         "storyboard_option.schema.json",
+        "batch_job.schema.json",
     ):
         (schemas_dir / name).write_text(
             (REPO_ROOT / "schemas" / name).read_text(encoding="utf-8"),

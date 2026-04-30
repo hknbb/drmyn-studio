@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/batch_job.schema.json",
+  "title": "Closing Price Batch Job Record",
+  "description": "Metadata-only queue record for production pipeline jobs.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "job_id",
+    "job_type",
+    "scenes",
+    "models",
+    "prompt_types",
+    "expected_outputs",
+    "cost_limit",
+    "retry_limit",
+    "priority",
+    "status",
+    "created_at"
+  ],
+  "properties": {
+    "job_id": {
+      "type": "string",
+      "pattern": "^JOB-[A-Za-z0-9_.-]+$"
+    },
+    "job_type": {
+      "type": "string",
+      "enum": ["generate_prompts", "review_outputs", "generate_storyboard", "review_takes"]
+    },
+    "scenes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^SC\\d{4}$"
+      }
+    },
+    "models": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "prompt_types": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "expected_outputs": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "cost_limit": {
+      "type": "number",
+      "minimum": 0
+    },
+    "retry_limit": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["high", "normal", "low"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["queued", "running", "complete", "failed", "partial"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 2000
+    }
+  }
+}
