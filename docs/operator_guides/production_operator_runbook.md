@@ -9,7 +9,7 @@ manually and all lifecycle promotion remains human-gated.
 Run the guidance helper:
 
 ```bash
-python scripts/agents/operator_next_step.py --repo-root .
+python scripts/agents/run_pipeline.py --mode operator-next-step --repo-root .
 ```
 
 The helper reads existing metadata and prints:
@@ -26,6 +26,12 @@ The helper reads existing metadata and prints:
 It does not generate prompts, run Midjourney, run ChatGPT Image, run Nano
 Banana, run Kling, write scene cards, update pack manifests, or promote
 lifecycle fields.
+
+Direct helper usage remains available for debugging:
+
+```bash
+python scripts/agents/operator_next_step.py --repo-root .
+```
 
 ## Production Order
 

@@ -84,22 +84,18 @@ feat/batch-9-scene-clip-locking
 - **Batch 5** — committed to `feat/batch-5-critic-writer` (`ea59ae3`): prompt QA critic, draft writer, prompt/run evidence updates, tests
 - **Branches**: `agent/claude-code` and `agent/codex` already exist on origin; **do not use for batch implementation** — they were created before this workflow was defined. Use `feat/batch-*` naming going forward.
 
-### Next Branch to Create
+### Current Batch State
 
 ```
-feat/batch-5.5-image-review-clearance
+active branch = feat/batch-6-pipeline-cli
+implemented through = Batch 6
+next branch = feat/batch-7-langgraph-orchestration
 ```
 
-Files scoped to this branch only:
-- `scripts/agents/review_outputs.py`
-- `schemas/image_selection.schema.json`
-- `schemas/asset_clearance.schema.json`
-- `evidence/asset_clearance/.gitkeep`
-- `evidence/prompt_reviews/.gitkeep`
-- `tests/test_review_outputs.py`
-- focused tests for human-in-loop image review metadata
-- metadata-only writes under `visual_dev/` and `evidence/asset_clearance/`
-- no binary image/video commits, no direct pack promotion
+Batch 6 adds `scripts/agents/run_pipeline.py` as a thin CLI wrapper around
+already-implemented agents. It does not add LangGraph orchestration, Kling Omni
+generation, video take review, scene clip locking, automatic storyboard
+selection, binary movement, or lifecycle promotion.
 
 ---
 
@@ -1003,13 +999,15 @@ python scripts/agents/run_pipeline.py \
   --mode generate-storyboard-options \
   --scene-id SC0001
 
-# Phase 3: Kling take review
+# Operator guidance
 python scripts/agents/run_pipeline.py \
-  --mode review-video-takes \
-  --scene-id SC0001 \
-  --takes-dir visual_dev/omni_sets/SC0001/takes/ \
-  --review-notes evidence/video_reviews/SC0001_take_review.md
+  --mode operator-next-step \
+  --format text
 ```
+
+Batch 6 deliberately does not expose `review-video-takes`, Kling Omni
+generation, scene clip locking, or LangGraph graph execution. Those remain
+future batches.
 
 ---
 
