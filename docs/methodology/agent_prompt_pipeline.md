@@ -79,18 +79,24 @@ feat/batch-9-scene-clip-locking
 - **Batch 1** — committed to `feat/batch-1-prompt-record-validation` (`0cdf2b6`): prompt record validator, CI update, tests
 - **Batch 1.5** — committed to `feat/batch-1.5-prop-continuity-normalization` (`e9b0cb0`): prop state_changes normalization and resolver tests
 - **Batch 2** — committed to `feat/batch-2-context-continuity-utils` (`81c8e0f`): source context agent, continuity resolver, tests
+- **Batch 3** — committed to `feat/batch-3-neutral-brief-generator` (`618a0e3`): neutral T2I element brief generation, source-cited visual anchors, readiness flags, tests
+- **Batch 4** — committed to `feat/batch-4-model-adapters-run-records` (`c2e2a6a`): model adapters, prompt run schema, run cost header, tests
+- **Batch 5** — committed to `feat/batch-5-critic-writer` (`ea59ae3`): prompt QA critic, draft writer, prompt/run evidence updates, tests
 - **Branches**: `agent/claude-code` and `agent/codex` already exist on origin; **do not use for batch implementation** — they were created before this workflow was defined. Use `feat/batch-*` naming going forward.
 
 ### Next Branch to Create
 
 ```
-feat/batch-3-neutral-brief-generator
+feat/batch-5.5-image-review-clearance
 ```
 
 Files scoped to this branch only:
-- `scripts/agents/neutral_brief.py`
-- focused tests for neutral brief generation
-- no model adapters, no prompt records, no generated image/video outputs
+- `scripts/agents/review_outputs.py`
+- `schemas/image_selection.schema.json`
+- `schemas/asset_clearance.schema.json`
+- focused tests for human-in-loop image review metadata
+- metadata-only writes under `visual_dev/` and `evidence/asset_clearance/`
+- no binary image/video commits, no direct pack promotion
 
 ---
 
@@ -1006,36 +1012,38 @@ python scripts/agents/run_pipeline.py \
 
 ## 11. Requirements Satisfaction Matrix
 
+Status is evaluated against the active batch branch `feat/batch-5-critic-writer`, not the final target architecture.
+
 | Requirement | Status |
 |---|---|
-| Model-specific prompt per model | ✅ One record per model per element |
+| Model-specific prompt per model | implemented through Batch 4 adapters; one target model per prompt record |
 | Flux support | ❌ Removed — no repo guide/adapter/capability entry; not part of production model set |
-| Current model guidance (dynamic) | ✅ Research Snapshot with source URLs + hashes + freshness policy |
-| Snapshot source quality control | ✅ `allowed_source_classes` / `blocked_source_classes` enum |
-| Snapshot freshness policy | ✅ 14-day image / 7-day video; auto-refresh triggers |
-| Model version capture | ✅ `model_version_observed` + confidence in every snapshot |
-| Human image review loop | ✅ Image Review Agent + `image_selection.yaml` |
-| Pack status human-gated | ✅ Agent writes `pack_manifest_update_suggestion.yaml`; human applies |
-| Prompt v02/v03 iteration | ✅ Review notes → corrected brief → v02 |
-| Storyboard composition options | ✅ Batch 5.75: ≥5 source-grounded options per scene |
-| Kling video take multi-selection | ✅ `video_takes.yaml` + Video Take Review Agent |
-| Video review loop → prompt v02 | ✅ `needs_prompt_revision` flag |
-| Storage policy (no large binary commits) | ✅ Batch 0.75: explicit `.gitignore` + `.gitattributes` + policy doc |
-| Candidate image storage limit | ✅ ≤20 per element in LFS; beyond that external |
-| Prompt schema validation | ✅ Batch 1 |
-| Production record validation | ✅ Batch 5.6: `validate_production_records.py` covers `image_selection.yaml`, `asset_clearance`, `storyboard_options`, `video_takes`, `prompt_runs`, `batch_jobs` |
-| Prop continuity drift | ✅ Batch 1.5 |
-| Asset clearance / rights tracking | ✅ Batch 5.5: `asset_clearance.yaml` |
-| Quality score rubric | ✅ Batch 5.5 + 8.5: 5-dimension score per candidate |
-| Standard failure taxonomy | ✅ 10-item enum in all review schemas |
-| Cost / credit tracking | ✅ Batch 4: `run_costs.csv` + prompt_run records |
-| Per-scene production dashboard | ✅ Batch 5.8: `production_status.csv` |
-| Batch job queue | ✅ Batch 5.8: `batch_job.schema.json` |
-| Reproducibility / audit trail | ✅ Snapshot hashes + timestamps + provenance chain |
-| Scene clip locking evidence | ✅ Batch 9: `scene_clip_map.csv` |
-| Operator step-by-step guidance | ✅ Batch 5.85: `operator_next_step.py` + runbooks in `docs/operator_guides/` |
-| Shot list omni hydration bridge | ✅ Batch 7.5: `shot_list_omni_suggestion.yaml` → human applies via PR; Kling blocked until non-empty |
-| Model CLI/file alias normalization | ✅ Batch 4: `MODEL_ALIAS_MAP` in `adapters/__init__.py`; kebab CLI ↔ snake_case files |
+| Current model guidance (dynamic) | implemented in Batch 0.1 scaffold |
+| Snapshot source quality control | implemented: `allowed_source_classes` / `blocked_source_classes` enum |
+| Snapshot freshness policy | implemented: 14-day image / 7-day video policy fields |
+| Model version capture | implemented: `model_version_observed` + confidence |
+| Human image review loop | planned Batch 5.5 |
+| Pack status human-gated | planned Batch 5.5; invariant already documented |
+| Prompt v02/v03 iteration | partly supported by adapter versioning and writer; review loop planned later |
+| Storyboard composition options | planned Batch 5.75 |
+| Kling video take multi-selection | planned Batch 8.5 |
+| Video review loop → prompt v02 | planned Batch 8.5 |
+| Storage policy (no large binary commits) | implemented in Batch 0.75 |
+| Candidate image storage limit | documented in storage policy; production validator planned later |
+| Prompt schema validation | implemented in Batch 1 |
+| Production record validation | planned Batch 5.6 |
+| Prop continuity drift | implemented in Batch 1.5 |
+| Asset clearance / rights tracking | planned Batch 5.5 |
+| Quality score rubric | planned Batch 5.5 + 8.5 |
+| Standard failure taxonomy | planned across review schemas |
+| Cost / credit tracking | implemented in Batch 4/5: `run_costs.csv` + prompt run records |
+| Per-scene production dashboard | planned Batch 5.8 |
+| Batch job queue | planned Batch 5.8 |
+| Reproducibility / audit trail | partially implemented through snapshots, prompt run records, and writer outputs |
+| Scene clip locking evidence | planned Batch 9 |
+| Operator step-by-step guidance | planned Batch 5.85 |
+| Shot list omni hydration bridge | planned Batch 7.5 |
+| Model CLI/file alias normalization | implemented in Batch 4 |
 
 ---
 
@@ -1097,7 +1105,7 @@ python scripts/agents/run_pipeline.py \
 
 ## 14. Verified Current State vs Target State
 
-> **This plan describes a target architecture. `main` is intentionally still at Batch 0.75; the active batch branch `feat/batch-2-context-continuity-utils` has implemented through Batch 2.**
+> **This plan describes a target architecture. `main` is intentionally still at Batch 0.75; the active batch branch `feat/batch-5-critic-writer` has implemented through Batch 5.**
 
 ### Branch State
 
@@ -1110,8 +1118,11 @@ python scripts/agents/run_pipeline.py \
 | `feat/batch-1-prompt-record-validation` | Batch 1 implemented and pushed |
 | `feat/batch-1.5-prop-continuity-normalization` | Batch 1.5 implemented and pushed |
 | `feat/batch-2-context-continuity-utils` | Batch 2 implemented and pushed |
+| `feat/batch-3-neutral-brief-generator` | Batch 3 implemented and pushed |
+| `feat/batch-4-model-adapters-run-records` | Batch 4 implemented and pushed |
+| `feat/batch-5-critic-writer` | Batch 5 implemented and pushed |
 
-### What exists on `feat/batch-2-context-continuity-utils`
+### What exists on `feat/batch-5-critic-writer`
 
 | Component | Status |
 |---|---|
@@ -1128,11 +1139,17 @@ python scripts/agents/run_pipeline.py \
 | `scripts/agents/model_research.py` | implemented in Batch 0.1 |
 | `scripts/agents/source_context.py` | implemented in Batch 2 |
 | `scripts/agents/continuity.py` | implemented in Batch 2 |
-| neutral brief generator | not implemented; next batch |
-| model adapters and prompt run records | not implemented; Batch 4 |
+| `scripts/agents/neutral_brief.py` | implemented in Batch 3 |
+| model adapters for Midjourney, ChatGPT Image, Nano Banana | implemented in Batch 4 |
+| `schemas/prompt_run.schema.json` | implemented in Batch 4 |
+| `scripts/agents/critic.py` | implemented in Batch 5 |
+| `scripts/agents/writer.py` | implemented in Batch 5 |
+| `evidence/run_costs.csv` | header implemented in Batch 4 |
+| `evidence/scene_prompt_map.csv` updates | writer-supported in Batch 5 |
+| image review and asset clearance | not implemented; next batch |
 | production record validation | not implemented; Batch 5.6 |
 | storyboard/video review/operator pipeline | not implemented; later batches |
-| `evidence/production_status.csv`, `evidence/run_costs.csv`, `evidence/batch_jobs/` | not implemented |
+| `evidence/production_status.csv`, `evidence/batch_jobs/` | not implemented |
 
 ### Target state this plan builds toward
 
