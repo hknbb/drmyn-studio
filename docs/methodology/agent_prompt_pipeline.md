@@ -87,9 +87,9 @@ feat/batch-9-scene-clip-locking
 ### Current Batch State
 
 ```
-active branch = feat/batch-9-scene-clip-locking
+merged to main = fa4c559 (PR #8, 2026-05-01)
 implemented through = Batch 9
-next branch = post-Batch-9 review / pilot production hardening
+next phase = post-Batch-9 review / pilot production hardening / clean scientific extraction
 ```
 
 Batch 9 adds metadata-only final scene clip locking. It reads
