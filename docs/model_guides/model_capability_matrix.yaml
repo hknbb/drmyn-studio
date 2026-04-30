@@ -1,0 +1,80 @@
+# Model Capability Matrix
+# Introduced: Batch 0.1
+# Maintained by: human PR only (same as model guide YAMLs)
+# Purpose: Single source of truth for per-model capability flags used by all adapters and the Critic.
+# All adapters read this file — never hardcode capability assumptions in adapter code.
+
+schema_version: "1.0"
+last_updated: "2026-04-30"
+maintained_by: "human PR only"
+
+models:
+  midjourney:
+    canonical_id: midjourney
+    guide_file: docs/model_guides/midjourney.yaml
+    output_type: image
+    supports_negative_prompt: limited
+    supports_image_reference: true
+    supports_seed: true
+    supports_consistency_reference: false
+    max_prompt_length: unlimited
+    prompt_style: compact_visual_clauses
+    notes: >
+      Negative prompt support is limited (--no flag, not a separate field).
+      Critic must require non-empty negative_prompt when supports_negative_prompt is 'limited'.
+      Prompt ID suffix (CLI): midjourney
+      File naming (snake_case): midjourney
+
+  chatgpt_image:
+    canonical_id: chatgpt_image
+    guide_file: docs/model_guides/chatgpt_image.yaml
+    output_type: image
+    supports_negative_prompt: false
+    supports_natural_language_revision: true
+    supports_image_editing: true
+    supports_seed: false
+    prompt_style: natural_language_task_framing
+    constraint_strategy: embedded_positive_constraints
+    notes: >
+      No negative prompt field. Constraints must be embedded in positive prompt text.
+      Adapter must set generation_params.constraint_strategy: embedded_positive_constraints.
+      Critic must NOT require negative_prompt when supports_negative_prompt is false.
+      Prompt ID suffix (CLI): chatgpt-image
+      File naming (snake_case): chatgpt_image
+
+  nano_banana:
+    canonical_id: nano_banana
+    guide_file: docs/model_guides/nano_banana.yaml
+    output_type: image
+    supports_negative_prompt: true
+    supports_identity_consistency: true
+    supports_variation_prompting: true
+    supports_seed: false
+    prompt_style: variation_and_consistency_logic
+    notes: >
+      Designed for identity-consistent variation generation.
+      Prompt ID suffix (CLI): nano-banana
+      File naming (snake_case): nano_banana
+
+  kling_omni:
+    canonical_id: kling_omni
+    guide_file: docs/model_guides/kling_omni.yaml
+    output_type: video
+    supports_negative_prompt: false
+    supports_elements: true
+    supports_camera_motion: true
+    supports_video_generation: true
+    max_duration_seconds: 10
+    prompt_style: multimodal_instruction_spec
+    phase: 3
+    notes: >
+      Phase 3 only. Passive until Phase 1 (element packs locked) and Phase 2
+      (storyboard visual direction selected + shot_list_omni populated).
+      Blocked if shot_list_omni is empty.
+      Prompt ID suffix (CLI): kling-omni
+      File naming (snake_case): kling_omni
+
+# CLI alias → file name resolution is handled by MODEL_ALIAS_MAP in
+# scripts/agents/adapters/__init__.py (added in Batch 4).
+# CLI uses kebab-case (kling-omni, chatgpt-image, nano-banana).
+# File names and YAML keys use snake_case (kling_omni, chatgpt_image, nano_banana).
