@@ -60,20 +60,68 @@
             "required": ["scene_id", "new_state"],
             "properties": {
               "scene_id": { "type": "string", "pattern": "^SC\\d{4}$" },
-              "new_state": { "type": "string", "maxLength": 400 }
+              "new_state": { "type": "string", "maxLength": 400 },
+              "transition_note": {
+                "type": "string",
+                "maxLength": 400,
+                "description": "Optional human note about when/how the transition occurs (not required by resolver)."
+              }
             }
           }
         }
       }
     },
     "owner_character_id": {
-      "type": "string",
-      "pattern": "^C\\d{2}$"
+      "oneOf": [
+        { "type": "string", "pattern": "^C\\d{2}$" },
+        { "type": "null" }
+      ],
+      "description": "Character ID of the owner/carrier. Null if unowned or unknown."
     },
     "scene_refs": {
       "type": "array",
       "uniqueItems": true,
       "items": { "type": "string", "pattern": "^SC\\d{4}$" }
+    },
+    "canonical_name": { "type": "string", "maxLength": 200 },
+    "aliases": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 200 }
+    },
+    "prop_type": { "type": "string", "maxLength": 200 },
+    "ownership_or_association": { "type": "string", "maxLength": 800 },
+    "physical_description_grounded": { "type": "string" },
+    "continuity_importance": {
+      "type": "string",
+      "enum": ["High", "Medium", "Low"]
+    },
+    "recurring_scene_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^SC\\d{4}$" }
+    },
+    "related_characters": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^C\\d{2}$" }
+    },
+    "related_locations": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^LOC\\d{3}$" }
+    },
+    "handling_notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "visual_stability_notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "future_hero_prop_candidate": { "type": "boolean" },
+    "unresolved_questions": {
+      "type": "array",
+      "items": { "type": "string" }
     },
     "status": {
       "type": "string",

@@ -43,7 +43,8 @@ future_hero_prop_candidate: true
 continuity_state:
   initial_state: "White plastic hospital bracelet; Nadia listed as registrant. Worn by Jin in SC0003."
   state_changes:
-    - transition: "Between SC0003 and SC0010 (exact scene not specified)"
+    - scene_id: SC0010
+      transition_note: "Between SC0003 and SC0010 (exact scene not specified in source)"
       new_state: >
         Pale blue band from a later check-up. SC0010 explicitly describes it as "from his
         last check-up", indicating a replacement bracelet applied at a more recent medical
