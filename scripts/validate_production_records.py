@@ -1,0 +1,449 @@
+"""
+validate_production_records.py - Batch 5.6
+
+Validates non-prompt production metadata records introduced by Batch 5.5.
+This validator is metadata-only: it reads YAML records and never mutates
+pack manifests, lifecycle state, image binaries, video files, or prompts.
+
+Usage:
+    python scripts/validate_production_records.py --repo-root .
+    python scripts/validate_production_records.py --repo-root . --report-json evidence/validation_reports/production_records_validation_report.json
+
+Exit codes:
+    0 - all files pass (or no files found)
+    1 - one or more files fail validation
+
+CI contract:
+    - Empty production metadata paths exit 0 with message "0 files validated"
+    - Missing optional directories do not fail validation
+    - Writes JSON report to evidence/validation_reports/ if --report-json specified
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from dataclasses import asdict, dataclass
+from pathlib import Path
+from typing import Any
+
+import yaml
+from jsonschema import Draft202012Validator
+
+
+IMAGE_SELECTION_PATTERN = "visual_dev/elements/**/image_selection.yaml"
+PACK_SUGGESTION_PATTERN = "visual_dev/elements/**/pack_manifest_update_suggestion.yaml"
+ASSET_CLEARANCE_PATTERN = "evidence/asset_clearance/*.yaml"
+PROMPT_REVIEW_BRIEF_PATTERN = "evidence/prompt_reviews/*_brief.yaml"
+
+FORBIDDEN_LIFECYCLE_KEYS = {"pack_status", "canon_lock", "approved", "locked"}
+PACK_SUGGESTION_REQUIRED_KEYS = {
+    "element_id",
+    "suggested_field",
+    "suggested_value",
+    "reason",
+    "applied_by",
+    "applied_at",
+}
+PACK_SUGGESTION_ALLOWED_VALUES = {"metadata_only", "seeded"}
+PROMPT_REVIEW_REQUIRED_KEYS = {"source_prompt_id", "corrected_brief"}
+
+
+@dataclass
+class ProductionValidationIssue:
+    file: str
+    record_type: str
+    field_path: str
+    message: str
+
+
+@dataclass
+class ProductionValidationReport:
+    total_files: int
+    valid_files: int
+    invalid_files: int
+    by_record_type: dict[str, int]
+    issues: list[ProductionValidationIssue]
+
+    @property
+    def has_errors(self) -> bool:
+        return self.invalid_files > 0
+
+
+def load_schema(schema_path: Path) -> dict[str, Any]:
+    with schema_path.open("r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def load_yaml_file(path: Path) -> Any:
+    with path.open("r", encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
+
+def _relative(path: Path, repo_root: Path) -> str:
+    try:
+        return path.relative_to(repo_root).as_posix()
+    except ValueError:
+        return path.as_posix()
+
+
+def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
+    """Return production metadata YAML files grouped by validation target."""
+    return {
+        "image_selection": sorted(repo_root.glob(IMAGE_SELECTION_PATTERN)),
+        "asset_clearance": sorted(repo_root.glob(ASSET_CLEARANCE_PATTERN)),
+        "pack_manifest_update_suggestion": sorted(repo_root.glob(PACK_SUGGESTION_PATTERN)),
+        "prompt_review_brief": sorted(repo_root.glob(PROMPT_REVIEW_BRIEF_PATTERN)),
+    }
+
+
+def _schema_issues(
+    *,
+    path: Path,
+    repo_root: Path,
+    record_type: str,
+    validator: Draft202012Validator,
+) -> list[ProductionValidationIssue]:
+    issues: list[ProductionValidationIssue] = []
+
+    try:
+        data = load_yaml_file(path)
+    except Exception as exc:
+        return [
+            ProductionValidationIssue(
+                file=_relative(path, repo_root),
+                record_type=record_type,
+                field_path="",
+                message=f"YAML parse error: {exc}",
+            )
+        ]
+
+    if data is None:
+        return [
+            ProductionValidationIssue(
+                file=_relative(path, repo_root),
+                record_type=record_type,
+                field_path="",
+                message="File is empty or contains only comments.",
+            )
+        ]
+
+    for error in sorted(validator.iter_errors(data), key=lambda e: list(e.path)):
+        field_path = ".".join(str(p) for p in error.absolute_path) or "(root)"
+        issues.append(
+            ProductionValidationIssue(
+                file=_relative(path, repo_root),
+                record_type=record_type,
+                field_path=field_path,
+                message=error.message,
+            )
+        )
+
+    return issues
+
+
+def _load_structural_record(
+    *,
+    path: Path,
+    repo_root: Path,
+    record_type: str,
+) -> tuple[Any | None, list[ProductionValidationIssue]]:
+    try:
+        data = load_yaml_file(path)
+    except Exception as exc:
+        return None, [
+            ProductionValidationIssue(
+                file=_relative(path, repo_root),
+                record_type=record_type,
+                field_path="",
+                message=f"YAML parse error: {exc}",
+            )
+        ]
+
+    if not isinstance(data, dict):
+        return data, [
+            ProductionValidationIssue(
+                file=_relative(path, repo_root),
+                record_type=record_type,
+                field_path="(root)",
+                message="Record must be a mapping.",
+            )
+        ]
+    return data, []
+
+
+def _structural_issue(
+    *,
+    path: Path,
+    repo_root: Path,
+    record_type: str,
+    field_path: str,
+    message: str,
+) -> ProductionValidationIssue:
+    return ProductionValidationIssue(
+        file=_relative(path, repo_root),
+        record_type=record_type,
+        field_path=field_path,
+        message=message,
+    )
+
+
+def validate_pack_suggestion_file(
+    path: Path,
+    repo_root: Path,
+) -> list[ProductionValidationIssue]:
+    """Validate a pack manifest suggestion without mutating pack_manifest.yaml."""
+    record_type = "pack_manifest_update_suggestion"
+    data, issues = _load_structural_record(
+        path=path,
+        repo_root=repo_root,
+        record_type=record_type,
+    )
+    if issues:
+        return issues
+
+    missing = sorted(PACK_SUGGESTION_REQUIRED_KEYS - set(data))
+    for key in missing:
+        issues.append(
+            _structural_issue(
+                path=path,
+                repo_root=repo_root,
+                record_type=record_type,
+                field_path=key,
+                message="Required field is missing.",
+            )
+        )
+
+    forbidden = sorted(FORBIDDEN_LIFECYCLE_KEYS & set(data))
+    for key in forbidden:
+        issues.append(
+            _structural_issue(
+                path=path,
+                repo_root=repo_root,
+                record_type=record_type,
+                field_path=key,
+                message="Lifecycle state must not be set directly in a suggestion record.",
+            )
+        )
+
+    if data.get("suggested_field") != "pack_status":
+        issues.append(
+            _structural_issue(
+                path=path,
+                repo_root=repo_root,
+                record_type=record_type,
+                field_path="suggested_field",
+                message='suggested_field must be "pack_status".',
+            )
+        )
+
+    if data.get("suggested_value") not in PACK_SUGGESTION_ALLOWED_VALUES:
+        issues.append(
+            _structural_issue(
+                path=path,
+                repo_root=repo_root,
+                record_type=record_type,
+                field_path="suggested_value",
+                message=(
+                    "suggested_value must be metadata_only or seeded; "
+                    "approval/lock promotion is out of Batch 5.6 scope."
+                ),
+            )
+        )
+
+    reason = data.get("reason")
+    if reason is not None and (not isinstance(reason, str) or not reason.strip()):
+        issues.append(
+            _structural_issue(
+                path=path,
+                repo_root=repo_root,
+                record_type=record_type,
+                field_path="reason",
+                message="reason must be a non-empty string.",
+            )
+        )
+
+    return issues
+
+
+def validate_prompt_review_brief_file(
+    path: Path,
+    repo_root: Path,
+) -> list[ProductionValidationIssue]:
+    """Validate a corrected prompt brief produced from image review feedback."""
+    record_type = "prompt_review_brief"
+    data, issues = _load_structural_record(
+        path=path,
+        repo_root=repo_root,
+        record_type=record_type,
+    )
+    if issues:
+        return issues
+
+    missing = sorted(PROMPT_REVIEW_REQUIRED_KEYS - set(data))
+    for key in missing:
+        issues.append(
+            _structural_issue(
+                path=path,
+                repo_root=repo_root,
+                record_type=record_type,
+                field_path=key,
+                message="Required field is missing.",
+            )
+        )
+
+    source_prompt_id = data.get("source_prompt_id")
+    if source_prompt_id is not None:
+        if not isinstance(source_prompt_id, str) or not source_prompt_id:
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path="source_prompt_id",
+                    message="source_prompt_id must be a non-empty string.",
+                )
+            )
+
+    corrected_brief = data.get("corrected_brief")
+    if corrected_brief is not None:
+        if not isinstance(corrected_brief, dict) or not corrected_brief:
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path="corrected_brief",
+                    message="corrected_brief must be a non-empty mapping.",
+                )
+            )
+
+    return issues
+
+
+def run_validation(
+    repo_root: Path,
+    report_json: Path | None = None,
+) -> ProductionValidationReport:
+    """Run Batch 5.6 production metadata validation."""
+    image_selection_schema = load_schema(repo_root / "schemas" / "image_selection.schema.json")
+    asset_clearance_schema = load_schema(repo_root / "schemas" / "asset_clearance.schema.json")
+    image_selection_validator = Draft202012Validator(image_selection_schema)
+    asset_clearance_validator = Draft202012Validator(asset_clearance_schema)
+
+    grouped_files = collect_production_files(repo_root)
+    total = sum(len(files) for files in grouped_files.values())
+    by_record_type = {record_type: len(files) for record_type, files in grouped_files.items()}
+
+    all_issues: list[ProductionValidationIssue] = []
+    invalid_count = 0
+
+    for record_type, files in grouped_files.items():
+        for path in files:
+            if record_type == "image_selection":
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=image_selection_validator,
+                )
+            elif record_type == "asset_clearance":
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=asset_clearance_validator,
+                )
+            elif record_type == "pack_manifest_update_suggestion":
+                file_issues = validate_pack_suggestion_file(path, repo_root)
+            elif record_type == "prompt_review_brief":
+                file_issues = validate_prompt_review_brief_file(path, repo_root)
+            else:
+                file_issues = [
+                    ProductionValidationIssue(
+                        file=_relative(path, repo_root),
+                        record_type=record_type,
+                        field_path="",
+                        message=f"Unsupported record type: {record_type}",
+                    )
+                ]
+
+            if file_issues:
+                invalid_count += 1
+                all_issues.extend(file_issues)
+
+    report = ProductionValidationReport(
+        total_files=total,
+        valid_files=total - invalid_count,
+        invalid_files=invalid_count,
+        by_record_type=by_record_type,
+        issues=all_issues,
+    )
+
+    if report_json is not None:
+        report_json.parent.mkdir(parents=True, exist_ok=True)
+        report_data = {
+            "total_files": report.total_files,
+            "valid_files": report.valid_files,
+            "invalid_files": report.invalid_files,
+            "by_record_type": report.by_record_type,
+            "issues": [asdict(i) for i in report.issues],
+        }
+        with report_json.open("w", encoding="utf-8") as f:
+            json.dump(report_data, f, indent=2, ensure_ascii=False)
+
+    return report
+
+
+def print_report(report: ProductionValidationReport) -> None:
+    if report.total_files == 0:
+        print("0 files validated - no production metadata YAML files found.")
+        return
+
+    print(f"Production record validation: {report.total_files} files scanned.")
+    print(f"  Valid:   {report.valid_files}")
+    print(f"  Invalid: {report.invalid_files}")
+    print("  By type:")
+    for record_type, count in sorted(report.by_record_type.items()):
+        print(f"    {record_type}: {count}")
+
+    if report.issues:
+        print()
+        print("Validation errors:")
+        for issue in report.issues:
+            print(
+                f"  [{issue.file}] {issue.record_type} "
+                f"{issue.field_path}: {issue.message}"
+            )
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(
+        description="Validate Batch 5.5 production metadata YAML records."
+    )
+    parser.add_argument(
+        "--repo-root",
+        type=Path,
+        default=Path("."),
+        help="Path to repository root (default: current directory).",
+    )
+    parser.add_argument(
+        "--report-json",
+        type=Path,
+        default=None,
+        help="Path to write JSON validation report (optional).",
+    )
+    args = parser.parse_args(argv)
+
+    repo_root = args.repo_root.resolve()
+    report_json = args.report_json.resolve() if args.report_json else None
+
+    report = run_validation(repo_root=repo_root, report_json=report_json)
+    print_report(report)
+
+    return 1 if report.has_errors else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
