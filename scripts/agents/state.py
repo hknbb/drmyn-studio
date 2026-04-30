@@ -26,6 +26,7 @@ class PipelineState:
     errors: list[str] = field(default_factory=list)
     next_step: dict[str, Any] | None = None
     images: str | None = None
+    takes_metadata: str | None = None
     review_notes: str | None = None
     save_snapshot: bool = False
     model_guidance_snapshot_dir: str | None = None
@@ -51,6 +52,7 @@ class PipelineState:
             errors=list(data.get("errors") or []),
             next_step=data.get("next_step"),
             images=data.get("images"),
+            takes_metadata=data.get("takes_metadata"),
             review_notes=data.get("review_notes"),
             save_snapshot=bool(data.get("save_snapshot", False)),
             model_guidance_snapshot_dir=data.get("model_guidance_snapshot_dir"),

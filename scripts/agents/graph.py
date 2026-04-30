@@ -21,6 +21,7 @@ from scripts.agents.run_pipeline import (
     run_generate_storyboard_options,
     run_refresh_model_guidance,
     run_review_outputs,
+    run_review_video_takes,
 )
 from scripts.agents.state import PipelineState
 
@@ -32,6 +33,7 @@ SUPPORTED_GRAPH_MODES = {
     "generate-storyboard-options",
     "generate-shot-list-omni-suggestion",
     "generate-kling-omni-prompts",
+    "review-video-takes",
     "operator-next-step",
 }
 
@@ -62,6 +64,7 @@ def _namespace(state: PipelineState) -> argparse.Namespace:
         prompt_id=_first(state.prompt_ids),
         images=state.images,
         review_notes=state.review_notes,
+        takes_metadata=state.takes_metadata,
     )
 
 
@@ -121,6 +124,8 @@ def run_graph_state(state: PipelineState) -> PipelineState:
             return _run_pipeline_result(state, run_generate_shot_list_omni_suggestion)
         if state.mode == "generate-kling-omni-prompts":
             return _run_pipeline_result(state, run_generate_kling_omni_prompts)
+        if state.mode == "review-video-takes":
+            return _run_pipeline_result(state, run_review_video_takes)
     except (PipelineError, OSError, ValueError, ImportError) as exc:
         state.errors.append(str(exc))
     return state

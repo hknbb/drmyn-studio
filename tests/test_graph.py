@@ -113,16 +113,16 @@ def test_graph_does_not_create_binaries_or_lifecycle_changes(tmp_path: Path) -> 
     assert not list(tmp_path.rglob("pack_manifest.yaml"))
 
 
-def test_graph_future_modes_are_not_supported(tmp_path: Path) -> None:
+def test_graph_future_clip_locking_modes_are_not_supported(tmp_path: Path) -> None:
     result = run_graph(
         PipelineState(
             repo_root=str(tmp_path),
-            mode="review-video-takes",
+            mode="lock-scene-clip",
             scene_ids=["SC0001"],
         )
     )
 
-    assert "review-video-takes" not in SUPPORTED_GRAPH_MODES
+    assert "lock-scene-clip" not in SUPPORTED_GRAPH_MODES
     assert result.errors
     assert "Unsupported graph mode" in result.errors[0]
     assert not list(tmp_path.rglob("video_takes.yaml"))

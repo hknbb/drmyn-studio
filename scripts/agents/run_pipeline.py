@@ -35,6 +35,7 @@ from scripts.agents.shot_list_omni_suggestion import ShotListOmniSuggestionAgent
 from scripts.agents.source_context import SourceContextAgent
 from scripts.agents.storyboard_options import StoryboardOptionsAgent
 from scripts.agents.writer import PromptWriter
+from scripts.agents.video_take_review import VideoTakeReviewAgent
 
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff"}
@@ -465,6 +466,42 @@ def run_review_outputs(args: argparse.Namespace) -> PipelineResult:
     )
 
 
+def run_review_video_takes(args: argparse.Namespace) -> PipelineResult:
+    repo_root = args.repo_root.resolve()
+    if not args.scene_id:
+        raise PipelineError("review-video-takes requires --scene-id.")
+    if not args.prompt_id:
+        raise PipelineError("review-video-takes requires --prompt-id.")
+    if not args.takes_metadata:
+        raise PipelineError("review-video-takes requires --takes-metadata.")
+    if not args.review_notes:
+        raise PipelineError("review-video-takes requires --review-notes.")
+
+    result = VideoTakeReviewAgent(repo_root).write_review(
+        scene_id=args.scene_id,
+        prompt_id=args.prompt_id,
+        takes_metadata_path=args.takes_metadata,
+        review_notes_path=args.review_notes,
+    )
+
+    written = [
+        _relative(result.video_takes_path, repo_root),
+        _relative(result.review_path, repo_root),
+    ]
+    if result.corrected_brief_path is not None:
+        written.append(_relative(result.corrected_brief_path, repo_root))
+
+    return PipelineResult(
+        mode=args.mode,
+        written_files=written,
+        skipped=[],
+        message=(
+            "Video take review metadata written; video binaries were not copied "
+            "and clip locking was not performed."
+        ),
+    )
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Run one existing metadata-only production pipeline mode."
@@ -479,6 +516,7 @@ def build_parser() -> argparse.ArgumentParser:
             "generate-storyboard-options",
             "generate-shot-list-omni-suggestion",
             "generate-kling-omni-prompts",
+            "review-video-takes",
             "operator-next-step",
         ],
     )
@@ -492,6 +530,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--model-guidance-snapshots")
     parser.add_argument("--prompt-id")
     parser.add_argument("--images")
+    parser.add_argument("--takes-metadata")
     parser.add_argument("--review-notes")
     return parser
 
@@ -515,6 +554,8 @@ def main(argv: list[str] | None = None) -> int:
             result = run_generate_shot_list_omni_suggestion(args)
         elif args.mode == "generate-kling-omni-prompts":
             result = run_generate_kling_omni_prompts(args)
+        elif args.mode == "review-video-takes":
+            result = run_review_video_takes(args)
         else:  # pragma: no cover - argparse choices prevent this
             raise PipelineError(f"Unsupported mode: {args.mode}")
     except (PipelineError, OSError, ValueError, ImportError) as exc:

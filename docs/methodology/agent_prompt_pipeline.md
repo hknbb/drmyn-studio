@@ -87,17 +87,17 @@ feat/batch-9-scene-clip-locking
 ### Current Batch State
 
 ```
-active branch = feat/batch-8-kling-omni-adapter
-implemented through = Batch 8
-next branch = feat/batch-8.5-video-take-review
+active branch = feat/batch-8.5-video-take-review
+implemented through = Batch 8.5
+next branch = feat/batch-9-scene-clip-locking
 ```
 
-Batch 8 adds a metadata-only Kling Omni adapter. It writes draft prompt records
-and prompt run records only after Phase 3 gates are satisfied, including
-non-empty `scene_card.shot_list_omni`. It does not run Kling, write video
-files, create `video_takes.yaml`, create `selected_take.yaml`, update
-`scene_clip_map.csv`, modify scene cards, modify pack manifests, or promote
-lifecycle state.
+Batch 8.5 adds metadata-only video take review for externally generated Kling
+takes. It writes `visual_dev/omni_sets/SC####/video_takes.yaml`,
+`evidence/video_reviews/*`, and optional corrected prompt review briefs only.
+It does not run Kling, copy video files, create `selected_take.yaml`, update
+`scene_clip_map.csv`, modify scene cards, modify prompt records, modify pack
+manifests, or promote lifecycle state.
 
 ---
 
@@ -1034,6 +1034,7 @@ The graph wrapper supports the same production-safe modes as Batch 6:
 - `generate-storyboard-options`
 - `generate-shot-list-omni-suggestion`
 - `generate-kling-omni-prompts`
+- `review-video-takes`
 - `operator-next-step`
 
 It is a control-flow layer only. Existing agent boundaries remain authoritative:
@@ -1084,14 +1085,38 @@ is limited to:
 - `evidence/prompt_runs/RUN_SC####_KO_0001.yaml`
 - normal writer-managed CSV/library metadata
 
-External Kling generation, video take review, selected take locking, and
-scene clip mapping remain future batches.
+External Kling generation remains a manual platform step. Selected take locking
+and scene clip mapping remain future batches.
+
+### Batch 8.5 Video Take Review
+
+After a human generates Kling takes externally and records the platform/storage
+references, review metadata may be written with:
+
+```bash
+python scripts/agents/run_pipeline.py \
+  --mode review-video-takes \
+  --scene-id SC0001 \
+  --prompt-id SC0001__omni-kling-omni__v01 \
+  --takes-metadata handoff/SC0001_takes.yaml \
+  --review-notes evidence/video_reviews/SC0001_review_notes.md
+```
+
+The input is YAML/JSON metadata only. Video files remain external. The mode may
+write:
+
+- `visual_dev/omni_sets/SC####/video_takes.yaml`
+- `evidence/video_reviews/SC####_take_review.yaml`
+- optional `evidence/prompt_reviews/*_brief.yaml` when prompt revision is needed
+
+Batch 8.5 does not create `selected_take.yaml` or `evidence/scene_clip_map.csv`;
+those remain Batch 9 clip locking outputs.
 
 ---
 
 ## 11. Requirements Satisfaction Matrix
 
-Status is evaluated against the active batch branch `feat/batch-5-critic-writer`, not the final target architecture.
+Status is evaluated against the active batch branch `feat/batch-8.5-video-take-review`, not the final target architecture.
 
 | Requirement | Status |
 |---|---|
@@ -1105,8 +1130,8 @@ Status is evaluated against the active batch branch `feat/batch-5-critic-writer`
 | Pack status human-gated | planned Batch 5.5; invariant already documented |
 | Prompt v02/v03 iteration | partly supported by adapter versioning and writer; review loop planned later |
 | Storyboard composition options | planned Batch 5.75 |
-| Kling video take multi-selection | planned Batch 8.5 |
-| Video review loop → prompt v02 | planned Batch 8.5 |
+| Kling video take multi-selection | implemented in Batch 8.5 as metadata-only review |
+| Video review loop → prompt v02 | implemented in Batch 8.5 via corrected brief metadata |
 | Storage policy (no large binary commits) | implemented in Batch 0.75 |
 | Candidate image storage limit | documented in storage policy; production validator planned later |
 | Prompt schema validation | implemented in Batch 1 |

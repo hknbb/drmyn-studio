@@ -1,7 +1,8 @@
 # Kling Omni Generation Playbook
 
-Batch 8 activates metadata-only Kling Omni prompt drafting. It does not run
-Kling, upload assets, create video takes, review video, or lock clips.
+Batch 8 activates metadata-only Kling Omni prompt drafting. Batch 8.5 records
+metadata-only review of externally generated Kling takes. The repo still does
+not run Kling, upload assets, copy video binaries, or lock clips.
 
 ## Activation Gate
 
@@ -27,10 +28,28 @@ If any activation gate is missing, treat the task as blocked. Do not use
 `shot_list_omni_suggestion.yaml` alone as an unlock; a human must apply the
 shot list to `scene_card.yaml` through PR first.
 
+## Video Take Handoff
+
+After external Kling generation, collect platform/storage refs in a YAML or JSON
+handoff file and write human review notes. Then run:
+
+```bash
+python scripts/agents/run_pipeline.py \
+  --mode review-video-takes \
+  --scene-id SC0001 \
+  --prompt-id SC0001__omni-kling-omni__v01 \
+  --takes-metadata handoff/SC0001_takes.yaml \
+  --review-notes evidence/video_reviews/SC0001_review_notes.md
+```
+
+The command writes `video_takes.yaml` and review metadata only. If prompt
+revision is needed, it may also write a corrected brief under
+`evidence/prompt_reviews/`.
+
 ## Storage Safety
 
-Do not commit `.mp4`, `.mov`, or other video binaries in this phase. Use the
-future approved external storage reference workflow.
+Do not commit `.mp4`, `.mov`, `.mkv`, `.wav`, or other video binaries in this
+phase. Store only `platform_asset_ref` and `external_storage_ref` metadata.
 
-Batch 8 writes prompt metadata only. `video_takes.yaml`, `selected_take.yaml`,
-and `evidence/scene_clip_map.csv` remain out of scope.
+Batch 8.5 may write `video_takes.yaml`; `selected_take.yaml` and
+`evidence/scene_clip_map.csv` remain Batch 9 outputs.

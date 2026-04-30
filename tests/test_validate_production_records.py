@@ -28,6 +28,8 @@ def _copy_schemas(repo_root: Path) -> None:
         "asset_clearance.schema.json",
         "storyboard_option.schema.json",
         "shot_list_omni_suggestion.schema.json",
+        "video_take.schema.json",
+        "video_review.schema.json",
         "batch_job.schema.json",
         "operator_session.schema.json",
     ):

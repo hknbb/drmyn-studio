@@ -42,6 +42,8 @@ SHOT_LIST_OMNI_SUGGESTION_PATTERN = (
 )
 BATCH_JOB_PATTERN = "evidence/batch_jobs/*.yaml"
 OPERATOR_SESSION_PATTERN = "evidence/operator_sessions/*.yaml"
+VIDEO_TAKE_PATTERN = "visual_dev/omni_sets/SC*/video_takes.yaml"
+VIDEO_REVIEW_PATTERN = "evidence/video_reviews/*.yaml"
 
 FORBIDDEN_LIFECYCLE_KEYS = {"pack_status", "canon_lock", "approved", "locked"}
 PACK_SUGGESTION_REQUIRED_KEYS = {
@@ -107,6 +109,8 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         ),
         "batch_job": sorted(repo_root.glob(BATCH_JOB_PATTERN)),
         "operator_session": sorted(repo_root.glob(OPERATOR_SESSION_PATTERN)),
+        "video_take": sorted(repo_root.glob(VIDEO_TAKE_PATTERN)),
+        "video_review": sorted(repo_root.glob(VIDEO_REVIEW_PATTERN)),
     }
 
 
@@ -334,6 +338,102 @@ def validate_prompt_review_brief_file(
     return issues
 
 
+def validate_video_take_consistency(
+    path: Path,
+    repo_root: Path,
+) -> list[ProductionValidationIssue]:
+    """Validate cross-field video take rules that JSON Schema cannot express."""
+    record_type = "video_take"
+    data, issues = _load_structural_record(
+        path=path,
+        repo_root=repo_root,
+        record_type=record_type,
+    )
+    if issues:
+        return issues
+
+    takes = data.get("takes")
+    if not isinstance(takes, list):
+        return issues
+
+    selected_takes = [
+        take for take in takes if isinstance(take, dict) and take.get("status") == "selected"
+    ]
+    if len(selected_takes) > 1:
+        issues.append(
+            _structural_issue(
+                path=path,
+                repo_root=repo_root,
+                record_type=record_type,
+                field_path="takes",
+                message="At most one take may have status selected.",
+            )
+        )
+
+    selected_take = data.get("selected_take")
+    if selected_take is not None:
+        matching_selected = [
+            take
+            for take in selected_takes
+            if isinstance(take, dict) and take.get("take_id") == selected_take
+        ]
+        if not matching_selected:
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path="selected_take",
+                    message="selected_take must match a take_id whose status is selected.",
+                )
+            )
+    elif selected_takes:
+        issues.append(
+            _structural_issue(
+                path=path,
+                repo_root=repo_root,
+                record_type=record_type,
+                field_path="selected_take",
+                message="selected_take must be set when a take has status selected.",
+            )
+        )
+
+    for index, take in enumerate(takes):
+        if not isinstance(take, dict):
+            continue
+        field_prefix = f"takes.{index}"
+        if take.get("repo_binary_committed") is not False:
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path=f"{field_prefix}.repo_binary_committed",
+                    message="repo_binary_committed must be false for every video take.",
+                )
+            )
+        external_storage_ref = take.get("external_storage_ref")
+        missing_external_allowed = (
+            take.get("status") == "candidate"
+            and take.get("storage_status") == "pending_external"
+        )
+        if not external_storage_ref and not missing_external_allowed:
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path=f"{field_prefix}.external_storage_ref",
+                    message=(
+                        "external_storage_ref is required unless the take is a "
+                        "candidate with storage_status pending_external."
+                    ),
+                )
+            )
+
+    return issues
+
+
 def run_validation(
     repo_root: Path,
     report_json: Path | None = None,
@@ -356,6 +456,8 @@ def run_validation(
         shot_list_omni_suggestion_schema
     )
     operator_session_validator: Draft202012Validator | None = None
+    video_take_validator: Draft202012Validator | None = None
+    video_review_validator: Draft202012Validator | None = None
 
     grouped_files = collect_production_files(repo_root)
     total = sum(len(files) for files in grouped_files.values())
@@ -418,6 +520,31 @@ def run_validation(
                     repo_root=repo_root,
                     record_type=record_type,
                     validator=operator_session_validator,
+                )
+            elif record_type == "video_take":
+                if video_take_validator is None:
+                    video_take_schema = load_schema(
+                        repo_root / "schemas" / "video_take.schema.json"
+                    )
+                    video_take_validator = Draft202012Validator(video_take_schema)
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=video_take_validator,
+                )
+                file_issues.extend(validate_video_take_consistency(path, repo_root))
+            elif record_type == "video_review":
+                if video_review_validator is None:
+                    video_review_schema = load_schema(
+                        repo_root / "schemas" / "video_review.schema.json"
+                    )
+                    video_review_validator = Draft202012Validator(video_review_schema)
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=video_review_validator,
                 )
             else:
                 file_issues = [
