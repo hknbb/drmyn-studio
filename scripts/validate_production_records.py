@@ -1,9 +1,12 @@
 """
-validate_production_records.py - Batch 5.6
+validate_production_records.py
 
-Validates non-prompt production metadata records introduced by Batch 5.5.
-This validator is metadata-only: it reads YAML records and never mutates
-pack manifests, lifecycle state, image binaries, video files, or prompts.
+Validates non-prompt production metadata records introduced from Batch 5.5
+onward, including image selection, asset clearance, storyboard options, shot
+list suggestions, batch jobs, operator sessions, video takes, and video review
+evidence. This validator is metadata-only: it reads YAML records and never
+mutates pack manifests, lifecycle state, image binaries, video files, or
+prompts.
 
 Usage:
     python scripts/validate_production_records.py --repo-root .

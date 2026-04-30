@@ -1,10 +1,9 @@
 """
-Thin pipeline CLI for Batch 6.
+Thin metadata-only production pipeline CLI.
 
-This module exposes already-implemented agent steps behind one argparse entry
-point. It does not implement LangGraph orchestration, Kling generation, video
-review, clip locking, storyboard selection, binary movement, or lifecycle
-promotion.
+This module exposes implemented agent steps behind one argparse entry point.
+It does not run external platforms, move binaries, perform clip locking, select
+storyboard options, or promote lifecycle state.
 """
 
 from __future__ import annotations
