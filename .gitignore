@@ -53,3 +53,18 @@ evidence/validation_reports/*.md
 # OS
 .DS_Store
 desktop.ini
+
+# ── Batch 0.75: Production output binary protections ──────────────────────────
+# Kling / video take binaries — external storage only; never committed to repo
+visual_dev/omni_sets/**/takes/*.mp4
+visual_dev/omni_sets/**/takes/*.mov
+
+# Post-production proxy and render binaries — external storage only
+post/edit/proxies/**/*.mp4
+post/edit/proxies/**/*.mov
+post/edit/proxies/**/*.mkv
+post/edit/proxies/**/*.wav
+
+# Storyboard candidate stills — external storage only; repo holds storyboard_options.yaml metadata
+visual_dev/storyboards/**/candidates/
+# ──────────────────────────────────────────────────────────────────────────────
