@@ -1,0 +1,102 @@
+# docs/model_guides/chatgpt_image.yaml
+# Locked versioned guide for ChatGPT Image (GPT-4o) prompt generation.
+# Maintained by: human PR only.
+# CRITICAL: supports_negative_prompt is false for this model.
+# All adapters must set generation_params.constraint_strategy: embedded_positive_constraints.
+# The Critic must NOT require a negative_prompt field for this model.
+# Source evidence: docs/model_guides/sources/chatgpt_image_research_log.md
+
+model_id: chatgpt_image
+schema_version: "1.0"
+guide_version: "0.1.0"
+status: draft
+last_updated: "2026-04-30"
+maintained_by: "human PR only"
+phase: 1
+
+capability:
+  output_type: image
+  supports_negative_prompt: false
+  constraint_strategy: embedded_positive_constraints
+  supports_natural_language_revision: true
+  supports_image_editing: true
+  supports_seed: false
+
+prompt_rules:
+  style: natural_language_task_framing
+  max_words_recommended: 200
+  negative_prompt_format: "embed constraints in positive prompt as explicit prohibitions"
+  rules:
+    - id: natural_language_sentences
+      rule: >
+        Use full, well-formed sentences describing what to create.
+        Unlike Midjourney, do NOT use comma-separated visual clauses.
+        Example: "Create a close-up portrait of a pale young woman in a hospital
+        room, wearing a white plastic bracelet. The lighting is cold and fluorescent.
+        Do not include text overlays or decorative elements."
+      source: "https://platform.openai.com/docs/guides/images"
+      confidence: medium
+      human_verified: false
+    - id: no_negative_prompt_field
+      rule: >
+        ChatGPT Image does not have a separate negative prompt parameter.
+        All constraints must be embedded in the positive prompt text.
+        Pattern: "Do not include [term]. Avoid [term]. [Term] must not appear."
+        The adapter sets generation_params.constraint_strategy: embedded_positive_constraints.
+        The Critic MUST NOT flag missing negative_prompt for this model.
+      source: "https://platform.openai.com/docs/guides/images"
+      confidence: medium
+      human_verified: false
+    - id: scene_description_structure
+      rule: >
+        Include all of: subject + action, environment, lighting, mood,
+        style reference, and explicit constraint text in one coherent paragraph.
+        Order: subject → environment → lighting → constraints.
+      source: "https://platform.openai.com/docs/guides/images"
+      confidence: medium
+      human_verified: false
+    - id: style_by_reference
+      rule: >
+        Reference established visual styles by descriptive name.
+        Avoid trademarked or copyrighted style names per OpenAI usage policy.
+        Verify acceptable style references in current OpenAI usage policy.
+      source: "https://openai.com/policies/usage-policies"
+      confidence: low
+      human_verified: false
+    - id: iterative_revision
+      rule: >
+        ChatGPT Image supports natural language revision of a prior generation
+        via conversation. Subsequent prompts can say "in the previous image, change X to Y."
+        Use this for variation rounds after initial generation.
+      source: "OpenAI release announcement — verify current URL"
+      confidence: medium
+      human_verified: false
+    - id: no_canonical_ids_in_prompt
+      rule: >
+        Never include canonical IDs (C01, LOC001, PROP003) in prompt_text.
+        They must appear only in source_refs. The Critic enforces this.
+      source: "plan invariant"
+      confidence: high
+      human_verified: true
+
+  do_not_invent:
+    - "Any parameter syntax using -- flags (ChatGPT Image is prompt-only)"
+    - "Exact constraint embedding wording (what OpenAI recommends — verify)"
+    - "Current API model name (GPT-4o? image-1? — verify in current API docs)"
+
+source_refs:
+  - url: "https://platform.openai.com/docs/guides/images"
+    source_class: official_docs
+    human_verified: false
+    notes: "Main image generation guide. Operator must verify."
+  - url: "https://openai.com/policies/usage-policies"
+    source_class: official_docs
+    human_verified: false
+    notes: "Usage policy for style references."
+
+notes: >
+  Status: draft — seed rules from research log. Operator must visit all source_refs,
+  set human_verified: true, and change status to 'active' before Batch 4 adapters run.
+  KEY: constraint_strategy must be embedded_positive_constraints — Critic must
+  NOT require negative_prompt for this model.
+  See docs/model_guides/sources/chatgpt_image_research_log.md for full checklist.

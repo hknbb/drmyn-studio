@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/video_take.schema.json",
+  "title": "Closing Price Video Take Review Record",
+  "description": "Metadata-only review record for externally generated Kling video takes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scene_id",
+    "prompt_id",
+    "takes",
+    "selected_take",
+    "round_status",
+    "needs_prompt_revision",
+    "storage_policy"
+  ],
+  "properties": {
+    "scene_id": {
+      "type": "string",
+      "pattern": "^SC\\d{4}$"
+    },
+    "prompt_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^SC\\d{4}__[a-z0-9\\-]+__v\\d{2}$"
+    },
+    "takes": {
+      "type": "array",
+      "minItems": 1,
+      "contains": {
+        "type": "object",
+        "properties": {
+          "status": { "const": "selected" }
+        },
+        "required": ["status"]
+      },
+      "minContains": 0,
+      "maxContains": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "take_id",
+          "platform_asset_ref",
+          "external_storage_ref",
+          "local_proxy_ref",
+          "repo_binary_committed",
+          "storage_status",
+          "status",
+          "reason",
+          "quality_scores",
+          "failure_reason"
+        ],
+        "properties": {
+          "take_id": {
+            "type": "string",
+            "pattern": "^SC\\d{4}_TAKE\\d{3}$"
+          },
+          "platform_asset_ref": {
+            "type": ["string", "null"],
+            "maxLength": 500
+          },
+          "external_storage_ref": {
+            "type": ["string", "null"],
+            "maxLength": 500
+          },
+          "local_proxy_ref": {
+            "type": ["string", "null"],
+            "maxLength": 500
+          },
+          "repo_binary_committed": {
+            "const": false
+          },
+          "storage_status": {
+            "type": "string",
+            "enum": ["stored_external", "pending_external"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["candidate", "rejected", "selected", "needs_revision", "deprecated"]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "quality_scores": {
+            "$ref": "#/$defs/quality_scores"
+          },
+          "failure_reason": {
+            "oneOf": [
+              { "$ref": "#/$defs/failure_reason" },
+              { "type": "null" }
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "not": {
+                "properties": {
+                  "status": { "const": "candidate" },
+                  "storage_status": { "const": "pending_external" }
+                },
+                "required": ["status", "storage_status"]
+              }
+            },
+            "then": {
+              "properties": {
+                "external_storage_ref": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "selected_take": {
+      "type": ["string", "null"],
+      "pattern": "^SC\\d{4}_TAKE\\d{3}$"
+    },
+    "round_status": {
+      "type": "string",
+      "enum": ["in_progress", "complete", "needs_prompt_revision", "blocked"]
+    },
+    "needs_prompt_revision": {
+      "type": "boolean"
+    },
+    "storage_policy": {
+      "const": "external_video_only"
+    }
+  },
+  "$defs": {
+    "quality_scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "identity_consistency",
+        "source_grounding",
+        "style_compliance",
+        "continuity",
+        "production_usability"
+      ],
+      "properties": {
+        "identity_consistency": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "source_grounding": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "style_compliance": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "continuity": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "production_usability": { "type": "integer", "minimum": 1, "maximum": 5 }
+      }
+    },
+    "failure_reason": {
+      "type": "string",
+      "enum": [
+        "source_missing",
+        "continuity_unresolved",
+        "model_guidance_stale",
+        "output_too_stylized",
+        "identity_drift",
+        "camera_drift",
+        "storage_policy_violation",
+        "schema_validation_error",
+        "unsourced_assertion",
+        "continuity_contradiction"
+      ]
+    }
+  }
+}

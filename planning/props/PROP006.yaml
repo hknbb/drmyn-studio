@@ -35,9 +35,9 @@ future_hero_prop_candidate: false
 continuity_state:
   initial_state: "In place, undiscovered, when Nadia enters the study in SC0006. Nadia discovers it and leaves it in place, narrowing its sightline by repositioning a book on the shelf."
   state_changes:
-    - scene: SC0006
-      change: "Sightline narrowed by approximately four degrees by Nadia's deliberate repositioning of a reference volume on the shelf. Device itself is not touched or removed."
-owner_character_id: null
+    - scene_id: SC0006
+      new_state: "Sightline narrowed by approximately four degrees by Nadia's deliberate repositioning of a reference volume on the shelf. Device itself is not touched or removed."
+owner_character_id: ~
 scene_refs:
   - SC0006
 unresolved_questions:

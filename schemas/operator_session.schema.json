@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/operator_session.schema.json",
+  "title": "Closing Price Operator Session Record",
+  "description": "Metadata-only record of a human operator guidance session.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "session_id",
+    "created_at",
+    "scene_id",
+    "current_task",
+    "recommended_files",
+    "recommended_steps",
+    "status",
+    "notes"
+  ],
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "pattern": "^OP-[A-Za-z0-9_.-]+$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "scene_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^SC\\d{4}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "current_task": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "recommended_files": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "recommended_steps": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["planned", "in_progress", "complete", "blocked", "skipped"]
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

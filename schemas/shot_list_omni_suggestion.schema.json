@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/shot_list_omni_suggestion.schema.json",
+  "title": "Closing Price Shot List Omni Suggestion",
+  "description": "Metadata-only suggested shot_list_omni derived from a selected storyboard option.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scene_id",
+    "source_storyboard_option",
+    "source_refs",
+    "suggested_shot_list",
+    "suggested_by",
+    "applied_to_scene_card",
+    "applied_at",
+    "review_status",
+    "storage_policy"
+  ],
+  "properties": {
+    "scene_id": {
+      "type": "string",
+      "pattern": "^SC\\d{4}$"
+    },
+    "source_storyboard_option": {
+      "type": "string",
+      "pattern": "^SC\\d{4}_SB\\d{2}$"
+    },
+    "source_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["storyboard_options", "scene_card", "scene_excerpt"],
+      "properties": {
+        "storyboard_options": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scene_card": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scene_excerpt": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "suggested_shot_list": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "shot_id",
+          "type",
+          "subject",
+          "camera_angle",
+          "framing",
+          "camera_movement",
+          "duration_seconds",
+          "source_field",
+          "source_option_field",
+          "notes"
+        ],
+        "properties": {
+          "shot_id": {
+            "type": "string",
+            "pattern": "^SC\\d{4}_OMNI\\d{2}$"
+          },
+          "type": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "subject": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "camera_angle": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "framing": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "camera_movement": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "duration_seconds": {
+            "type": "integer",
+            "minimum": 3,
+            "maximum": 8
+          },
+          "source_field": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "source_option_field": {
+            "type": "string",
+            "pattern": "^options\\[\\d+\\]$"
+          },
+          "notes": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        }
+      }
+    },
+    "suggested_by": {
+      "type": "string",
+      "const": "storyboard_agent"
+    },
+    "applied_to_scene_card": {
+      "type": "boolean",
+      "const": false
+    },
+    "applied_at": {
+      "type": "null"
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["pending", "needs_revision", "accepted_by_human"]
+    },
+    "storage_policy": {
+      "type": "string",
+      "const": "no_binary_commits"
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/selected_take.schema.json",
+  "title": "Closing Price Selected Take Record",
+  "description": "Metadata-only final scene clip lock record for an externally stored video take.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scene_id",
+    "selected_take",
+    "source_video_takes",
+    "prompt_id",
+    "platform_asset_ref",
+    "external_storage_ref",
+    "local_proxy_ref",
+    "repo_binary_committed",
+    "lock_status",
+    "locked_by",
+    "locked_at",
+    "storage_policy",
+    "notes"
+  ],
+  "properties": {
+    "scene_id": {
+      "type": "string",
+      "pattern": "^SC\\d{4}$"
+    },
+    "selected_take": {
+      "type": "string",
+      "pattern": "^SC\\d{4}_TAKE\\d{3}$"
+    },
+    "source_video_takes": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "prompt_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^SC\\d{4}__[a-z0-9\\-]+__v\\d{2}$"
+    },
+    "platform_asset_ref": {
+      "type": ["string", "null"],
+      "maxLength": 500
+    },
+    "external_storage_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "local_proxy_ref": {
+      "type": ["string", "null"],
+      "maxLength": 500
+    },
+    "repo_binary_committed": {
+      "const": false
+    },
+    "lock_status": {
+      "type": "string",
+      "enum": ["locked_metadata_only", "needs_relock", "deprecated"]
+    },
+    "locked_by": {
+      "type": "string",
+      "enum": ["human_operator", "operator_pr"]
+    },
+    "locked_at": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T"
+    },
+    "storage_policy": {
+      "const": "external_video_only"
+    },
+    "notes": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    }
+  }
+}

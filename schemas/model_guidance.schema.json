@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/model_guidance.schema.json",
+  "title": "Model Guidance Guide",
+  "description": "Locked versioned guide for a single AI model. Lives in docs/model_guides/{model_id}.yaml. Maintained by human PR only. Adapters and the Critic read this file for prompt style rules and capability flags.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "model_id",
+    "schema_version",
+    "guide_version",
+    "status",
+    "last_updated",
+    "maintained_by",
+    "capability",
+    "prompt_rules",
+    "source_refs"
+  ],
+  "properties": {
+    "model_id": {
+      "type": "string",
+      "enum": ["midjourney", "chatgpt_image", "nano_banana", "kling_omni"],
+      "description": "Canonical snake_case model identifier. Must match model_capability_matrix.yaml entry."
+    },
+    "schema_version": {
+      "type": "string",
+      "description": "Version of this schema (e.g. '1.0')."
+    },
+    "guide_version": {
+      "type": "string",
+      "description": "Semver version of this guide file (e.g. '0.1.0'). Increment when rules change."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["stub", "draft", "active", "deprecated"],
+      "description": "stub=placeholder only; draft=in progress; active=used by adapters; deprecated=superseded."
+    },
+    "last_updated": {
+      "type": "string",
+      "description": "ISO-8601 date of last human-reviewed update (YYYY-MM-DD)."
+    },
+    "maintained_by": {
+      "type": "string",
+      "description": "Who maintains this file. Must be 'human PR only' for production guides."
+    },
+    "capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "output_type",
+        "supports_negative_prompt"
+      ],
+      "description": "Capability flags for this model. Must be consistent with model_capability_matrix.yaml.",
+      "properties": {
+        "output_type": {
+          "type": "string",
+          "enum": ["image", "video"]
+        },
+        "supports_negative_prompt": {
+          "oneOf": [
+            { "type": "boolean" },
+            { "type": "string", "enum": ["limited"] }
+          ],
+          "description": "true=full support; false=no support (embed constraints); 'limited'=partial (e.g. --no flag only)."
+        },
+        "supports_image_reference": { "type": "boolean" },
+        "supports_seed": { "type": "boolean" },
+        "supports_consistency_reference": { "type": "boolean" },
+        "supports_natural_language_revision": { "type": "boolean" },
+        "supports_image_editing": { "type": "boolean" },
+        "supports_identity_consistency": { "type": "boolean" },
+        "supports_variation_prompting": { "type": "boolean" },
+        "supports_elements": { "type": "boolean" },
+        "supports_camera_motion": { "type": "boolean" },
+        "supports_video_generation": { "type": "boolean" },
+        "max_prompt_length": {
+          "oneOf": [
+            { "type": "integer" },
+            { "type": "string", "enum": ["unlimited"] }
+          ]
+        },
+        "max_duration_seconds": { "type": "integer" },
+        "constraint_strategy": {
+          "type": "string",
+          "enum": ["embedded_positive_constraints", "negative_prompt_field", "no_flag"],
+          "description": "How constraints are expressed. Required when supports_negative_prompt is false."
+        }
+      }
+    },
+    "prompt_rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["style", "rules"],
+      "properties": {
+        "style": {
+          "type": "string",
+          "description": "Overall prompt style name (e.g. 'compact_visual_clauses', 'natural_language_task_framing')."
+        },
+        "max_words_recommended": {
+          "type": "integer",
+          "description": "Recommended upper word limit for the prompt."
+        },
+        "rules": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "rule", "source"],
+            "properties": {
+              "id": { "type": "string", "description": "Short slug ID for this rule." },
+              "rule": { "type": "string", "description": "The rule text." },
+              "source": { "type": "string", "description": "Source URL or reference." },
+              "confidence": {
+                "type": "string",
+                "enum": ["high", "medium", "low"]
+              },
+              "human_verified": { "type": "boolean" }
+            }
+          }
+        },
+        "negative_prompt_format": {
+          "type": "string",
+          "description": "How to express negative prompts for this model (e.g. '--no <term>', 'embedded in positive prompt')."
+        },
+        "do_not_invent": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Stylistic terms or patterns not to use without source verification."
+        }
+      }
+    },
+    "source_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["url", "source_class", "human_verified"],
+        "properties": {
+          "url": { "type": "string" },
+          "source_class": {
+            "type": "string",
+            "enum": [
+              "official_docs",
+              "official_release_notes",
+              "official_help_center",
+              "verified_platform_blog"
+            ]
+          },
+          "human_verified": { "type": "boolean" },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-text notes for operators."
+    },
+    "phase": {
+      "type": "integer",
+      "enum": [1, 2, 3],
+      "description": "Production phase this model is used in. Kling Omni = Phase 3 only."
+    }
+  }
+}

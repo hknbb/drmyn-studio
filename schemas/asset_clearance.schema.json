@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/asset_clearance.schema.json",
+  "title": "Closing Price Asset Clearance Record",
+  "description": "Rights and risk metadata for a reviewed image asset.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "asset_id",
+    "element_id",
+    "element_type",
+    "asset_path",
+    "source_model",
+    "commercial_use_allowed",
+    "actor_likeness_risk",
+    "style_imitation_risk",
+    "watermark_detected",
+    "face_identity_drift",
+    "review_notes"
+  ],
+  "properties": {
+    "asset_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.-]+$"
+    },
+    "element_id": {
+      "type": "string",
+      "pattern": "^(C\\d{2}|LOC\\d{3}|PROP\\d{3}|WD\\d{3}|STYLE_[A-Z0-9_]+)$"
+    },
+    "element_type": {
+      "type": "string",
+      "enum": ["character", "location", "prop", "wardrobe", "style_ref"]
+    },
+    "asset_path": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "source_prompt_id": {
+      "type": "string",
+      "pattern": "^SC\\d{4}__[a-z0-9\\-]+__v\\d{2}$"
+    },
+    "source_model": {
+      "type": "string",
+      "enum": ["midjourney", "chatgpt_image", "nano_banana", "unknown"]
+    },
+    "commercial_use_allowed": {
+      "type": "string",
+      "enum": ["pending_review", "allowed", "restricted", "rejected"]
+    },
+    "actor_likeness_risk": {
+      "type": "boolean"
+    },
+    "style_imitation_risk": {
+      "type": "boolean"
+    },
+    "watermark_detected": {
+      "type": "boolean"
+    },
+    "face_identity_drift": {
+      "type": "boolean"
+    },
+    "review_notes": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "clearance_status": {
+      "type": "string",
+      "enum": ["pending_review", "cleared", "restricted", "rejected"]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "created_by": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+# docs/model_guides/nano_banana.yaml
+# Locked versioned guide for Nano Banana prompt generation.
+# Maintained by: human PR only.
+# Key capability: supports_identity_consistency — designed for character consistency.
+# Source evidence: docs/model_guides/sources/nano_banana_research_log.md
+
+model_id: nano_banana
+schema_version: "1.0"
+guide_version: "0.1.0"
+status: draft
+last_updated: "2026-04-30"
+maintained_by: "human PR only"
+phase: 1
+
+capability:
+  output_type: image
+  supports_negative_prompt: true
+  supports_identity_consistency: true
+  supports_variation_prompting: true
+  supports_seed: false
+
+prompt_rules:
+  style: variation_and_consistency_logic
+  max_words_recommended: 120
+  rules:
+    - id: identity_consistency_reference
+      rule: >
+        Use a reference image to anchor character identity across generations.
+        Nano Banana is optimised for generating consistent variations of a character.
+        Provide a canonical reference image when prompting for character elements.
+        supports_identity_consistency: true — this is the primary differentiator
+        from Midjourney for character-focused generations.
+      source: "Official Nano Banana docs — operator must verify URL"
+      confidence: medium
+      human_verified: false
+    - id: variation_prompting
+      rule: >
+        Use variation prompting to generate multiple distinct poses, angles,
+        or lighting conditions of the same character while preserving identity.
+        supports_variation_prompting: true.
+      source: "Official Nano Banana docs — operator must verify"
+      confidence: medium
+      human_verified: false
+    - id: negative_prompt_field
+      rule: >
+        Nano Banana supports negative prompts as a separate parameter.
+        Use to exclude unwanted style elements, artifacts, or features.
+        Verify exact parameter name in current docs (e.g. 'negative_prompt',
+        '--no', or platform-specific field).
+      source: "Official Nano Banana docs — operator must verify"
+      confidence: medium
+      human_verified: false
+    - id: no_canonical_ids_in_prompt
+      rule: >
+        Never include canonical IDs (C01, LOC001, PROP003) in prompt_text.
+        They must appear only in source_refs. The Critic enforces this.
+      source: "plan invariant"
+      confidence: high
+      human_verified: true
+
+  do_not_invent:
+    - "Exact parameter names — verify in official docs before use"
+    - "Seed support — not confirmed; verify before citing supports_seed"
+    - "Maximum prompt length — verify in current docs"
+    - "Character reference image format — verify upload/URL method"
+
+source_refs:
+  - url: "PLACEHOLDER — operator must find official Nano Banana documentation URL"
+    source_class: official_docs
+    human_verified: false
+    notes: >
+      Nano Banana has less publicly available documentation than Midjourney
+      or OpenAI. Operator must locate official docs before running Batch 4.
+
+notes: >
+  Status: draft — seed rules from research log. IMPORTANT: Source URL is a
+  placeholder. Operator must find official Nano Banana documentation, fill
+  in real URL, verify all rules, set human_verified: true, and change status
+  to 'active' before Batch 4 adapters run.
+  See docs/model_guides/sources/nano_banana_research_log.md for checklist.

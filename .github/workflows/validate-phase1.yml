@@ -84,6 +84,18 @@ jobs:
             exit 1
           )
 
+      - name: Validate prompt records (Batch 1)
+        run: |
+          python scripts/validate_prompt_records.py \
+            --repo-root . \
+            --report-json evidence/validation_reports/prompt_records_validation_report.json
+
+      - name: Validate production records (Batch 5.6)
+        run: |
+          python scripts/validate_production_records.py \
+            --repo-root . \
+            --report-json evidence/validation_reports/production_records_validation_report.json
+
       - name: Upload validation artifacts
         uses: actions/upload-artifact@v7
         with:

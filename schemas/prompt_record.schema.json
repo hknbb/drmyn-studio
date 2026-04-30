@@ -40,6 +40,7 @@
         "t2i_location_element",
         "t2i_prop_element",
         "t2i_style_reference",
+        "t2i_wardrobe_element",
         "omni_instruction",
         "lipsync_audio",
         "lipsync_shot",
@@ -78,6 +79,23 @@
           "type": "array",
           "uniqueItems": true,
           "items": { "type": "string", "pattern": "^PROP\\d{3}$" }
+        },
+        "wardrobe_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^WD\\d{3}$" }
+        },
+        "storyboard_options": {
+          "type": "string",
+          "minLength": 1
+        },
+        "shot_list_omni_suggestion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "omni_set_ref": {
+          "type": "string",
+          "minLength": 1
         }
       }
     },

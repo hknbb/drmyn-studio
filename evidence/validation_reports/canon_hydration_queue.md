@@ -5,10 +5,10 @@ This report lists canonical hydration work that still requires human review.
 ## Summary
 
 - Priority A: 5 files, 0 placeholder or scaffold findings
-- Priority B: 17 files, 0 placeholder or scaffold findings
+- Priority B: 18 files, 0 placeholder or scaffold findings
 - Priority C: 5 files, 5 placeholder or scaffold findings
 - Priority D: 115 files, 1188 placeholder or scaffold findings
-- Supplemental findings: 0 files, 0 findings
+- Supplemental findings: 2 files, 2 findings
 
 ## Priority A
 
@@ -203,6 +203,17 @@ This report lists canonical hydration work that still requires human review.
 - Review notes: Core planning records should not be normalized further until Priority A bibles are stable.
 
 ### `planning/props/PROP005.yaml`
+
+- Record type: `prop_record`
+- Placeholder count: `0`
+- Machine-filled or human-authored: `human-authored`
+- Safe for automatic fill: `false`
+- Recommended next action: Fill placeholder fields from canonical bibles and screenplay evidence; do not guess.
+- Dependencies: `source/continuity_bible.md`, `source/story_blueprint.md`, `source/screenplay/closing_price.fountain`
+- Placeholder lines or fields: _None_
+- Review notes: Core planning records should not be normalized further until Priority A bibles are stable.
+
+### `planning/props/PROP006.yaml`
 
 - Record type: `prop_record`
 - Placeholder count: `0`
@@ -1585,4 +1596,24 @@ This report lists canonical hydration work that still requires human review.
 
 ## Supplemental Findings
 
-No supplemental findings detected.
+### `docs/methodology/agent_prompt_pipeline.md`
+
+- Record type: `documentation`
+- Placeholder count: `1`
+- Machine-filled or human-authored: `human-authored`
+- Safe for automatic fill: `false`
+- Recommended next action: Review the scaffold content manually and replace placeholders only after upstream canon is stable.
+- Dependencies: `Priority A-C canon records`
+- Placeholder lines or fields: `line 429`
+- Review notes: Human review required before canonical completion.
+
+### `visual_dev/elements/characters/C05/selection_status.md`
+
+- Record type: `text_record`
+- Placeholder count: `1`
+- Machine-filled or human-authored: `human-authored`
+- Safe for automatic fill: `false`
+- Recommended next action: Review manually before editing.
+- Dependencies: `Priority A-C canon records`, `planning/scenes/`, `source/`
+- Placeholder lines or fields: `line 11`
+- Review notes: Human review required before canonical completion.

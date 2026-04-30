@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/prompt_run.schema.json",
+  "title": "Closing Price Prompt Run Record",
+  "description": "Tracks a single external model generation run triggered by a prompt record. One run record per batch of outputs from one model call.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "prompt_id",
+    "model",
+    "run_at",
+    "outputs_expected",
+    "status"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "description": "Unique run identifier. Format: RUN_{scene_id}_{MODEL_ABBREV}_{counter:04d}",
+      "pattern": "^RUN_SC\\d{4}_[A-Z]+_\\d{4}$"
+    },
+    "prompt_id": {
+      "type": "string",
+      "description": "The prompt record that triggered this run.",
+      "pattern": "^SC\\d{4}__[a-z0-9\\-]+__v\\d{2}$"
+    },
+    "model": {
+      "type": "string",
+      "description": "Canonical snake_case model identifier.",
+      "enum": ["midjourney", "chatgpt_image", "nano_banana", "kling_omni"]
+    },
+    "model_guidance_snapshot": {
+      "type": "string",
+      "description": "Path to the model guidance snapshot used for this run (if dynamic_snapshot mode).",
+      "maxLength": 500
+    },
+    "run_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp when the run was initiated."
+    },
+    "outputs_expected": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of output images or clips expected from this run."
+    },
+    "cost": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Credit or token cost for this run.",
+      "properties": {
+        "unit": {
+          "type": "string",
+          "enum": ["credits", "tokens", "usd", "unknown"],
+          "description": "Cost unit."
+        },
+        "value": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Numeric cost value in the specified unit."
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "complete", "error"],
+      "description": "Run lifecycle status."
+    },
+    "error_note": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Human note on error, populated when status=error."
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "created_by": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

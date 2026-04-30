@@ -1,0 +1,102 @@
+# docs/model_guides/midjourney.yaml
+# Locked versioned guide for Midjourney prompt generation.
+# Maintained by: human PR only.
+# Adapters and Critic read this file — never hardcode rules in adapter code.
+# Source evidence: docs/model_guides/sources/midjourney_research_log.md
+
+model_id: midjourney
+schema_version: "1.0"
+guide_version: "0.1.0"
+status: draft
+last_updated: "2026-04-30"
+maintained_by: "human PR only"
+phase: 1
+
+capability:
+  output_type: image
+  supports_negative_prompt: limited   # --no flag only; not a separate field
+  supports_image_reference: true
+  supports_seed: true
+  supports_consistency_reference: false
+  max_prompt_length: unlimited
+
+prompt_rules:
+  style: compact_visual_clauses
+  max_words_recommended: 80
+  negative_prompt_format: "--no <term>"
+  rules:
+    - id: subject_first
+      rule: >
+        Lead with the primary subject and its dominant quality.
+        Example: "pale young woman, dark circles, hospital bracelet" not
+        "a woman who is pale and young and has dark circles".
+      source: "https://docs.midjourney.com/docs/prompts"
+      confidence: medium
+      human_verified: false
+    - id: compact_clauses
+      rule: >
+        Use comma-separated noun phrases, not full sentences.
+        Aim for 40–80 words. Diminishing returns beyond 80 words.
+      source: "https://docs.midjourney.com/docs/prompts"
+      confidence: medium
+      human_verified: false
+    - id: negative_via_no_flag
+      rule: >
+        Negative constraints use --no at the end of the prompt.
+        Example: "... --no text overlays, motion blur, lens flare"
+        supports_negative_prompt is 'limited' — Critic must require non-empty
+        negative_prompt for Midjourney prompts.
+      source: "https://docs.midjourney.com/docs/parameter-list"
+      confidence: medium
+      human_verified: false
+    - id: aspect_ratio
+      rule: >
+        Use --ar 16:9 for cinematic wide, --ar 2.39:1 for anamorphic,
+        --ar 1:1 for square. Always specify for production shots.
+      source: "https://docs.midjourney.com/docs/parameter-list"
+      confidence: medium
+      human_verified: false
+    - id: pin_version
+      rule: >
+        Always specify --v 6.1 (or current version) to pin output style.
+        Do not rely on default version as it changes over time.
+      source: "https://docs.midjourney.com/docs/versions"
+      confidence: medium
+      human_verified: false
+    - id: seed_for_reproducibility
+      rule: >
+        Use --seed <integer> to enable reproducibility across variants.
+        Same seed + same prompt = similar results.
+      source: "https://docs.midjourney.com/docs/parameter-list"
+      confidence: medium
+      human_verified: false
+    - id: no_canonical_ids_in_prompt
+      rule: >
+        Never include canonical IDs (C01, LOC001, PROP003) in prompt_text.
+        They must appear only in source_refs. The Critic enforces this.
+      source: "plan invariant"
+      confidence: high
+      human_verified: true
+  do_not_invent:
+    - "Any stylistic shorthand not from official docs (e.g. 'Kodak Vision3 emulation')"
+    - "Prompt weighting syntax (::2) — verify current support in MJ 6.x"
+    - "Character reference --cref — verify format and support in current docs"
+
+source_refs:
+  - url: "https://docs.midjourney.com/docs/prompts"
+    source_class: official_docs
+    human_verified: false
+    notes: "Main prompt reference. Operator must verify."
+  - url: "https://docs.midjourney.com/docs/parameter-list"
+    source_class: official_docs
+    human_verified: false
+    notes: "Full parameter list. Operator must verify --no behavior."
+  - url: "https://docs.midjourney.com/docs/versions"
+    source_class: official_release_notes
+    human_verified: false
+    notes: "Version changelog. Verify current default version."
+
+notes: >
+  Status: draft — seed rules from research log. Operator must visit all source_refs,
+  set human_verified: true, and change status to 'active' before Batch 4 adapters run.
+  See docs/model_guides/sources/midjourney_research_log.md for full operator checklist.
