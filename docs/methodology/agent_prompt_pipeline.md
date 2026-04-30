@@ -87,15 +87,17 @@ feat/batch-9-scene-clip-locking
 ### Current Batch State
 
 ```
-active branch = feat/batch-6-pipeline-cli
-implemented through = Batch 6
-next branch = feat/batch-7-langgraph-orchestration
+active branch = feat/batch-7-langgraph-orchestration
+implemented through = Batch 7
+next branch = feat/batch-7.5-shot-list-omni-suggestion
 ```
 
-Batch 6 adds `scripts/agents/run_pipeline.py` as a thin CLI wrapper around
-already-implemented agents. It does not add LangGraph orchestration, Kling Omni
-generation, video take review, scene clip locking, automatic storyboard
-selection, binary movement, or lifecycle promotion.
+Batch 7 adds `scripts/agents/state.py` and `scripts/agents/graph.py` as a
+LangGraph-compatible orchestration wrapper around already-implemented agents.
+If LangGraph is unavailable locally, the wrapper falls back to an invoke-style
+runner with the same control-flow behavior. It does not add Kling Omni
+generation, video take review, shot_list_omni suggestion, scene clip locking,
+automatic storyboard selection, binary movement, or lifecycle promotion.
 
 ---
 
@@ -1008,6 +1010,34 @@ python scripts/agents/run_pipeline.py \
 Batch 6 deliberately does not expose `review-video-takes`, Kling Omni
 generation, scene clip locking, or LangGraph graph execution. Those remain
 future batches.
+
+### Batch 7 Graph Wrapper
+
+Batch 7 exposes a serializable `PipelineState` and a graph/fallback runner:
+
+```python
+from scripts.agents.graph import run_graph
+from scripts.agents.state import PipelineState
+
+state = PipelineState(
+    repo_root=".",
+    mode="operator-next-step",
+)
+result = run_graph(state)
+```
+
+The graph wrapper supports the same production-safe modes as Batch 6:
+
+- `refresh-model-guidance`
+- `generate-prompts`
+- `review-outputs`
+- `generate-storyboard-options`
+- `operator-next-step`
+
+It is a control-flow layer only. Existing agent boundaries remain authoritative:
+critic checks still gate prompt writing, review output still writes metadata
+only, storyboard selection remains human-gated, and lifecycle fields remain
+untouched.
 
 ---
 
