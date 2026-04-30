@@ -276,3 +276,38 @@ def test_production_validator_rejects_bad_scene_clip_map(tmp_path: Path) -> None
 
     assert report.invalid_files >= 1
     assert any("repo_binary_committed" in issue.field_path for issue in report.issues)
+
+
+def test_production_validator_rejects_local_proxy_repo_binary_path(
+    tmp_path: Path,
+) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "visual_dev/omni_sets/SC0001/selected_take.yaml",
+        {
+            "scene_id": "SC0001",
+            "selected_take": "SC0001_TAKE002",
+            "source_video_takes": "visual_dev/omni_sets/SC0001/video_takes.yaml",
+            "prompt_id": PROMPT_ID,
+            "platform_asset_ref": "kling://x",
+            "external_storage_ref": "dvc://x",
+            "local_proxy_ref": "post/edit/proxies/SC0001/proxy.mp4",
+            "repo_binary_committed": False,
+            "lock_status": "locked_metadata_only",
+            "locked_by": "human_operator",
+            "locked_at": "2026-04-30T00:00:00Z",
+            "storage_policy": "external_video_only",
+            "notes": "Bad: local_proxy_ref points to a repo video binary.",
+        },
+    )
+    (tmp_path / "evidence/scene_clip_map.csv").parent.mkdir(parents=True, exist_ok=True)
+    (tmp_path / "evidence/scene_clip_map.csv").write_text(
+        "scene_id,selected_take,prompt_id,external_storage_ref,platform_asset_ref,local_proxy_ref,repo_binary_committed,lock_status\n"
+        "SC0001,SC0001_TAKE002,SC0001__omni-kling-omni__v01,dvc://x,kling://x,,false,locked_metadata_only\n",
+        encoding="utf-8",
+    )
+
+    report = run_validation(tmp_path)
+
+    assert report.invalid_files >= 1
+    assert any("local_proxy_ref" in issue.field_path for issue in report.issues)
