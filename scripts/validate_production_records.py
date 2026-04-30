@@ -38,6 +38,7 @@ ASSET_CLEARANCE_PATTERN = "evidence/asset_clearance/*.yaml"
 PROMPT_REVIEW_BRIEF_PATTERN = "evidence/prompt_reviews/*_brief.yaml"
 STORYBOARD_OPTIONS_PATTERN = "visual_dev/storyboards/SC*/storyboard_options.yaml"
 BATCH_JOB_PATTERN = "evidence/batch_jobs/*.yaml"
+OPERATOR_SESSION_PATTERN = "evidence/operator_sessions/*.yaml"
 
 FORBIDDEN_LIFECYCLE_KEYS = {"pack_status", "canon_lock", "approved", "locked"}
 PACK_SUGGESTION_REQUIRED_KEYS = {
@@ -99,6 +100,7 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         "prompt_review_brief": sorted(repo_root.glob(PROMPT_REVIEW_BRIEF_PATTERN)),
         "storyboard_options": sorted(repo_root.glob(STORYBOARD_OPTIONS_PATTERN)),
         "batch_job": sorted(repo_root.glob(BATCH_JOB_PATTERN)),
+        "operator_session": sorted(repo_root.glob(OPERATOR_SESSION_PATTERN)),
     }
 
 
@@ -341,6 +343,7 @@ def run_validation(
     asset_clearance_validator = Draft202012Validator(asset_clearance_schema)
     storyboard_options_validator = Draft202012Validator(storyboard_options_schema)
     batch_job_validator = Draft202012Validator(batch_job_schema)
+    operator_session_validator: Draft202012Validator | None = None
 
     grouped_files = collect_production_files(repo_root)
     total = sum(len(files) for files in grouped_files.values())
@@ -382,6 +385,20 @@ def run_validation(
                     repo_root=repo_root,
                     record_type=record_type,
                     validator=batch_job_validator,
+                )
+            elif record_type == "operator_session":
+                if operator_session_validator is None:
+                    operator_session_schema = load_schema(
+                        repo_root / "schemas" / "operator_session.schema.json"
+                    )
+                    operator_session_validator = Draft202012Validator(
+                        operator_session_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=operator_session_validator,
                 )
             else:
                 file_issues = [

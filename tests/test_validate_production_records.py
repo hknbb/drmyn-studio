@@ -28,6 +28,7 @@ def _copy_schemas(repo_root: Path) -> None:
         "asset_clearance.schema.json",
         "storyboard_option.schema.json",
         "batch_job.schema.json",
+        "operator_session.schema.json",
     ):
         (schemas_dir / name).write_text(
             (REPO_ROOT / "schemas" / name).read_text(encoding="utf-8"),
@@ -106,6 +107,19 @@ def _valid_prompt_review_brief() -> dict:
             "revision_reason": "Reduce editorial styling.",
             "negative_constraints": ["No fashion editorial lighting."],
         },
+    }
+
+
+def _valid_operator_session() -> dict:
+    return {
+        "session_id": "OP-SC0001-20260430",
+        "created_at": "2026-04-30T00:00:00Z",
+        "scene_id": "SC0001",
+        "current_task": "t2i_image_generation",
+        "recommended_files": ["prompts/draft/SC0001__t2i-char-c01-midjourney__v01.yaml"],
+        "recommended_steps": ["Run external T2I generation manually."],
+        "status": "planned",
+        "notes": "Metadata-only operator session.",
     }
 
 
@@ -242,3 +256,33 @@ def test_report_json_is_written(tmp_path: Path) -> None:
     assert report.total_files == 1
     assert payload["total_files"] == 1
     assert payload["by_record_type"]["image_selection"] == 1
+
+
+def test_valid_operator_session_passes(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "evidence/operator_sessions/OP-SC0001-20260430.yaml",
+        _valid_operator_session(),
+    )
+
+    report = run_validation(tmp_path)
+
+    assert report.total_files == 1
+    assert report.valid_files == 1
+    assert report.by_record_type["operator_session"] == 1
+    assert report.issues == []
+
+
+def test_invalid_operator_session_status_fails(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    payload = _valid_operator_session()
+    payload["status"] = "promoted"
+    _write_yaml(
+        tmp_path / "evidence/operator_sessions/OP-SC0001-20260430.yaml",
+        payload,
+    )
+
+    report = run_validation(tmp_path)
+
+    assert report.invalid_files == 1
+    assert any(issue.record_type == "operator_session" for issue in report.issues)
