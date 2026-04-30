@@ -33,6 +33,7 @@ from scripts.agents.adapters import (  # noqa: E402
 )
 from scripts.agents.adapters.chatgpt_image import ChatGPTImageAdapter  # noqa: E402
 from scripts.agents.adapters.midjourney import MidjourneyAdapter  # noqa: E402
+from scripts.agents.adapters.kling_omni import KlingOmniAdapter  # noqa: E402
 from scripts.agents.adapters.nano_banana import NanaBananaAdapter  # noqa: E402
 from scripts.agents.neutral_brief import NeutralBrief, VisualAnchor  # noqa: E402
 
@@ -214,9 +215,9 @@ def test_get_adapter_snake_case_alias(tmp_path: Path) -> None:
     assert isinstance(adapter, ChatGPTImageAdapter)
 
 
-def test_get_adapter_kling_omni_raises_import_error(tmp_path: Path) -> None:
-    with pytest.raises(ImportError, match="Batch 8"):
-        get_adapter("kling-omni", tmp_path)
+def test_get_adapter_kling_omni(tmp_path: Path) -> None:
+    adapter = get_adapter("kling-omni", tmp_path)
+    assert isinstance(adapter, KlingOmniAdapter)
 
 
 # ---------------------------------------------------------------------------

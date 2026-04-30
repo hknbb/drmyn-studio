@@ -92,7 +92,8 @@ def get_adapter(
     Resolve *model_id* and return an initialised adapter instance.
 
     Accepts kebab-case (CLI form) or snake_case (Python form) identifiers.
-    ``kling_omni`` / ``kling-omni`` raises ``ImportError`` until Batch 8.
+    ``kling_omni`` / ``kling-omni`` resolves to the Batch 8 metadata-only
+    adapter.
     """
     key = resolve_model_key(model_id)
     adapter_name = MODEL_ALIAS_MAP[key]["adapter"]
@@ -104,10 +105,7 @@ def get_adapter(
     elif adapter_name == "nano_banana":
         from scripts.agents.adapters.nano_banana import NanaBananaAdapter as Cls
     elif adapter_name == "kling_omni":
-        raise ImportError(
-            "kling_omni adapter is not yet implemented (Batch 8). "
-            "Use midjourney, chatgpt-image, or nano-banana."
-        )
+        from scripts.agents.adapters.kling_omni import KlingOmniAdapter as Cls
     else:  # pragma: no cover
         raise ValueError(f"No adapter class found for {adapter_name!r}")
 

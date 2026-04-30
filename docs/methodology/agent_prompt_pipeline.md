@@ -87,17 +87,17 @@ feat/batch-9-scene-clip-locking
 ### Current Batch State
 
 ```
-active branch = feat/batch-7.5-shot-list-omni-suggestion
-implemented through = Batch 7.5
-next branch = feat/batch-8-kling-omni-adapter
+active branch = feat/batch-8-kling-omni-adapter
+implemented through = Batch 8
+next branch = feat/batch-8.5-video-take-review
 ```
 
-Batch 7.5 adds a metadata-only shot_list_omni suggestion layer. It reads a
-human-selected storyboard option and writes
-`visual_dev/storyboards/SC####/shot_list_omni_suggestion.yaml` for later human
-PR application to `scene_card.yaml`. It does not modify scene cards, select
-storyboard options, add Kling Omni generation, video take review, scene clip
-locking, binary movement, or lifecycle promotion.
+Batch 8 adds a metadata-only Kling Omni adapter. It writes draft prompt records
+and prompt run records only after Phase 3 gates are satisfied, including
+non-empty `scene_card.shot_list_omni`. It does not run Kling, write video
+files, create `video_takes.yaml`, create `selected_take.yaml`, update
+`scene_clip_map.csv`, modify scene cards, modify pack manifests, or promote
+lifecycle state.
 
 ---
 
@@ -1033,6 +1033,7 @@ The graph wrapper supports the same production-safe modes as Batch 6:
 - `review-outputs`
 - `generate-storyboard-options`
 - `generate-shot-list-omni-suggestion`
+- `generate-kling-omni-prompts`
 - `operator-next-step`
 
 It is a control-flow layer only. Existing agent boundaries remain authoritative:
@@ -1063,6 +1064,28 @@ The suggestion file is metadata-only and contains `applied_to_scene_card:
 false` and `applied_at: null`. A human later applies the suggested
 `shot_list_omni` to `planning/scenes/SC####/scene_card.yaml` through PR review.
 Batch 7.5 does not unlock Kling by itself.
+
+### Batch 8 Kling Omni Adapter
+
+Kling prompt metadata is generated only after a human PR has applied
+`shot_list_omni` to the scene card:
+
+```bash
+python scripts/agents/run_pipeline.py \
+  --mode generate-kling-omni-prompts \
+  --scene-id SC0001
+```
+
+The adapter blocks if `shot_list_omni` is empty, if `omni_set_ref` is missing,
+or if existing element pack metadata shows packs are not `locked`. The output
+is limited to:
+
+- `prompts/draft/SC####__omni-kling-omni__v01.yaml`
+- `evidence/prompt_runs/RUN_SC####_KO_0001.yaml`
+- normal writer-managed CSV/library metadata
+
+External Kling generation, video take review, selected take locking, and
+scene clip mapping remain future batches.
 
 ---
 

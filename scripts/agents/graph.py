@@ -15,6 +15,7 @@ from typing import Any, Callable
 from scripts.agents.operator_next_step import recommend_next_step
 from scripts.agents.run_pipeline import (
     PipelineError,
+    run_generate_kling_omni_prompts,
     run_generate_prompts,
     run_generate_shot_list_omni_suggestion,
     run_generate_storyboard_options,
@@ -30,6 +31,7 @@ SUPPORTED_GRAPH_MODES = {
     "review-outputs",
     "generate-storyboard-options",
     "generate-shot-list-omni-suggestion",
+    "generate-kling-omni-prompts",
     "operator-next-step",
 }
 
@@ -117,6 +119,8 @@ def run_graph_state(state: PipelineState) -> PipelineState:
             return _run_pipeline_result(state, run_generate_storyboard_options)
         if state.mode == "generate-shot-list-omni-suggestion":
             return _run_pipeline_result(state, run_generate_shot_list_omni_suggestion)
+        if state.mode == "generate-kling-omni-prompts":
+            return _run_pipeline_result(state, run_generate_kling_omni_prompts)
     except (PipelineError, OSError, ValueError, ImportError) as exc:
         state.errors.append(str(exc))
     return state

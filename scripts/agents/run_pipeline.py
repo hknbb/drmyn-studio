@@ -25,6 +25,7 @@ if str(REPO_ROOT) not in sys.path:
 
 from scripts.agents.adapters import MODEL_ALIAS_MAP, get_adapter, resolve_model_key
 from scripts.agents.adapters._base import BriefNotReadyError
+from scripts.agents.adapters.kling_omni import KlingOmniAdapter
 from scripts.agents.critic import CriticAgent
 from scripts.agents.model_research import ModelResearchAgent, find_latest_snapshot
 from scripts.agents.neutral_brief import NeutralBriefAgent
@@ -305,6 +306,65 @@ def run_generate_prompts(args: argparse.Namespace) -> PipelineResult:
     )
 
 
+def run_generate_kling_omni_prompts(args: argparse.Namespace) -> PipelineResult:
+    repo_root = args.repo_root.resolve()
+    scene_ids = _scene_ids(args)
+    snapshot_dir = (
+        (repo_root / args.model_guidance_snapshot_dir).resolve()
+        if args.model_guidance_snapshot_dir
+        else None
+    )
+    if snapshot_dir is not None and not snapshot_dir.is_dir():
+        raise PipelineError(f"Snapshot directory not found: {args.model_guidance_snapshot_dir}")
+    snapshot_mapping = _parse_snapshot_mapping(args.model_guidance_snapshots, repo_root)
+
+    critic = CriticAgent(repo_root)
+    writer = PromptWriter(repo_root)
+    pending: list[tuple[dict[str, Any], dict[str, Any], list[str]]] = []
+    run_counter = 1
+
+    for scene_id in scene_ids:
+        snapshot = _snapshot_for_model(
+            repo_root=repo_root,
+            model_id="kling_omni",
+            snapshot_dir=snapshot_dir,
+            mapping=snapshot_mapping,
+        )
+        adapter = KlingOmniAdapter(
+            repo_root,
+            model_guidance_mode="dynamic_snapshot" if snapshot else "locked_guide",
+            model_guidance_snapshot=snapshot,
+        )
+        result = adapter.generate(scene_id, run_counter=run_counter)
+        critic_result = critic.check(result.prompt_record)
+        if not critic_result.passed:
+            raise PipelineError(
+                "Critic rejected generated Kling prompt "
+                f"{result.prompt_record.get('prompt_id')}: {critic_result.hard_errors}"
+            )
+        pending.append((result.prompt_record, result.run_record, result.warnings))
+        run_counter += 1
+
+    written: list[str] = []
+    skipped: list[str] = []
+    for prompt_record, run_record, warnings in pending:
+        write_result = writer.write(prompt_record, run_record)
+        written.extend(
+            [
+                _relative(write_result.prompt_path, repo_root),
+                _relative(write_result.run_path, repo_root),
+            ]
+        )
+        skipped.extend(warnings)
+
+    return PipelineResult(
+        mode=args.mode,
+        written_files=written,
+        skipped=skipped,
+        message="Draft Kling Omni prompt records written; external Kling was not run.",
+    )
+
+
 def _infer_review_target(prompt_id: str) -> tuple[str, str, str]:
     match = PROMPT_ID_RE.match(prompt_id)
     if not match:
@@ -418,6 +478,7 @@ def build_parser() -> argparse.ArgumentParser:
             "review-outputs",
             "generate-storyboard-options",
             "generate-shot-list-omni-suggestion",
+            "generate-kling-omni-prompts",
             "operator-next-step",
         ],
     )
@@ -452,6 +513,8 @@ def main(argv: list[str] | None = None) -> int:
             result = run_generate_storyboard_options(args)
         elif args.mode == "generate-shot-list-omni-suggestion":
             result = run_generate_shot_list_omni_suggestion(args)
+        elif args.mode == "generate-kling-omni-prompts":
+            result = run_generate_kling_omni_prompts(args)
         else:  # pragma: no cover - argparse choices prevent this
             raise PipelineError(f"Unsupported mode: {args.mode}")
     except (PipelineError, OSError, ValueError, ImportError) as exc:
