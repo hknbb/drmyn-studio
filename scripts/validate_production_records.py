@@ -25,6 +25,7 @@ CI contract:
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import sys
 from dataclasses import asdict, dataclass
@@ -47,6 +48,19 @@ BATCH_JOB_PATTERN = "evidence/batch_jobs/*.yaml"
 OPERATOR_SESSION_PATTERN = "evidence/operator_sessions/*.yaml"
 VIDEO_TAKE_PATTERN = "visual_dev/omni_sets/SC*/video_takes.yaml"
 VIDEO_REVIEW_PATTERN = "evidence/video_reviews/*.yaml"
+SELECTED_TAKE_PATTERN = "visual_dev/omni_sets/SC*/selected_take.yaml"
+SCENE_CLIP_MAP_PATH = "evidence/scene_clip_map.csv"
+
+SCENE_CLIP_MAP_HEADER = [
+    "scene_id",
+    "selected_take",
+    "prompt_id",
+    "external_storage_ref",
+    "platform_asset_ref",
+    "local_proxy_ref",
+    "repo_binary_committed",
+    "lock_status",
+]
 
 FORBIDDEN_LIFECYCLE_KEYS = {"pack_status", "canon_lock", "approved", "locked"}
 PACK_SUGGESTION_REQUIRED_KEYS = {
@@ -114,6 +128,11 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         "operator_session": sorted(repo_root.glob(OPERATOR_SESSION_PATTERN)),
         "video_take": sorted(repo_root.glob(VIDEO_TAKE_PATTERN)),
         "video_review": sorted(repo_root.glob(VIDEO_REVIEW_PATTERN)),
+        "selected_take": sorted(repo_root.glob(SELECTED_TAKE_PATTERN)),
+        "scene_clip_map": [repo_root / SCENE_CLIP_MAP_PATH]
+        if (repo_root / SCENE_CLIP_MAP_PATH).exists()
+        or list(repo_root.glob(SELECTED_TAKE_PATTERN))
+        else [],
     }
 
 
@@ -437,11 +456,141 @@ def validate_video_take_consistency(
     return issues
 
 
+def validate_scene_clip_map_file(
+    path: Path,
+    repo_root: Path,
+) -> list[ProductionValidationIssue]:
+    """Validate the metadata-only scene clip map CSV."""
+    record_type = "scene_clip_map"
+    issues: list[ProductionValidationIssue] = []
+    if not path.exists():
+        return [
+            _structural_issue(
+                path=path,
+                repo_root=repo_root,
+                record_type=record_type,
+                field_path="",
+                message="scene_clip_map.csv is required when selected_take.yaml exists.",
+            )
+        ]
+    try:
+        with path.open("r", encoding="utf-8", newline="") as f:
+            reader = csv.DictReader(f)
+            if reader.fieldnames != SCENE_CLIP_MAP_HEADER:
+                return [
+                    _structural_issue(
+                        path=path,
+                        repo_root=repo_root,
+                        record_type=record_type,
+                        field_path="header",
+                        message="scene_clip_map.csv header is invalid.",
+                    )
+                ]
+            rows = list(reader)
+    except Exception as exc:
+        return [
+            _structural_issue(
+                path=path,
+                repo_root=repo_root,
+                record_type=record_type,
+                field_path="",
+                message=f"CSV parse error: {exc}",
+            )
+        ]
+
+    seen_scene_rows: dict[str, dict[str, str]] = {}
+    for index, row in enumerate(rows):
+        scene_id = row.get("scene_id", "")
+        field_prefix = f"rows.{index}"
+        if not scene_id:
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path=f"{field_prefix}.scene_id",
+                    message="scene_id is required.",
+                )
+            )
+            continue
+        selected_path = (
+            repo_root / "visual_dev" / "omni_sets" / scene_id / "selected_take.yaml"
+        )
+        if not selected_path.exists():
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path=f"{field_prefix}.scene_id",
+                    message="scene_clip_map row requires matching selected_take.yaml.",
+                )
+            )
+        if scene_id in seen_scene_rows and seen_scene_rows[scene_id] != row:
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path=f"{field_prefix}.scene_id",
+                    message="Duplicate scene_id rows must be identical.",
+                )
+            )
+        seen_scene_rows[scene_id] = row
+        if not row.get("selected_take"):
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path=f"{field_prefix}.selected_take",
+                    message="selected_take is required.",
+                )
+            )
+        if not row.get("external_storage_ref"):
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path=f"{field_prefix}.external_storage_ref",
+                    message="external_storage_ref is required.",
+                )
+            )
+        if row.get("repo_binary_committed") != "false":
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path=f"{field_prefix}.repo_binary_committed",
+                    message='repo_binary_committed must be "false".',
+                )
+            )
+
+    selected_take_files = sorted(repo_root.glob(SELECTED_TAKE_PATTERN))
+    mapped_scene_ids = set(seen_scene_rows)
+    for selected_path in selected_take_files:
+        scene_id = selected_path.parent.name
+        if scene_id not in mapped_scene_ids:
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path="scene_id",
+                    message=f"Missing scene_clip_map row for {scene_id}.",
+                )
+            )
+
+    return issues
+
+
 def run_validation(
     repo_root: Path,
     report_json: Path | None = None,
 ) -> ProductionValidationReport:
-    """Run Batch 5.6 production metadata validation."""
+    """Run production metadata validation."""
     image_selection_schema = load_schema(repo_root / "schemas" / "image_selection.schema.json")
     asset_clearance_schema = load_schema(repo_root / "schemas" / "asset_clearance.schema.json")
     storyboard_options_schema = load_schema(
@@ -461,6 +610,7 @@ def run_validation(
     operator_session_validator: Draft202012Validator | None = None
     video_take_validator: Draft202012Validator | None = None
     video_review_validator: Draft202012Validator | None = None
+    selected_take_validator: Draft202012Validator | None = None
 
     grouped_files = collect_production_files(repo_root)
     total = sum(len(files) for files in grouped_files.values())
@@ -549,6 +699,20 @@ def run_validation(
                     record_type=record_type,
                     validator=video_review_validator,
                 )
+            elif record_type == "selected_take":
+                if selected_take_validator is None:
+                    selected_take_schema = load_schema(
+                        repo_root / "schemas" / "selected_take.schema.json"
+                    )
+                    selected_take_validator = Draft202012Validator(selected_take_schema)
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=selected_take_validator,
+                )
+            elif record_type == "scene_clip_map":
+                file_issues = validate_scene_clip_map_file(path, repo_root)
             else:
                 file_issues = [
                     ProductionValidationIssue(
@@ -610,7 +774,7 @@ def print_report(report: ProductionValidationReport) -> None:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="Validate Batch 5.5 production metadata YAML records."
+        description="Validate production metadata YAML/CSV records."
     )
     parser.add_argument(
         "--repo-root",

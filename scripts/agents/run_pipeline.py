@@ -2,8 +2,9 @@
 Thin metadata-only production pipeline CLI.
 
 This module exposes implemented agent steps behind one argparse entry point.
-It does not run external platforms, move binaries, perform clip locking, select
-storyboard options, or promote lifecycle state.
+It does not run external platforms, move binaries, create video/proxy binaries,
+select storyboard options, or promote lifecycle state. Clip locking is
+metadata-only: it writes selected_take.yaml and scene_clip_map.csv only.
 """
 
 from __future__ import annotations
@@ -30,6 +31,7 @@ from scripts.agents.model_research import ModelResearchAgent, find_latest_snapsh
 from scripts.agents.neutral_brief import NeutralBriefAgent
 from scripts.agents.operator_next_step import recommend_next_step
 from scripts.agents.review_outputs import ImageReviewAgent, QUALITY_SCORE_FIELDS
+from scripts.agents.scene_clip_locking import SceneClipLockingAgent
 from scripts.agents.shot_list_omni_suggestion import ShotListOmniSuggestionAgent
 from scripts.agents.source_context import SourceContextAgent
 from scripts.agents.storyboard_options import StoryboardOptionsAgent
@@ -501,6 +503,32 @@ def run_review_video_takes(args: argparse.Namespace) -> PipelineResult:
     )
 
 
+def run_lock_scene_clip(args: argparse.Namespace) -> PipelineResult:
+    repo_root = args.repo_root.resolve()
+    if not args.scene_id:
+        raise PipelineError("lock-scene-clip requires --scene-id.")
+    if not args.locked_by:
+        raise PipelineError("lock-scene-clip requires --locked-by.")
+
+    result = SceneClipLockingAgent(repo_root).lock_scene_clip(
+        scene_id=args.scene_id,
+        locked_by=args.locked_by,
+        locked_at=args.locked_at,
+    )
+
+    return PipelineResult(
+        mode=args.mode,
+        written_files=[
+            _relative(result.selected_take_path, repo_root),
+            _relative(result.scene_clip_map_path, repo_root),
+        ],
+        skipped=[],
+        message=(
+            "Scene clip locked as metadata only; video/proxy binaries were not copied."
+        ),
+    )
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Run one existing metadata-only production pipeline mode."
@@ -516,6 +544,7 @@ def build_parser() -> argparse.ArgumentParser:
             "generate-shot-list-omni-suggestion",
             "generate-kling-omni-prompts",
             "review-video-takes",
+            "lock-scene-clip",
             "operator-next-step",
         ],
     )
@@ -531,6 +560,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--images")
     parser.add_argument("--takes-metadata")
     parser.add_argument("--review-notes")
+    parser.add_argument("--locked-by")
+    parser.add_argument("--locked-at")
     return parser
 
 
@@ -555,6 +586,8 @@ def main(argv: list[str] | None = None) -> int:
             result = run_generate_kling_omni_prompts(args)
         elif args.mode == "review-video-takes":
             result = run_review_video_takes(args)
+        elif args.mode == "lock-scene-clip":
+            result = run_lock_scene_clip(args)
         else:  # pragma: no cover - argparse choices prevent this
             raise PipelineError(f"Unsupported mode: {args.mode}")
     except (PipelineError, OSError, ValueError, ImportError) as exc:

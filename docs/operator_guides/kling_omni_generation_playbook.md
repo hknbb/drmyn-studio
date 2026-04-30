@@ -53,3 +53,19 @@ phase. Store only `platform_asset_ref` and `external_storage_ref` metadata.
 
 Batch 8.5 may write `video_takes.yaml`; `selected_take.yaml` and
 `evidence/scene_clip_map.csv` remain Batch 9 outputs.
+
+## Final Clip Locking
+
+When `video_takes.yaml` has exactly one selected take, lock the final scene clip
+metadata:
+
+```bash
+python scripts/agents/run_pipeline.py \
+  --mode lock-scene-clip \
+  --scene-id SC0001 \
+  --locked-by human_operator \
+  --locked-at 2026-04-30T00:00:00Z
+```
+
+This writes `selected_take.yaml` and `evidence/scene_clip_map.csv` only. It
+does not modify `video_takes.yaml` and does not create proxy/video binaries.

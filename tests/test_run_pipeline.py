@@ -149,14 +149,14 @@ def test_review_outputs_writes_metadata_without_copying_binaries_or_pack_manifes
     assert pack_manifest.read_text(encoding="utf-8") == before_pack_manifest
 
 
-def test_invalid_clip_locking_mode_fails_cleanly(tmp_path: Path) -> None:
+def test_invalid_future_render_mode_fails_cleanly(tmp_path: Path) -> None:
     with pytest.raises(SystemExit) as exc:
         run_pipeline.main(
             [
                 "--repo-root",
                 str(tmp_path),
                 "--mode",
-                "lock-scene-clip",
+                "render-final-film",
             ]
         )
 

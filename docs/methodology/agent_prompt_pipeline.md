@@ -87,17 +87,17 @@ feat/batch-9-scene-clip-locking
 ### Current Batch State
 
 ```
-active branch = feat/batch-8.5-video-take-review
-implemented through = Batch 8.5
-next branch = feat/batch-9-scene-clip-locking
+active branch = feat/batch-9-scene-clip-locking
+implemented through = Batch 9
+next branch = post-Batch-9 review / pilot production hardening
 ```
 
-Batch 8.5 adds metadata-only video take review for externally generated Kling
-takes. It writes `visual_dev/omni_sets/SC####/video_takes.yaml`,
-`evidence/video_reviews/*`, and optional corrected prompt review briefs only.
-It does not run Kling, copy video files, create `selected_take.yaml`, update
-`scene_clip_map.csv`, modify scene cards, modify prompt records, modify pack
-manifests, or promote lifecycle state.
+Batch 9 adds metadata-only final scene clip locking. It reads
+`visual_dev/omni_sets/SC####/video_takes.yaml`, verifies exactly one selected
+external take, then writes `selected_take.yaml` and
+`evidence/scene_clip_map.csv`. It does not run external video tools, copy
+video/proxy binaries, modify `video_takes.yaml`, modify scene cards, modify
+prompt records, modify pack manifests, or promote unrelated lifecycle state.
 
 ---
 
@@ -1035,6 +1035,7 @@ The graph wrapper supports the same production-safe modes as Batch 6:
 - `generate-shot-list-omni-suggestion`
 - `generate-kling-omni-prompts`
 - `review-video-takes`
+- `lock-scene-clip`
 - `operator-next-step`
 
 It is a control-flow layer only. Existing agent boundaries remain authoritative:
@@ -1111,6 +1112,27 @@ write:
 
 Batch 8.5 does not create `selected_take.yaml` or `evidence/scene_clip_map.csv`;
 those remain Batch 9 clip locking outputs.
+
+### Batch 9 Scene Clip Locking
+
+After `video_takes.yaml` contains exactly one selected take, lock final scene
+clip metadata with:
+
+```bash
+python scripts/agents/run_pipeline.py \
+  --mode lock-scene-clip \
+  --scene-id SC0001 \
+  --locked-by human_operator \
+  --locked-at 2026-04-30T00:00:00Z
+```
+
+The mode writes:
+
+- `visual_dev/omni_sets/SC####/selected_take.yaml`
+- `evidence/scene_clip_map.csv`
+
+The selected take must keep `repo_binary_committed: false` and must provide an
+`external_storage_ref`. No video or proxy binary is created or copied.
 
 ---
 

@@ -28,6 +28,8 @@ class PipelineState:
     images: str | None = None
     takes_metadata: str | None = None
     review_notes: str | None = None
+    locked_by: str | None = None
+    locked_at: str | None = None
     save_snapshot: bool = False
     model_guidance_snapshot_dir: str | None = None
     model_guidance_snapshots: str | None = None
@@ -54,6 +56,8 @@ class PipelineState:
             images=data.get("images"),
             takes_metadata=data.get("takes_metadata"),
             review_notes=data.get("review_notes"),
+            locked_by=data.get("locked_by"),
+            locked_at=data.get("locked_at"),
             save_snapshot=bool(data.get("save_snapshot", False)),
             model_guidance_snapshot_dir=data.get("model_guidance_snapshot_dir"),
             model_guidance_snapshots=data.get("model_guidance_snapshots"),

@@ -30,6 +30,7 @@ def _copy_schemas(repo_root: Path) -> None:
         "shot_list_omni_suggestion.schema.json",
         "video_take.schema.json",
         "video_review.schema.json",
+        "selected_take.schema.json",
         "batch_job.schema.json",
         "operator_session.schema.json",
     ):

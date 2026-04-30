@@ -19,6 +19,7 @@ from scripts.agents.run_pipeline import (
     run_generate_prompts,
     run_generate_shot_list_omni_suggestion,
     run_generate_storyboard_options,
+    run_lock_scene_clip,
     run_refresh_model_guidance,
     run_review_outputs,
     run_review_video_takes,
@@ -34,6 +35,7 @@ SUPPORTED_GRAPH_MODES = {
     "generate-shot-list-omni-suggestion",
     "generate-kling-omni-prompts",
     "review-video-takes",
+    "lock-scene-clip",
     "operator-next-step",
 }
 
@@ -65,6 +67,8 @@ def _namespace(state: PipelineState) -> argparse.Namespace:
         images=state.images,
         review_notes=state.review_notes,
         takes_metadata=state.takes_metadata,
+        locked_by=state.locked_by,
+        locked_at=state.locked_at,
     )
 
 
@@ -126,6 +130,8 @@ def run_graph_state(state: PipelineState) -> PipelineState:
             return _run_pipeline_result(state, run_generate_kling_omni_prompts)
         if state.mode == "review-video-takes":
             return _run_pipeline_result(state, run_review_video_takes)
+        if state.mode == "lock-scene-clip":
+            return _run_pipeline_result(state, run_lock_scene_clip)
     except (PipelineError, OSError, ValueError, ImportError) as exc:
         state.errors.append(str(exc))
     return state
