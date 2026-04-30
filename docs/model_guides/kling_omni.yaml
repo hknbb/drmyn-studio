@@ -1,0 +1,84 @@
+# docs/model_guides/kling_omni.yaml
+# Locked versioned guide for Kling Omni video generation.
+# Maintained by: human PR only.
+# STATUS: stub — Phase 3 only. Not used until Batch 8.
+# Freshness policy: max_age_days: 7 (faster release cadence).
+# Phase 3 Prerequisites: element packs locked + storyboard selected + shot_list_omni non-empty.
+# Source evidence: docs/model_guides/sources/kling_omni_research_log.md
+
+model_id: kling_omni
+schema_version: "1.0"
+guide_version: "0.1.0"
+status: stub
+last_updated: "2026-04-30"
+maintained_by: "human PR only"
+phase: 3
+
+capability:
+  output_type: video
+  supports_negative_prompt: false
+  supports_elements: true
+  supports_camera_motion: true
+  supports_video_generation: true
+  max_duration_seconds: 10
+
+prompt_rules:
+  style: multimodal_instruction_spec
+  rules:
+    - id: phase_3_only
+      rule: >
+        Kling Omni adapter is passive until Phase 3 conditions are met.
+        Blocked if: shot_list_omni is empty, required element packs are not
+        pack_status: locked, or no storyboard option is selected for the scene.
+      source: "plan Phase 3 gate conditions"
+      confidence: high
+      human_verified: true
+    - id: shot_list_omni_required
+      rule: >
+        All pilot scene cards have shot_list_omni: []. The adapter must refuse
+        to generate if shot_list_omni is empty. Batch 7.5 creates
+        shot_list_omni_suggestion.yaml; human applies to scene_card.yaml via PR.
+      source: "plan invariant"
+      confidence: high
+      human_verified: true
+    - id: multimodal_instruction_format
+      rule: >
+        PLACEHOLDER — operator must fill in after reading official Kling Omni docs.
+        Expected fields: subject action, camera movement, environment/lighting,
+        duration intent, element references.
+      source: "PLACEHOLDER — official Kling Omni docs"
+      confidence: low
+      human_verified: false
+    - id: no_canonical_ids_in_prompt
+      rule: >
+        Never include canonical IDs in prompt_text. Only in source_refs.
+      source: "plan invariant"
+      confidence: high
+      human_verified: true
+
+  do_not_invent:
+    - "Camera motion parameter names — verify in current Kling API docs"
+    - "Element reference image format — verify upload/URL method"
+    - "Maximum clip duration — confirm 10s or longer in current docs"
+    - "Whether seed/reproducibility is supported"
+    - "Current API authentication method"
+
+source_refs:
+  - url: "PLACEHOLDER — operator must find current Kling Omni documentation URL"
+    source_class: official_docs
+    human_verified: false
+    notes: >
+      STUB — this guide will be filled in by Batch 8. Operator must visit
+      official Kling documentation and complete the research log at
+      docs/model_guides/sources/kling_omni_research_log.md before Phase 3.
+
+notes: >
+  STATUS: stub — Phase 3 only. DO NOT use this guide for prompt generation
+  until status is 'active'. This file will be substantially updated in Batch 8.
+  All Phase 3 prerequisites must be met:
+  1. All element packs locked (pack_status: locked)
+  2. Storyboard direction selected (selected_option non-null)
+  3. shot_list_omni non-empty in scene_card.yaml
+  4. This guide set to status: active
+  5. Fresh snapshot exists (< 7 days old) in evidence/model_guidance_snapshots/
+  See docs/model_guides/sources/kling_omni_research_log.md for full checklist.
