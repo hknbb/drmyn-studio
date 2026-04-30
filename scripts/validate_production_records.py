@@ -456,6 +456,47 @@ def validate_video_take_consistency(
     return issues
 
 
+_VIDEO_BINARY_EXTENSIONS = {".mp4", ".mov", ".mkv", ".wav"}
+
+
+def _looks_like_repo_video_binary(value: object) -> bool:
+    if not value:
+        return False
+    text = str(value)
+    if "://" in text:
+        return False
+    return Path(text).suffix.lower() in _VIDEO_BINARY_EXTENSIONS
+
+
+def validate_selected_take_extra(
+    path: Path,
+    repo_root: Path,
+) -> list[ProductionValidationIssue]:
+    """Cross-field checks for selected_take.yaml beyond JSON Schema."""
+    issues: list[ProductionValidationIssue] = []
+    try:
+        data = load_yaml_file(path)
+    except Exception:
+        return issues
+    if not isinstance(data, dict):
+        return issues
+    local_proxy_ref = data.get("local_proxy_ref")
+    if _looks_like_repo_video_binary(local_proxy_ref):
+        issues.append(
+            _structural_issue(
+                path=path,
+                repo_root=repo_root,
+                record_type="selected_take",
+                field_path="local_proxy_ref",
+                message=(
+                    "local_proxy_ref must not point to a repo video binary. "
+                    "Use an external storage ref (dvc://, s3://, etc.) or null."
+                ),
+            )
+        )
+    return issues
+
+
 def validate_scene_clip_map_file(
     path: Path,
     repo_root: Path,
@@ -711,6 +752,7 @@ def run_validation(
                     record_type=record_type,
                     validator=selected_take_validator,
                 )
+                file_issues.extend(validate_selected_take_extra(path, repo_root))
             elif record_type == "scene_clip_map":
                 file_issues = validate_scene_clip_map_file(path, repo_root)
             else:

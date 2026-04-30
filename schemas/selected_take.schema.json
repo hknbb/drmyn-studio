@@ -65,7 +65,8 @@
     },
     "locked_at": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T"
     },
     "storage_policy": {
       "const": "external_video_only"

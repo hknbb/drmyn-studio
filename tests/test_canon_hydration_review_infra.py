@@ -91,7 +91,7 @@ class CanonHydrationReviewInfraTests(unittest.TestCase):
 
         queue_payload = json.loads(queue_json.read_text(encoding="utf-8"))
         self.assertEqual(5, len(queue_payload["queue"]["A"]))
-        self.assertEqual(17, len(queue_payload["queue"]["B"]))
+        self.assertEqual(18, len(queue_payload["queue"]["B"]))  # PROP006 added in e286b5a
         self.assertEqual(5, len(queue_payload["queue"]["C"]))
         self.assertEqual(115, len(queue_payload["queue"]["D"]))
         self.assertTrue((packet_root / "SC0001.md").exists())
