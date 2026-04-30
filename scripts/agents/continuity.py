@@ -76,34 +76,31 @@ def _overlay_note(entries: list[Any], target_scene_id: str, prop_id: str) -> str
     return None
 
 
-def resolve_prop_state_at_scene(
-    repo_root: str | Path,
-    prop_id: str,
+def _resolve_record_state(
+    source_path: Path,
+    record_id: str,
     target_scene_id: str,
+    overlay_path: Path | None,
 ) -> PropStateResolution:
     """
-    Resolve a prop continuity state at the requested scene.
+    Generic continuity state resolver for any YAML record that carries a
+    ``continuity_state`` block (props, wardrobe, etc.).
 
-    The prop YAML is authoritative. The props_state ledger contributes a note
-    only and never overrides the canonical prop state.
+    ``overlay_path`` may be None when no ledger file exists for the record
+    type (e.g. wardrobe records currently have no overlay ledger).
     """
-
-    root = Path(repo_root)
-    source_path = root / "planning" / "props" / f"{prop_id}.yaml"
-    overlay_path = root / "planning" / "continuity" / "props_state.yaml"
-
     if not source_path.exists():
-        raise MissingPropRecordError(f"Prop record not found: {source_path}")
+        raise MissingPropRecordError(f"Record not found: {source_path}")
 
     target_num = _scene_number(target_scene_id)
-    prop = _read_yaml(source_path)
-    continuity = prop.get("continuity_state") or {}
+    record = _read_yaml(source_path)
+    continuity = record.get("continuity_state") or {}
     resolved_state = str(continuity.get("initial_state", ""))
 
     changes = continuity.get("state_changes") or []
     if not isinstance(changes, list):
         raise ContinuityResolutionError(
-            f"Invalid state_changes for {prop_id}: expected list"
+            f"Invalid state_changes for {record_id}: expected list"
         )
 
     sorted_changes = sorted(
@@ -119,11 +116,11 @@ def resolve_prop_state_at_scene(
 
     note = None
     overlay_value: str | None = None
-    if overlay_path.exists():
+    if overlay_path is not None and overlay_path.exists():
         ledger = _read_yaml(overlay_path)
         entries = ledger.get("entries") or []
         if isinstance(entries, list):
-            note = _overlay_note(entries, target_scene_id, prop_id)
+            note = _overlay_note(entries, target_scene_id, record_id)
         overlay_value = str(overlay_path)
 
     warning = None
@@ -131,7 +128,7 @@ def resolve_prop_state_at_scene(
         warning = "WARNING: unresolved continuity state - do not use in prompt"
 
     return PropStateResolution(
-        prop_id=prop_id,
+        prop_id=record_id,
         target_scene_id=target_scene_id,
         resolved_state=resolved_state,
         note=note,
@@ -139,4 +136,44 @@ def resolve_prop_state_at_scene(
         is_resolved=warning is None,
         source_path=str(source_path),
         overlay_path=overlay_value,
+    )
+
+
+def resolve_prop_state_at_scene(
+    repo_root: str | Path,
+    prop_id: str,
+    target_scene_id: str,
+) -> PropStateResolution:
+    """
+    Resolve a prop continuity state at the requested scene.
+
+    The prop YAML is authoritative. The props_state ledger contributes a note
+    only and never overrides the canonical prop state.
+    """
+    root = Path(repo_root)
+    return _resolve_record_state(
+        source_path=root / "planning" / "props" / f"{prop_id}.yaml",
+        record_id=prop_id,
+        target_scene_id=target_scene_id,
+        overlay_path=root / "planning" / "continuity" / "props_state.yaml",
+    )
+
+
+def resolve_wardrobe_state_at_scene(
+    repo_root: str | Path,
+    wardrobe_id: str,
+    target_scene_id: str,
+) -> PropStateResolution:
+    """
+    Resolve a wardrobe item continuity state at the requested scene.
+
+    Uses the same resolution algorithm as props. No overlay ledger exists for
+    wardrobe records; only the canonical wardrobe YAML is consulted.
+    """
+    root = Path(repo_root)
+    return _resolve_record_state(
+        source_path=root / "planning" / "wardrobe" / f"{wardrobe_id}.yaml",
+        record_id=wardrobe_id,
+        target_scene_id=target_scene_id,
+        overlay_path=None,
     )
