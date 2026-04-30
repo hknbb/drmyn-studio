@@ -13,28 +13,7 @@
       "Bash(cp \"C:\\\\Users\\\\babac\\\\Downloads\\\\phase2_workflows_bundle_extracted\\\\phase2_workflows\\\\.github\\\\workflows\\\\phase2-label-guard.yml\" \"C:\\\\Users\\\\babac\\\\NexusZeroClosingPriceProduction\\\\.github\\\\workflows\\\\phase2-label-guard.yml\")",
       "Bash(python scripts/stage_a_closure_audit.py --root .)",
       "Bash(python scripts/build_canon_hydration_queue.py --root . --report-json evidence/validation_reports/canon_hydration_queue.json --report-md evidence/validation_reports/canon_hydration_queue.md)",
-      "Bash(python scripts/build_pilot_scene_review_packets.py --scenes-root planning/scenes --output-root evidence/article3/pilot_scene_review_packets)",
-      "Bash(python -c \"import yaml; yaml.safe_load\\(open\\('CITATION.cff'\\)\\)\")",
-      "Bash(python -c \"import json; json.load\\(open\\('.zenodo.json'\\)\\)\")",
-      "Bash(make validate *)",
-      "Bash(git add *)",
-      "Bash(git commit -m ' *)",
-      "Bash(git push *)",
-      "Bash(git checkout *)",
-      "Bash(git pull *)",
-      "Bash(python -m pytest tests/test_model_research.py -v)",
-      "Bash(python -m pytest tests/test_scene_clip_locking.py -v)",
-      "Bash(python -m pytest tests/ -v --tb=short)",
-      "Bash(git stash *)",
-      "Bash(python -m pytest tests/test_canon_hydration_review_infra.py -v)",
-      "Bash(python -m pytest tests/test_scene_clip_locking.py tests/test_run_pipeline.py tests/test_graph.py tests/test_validate_production_records.py -q)",
-      "Bash(python scripts/build_canon_hydration_queue.py --root . --report-json /tmp/queue_check.json)",
-      "Bash(python scripts/build_canon_hydration_queue.py --root . --report-json evidence/validation_reports/queue_check_temp.json)",
-      "Bash(python -m pytest tests/test_scene_clip_locking.py tests/test_validate_production_records.py tests/test_canon_hydration_review_infra.py -v)",
-      "Bash(python -m pytest tests/ -q)",
-      "Bash(python -m pytest -q)",
-      "Bash(python scripts/validate_prompt_records.py --repo-root .)",
-      "Bash(python scripts/validate_production_records.py --repo-root .)"
+      "Bash(python scripts/build_pilot_scene_review_packets.py --scenes-root planning/scenes --output-root evidence/article3/pilot_scene_review_packets)"
     ]
   }
 }
