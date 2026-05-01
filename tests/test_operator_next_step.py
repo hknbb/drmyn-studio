@@ -83,11 +83,19 @@ def _valid_storyboard_options() -> dict:
     }
 
 
+def _assert_allowed_commands(step, expected: tuple[str, ...] | None = None) -> None:
+    assert isinstance(step.allowed_commands, tuple)
+    assert step.allowed_commands
+    if expected is not None:
+        assert step.allowed_commands == expected
+
+
 def test_empty_repo_returns_blocked_no_available_task(tmp_path: Path) -> None:
     step = recommend_next_step(tmp_path)
 
     assert step.current_task == "blocked"
     assert step.scene_id is None
+    _assert_allowed_commands(step, ("switch",))
     assert "No production status rows" in (step.blocked_reason or "")
     assert step.expected_outputs == ["No files are written by this guidance helper."]
 
@@ -100,6 +108,7 @@ def test_prompt_draft_recommends_external_image_generation(tmp_path: Path) -> No
 
     assert step.current_task == "t2i_image_generation"
     assert step.scene_id == "SC0001"
+    _assert_allowed_commands(step)
     assert prompt_path.relative_to(tmp_path).as_posix() in step.open_files
     assert "external T2I" in " ".join(step.do_steps)
     assert "external T2I model" in step.next_command_or_manual_step
@@ -127,6 +136,7 @@ def test_candidate_images_without_review_notes_recommends_review_preparation(
     after = sorted(path.relative_to(tmp_path).as_posix() for path in tmp_path.rglob("*"))
 
     assert step.current_task == "image_review_preparation"
+    _assert_allowed_commands(step)
     assert "review notes are missing" in (step.blocked_reason or "")
     assert f"evidence/prompt_reviews/{PROMPT_ID}_review.md" in step.expected_outputs
     assert before == after
@@ -155,6 +165,7 @@ def test_candidate_images_with_review_notes_recommends_image_review(
     step = recommend_next_step(tmp_path)
 
     assert step.current_task == "image_review"
+    _assert_allowed_commands(step)
     assert notes.relative_to(tmp_path).as_posix() in step.open_files
     assert any("ImageReviewAgent" in item for item in step.do_steps)
 
@@ -170,6 +181,7 @@ def test_storyboard_options_with_null_selection_recommends_human_selection(
 
     assert step.current_task == "storyboard_selection"
     assert step.scene_id == "SC0001"
+    _assert_allowed_commands(step)
     assert path.relative_to(tmp_path).as_posix() in step.open_files
     assert "selected_option unchanged" in " ".join(step.do_steps)
 
@@ -201,6 +213,7 @@ def test_no_binaries_or_lifecycle_files_are_created(tmp_path: Path) -> None:
     step = recommend_next_step(tmp_path)
 
     assert step.current_task == "t2i_image_generation"
+    _assert_allowed_commands(step)
     assert not list(tmp_path.rglob("*.mp4"))
     assert not list(tmp_path.rglob("*.mov"))
     assert not list(tmp_path.rglob("*.png"))

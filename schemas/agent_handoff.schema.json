@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/agent_handoff.schema.json",
+  "title": "Closing Price Agent Handoff Record",
+  "description": "Metadata-only context transfer record between the human operator and code agents.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "handoff_id",
+    "created_at",
+    "from_agent",
+    "to_agent",
+    "reason",
+    "current_task",
+    "context_files",
+    "do_steps",
+    "expected_outputs",
+    "safety_warnings",
+    "status"
+  ],
+  "properties": {
+    "handoff_id": {
+      "type": "string",
+      "pattern": "^HO-[A-Za-z0-9_.-]+$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "from_agent": {
+      "type": "string",
+      "enum": [
+        "human_operator",
+        "claude_code",
+        "codex",
+        "gemini_code_assist",
+        "chatgpt_project"
+      ]
+    },
+    "to_agent": {
+      "type": "string",
+      "enum": [
+        "human_operator",
+        "claude_code",
+        "codex",
+        "gemini_code_assist",
+        "chatgpt_project"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "enum": [
+        "limit_reached",
+        "review_requested",
+        "second_opinion",
+        "drafting_assist",
+        "manual_pickup",
+        "context_too_large",
+        "task_complete"
+      ]
+    },
+    "current_task": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "context_files": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "do_steps": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "expected_outputs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "safety_warnings": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "accepted", "rejected", "stale"]
+    },
+    "scene_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^SC\\d{4}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "session_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^OP-[A-Za-z0-9_.-]+$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "branch": {
+      "type": "string",
+      "pattern": "^(main$|feat/|fix/|docs/|chore/|review/)"
+    },
+    "head_sha": {
+      "type": "string",
+      "pattern": "^[A-Fa-f0-9]{7,40}$"
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

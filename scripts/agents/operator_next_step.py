@@ -60,6 +60,7 @@ class OperatorNextStep:
     expected_outputs: list[str]
     next_command_or_manual_step: str
     safety_warnings: list[str]
+    allowed_commands: tuple[str, ...] = ("yes", "no", "revise", "switch")
     blocked_reason: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
@@ -81,6 +82,8 @@ class OperatorNextStep:
         )
         lines.append("safety_warnings:")
         lines.extend(f"- {warning}" for warning in self.safety_warnings)
+        lines.append("allowed_commands:")
+        lines.extend(f"- {command}" for command in self.allowed_commands)
         if self.blocked_reason:
             lines.append(f"blocked_reason: {self.blocked_reason}")
         return "\n".join(lines)
@@ -384,6 +387,7 @@ def _blocked_step(
             "Manual step: run the appropriate upstream batch, then rerun operator_next_step.py."
         ),
         safety_warnings=_safe_warnings(),
+        allowed_commands=("switch",),
         blocked_reason=reason,
     )
 

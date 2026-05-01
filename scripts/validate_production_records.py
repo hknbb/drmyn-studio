@@ -27,6 +27,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import re
 import sys
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -46,6 +47,7 @@ SHOT_LIST_OMNI_SUGGESTION_PATTERN = (
 )
 BATCH_JOB_PATTERN = "evidence/batch_jobs/*.yaml"
 OPERATOR_SESSION_PATTERN = "evidence/operator_sessions/*.yaml"
+AGENT_HANDOFF_PATTERN = "evidence/agent_handoffs/*.yaml"
 VIDEO_TAKE_PATTERN = "visual_dev/omni_sets/SC*/video_takes.yaml"
 VIDEO_REVIEW_PATTERN = "evidence/video_reviews/*.yaml"
 SELECTED_TAKE_PATTERN = "visual_dev/omni_sets/SC*/selected_take.yaml"
@@ -73,6 +75,9 @@ PACK_SUGGESTION_REQUIRED_KEYS = {
 }
 PACK_SUGGESTION_ALLOWED_VALUES = {"metadata_only", "seeded"}
 PROMPT_REVIEW_REQUIRED_KEYS = {"source_prompt_id", "corrected_brief"}
+AGENT_HANDOFF_BRANCH_RE = re.compile(r"^(main$|feat/|fix/|docs/|chore/|review/)")
+AGENT_HANDOFF_HEAD_SHA_RE = re.compile(r"^[A-Fa-f0-9]{7,40}$")
+WINDOWS_ABSOLUTE_PATH_RE = re.compile(r"^[A-Za-z]:[/\\]")
 
 
 @dataclass
@@ -126,6 +131,7 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         ),
         "batch_job": sorted(repo_root.glob(BATCH_JOB_PATTERN)),
         "operator_session": sorted(repo_root.glob(OPERATOR_SESSION_PATTERN)),
+        "agent_handoff": sorted(repo_root.glob(AGENT_HANDOFF_PATTERN)),
         "video_take": sorted(repo_root.glob(VIDEO_TAKE_PATTERN)),
         "video_review": sorted(repo_root.glob(VIDEO_REVIEW_PATTERN)),
         "selected_take": sorted(repo_root.glob(SELECTED_TAKE_PATTERN)),
@@ -177,6 +183,18 @@ def _schema_issues(
                 message=error.message,
             )
         )
+
+    if isinstance(data, dict):
+        forbidden = sorted(FORBIDDEN_LIFECYCLE_KEYS & set(data))
+        for key in forbidden:
+            issues.append(
+                ProductionValidationIssue(
+                    file=_relative(path, repo_root),
+                    record_type=record_type,
+                    field_path=key,
+                    message="Lifecycle state must not be set directly in production metadata.",
+                )
+            )
 
     return issues
 
@@ -356,6 +374,90 @@ def validate_prompt_review_brief_file(
                     message="corrected_brief must be a non-empty mapping.",
                 )
             )
+
+    return issues
+
+
+def _is_safe_handoff_context_path(value: str) -> bool:
+    if value.startswith("/"):
+        return False
+    if WINDOWS_ABSOLUTE_PATH_RE.match(value):
+        return False
+    parts = value.replace("\\", "/").split("/")
+    return ".." not in parts
+
+
+def validate_agent_handoff_consistency(
+    path: Path,
+    repo_root: Path,
+) -> list[ProductionValidationIssue]:
+    """Validate handoff rules that sit outside JSON Schema."""
+    record_type = "agent_handoff"
+    data, issues = _load_structural_record(
+        path=path,
+        repo_root=repo_root,
+        record_type=record_type,
+    )
+    if issues:
+        return issues
+
+    if data.get("from_agent") == data.get("to_agent"):
+        issues.append(
+            _structural_issue(
+                path=path,
+                repo_root=repo_root,
+                record_type=record_type,
+                field_path="to_agent",
+                message="from_agent and to_agent must be different.",
+            )
+        )
+
+    context_files = data.get("context_files")
+    if isinstance(context_files, list):
+        for index, context_path in enumerate(context_files):
+            if isinstance(context_path, str) and not _is_safe_handoff_context_path(
+                context_path
+            ):
+                issues.append(
+                    _structural_issue(
+                        path=path,
+                        repo_root=repo_root,
+                        record_type=record_type,
+                        field_path=f"context_files.{index}",
+                        message=(
+                            "context_files entries must be repo-relative paths "
+                            "with no absolute paths or traversal segments."
+                        ),
+                    )
+                )
+
+    head_sha = data.get("head_sha")
+    if head_sha is not None and (
+        not isinstance(head_sha, str) or not AGENT_HANDOFF_HEAD_SHA_RE.match(head_sha)
+    ):
+        issues.append(
+            _structural_issue(
+                path=path,
+                repo_root=repo_root,
+                record_type=record_type,
+                field_path="head_sha",
+                message="head_sha must be 7 to 40 hex characters.",
+            )
+        )
+
+    branch = data.get("branch")
+    if branch is not None and (
+        not isinstance(branch, str) or not AGENT_HANDOFF_BRANCH_RE.match(branch)
+    ):
+        issues.append(
+            _structural_issue(
+                path=path,
+                repo_root=repo_root,
+                record_type=record_type,
+                field_path="branch",
+                message="branch must start with main, feat/, fix/, docs/, chore/, or review/.",
+            )
+        )
 
     return issues
 
@@ -649,6 +751,7 @@ def run_validation(
         shot_list_omni_suggestion_schema
     )
     operator_session_validator: Draft202012Validator | None = None
+    agent_handoff_validator: Draft202012Validator | None = None
     video_take_validator: Draft202012Validator | None = None
     video_review_validator: Draft202012Validator | None = None
     selected_take_validator: Draft202012Validator | None = None
@@ -715,6 +818,21 @@ def run_validation(
                     record_type=record_type,
                     validator=operator_session_validator,
                 )
+            elif record_type == "agent_handoff":
+                if agent_handoff_validator is None:
+                    agent_handoff_schema = load_schema(
+                        repo_root / "schemas" / "agent_handoff.schema.json"
+                    )
+                    agent_handoff_validator = Draft202012Validator(
+                        agent_handoff_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=agent_handoff_validator,
+                )
+                file_issues.extend(validate_agent_handoff_consistency(path, repo_root))
             elif record_type == "video_take":
                 if video_take_validator is None:
                     video_take_schema = load_schema(
