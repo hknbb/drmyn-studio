@@ -53,6 +53,33 @@ def test_operator_next_step_mode_returns_blocked_on_empty_repo(
     assert "No production status rows" in output
 
 
+def test_copilot_command_switch_dispatch_writes_handoff(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.delenv("CP_AGENT_NAME", raising=False)
+
+    code = run_pipeline.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--mode",
+            "copilot-command",
+            "--command",
+            "switch",
+            "--to-agent",
+            "codex",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert code == 0
+    assert "mode: copilot-command" in output
+    assert "evidence/agent_handoffs/HO-" in output
+    assert len(list((tmp_path / "evidence/agent_handoffs").glob("HO-*.yaml"))) == 1
+
+
 def test_generate_storyboard_options_writes_null_selected_option(
     tmp_path: Path,
 ) -> None:

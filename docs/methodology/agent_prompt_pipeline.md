@@ -45,6 +45,27 @@
 | Experiment branches only | `experiment/claude-batch-*` and `experiment/codex-batch-*` used only for architecture comparison |
 | Patch commits on same branch | Codex-requested fixes go to same `feat/batch-*` branch, not a new one |
 
+## Human-Agent Copilot Layer (HA-0+)
+
+The HA batch series adds a file-based human-agent copilot layer above the
+existing metadata-only pipeline. It does not renumber or replace the earlier
+batch sequence.
+
+The layer follows the same production boundaries as the rest of the repo:
+
+- `operator_next_step.py` stays a read-only recommender.
+- `copilot_command.py` performs human-triggered write actions.
+- `agent_handoff` records in `evidence/agent_handoffs/` let Claude Code, Codex,
+  Gemini Code Assist, ChatGPT Project, and the human operator pass context
+  without external APIs.
+- The human operator still owns external generation, PR approval, lifecycle
+  promotion, and final merges.
+- Agents still must not commit binaries, write credentials, use Google Drive
+  APIs, or directly edit `pack_status`, `canon_lock`, `approved`, or `locked`.
+
+HA-3a starts with the smallest command surface: `switch` only. `yes`, `no`, and
+`revise` remain planned follow-up commands.
+
 ### Branch Naming Convention
 
 ```

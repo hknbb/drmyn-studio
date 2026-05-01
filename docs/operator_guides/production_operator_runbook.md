@@ -52,8 +52,28 @@ python scripts/agents/operator_next_step.py --repo-root .
 - Treat external generation tools as manual operator actions.
 - Use PR review for approval and lifecycle promotion.
 
+## When to Switch Agents
+
+Switch agents when the current agent reaches context or usage limits, when a
+second opinion is needed, or when the operator wants another tool to continue
+the same scoped branch. Use the copilot command to write a metadata-only
+handoff record:
+
+```bash
+python scripts/agents/run_pipeline.py \
+  --mode copilot-command \
+  --command switch \
+  --to-agent codex \
+  --reason limit_reached \
+  --repo-root .
+```
+
+The command writes `evidence/agent_handoffs/HO-*.yaml`. Give that path to the
+next agent and keep lifecycle promotion behind normal human PR review.
+
 ## Related Playbooks
 
+- `docs/operator_guides/human_agent_copilot.md`
 - `docs/operator_guides/t2i_image_generation_playbook.md`
 - `docs/operator_guides/storyboard_selection_playbook.md`
 - `docs/operator_guides/kling_omni_generation_playbook.md`

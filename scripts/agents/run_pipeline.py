@@ -25,6 +25,7 @@ if str(REPO_ROOT) not in sys.path:
 
 from scripts.agents.adapters import MODEL_ALIAS_MAP, get_adapter, resolve_model_key
 from scripts.agents.adapters._base import BriefNotReadyError
+from scripts.agents.copilot_command import apply_command
 from scripts.agents.adapters.kling_omni import KlingOmniAdapter
 from scripts.agents.critic import CriticAgent
 from scripts.agents.model_research import ModelResearchAgent, find_latest_snapshot
@@ -213,6 +214,25 @@ def run_operator_next_step(args: argparse.Namespace) -> int:
     else:
         print(step.render())
     return 0
+
+
+def run_copilot_command(args: argparse.Namespace) -> PipelineResult:
+    repo_root = args.repo_root.resolve()
+    if not args.command:
+        raise PipelineError("copilot-command requires --command.")
+    result = apply_command(
+        repo_root,
+        command=args.command,
+        target_agent=args.to_agent,
+        reason=args.reason,
+        session_id=args.session_id,
+    )
+    return PipelineResult(
+        mode=args.mode,
+        written_files=list(result.written_files),
+        skipped=[],
+        message=result.message,
+    )
 
 
 def run_generate_prompts(args: argparse.Namespace) -> PipelineResult:
@@ -546,6 +566,7 @@ def build_parser() -> argparse.ArgumentParser:
             "review-video-takes",
             "lock-scene-clip",
             "operator-next-step",
+            "copilot-command",
         ],
     )
     parser.add_argument("--repo-root", type=Path, default=Path("."))
@@ -562,6 +583,19 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--review-notes")
     parser.add_argument("--locked-by")
     parser.add_argument("--locked-at")
+    parser.add_argument("--command", choices=("switch",))
+    parser.add_argument(
+        "--to-agent",
+        choices=(
+            "human_operator",
+            "claude_code",
+            "codex",
+            "gemini_code_assist",
+            "chatgpt_project",
+        ),
+    )
+    parser.add_argument("--reason", default="limit_reached")
+    parser.add_argument("--session-id")
     return parser
 
 
@@ -574,6 +608,8 @@ def main(argv: list[str] | None = None) -> int:
             return run_operator_next_step(args)
         if args.mode == "refresh-model-guidance":
             result = run_refresh_model_guidance(args)
+        elif args.mode == "copilot-command":
+            result = run_copilot_command(args)
         elif args.mode == "generate-prompts":
             result = run_generate_prompts(args)
         elif args.mode == "review-outputs":
