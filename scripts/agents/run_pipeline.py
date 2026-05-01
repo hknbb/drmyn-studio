@@ -31,6 +31,7 @@ from scripts.agents.critic import CriticAgent
 from scripts.agents.model_research import ModelResearchAgent, find_latest_snapshot
 from scripts.agents.neutral_brief import NeutralBriefAgent
 from scripts.agents.operator_next_step import recommend_next_step
+from scripts.agents.pr_helper import suggest_pr
 from scripts.agents.review_outputs import ImageReviewAgent, QUALITY_SCORE_FIELDS
 from scripts.agents.scene_clip_locking import SceneClipLockingAgent
 from scripts.agents.shot_list_omni_suggestion import ShotListOmniSuggestionAgent
@@ -233,6 +234,25 @@ def run_copilot_command(args: argparse.Namespace) -> PipelineResult:
         written_files=list(result.written_files),
         skipped=[],
         message=result.message,
+    )
+
+
+def run_suggest_pr(args: argparse.Namespace) -> PipelineResult:
+    repo_root = args.repo_root.resolve()
+    suggestion = suggest_pr(repo_root, branch=args.branch, base=args.base)
+    message = "\n".join(
+        [
+            f"title: {suggestion.title}",
+            f"command: {suggestion.gh_command_str}",
+            "body:",
+            *suggestion.body_lines,
+        ]
+    )
+    return PipelineResult(
+        mode=args.mode,
+        written_files=[],
+        skipped=list(suggestion.changed_files),
+        message=message,
     )
 
 
@@ -568,6 +588,7 @@ def build_parser() -> argparse.ArgumentParser:
             "lock-scene-clip",
             "operator-next-step",
             "copilot-command",
+            "suggest-pr",
         ],
     )
     parser.add_argument("--repo-root", type=Path, default=Path("."))
@@ -598,6 +619,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--reason", default="limit_reached")
     parser.add_argument("--session-id")
     parser.add_argument("--note")
+    parser.add_argument("--branch")
+    parser.add_argument("--base", default="main")
     return parser
 
 
@@ -612,6 +635,8 @@ def main(argv: list[str] | None = None) -> int:
             result = run_refresh_model_guidance(args)
         elif args.mode == "copilot-command":
             result = run_copilot_command(args)
+        elif args.mode == "suggest-pr":
+            result = run_suggest_pr(args)
         elif args.mode == "generate-prompts":
             result = run_generate_prompts(args)
         elif args.mode == "review-outputs":
