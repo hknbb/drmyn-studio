@@ -66,6 +66,11 @@ The layer follows the same production boundaries as the rest of the repo:
 HA-3a starts with the smallest command surface: `switch` only. `yes`, `no`, and
 `revise` remain planned follow-up commands.
 
+HA-2.5 adds a model guidance refresh gate before prompt generation. Dynamic
+snapshot prompts must use human-verified, current snapshots; placeholder,
+expired, or unverified snapshots are rejected by the critic. The operator flow
+is documented in `docs/operator_guides/model_guidance_refresh_playbook.md`.
+
 ### Branch Naming Convention
 
 ```

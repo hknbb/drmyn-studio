@@ -230,6 +230,75 @@ def _safe_warnings() -> list[str]:
     ]
 
 
+def _snapshot_payload_needs_refresh(payload: dict[str, Any]) -> bool:
+    if payload.get("model_version_observed") == "unknown_placeholder":
+        return True
+    for source in payload.get("sources") or []:
+        if isinstance(source, dict):
+            if "example.org/placeholder" in str(source.get("url") or ""):
+                return True
+            if source.get("human_verified") is not True:
+                return True
+    for rule in payload.get("extracted_rules") or []:
+        if "PLACEHOLDER" in str(rule):
+            return True
+    return bool(payload.get("do_not_use_without_verification") or [])
+
+
+def _placeholder_snapshot_refresh_step(
+    repo_root: Path,
+    draft: PromptDraft,
+) -> OperatorNextStep | None:
+    params = draft.payload.get("generation_params")
+    if not isinstance(params, dict):
+        return None
+    if params.get("model_guidance_mode") != "dynamic_snapshot":
+        return None
+    snapshot_ref = params.get("model_guidance_snapshot")
+    if not snapshot_ref:
+        return None
+
+    snapshot_path = repo_root / str(snapshot_ref)
+    try:
+        snapshot_payload = _read_yaml(snapshot_path)
+    except Exception:
+        return None
+    if not isinstance(snapshot_payload, dict):
+        return None
+    if not _snapshot_payload_needs_refresh(snapshot_payload):
+        return None
+
+    open_files = _existing_rels(
+        [
+            draft.path,
+            snapshot_path,
+            repo_root / "docs" / "operator_guides" / "model_guidance_refresh_playbook.md",
+        ],
+        repo_root,
+    )
+    return OperatorNextStep(
+        current_task="model_guidance_snapshot_refresh",
+        scene_id=draft.scene_id,
+        open_files=open_files,
+        do_steps=[
+            "Run a web-capable agent such as Gemini Code Assist or ChatGPT Project to refresh the snapshot from official model documentation.",
+            "Record source URLs, retrieval timestamps, content hashes, and human verification in the snapshot YAML.",
+            "Set do_not_use_without_verification to an empty list only after the human has verified the extracted rules.",
+            "Rerun prompt generation or review only after the refreshed snapshot passes the critic gate.",
+        ],
+        expected_outputs=[
+            str(snapshot_ref),
+            "A human-verified model guidance snapshot with current official sources.",
+        ],
+        next_command_or_manual_step=(
+            "Manual step: refresh the listed model guidance snapshot before using this prompt draft."
+        ),
+        safety_warnings=_safe_warnings(),
+        allowed_commands=("switch", "revise"),
+        blocked_reason="Prompt draft references a placeholder or unverified dynamic model guidance snapshot.",
+    )
+
+
 def _storyboard_selection_step(repo_root: Path) -> OperatorNextStep | None:
     storyboards_root = repo_root / "visual_dev" / "storyboards"
     if not storyboards_root.is_dir():
@@ -275,6 +344,10 @@ def _storyboard_selection_step(repo_root: Path) -> OperatorNextStep | None:
 
 def _prompt_review_or_generation_step(repo_root: Path) -> OperatorNextStep | None:
     for draft in _load_prompt_drafts(repo_root):
+        refresh_step = _placeholder_snapshot_refresh_step(repo_root, draft)
+        if refresh_step is not None:
+            return refresh_step
+
         element_dir = _element_dir(repo_root, draft)
         image_selection_path = (
             element_dir / "image_selection.yaml" if element_dir is not None else None

@@ -392,6 +392,7 @@ class ModelResearchAgent:
             model_version_observed="unknown_placeholder",
             model_version_confidence="low",
             do_not_use_without_verification=[
+                "replace_with_human_verified_source",
                 "All rules — this snapshot is a placeholder only."
             ],
         )
