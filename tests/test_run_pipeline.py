@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 import yaml
@@ -116,6 +117,48 @@ def test_copilot_command_no_requires_note(tmp_path: Path) -> None:
         )
 
     assert exc.value.code == 2
+
+
+def test_suggest_pr_dispatch_prints_command_without_writing(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    def fake_suggest_pr(repo_root: Path, *, branch: str | None, base: str):
+        assert repo_root == tmp_path.resolve()
+        assert branch == "feat/example"
+        assert base == "main"
+        return SimpleNamespace(
+            branch="feat/example",
+            title="[codex] example",
+            body_lines=("## Summary", "- Current task: example"),
+            gh_command_str=(
+                'gh pr create --base main --head feat/example '
+                '--title "[codex] example" --body-file <body-file-path>'
+            ),
+            changed_files=("scripts/agents/pr_helper.py",),
+        )
+
+    monkeypatch.setattr(run_pipeline, "suggest_pr", fake_suggest_pr)
+
+    code = run_pipeline.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--mode",
+            "suggest-pr",
+            "--branch",
+            "feat/example",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert code == 0
+    assert "mode: suggest-pr" in output
+    assert "gh pr create --base main --head feat/example" in output
+    assert "written_files:" in output
+    assert "scripts/agents/pr_helper.py" in output
+    assert not list(tmp_path.rglob("*"))
 
 
 def test_generate_storyboard_options_writes_null_selected_option(
