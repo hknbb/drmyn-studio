@@ -26,7 +26,7 @@ The repo does **not** host generated video, bulk render output, or unlimited-siz
 | Rejected bulk outputs from external generation | External storage only | ❌ | 0 | Never committed; only selected candidates enter repo |
 | Locked storyboard keyframes (`visual_dev/storyboards/SC####/`) | Repo + Git LFS | ✅ added Batch 0.75 | ≤ 5 per scene | Only the single human-selected keyframe per option; candidate stills stay external |
 | Storyboard candidate stills (unselected) | External storage | ❌ | 0 | Volume too high for LFS; repo stores `external_storage_ref` in `storyboard_options.yaml` |
-| Kling video takes (full MP4 / MOV) | External DVC-style storage | ❌ | 0 | Repo stores `platform_asset_ref` + `external_storage_ref` in `video_takes.yaml`; `repo_binary_committed: false` required |
+| Kling video takes (full MP4 / MOV) | External storage only | ❌ | 0 | Repo stores `platform_asset_ref` + `external_storage_ref` in `video_takes.yaml`; allowed refs include `local://`, `gdrive://`, future `dvc://`/`s3://`, and `kling://` where applicable; `repo_binary_committed: false` required |
 | Post-production proxies (`post/edit/proxies/`) | External storage | ❌ | 0 | Repo stores path reference only |
 | Post-production audio renders (`post/sound/mixes/`, `post/dialogue/`) | External storage | ❌ | 0 | Exception: small LUT files (< 1 MB) may be committed directly to `post/color/luts/` |
 | LUT files (`post/color/luts/`) | Repo (no LFS) | ❌ | N/A | Typically < 1 MB; committed as regular binary if ≤ 1 MB |
@@ -101,6 +101,30 @@ Flag any record with `external_storage_ref` set but unverified as `storage_statu
 
 ---
 
+## URI Prefix Vocabulary (HA-2)
+
+HA-2 adds an explicit vocabulary for manual local and Google Drive storage
+references. This is a convention only: no Google Drive API, cloud SDK, sync
+daemon, or credential flow is introduced by this repo.
+
+| Prefix | Meaning | Example | Current status |
+|---|---|---|---|
+| `local://ClosingPriceMedia/...` | File is stored on the operator's local disk outside the git repo. | `local://ClosingPriceMedia/elements/characters/C01/candidates/nadia_001.png` | Manual, operator-verified |
+| `gdrive://ClosingPriceMedia/...` | File is stored in the operator's Google Drive folder by manual upload/sync. | `gdrive://ClosingPriceMedia/video/SC0006/take001.mp4` | Manual, no API |
+| `dvc://...` | Future DVC-addressable storage reference. | `dvc://closing-price/SC0006/take001.mp4` | Optional future convention |
+| `s3://...` | Future S3/object-storage reference. | `s3://closing-price/video/SC0006/take001.mp4` | Optional future convention |
+| `kling://platform_id` | Kling platform asset or job identifier. | `kling://job_12345` | Platform reference only |
+
+Existing `external_storage_ref` strings are not backfilled in HA-2. Future
+schemas may add a `storage_backend` enum for new record types such as handoff
+or local media index records, but this PR does not rewrite existing production
+metadata.
+
+For manual folder structure and naming conventions, see
+`docs/operator_guides/local_manual_storage_playbook.md`.
+
+---
+
 ## Candidate Image Limit
 
 To prevent LFS bloat, candidate image counts are capped:
@@ -144,6 +168,13 @@ takes:
     local_proxy_ref: null
     repo_binary_committed: false
     status: rejected | selected | candidate
+```
+
+Manual local or Google Drive alternatives use the same metadata field:
+
+```yaml
+external_storage_ref: "local://ClosingPriceMedia/video/SC0001/takes/SC0001_take001.mp4"
+external_storage_ref: "gdrive://ClosingPriceMedia/video/SC0001/takes/SC0001_take001.mp4"
 ```
 
 Any record with `repo_binary_committed: true` must be flagged as a `storage_policy_violation`.
