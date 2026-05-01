@@ -101,6 +101,30 @@ Flag any record with `external_storage_ref` set but unverified as `storage_statu
 
 ---
 
+## URI Prefix Vocabulary (HA-2)
+
+HA-2 adds an explicit vocabulary for manual local and Google Drive storage
+references. This is a convention only: no Google Drive API, cloud SDK, sync
+daemon, or credential flow is introduced by this repo.
+
+| Prefix | Meaning | Example | Current status |
+|---|---|---|---|
+| `local://ClosingPriceMedia/...` | File is stored on the operator's local disk outside the git repo. | `local://ClosingPriceMedia/elements/characters/C01/candidates/nadia_001.png` | Manual, operator-verified |
+| `gdrive://ClosingPriceMedia/...` | File is stored in the operator's Google Drive folder by manual upload/sync. | `gdrive://ClosingPriceMedia/video/SC0006/take001.mp4` | Manual, no API |
+| `dvc://...` | Future DVC-addressable storage reference. | `dvc://closing-price/SC0006/take001.mp4` | Optional future convention |
+| `s3://...` | Future S3/object-storage reference. | `s3://closing-price/video/SC0006/take001.mp4` | Optional future convention |
+| `kling://platform_id` | Kling platform asset or job identifier. | `kling://job_12345` | Platform reference only |
+
+Existing `external_storage_ref` strings are not backfilled in HA-2. Future
+schemas may add a `storage_backend` enum for new record types such as handoff
+or local media index records, but this PR does not rewrite existing production
+metadata.
+
+For manual folder structure and naming conventions, see
+`docs/operator_guides/local_manual_storage_playbook.md`.
+
+---
+
 ## Candidate Image Limit
 
 To prevent LFS bloat, candidate image counts are capped:
