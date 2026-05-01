@@ -13,7 +13,8 @@ Hard checks (any failure → passed=False):
   - No planning canonical IDs (C##, LOC###, PROP###, WD###, SC####) in prompt_text
   - Exactly 1 target_model
   - generation_params.model_guidance_ref file exists, model_id matches target_model
-  - generation_params.model_guidance_snapshot file exists if mode=dynamic_snapshot
+  - generation_params.model_guidance_snapshot is loadable, model-matched,
+    human-verified, non-placeholder, and fresh if mode=dynamic_snapshot
   - Negative prompt conditional on model capability
 
 Soft checks (only → soft_warnings, never fail):
@@ -30,6 +31,7 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass, field
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -47,6 +49,13 @@ CANONICAL_ID_RE = re.compile(r"\b(C\d{2}|LOC\d{3}|PROP\d{3}|WD\d{3}|SC\d{4})\b")
 
 # Markers that flag unresolved content
 UNRESOLVED_RE = re.compile(r"\b(UNRESOLVED|TODO_REVIEW|TODO|EVIDENCE_THIN)\b")
+
+
+def _parse_utc_datetime(value: str) -> datetime:
+    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
 
 
 # ---------------------------------------------------------------------------
@@ -86,9 +95,15 @@ class CriticAgent:
     (model_guidance_ref, model_guidance_snapshot).
     """
 
-    def __init__(self, repo_root: str | Path) -> None:
+    def __init__(
+        self,
+        repo_root: str | Path,
+        *,
+        reference_time: datetime | None = None,
+    ) -> None:
         self.repo_root = Path(repo_root)
         self._schema: dict[str, Any] | None = None
+        self.reference_time = reference_time
 
     # ------------------------------------------------------------------
     # Public API
@@ -204,11 +219,106 @@ class CriticAgent:
                     "model_guidance_mode=dynamic_snapshot but "
                     "model_guidance_snapshot path is missing"
                 )
-            elif not (self.repo_root / snapshot).exists():
+                return
+
+            snapshot_path = self.repo_root / snapshot
+            if not snapshot_path.exists():
                 errors.append(
                     f"model_guidance_snapshot file not found: "
-                    f"{self.repo_root / snapshot}"
+                    f"{snapshot_path}"
                 )
+                return
+
+            self._check_dynamic_snapshot(
+                snapshot_path=snapshot_path,
+                target_model=target_models[0] if target_models else None,
+                errors=errors,
+            )
+
+    def _check_dynamic_snapshot(
+        self,
+        *,
+        snapshot_path: Path,
+        target_model: str | None,
+        errors: list[str],
+    ) -> None:
+        try:
+            snapshot = yaml.safe_load(snapshot_path.read_text(encoding="utf-8")) or {}
+        except Exception as exc:
+            errors.append(f"Cannot read model_guidance_snapshot {snapshot_path}: {exc}")
+            return
+
+        if not isinstance(snapshot, dict):
+            errors.append(f"model_guidance_snapshot must be a mapping: {snapshot_path}")
+            return
+
+        snapshot_model = str(snapshot.get("model_id") or "")
+        if target_model and snapshot_model != target_model:
+            errors.append(
+                f"model_guidance_snapshot model_id ({snapshot_model!r}) does not match "
+                f"target_models[0] ({target_model!r})"
+            )
+
+        if snapshot.get("model_version_observed") == "unknown_placeholder":
+            errors.append(
+                "model_guidance_snapshot is a placeholder: "
+                "model_version_observed is unknown_placeholder"
+            )
+
+        sources = snapshot.get("sources") or []
+        if not isinstance(sources, list) or not sources:
+            errors.append("model_guidance_snapshot sources must be a non-empty list")
+        else:
+            for index, source in enumerate(sources):
+                if not isinstance(source, dict):
+                    continue
+                url = str(source.get("url") or "")
+                if "example.org/placeholder" in url:
+                    errors.append(
+                        f"model_guidance_snapshot sources.{index}.url is a placeholder"
+                    )
+                if source.get("human_verified") is not True:
+                    errors.append(
+                        f"model_guidance_snapshot sources.{index}.human_verified "
+                        "must be true for prompt generation"
+                    )
+
+        extracted_rules = snapshot.get("extracted_rules") or []
+        if not isinstance(extracted_rules, list) or not extracted_rules:
+            errors.append(
+                "model_guidance_snapshot extracted_rules must be a non-empty list"
+            )
+        else:
+            for index, rule in enumerate(extracted_rules):
+                if "PLACEHOLDER" in str(rule):
+                    errors.append(
+                        f"model_guidance_snapshot extracted_rules.{index} "
+                        "contains PLACEHOLDER"
+                    )
+
+        pending_verification = snapshot.get("do_not_use_without_verification") or []
+        if pending_verification:
+            errors.append(
+                "model_guidance_snapshot do_not_use_without_verification must be "
+                "empty before prompt generation"
+            )
+
+        expires_at = (snapshot.get("snapshot_validity") or {}).get("expires_at")
+        if not expires_at:
+            errors.append("model_guidance_snapshot snapshot_validity.expires_at is missing")
+            return
+        try:
+            expiry = _parse_utc_datetime(str(expires_at))
+        except ValueError:
+            errors.append(
+                "model_guidance_snapshot snapshot_validity.expires_at is not parseable"
+            )
+            return
+        reference_time = self.reference_time or datetime.now(timezone.utc)
+        if reference_time > expiry:
+            errors.append(
+                "model_guidance_snapshot has expired; refresh from official sources"
+            )
 
     def _check_negative_prompt_rule(self, record: dict, errors: list[str]) -> None:
         """
