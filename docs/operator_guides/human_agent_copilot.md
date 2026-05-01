@@ -21,8 +21,8 @@ repo metadata
   -> next agent reads the record and continues on the same branch
 ```
 
-HA-3a implements only `switch`. `yes`, `no`, and `revise` are reserved for a
-later PR.
+HA-3a implemented `switch`. HA-3b adds `yes`, `no`, and `revise` as
+metadata-only command records.
 
 ## Actors
 
@@ -36,12 +36,12 @@ later PR.
 
 ## Command Vocabulary
 
-| Command | HA-3a behavior |
+| Command | Behavior |
 |---|---|
 | `switch` | Writes `evidence/agent_handoffs/HO-*.yaml` from the current recommendation. |
-| `yes` | Deferred to HA-3b; raises a clear not-implemented message. |
-| `no` | Deferred to HA-3b; raises a clear not-implemented message. |
-| `revise` | Deferred to HA-3b; raises a clear not-implemented message. |
+| `yes` | Writes `evidence/operator_sessions/OP-*.yaml` with `status: in_progress`. |
+| `no` | Writes `evidence/operator_sessions/OP-*.yaml` with `status: skipped`; a note is required. |
+| `revise` | Writes `evidence/prompt_reviews/*_brief.yaml` for prompt-related tasks, otherwise writes `evidence/operator_sessions/*_revisions.md`. |
 
 For `switch`, `context_files` is copied from the recommendation's `open_files`.
 The name changes because a handoff record describes files the next agent needs

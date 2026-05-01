@@ -1,14 +1,15 @@
 """
 Human-triggered copilot command writer.
 
-HA-3a implements only the switch command. It writes a metadata-only agent
-handoff record from the current operator recommendation and does not mutate
-prompt records, scene cards, pack manifests, lifecycle fields, or binary paths.
+Writes metadata-only copilot command records from the current operator
+recommendation. It does not mutate prompt records, scene cards, pack manifests,
+lifecycle fields, or binary paths.
 """
 
 from __future__ import annotations
 
 import os
+import re
 import subprocess
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -36,6 +37,14 @@ ALLOWED_REASONS = {
     "context_too_large",
     "task_complete",
 }
+COMMANDS = {"yes", "no", "revise", "switch"}
+PROMPT_RELATED_TASKS = {
+    "t2i_image_generation",
+    "image_review_preparation",
+    "image_review",
+    "model_guidance_snapshot_refresh",
+}
+PROMPT_ID_RE = re.compile(r"SC\d{4}__[A-Za-z0-9_.-]+__v\d{2}")
 
 
 @dataclass(frozen=True)
@@ -90,21 +99,221 @@ def _next_handoff_path(repo_root: Path, timestamp: str) -> Path:
     raise RuntimeError(f"No available handoff filename for timestamp {timestamp}.")
 
 
+def _next_operator_session_path(repo_root: Path, timestamp: str) -> Path:
+    sessions_dir = repo_root / "evidence" / "operator_sessions"
+    sessions_dir.mkdir(parents=True, exist_ok=True)
+    for index in range(1000):
+        suffix = "" if index == 0 else f"-{index:03d}"
+        path = sessions_dir / f"OP-{timestamp}{suffix}.yaml"
+        if not path.exists():
+            return path
+    raise RuntimeError(f"No available operator session filename for {timestamp}.")
+
+
+def _next_revision_path(repo_root: Path, timestamp: str) -> Path:
+    sessions_dir = repo_root / "evidence" / "operator_sessions"
+    sessions_dir.mkdir(parents=True, exist_ok=True)
+    for index in range(1000):
+        suffix = "" if index == 0 else f"-{index:03d}"
+        path = sessions_dir / f"OP-{timestamp}{suffix}_revisions.md"
+        if not path.exists():
+            return path
+    raise RuntimeError(f"No available revision filename for {timestamp}.")
+
+
+def _write_yaml(path: Path, payload: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(yaml.safe_dump(payload, sort_keys=False), encoding="utf-8")
+
+
+def _operator_session_payload(
+    *,
+    path: Path,
+    created_at: str,
+    recommendation: OperatorNextStep,
+    status: str,
+    notes: str,
+) -> dict:
+    return {
+        "session_id": path.stem,
+        "created_at": created_at,
+        "scene_id": recommendation.scene_id,
+        "current_task": recommendation.current_task,
+        "recommended_files": recommendation.open_files,
+        "recommended_steps": recommendation.do_steps,
+        "status": status,
+        "notes": notes,
+    }
+
+
+def _prompt_id_from_recommendation(recommendation: OperatorNextStep) -> str | None:
+    for item in recommendation.open_files:
+        match = PROMPT_ID_RE.search(item)
+        if match:
+            return match.group(0)
+    return None
+
+
+def _write_operator_session(
+    repo_root: Path,
+    *,
+    recommendation: OperatorNextStep,
+    timestamp: str,
+    created_at: str,
+    status: str,
+    notes: str,
+) -> str:
+    path = _next_operator_session_path(repo_root, timestamp)
+    payload = _operator_session_payload(
+        path=path,
+        created_at=created_at,
+        recommendation=recommendation,
+        status=status,
+        notes=notes,
+    )
+    _write_yaml(path, payload)
+    return _relative(path, repo_root)
+
+
+def _write_prompt_revision_brief(
+    repo_root: Path,
+    *,
+    recommendation: OperatorNextStep,
+    note: str,
+) -> str:
+    prompt_id = _prompt_id_from_recommendation(recommendation)
+    if prompt_id is None:
+        raise ValueError("revise requires a prompt id in the current recommendation.")
+    path = repo_root / "evidence" / "prompt_reviews" / f"{prompt_id}_brief.yaml"
+    payload = {
+        "source_prompt_id": prompt_id,
+        "corrected_brief": {
+            "revision_reason": note,
+            "operator_current_task": recommendation.current_task,
+            "recommended_files": recommendation.open_files,
+            "recommended_steps": recommendation.do_steps,
+        },
+    }
+    _write_yaml(path, payload)
+    return _relative(path, repo_root)
+
+
+def _write_revision_markdown(
+    repo_root: Path,
+    *,
+    recommendation: OperatorNextStep,
+    timestamp: str,
+    created_at: str,
+    note: str,
+) -> str:
+    path = _next_revision_path(repo_root, timestamp)
+    lines = [
+        f"# Operator Revision {path.stem}",
+        "",
+        f"- created_at: {created_at}",
+        f"- current_task: {recommendation.current_task}",
+        f"- scene_id: {recommendation.scene_id or 'none'}",
+        "",
+        "## Note",
+        "",
+        note,
+        "",
+        "## Recommended Files",
+        "",
+        *[f"- `{item}`" for item in recommendation.open_files],
+        "",
+        "## Recommended Steps",
+        "",
+        *[f"- {item}" for item in recommendation.do_steps],
+        "",
+    ]
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(lines), encoding="utf-8")
+    return _relative(path, repo_root)
+
+
 def apply_command(
     repo_root: Path,
     *,
-    command: Literal["switch"],
+    command: Literal["yes", "no", "revise", "switch"],
     target_agent: str | None = None,
     reason: str = "limit_reached",
     session_id: str | None = None,
+    note: str | None = None,
     now: datetime | None = None,
     branch: str | None = None,
     head_sha: str | None = None,
     from_agent: str | None = None,
 ) -> CopilotCommandResult:
-    """HA-3a: switch command writes evidence/agent_handoffs/HO-*.yaml."""
-    if command != "switch":
-        raise NotImplementedError("yes/no/revise are deferred to HA-3b")
+    """Apply a human copilot command as metadata-only evidence."""
+    if command not in COMMANDS:
+        raise ValueError(f"Unsupported copilot command: {command}")
+
+    root = Path(repo_root)
+    recommendation = recommend_next_step(root)
+    timestamp_source = now or datetime.now(timezone.utc)
+    timestamp = _handoff_timestamp(timestamp_source)
+    created_at = _created_at(timestamp_source)
+
+    if command == "yes":
+        written = _write_operator_session(
+            root,
+            recommendation=recommendation,
+            timestamp=timestamp,
+            created_at=created_at,
+            status="in_progress",
+            notes=note or "Operator accepted the current recommendation.",
+        )
+        return CopilotCommandResult(
+            written_files=(written,),
+            next_recommendation=recommendation,
+            message=f"Operator session written: {written}",
+        )
+
+    if command == "no":
+        if not note or not note.strip():
+            raise ValueError("no command requires note.")
+        written = _write_operator_session(
+            root,
+            recommendation=recommendation,
+            timestamp=timestamp,
+            created_at=created_at,
+            status="skipped",
+            notes=note.strip(),
+        )
+        return CopilotCommandResult(
+            written_files=(written,),
+            next_recommendation=recommendation,
+            message=f"Operator skip session written: {written}",
+        )
+
+    if command == "revise":
+        if not note or not note.strip():
+            raise ValueError("revise command requires note.")
+        if recommendation.current_task in PROMPT_RELATED_TASKS:
+            written = _write_prompt_revision_brief(
+                root,
+                recommendation=recommendation,
+                note=note.strip(),
+            )
+            return CopilotCommandResult(
+                written_files=(written,),
+                next_recommendation=recommendation,
+                message=f"Prompt revision brief written: {written}",
+            )
+        written = _write_revision_markdown(
+            root,
+            recommendation=recommendation,
+            timestamp=timestamp,
+            created_at=created_at,
+            note=note.strip(),
+        )
+        return CopilotCommandResult(
+            written_files=(written,),
+            next_recommendation=recommendation,
+            message=f"Operator revision note written: {written}",
+        )
+
     if not target_agent:
         raise ValueError("switch command requires target_agent.")
     if target_agent not in ALLOWED_AGENTS:
@@ -118,11 +327,6 @@ def apply_command(
     if source_agent == target_agent:
         raise ValueError("from_agent and target_agent must be different.")
 
-    root = Path(repo_root)
-    recommendation = recommend_next_step(root)
-    timestamp_source = now or datetime.now(timezone.utc)
-    timestamp = _handoff_timestamp(timestamp_source)
-
     if branch is None:
         branch = _git_value(root, ["rev-parse", "--abbrev-ref", "HEAD"])
     if head_sha is None:
@@ -132,7 +336,7 @@ def apply_command(
     handoff_path = _next_handoff_path(root, timestamp)
     payload = {
         "handoff_id": handoff_path.stem,
-        "created_at": _created_at(timestamp_source),
+        "created_at": created_at,
         "from_agent": source_agent,
         "to_agent": target_agent,
         "reason": reason,

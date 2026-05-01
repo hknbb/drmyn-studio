@@ -28,13 +28,13 @@ The human operator may use a small command vocabulary:
 
 | Command | Meaning |
 |---|---|
-| `yes` | Approve the next recommended metadata-only action. Deferred to HA-3b. |
-| `no` | Reject the recommendation without writing production metadata. Deferred to HA-3b. |
-| `revise` | Request a text-only revision loop. Deferred to HA-3b. |
+| `yes` | Approve the next recommended metadata-only action and write an operator session. |
+| `no` | Reject the recommendation and write a skipped operator session with a required note. |
+| `revise` | Request a text-only revision loop through a prompt brief or operator revision note. |
 | `switch` | Write an `agent_handoff` record so another agent can continue from the current state. Implemented in HA-3a. |
 
 `operator_next_step.py` remains a read-only recommender. Write actions live in
-`scripts/agents/copilot_command.py`.
+`scripts/agents/copilot_command.py` and are always human-triggered.
 
 ## Handoff Discipline
 

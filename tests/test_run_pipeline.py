@@ -80,6 +80,44 @@ def test_copilot_command_switch_dispatch_writes_handoff(
     assert len(list((tmp_path / "evidence/agent_handoffs").glob("HO-*.yaml"))) == 1
 
 
+def test_copilot_command_yes_dispatch_writes_operator_session(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    code = run_pipeline.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--mode",
+            "copilot-command",
+            "--command",
+            "yes",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert code == 0
+    assert "mode: copilot-command" in output
+    assert "evidence/operator_sessions/OP-" in output
+    assert len(list((tmp_path / "evidence/operator_sessions").glob("OP-*.yaml"))) == 1
+
+
+def test_copilot_command_no_requires_note(tmp_path: Path) -> None:
+    with pytest.raises(SystemExit) as exc:
+        run_pipeline.main(
+            [
+                "--repo-root",
+                str(tmp_path),
+                "--mode",
+                "copilot-command",
+                "--command",
+                "no",
+            ]
+        )
+
+    assert exc.value.code == 2
+
+
 def test_generate_storyboard_options_writes_null_selected_option(
     tmp_path: Path,
 ) -> None:
