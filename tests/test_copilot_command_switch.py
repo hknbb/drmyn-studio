@@ -194,13 +194,13 @@ def test_switch_requires_target_agent_before_writing(tmp_path: Path) -> None:
     assert not list(handoffs_dir.glob("HO-*.yaml")) if handoffs_dir.exists() else True
 
 
-def test_yes_no_revise_are_deferred(tmp_path: Path) -> None:
+def test_unknown_command_fails_before_writing(tmp_path: Path) -> None:
     _seed_prompt_repo(tmp_path)
 
-    with pytest.raises(NotImplementedError, match="HA-3b"):
+    with pytest.raises(ValueError, match="Unsupported"):
         apply_command(
             tmp_path,
-            command="yes",  # type: ignore[arg-type]
+            command="maybe",  # type: ignore[arg-type]
             target_agent="codex",
             now=FIXED_NOW,
             branch="feat/x",

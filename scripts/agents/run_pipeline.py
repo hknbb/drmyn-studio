@@ -226,6 +226,7 @@ def run_copilot_command(args: argparse.Namespace) -> PipelineResult:
         target_agent=args.to_agent,
         reason=args.reason,
         session_id=args.session_id,
+        note=args.note,
     )
     return PipelineResult(
         mode=args.mode,
@@ -583,7 +584,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--review-notes")
     parser.add_argument("--locked-by")
     parser.add_argument("--locked-at")
-    parser.add_argument("--command", choices=("switch",))
+    parser.add_argument("--command", choices=("yes", "no", "revise", "switch"))
     parser.add_argument(
         "--to-agent",
         choices=(
@@ -596,6 +597,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--reason", default="limit_reached")
     parser.add_argument("--session-id")
+    parser.add_argument("--note")
     return parser
 
 
