@@ -123,6 +123,13 @@ metadata.
 For manual folder structure and naming conventions, see
 `docs/operator_guides/local_manual_storage_playbook.md`.
 
+HA-5 adds a schema-validated per-scene record for tracking which media files
+exist in external storage. These records live in
+`evidence/local_media_indices/SC####.yaml` (scene-scoped) and
+`evidence/local_media_indices/_elements.yaml` (element-scoped). Each entry
+carries a `storage_backend` enum drawn from the vocabulary above and requires
+`repo_binary_committed: false`. See `schemas/local_media_index.schema.json`.
+
 ---
 
 ## Candidate Image Limit

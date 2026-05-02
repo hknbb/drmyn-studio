@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/local_media_index.schema.json",
+  "title": "Closing Price Local Media Index",
+  "description": "Metadata-only index of externally stored media files for a scene or element group. No media binaries are committed to the repository.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["scene_id", "entries", "storage_policy", "created_at"],
+  "properties": {
+    "scene_id": {
+      "type": "string",
+      "pattern": "^(SC\\d{4}|_elements)$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "storage_policy": {
+      "type": "string",
+      "enum": ["external_video_only", "external_image_only", "mixed_external"]
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    }
+  },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "element_id_or_take_id",
+        "storage_backend",
+        "last_seen_at",
+        "repo_binary_committed"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "element_id_or_take_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "storage_backend": {
+          "type": "string",
+          "enum": ["local_manual", "gdrive_manual", "dvc", "s3", "platform_kling"]
+        },
+        "last_seen_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "repo_binary_committed": {
+          "const": false
+        },
+        "local_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "external_storage_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[A-Fa-f0-9]{64}$"
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "anyOf": [
+        {"required": ["local_path"]},
+        {"required": ["external_storage_ref"]}
+      ]
+    }
+  }
+}
