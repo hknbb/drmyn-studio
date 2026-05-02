@@ -50,6 +50,12 @@ evidence/validation_reports/*.md
 # devcontainer local overrides
 .devcontainer/
 
+# Claude Code local settings (machine-specific paths, not for repo)
+.claude/settings.local.json
+
+# Temporary PR body files
+PR_BODY_*.md
+
 # OS
 .DS_Store
 desktop.ini
