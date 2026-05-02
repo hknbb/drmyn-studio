@@ -1,4 +1,4 @@
-"""Streamlit entry point for the read-only copilot dashboard."""
+"""Streamlit entry point for the copilot dashboard."""
 
 from __future__ import annotations
 
@@ -24,10 +24,87 @@ from tools.copilot_dashboard.repo_io import (
     load_recent_sessions,
     load_status_rows,
 )
+from tools.copilot_dashboard.command_ui import (
+    HANDOFF_REASON_OPTIONS,
+    TARGET_AGENT_OPTIONS,
+    CommandUiResult,
+    run_dashboard_command,
+)
 
 
 def _stringify_record(record: dict[str, Any]) -> dict[str, str]:
     return {key: str(value) for key, value in record.items()}
+
+
+def _show_command_result(result: CommandUiResult) -> None:
+    if result.applied:
+        st.success(result.message)
+        if result.written_files:
+            st.write("Written files:")
+            st.write(list(result.written_files))
+        return
+    st.error(result.message)
+
+
+def _render_command_controls(recommendation: dict[str, Any]) -> None:
+    allowed_commands = recommendation.get("allowed_commands") or []
+
+    st.header("Command Controls")
+    st.caption("PR merge remains human-controlled. Commands write metadata evidence only.")
+
+    if not allowed_commands:
+        st.write("No commands are allowed by the current recommendation.")
+        return
+
+    yes_col, no_col = st.columns(2)
+    with yes_col:
+        if st.button("Yes", disabled="yes" not in allowed_commands):
+            _show_command_result(
+                run_dashboard_command(
+                    REPO_ROOT,
+                    command="yes",
+                    allowed_commands=allowed_commands,
+                )
+            )
+
+    with no_col:
+        no_note = st.text_area("No note", key="no_note", height=90)
+        if st.button("No", disabled="no" not in allowed_commands):
+            _show_command_result(
+                run_dashboard_command(
+                    REPO_ROOT,
+                    command="no",
+                    note=no_note,
+                    allowed_commands=allowed_commands,
+                )
+            )
+
+    revise_col, switch_col = st.columns(2)
+    with revise_col:
+        revise_note = st.text_area("Revise note", key="revise_note", height=90)
+        if st.button("Revise", disabled="revise" not in allowed_commands):
+            _show_command_result(
+                run_dashboard_command(
+                    REPO_ROOT,
+                    command="revise",
+                    note=revise_note,
+                    allowed_commands=allowed_commands,
+                )
+            )
+
+    with switch_col:
+        target_agent = st.selectbox("Target agent", TARGET_AGENT_OPTIONS)
+        reason = st.selectbox("Reason", HANDOFF_REASON_OPTIONS)
+        if st.button("Switch", disabled="switch" not in allowed_commands):
+            _show_command_result(
+                run_dashboard_command(
+                    REPO_ROOT,
+                    command="switch",
+                    target_agent=target_agent,
+                    reason=reason,
+                    allowed_commands=allowed_commands,
+                )
+            )
 
 
 def main() -> None:
@@ -77,6 +154,8 @@ def main() -> None:
         st.write(", ".join(str(command) for command in commands))
     else:
         st.write("No allowed commands.")
+
+    _render_command_controls(recommendation)
 
 
 if __name__ == "__main__":
