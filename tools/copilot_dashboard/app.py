@@ -30,6 +30,7 @@ from tools.copilot_dashboard.command_ui import (
     CommandUiResult,
     run_dashboard_command,
 )
+from tools.copilot_dashboard.review_panels import load_review_panel_data
 
 
 def _stringify_record(record: dict[str, Any]) -> dict[str, str]:
@@ -107,6 +108,31 @@ def _render_command_controls(recommendation: dict[str, Any]) -> None:
             )
 
 
+def _render_review_panels() -> None:
+    panel_data = load_review_panel_data(REPO_ROOT)
+    image_rows = panel_data["image_candidates"]
+    video_rows = panel_data["video_takes"]
+
+    st.header("Review Metadata")
+    st.caption(
+        "Read-only metadata/path refs. No uploads, thumbnails, cache writes, "
+        "or review decisions."
+    )
+
+    image_tab, video_tab = st.tabs(["Image Candidates", "Video Takes"])
+    with image_tab:
+        if image_rows:
+            st.dataframe(image_rows, hide_index=True, use_container_width=True)
+        else:
+            st.write("No image candidate metadata records.")
+
+    with video_tab:
+        if video_rows:
+            st.dataframe(video_rows, hide_index=True, use_container_width=True)
+        else:
+            st.write("No video take metadata records.")
+
+
 def main() -> None:
     st.set_page_config(page_title="Copilot Dashboard", layout="wide")
     st.title("Human-Agent Copilot")
@@ -156,6 +182,7 @@ def main() -> None:
         st.write("No allowed commands.")
 
     _render_command_controls(recommendation)
+    _render_review_panels()
 
 
 if __name__ == "__main__":

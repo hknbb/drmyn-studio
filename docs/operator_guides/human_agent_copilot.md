@@ -94,6 +94,17 @@ They must not add image or video upload, thumbnail caches, `image_selection`,
 PR helper execution, API calls, Google Drive integration, or lifecycle
 promotion.
 
+## Dashboard Review Metadata
+
+In HA-4b-2 the dashboard may show image candidate and video take metadata/path
+references from existing records. This panel is read-only: it does not upload
+media, copy binaries, generate thumbnails, cache preview files, write review
+decisions, or mutate production records.
+
+External refs such as `local://` and `gdrive://` are rendered as text only.
+Repo-relative refs are treated as metadata/path refs in this batch; review
+actions remain outside the dashboard until a later explicitly scoped PR.
+
 ## Limit-Reached Procedure
 
 1. Run the current recommendation:
