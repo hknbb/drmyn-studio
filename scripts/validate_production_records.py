@@ -48,6 +48,7 @@ SHOT_LIST_OMNI_SUGGESTION_PATTERN = (
 BATCH_JOB_PATTERN = "evidence/batch_jobs/*.yaml"
 OPERATOR_SESSION_PATTERN = "evidence/operator_sessions/*.yaml"
 AGENT_HANDOFF_PATTERN = "evidence/agent_handoffs/*.yaml"
+LOCAL_MEDIA_INDEX_PATTERN = "evidence/local_media_indices/*.yaml"
 VIDEO_TAKE_PATTERN = "visual_dev/omni_sets/SC*/video_takes.yaml"
 VIDEO_REVIEW_PATTERN = "evidence/video_reviews/*.yaml"
 SELECTED_TAKE_PATTERN = "visual_dev/omni_sets/SC*/selected_take.yaml"
@@ -132,6 +133,7 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         "batch_job": sorted(repo_root.glob(BATCH_JOB_PATTERN)),
         "operator_session": sorted(repo_root.glob(OPERATOR_SESSION_PATTERN)),
         "agent_handoff": sorted(repo_root.glob(AGENT_HANDOFF_PATTERN)),
+        "local_media_index": sorted(repo_root.glob(LOCAL_MEDIA_INDEX_PATTERN)),
         "video_take": sorted(repo_root.glob(VIDEO_TAKE_PATTERN)),
         "video_review": sorted(repo_root.glob(VIDEO_REVIEW_PATTERN)),
         "selected_take": sorted(repo_root.glob(SELECTED_TAKE_PATTERN)),
@@ -599,6 +601,58 @@ def validate_selected_take_extra(
     return issues
 
 
+def validate_local_media_index_extra(
+    path: Path,
+    repo_root: Path,
+) -> list[ProductionValidationIssue]:
+    """Cross-field checks for local_media_index beyond JSON Schema."""
+    record_type = "local_media_index"
+    data, issues = _load_structural_record(
+        path=path,
+        repo_root=repo_root,
+        record_type=record_type,
+    )
+    if issues:
+        return issues
+
+    entries = data.get("entries")
+    if not isinstance(entries, list):
+        return issues
+
+    for index, entry in enumerate(entries):
+        if not isinstance(entry, dict):
+            continue
+        field_prefix = f"entries.{index}"
+
+        if entry.get("repo_binary_committed") is not False:
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path=f"{field_prefix}.repo_binary_committed",
+                    message="repo_binary_committed must be false for every media index entry.",
+                )
+            )
+
+        local_path = entry.get("local_path")
+        if _looks_like_repo_video_binary(local_path) and not entry.get("external_storage_ref"):
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path=f"{field_prefix}.external_storage_ref",
+                    message=(
+                        "Video-like local_path must also have external_storage_ref "
+                        "to ensure the master copy is tracked in external storage."
+                    ),
+                )
+            )
+
+    return issues
+
+
 def validate_scene_clip_map_file(
     path: Path,
     repo_root: Path,
@@ -752,6 +806,7 @@ def run_validation(
     )
     operator_session_validator: Draft202012Validator | None = None
     agent_handoff_validator: Draft202012Validator | None = None
+    local_media_index_validator: Draft202012Validator | None = None
     video_take_validator: Draft202012Validator | None = None
     video_review_validator: Draft202012Validator | None = None
     selected_take_validator: Draft202012Validator | None = None
@@ -833,6 +888,21 @@ def run_validation(
                     validator=agent_handoff_validator,
                 )
                 file_issues.extend(validate_agent_handoff_consistency(path, repo_root))
+            elif record_type == "local_media_index":
+                if local_media_index_validator is None:
+                    local_media_index_schema = load_schema(
+                        repo_root / "schemas" / "local_media_index.schema.json"
+                    )
+                    local_media_index_validator = Draft202012Validator(
+                        local_media_index_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=local_media_index_validator,
+                )
+                file_issues.extend(validate_local_media_index_extra(path, repo_root))
             elif record_type == "video_take":
                 if video_take_validator is None:
                     video_take_schema = load_schema(
