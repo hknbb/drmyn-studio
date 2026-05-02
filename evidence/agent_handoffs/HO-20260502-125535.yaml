@@ -1,0 +1,23 @@
+handoff_id: HO-20260502-125535
+created_at: '2026-05-02T12:55:35.468932Z'
+from_agent: human_operator
+to_agent: claude_code
+reason: manual_pickup
+current_task: blocked
+context_files:
+- evidence/production_status.csv
+- docs/operator_guides/production_operator_runbook.md
+do_steps:
+- Inspect production_status.csv if it exists.
+- Create the missing upstream metadata in its own approved batch before asking for
+  operator guidance again.
+expected_outputs:
+- No files are written by this guidance helper.
+safety_warnings:
+- Metadata/text guidance only; do not commit image or video binaries in this step.
+- Do not edit scene_card.yaml, pack_manifest.yaml, selected_option, pack_status, canon_lock,
+  approved, or locked fields.
+- External image/video tools are manual operator actions; this agent did not run them.
+status: open
+branch: main
+head_sha: 29e037ef7db5
