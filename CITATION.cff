@@ -3,12 +3,19 @@ message: "If you use this repository, please cite it as below."
 title: "Closing Price: Zone 1 / Phase 1 Canonical Workflow Repository"
 type: software
 version: 0.1.0
-date-released: 2026-04-19
+date-released: 2026-05-02
 repository-code: "https://github.com/hknbb/NexusZeroClosingPriceProduction"
 url: "https://github.com/hknbb/NexusZeroClosingPriceProduction"
 abstract: >
-  Canonical planning, prompt governance, validation, and reproducibility
-  infrastructure for Zone 1 / Phase 1 of the Closing Price workflow.
+  Metadata-only, schema-validated, human-gated pre-production and prompt
+  governance pipeline for Zone 1 / Phase 1 of the Closing Price AI-assisted
+  film project. Includes scene cards, character and location records,
+  continuity files, prompt lifecycle infrastructure, JSON schema validation,
+  a Human-Agent Production Copilot layer (HA-0 to HA-6) enabling structured
+  multi-agent coordination, and a Streamlit dashboard for operator oversight.
+  All production decisions are reproducible and academically defensible;
+  generated media outputs are stored externally and referenced by
+  metadata-only records.
 keywords:
   - screenplay generation
   - pre-production
@@ -16,6 +23,10 @@ keywords:
   - reproducibility
   - github actions
   - previsualization
+  - human-agent collaboration
+  - AI-assisted film production
+  - metadata-only pipeline
+  - schema validation
 license: "MIT"
 authors:
   - family-names: "Babacan"

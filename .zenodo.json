@@ -1,7 +1,8 @@
 {
   "title": "Closing Price: Zone 1 / Phase 1 Canonical Workflow Repository",
   "upload_type": "software",
-  "description": "Canonical planning, prompt governance, validation, and reproducibility package for Zone 1 / Phase 1 of the Closing Price workflow. Includes scene cards, character and location records, continuity files, prompt lifecycle infrastructure, JSON schema validation, and Stage A foundation closure artifacts.",
+  "version": "0.1.0",
+  "description": "Metadata-only, schema-validated, human-gated pre-production and prompt governance pipeline for Zone 1 / Phase 1 of the Closing Price AI-assisted film project. Includes scene cards, character and location records, continuity files, prompt lifecycle infrastructure, JSON schema validation (20+ schemas, draft 2020-12), a Human-Agent Production Copilot layer (HA-0 to HA-6) enabling structured multi-agent coordination without external APIs, and a Streamlit dashboard for operator oversight. All production decisions are reproducible and academically defensible; generated media outputs are stored externally and referenced by metadata-only records. Release v0.1.0 marks completion of the Human-Agent Production Copilot layer and scientific clean packaging.",
   "creators": [
     {
       "name": "Babacan, Hakan",
@@ -15,7 +16,11 @@
     "prompt engineering",
     "reproducibility",
     "previsualization",
-    "canon hydration",
+    "human-agent collaboration",
+    "AI-assisted film production",
+    "metadata-only pipeline",
+    "schema validation",
+    "multi-agent coordination",
     "workflow automation"
   ],
   "license": "MIT"
