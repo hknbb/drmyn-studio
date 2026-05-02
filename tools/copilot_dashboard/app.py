@@ -31,6 +31,7 @@ from tools.copilot_dashboard.command_ui import (
     run_dashboard_command,
 )
 from tools.copilot_dashboard.review_panels import load_review_panel_data
+from tools.copilot_dashboard.pr_panel import PrPanelData, load_pr_panel_data
 
 
 def _stringify_record(record: dict[str, Any]) -> dict[str, str]:
@@ -133,6 +134,34 @@ def _render_review_panels() -> None:
             st.write("No video take metadata records.")
 
 
+def _render_pr_panel() -> None:
+    data = load_pr_panel_data(REPO_ROOT)
+
+    st.header("PR Helper")
+    st.caption("Suggestion only. This dashboard does not call gh, push, or create PRs.")
+
+    if not data.available:
+        st.warning(data.message)
+        return
+
+    assert isinstance(data, PrPanelData)
+    st.write(f"Branch: `{data.branch}`")
+    st.write(f"Title: `{data.title}`")
+
+    if data.changed_files:
+        st.write("Changed files:")
+        st.dataframe(
+            [{"path": path} for path in data.changed_files],
+            hide_index=True,
+            use_container_width=True,
+        )
+    else:
+        st.write("No changed files detected against base.")
+
+    st.text_area("PR body preview", value=data.body_preview, height=260)
+    st.code(data.gh_command_str, language="bash")
+
+
 def main() -> None:
     st.set_page_config(page_title="Copilot Dashboard", layout="wide")
     st.title("Human-Agent Copilot")
@@ -183,6 +212,7 @@ def main() -> None:
 
     _render_command_controls(recommendation)
     _render_review_panels()
+    _render_pr_panel()
 
 
 if __name__ == "__main__":

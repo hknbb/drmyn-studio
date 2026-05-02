@@ -105,6 +105,16 @@ External refs such as `local://` and `gdrive://` are rendered as text only.
 Repo-relative refs are treated as metadata/path refs in this batch; review
 actions remain outside the dashboard until a later explicitly scoped PR.
 
+## Dashboard PR Suggestions
+
+In HA-4c-1 the dashboard may display the existing print-only PR suggestion from
+`suggest_pr()`. This panel is suggestion-only: it does not call `gh`, push
+branches, create pull requests, write body files, handle tokens, execute
+subprocesses for GitHub operations, or mutate production metadata.
+
+The human operator remains responsible for reviewing the suggestion and creating
+or merging any PR outside this dashboard panel.
+
 ## Limit-Reached Procedure
 
 1. Run the current recommendation:
