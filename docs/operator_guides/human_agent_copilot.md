@@ -21,8 +21,9 @@ repo metadata
   -> next agent reads the record and continues on the same branch
 ```
 
-HA-3a implemented `switch`. HA-3b adds `yes`, `no`, and `revise` as
-metadata-only command records.
+HA-3a implemented `switch`. HA-3b added `yes`, `no`, and `revise` as
+metadata-only command records. HA-4a added a read-only dashboard viewer, and
+HA-4b-1 adds dashboard buttons for the same existing command vocabulary.
 
 ## Actors
 
@@ -69,9 +70,29 @@ The next agent should read the newest relevant handoff before editing files.
 - Agents do not promote lifecycle stages without a human PR.
 - GitHub, Google Drive, and model credentials stay outside repo files.
 - Google Drive storage is manual only; no Drive API is used by this layer.
-- Auto-PR and auto-merge are out of scope for HA-3a.
+- PR execution and auto-merge stay human-controlled. Dashboard command buttons
+  do not call `gh`, `pr_helper`, external APIs, or Google Drive.
 - Handoff paths must be repo-relative POSIX-like paths with no absolute paths
   and no `..` traversal segments.
+
+## Dashboard Controls
+
+The dashboard can show the latest recommendation, status rows, recent operator
+sessions, recent handoffs, and allowed commands. In HA-4b-1 it may also submit
+`yes`, `no`, `revise`, and `switch` through the existing `apply_command()`
+writer.
+
+Dashboard command controls may write only the existing copilot evidence records:
+
+- `evidence/operator_sessions/OP-*.yaml`
+- `evidence/operator_sessions/*_revisions.md`
+- `evidence/prompt_reviews/*_brief.yaml`
+- `evidence/agent_handoffs/HO-*.yaml`
+
+They must not add image or video upload, thumbnail caches, `image_selection`,
+`video_takes`, `selected_take`, `scene_clip_map`, production status mutation,
+PR helper execution, API calls, Google Drive integration, or lifecycle
+promotion.
 
 ## Limit-Reached Procedure
 
