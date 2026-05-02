@@ -1,10 +1,10 @@
-# DRMYN Studio — Metadata-Only Human-Agent Film Production Workflow
+# Dramyn Studio — Metadata-Only Human-Agent Film Production Workflow
 
-This repository contains the canonical planning, prompt-governance, validation, and reproducibility infrastructure for **DRMYN Studio**, demonstrated through **Zone 1 / Phase 1** of the *Closing Price* AI-assisted film project.
+This repository contains the canonical planning, prompt-governance, validation, and reproducibility infrastructure for **Dramyn Studio**, demonstrated through **Zone 1 / Phase 1** of the *Closing Price* AI-assisted film project.
 
 ## Purpose
 
-DRMYN Studio is the **pre-production and prompt-engineering layer** of the AI-assisted film production pipeline. It is responsible for:
+Dramyn Studio is the **pre-production and prompt-engineering layer** of the AI-assisted film production pipeline. It is responsible for:
 
 - defining canonical source truth
 - stabilizing scene, character, location, continuity, and prompt records

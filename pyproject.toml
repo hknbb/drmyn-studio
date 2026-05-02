@@ -1,7 +1,7 @@
 [project]
-name = "drmyn-studio"
-version = "0.1.2"
-description = "DRMYN Studio: metadata-only human-agent film production workflow"
+name = "dramyn-studio"
+version = "0.1.3"
+description = "Dramyn Studio: metadata-only human-agent film production workflow"
 requires-python = ">=3.11"
 dependencies = [
     "jsonschema>=4.21.0",

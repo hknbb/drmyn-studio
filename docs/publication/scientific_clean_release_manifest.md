@@ -1,6 +1,6 @@
 # Scientific Clean Release Manifest
 
-**Project:** DRMYN Studio  
+**Project:** Dramyn Studio  
 **Case study:** *Closing Price* AI-assisted film project (Zone 1 / Phase 1)  
 **Release state:** Human-Agent Production Copilot Layer complete (HA-0 → HA-6)  
 **Verified date:** 2026-05-02  
@@ -15,7 +15,7 @@ reviewers, editors, dataset curators, and reproducibility auditors.
 
 ## 1. Purpose
 
-DRMYN Studio is a **metadata-only, schema-validated, human-gated**
+Dramyn Studio is a **metadata-only, schema-validated, human-gated**
 pre-production and prompt-governance pipeline for AI-assisted film production.
 Demonstrated through the *Closing Price* film project, its primary scientific
 contribution is:
