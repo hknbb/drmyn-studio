@@ -1,6 +1,7 @@
 # Scientific Clean Release Manifest
 
-**Project:** Closing Price — Zone 1 / Phase 1  
+**Project:** DRMYN Studio  
+**Case study:** *Closing Price* AI-assisted film project (Zone 1 / Phase 1)  
 **Release state:** Human-Agent Production Copilot Layer complete (HA-0 → HA-6)  
 **Verified date:** 2026-05-02  
 **Tests:** 328 passed  
@@ -14,9 +15,10 @@ reviewers, editors, dataset curators, and reproducibility auditors.
 
 ## 1. Purpose
 
-This repository implements a **metadata-only, schema-validated, human-gated**
-pre-production and prompt-governance pipeline for the *Closing Price* film
-project. Its primary scientific contribution is:
+DRMYN Studio is a **metadata-only, schema-validated, human-gated**
+pre-production and prompt-governance pipeline for AI-assisted film production.
+Demonstrated through the *Closing Price* film project, its primary scientific
+contribution is:
 
 - A reproducible, auditable methodology for source-grounded AI-assisted
   pre-production.
