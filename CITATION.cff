@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this repository, please cite it as below."
-doi: 10.5281/zenodo.19987411
+doi: 10.5281/zenodo.19988619
 title: "DRMYN Studio: A Metadata-Only Human-Agent Film Production Workflow"
 type: software
 version: 0.1.4

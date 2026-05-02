@@ -77,7 +77,8 @@ settings.local.json tracked        → REMOVED
 | `v0.1.4-drmyn-studio-citation-fix` | current | Final: DRMYN Studio name; drmyn-studio slug; DOI added |
 
 Zenodo concept DOI: `10.5281/zenodo.19987410` (always latest version).  
-Zenodo version DOI: `10.5281/zenodo.19987411` (v0.1.4 record).
+Zenodo version DOI: `10.5281/zenodo.19988619` (v0.1.4 record).  
+Earlier v0.1.3 version DOI: `10.5281/zenodo.19987411` (historical, superseded).
 
 ---
 
