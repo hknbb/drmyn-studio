@@ -118,6 +118,26 @@ See [docs/workflow/branch_protection_policy.md](docs/workflow/branch_protection_
 | Prop | `PROP001` | `PROP001` |
 | Wardrobe | `WD001` | `WD001` |
 
+## Scientific Clean Release / Reviewer Entrypoint
+
+The Human-Agent Production Copilot layer (HA-0 → HA-6) is complete and merged.
+For journal reviewers and reproducibility auditors, the canonical entrypoint is:
+
+```
+docs/publication/scientific_clean_release_manifest.md
+```
+
+That document describes what is included, what is excluded, validation commands,
+the storage doctrine, AI model provenance, and known limitations.
+
+Quick validation:
+
+```bash
+python -m pytest -q
+python scripts/validate_production_records.py --repo-root .
+python scripts/validate_prompt_records.py --repo-root .
+```
+
 ## Citation
 
 If you use this repository in a publication, please cite it using the metadata in [CITATION.cff](CITATION.cff).
