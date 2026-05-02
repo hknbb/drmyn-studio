@@ -1,19 +1,18 @@
 # Scientific Clean Release Notes
 
-**Release name:** `v0.1.3-dramyn-studio-scientific-clean`  
-**Date:** 2026-05-02  
-**Branch:** `docs/drmyn-studio-release-metadata`  
-**Base commit:** main at `e723561` (before PR #22)  
-**Release commit:** `c88b532` (PR #22 merge)
+**Release name:** `v0.1.4-drmyn-studio-citation-fix`  
+**Date:** 2026-05-03  
+**Branch:** `docs/fix-drmyn-studio-casing`
 
 ---
 
 ## What This Release Is
 
-This is the final name and repository rename patch for Dramyn Studio, the
-metadata-only production governance infrastructure for AI-assisted film
-production. The *Closing Price* film project is the case study; Dramyn Studio
-is the system. Repository URL is now `https://github.com/hknbb/dramyn-studio`.
+This release standardises the system name to **DRMYN Studio** and the
+repository slug to `drmyn-studio` / `drmyn-studio-public`.
+The *Closing Price* film project is the case study; DRMYN Studio is the system.
+Repository URLs: `https://github.com/hknbb/drmyn-studio` (private) and
+`https://github.com/hknbb/drmyn-studio-public` (public / Zenodo).
 
 It is not a generated film. It is not a prompt library. It is the
 **metadata-only production governance infrastructure** behind an AI-assisted
@@ -74,11 +73,11 @@ settings.local.json tracked        → REMOVED
 | `v0.1.0-ha-complete-scientific-clean` | e4e1ef5 | Initial scientific clean release (HA-0→HA-6 + SCI-0→SCI-3) |
 | `v0.1.1-ha-complete-scientific-clean` | e723561 | Patch: updated CITATION.cff and .zenodo.json; Dependabot workflow bump |
 | `v0.1.2-drmyn-studio-scientific-clean` | c88b532 | Rename: DRMYN Studio system name (interim) |
-| `v0.1.3-dramyn-studio-scientific-clean` | current | Final: Dramyn Studio name + dramyn-studio repo URL |
+| `v0.1.3-dramyn-studio-scientific-clean` | 733ef65 | Interim: Dramyn Studio name (typo); dramyn-studio slug |
+| `v0.1.4-drmyn-studio-citation-fix` | current | Final: DRMYN Studio name; drmyn-studio slug; DOI added |
 
-The `v0.1.2` tag is the recommended Zenodo / DOI target. It includes the same
-validated infrastructure as v0.1.1 plus the corrected system name
-("DRMYN Studio") and final citation metadata.
+Zenodo concept DOI: `10.5281/zenodo.19987410` (always latest version).  
+Zenodo version DOI: `10.5281/zenodo.19987411` (v0.1.4 record).
 
 ---
 
