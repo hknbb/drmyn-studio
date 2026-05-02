@@ -150,3 +150,61 @@ are both unavailable or context-limited. In that case it uses the same
 ChatGPT Project is for long-form planning, source-context exploration, and prose
 drafting outside the repo. The human may paste its useful output into an
 `agent_handoff.notes` field. It does not write repository files directly.
+
+## End-to-End Dry Run
+
+The following is a copy-pasteable transcript of the full copilot loop. Run
+each command from the repo root. The loop uses real metadata fixtures and
+writes only to `evidence/` — no binaries, no lifecycle promotion, no `gh`
+execution.
+
+```bash
+# 1. Get the current recommendation (storyboard selection in this example)
+python scripts/agents/run_pipeline.py --mode operator-next-step --repo-root .
+
+# 2. Switch to Codex — writes evidence/agent_handoffs/HO-*.yaml
+python scripts/agents/run_pipeline.py \
+  --mode copilot-command \
+  --command switch \
+  --to-agent codex \
+  --reason limit_reached \
+  --repo-root .
+
+# 3. Confirm the recommendation is unchanged (handoff doesn't advance it)
+python scripts/agents/run_pipeline.py --mode operator-next-step --repo-root .
+
+# 4. Accept the current task — writes evidence/operator_sessions/OP-*.yaml
+python scripts/agents/run_pipeline.py \
+  --mode copilot-command \
+  --command yes \
+  --repo-root .
+
+# 5. Human performs the storyboard selection manually outside this tool.
+
+# 6. Recommendation now advances to the next task (e.g. t2i_image_generation)
+python scripts/agents/run_pipeline.py --mode operator-next-step --repo-root .
+
+# 7. Switch to Gemini Code Assist for second opinion / pinch-hit
+python scripts/agents/run_pipeline.py \
+  --mode copilot-command \
+  --command switch \
+  --to-agent gemini_code_assist \
+  --reason limit_reached \
+  --repo-root .
+
+# 8. View PR suggestion (print-only, does not call gh)
+python scripts/agents/run_pipeline.py --mode suggest-pr --repo-root .
+```
+
+Expected evidence after this loop:
+
+```text
+evidence/agent_handoffs/HO-{ts1}.yaml   ← switch to Codex
+evidence/agent_handoffs/HO-{ts2}.yaml   ← switch to Gemini Code Assist
+evidence/operator_sessions/OP-{ts}.yaml ← yes (in_progress)
+```
+
+None of the above touch prompt records, scene cards, pack manifests,
+`selected_take`, `video_takes`, `scene_clip_map`, `production_status.csv`,
+or any lifecycle field. The automated equivalent of this transcript is
+`tests/test_operator_loop_dryrun.py`.
