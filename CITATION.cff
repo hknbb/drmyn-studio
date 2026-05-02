@@ -1,14 +1,14 @@
 cff-version: 1.2.0
 message: "If you use this repository, please cite it as below."
 doi: 10.5281/zenodo.19987411
-title: "Dramyn Studio: A Metadata-Only Human-Agent Film Production Workflow"
+title: "DRMYN Studio: A Metadata-Only Human-Agent Film Production Workflow"
 type: software
-version: 0.1.3
-date-released: 2026-05-02
-repository-code: "https://github.com/hknbb/dramyn-studio"
-url: "https://github.com/hknbb/dramyn-studio"
+version: 0.1.4
+date-released: 2026-05-03
+repository-code: "https://github.com/hknbb/drmyn-studio"
+url: "https://github.com/hknbb/drmyn-studio"
 abstract: >
-  Dramyn Studio is a metadata-only, schema-validated, human-gated pre-production
+  DRMYN Studio is a metadata-only, schema-validated, human-gated pre-production
   and prompt governance pipeline for AI-assisted film production. It provides
   scene cards, character and location records, continuity files, prompt
   lifecycle infrastructure, JSON schema validation (20+ schemas, draft 2020-12),
