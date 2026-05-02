@@ -65,15 +65,16 @@ settings.local.json tracked        → REMOVED
 
 ---
 
-## Recommended Tag
+## Tag History
 
-```text
-git tag -a v0.1.0-ha-complete-scientific-clean \
-  -m "Human-Agent Production Copilot Layer complete; scientific clean release"
-git push origin v0.1.0-ha-complete-scientific-clean
-```
+| Tag | Commit | Notes |
+|---|---|---|
+| `v0.1.0-ha-complete-scientific-clean` | e4e1ef5 | Initial scientific clean release (HA-0→HA-6 + SCI-0→SCI-3) |
+| `v0.1.1-ha-complete-scientific-clean` | f76bd21+ | Patch: updated CITATION.cff and .zenodo.json; Dependabot workflow bump |
 
-Apply this tag after this PR is merged to main and the final review is complete.
+The `v0.1.1` patch tag is the recommended Zenodo / DOI target. It includes the
+same validated infrastructure as v0.1.0 plus corrected citation metadata
+(`date-released: 2026-05-02`, HA layer abstract, updated keywords).
 
 ---
 
