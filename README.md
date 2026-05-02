@@ -1,10 +1,10 @@
-# Closing Price — Zone 1 / Phase 1 Canonical Workflow Repository
+# DRMYN Studio — Metadata-Only Human-Agent Film Production Workflow
 
-This repository contains the canonical planning, prompt-governance, validation, and reproducibility infrastructure for **Zone 1 / Phase 1** of the *Closing Price* workflow.
+This repository contains the canonical planning, prompt-governance, validation, and reproducibility infrastructure for **DRMYN Studio**, demonstrated through **Zone 1 / Phase 1** of the *Closing Price* AI-assisted film project.
 
 ## Purpose
 
-Zone 1 / Phase 1 is the **pre-production and prompt-engineering layer** of the project. It is responsible for:
+DRMYN Studio is the **pre-production and prompt-engineering layer** of the AI-assisted film production pipeline. It is responsible for:
 
 - defining canonical source truth
 - stabilizing scene, character, location, continuity, and prompt records

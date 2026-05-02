@@ -1,7 +1,7 @@
 [project]
-name = "closing-price-phase1"
-version = "0.1.0"
-description = "Zone 1 / Phase 1 canonical workflow validation and tooling"
+name = "drmyn-studio"
+version = "0.1.2"
+description = "DRMYN Studio: metadata-only human-agent film production workflow"
 requires-python = ">=3.11"
 dependencies = [
     "jsonschema>=4.21.0",

@@ -1,8 +1,8 @@
 {
-  "title": "Closing Price: Zone 1 / Phase 1 Canonical Workflow Repository",
+  "title": "DRMYN Studio: A Metadata-Only Human-Agent Film Production Workflow",
   "upload_type": "software",
-  "version": "0.1.0",
-  "description": "Metadata-only, schema-validated, human-gated pre-production and prompt governance pipeline for Zone 1 / Phase 1 of the Closing Price AI-assisted film project. Includes scene cards, character and location records, continuity files, prompt lifecycle infrastructure, JSON schema validation (20+ schemas, draft 2020-12), a Human-Agent Production Copilot layer (HA-0 to HA-6) enabling structured multi-agent coordination without external APIs, and a Streamlit dashboard for operator oversight. All production decisions are reproducible and academically defensible; generated media outputs are stored externally and referenced by metadata-only records. Release v0.1.0 marks completion of the Human-Agent Production Copilot layer and scientific clean packaging.",
+  "version": "0.1.2",
+  "description": "DRMYN Studio is a metadata-only, schema-validated, human-gated pre-production and prompt governance pipeline for AI-assisted film production. Includes scene cards, character and location records, continuity files, prompt lifecycle infrastructure, JSON schema validation (20+ schemas, draft 2020-12), a Human-Agent Production Copilot layer (HA-0 to HA-6) enabling structured multi-agent coordination without external APIs, and a Streamlit dashboard for operator oversight. All production decisions are reproducible and academically defensible; generated media outputs are stored externally and referenced by metadata-only records. Demonstrated through the Closing Price AI-assisted film project. Release v0.1.2 finalises the system name and citation metadata.",
   "creators": [
     {
       "name": "Babacan, Hakan",
