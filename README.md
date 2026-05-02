@@ -1,5 +1,7 @@
 # Dramyn Studio — Metadata-Only Human-Agent Film Production Workflow
 
+[![DOI](https://zenodo.org/badge/1227492409.svg)](https://doi.org/10.5281/zenodo.19987410)
+
 This repository contains the canonical planning, prompt-governance, validation, and reproducibility infrastructure for **Dramyn Studio**, demonstrated through **Zone 1 / Phase 1** of the *Closing Price* AI-assisted film project.
 
 ## Purpose
