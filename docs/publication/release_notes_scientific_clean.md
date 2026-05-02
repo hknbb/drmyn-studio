@@ -2,8 +2,9 @@
 
 **Release name:** `v0.1.2-drmyn-studio-scientific-clean`  
 **Date:** 2026-05-02  
-**Branch:** `docs/scientific-clean-release`  
-**Base commit:** main at `adab465` (post HA-6 + handoff record)
+**Branch:** `docs/drmyn-studio-release-metadata`  
+**Base commit:** main at `e723561` (before PR #22)  
+**Release commit:** `c88b532` (PR #22 merge)
 
 ---
 
@@ -71,7 +72,7 @@ settings.local.json tracked        → REMOVED
 |---|---|---|
 | `v0.1.0-ha-complete-scientific-clean` | e4e1ef5 | Initial scientific clean release (HA-0→HA-6 + SCI-0→SCI-3) |
 | `v0.1.1-ha-complete-scientific-clean` | e723561 | Patch: updated CITATION.cff and .zenodo.json; Dependabot workflow bump |
-| `v0.1.2-drmyn-studio-scientific-clean` | current | Rename: DRMYN Studio system name; Closing Price remains case-study name |
+| `v0.1.2-drmyn-studio-scientific-clean` | c88b532 | Rename: DRMYN Studio system name; Closing Price remains case-study name |
 
 The `v0.1.2` tag is the recommended Zenodo / DOI target. It includes the same
 validated infrastructure as v0.1.1 plus the corrected system name
