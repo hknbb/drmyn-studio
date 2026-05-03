@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/aesthetic_bible.schema.json",
+  "title": "DRMYN Studio Film Aesthetic Bible",
+  "description": "Machine-readable registry of named film mood-board packs. Each pack defines a structured visual vocabulary derived from source/style_bible.md, used to seed deterministic prompt augmentation across characters, locations, props, and wardrobe within the same cinematic universe.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "packs"],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "packs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pack_id",
+          "name",
+          "visual_thesis",
+          "derived_from",
+          "search_keywords",
+          "element_keyword_map",
+          "do_not_keywords"
+        ],
+        "properties": {
+          "pack_id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]+$",
+            "minLength": 3,
+            "maxLength": 80
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "visual_thesis": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1500
+          },
+          "derived_from": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["style_bible_sections"],
+            "properties": {
+              "style_bible_sections": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                }
+              },
+              "scene_evidence": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 300
+                }
+              }
+            }
+          },
+          "search_keywords": {
+            "type": "array",
+            "minItems": 8,
+            "maxItems": 30,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "element_keyword_map": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "t2i_character_element",
+              "t2i_location_element",
+              "t2i_prop_element",
+              "t2i_wardrobe_element"
+            ],
+            "properties": {
+              "t2i_character_element": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 4,
+                "uniqueItems": true,
+                "items": {"type": "string", "minLength": 1, "maxLength": 200}
+              },
+              "t2i_location_element": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 4,
+                "uniqueItems": true,
+                "items": {"type": "string", "minLength": 1, "maxLength": 200}
+              },
+              "t2i_prop_element": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 4,
+                "uniqueItems": true,
+                "items": {"type": "string", "minLength": 1, "maxLength": 200}
+              },
+              "t2i_wardrobe_element": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 4,
+                "uniqueItems": true,
+                "items": {"type": "string", "minLength": 1, "maxLength": 200}
+              },
+              "t2i_style_reference": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 4,
+                "uniqueItems": true,
+                "items": {"type": "string", "minLength": 1, "maxLength": 200}
+              }
+            }
+          },
+          "do_not_keywords": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 15,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          }
+        }
+      }
+    }
+  }
+}

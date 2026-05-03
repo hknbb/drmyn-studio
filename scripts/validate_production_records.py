@@ -52,6 +52,7 @@ LOCAL_MEDIA_INDEX_PATTERN = "evidence/local_media_indices/*.yaml"
 VIDEO_TAKE_PATTERN = "visual_dev/omni_sets/SC*/video_takes.yaml"
 VIDEO_REVIEW_PATTERN = "evidence/video_reviews/*.yaml"
 SELECTED_TAKE_PATTERN = "visual_dev/omni_sets/SC*/selected_take.yaml"
+AESTHETIC_BIBLE_PATH = "planning/aesthetic_bible.yaml"
 SCENE_CLIP_MAP_PATH = "evidence/scene_clip_map.csv"
 
 SCENE_CLIP_MAP_HEADER = [
@@ -137,6 +138,11 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         "video_take": sorted(repo_root.glob(VIDEO_TAKE_PATTERN)),
         "video_review": sorted(repo_root.glob(VIDEO_REVIEW_PATTERN)),
         "selected_take": sorted(repo_root.glob(SELECTED_TAKE_PATTERN)),
+        "aesthetic_bible": (
+            [repo_root / AESTHETIC_BIBLE_PATH]
+            if (repo_root / AESTHETIC_BIBLE_PATH).is_file()
+            else []
+        ),
         "scene_clip_map": [repo_root / SCENE_CLIP_MAP_PATH]
         if (repo_root / SCENE_CLIP_MAP_PATH).exists()
         or list(repo_root.glob(SELECTED_TAKE_PATTERN))
@@ -810,6 +816,7 @@ def run_validation(
     video_take_validator: Draft202012Validator | None = None
     video_review_validator: Draft202012Validator | None = None
     selected_take_validator: Draft202012Validator | None = None
+    aesthetic_bible_validator: Draft202012Validator | None = None
 
     grouped_files = collect_production_files(repo_root)
     total = sum(len(files) for files in grouped_files.values())
@@ -941,6 +948,20 @@ def run_validation(
                     validator=selected_take_validator,
                 )
                 file_issues.extend(validate_selected_take_extra(path, repo_root))
+            elif record_type == "aesthetic_bible":
+                if aesthetic_bible_validator is None:
+                    aesthetic_bible_schema = load_schema(
+                        repo_root / "schemas" / "aesthetic_bible.schema.json"
+                    )
+                    aesthetic_bible_validator = Draft202012Validator(
+                        aesthetic_bible_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=aesthetic_bible_validator,
+                )
             elif record_type == "scene_clip_map":
                 file_issues = validate_scene_clip_map_file(path, repo_root)
             else:

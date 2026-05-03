@@ -1,0 +1,221 @@
+schema_version: 1
+packs:
+  - pack_id: VALE_DOMESTIC_RESTRAINT
+    name: "Vale Residence — Controlled Domestic Underuse"
+    visual_thesis: >
+      Wealth as control, curation, and underuse — never warmth. Pale stone and
+      muted domestic neutrals, surveillance geometry made domestic through
+      thresholds, corridor depth, and doorway framing. Composed elite
+      presentation: disciplined posture, no decorative softness, bodily
+      restraint over emotional display. Daylight is filtered, cold, and
+      partially blocked; warmth, when present, stays contained to a single
+      practical source. The image must reveal how little of the residence is
+      genuinely lived in.
+    derived_from:
+      style_bible_sections:
+        - "Visual thesis"
+        - "Palette rules"
+        - "Interior rules"
+        - "Framing rules"
+        - "Lighting rules"
+      scene_evidence:
+        - "planning/scenes/SC0001/scene_card.yaml:visual_targets.palette"
+        - "planning/scenes/SC0001/scene_card.yaml:visual_targets.framing_bias"
+        - "planning/scenes/SC0001/scene_card.yaml:visual_targets.lighting_bias"
+    search_keywords:
+      - "controlled domestic restraint cinematography"
+      - "pale stone muted cream interior"
+      - "elite domestic underuse aesthetic"
+      - "filtered cold daylight through occluded windows"
+      - "threshold and corridor framing geometry"
+      - "composed elite presentation, no warmth"
+      - "curated luxury without ornament"
+      - "surveillance-aware domestic interior"
+      - "expensive minimalism, dust-shadow detail"
+      - "low-key practical pools in cold morning interior"
+      - "off-angle frame as surveillance geometry"
+      - "matte highlight roll-off on polished stone"
+    element_keyword_map:
+      t2i_character_element:
+        - "composed elite presentation, restrained posture"
+        - "muted domestic neutrals, no ornament"
+        - "filtered cold morning daylight on skin"
+      t2i_location_element:
+        - "pale stone domestic interior, controlled luxury"
+        - "threshold and corridor depth as framing anchor"
+        - "filtered cold daylight, partially occluded windows"
+      t2i_prop_element:
+        - "curated domestic object, expensive minimalism"
+        - "matte stone or folded linen surface, dust-shadow detail"
+      t2i_wardrobe_element:
+        - "disciplined elite wardrobe, no fashion-editorial styling"
+        - "off-white and grey-beige domestic neutrals"
+      t2i_style_reference:
+        - "controlled near-future domestic restraint"
+        - "surveillance-geometry interior cinematography"
+    do_not_keywords:
+      - "golden sentimental domestic warmth"
+      - "rich jewel-tone luxury opulence"
+      - "soft romantic glow"
+      - "fashion-editorial wardrobe styling"
+      - "decorative production design clutter"
+      - "neon cyberpunk color"
+      - "teal-orange blockbuster grading"
+
+  - pack_id: KASPAR_INSTITUTIONAL_SURVEILLANCE
+    name: "Kaspar Terminal & Veltain Service — Institutional Surveillance"
+    visual_thesis: >
+      Functional whites, brushed steel, concrete, and muted utility colors of
+      the institutional and corporate service zones. Camera behavior privileges
+      sightlines, gate lanes, access readers, and the geometry of monitored
+      movement. Light is clinical and engineered, with monitor glow and strip
+      practicals dominating; people register as routed bodies inside a
+      maintained machine. Surfaces feel engineered, not fantastical.
+    derived_from:
+      style_bible_sections:
+        - "Core cinematic register"
+        - "Camera behavior rules"
+        - "Lighting rules"
+        - "Texture / image-surface rules"
+        - "Interior rules"
+    search_keywords:
+      - "institutional surveillance interior cinematography"
+      - "functional whites, brushed steel, concrete"
+      - "monitor glow and strip practical lighting"
+      - "access reader and gate lane geometry"
+      - "engineered maintained machine surfaces"
+      - "clinical service zone interior"
+      - "checkpoint edge framing"
+      - "monitored route corridor"
+      - "low-key institutional contrast"
+      - "engineered handrail and threshold detail"
+    element_keyword_map:
+      t2i_character_element:
+        - "routed institutional posture, no ornament"
+        - "clinical overhead light on uniform skin tone"
+        - "controlled bearing inside monitored geometry"
+      t2i_location_element:
+        - "institutional service interior, brushed steel and concrete"
+        - "strip practical lighting and monitor glow"
+        - "checkpoint edge and access reader sightlines"
+      t2i_prop_element:
+        - "engineered institutional hardware, maintained surface"
+        - "matte utility color, no decorative finish"
+      t2i_wardrobe_element:
+        - "service-zone uniform or institutional staff wear"
+        - "muted utility color, materially credible"
+      t2i_style_reference:
+        - "clinical institutional surveillance cinematography"
+        - "engineered service-zone register"
+    do_not_keywords:
+      - "generic villain lair design"
+      - "fantastical sci-fi interface aesthetic"
+      - "carnival or showmanship lighting"
+      - "decorative interface graphics"
+      - "luxurious corporate gloss"
+
+  - pack_id: MERIN_INDUSTRIAL_DECAY
+    name: "MERIN Waterfront & Zoral Corridor — Weathered Industrial Realism"
+    visual_thesis: >
+      Grey water, concrete, diesel, salt-washed industrial tones, and
+      grey-orange industrial haze. Surfaces accumulate use: rust, dampness,
+      adhesive residue, scuffed work surfaces. Exterior weather and overcast
+      reflected light dominate. Spatial geography stays legible — quay edges,
+      freight corridors, gate lanes, approach lanes are operational, not
+      atmospheric backdrops. Night preserves operational visibility; nothing
+      obscures route information for spectacle.
+    derived_from:
+      style_bible_sections:
+        - "Palette rules"
+        - "Texture / image-surface rules"
+        - "Exterior rules"
+        - "Day / dawn / dusk / night distinctions"
+        - "Lighting rules"
+    search_keywords:
+      - "weathered industrial waterfront cinematography"
+      - "grey water concrete diesel salt palette"
+      - "grey-orange industrial haze and corrugated infrastructure"
+      - "rust, dampness, adhesive residue surface texture"
+      - "overcast reflected light on quay edge"
+      - "freight corridor and gate lane geometry"
+      - "sodium spill street practical at industrial perimeter"
+      - "scuffed work surface, materially credible"
+      - "operational route visibility at night"
+      - "salt-washed concrete and corrugated metal"
+    element_keyword_map:
+      t2i_character_element:
+        - "weathered survival-use clothing, salt and damp on skin"
+        - "overcast reflected light on fatigued face"
+        - "grounded posture inside industrial geography"
+      t2i_location_element:
+        - "industrial waterfront, grey water and corrugated infrastructure"
+        - "salt-washed concrete and rust accumulation"
+        - "overcast reflected light, sodium spill at perimeter"
+      t2i_prop_element:
+        - "industrial-utility object, rust and adhesive residue"
+        - "scuffed work surface, materially credible wear"
+      t2i_wardrobe_element:
+        - "workwear in dock or transit, seasonally lived-in"
+        - "muted utility color with weather wear"
+      t2i_style_reference:
+        - "weathered infrastructural realism"
+        - "industrial haze and reflected-light cinematography"
+    do_not_keywords:
+      - "stylized post-apocalyptic decoration"
+      - "decorative grime as production design"
+      - "spectacle smoke and atmospheric flares"
+      - "neon-lit cyberpunk industrial fantasy"
+      - "abstract drone language obscuring tactical geography"
+
+  - pack_id: ORACLE_BROADCAST_CLEAN
+    name: "Oracle Prime Broadcast — Calibrated False Clean"
+    visual_thesis: >
+      The broadcast layer of the system: high-contrast, typographic,
+      calibrated, professionally persuasive, emotionally false. Image reads
+      cleaner and more finished than lived-space imagery, but never as
+      celebration — it is the look of a profit machine, not a game show.
+      Highlights are controlled; the frame admits financial instrumentation
+      first, entertainment second. Camera may briefly adopt system-facing
+      observation, but human physicality must remain on screen.
+    derived_from:
+      style_bible_sections:
+        - "Core cinematic register"
+        - "Exposure / contrast rules"
+        - "Broadcast-world vs lived-world visual distinction rules"
+        - "Negative visual rules"
+        - "Do-not-drift list"
+    search_keywords:
+      - "broadcast world calibrated false clean cinematography"
+      - "high-contrast typographic interface composition"
+      - "controlled highlight, no bloom"
+      - "financial instrumentation aesthetic"
+      - "system-facing observation register"
+      - "professionally persuasive broadcast layer"
+      - "interface white against controlled dark field"
+      - "calibrated subscriber-feed look"
+      - "polished clean broadcast interior"
+      - "emotionally false high-finish image"
+    element_keyword_map:
+      t2i_character_element:
+        - "broadcast-facing composed presentation, controlled highlight on skin"
+        - "professionally persuasive bearing, no warmth"
+        - "system-facing observation framing"
+      t2i_location_element:
+        - "broadcast set or interface space, polished clean"
+        - "interface white against controlled dark field"
+        - "high-contrast typographic environment"
+      t2i_prop_element:
+        - "financial instrumentation surface, calibrated finish"
+        - "broadcast hardware, clean engineered detail"
+      t2i_wardrobe_element:
+        - "broadcast-grade tailored wardrobe, controlled palette"
+        - "professionally persuasive presentation, no fashion gloss"
+      t2i_style_reference:
+        - "calibrated broadcast-layer cinematography"
+        - "profit-machine interface register"
+    do_not_keywords:
+      - "game-show carnival lighting"
+      - "camp media satire aesthetic"
+      - "ecstatic broadcast movement"
+      - "sentimental anchor close-up"
+      - "decorative typographic flourish"
