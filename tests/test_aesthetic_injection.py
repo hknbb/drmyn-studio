@@ -202,7 +202,7 @@ def test_neutral_brief_deterministic_order_across_runs(tmp_path: Path) -> None:
 
 
 # ---------------------------------------------------------------------------
-# Midjourney adapter — compact comma-tail within 80 words
+# Midjourney adapter — compact comma-tail within 60 words (updated from research)
 # ---------------------------------------------------------------------------
 
 
@@ -236,10 +236,10 @@ def test_midjourney_prompt_includes_aesthetic_tail(tmp_path: Path) -> None:
     )
     text = adapter._build_prompt_text(brief2)
     assert "gritty neo-noir" in text or "pale stone" in text
-    assert len(text.split()) <= 80
+    assert len(text.split()) <= 60
 
 
-def test_midjourney_prompt_respects_80_word_limit(tmp_path: Path) -> None:
+def test_midjourney_prompt_respects_60_word_limit(tmp_path: Path) -> None:
     adapter = MidjourneyAdapter(tmp_path)
     from scripts.agents.neutral_brief import VisualAnchor
     long_keywords = tuple(f"keyword-{i}" for i in range(30))
@@ -254,7 +254,7 @@ def test_midjourney_prompt_respects_80_word_limit(tmp_path: Path) -> None:
         aesthetic_keywords=long_keywords,
     )
     text = adapter._build_prompt_text(brief)
-    assert len(text.split()) <= 80
+    assert len(text.split()) <= 60
 
 
 # ---------------------------------------------------------------------------

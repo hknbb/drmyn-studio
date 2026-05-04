@@ -279,7 +279,7 @@ def test_midjourney_prompt_text_word_count(tmp_path: Path) -> None:
     adapter = MidjourneyAdapter(tmp_path)
     record, _ = adapter.generate(CHAR_BRIEF)
     words = record["prompt_text"].split()
-    assert len(words) <= 80, f"Prompt text too long: {len(words)} words"
+    assert len(words) <= 60, f"Prompt text too long: {len(words)} words"
 
 
 def test_midjourney_prompt_text_has_subject(tmp_path: Path) -> None:

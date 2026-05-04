@@ -31,6 +31,8 @@ generation_params:
     forbidden:
     - Nadia Vale
   constraint_strategy: embedded_positive_constraints
+  recommended_quality: medium
+  prompt_structure: scene→subject→details→constraints
 expected_output:
   asset_type: image_set
   variation_count: 4
