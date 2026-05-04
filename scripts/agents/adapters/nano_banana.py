@@ -1,12 +1,18 @@
 """
 Nano Banana T2I prompt adapter for Batch 4.
 
-Style: identity-consistency framing. Subject is introduced first with an
-explicit identity/reference framing phrase. Negative prompt populated
-(model supports it). Visual anchors follow in descriptive sentences.
+Nano Banana Pro = gemini-3-pro-image-preview (Google Gemini 3 Pro Image).
+
+Style: narrative identity-consistency framing. Subject is introduced first with
+an explicit identity/reference framing phrase. Visual anchors follow as
+descriptive sentences. Constraints are embedded as semantic negation (Avoid:
+clause) — gemini-3-pro-image-preview does NOT support a separate negative_prompt
+parameter.
 """
 
 from __future__ import annotations
+
+from typing import Any
 
 from scripts.agents.adapters._base import BaseAdapter
 from scripts.agents.neutral_brief import NeutralBrief
@@ -14,12 +20,13 @@ from scripts.agents.neutral_brief import NeutralBrief
 
 class NanaBananaAdapter(BaseAdapter):
     """
-    Generates Nano Banana-style prompt records from a NeutralBrief.
+    Generates Nano Banana Pro (gemini-3-pro-image-preview) prompt records.
 
-    Prompt style: identity-consistency reference framing with descriptive
-    visual sentences.
-    Negative prompt: populated (model capability: supports_negative_prompt=true).
-    Capability: supports_identity_consistency=true.
+    Prompt style: narrative identity-consistency reference framing.
+    Negative prompt: NOT populated (supports_negative_prompt=false).
+    Constraints embedded via semantic negation in prompt_text.
+    generation_params: constraint_strategy=embedded_positive_constraints.
+    Capability: supports_identity_consistency=true (up to 5 char refs).
     """
 
     MODEL_ID = "nano_banana"
@@ -27,7 +34,14 @@ class NanaBananaAdapter(BaseAdapter):
     ABBREV = "NB"
 
     # ------------------------------------------------------------------
-    # Prompt text — identity-consistency framing
+    # generation_params — constraint strategy
+    # ------------------------------------------------------------------
+
+    def _extra_generation_params(self, brief: NeutralBrief) -> dict[str, Any]:
+        return {"constraint_strategy": "embedded_positive_constraints"}
+
+    # ------------------------------------------------------------------
+    # Prompt text — narrative identity-consistency framing
     # ------------------------------------------------------------------
 
     def _build_prompt_text(self, brief: NeutralBrief) -> str:
@@ -53,6 +67,11 @@ class NanaBananaAdapter(BaseAdapter):
             anchor = "World consistency: " + ", ".join(brief.aesthetic_keywords) + "."
             parts.append(anchor)
 
+        # Semantic negation — embed constraints as "Avoid:" clause (no separate field)
+        if brief.negative_constraints:
+            avoid = "Avoid: " + "; ".join(brief.negative_constraints[:6]) + "."
+            parts.append(avoid)
+
         # Closing identity-consistency note for character/wardrobe
         if brief.element_type in ("character", "wardrobe"):
             parts.append("Use for consistent identity generation across scenes.")
@@ -60,14 +79,13 @@ class NanaBananaAdapter(BaseAdapter):
         return " ".join(parts) if parts else "(no visual anchors available)"
 
     # ------------------------------------------------------------------
-    # Negative prompt — semicolon-separated constraints
+    # Negative prompt — omitted (not supported by gemini-3-pro-image-preview)
     # ------------------------------------------------------------------
 
     def _build_negative_prompt(self, brief: NeutralBrief) -> str | None:
-        if not brief.negative_constraints:
-            return None
-        # Include first 8 constraints; keep concise
-        return "; ".join(brief.negative_constraints[:8])
+        # gemini-3-pro-image-preview has no negative_prompt parameter.
+        # Constraints are embedded via semantic negation in _build_prompt_text.
+        return None
 
     # ------------------------------------------------------------------
     # Helpers

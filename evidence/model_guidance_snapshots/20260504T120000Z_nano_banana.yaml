@@ -1,0 +1,72 @@
+model_id: nano_banana
+snapshot_taken_at: '2026-05-04T12:00:00Z'
+snapshot_hash: sha256:f668cbe7c6e1c8e4a055454ed3fa7fc892009c1c8cab53c2ff5f223ce3384a8a
+model_version_observed: gemini-3-pro-image-preview
+model_version_confidence: high
+sources:
+- url: https://ai.google.dev/gemini-api/docs/image-generation
+  retrieved_at: '2026-05-04T12:00:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-fetch-2026-05-04
+  human_verified: true
+  source_class: official_docs
+  notes: Official Gemini API image generation guide. Confirms nano_banana (Nano Banana Pro) = gemini-3-pro-image-preview.
+    Up to 14 reference images (6 object + 5 character). No negative_prompt — use semantic negation. Max prompt 480 tokens.
+- url: https://docs.cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/3-pro-image
+  retrieved_at: '2026-05-04T12:00:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-fetch-2026-05-04
+  human_verified: true
+  source_class: official_docs
+  notes: 'Vertex AI spec page. Context: 65536 input / 32768 output tokens. Temperature: keep at default 1.0. Aspect ratios:
+    1:1 through 21:9. 4K native. Cost: 2K=1120 tokens, 4K=2000 tokens.'
+- url: https://docs.cloud.google.com/vertex-ai/generative-ai/docs/image/img-gen-prompt-guide
+  retrieved_at: '2026-05-04T12:00:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-fetch-2026-05-04
+  human_verified: true
+  source_class: official_docs
+  notes: 'Vertex AI prompt guide. Structure: subject/context/style. Photography modifiers: proximity, position, lighting,
+    effects, lens, film style. Max 25 chars for in-image text.'
+- url: https://docs.cloud.google.com/vertex-ai/generative-ai/docs/image/omit-content-using-a-negative-prompt
+  retrieved_at: '2026-05-04T12:00:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-fetch-2026-05-04
+  human_verified: true
+  source_class: official_docs
+  notes: 'Negative prompt support: Imagen 3 legacy only. NOT available in gemini-3-pro-image-preview. Use semantic negation:
+    describe what you want, not what you do not want. Avoid the word no in prompts.'
+- url: https://deepmind.google/models/gemini-image/pro/
+  retrieved_at: '2026-05-04T12:00:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-fetch-2026-05-04
+  human_verified: true
+  source_class: verified_platform_blog
+  notes: Google DeepMind official product page for Gemini 3 Pro Image (Nano Banana Pro). Confirms 4K native support added
+    2026-02-26, character consistency up to 5 simultaneous people.
+extracted_rules:
+- 'Actual model: gemini-3-pro-image-preview (Nano Banana Pro). Imagen 4 deprecated June 24, 2026. Use gemini-3-pro-image-preview
+  for all new production pipelines.'
+- 'Narrative prompt structure: Subject → Context/environment → Artistic style/approach. Use descriptive sentences, NOT keyword
+  comma-lists.'
+- 'Photography modifiers for cinematic control: camera proximity (close-up/aerial/low-angle), lighting (natural/dramatic/warm),
+  lens type (wide-angle/macro/fisheye), effects (bokeh/depth-of-field), film style (B&W/Polaroid).'
+- 'NO negative_prompt parameter. Use semantic negation instead: describe positively what you want. Example: instead of no
+  cars, write an empty deserted street with no signs of traffic.'
+- 'Character consistency: upload up to 5 character reference images + up to 6 object fidelity images (14 reference images
+  total per prompt). Maintains facial features and identity across iterations.'
+- 'Temperature: keep at default 1.0. Lowering causes looping, unexpected behavior, and degraded output. Do not adjust.'
+- 'Maximum prompt length: 480 tokens. Keep prompts concise and clear; verbose prompts cause over-analysis.'
+- 'Aspect ratios supported: 1:1, 2:3, 3:2, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9. For cinematic production use 16:9 or 21:9.'
+- 4K native resolution available (2K=1120 tokens, 4K=2000 tokens). 4K added 2026-02-26. Budget token costs accordingly for
+  batch production.
+- 'For in-image text: keep under 25 characters per phrase, max 2-3 distinct phrases. Text rendering is reliable within these
+  limits.'
+- Never include canonical planning IDs (C01, LOC001, SC0001) or character full display names (e.g. Nadia Vale) in prompt_text.
+  Use first-name only. The Critic enforces these checks.
+- Do not use persuasive language (please, would you) in prompts. Direct instructions only.
+confidence: high
+snapshot_validity:
+  max_age_days: 14
+  expires_at: '2026-05-18T12:00:00Z'
+schema_version: '1.0'
