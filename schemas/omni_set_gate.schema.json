@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/omni_set_gate.schema.json",
+  "title": "Omni Set Production Gate Report",
+  "description": "Metadata-only audit record for scene-level Omni set and element pack readiness.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scene_id",
+    "generated_at",
+    "gate_status",
+    "ready_for_kling_prompt_generation",
+    "scene_card_ref",
+    "omni_set_ref",
+    "element_set_ref",
+    "storyboard_gate",
+    "shot_list_gate",
+    "element_pack_gate",
+    "blocking_reasons",
+    "storage_policy",
+    "external_generation_performed",
+    "binary_outputs_created",
+    "lifecycle_promotion_performed"
+  ],
+  "properties": {
+    "scene_id": {
+      "type": "string",
+      "pattern": "^SC\\d{4}$"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "gate_status": {
+      "type": "string",
+      "enum": [
+        "ready_for_kling_prompt_generation",
+        "blocked_pending_locked_element_packs",
+        "blocked_missing_or_invalid_omni_set_metadata"
+      ]
+    },
+    "ready_for_kling_prompt_generation": {
+      "type": "boolean"
+    },
+    "scene_card_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "omni_set_ref": {
+      "type": ["string", "null"]
+    },
+    "element_set_ref": {
+      "type": ["string", "null"]
+    },
+    "storyboard_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "storyboard_options_ref",
+        "selected_option",
+        "ready"
+      ],
+      "properties": {
+        "storyboard_options_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selected_option": {
+          "type": ["string", "null"]
+        },
+        "ready": {
+          "type": "boolean"
+        }
+      }
+    },
+    "shot_list_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ready",
+        "shot_count",
+        "total_duration_seconds"
+      ],
+      "properties": {
+        "ready": {
+          "type": "boolean"
+        },
+        "shot_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "total_duration_seconds": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "element_pack_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_pack_status",
+        "summary",
+        "elements"
+      ],
+      "properties": {
+        "required_pack_status": {
+          "type": "string",
+          "const": "locked"
+        },
+        "summary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "total_elements",
+            "ready_packs",
+            "metadata_only_packs",
+            "missing_pack_manifests",
+            "missing_descriptors"
+          ],
+          "properties": {
+            "total_elements": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "ready_packs": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "metadata_only_packs": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "missing_pack_manifests": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "missing_descriptors": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "elements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "element_ref",
+              "descriptor_exists",
+              "pack_path_expected",
+              "pack_manifest_ref",
+              "pack_manifest_exists",
+              "pack_status",
+              "ready"
+            ],
+            "properties": {
+              "element_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "descriptor_exists": {
+                "type": "boolean"
+              },
+              "pack_path_expected": {
+                "type": ["string", "null"]
+              },
+              "pack_manifest_ref": {
+                "type": ["string", "null"]
+              },
+              "pack_manifest_exists": {
+                "type": "boolean"
+              },
+              "pack_status": {
+                "type": ["string", "null"]
+              },
+              "ready": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "blocking_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "storage_policy": {
+      "type": "string",
+      "const": "no_binary_commits"
+    },
+    "external_generation_performed": {
+      "type": "boolean",
+      "const": false
+    },
+    "binary_outputs_created": {
+      "type": "boolean",
+      "const": false
+    },
+    "lifecycle_promotion_performed": {
+      "type": "boolean",
+      "const": false
+    }
+  }
+}

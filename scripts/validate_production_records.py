@@ -52,6 +52,7 @@ LOCAL_MEDIA_INDEX_PATTERN = "evidence/local_media_indices/*.yaml"
 VIDEO_TAKE_PATTERN = "visual_dev/omni_sets/SC*/video_takes.yaml"
 VIDEO_REVIEW_PATTERN = "evidence/video_reviews/*.yaml"
 SELECTED_TAKE_PATTERN = "visual_dev/omni_sets/SC*/selected_take.yaml"
+OMNI_SET_GATE_PATTERN = "evidence/omni_set_gates/*.yaml"
 AESTHETIC_BIBLE_PATH = "planning/aesthetic_bible.yaml"
 SCENE_CLIP_MAP_PATH = "evidence/scene_clip_map.csv"
 
@@ -138,6 +139,7 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         "video_take": sorted(repo_root.glob(VIDEO_TAKE_PATTERN)),
         "video_review": sorted(repo_root.glob(VIDEO_REVIEW_PATTERN)),
         "selected_take": sorted(repo_root.glob(SELECTED_TAKE_PATTERN)),
+        "omni_set_gate": sorted(repo_root.glob(OMNI_SET_GATE_PATTERN)),
         "aesthetic_bible": (
             [repo_root / AESTHETIC_BIBLE_PATH]
             if (repo_root / AESTHETIC_BIBLE_PATH).is_file()
@@ -816,6 +818,7 @@ def run_validation(
     video_take_validator: Draft202012Validator | None = None
     video_review_validator: Draft202012Validator | None = None
     selected_take_validator: Draft202012Validator | None = None
+    omni_set_gate_validator: Draft202012Validator | None = None
     aesthetic_bible_validator: Draft202012Validator | None = None
 
     grouped_files = collect_production_files(repo_root)
@@ -948,6 +951,20 @@ def run_validation(
                     validator=selected_take_validator,
                 )
                 file_issues.extend(validate_selected_take_extra(path, repo_root))
+            elif record_type == "omni_set_gate":
+                if omni_set_gate_validator is None:
+                    omni_set_gate_schema = load_schema(
+                        repo_root / "schemas" / "omni_set_gate.schema.json"
+                    )
+                    omni_set_gate_validator = Draft202012Validator(
+                        omni_set_gate_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=omni_set_gate_validator,
+                )
             elif record_type == "aesthetic_bible":
                 if aesthetic_bible_validator is None:
                     aesthetic_bible_schema = load_schema(
