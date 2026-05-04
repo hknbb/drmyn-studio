@@ -1,0 +1,81 @@
+scene_id: SC0001
+round: 1
+source_refs:
+  scene_card: planning/scenes/SC0001/scene_card.yaml
+  scene_excerpt: planning/scenes/SC0001/scene_excerpt.md
+options:
+- option_id: SC0001_SB01
+  purpose: 'Represent the source-stated palette and material atmosphere. Source: Pale
+    stone, muted domestic neutrals, and warm dimness in Jin''s room.'
+  camera_angle: Restrained intimate coverage that stays close enough to register object
+    deviation and body habit.
+  framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+    geometry.
+  movement: Minimal, exact movement aligned to Nadia's route logic.
+  lighting: Filtered early daylight and low-key interior practicals; warmth stays
+    contained.
+  source_field: scene_card.visual_targets.palette
+  prompt_ids: []
+  status: candidate
+  aesthetic_pack_refs: &id001
+  - VALE_DOMESTIC_RESTRAINT
+- option_id: SC0001_SB02
+  purpose: 'Represent the source-stated lens and coverage behavior. Source: Restrained
+    intimate coverage that stays close enough to register object deviation and body
+    habit.'
+  camera_angle: Restrained intimate coverage that stays close enough to register object
+    deviation and body habit.
+  framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+    geometry.
+  movement: Minimal, exact movement aligned to Nadia's route logic.
+  lighting: Filtered early daylight and low-key interior practicals; warmth stays
+    contained.
+  source_field: scene_card.visual_targets.lens_bias
+  prompt_ids: []
+  status: candidate
+  aesthetic_pack_refs: *id001
+- option_id: SC0001_SB03
+  purpose: 'Represent the source-stated framing geometry. Source: Thresholds, corridor
+    depth, doorways, and the off-angle frame as surveillance geometry.'
+  camera_angle: Restrained intimate coverage that stays close enough to register object
+    deviation and body habit.
+  framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+    geometry.
+  movement: Minimal, exact movement aligned to Nadia's route logic.
+  lighting: Filtered early daylight and low-key interior practicals; warmth stays
+    contained.
+  source_field: scene_card.visual_targets.framing_bias
+  prompt_ids: []
+  status: candidate
+  aesthetic_pack_refs: *id001
+- option_id: SC0001_SB04
+  purpose: 'Represent the source-stated movement logic. Source: Minimal, exact movement
+    aligned to Nadia''s route logic.'
+  camera_angle: Restrained intimate coverage that stays close enough to register object
+    deviation and body habit.
+  framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+    geometry.
+  movement: Minimal, exact movement aligned to Nadia's route logic.
+  lighting: Filtered early daylight and low-key interior practicals; warmth stays
+    contained.
+  source_field: scene_card.visual_targets.movement_bias
+  prompt_ids: []
+  status: candidate
+  aesthetic_pack_refs: *id001
+- option_id: SC0001_SB05
+  purpose: 'Represent the source-stated lighting treatment. Source: Filtered early
+    daylight and low-key interior practicals; warmth stays contained.'
+  camera_angle: Restrained intimate coverage that stays close enough to register object
+    deviation and body habit.
+  framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+    geometry.
+  movement: Minimal, exact movement aligned to Nadia's route logic.
+  lighting: Filtered early daylight and low-key interior practicals; warmth stays
+    contained.
+  source_field: scene_card.visual_targets.lighting_bias
+  prompt_ids: []
+  status: candidate
+  aesthetic_pack_refs: *id001
+selected_option: null
+review_status: pending
+storage_policy: no_binary_commits
