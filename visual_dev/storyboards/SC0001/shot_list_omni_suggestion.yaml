@@ -57,7 +57,7 @@ suggested_shot_list:
   source_storyboard_option: SC0001_SB03
   source_coverage_role: reaction_or_hold_coverage
 suggested_by: storyboard_agent
-applied_to_scene_card: false
-applied_at: null
+applied_to_scene_card: true
+applied_at: '2026-05-04T18:45:00Z'
 review_status: pending
 storage_policy: no_binary_commits

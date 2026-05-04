@@ -304,7 +304,9 @@ def test_production_validator_accepts_valid_suggestion(tmp_path: Path) -> None:
     assert report.issues == []
 
 
-def test_production_validator_rejects_applied_suggestion(tmp_path: Path) -> None:
+def test_production_validator_rejects_applied_suggestion_without_timestamp(
+    tmp_path: Path,
+) -> None:
     _copy_production_schemas(tmp_path)
     _write_scene(tmp_path)
     _write_storyboard_options(tmp_path)
@@ -321,7 +323,7 @@ def test_production_validator_rejects_applied_suggestion(tmp_path: Path) -> None
     assert report.invalid_files == 1
     assert any(
         issue.record_type == "shot_list_omni_suggestion"
-        and issue.field_path == "applied_to_scene_card"
+        and issue.field_path == "applied_at"
         for issue in report.issues
     )
 
@@ -348,7 +350,8 @@ def test_sc0001_repo_suggestion_uses_selected_sb03_and_target_15() -> None:
     assert payload["target_duration_seconds"] == 15
     assert payload["scene_action_type"] == "static_tension"
     assert payload["coverage_strategy"] == "threshold_geometry_coverage"
-    assert payload["applied_to_scene_card"] is False
+    assert payload["applied_to_scene_card"] is True
+    assert payload["applied_at"] == "2026-05-04T18:45:00Z"
     assert payload["storage_policy"] == "no_binary_commits"
     assert "night" not in yaml.safe_dump(payload).lower()
     assert "sodium" not in yaml.safe_dump(payload).lower()
