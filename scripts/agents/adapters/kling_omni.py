@@ -20,6 +20,14 @@ import yaml
 CANONICAL_ID_RE = re.compile(r"\b(SC\d{4}|C\d{2}|LOC\d{3}|PROP\d{3}|WD\d{3})\b")
 
 
+def _allowed_shot_count(total_duration_seconds: int) -> int:
+    if total_duration_seconds <= 5:
+        return 2
+    if total_duration_seconds <= 10:
+        return 3
+    return 5
+
+
 class KlingOmniAdapterError(ValueError):
     """Raised when Phase 3 Kling prompt gates are not satisfied."""
 
@@ -161,7 +169,13 @@ class KlingOmniAdapter:
     ) -> dict[str, Any]:
         prompt_id = f"{scene_id}__omni-kling-omni__v{version:02d}"
         max_duration = self._max_duration_seconds()
-        prompt_text = self._build_prompt_text(scene_card, shot_list, max_duration)
+        total_duration = self._validated_shot_duration_total(shot_list, max_duration)
+        prompt_text = self._build_prompt_text(
+            scene_card,
+            shot_list,
+            total_duration,
+            max_duration,
+        )
         source_refs: dict[str, Any] = {
             "scene_card": _relative(scene_card_path, self.repo_root),
             "scene_excerpt": f"planning/scenes/{scene_id}/{scene_card.get('excerpt_ref') or 'scene_excerpt.md'}",
@@ -201,10 +215,7 @@ class KlingOmniAdapter:
             "generation_params": generation_params,
             "expected_output": {
                 "asset_type": "clip",
-                "duration_seconds": min(
-                    self._shot_duration_total(shot_list),
-                    max_duration,
-                ),
+                "duration_seconds": total_duration,
             },
             "status": "active",
             "canon_lock": False,
@@ -236,6 +247,7 @@ class KlingOmniAdapter:
         self,
         scene_card: dict[str, Any],
         shot_list: list[Any],
+        total_duration: int,
         max_duration: int,
     ) -> str:
         scene_title = _text(scene_card.get("title"), "Selected scene")
@@ -244,9 +256,8 @@ class KlingOmniAdapter:
         if not isinstance(visual_targets, dict):
             visual_targets = {}
         shots: list[str] = []
-        for index, shot in enumerate(shot_list[:3], start=1):
+        for index, shot in enumerate(shot_list, start=1):
             if not isinstance(shot, dict):
-                shots.append(f"Shot {index}: follow the approved Omni shot guidance.")
                 continue
             subject = _text(shot.get("subject"), "approved scene subject")
             framing = _text(shot.get("framing"), "source-grounded framing")
@@ -254,14 +265,19 @@ class KlingOmniAdapter:
                 shot.get("camera_movement") or shot.get("movement"),
                 "controlled camera movement",
             )
-            duration = shot.get("duration_seconds")
-            duration_text = f"{duration}s" if isinstance(duration, (int, float)) else "brief"
+            lighting = _text(shot.get("lighting"))
+            duration = int(shot["duration_seconds"])
+            details = [subject, framing, movement]
+            if lighting:
+                details.append(lighting)
+            details.append("end by settling into the approved scene state")
             shots.append(
-                f"Shot {index}: {subject}; {framing}; {movement}; {duration_text}."
+                f"Shot {index} ({duration}s): " + "; ".join(details) + "."
             )
         parts = [
             "Create one external Kling Omni video instruction.",
             f"Scene tone: {scene_title}.",
+            f"Total duration: {total_duration} seconds.",
         ]
         if purpose:
             parts.append(f"Dramatic intent: {purpose}.")
@@ -277,7 +293,8 @@ class KlingOmniAdapter:
                 + "."
             )
         parts.append(
-            f"Keep the clip under {max_duration} seconds. Do not add new story facts."
+            f"Keep the clip at {total_duration} seconds, never over {max_duration} seconds. "
+            "End with a clear settled state. Do not add new story facts."
         )
         return _sanitize_prompt_text(" ".join(part for part in parts if part))
 
@@ -344,9 +361,29 @@ class KlingOmniAdapter:
         return int(value) if isinstance(value, int) else 10
 
     @staticmethod
-    def _shot_duration_total(shot_list: list[Any]) -> int:
+    def _validated_shot_duration_total(shot_list: list[Any], max_duration: int) -> int:
         total = 0
-        for shot in shot_list:
-            if isinstance(shot, dict) and isinstance(shot.get("duration_seconds"), int):
-                total += int(shot["duration_seconds"])
-        return total or 5
+        for index, shot in enumerate(shot_list, start=1):
+            if not isinstance(shot, dict):
+                raise KlingOmniAdapterError(f"shot_list_omni[{index}] must be a mapping.")
+            duration = shot.get("duration_seconds")
+            if not isinstance(duration, int) or duration <= 0:
+                raise KlingOmniAdapterError(
+                    f"shot_list_omni[{index}].duration_seconds must be a positive integer."
+                )
+            total += duration
+
+        if total <= 0:
+            raise KlingOmniAdapterError("shot_list_omni total duration must be positive.")
+        if total > max_duration:
+            raise KlingOmniAdapterError(
+                f"shot_list_omni total duration {total}s exceeds max {max_duration}s."
+            )
+
+        allowed_shots = _allowed_shot_count(total)
+        if len(shot_list) > allowed_shots:
+            raise KlingOmniAdapterError(
+                f"shot_list_omni has {len(shot_list)} shots for {total}s, "
+                f"max allowed is {allowed_shots}."
+            )
+        return total
