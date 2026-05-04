@@ -58,24 +58,47 @@ def _shot_list() -> list[dict]:
     return [
         {
             "shot_id": "SC0001_OMNI01",
-            "type": "single_omni_shot",
+            "role": "establish_coverage",
             "subject": "Nadia crosses the kitchen passage and notices the photograph.",
             "camera_angle": "Static close coverage at the doorway.",
             "framing": "Doorway threshold geometry with the frame visible.",
             "camera_movement": "Minimal forward drift.",
+            "lighting": "Filtered early daylight and low-key interior practicals.",
             "duration_seconds": 5,
-            "source_field": "scene_card.visual_targets.framing_bias",
-            "source_option_field": "options[0]",
-            "notes": "Use restrained morning light.",
+            "source_storyboard_option": "SC0001_SB01",
+            "source_coverage_role": "establish_coverage",
         }
     ]
 
 
-def _write_ready_scene(repo_root: Path, *, locked_packs: bool = True) -> tuple[Path, Path]:
+def _multi_shot_list(*, shot_count: int, duration_seconds: int) -> list[dict]:
+    return [
+        {
+            "shot_id": f"SC0001_OMNI{index:02d}",
+            "role": f"coverage_{index}",
+            "subject": f"Nadia source-grounded coverage beat {index}.",
+            "camera_angle": "Static close coverage at the doorway.",
+            "framing": "Doorway threshold geometry with the frame visible.",
+            "camera_movement": "Minimal forward drift.",
+            "lighting": "Filtered early daylight and low-key interior practicals.",
+            "duration_seconds": duration_seconds,
+            "source_storyboard_option": "SC0001_SB01",
+            "source_coverage_role": f"coverage_{index}",
+        }
+        for index in range(1, shot_count + 1)
+    ]
+
+
+def _write_ready_scene(
+    repo_root: Path,
+    *,
+    locked_packs: bool = True,
+    shot_list: list[dict] | None = None,
+) -> tuple[Path, Path]:
     _copy_core_files(repo_root)
     scene_dir = repo_root / "planning/scenes/SC0001"
     scene_card = scene_dir / "scene_card.yaml"
-    _write_yaml(scene_card, _scene_card(shot_list=_shot_list()))
+    _write_yaml(scene_card, _scene_card(shot_list=shot_list or _shot_list()))
     (scene_dir / "scene_excerpt.md").write_text("Nadia notices the photograph.", encoding="utf-8")
 
     _write_yaml(
@@ -153,6 +176,8 @@ def test_non_empty_shot_list_builds_critic_passing_prompt(tmp_path: Path) -> Non
     assert result.run_record["model"] == "kling_omni"
     assert result.run_record["status"] == "pending"
     assert result.run_record["outputs_expected"] == 1
+    assert result.prompt_record["expected_output"]["duration_seconds"] == 5
+    assert "Shot 1 (5s):" in result.prompt_record["prompt_text"]
 
 
 def test_unlocked_pack_blocks_without_modifying_pack_manifest(tmp_path: Path) -> None:
@@ -230,3 +255,65 @@ def test_no_video_or_clip_locking_files_created(tmp_path: Path) -> None:
     assert not list(tmp_path.rglob("video_takes.yaml"))
     assert not list(tmp_path.rglob("selected_take.yaml"))
     assert not (tmp_path / "evidence/scene_clip_map.csv").exists()
+
+
+def test_fifteen_second_five_shot_prompt_is_accepted(tmp_path: Path) -> None:
+    scene_card, _ = _write_ready_scene(
+        tmp_path,
+        shot_list=_multi_shot_list(shot_count=5, duration_seconds=3),
+    )
+    before_scene = scene_card.read_text(encoding="utf-8")
+
+    result = KlingOmniAdapter(tmp_path).generate("SC0001", run_at="2026-04-30T00:00:00Z")
+
+    prompt_text = result.prompt_record["prompt_text"]
+    assert "Total duration: 15 seconds." in prompt_text
+    assert "Shot 1 (3s):" in prompt_text
+    assert "Shot 5 (3s):" in prompt_text
+    assert "Filtered early daylight" in prompt_text
+    assert "settled state" in prompt_text
+    assert "Do not add new story facts." in prompt_text
+    assert result.prompt_record["expected_output"]["duration_seconds"] == 15
+    assert scene_card.read_text(encoding="utf-8") == before_scene
+
+
+def test_duration_overflow_blocks_without_clamping(tmp_path: Path) -> None:
+    _write_ready_scene(tmp_path, shot_list=_multi_shot_list(shot_count=4, duration_seconds=4))
+
+    with pytest.raises(KlingOmniAdapterError, match="exceeds max 15s"):
+        KlingOmniAdapter(tmp_path).generate("SC0001")
+
+
+@pytest.mark.parametrize(
+    ("shot_list", "expected_error"),
+    [
+        (_multi_shot_list(shot_count=6, duration_seconds=2), "max allowed is 5"),
+        (_multi_shot_list(shot_count=4, duration_seconds=2), "max allowed is 3"),
+        (_multi_shot_list(shot_count=3, duration_seconds=1), "max allowed is 2"),
+    ],
+)
+def test_shot_count_limit_blocks_by_total_duration(
+    tmp_path: Path,
+    shot_list: list[dict],
+    expected_error: str,
+) -> None:
+    _write_ready_scene(tmp_path, shot_list=shot_list)
+
+    with pytest.raises(KlingOmniAdapterError, match=expected_error):
+        KlingOmniAdapter(tmp_path).generate("SC0001")
+
+
+@pytest.mark.parametrize(
+    "bad_duration",
+    [None, "3", 0, -1, 1.5],
+)
+def test_invalid_duration_seconds_blocks(tmp_path: Path, bad_duration: object) -> None:
+    shot_list = _multi_shot_list(shot_count=1, duration_seconds=3)
+    if bad_duration is None:
+        shot_list[0].pop("duration_seconds")
+    else:
+        shot_list[0]["duration_seconds"] = bad_duration
+    _write_ready_scene(tmp_path, shot_list=shot_list)
+
+    with pytest.raises(KlingOmniAdapterError, match="duration_seconds"):
+        KlingOmniAdapter(tmp_path).generate("SC0001")
