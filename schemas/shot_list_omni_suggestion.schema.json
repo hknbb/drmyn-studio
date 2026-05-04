@@ -5,6 +5,30 @@
   "description": "Metadata-only suggested shot_list_omni derived from a selected storyboard option.",
   "type": "object",
   "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "applied_to_scene_card": {"const": true}
+        }
+      },
+      "then": {
+        "properties": {
+          "applied_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "applied_at": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ],
   "required": [
     "scene_id",
     "source_storyboard_options",
@@ -189,11 +213,13 @@
       "const": "storyboard_agent"
     },
     "applied_to_scene_card": {
-      "type": "boolean",
-      "const": false
+      "type": "boolean"
     },
     "applied_at": {
-      "type": "null"
+      "oneOf": [
+        {"type": "null"},
+        {"type": "string", "format": "date-time"}
+      ]
     },
     "review_status": {
       "type": "string",
