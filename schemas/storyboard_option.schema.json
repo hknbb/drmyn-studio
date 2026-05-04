@@ -68,6 +68,111 @@
             "minLength": 1,
             "maxLength": 1000
           },
+          "coverage_strategy": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "scene_action_type": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "duration_profiles": {
+            "type": "array",
+            "minItems": 3,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "total_duration_seconds",
+                "recommended_shot_count",
+                "rhythm"
+              ],
+              "properties": {
+                "total_duration_seconds": {
+                  "type": "integer",
+                  "enum": [5, 10, 15]
+                },
+                "recommended_shot_count": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 5
+                },
+                "rhythm": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                }
+              }
+            }
+          },
+          "coverage_shots": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "role",
+                "subject",
+                "camera_angle",
+                "framing",
+                "camera_movement",
+                "lighting",
+                "min_duration_seconds",
+                "max_duration_seconds",
+                "source_field"
+              ],
+              "properties": {
+                "role": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                "subject": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                },
+                "camera_angle": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                },
+                "framing": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                },
+                "camera_movement": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                },
+                "lighting": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                },
+                "min_duration_seconds": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 15
+                },
+                "max_duration_seconds": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 15
+                },
+                "source_field": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 300
+                }
+              }
+            }
+          },
           "camera_angle": {
             "type": "string",
             "minLength": 1,

@@ -114,6 +114,24 @@ def test_storyboard_options_payload_passes_schema(tmp_path: Path) -> None:
     assert payload["selected_option"] is None
     assert payload["review_status"] == "pending"
     assert payload["storage_policy"] == "no_binary_commits"
+    for option in payload["options"]:
+        assert option["coverage_strategy"]
+        assert option["scene_action_type"] == "static_tension"
+        assert [profile["total_duration_seconds"] for profile in option["duration_profiles"]] == [
+            5,
+            10,
+            15,
+        ]
+        assert [profile["recommended_shot_count"] for profile in option["duration_profiles"]] == [
+            1,
+            2,
+            3,
+        ]
+        assert len(option["coverage_shots"]) == 3
+        assert all(
+            shot["source_field"] == option["source_field"]
+            for shot in option["coverage_shots"]
+        )
 
 
 def test_storyboard_options_do_not_auto_select_or_attach_prompts(
@@ -126,6 +144,7 @@ def test_storyboard_options_do_not_auto_select_or_attach_prompts(
     assert payload["selected_option"] is None
     assert all(option["status"] == "candidate" for option in payload["options"])
     assert all(option["prompt_ids"] == [] for option in payload["options"])
+    assert all("coverage_shots" in option for option in payload["options"])
     assert {option["source_field"] for option in payload["options"]} == {
         "scene_card.visual_targets.palette",
         "scene_card.visual_targets.lens_bias",
@@ -149,6 +168,7 @@ def test_missing_visual_target_marks_option_evidence_thin(tmp_path: Path) -> Non
     assert len(payload["options"]) == 5
     assert any(option["status"] == "evidence_thin" for option in payload["options"])
     assert any("EVIDENCE_THIN" in option["purpose"] for option in payload["options"])
+    assert all(option["coverage_shots"] for option in payload["options"])
 
 
 def test_unresolved_visual_target_blocks_option(tmp_path: Path) -> None:
