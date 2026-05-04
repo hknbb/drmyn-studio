@@ -8,19 +8,24 @@
 
 model_id: chatgpt_image
 schema_version: "1.0"
-guide_version: "0.1.0"
-status: draft
-last_updated: "2026-04-30"
+guide_version: "0.2.0"
+status: active
+last_updated: "2026-05-04"
 maintained_by: "human PR only"
 phase: 1
+actual_model_id: "gpt-image-2"
+snapshot_ref: "evidence/model_guidance_snapshots/20260504T113000Z_chatgpt_image.yaml"
 
 capability:
   output_type: image
-  supports_negative_prompt: false
+  supports_negative_prompt: false   # No separate field; embed constraints in prompt
   constraint_strategy: embedded_positive_constraints
   supports_natural_language_revision: true
   supports_image_editing: true
   supports_seed: false
+  supports_multi_panel: true        # New in gpt-image-2: 8 panels from 1 prompt
+  supports_reasoning_mode: true     # Built-in thinking mode in gpt-image-2
+  current_version: "gpt-image-2"
 
 prompt_rules:
   style: natural_language_task_framing
@@ -30,73 +35,93 @@ prompt_rules:
     - id: natural_language_sentences
       rule: >
         Use full, well-formed sentences describing what to create.
-        Unlike Midjourney, do NOT use comma-separated visual clauses.
-        Example: "Create a close-up portrait of a pale young woman in a hospital
-        room, wearing a white plastic bracelet. The lighting is cold and fluorescent.
-        Do not include text overlays or decorative elements."
-      source: "https://platform.openai.com/docs/guides/images"
-      confidence: medium
-      human_verified: false
+        Do NOT use Midjourney-style comma-separated visual clauses.
+        Prompt order: Background/scene → Subject → Key details → Constraints.
+        Readable structure helps the reasoning mode understand intent.
+      source: "https://developers.openai.com/cookbook/examples/multimodal/image-gen-models-prompting-guide"
+      confidence: high
+      human_verified: true
     - id: no_negative_prompt_field
       rule: >
-        ChatGPT Image does not have a separate negative prompt parameter.
-        All constraints must be embedded in the positive prompt text.
-        Pattern: "Do not include [term]. Avoid [term]. [Term] must not appear."
+        gpt-image-2 has NO separate negative_prompt API parameter.
+        All exclusions must be embedded in the main prompt text.
+        Pattern: "No watermark, no text overlay, no additional objects."
         The adapter sets generation_params.constraint_strategy: embedded_positive_constraints.
         The Critic MUST NOT flag missing negative_prompt for this model.
-      source: "https://platform.openai.com/docs/guides/images"
-      confidence: medium
-      human_verified: false
-    - id: scene_description_structure
+      source: "https://developers.openai.com/api/docs/guides/image-generation"
+      confidence: high
+      human_verified: true
+    - id: labeled_segments_for_complex_requests
       rule: >
-        Include all of: subject + action, environment, lighting, mood,
-        style reference, and explicit constraint text in one coherent paragraph.
-        Order: subject → environment → lighting → constraints.
-      source: "https://platform.openai.com/docs/guides/images"
-      confidence: medium
-      human_verified: false
-    - id: style_by_reference
+        For complex prompts, use labeled segments or line breaks instead of
+        a single paragraph. Example structure:
+        Scene: Modern office, natural daylight
+        Subject: Woman at standing desk, focused expression
+        Details: Minimalist design, plants visible
+        Constraints: No distracting objects, no text overlay, professional lighting
+      source: "https://developers.openai.com/cookbook/examples/multimodal/image-gen-models-prompting-guide"
+      confidence: high
+      human_verified: true
+    - id: explicit_text_rendering
       rule: >
-        Reference established visual styles by descriptive name.
-        Avoid trademarked or copyrighted style names per OpenAI usage policy.
-        Verify acceptable style references in current OpenAI usage policy.
-      source: "https://openai.com/policies/usage-policies"
-      confidence: low
-      human_verified: false
-    - id: iterative_revision
+        For exact text: enclose literals in double quotes or use ALL CAPS.
+        Specify placement, hierarchy, font style. gpt-image-2 achieves 95%+
+        text rendering accuracy for headlines including non-Latin scripts.
+      source: "https://openai.com/index/introducing-chatgpt-images-2-0/"
+      confidence: high
+      human_verified: true
+    - id: iterative_revision_with_preserve_list
       rule: >
-        ChatGPT Image supports natural language revision of a prior generation
-        via conversation. Subsequent prompts can say "in the previous image, change X to Y."
-        Use this for variation rounds after initial generation.
-      source: "OpenAI release announcement — verify current URL"
-      confidence: medium
-      human_verified: false
+        For character identity across edits: always provide explicit preserve list.
+        "Keep the same face, pose, lighting, background. Change only X."
+        gpt-image-2 supports multi-turn iterative prompts; use preserve lists to
+        prevent identity drift between variations.
+      source: "https://developers.openai.com/cookbook/examples/multimodal/image-gen-models-prompting-guide"
+      confidence: high
+      human_verified: true
+    - id: quality_parameter
+      rule: >
+        API quality parameter: "low" (fast, experimentation), "medium" (default),
+        "high" (premium, slower). Stay under 2560x1440 for production consistency;
+        above that resolution is experimental.
+      source: "https://developers.openai.com/api/docs/guides/image-generation"
+      confidence: high
+      human_verified: true
     - id: no_canonical_ids_in_prompt
       rule: >
-        Never include canonical IDs (C01, LOC001, PROP003) in prompt_text.
-        They must appear only in source_refs. The Critic enforces this.
+        Never include canonical IDs (C01, LOC001, PROP003, SC0001) or character
+        full display names (e.g. "Nadia Vale") in prompt_text. Use first-name
+        only ("Nadia"). They must appear only in source_refs.
+        The Critic enforces both canonical ID and planning alias checks.
       source: "plan invariant"
       confidence: high
       human_verified: true
 
   do_not_invent:
-    - "Any parameter syntax using -- flags (ChatGPT Image is prompt-only)"
-    - "Exact constraint embedding wording (what OpenAI recommends — verify)"
-    - "Current API model name (GPT-4o? image-1? — verify in current API docs)"
+    - "Any -- parameter flags (gpt-image-2 has no Midjourney-style parameters)"
+    - "A seed parameter (not supported in gpt-image-2)"
+    - "Prompt weighting syntax (not applicable to OpenAI image models)"
 
 source_refs:
-  - url: "https://platform.openai.com/docs/guides/images"
+  - url: "https://developers.openai.com/api/docs/guides/image-generation"
     source_class: official_docs
-    human_verified: false
-    notes: "Main image generation guide. Operator must verify."
-  - url: "https://openai.com/policies/usage-policies"
+    human_verified: true
+    notes: "Official API guide. Confirms gpt-image-2. DALL-E 3 deprecated 2026-05-12."
+  - url: "https://developers.openai.com/api/docs/models/gpt-image-2"
     source_class: official_docs
-    human_verified: false
-    notes: "Usage policy for style references."
+    human_verified: true
+    notes: "Model spec. Released 2026-04-21. Reasoning mode, multi-panel sequences."
+  - url: "https://openai.com/index/introducing-chatgpt-images-2-0/"
+    source_class: verified_platform_blog
+    human_verified: true
+    notes: "Release announcement 2026-04-22. Text rendering 95%+ accuracy."
+  - url: "https://developers.openai.com/cookbook/examples/multimodal/image-gen-models-prompting-guide"
+    source_class: official_docs
+    human_verified: true
+    notes: "Official prompting guide. Natural language, ordered segments, preserve lists."
 
 notes: >
-  Status: draft — seed rules from research log. Operator must visit all source_refs,
-  set human_verified: true, and change status to 'active' before Batch 4 adapters run.
-  KEY: constraint_strategy must be embedded_positive_constraints — Critic must
-  NOT require negative_prompt for this model.
-  See docs/model_guides/sources/chatgpt_image_research_log.md for full checklist.
+  Updated 2026-05-04 from web research. Key changes from v0.1.0:
+  Model is now gpt-image-2 (not GPT-4o/DALL-E 3). Confirmed no negative_prompt.
+  Added labeled-segment structure, preserve-list pattern, text rendering rules.
+  See snapshot_ref for full sourced evidence.

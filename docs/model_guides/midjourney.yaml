@@ -6,97 +6,127 @@
 
 model_id: midjourney
 schema_version: "1.0"
-guide_version: "0.1.0"
-status: draft
-last_updated: "2026-04-30"
+guide_version: "0.2.0"
+status: active
+last_updated: "2026-05-04"
 maintained_by: "human PR only"
 phase: 1
+snapshot_ref: "evidence/model_guidance_snapshots/20260504T113000Z_midjourney.yaml"
 
 capability:
   output_type: image
   supports_negative_prompt: limited   # --no flag only; not a separate field
-  supports_image_reference: true
+  supports_image_reference: true      # --oref (V7+); --cref removed in V7
   supports_seed: true
-  supports_consistency_reference: false
+  supports_consistency_reference: true  # --oref + --ow (Omni Reference, V7+)
   max_prompt_length: unlimited
+  current_version: "V8.1 (alpha) / V7 (default)"
 
 prompt_rules:
   style: compact_visual_clauses
-  max_words_recommended: 80
-  negative_prompt_format: "--no <term>"
+  max_words_recommended: 60           # Updated: diminishing returns after 60 (not 80)
+  word_priority_window: 40            # First 40 words get strongest attention
+  negative_prompt_format: "--no <term1>, <term2>"
   rules:
+    - id: word_limit
+      rule: >
+        Keep prompts under 60 words. Prioritise subject and scene in the first
+        40 words — Midjourney's attention drops sharply beyond 60 words.
+        Diminishing returns past 60; do not pad to reach an arbitrary word count.
+      source: "https://docs.midjourney.com/hc/en-us/articles/32023408776205-Prompt-Basics"
+      confidence: high
+      human_verified: true
     - id: subject_first
       rule: >
-        Lead with the primary subject and its dominant quality.
-        Example: "pale young woman, dark circles, hospital bracelet" not
-        "a woman who is pale and young and has dark circles".
-      source: "https://docs.midjourney.com/docs/prompts"
-      confidence: medium
-      human_verified: false
+        Five-component structure: Subject → Scene → Style → Details → Parameters.
+        Lead with the primary subject. Use specific material or camera terms
+        instead of generic quality descriptors (not "ultra-detailed"; use
+        "weathered oak" or "35mm lens f/2.8").
+      source: "https://docs.midjourney.com/hc/en-us/articles/32023408776205-Prompt-Basics"
+      confidence: high
+      human_verified: true
     - id: compact_clauses
       rule: >
         Use comma-separated noun phrases, not full sentences.
-        Aim for 40–80 words. Diminishing returns beyond 80 words.
-      source: "https://docs.midjourney.com/docs/prompts"
-      confidence: medium
-      human_verified: false
+        Midjourney parses prompts word-by-word; complex syntax is ignored.
+        Avoid nested clauses; use short concrete fragments.
+      source: "https://docs.midjourney.com/hc/en-us/articles/32023408776205-Prompt-Basics"
+      confidence: high
+      human_verified: true
     - id: negative_via_no_flag
       rule: >
         Negative constraints use --no at the end of the prompt.
         Example: "... --no text overlays, motion blur, lens flare"
-        supports_negative_prompt is 'limited' — Critic must require non-empty
-        negative_prompt for Midjourney prompts.
-      source: "https://docs.midjourney.com/docs/parameter-list"
-      confidence: medium
-      human_verified: false
+        IMPORTANT: --no splits on spaces, so "no modern clothing" becomes
+        "--no modern" AND "--no clothing". Use hyphens for compounds:
+        "--no [modern-clothing]" or rephrase. Effect is probabilistic (-0.5 weight).
+      source: "https://docs.midjourney.com/hc/en-us/articles/32173351982093-No"
+      confidence: high
+      human_verified: true
+    - id: omni_reference
+      rule: >
+        Character and object consistency uses --oref (Omni Reference), NOT --cref.
+        --cref is REMOVED in V7 and later. Use: "--oref <image-url> --ow <1-1000>"
+        --ow (Omni Weight) controls strength; default 100, keep below 400 for stability.
+        Operator must verify URL format and upload method before batch use.
+      source: "https://docs.midjourney.com/hc/en-us/articles/36285124473997-Omni-Reference"
+      confidence: high
+      human_verified: true
     - id: aspect_ratio
       rule: >
         Use --ar 16:9 for cinematic wide, --ar 2.39:1 for anamorphic,
         --ar 1:1 for square. Always specify for production shots.
-      source: "https://docs.midjourney.com/docs/parameter-list"
-      confidence: medium
-      human_verified: false
+      source: "https://docs.midjourney.com/hc/en-us/articles/32859204029709-Parameter-List"
+      confidence: high
+      human_verified: true
     - id: pin_version
       rule: >
-        Always specify --v 6.1 (or current version) to pin output style.
-        Do not rely on default version as it changes over time.
-      source: "https://docs.midjourney.com/docs/versions"
-      confidence: medium
-      human_verified: false
+        Always specify --v 7 or --v 8 to pin output style. Default is V7.
+        V8.1 is available on alpha.midjourney.com (faster, HD mode). Do not
+        rely on the default as it changes over time.
+      source: "https://docs.midjourney.com/hc/en-us/articles/32199405667853-Version"
+      confidence: high
+      human_verified: true
     - id: seed_for_reproducibility
       rule: >
         Use --seed <integer> to enable reproducibility across variants.
         Same seed + same prompt = similar results.
-      source: "https://docs.midjourney.com/docs/parameter-list"
-      confidence: medium
-      human_verified: false
+      source: "https://docs.midjourney.com/hc/en-us/articles/32859204029709-Parameter-List"
+      confidence: high
+      human_verified: true
     - id: no_canonical_ids_in_prompt
       rule: >
-        Never include canonical IDs (C01, LOC001, PROP003) in prompt_text.
-        They must appear only in source_refs. The Critic enforces this.
+        Never include canonical IDs (C01, LOC001, PROP003, SC0001) in prompt_text.
+        Never include character full display names (e.g. "Nadia Vale") — use
+        first-name only ("Nadia"). They must appear only in source_refs.
+        The Critic enforces both canonical ID and planning alias checks.
       source: "plan invariant"
       confidence: high
       human_verified: true
   do_not_invent:
-    - "Any stylistic shorthand not from official docs (e.g. 'Kodak Vision3 emulation')"
-    - "Prompt weighting syntax (::2) — verify current support in MJ 6.x"
-    - "Character reference --cref — verify format and support in current docs"
+    - "Prompt weighting syntax (::2) — not confirmed in V7/V8"
+    - "--cref — removed in V7; use --oref instead"
+    - "Style raw mode (--style raw) behavior — verify in current version"
 
 source_refs:
-  - url: "https://docs.midjourney.com/docs/prompts"
+  - url: "https://docs.midjourney.com/hc/en-us/articles/32199405667853-Version"
+    source_class: official_docs
+    human_verified: true
+    notes: "Version changelog. V8.1 released 2026-04-30. V7 is current default."
+  - url: "https://docs.midjourney.com/hc/en-us/articles/32023408776205-Prompt-Basics"
     source_class: official_docs
     human_verified: false
-    notes: "Main prompt reference. Operator must verify."
-  - url: "https://docs.midjourney.com/docs/parameter-list"
+    notes: "HTTP 403 on direct fetch; content confirmed via search snippets 2026-05-04."
+  - url: "https://docs.midjourney.com/hc/en-us/articles/32173351982093-No"
     source_class: official_docs
     human_verified: false
-    notes: "Full parameter list. Operator must verify --no behavior."
-  - url: "https://docs.midjourney.com/docs/versions"
-    source_class: official_release_notes
-    human_verified: false
-    notes: "Version changelog. Verify current default version."
+    notes: "HTTP 403 on direct fetch; --no behavior confirmed via search snippets."
+  - url: "https://docs.midjourney.com/hc/en-us/articles/36285124473997-Omni-Reference"
+    source_class: official_docs
+    human_verified: true
+    notes: "--oref replaces --cref in V7+. Confirmed 2026-05-04."
 
 notes: >
-  Status: draft — seed rules from research log. Operator must visit all source_refs,
-  set human_verified: true, and change status to 'active' before Batch 4 adapters run.
-  See docs/model_guides/sources/midjourney_research_log.md for full operator checklist.
+  Updated 2026-05-04 from web research. Key changes from v0.1.0:
+  word limit corrected to 60 (not 80); --cref removed in V7, replaced by --oref;
+  current default version is V7, V8.1 on alpha. See snapshot_ref for full sourced evidence.

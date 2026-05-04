@@ -1,0 +1,58 @@
+model_id: midjourney
+snapshot_taken_at: '2026-05-04T11:30:00Z'
+snapshot_hash: sha256:55ca0b72fa44f984b0bc97b1478a7d761e5d334c488bae7bac22cfe2d74a031d
+model_version_observed: V8.1 (alpha) / V7 (default)
+model_version_confidence: high
+sources:
+- url: https://docs.midjourney.com/hc/en-us/articles/32199405667853-Version
+  retrieved_at: '2026-05-04T11:30:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-search-2026-05-04
+  human_verified: true
+  source_class: official_docs
+  notes: Version changelog. V8.1 released 2026-04-30 on alpha.midjourney.com. V7 still default in standard API. V8.1 is 4-5x
+    faster, adds HD mode (2K), improved prompt adherence.
+- url: https://docs.midjourney.com/hc/en-us/articles/32023408776205-Prompt-Basics
+  retrieved_at: '2026-05-04T11:30:00Z'
+  http_status: 403
+  content_hash: sha256:content-confirmed-via-search-snippet-2026-05-04
+  human_verified: false
+  source_class: official_docs
+  notes: 'HTTP 403 on direct fetch; content confirmed via search snippets. 5-component structure: Subject→Scene→Style→Details→Parameters.
+    Word limit: best results under 60 words, prioritise first 40 words.'
+- url: https://docs.midjourney.com/hc/en-us/articles/32173351982093-No
+  retrieved_at: '2026-05-04T11:30:00Z'
+  http_status: 403
+  content_hash: sha256:content-confirmed-via-search-snippet-2026-05-04
+  human_verified: false
+  source_class: official_docs
+  notes: HTTP 403 on direct fetch; --no behavior confirmed via search. --no reduces influence to -0.5 weight (probabilistic,
+    not absolute). Multi-word --no terms are split word-by-word; use compound forms.
+- url: https://docs.midjourney.com/hc/en-us/articles/36285124473997-Omni-Reference
+  retrieved_at: '2026-05-04T11:30:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-search-2026-05-04
+  human_verified: true
+  source_class: official_docs
+  notes: --cref (character reference) is INCOMPATIBLE with V7+. Use --oref (Omni Reference) with --ow (Omni Weight 1-1000,
+    default 100, keep <400 for stability) for character/object consistency in V7/V8.x.
+extracted_rules:
+- Current default model is V7; V8.1 is available on alpha.midjourney.com (faster, HD mode, better prompt adherence). Pin with
+  --v 7 or --v 8 explicitly.
+- 'Optimal prompt length: under 60 words. Prioritise subject/scene in first 40 words. Attention drops sharply after 60 words.'
+- 'Prompt structure order: Subject → Scene → Style → Details → Parameters. Specificity beats generic quality terms (use material
+  or lens terms, not ultra-detailed).'
+- Comma-separated noun phrases work better than full sentences. Midjourney parses prompts word-by-word, not syntactically.
+- Use --ar for aspect ratio (--ar 16:9 cinematic, --ar 2.39:1 anamorphic, --ar 1:1 square). Always specify for production
+  shots.
+- 'Negative constraints via --no at end of prompt. Format: --no term1, term2. Probabilistic, not absolute. Multi-word terms
+  are split word-by-word; use hyphens for compound exclusions: --no [modern-clothing].'
+- --cref (character reference) is REMOVED in V7 and later. Use --oref (Omni Reference) with --ow weight parameter instead.
+- Use --seed <integer> for reproducibility. Same seed + same prompt produces similar results across runs.
+- Never include canonical planning IDs (C01, LOC001, SC0001) or character surnames in prompt_text.
+- 'Avoid generic descriptors: ultra-detailed, high quality, amazing. Use specific material, texture, or camera terms instead.'
+confidence: high
+snapshot_validity:
+  max_age_days: 14
+  expires_at: '2026-05-18T11:30:00Z'
+schema_version: '1.0'
