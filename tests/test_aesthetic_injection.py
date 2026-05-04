@@ -152,10 +152,11 @@ def test_neutral_brief_merges_pack_negatives_into_constraints(tmp_path: Path) ->
 
 
 def test_resolve_aesthetic_returns_empty_when_no_bible() -> None:
-    pack_refs, keywords, negatives = _resolve_aesthetic(None, {}, None, "character")
+    pack_refs, keywords, negatives, warnings = _resolve_aesthetic(None, {}, None, "character")
     assert pack_refs == []
     assert keywords == []
     assert negatives == []
+    assert warnings == []
 
 
 def test_resolve_aesthetic_returns_empty_when_no_pack_refs(tmp_path: Path) -> None:
@@ -163,10 +164,28 @@ def test_resolve_aesthetic_returns_empty_when_no_pack_refs(tmp_path: Path) -> No
     bible = load_aesthetic_bible(tmp_path)
     assert bible is not None
     scene_card: dict = {"visual_targets": {}}
-    pack_refs, keywords, negatives = _resolve_aesthetic(bible, scene_card, None, "character")
+    pack_refs, keywords, negatives, warnings = _resolve_aesthetic(bible, scene_card, None, "character")
     assert pack_refs == []
     assert keywords == []
     assert negatives == []
+    assert warnings == []
+
+
+def test_unknown_aesthetic_pack_ref_warns_without_inventing(tmp_path: Path) -> None:
+    """Unknown pack refs produce a warning; no keywords or negatives are invented."""
+    _copy_aesthetic_bible(tmp_path)
+    bible = load_aesthetic_bible(tmp_path)
+    assert bible is not None
+
+    scene_card: dict = {"visual_targets": {"aesthetic_pack_refs": ["UNKNOWN_PACK"]}}
+    pack_refs, keywords, negatives, warnings = _resolve_aesthetic(
+        bible, scene_card, None, "character"
+    )
+    assert any("UNKNOWN_PACK" in w for w in warnings)
+    assert keywords == []
+    assert negatives == []
+    # Unknown ref preserved in pack_refs for provenance
+    assert "UNKNOWN_PACK" in pack_refs
 
 
 def test_neutral_brief_deterministic_order_across_runs(tmp_path: Path) -> None:
