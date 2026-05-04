@@ -95,6 +95,9 @@ def _build_source_refs(brief: NeutralBrief) -> dict[str, Any]:
     elif brief.element_type == "wardrobe":
         refs["wardrobe_refs"] = [brief.element_id]
 
+    if brief.aesthetic_pack_refs:
+        refs["aesthetic_refs"] = list(brief.aesthetic_pack_refs)
+
     return refs
 
 
@@ -239,5 +242,7 @@ class BaseAdapter:
         }
         if self.model_guidance_snapshot:
             params["model_guidance_snapshot"] = self.model_guidance_snapshot
+        if brief.aesthetic_keywords:
+            params["aesthetic_keywords_injected"] = list(brief.aesthetic_keywords)
         params.update(self._extra_generation_params(brief))
         return params

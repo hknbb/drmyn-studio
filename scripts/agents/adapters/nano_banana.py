@@ -48,6 +48,11 @@ class NanaBananaAdapter(BaseAdapter):
             if desc:
                 parts.append(desc[:300])
 
+        # World consistency anchor — aesthetic keywords as identity grounding
+        if brief.aesthetic_keywords:
+            anchor = "World consistency: " + ", ".join(brief.aesthetic_keywords) + "."
+            parts.append(anchor)
+
         # Closing identity-consistency note for character/wardrobe
         if brief.element_type in ("character", "wardrobe"):
             parts.append("Use for consistent identity generation across scenes.")

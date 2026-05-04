@@ -105,6 +105,10 @@ class StoryboardOptionsAgent:
         if not isinstance(visual_targets, dict):
             visual_targets = {}
 
+        aesthetic_pack_refs: list[str] = list(
+            visual_targets.get("aesthetic_pack_refs") or []
+        )
+
         payload = {
             "scene_id": scene_id,
             "round": round_number,
@@ -112,7 +116,7 @@ class StoryboardOptionsAgent:
                 "scene_card": scene_card_path.relative_to(self.repo_root).as_posix(),
                 "scene_excerpt": scene_excerpt_path.relative_to(self.repo_root).as_posix(),
             },
-            "options": self._build_options(scene_id, visual_targets),
+            "options": self._build_options(scene_id, visual_targets, aesthetic_pack_refs),
             "selected_option": None,
             "review_status": "pending",
             "storage_policy": "no_binary_commits",
@@ -141,6 +145,7 @@ class StoryboardOptionsAgent:
     def _build_options(
         scene_id: str,
         visual_targets: dict[str, Any],
+        aesthetic_pack_refs: list[str] | None = None,
     ) -> list[dict[str, Any]]:
         lens_bias = _source_value(
             visual_targets.get("lens_bias"),
@@ -159,6 +164,7 @@ class StoryboardOptionsAgent:
             "EVIDENCE_THIN: no source-stated lighting bias.",
         )
 
+        pack_refs = list(aesthetic_pack_refs) if aesthetic_pack_refs else []
         options: list[dict[str, Any]] = []
         for index, (field_name, purpose_prefix) in enumerate(VISUAL_TARGET_FIELDS, start=1):
             field_value = visual_targets.get(field_name)
@@ -167,18 +173,19 @@ class StoryboardOptionsAgent:
                 field_value,
                 f"EVIDENCE_THIN: scene_card.visual_targets.{field_name} is missing.",
             )
-            options.append(
-                {
-                    "option_id": f"{scene_id}_SB{index:02d}",
-                    "purpose": f"{purpose_prefix} Source: {source_text}",
-                    "camera_angle": lens_bias,
-                    "framing": framing_bias,
-                    "movement": movement_bias,
-                    "lighting": lighting_bias,
-                    "source_field": f"scene_card.visual_targets.{field_name}",
-                    "prompt_ids": [],
-                    "status": status,
-                }
-            )
+            option: dict[str, Any] = {
+                "option_id": f"{scene_id}_SB{index:02d}",
+                "purpose": f"{purpose_prefix} Source: {source_text}",
+                "camera_angle": lens_bias,
+                "framing": framing_bias,
+                "movement": movement_bias,
+                "lighting": lighting_bias,
+                "source_field": f"scene_card.visual_targets.{field_name}",
+                "prompt_ids": [],
+                "status": status,
+            }
+            if pack_refs:
+                option["aesthetic_pack_refs"] = pack_refs
+            options.append(option)
 
         return options

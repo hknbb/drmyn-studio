@@ -17,6 +17,12 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from scripts.agents.aesthetic_bible import (
+    AestheticBible,
+    get_pack_ids_from_records,
+    resolve_pack_keywords,
+    resolve_pack_negatives,
+)
 from scripts.agents.continuity import (
     MissingPropRecordError,
     PropStateResolution,
@@ -24,6 +30,19 @@ from scripts.agents.continuity import (
     resolve_wardrobe_state_at_scene,
 )
 from scripts.agents.source_context import SourceContext
+
+
+# ---------------------------------------------------------------------------
+# Element-type → prompt_type mapping (mirrors adapters/_base.py ELEMENT_TO_PROMPT_TYPE)
+# ---------------------------------------------------------------------------
+
+_ELEMENT_TO_PROMPT_TYPE: dict[str, str] = {
+    "character": "t2i_character_element",
+    "location": "t2i_location_element",
+    "prop": "t2i_prop_element",
+    "wardrobe": "t2i_wardrobe_element",
+    "style": "t2i_style_reference",
+}
 
 
 # ---------------------------------------------------------------------------
@@ -116,6 +135,8 @@ class NeutralBrief:
     model_guidance_required: bool   # always True
     is_ready: bool                  # False when UNRESOLVED continuity or anchors
     warnings: list[str] = field(default_factory=list)
+    aesthetic_pack_refs: tuple[str, ...] = ()
+    aesthetic_keywords: tuple[str, ...] = ()
 
 
 # ---------------------------------------------------------------------------
@@ -495,6 +516,62 @@ def _build_style_brief(
 
 
 # ---------------------------------------------------------------------------
+# Aesthetic bible resolution helpers
+# ---------------------------------------------------------------------------
+
+
+def _resolve_aesthetic(
+    bible: AestheticBible | None,
+    scene_card: dict[str, Any],
+    element_record: dict[str, Any] | None,
+    element_type: str,
+) -> tuple[list[str], list[str], list[str], list[str]]:
+    """
+    Return (pack_ids, keywords, extra_negatives, warnings) for one element brief.
+
+    Deterministic: ordered union of scene + element pack refs, deduplicated.
+    Unknown pack_ids are preserved in pack_ids for provenance but produce a
+    warning and contribute no keywords or negatives. Never invents data.
+    """
+    if bible is None:
+        return [], [], [], []
+    prompt_type = _ELEMENT_TO_PROMPT_TYPE.get(element_type, "")
+    pack_ids = get_pack_ids_from_records(scene_card, element_record)
+    if not pack_ids:
+        return [], [], [], []
+    known_ids = {p.pack_id for p in bible.packs}
+    extra_warnings = [
+        f"Unknown aesthetic pack ref: {pid}"
+        for pid in pack_ids
+        if pid not in known_ids
+    ]
+    keywords = resolve_pack_keywords(bible.packs, pack_ids, prompt_type, limit_per_pack=2)
+    negatives = resolve_pack_negatives(bible.packs, pack_ids)
+    return pack_ids, keywords, negatives, extra_warnings
+
+
+def _with_aesthetic(
+    brief: NeutralBrief,
+    pack_refs: list[str],
+    keywords: list[str],
+    extra_warnings: list[str] | None = None,
+) -> NeutralBrief:
+    """Return a new NeutralBrief with aesthetic fields and any pack warnings merged."""
+    if not pack_refs and not keywords and not extra_warnings:
+        return brief
+    import dataclasses
+    merged_warnings = list(brief.warnings)
+    if extra_warnings:
+        merged_warnings.extend(extra_warnings)
+    return dataclasses.replace(
+        brief,
+        aesthetic_pack_refs=tuple(pack_refs),
+        aesthetic_keywords=tuple(keywords),
+        warnings=merged_warnings,
+    )
+
+
+# ---------------------------------------------------------------------------
 # Agent
 # ---------------------------------------------------------------------------
 
@@ -527,58 +604,68 @@ class NeutralBriefAgent:
         style_rules = _extract_style_do_not_rules(
             scene_context.style_bible_text or ""
         )
+        bible = scene_context.aesthetic_bible
+        scene_card = scene_context.scene_card
         briefs: list[NeutralBrief] = []
 
         # Character briefs
         for char_id, char_data in scene_context.characters.items():
-            briefs.append(
-                _build_character_brief(
-                    scene_context.scene_id,
-                    char_id,
-                    char_data,
-                    style_rules,
-                )
+            a_pack_refs, a_keywords, a_negatives, a_warnings = _resolve_aesthetic(
+                bible, scene_card, char_data, "character"
             )
+            brief = _build_character_brief(
+                scene_context.scene_id,
+                char_id,
+                char_data,
+                style_rules + a_negatives,
+            )
+            briefs.append(_with_aesthetic(brief, a_pack_refs, a_keywords, a_warnings))
 
         # Location brief
         if scene_context.location is not None:
-            briefs.append(
-                _build_location_brief(
-                    scene_context.scene_id,
-                    scene_context.location,
-                    style_rules,
-                )
+            a_pack_refs, a_keywords, a_negatives, a_warnings = _resolve_aesthetic(
+                bible, scene_card, scene_context.location, "location"
             )
+            brief = _build_location_brief(
+                scene_context.scene_id,
+                scene_context.location,
+                style_rules + a_negatives,
+            )
+            briefs.append(_with_aesthetic(brief, a_pack_refs, a_keywords, a_warnings))
 
         # Prop briefs
         for prop_id, prop_data in scene_context.props.items():
             resolution = self._try_resolve_prop(scene_context.scene_id, prop_id)
-            briefs.append(
-                _build_prop_brief(
-                    scene_context.scene_id,
-                    prop_id,
-                    prop_data,
-                    resolution,
-                    style_rules,
-                )
+            a_pack_refs, a_keywords, a_negatives, a_warnings = _resolve_aesthetic(
+                bible, scene_card, prop_data, "prop"
             )
+            brief = _build_prop_brief(
+                scene_context.scene_id,
+                prop_id,
+                prop_data,
+                resolution,
+                style_rules + a_negatives,
+            )
+            briefs.append(_with_aesthetic(brief, a_pack_refs, a_keywords, a_warnings))
 
         # Wardrobe briefs
         for wardrobe_id, wardrobe_data in scene_context.wardrobe.items():
             resolution = self._try_resolve_wardrobe(
                 scene_context.scene_id, wardrobe_id
             )
-            briefs.append(
-                _build_wardrobe_brief(
-                    scene_context.scene_id,
-                    wardrobe_id,
-                    wardrobe_data,
-                    resolution,
-                    style_rules,
-                )
+            a_pack_refs, a_keywords, a_negatives, a_warnings = _resolve_aesthetic(
+                bible, scene_card, wardrobe_data, "wardrobe"
             )
+            brief = _build_wardrobe_brief(
+                scene_context.scene_id,
+                wardrobe_id,
+                wardrobe_data,
+                resolution,
+                style_rules + a_negatives,
+            )
+            briefs.append(_with_aesthetic(brief, a_pack_refs, a_keywords, a_warnings))
 
-        # Style brief (always last, always present)
+        # Style brief (always last, always present — no aesthetic injection)
         briefs.append(
             _build_style_brief(
                 scene_context.scene_id,

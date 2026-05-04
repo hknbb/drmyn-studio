@@ -186,6 +186,15 @@
           "items": {
             "type": "string"
           }
+        },
+        "aesthetic_pack_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]+$",
+            "maxLength": 80
+          }
         }
       }
     },
@@ -325,9 +334,17 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "approved_by": { "type": "string" },
-        "approved_at": { "type": "string", "format": "date-time" },
-        "approval_note": { "type": "string", "maxLength": 1000 }
+        "approved_by": {
+          "type": "string"
+        },
+        "approved_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "approval_note": {
+          "type": "string",
+          "maxLength": 1000
+        }
       }
     },
     "omni_set_ref": {
@@ -357,12 +374,30 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "created_by": { "type": "string" },
-        "created_at": { "type": "string", "format": "date-time" },
-        "updated_by": { "type": "string" },
-        "updated_at": { "type": "string", "format": "date-time" },
-        "source_refs": { "type": "array", "items": { "type": "string" } },
-        "git_commit": { "type": "string", "pattern": "^[a-f0-9]{7,40}$" }
+        "created_by": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_by": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "git_commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{7,40}$"
+        }
       }
     }
   }

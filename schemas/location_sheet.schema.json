@@ -39,72 +39,151 @@
         "OTHER"
       ]
     },
-    "recurring": { "type": "boolean" },
+    "recurring": {
+      "type": "boolean"
+    },
     "geography": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "city": { "type": "string", "maxLength": 120 },
-        "country": { "type": "string", "maxLength": 120 },
+        "city": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "country": {
+          "type": "string",
+          "maxLength": 120
+        },
         "interior_exterior": {
           "type": "string",
-          "enum": ["INT", "EXT", "MIXED", "UNKNOWN"]
+          "enum": [
+            "INT",
+            "EXT",
+            "MIXED",
+            "UNKNOWN"
+          ]
         }
       }
     },
     "visual_profile": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["palette", "architecture_logic", "camera_behavior", "lighting_logic"],
+      "required": [
+        "palette",
+        "architecture_logic",
+        "camera_behavior",
+        "lighting_logic"
+      ],
       "properties": {
-        "palette": { "type": "string", "maxLength": 300 },
-        "architecture_logic": { "type": "string", "maxLength": 500 },
-        "camera_behavior": { "type": "string", "maxLength": 300 },
-        "lighting_logic": { "type": "string", "maxLength": 300 },
-        "sound_texture": { "type": "string", "maxLength": 300 },
+        "palette": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "architecture_logic": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "camera_behavior": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "lighting_logic": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "sound_texture": {
+          "type": "string",
+          "maxLength": 300
+        },
         "spatial_motifs": {
           "type": "array",
           "uniqueItems": true,
-          "items": { "type": "string", "maxLength": 120 }
+          "items": {
+            "type": "string",
+            "maxLength": 120
+          }
         }
       }
     },
     "continuity_constraints": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["persistent_objects", "entry_exit_logic", "time_of_day_constraints"],
+      "required": [
+        "persistent_objects",
+        "entry_exit_logic",
+        "time_of_day_constraints"
+      ],
       "properties": {
         "persistent_objects": {
           "type": "array",
-          "items": { "type": "string", "pattern": "^PROP\\d{3}$" }
+          "items": {
+            "type": "string",
+            "pattern": "^PROP\\d{3}$"
+          }
         },
-        "entry_exit_logic": { "type": "string", "maxLength": 500 },
-        "time_of_day_constraints": { "type": "string", "maxLength": 500 },
-        "weather_sensitivity": { "type": "string", "maxLength": 300 },
-        "damage_state_logic": { "type": "string", "maxLength": 500 }
+        "entry_exit_logic": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "time_of_day_constraints": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "weather_sensitivity": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "damage_state_logic": {
+          "type": "string",
+          "maxLength": 500
+        }
       }
     },
     "scene_refs": {
       "type": "array",
       "uniqueItems": true,
-      "items": { "type": "string", "pattern": "^SC\\d{4}$" }
+      "items": {
+        "type": "string",
+        "pattern": "^SC\\d{4}$"
+      }
     },
     "status": {
       "type": "string",
-      "enum": ["draft", "review", "approved", "locked", "deprecated"]
+      "enum": [
+        "draft",
+        "review",
+        "approved",
+        "locked",
+        "deprecated"
+      ]
     },
     "review_status": {
       "type": "string",
-      "enum": ["pending", "changes_requested", "approved", "rejected"]
+      "enum": [
+        "pending",
+        "changes_requested",
+        "approved",
+        "rejected"
+      ]
     },
-    "canon_lock": { "type": "boolean" },
+    "canon_lock": {
+      "type": "boolean"
+    },
     "approval": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "approved_by": { "type": "string" },
-        "approved_at": { "type": "string", "format": "date-time" },
-        "approval_note": { "type": "string", "maxLength": 1000 }
+        "approved_by": {
+          "type": "string"
+        },
+        "approved_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "approval_note": {
+          "type": "string",
+          "maxLength": 1000
+        }
       }
     },
     "kling_element_id": {
@@ -131,11 +210,33 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "created_by": { "type": "string" },
-        "created_at": { "type": "string", "format": "date-time" },
-        "updated_by": { "type": "string" },
-        "updated_at": { "type": "string", "format": "date-time" },
-        "git_commit": { "type": "string", "pattern": "^[a-f0-9]{7,40}$" }
+        "created_by": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_by": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "git_commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{7,40}$"
+        }
+      }
+    },
+    "aesthetic_pack_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9_]+$",
+        "maxLength": 80
       }
     }
   }

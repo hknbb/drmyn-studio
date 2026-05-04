@@ -51,16 +51,28 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "initial_state": { "type": "string", "maxLength": 400 },
+        "initial_state": {
+          "type": "string",
+          "maxLength": 400
+        },
         "state_changes": {
           "type": "array",
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["scene_id", "new_state"],
+            "required": [
+              "scene_id",
+              "new_state"
+            ],
             "properties": {
-              "scene_id": { "type": "string", "pattern": "^SC\\d{4}$" },
-              "new_state": { "type": "string", "maxLength": 400 },
+              "scene_id": {
+                "type": "string",
+                "pattern": "^SC\\d{4}$"
+              },
+              "new_state": {
+                "type": "string",
+                "maxLength": 400
+              },
               "transition_note": {
                 "type": "string",
                 "maxLength": 400,
@@ -73,72 +85,136 @@
     },
     "owner_character_id": {
       "oneOf": [
-        { "type": "string", "pattern": "^C\\d{2}$" },
-        { "type": "null" }
+        {
+          "type": "string",
+          "pattern": "^C\\d{2}$"
+        },
+        {
+          "type": "null"
+        }
       ],
       "description": "Character ID of the owner/carrier. Null if unowned or unknown."
     },
     "scene_refs": {
       "type": "array",
       "uniqueItems": true,
-      "items": { "type": "string", "pattern": "^SC\\d{4}$" }
+      "items": {
+        "type": "string",
+        "pattern": "^SC\\d{4}$"
+      }
     },
-    "canonical_name": { "type": "string", "maxLength": 200 },
+    "canonical_name": {
+      "type": "string",
+      "maxLength": 200
+    },
     "aliases": {
       "type": "array",
-      "items": { "type": "string", "maxLength": 200 }
+      "items": {
+        "type": "string",
+        "maxLength": 200
+      }
     },
-    "prop_type": { "type": "string", "maxLength": 200 },
-    "ownership_or_association": { "type": "string", "maxLength": 800 },
-    "physical_description_grounded": { "type": "string" },
+    "prop_type": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "ownership_or_association": {
+      "type": "string",
+      "maxLength": 800
+    },
+    "physical_description_grounded": {
+      "type": "string"
+    },
     "continuity_importance": {
       "type": "string",
-      "enum": ["High", "Medium", "Low"]
+      "enum": [
+        "High",
+        "Medium",
+        "Low"
+      ]
     },
     "recurring_scene_ids": {
       "type": "array",
       "uniqueItems": true,
-      "items": { "type": "string", "pattern": "^SC\\d{4}$" }
+      "items": {
+        "type": "string",
+        "pattern": "^SC\\d{4}$"
+      }
     },
     "related_characters": {
       "type": "array",
       "uniqueItems": true,
-      "items": { "type": "string", "pattern": "^C\\d{2}$" }
+      "items": {
+        "type": "string",
+        "pattern": "^C\\d{2}$"
+      }
     },
     "related_locations": {
       "type": "array",
       "uniqueItems": true,
-      "items": { "type": "string", "pattern": "^LOC\\d{3}$" }
+      "items": {
+        "type": "string",
+        "pattern": "^LOC\\d{3}$"
+      }
     },
     "handling_notes": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
     "visual_stability_notes": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
-    "future_hero_prop_candidate": { "type": "boolean" },
+    "future_hero_prop_candidate": {
+      "type": "boolean"
+    },
     "unresolved_questions": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
     "status": {
       "type": "string",
-      "enum": ["draft", "review", "approved", "locked", "deprecated"]
+      "enum": [
+        "draft",
+        "review",
+        "approved",
+        "locked",
+        "deprecated"
+      ]
     },
     "review_status": {
       "type": "string",
-      "enum": ["pending", "changes_requested", "approved", "rejected"]
+      "enum": [
+        "pending",
+        "changes_requested",
+        "approved",
+        "rejected"
+      ]
     },
-    "canon_lock": { "type": "boolean" },
+    "canon_lock": {
+      "type": "boolean"
+    },
     "approval": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "approved_by": { "type": "string" },
-        "approved_at": { "type": "string", "format": "date-time" },
-        "approval_note": { "type": "string", "maxLength": 1000 }
+        "approved_by": {
+          "type": "string"
+        },
+        "approved_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "approval_note": {
+          "type": "string",
+          "maxLength": 1000
+        }
       }
     },
     "kling_element_id": {
@@ -165,11 +241,33 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "created_by": { "type": "string" },
-        "created_at": { "type": "string", "format": "date-time" },
-        "updated_by": { "type": "string" },
-        "updated_at": { "type": "string", "format": "date-time" },
-        "git_commit": { "type": "string", "pattern": "^[a-f0-9]{7,40}$" }
+        "created_by": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_by": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "git_commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{7,40}$"
+        }
+      }
+    },
+    "aesthetic_pack_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9_]+$",
+        "maxLength": 80
       }
     }
   }
