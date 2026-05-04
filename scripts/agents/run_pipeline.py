@@ -196,7 +196,10 @@ def run_generate_shot_list_omni_suggestion(args: argparse.Namespace) -> Pipeline
     repo_root = args.repo_root.resolve()
     if not args.scene_id:
         raise PipelineError("generate-shot-list-omni-suggestion requires --scene-id.")
-    result = ShotListOmniSuggestionAgent(repo_root).build(args.scene_id)
+    result = ShotListOmniSuggestionAgent(repo_root).build(
+        args.scene_id,
+        target_duration_seconds=getattr(args, "target_duration_seconds", None) or 10,
+    )
     return PipelineResult(
         mode=args.mode,
         written_files=[_relative(result.suggestion_path, repo_root)],
@@ -605,6 +608,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--review-notes")
     parser.add_argument("--locked-by")
     parser.add_argument("--locked-at")
+    parser.add_argument("--target-duration-seconds", type=int)
     parser.add_argument("--command", choices=("yes", "no", "revise", "switch"))
     parser.add_argument(
         "--to-agent",
