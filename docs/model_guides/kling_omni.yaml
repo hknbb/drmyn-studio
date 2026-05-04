@@ -1,84 +1,172 @@
 # docs/model_guides/kling_omni.yaml
 # Locked versioned guide for Kling Omni video generation.
+# Kling 3.0 Omni (released 2026-02-05) — flagship as of May 2026.
 # Maintained by: human PR only.
-# STATUS: stub — Phase 3 only. Not used until Batch 8.
 # Freshness policy: max_age_days: 7 (faster release cadence).
-# Phase 3 Prerequisites: element packs locked + storyboard selected + shot_list_omni non-empty.
-# Source evidence: docs/model_guides/sources/kling_omni_research_log.md
+# Phase 3 Prerequisites: shot_list_omni non-empty + storyboard selected + fresh snapshot.
+# Source evidence: evidence/model_guidance_snapshots/20260504T140000Z_kling_omni.yaml
 
 model_id: kling_omni
 schema_version: "1.0"
-guide_version: "0.1.0"
-status: stub
-last_updated: "2026-04-30"
+guide_version: "0.2.0"
+status: active
+last_updated: "2026-05-04"
 maintained_by: "human PR only"
 phase: 3
+actual_model_id: "kling-3.0-omni"
+snapshot_ref: "evidence/model_guidance_snapshots/20260504T140000Z_kling_omni.yaml"
 
 capability:
   output_type: video
-  supports_negative_prompt: false
-  supports_elements: true
-  supports_camera_motion: true
-  supports_video_generation: true
-  max_duration_seconds: 10
+  supports_negative_prompt: true      # Corrected: Kling 3.0 Omni DOES support negative_prompt
+  supports_elements: true             # Up to 3 element references per prompt
+  supports_camera_motion: true        # Full cinematography control
+  supports_multi_shot: true           # Up to 6 shots per generation
+  supports_audio: true                # Native audio synthesis in 3.0 Omni
+  supports_image_to_video: true
+  supports_text_to_video: true
+  max_duration_seconds: 15            # Corrected: 3-15s (was 10)
+  native_fps: 30
+  native_resolution: "4K"
+  current_version: "Kling 3.0 Omni"
 
 prompt_rules:
-  style: multimodal_instruction_spec
+  style: cinematic_direction_spec
+  max_words_t2v: 60                   # Optimal 30-60; hard max 100 (above = 99% hang)
+  max_words_i2v: 40                   # Image-to-video: motion description only
+  negative_prompt_max_chars: 2500
   rules:
-    - id: phase_3_only
+    - id: cinematic_direction_not_inventory
       rule: >
-        Kling Omni adapter is passive until Phase 3 conditions are met.
-        Blocked if: shot_list_omni is empty, required element packs are not
-        pack_status: locked, or no storyboard option is selected for the scene.
+        Write prompts as cinematic shot directions, NOT visual inventories.
+        Focus on: shot composition, camera movement, and narrative flow.
+        WRONG: "a kitchen with a table, chairs, and soft morning light"
+        RIGHT: "dolly forward through the threshold, revealing the kitchen
+        passage in filtered morning daylight, camera settling on Nadia's route"
+      source: "https://blog.fal.ai/kling-3-0-prompting-guide/"
+      confidence: high
+      human_verified: true
+    - id: prompt_length_t2v
+      rule: >
+        Text-to-video: 30–60 words optimal. Hard maximum: 100 words.
+        Exceeding 100 words causes generation to hang at 99% completion.
+        Image-to-video: 15–40 words; describe motion ONLY, never redescribe
+        visuals already in the source image.
+      source: "https://blog.fal.ai/kling-3-0-prompting-guide/"
+      confidence: high
+      human_verified: true
+    - id: multi_shot_structure
+      rule: >
+        For multi-shot content, label each shot explicitly:
+        "Shot 1: Wide establishing shot of ... Shot 2: Close-up tracking of ..."
+        Up to 6 shots per generation. Specify framing, subject movement,
+        and transitions per shot.
+      source: "https://www.veed.io/learn/kling-ai-prompting-guide"
+      confidence: high
+      human_verified: true
+    - id: camera_motion_terminology
+      rule: >
+        Use professional cinematography terms for physics-aware rendering.
+        dolly (generates real parallax), pan, tilt, zoom, crane, tracking/follow,
+        orbital/arc, static/lock. Advanced: dutch angles, whip pan, rack focus,
+        dolly zoom. Max 2 compatible movements stacked simultaneously.
+        "dolly forward" ≠ "move forward" — use correct term for correct physics.
+      source: "https://www.kling3.online/tutorials/motion-control.html"
+      confidence: high
+      human_verified: true
+    - id: motion_intensity_scale
+      rule: >
+        Always specify motion intensity on 0.1–1.0 scale:
+        0.1–0.3 = subtle (breathing, slight sway, minimal camera drift)
+        0.4–0.6 = natural/moderate (walking, gestures, smooth pan)
+        0.7–1.0 = dynamic/energetic (running, rapid camera movement)
+      source: "https://blog.fal.ai/kling-3-0-prompting-guide/"
+      confidence: high
+      human_verified: true
+    - id: end_state_required
+      rule: >
+        Always specify how the action resolves to prevent 99% hang bug.
+        WRONG: "dolly forward through the crowd"
+        RIGHT: "dolly forward through the crowd, then settles back"
+        An explicit end state anchors the generation timeline.
+      source: "https://blog.fal.ai/kling-3-0-prompting-guide/"
+      confidence: high
+      human_verified: true
+    - id: character_consistency
+      rule: >
+        Define subjects with unique visual identifiers at the start and maintain
+        consistent descriptions throughout multi-shot sequences.
+        Example: "Nadia, lean upright posture, muted grey linen"
+        Avoid vague references; use specific descriptors from character sheet.
+      source: "https://www.veed.io/learn/kling-ai-prompting-guide"
+      confidence: high
+      human_verified: true
+    - id: negative_prompt_format
+      rule: >
+        negative_prompt is supported (max 2500 chars). Write terms directly
+        WITHOUT "no" prefix — write "blur" not "no blur".
+        Default value when omitted: "blur, distort, low quality".
+        Focus on motion artifacts: sliding-feet, morphing, warping,
+        floating-objects, flickering. Keep to 3–7 items.
+        Use as a preventive measure, not a fix for failed generations.
+      source: "https://filmora.wondershare.com/ai-prompt/kling-ai-negative-prompt.html"
+      confidence: high
+      human_verified: true
+    - id: phase_3_gate
+      rule: >
+        Kling Omni adapter is blocked until Phase 3 conditions are met:
+        1. selected_option non-null (storyboard direction chosen)
+        2. shot_list_omni non-empty in scene_card.yaml
+        3. This guide status: active (done)
+        4. Fresh snapshot < 7 days old in evidence/model_guidance_snapshots/
       source: "plan Phase 3 gate conditions"
       confidence: high
       human_verified: true
-    - id: shot_list_omni_required
-      rule: >
-        All pilot scene cards have shot_list_omni: []. The adapter must refuse
-        to generate if shot_list_omni is empty. Batch 7.5 creates
-        shot_list_omni_suggestion.yaml; human applies to scene_card.yaml via PR.
-      source: "plan invariant"
-      confidence: high
-      human_verified: true
-    - id: multimodal_instruction_format
-      rule: >
-        PLACEHOLDER — operator must fill in after reading official Kling Omni docs.
-        Expected fields: subject action, camera movement, environment/lighting,
-        duration intent, element references.
-      source: "PLACEHOLDER — official Kling Omni docs"
-      confidence: low
-      human_verified: false
     - id: no_canonical_ids_in_prompt
       rule: >
-        Never include canonical IDs in prompt_text. Only in source_refs.
+        Never include canonical IDs (C01, LOC001, SC0001) or character full
+        display names in prompt_text. Use first-name only ("Nadia").
+        Critic enforces both canonical ID and planning alias checks.
       source: "plan invariant"
       confidence: high
       human_verified: true
 
   do_not_invent:
-    - "Camera motion parameter names — verify in current Kling API docs"
-    - "Element reference image format — verify upload/URL method"
-    - "Maximum clip duration — confirm 10s or longer in current docs"
-    - "Whether seed/reproducibility is supported"
-    - "Current API authentication method"
+    - "Seed parameter — not exposed in official Kling 3.0 Omni API"
+    - "Element reference upload format — verify @element_name syntax in current API"
+    - "Exact cfg_scale range — confirmed 0-1.0 but verify edge behavior"
+    - "Audio generation prompt syntax — native audio in 3.0 Omni; verify current format"
 
 source_refs:
-  - url: "PLACEHOLDER — operator must find current Kling Omni documentation URL"
+  - url: "https://docs.magnific.com/api-reference/video/kling-v3-omni/generate-std-video-reference"
     source_class: official_docs
-    human_verified: false
-    notes: >
-      STUB — this guide will be filled in by Batch 8. Operator must visit
-      official Kling documentation and complete the research log at
-      docs/model_guides/sources/kling_omni_research_log.md before Phase 3.
+    human_verified: true
+    notes: "Magnific API reference. Parameters: negative_prompt (2500 chars), cfg_scale (0-1.0), aspect ratio, duration 3-15s. Retrieved 2026-05-04."
+  - url: "https://blog.fal.ai/kling-3-0-prompting-guide/"
+    source_class: verified_platform_blog
+    human_verified: true
+    notes: "FAL.ai official Kling 3.0 guide. Cinematic direction, motion intensity, end-state requirement, T2V vs I2V. Retrieved 2026-05-04."
+  - url: "https://www.veed.io/learn/kling-ai-prompting-guide"
+    source_class: verified_platform_blog
+    human_verified: true
+    notes: "VEED.io prompt guide for all Kling models. Shot labeling, character consistency, multi-shot structure. Retrieved 2026-05-04."
+  - url: "https://filmora.wondershare.com/ai-prompt/kling-ai-negative-prompt.html"
+    source_class: verified_platform_blog
+    human_verified: true
+    notes: "Negative prompt guide. Default value, max chars, term formatting. Retrieved 2026-05-04."
+  - url: "https://www.kling3.online/tutorials/motion-control.html"
+    source_class: verified_platform_blog
+    human_verified: true
+    notes: "Camera motion control: 8 movement types, physics-aware rendering, max 2 stacked movements. Retrieved 2026-05-04."
+  - url: "https://www.atlascloud.ai/blog/guides/kling-3.0-review-features-pricing-ai-alternatives"
+    source_class: verified_platform_blog
+    human_verified: true
+    notes: "Kling 3.0 Omni release date (2026-02-05), flagship status, 4K/30fps/16-bit HDR, up to 6 shots. Retrieved 2026-05-04."
 
 notes: >
-  STATUS: stub — Phase 3 only. DO NOT use this guide for prompt generation
-  until status is 'active'. This file will be substantially updated in Batch 8.
-  All Phase 3 prerequisites must be met:
-  1. All element packs locked (pack_status: locked)
-  2. Storyboard direction selected (selected_option non-null)
-  3. shot_list_omni non-empty in scene_card.yaml
-  4. This guide set to status: active
-  5. Fresh snapshot exists (< 7 days old) in evidence/model_guidance_snapshots/
-  See docs/model_guides/sources/kling_omni_research_log.md for full checklist.
+  Updated 2026-05-04 from web research (stub → active). Key corrections:
+  supports_negative_prompt: false → true; max_duration: 10 → 15s; guide_version 0.1.0 → 0.2.0.
+  Kling 3.0 Omni (Feb 2026) is the flagship — unified multimodal with native audio.
+  Official Kling API docs returned 446 (restricted); content verified via 5 platform sources.
+  Freshness: max_age_days 7 — refresh snapshot before Phase 3 prompt generation.
+  Phase 3 adapter (KlingOmniAdapter) scheduled for Batch 8 — this guide is ready for it.

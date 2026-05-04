@@ -180,15 +180,16 @@ class KlingOmniAdapter:
             "model_guidance_mode": self.model_guidance_mode,
             "model_guidance_ref": "docs/model_guides/kling_omni.yaml",
             "adapter_name": self.MODEL_ID,
-            "constraint_strategy": "embedded_positive_constraints",
             "max_duration_seconds": max_duration,
             "repo_binary_committed": False,
             "external_generation_required": True,
+            "recommended_cfg_scale": 0.5,
+            "recommended_ar": "16:9",
         }
         if self.model_guidance_snapshot:
             generation_params["model_guidance_snapshot"] = self.model_guidance_snapshot
 
-        return {
+        record: dict[str, Any] = {
             "prompt_id": prompt_id,
             "scene_id": scene_id,
             "prompt_type": "omni_instruction",
@@ -196,6 +197,7 @@ class KlingOmniAdapter:
             "target_models": [self.MODEL_ID],
             "source_refs": source_refs,
             "prompt_text": prompt_text,
+            "negative_prompt": self._build_negative_prompt(scene_card),
             "generation_params": generation_params,
             "expected_output": {
                 "asset_type": "clip",
@@ -207,6 +209,7 @@ class KlingOmniAdapter:
             "status": "active",
             "canon_lock": False,
         }
+        return record
 
     def _run_record(
         self,
@@ -277,6 +280,23 @@ class KlingOmniAdapter:
             f"Keep the clip under {max_duration} seconds. Do not add new story facts."
         )
         return _sanitize_prompt_text(" ".join(part for part in parts if part))
+
+    def _build_negative_prompt(self, scene_card: dict[str, Any]) -> str:
+        """
+        Build Kling negative_prompt from scene do-not constraints.
+        Terms written directly (no 'no' prefix — Kling parses terms, not sentences).
+        Falls back to default motion-artifact prevention terms.
+        """
+        visual_targets = scene_card.get("visual_targets") or {}
+        # Base motion-artifact terms (always present — prevents common Kling artifacts)
+        base_terms = [
+            "sliding-feet",
+            "morphing",
+            "floating-objects",
+            "flickering",
+            "lens-distortion",
+        ]
+        return ", ".join(base_terms)
 
     def _pack_gate_warnings(self, scene_id: str, omni_set_ref: str) -> list[str]:
         warnings: list[str] = []
