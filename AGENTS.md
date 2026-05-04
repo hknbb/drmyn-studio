@@ -18,7 +18,7 @@ review remains the approval boundary.
 
 1. **Controlled model guidance:** Agents may refresh model guidance through a controlled Research Snapshot step. Prompt adapters never use unlogged live internet directly. Every model-specific prompt must cite either a locked model guide or a run-specific guidance snapshot with URLs, retrieval timestamps, and hashes.
 
-2. **Draft-only agent output:** Agents may write only to `prompts/draft/`, `evidence/`, and explicitly allowed metadata-only review/suggestion files under `visual_dev/` (e.g. `image_selection.yaml`, `pack_manifest_update_suggestion.yaml`, `storyboard_options.yaml`, `video_takes.yaml`). Agents never commit binaries, never update `pack_status`/`canon_lock`/`approved`/`locked` fields directly, and never promote lifecycle stages without a human PR.
+2. **Draft-only agent output:** Agents may write only to `prompts/draft/`, `evidence/`, and explicitly allowed metadata-only review/suggestion files under `visual_dev/` (e.g. `image_selection.yaml`, `pack_manifest_update_suggestion.yaml`, `storyboard_options.yaml`, `video_takes.yaml`). Agents may also edit canonical `planning/` records (scene cards, element sheets, aesthetic registry fields) when the edit is explicitly scoped in an approved plan batch and gated by human PR review. Agents never commit binaries, never update `pack_status`/`canon_lock`/`approved`/`locked` fields directly, and never promote lifecycle stages without a human PR.
 
 3. **One prompt record per model:** No shared `prompt_text` across Midjourney, ChatGPT Image, Nano Banana, and Kling Omni.
 
