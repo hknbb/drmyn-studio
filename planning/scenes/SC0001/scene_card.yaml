@@ -37,6 +37,8 @@ visual_targets:
   framing_bias: "Thresholds, corridor depth, doorways, and the off-angle frame as surveillance geometry."
   movement_bias: "Minimal, exact movement aligned to Nadia's route logic."
   lighting_bias: "Filtered early daylight and low-key interior practicals; warmth stays contained."
+  aesthetic_pack_refs:
+    - VALE_DOMESTIC_RESTRAINT
 promptability_score: 5
 excerpt_ref: scene_excerpt.md
 screen_excerpt_ref: scene_excerpt.md
