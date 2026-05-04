@@ -1,0 +1,62 @@
+model_id: chatgpt_image
+snapshot_taken_at: '2026-05-04T11:30:00Z'
+snapshot_hash: sha256:54d725fa5bc5714f7bd8e1155f5aab552d69dd1cb3098720f056a696f579afad
+model_version_observed: gpt-image-2
+model_version_confidence: high
+sources:
+- url: https://developers.openai.com/api/docs/guides/image-generation
+  retrieved_at: '2026-05-04T11:30:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-search-2026-05-04
+  human_verified: true
+  source_class: official_docs
+  notes: Official image generation API guide. Confirms gpt-image-2 as current model (DALL-E 3 deprecated 2026-05-12). No separate
+    negative_prompt field — constraints embedded in main prompt.
+- url: https://developers.openai.com/api/docs/models/gpt-image-2
+  retrieved_at: '2026-05-04T11:30:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-search-2026-05-04
+  human_verified: true
+  source_class: official_docs
+  notes: Model spec page. gpt-image-2 released 2026-04-21. Adds reasoning mode (thinking), native multi-panel sequence generation
+    (8 panels from 1 prompt), improved identity fidelity.
+- url: https://openai.com/index/introducing-chatgpt-images-2-0/
+  retrieved_at: '2026-05-04T11:30:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-search-2026-05-04
+  human_verified: true
+  source_class: verified_platform_blog
+  notes: OpenAI release announcement for gpt-image-2 (2026-04-22). Confirms multi-panel consistency, built-in reasoning, improved
+    text rendering (95%+ accuracy).
+- url: https://developers.openai.com/cookbook/examples/multimodal/image-gen-models-prompting-guide
+  retrieved_at: '2026-05-04T11:30:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-search-2026-05-04
+  human_verified: true
+  source_class: official_docs
+  notes: 'Official prompting guide. Natural language instructions, not comma-clauses. Order: scene→subject→details→constraints.
+    Use quotes for exact text strings. Iterate with explicit preserve lists.'
+extracted_rules:
+- Current model is gpt-image-2 (released 2026-04-21). DALL-E 3 is deprecated (2026-05-12). Previous identifier chatgpt_image
+  maps to gpt-image-2 in production.
+- Use natural language instructions, NOT Midjourney-style comma-clauses. Full sentences and paragraph descriptions work best.
+- 'Prompt order: Background/scene → Subject → Key details → Constraints. Readable structure beats compact syntax.'
+- 'NO separate negative_prompt parameter in the API. Embed all exclusions and constraints in the main prompt text. Example:
+  No watermark, no text overlay, no additional objects.'
+- 'For exact text rendering: enclose literals in double quotes or use ALL CAPS. Specify placement, hierarchy, font style.
+  95%+ accuracy for headlines and labels including non-Latin scripts.'
+- 'For iterative editing: always provide explicit preserve list. Keep the same face, pose, lighting, background. Change only
+  X.'
+- 'For complex requests, use labeled segments or line breaks: Scene: / Subject: / Details: / Constraints: — readability helps
+  the reasoning mode understand intent.'
+- Character identity across edits requires explicit preserve instructions, not a single reference image. Use multi-turn iterative
+  prompts with preserve lists.
+- 'Quality parameter: low (fast), medium (default), high (premium). Stay under 2560x1440 for production consistency; above
+  is experimental.'
+- Never include canonical planning IDs (C01, LOC001, SC0001) or character full display names in prompt_text. Use first-name
+  only for character references.
+confidence: high
+snapshot_validity:
+  max_age_days: 14
+  expires_at: '2026-05-18T11:30:00Z'
+schema_version: '1.0'
