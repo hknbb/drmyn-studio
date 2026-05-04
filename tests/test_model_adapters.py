@@ -410,12 +410,14 @@ def test_nano_banana_prompt_id_format(tmp_path: Path) -> None:
     assert "nano-banana" in record["prompt_id"]
 
 
-def test_nano_banana_has_negative_prompt(tmp_path: Path) -> None:
-    """Nano Banana supports negative_prompt; field must be present."""
+def test_nano_banana_no_negative_prompt_field(tmp_path: Path) -> None:
+    """Nano Banana Pro (gemini-3-pro-image-preview) has no negative_prompt field.
+    Constraints are embedded as semantic negation in prompt_text."""
     adapter = NanaBananaAdapter(tmp_path)
     record, _ = adapter.generate(CHAR_BRIEF)
-    assert "negative_prompt" in record
-    assert isinstance(record["negative_prompt"], str)
+    assert "negative_prompt" not in record
+    assert record["generation_params"].get("constraint_strategy") == "embedded_positive_constraints"
+    assert "Avoid:" in record["prompt_text"] or "avoid" in record["prompt_text"].lower()
 
 
 def test_nano_banana_identity_framing_in_prompt(tmp_path: Path) -> None:
