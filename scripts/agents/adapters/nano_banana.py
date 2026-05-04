@@ -75,16 +75,19 @@ class NanaBananaAdapter(BaseAdapter):
 
     @staticmethod
     def _identity_frame(brief: NeutralBrief) -> str:
-        name = brief.element_name
+        # Use safe label; skip element_name if planning_aliases present (would leak)
+        name = brief.prompt_subject_label or (
+            brief.element_name if not brief.planning_aliases else ""
+        )
         match brief.element_type:
             case "character":
-                return f"Character identity reference: {name}."
+                return f"Character identity reference: {name}." if name else "Character identity reference."
             case "location":
-                return f"Location reference: {name}."
+                return f"Location reference: {name}." if name else "Location reference."
             case "prop":
-                return f"Prop reference: {name}."
+                return f"Prop reference: {name}." if name else "Prop reference."
             case "wardrobe":
-                return f"Wardrobe reference: {name}."
+                return f"Wardrobe reference: {name}." if name else "Wardrobe reference."
             case "style":
                 return "Style reference for production continuity."
             case _:

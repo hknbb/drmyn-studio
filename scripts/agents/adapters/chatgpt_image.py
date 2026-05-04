@@ -87,16 +87,19 @@ class ChatGPTImageAdapter(BaseAdapter):
 
     @staticmethod
     def _task_instruction(brief: NeutralBrief) -> str:
-        name = brief.element_name
+        # Use safe label; skip element_name if planning_aliases present (would leak)
+        name = brief.prompt_subject_label or (
+            brief.element_name if not brief.planning_aliases else ""
+        )
         match brief.element_type:
             case "character":
-                return f"Generate a character reference image of {name}."
+                return f"Generate a character reference image of {name}." if name else "Generate a character reference image."
             case "location":
-                return f"Generate a location reference image of {name}."
+                return f"Generate a location reference image of {name}." if name else "Generate a location reference image."
             case "prop":
-                return f"Generate a prop reference image of {name}."
+                return f"Generate a prop reference image of {name}." if name else "Generate a prop reference image."
             case "wardrobe":
-                return f"Generate a wardrobe reference image for {name}."
+                return f"Generate a wardrobe reference image for {name}." if name else "Generate a wardrobe reference image."
             case "style":
                 return "Generate a style reference image for this production."
             case _:

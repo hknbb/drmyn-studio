@@ -126,7 +126,7 @@ class NeutralBrief:
     scene_id: str
     element_type: str       # character | location | prop | wardrobe | style
     element_id: str         # e.g. C01, LOC001, PROP001, WD001, style_bible
-    element_name: str
+    element_name: str       # repo/provenance identity — do NOT write to prompt_text
     visual_anchors: list[VisualAnchor]
     negative_constraints: list[str]
     continuity_state: str | None
@@ -137,6 +137,10 @@ class NeutralBrief:
     warnings: list[str] = field(default_factory=list)
     aesthetic_pack_refs: tuple[str, ...] = ()
     aesthetic_keywords: tuple[str, ...] = ()
+    # Safe external-model label (adapters use this, never element_name directly)
+    prompt_subject_label: str = ""
+    # Planning names that must not appear literally in generated prompt_text
+    planning_aliases: tuple[str, ...] = ()
 
 
 # ---------------------------------------------------------------------------
@@ -163,6 +167,37 @@ def _anchors_from_list(
         if a:
             anchors.append(a)
     return anchors
+
+
+def _safe_subject_label(element_name: str, element_type: str) -> str:
+    """Return an external-model-safe visual label — never a planning surname or location name."""
+    if element_type == "character":
+        tokens = element_name.split()
+        return tokens[0] if tokens else ""
+    if element_type == "location":
+        return ""  # describe locations visually via anchors, not by planning name
+    return element_name
+
+
+def _planning_aliases_for(element_name: str, element_type: str) -> tuple[str, ...]:
+    """Names that must not appear literally in T2I prompt_text.
+
+    Character surnames are NOT added — they may appear legitimately in
+    source-derived anchor text (e.g. costume_logic referencing "Vale residence
+    scenes"). Only the full display name is forbidden for characters.
+    Location canonical names and their comma-parts are fully forbidden.
+    """
+    if not element_name:
+        return ()
+    aliases: list[str] = [element_name]
+    if element_type == "character":
+        pass  # full name only; surname skipped to avoid source-evidence false positives
+    elif element_type == "location":
+        for part in element_name.split(","):
+            part = part.strip()
+            if part and part != element_name:
+                aliases.append(part)
+    return tuple(dict.fromkeys(aliases))
 
 
 def _is_ready_from_anchors_and_constraints(
@@ -229,13 +264,12 @@ def _build_character_brief(
         if _has_unresolved(a.description):
             warnings.append(f"UNRESOLVED marker in {a.source_field}")
 
+    element_name = str(char_data.get("display_name") or char_data.get("name") or char_id)
     return NeutralBrief(
         scene_id=scene_id,
         element_type="character",
         element_id=char_id,
-        element_name=str(
-            char_data.get("display_name") or char_data.get("name") or char_id
-        ),
+        element_name=element_name,
         visual_anchors=anchors,
         negative_constraints=negative_constraints,
         continuity_state=None,
@@ -244,6 +278,8 @@ def _build_character_brief(
         model_guidance_required=True,
         is_ready=_is_ready_from_anchors_and_constraints(anchors, negative_constraints, None),
         warnings=warnings,
+        prompt_subject_label=_safe_subject_label(element_name, "character"),
+        planning_aliases=_planning_aliases_for(element_name, "character"),
     )
 
 
@@ -324,13 +360,12 @@ def _build_location_brief(
         if _has_unresolved(a.description):
             warnings.append(f"UNRESOLVED marker in {a.source_field}")
 
+    element_name = str(location_data.get("canonical_name") or location_data.get("name") or loc_id)
     return NeutralBrief(
         scene_id=scene_id,
         element_type="location",
         element_id=loc_id,
-        element_name=str(
-            location_data.get("canonical_name") or location_data.get("name") or loc_id
-        ),
+        element_name=element_name,
         visual_anchors=anchors,
         negative_constraints=negative_constraints,
         continuity_state=None,
@@ -339,6 +374,8 @@ def _build_location_brief(
         model_guidance_required=True,
         is_ready=_is_ready_from_anchors_and_constraints(anchors, negative_constraints, None),
         warnings=warnings,
+        prompt_subject_label=_safe_subject_label(element_name, "location"),
+        planning_aliases=_planning_aliases_for(element_name, "location"),
     )
 
 

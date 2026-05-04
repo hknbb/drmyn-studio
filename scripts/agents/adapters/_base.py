@@ -244,5 +244,7 @@ class BaseAdapter:
             params["model_guidance_snapshot"] = self.model_guidance_snapshot
         if brief.aesthetic_keywords:
             params["aesthetic_keywords_injected"] = list(brief.aesthetic_keywords)
+        if brief.planning_aliases:
+            params["planning_name_filter"] = {"forbidden": list(brief.planning_aliases)}
         params.update(self._extra_generation_params(brief))
         return params
