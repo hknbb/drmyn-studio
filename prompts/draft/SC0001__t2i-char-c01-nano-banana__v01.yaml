@@ -16,7 +16,11 @@ prompt_text: 'Character identity reference: Nadia. early to mid 30s Controlled, 
   containment is. Lean, upright, economical silhouette with no wasted motion. Muted
   neutrals and controlled domestic tones; avoid decorative saturation. World consistency:
   composed elite presentation, restrained posture, muted domestic neutrals, no ornament.
-  Use for consistent identity generation across scenes.'
+  Avoid: Do not soften her into generalized maternal warmth; she is specific, observant,
+  and physically exact.; Do not erase the compliance wound or the pulse-check habit.;
+  Do not style her as action-invulnerable or fashion-forward.; Neon cyberpunk color
+  design.; Teal-orange blockbuster simplification.; Golden sentimental domestic warmth
+  as a default treatment.. Use for consistent identity generation across scenes.'
 generation_params:
   model_guidance_mode: locked_guide
   model_guidance_ref: docs/model_guides/nano_banana.yaml
@@ -27,15 +31,11 @@ generation_params:
   planning_name_filter:
     forbidden:
     - Nadia Vale
+  constraint_strategy: embedded_positive_constraints
+  recommended_ar: 16:9 or 21:9
+  max_prompt_tokens: 480
 expected_output:
   asset_type: image_set
   variation_count: 4
 status: active
 canon_lock: false
-negative_prompt: Do not soften her into generalized maternal warmth; she is specific,
-  observant, and physically exact.; Do not erase the compliance wound or the pulse-check
-  habit.; Do not style her as action-invulnerable or fashion-forward.; Neon cyberpunk
-  color design.; Teal-orange blockbuster simplification.; Golden sentimental domestic
-  warmth as a default treatment.; Do not aestheticize blood spray or injury for spectacle
-  alone.; Do not let broadcast imagery visually dominate the lived story beyond the
-  moments where the machine is exerting pressure.

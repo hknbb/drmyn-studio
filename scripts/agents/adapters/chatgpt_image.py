@@ -33,7 +33,11 @@ class ChatGPTImageAdapter(BaseAdapter):
     # ------------------------------------------------------------------
 
     def _extra_generation_params(self, brief: NeutralBrief) -> dict[str, Any]:
-        return {"constraint_strategy": "embedded_positive_constraints"}
+        return {
+            "constraint_strategy": "embedded_positive_constraints",
+            "recommended_quality": "medium",
+            "prompt_structure": "scene→subject→details→constraints",
+        }
 
     # ------------------------------------------------------------------
     # Prompt text — natural language with embedded constraints

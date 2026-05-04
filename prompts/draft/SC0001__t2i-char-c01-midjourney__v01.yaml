@@ -26,14 +26,16 @@ generation_params:
   planning_name_filter:
     forbidden:
     - Nadia Vale
+  recommended_model_version: --v 7
+  recommended_ar: --ar 16:9
 expected_output:
   asset_type: image_set
   variation_count: 4
 status: active
 canon_lock: false
-negative_prompt: Do not soften her into generalized maternal warmth; she is specific,
-  observant, and physically exact., Do not erase the compliance wound or the pulse-check
-  habit., Do not style her as action-invulnerable or fashion-forward., Neon cyberpunk
-  color design., Teal-orange blockbuster simplification., Golden sentimental domestic
-  warmth as a default treatment., Do not aestheticize blood spray or injury for spectacle
-  alone.
+negative_prompt: do-not-soften-her, do-not-erase-the, do-not-style-her, neon-cyberpunk-color-design,
+  teal-orange-blockbuster-simplification, golden-sentimental-domestic-warmth, do-not-aestheticize-blood,
+  do-not-let-broadcast, no-glossy-near-future-luxury, no-comic-book-violence, no-beauty-light-default-on,
+  no-abstract-drone-language, no-omniscient-spectacle-camera, no-sentimental-mother-and-child-glow,
+  do-not-drift-from, do-not-drift-from, do-not-drift-from, do-not-drift-from, do-not-drift-from,
+  do-not-drift-from

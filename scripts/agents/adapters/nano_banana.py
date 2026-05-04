@@ -38,7 +38,11 @@ class NanaBananaAdapter(BaseAdapter):
     # ------------------------------------------------------------------
 
     def _extra_generation_params(self, brief: NeutralBrief) -> dict[str, Any]:
-        return {"constraint_strategy": "embedded_positive_constraints"}
+        return {
+            "constraint_strategy": "embedded_positive_constraints",
+            "recommended_ar": "16:9 or 21:9",
+            "max_prompt_tokens": 480,
+        }
 
     # ------------------------------------------------------------------
     # Prompt text — narrative identity-consistency framing
