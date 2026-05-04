@@ -42,10 +42,10 @@ def test_sc0001_storyboard_options_inherit_aesthetic_pack_refs() -> None:
         )
 
 
-def test_sc0001_storyboard_selected_option_is_null() -> None:
+def test_sc0001_storyboard_selected_option_is_sb03() -> None:
     assert STORYBOARD_PATH.exists()
     payload = yaml.safe_load(STORYBOARD_PATH.read_text(encoding="utf-8"))
-    assert payload.get("selected_option") is None
+    assert payload.get("selected_option") == "SC0001_SB03"
 
 
 def test_sc0001_storyboard_options_passes_schema() -> None:

@@ -121,7 +121,10 @@
       }
     },
     "selected_option": {
-      "type": "null"
+      "oneOf": [
+        {"type": "null"},
+        {"type": "string", "pattern": "^SC\\d{4}_SB\\d{2}$"}
+      ]
     },
     "review_status": {
       "type": "string",

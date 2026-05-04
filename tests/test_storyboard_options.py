@@ -186,12 +186,14 @@ def test_production_validator_accepts_storyboard_options(tmp_path: Path) -> None
     assert report.issues == []
 
 
-def test_production_validator_rejects_auto_selected_option(tmp_path: Path) -> None:
+def test_production_validator_rejects_invalid_selected_option_format(tmp_path: Path) -> None:
+    # Schema now allows null OR a valid option_id string (^SC\d{4}_SB\d{2}$).
+    # An arbitrary non-conforming string must still be rejected.
     _copy_production_schemas(tmp_path)
     _write_scene(tmp_path)
     result = StoryboardOptionsAgent(tmp_path).build("SC0001")
     payload = _load_yaml(result.storyboard_options_path)
-    payload["selected_option"] = "SC0001_SB01"
+    payload["selected_option"] = "not-a-valid-option-id"
     _write_yaml(result.storyboard_options_path, payload)
 
     report = run_validation(tmp_path)
