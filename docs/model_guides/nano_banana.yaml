@@ -1,80 +1,151 @@
 # docs/model_guides/nano_banana.yaml
-# Locked versioned guide for Nano Banana prompt generation.
+# Locked versioned guide for Nano Banana Pro prompt generation.
+# Nano Banana Pro = gemini-3-pro-image-preview (Google Gemini 3 Pro Image)
 # Maintained by: human PR only.
-# Key capability: supports_identity_consistency — designed for character consistency.
-# Source evidence: docs/model_guides/sources/nano_banana_research_log.md
+# Key capability: character/object consistency via reference images (up to 14 per prompt).
+# CRITICAL: supports_negative_prompt is false — use semantic negation in prompt text.
+# Source evidence: evidence/model_guidance_snapshots/20260504T120000Z_nano_banana.yaml
 
 model_id: nano_banana
 schema_version: "1.0"
-guide_version: "0.1.0"
-status: draft
-last_updated: "2026-04-30"
+guide_version: "0.2.0"
+status: active
+last_updated: "2026-05-04"
 maintained_by: "human PR only"
 phase: 1
+actual_model_id: "gemini-3-pro-image-preview"
+snapshot_ref: "evidence/model_guidance_snapshots/20260504T120000Z_nano_banana.yaml"
 
 capability:
   output_type: image
-  supports_negative_prompt: true
-  supports_identity_consistency: true
+  supports_negative_prompt: false     # NOT supported; use semantic negation in prompt
+  supports_identity_consistency: true # Up to 5 character reference images per prompt
+  supports_object_fidelity: true      # Up to 6 object reference images per prompt
   supports_variation_prompting: true
   supports_seed: false
+  supports_4k: true                   # Native 4K (added 2026-02-26)
+  current_version: "gemini-3-pro-image-preview"
+  max_prompt_tokens: 480
+  max_reference_images: 14            # 6 object + 5 character + 3 flexible
 
 prompt_rules:
-  style: variation_and_consistency_logic
-  max_words_recommended: 120
+  style: narrative_cinematic_description
+  max_tokens_recommended: 480         # Hard limit; keep prompts concise
+  negative_prompt_format: "semantic negation embedded in positive prompt"
   rules:
-    - id: identity_consistency_reference
+    - id: narrative_structure
       rule: >
-        Use a reference image to anchor character identity across generations.
-        Nano Banana is optimised for generating consistent variations of a character.
-        Provide a canonical reference image when prompting for character elements.
-        supports_identity_consistency: true — this is the primary differentiator
-        from Midjourney for character-focused generations.
-      source: "Official Nano Banana docs — operator must verify URL"
-      confidence: medium
-      human_verified: false
-    - id: variation_prompting
+        Use narrative, descriptive sentences — NOT Midjourney-style comma-clauses.
+        Structure: Subject → Context/environment → Artistic style/approach.
+        Example: "The sun sets across the lake in golden hour with red wildflowers"
+        not "lake, sunset, flowers, wildflowers".
+      source: "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/image/img-gen-prompt-guide"
+      confidence: high
+      human_verified: true
+    - id: cinematic_modifiers
       rule: >
-        Use variation prompting to generate multiple distinct poses, angles,
-        or lighting conditions of the same character while preserving identity.
-        supports_variation_prompting: true.
-      source: "Official Nano Banana docs — operator must verify"
-      confidence: medium
-      human_verified: false
-    - id: negative_prompt_field
+        Add photography-specific modifiers for production control:
+        camera proximity (close-up, zoomed-out, aerial, low-angle),
+        lighting (natural, dramatic, warm, cold fluorescent),
+        effects (bokeh, soft focus, motion blur, depth of field),
+        lens type (wide-angle, macro, fisheye, 35mm),
+        film style (B&W, Polaroid, cinematic grain).
+      source: "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/image/img-gen-prompt-guide"
+      confidence: high
+      human_verified: true
+    - id: no_negative_prompt
       rule: >
-        Nano Banana supports negative prompts as a separate parameter.
-        Use to exclude unwanted style elements, artifacts, or features.
-        Verify exact parameter name in current docs (e.g. 'negative_prompt',
-        '--no', or platform-specific field).
-      source: "Official Nano Banana docs — operator must verify"
-      confidence: medium
-      human_verified: false
+        gemini-3-pro-image-preview does NOT support a negative_prompt parameter.
+        Use semantic negation instead: describe what you want positively.
+        Example: instead of "no cars", write "an empty deserted street with no signs
+        of traffic". Avoid using the word "no" or "don't" directly in prompts
+        — rephrase as a positive description.
+        The Critic MUST NOT flag missing negative_prompt for this model.
+      source: "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/image/omit-content-using-a-negative-prompt"
+      confidence: high
+      human_verified: true
+    - id: character_consistency_reference
+      rule: >
+        Upload up to 5 character reference images per prompt for identity consistency.
+        Additionally up to 6 object fidelity images (14 reference images total).
+        Maintains facial features and identity across iterations.
+        Works best with detailed pose references; occasional inconsistency with
+        specific artistic styles is documented behaviour.
+      source: "https://ai.google.dev/gemini-api/docs/image-generation"
+      confidence: high
+      human_verified: true
+    - id: temperature_default
+      rule: >
+        Keep temperature at default 1.0. Do NOT adjust.
+        Lowering temperature causes looping, unexpected behavior, and degraded output.
+        top_p default 0.95; top_k fixed at 64 (not user-adjustable).
+      source: "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/3-pro-image"
+      confidence: high
+      human_verified: true
+    - id: prompt_length_limit
+      rule: >
+        Maximum prompt length: 480 tokens. Keep prompts concise.
+        Verbose or overly complex prompts cause over-analysis and degraded output.
+        Direct instructions only — no persuasive language (please, would you).
+      source: "https://ai.google.dev/gemini-api/docs/imagen"
+      confidence: high
+      human_verified: true
+    - id: aspect_ratio
+      rule: >
+        Supported aspect ratios: 1:1, 2:3, 3:2, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9.
+        For cinematic production use 16:9 or 21:9.
+        Resolution: 2K (1120 tokens) or 4K (2000 tokens). 4K available since 2026-02-26.
+      source: "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/3-pro-image"
+      confidence: high
+      human_verified: true
+    - id: in_image_text
+      rule: >
+        For text within generated images: keep under 25 characters per phrase,
+        max 2-3 distinct phrases. Text rendering is reliable within these limits.
+      source: "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/image/img-gen-prompt-guide"
+      confidence: high
+      human_verified: true
     - id: no_canonical_ids_in_prompt
       rule: >
-        Never include canonical IDs (C01, LOC001, PROP003) in prompt_text.
-        They must appear only in source_refs. The Critic enforces this.
+        Never include canonical IDs (C01, LOC001, PROP003, SC0001) or character
+        full display names (e.g. "Nadia Vale") in prompt_text. Use first-name
+        only ("Nadia"). They must appear only in source_refs.
+        The Critic enforces both canonical ID and planning alias checks.
       source: "plan invariant"
       confidence: high
       human_verified: true
 
   do_not_invent:
-    - "Exact parameter names — verify in official docs before use"
-    - "Seed support — not confirmed; verify before citing supports_seed"
-    - "Maximum prompt length — verify in current docs"
-    - "Character reference image format — verify upload/URL method"
+    - "A negative_prompt parameter — it does not exist in gemini-3-pro-image-preview"
+    - "A seed parameter — not supported"
+    - "-- flag syntax (Midjourney-style parameters are not applicable)"
+    - "Prompt weighting syntax — not applicable"
 
 source_refs:
-  - url: "PLACEHOLDER — operator must find official Nano Banana documentation URL"
+  - url: "https://ai.google.dev/gemini-api/docs/image-generation"
     source_class: official_docs
-    human_verified: false
-    notes: >
-      Nano Banana has less publicly available documentation than Midjourney
-      or OpenAI. Operator must locate official docs before running Batch 4.
+    human_verified: true
+    notes: "Gemini API image generation guide. Nano Banana Pro specs, 14 reference images, character consistency. Retrieved 2026-05-04."
+  - url: "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/3-pro-image"
+    source_class: official_docs
+    human_verified: true
+    notes: "Vertex AI model spec. Context limits, temperature, aspect ratios, token costs. Retrieved 2026-05-04."
+  - url: "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/image/img-gen-prompt-guide"
+    source_class: official_docs
+    human_verified: true
+    notes: "Vertex AI prompt guide. Narrative structure, photography modifiers, text limits. Retrieved 2026-05-04."
+  - url: "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/image/omit-content-using-a-negative-prompt"
+    source_class: official_docs
+    human_verified: true
+    notes: "Confirms negative_prompt NOT available in gemini-3-pro-image-preview. Semantic negation required. Retrieved 2026-05-04."
+  - url: "https://deepmind.google/models/gemini-image/pro/"
+    source_class: verified_platform_blog
+    human_verified: true
+    notes: "Google DeepMind product page. 4K support, character consistency up to 5 people. Retrieved 2026-05-04."
 
 notes: >
-  Status: draft — seed rules from research log. IMPORTANT: Source URL is a
-  placeholder. Operator must find official Nano Banana documentation, fill
-  in real URL, verify all rules, set human_verified: true, and change status
-  to 'active' before Batch 4 adapters run.
-  See docs/model_guides/sources/nano_banana_research_log.md for checklist.
+  Updated 2026-05-04 from web research. Nano Banana Pro = gemini-3-pro-image-preview.
+  Key changes from v0.1.0 (placeholder): model identity confirmed, negative_prompt
+  corrected to false (was incorrectly true), narrative prompt style confirmed,
+  character reference image capability documented. Imagen 4 deprecated June 24, 2026.
+  See snapshot_ref for full sourced evidence.
