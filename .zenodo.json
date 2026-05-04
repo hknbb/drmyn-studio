@@ -1,8 +1,8 @@
 {
   "title": "DRMYN Studio: A Metadata-Only Human-Agent Film Production Workflow",
   "upload_type": "software",
-  "version": "0.1.4",
-  "description": "DRMYN Studio is a metadata-only, schema-validated, human-gated pre-production and prompt governance pipeline for AI-assisted film production. Includes scene cards, character and location records, continuity files, prompt lifecycle infrastructure, JSON schema validation (20+ schemas, draft 2020-12), a Human-Agent Production Copilot layer (HA-0 to HA-6) enabling structured multi-agent coordination without external APIs, and a Streamlit dashboard for operator oversight. All production decisions are reproducible and academically defensible; generated media outputs are stored externally and referenced by metadata-only records. Demonstrated through the Closing Price AI-assisted film project. Release v0.1.4 standardises the system name to DRMYN Studio and repository slug to drmyn-studio.",
+  "version": "0.2.0",
+  "description": "DRMYN Studio is a metadata-only, schema-validated, human-gated pre-production and prompt governance pipeline for AI-assisted film production. Includes scene cards, character and location records, continuity files, prompt lifecycle infrastructure, JSON schema validation (20+ schemas, draft 2020-12), a Human-Agent Production Copilot layer (HA-0 to HA-6) enabling structured multi-agent coordination without external APIs, a Streamlit dashboard for operator oversight, and a Film Aesthetic Bible system that injects deterministic, scene-grounded visual keywords into T2I prompts via named aesthetic packs. All production decisions are reproducible and academically defensible; generated media outputs are stored externally and referenced by metadata-only records. Demonstrated through the Closing Price AI-assisted film project. Release v0.2.0 introduces the Film Aesthetic Bible registry (aesthetic_bible.schema.json), deterministic keyword injection across Midjourney, ChatGPT Image, and Nano Banana adapters, and aesthetic_pack_refs hooks in all element and storyboard schemas.",
   "creators": [
     {
       "name": "Babacan, Hakan",
@@ -21,7 +21,9 @@
     "metadata-only pipeline",
     "schema validation",
     "multi-agent coordination",
-    "workflow automation"
+    "workflow automation",
+    "film aesthetic bible",
+    "visual keyword injection"
   ],
   "license": "MIT"
 }

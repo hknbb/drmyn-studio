@@ -120,6 +120,28 @@ See [docs/workflow/branch_protection_policy.md](docs/workflow/branch_protection_
 | Prop | `PROP001` | `PROP001` |
 | Wardrobe | `WD001` | `WD001` |
 
+## Film Aesthetic Bible
+
+The **Film Aesthetic Bible** (`planning/aesthetic_bible.yaml`) is a machine-readable registry of named visual mood-board packs grounded in `source/style_bible.md`. Each pack defines:
+
+- `search_keywords` — curator reference list for Pinterest / Midjourney visual searches
+- `element_keyword_map` — deterministic 2-3 keyword sets per element type (character, location, prop, wardrobe, style)
+- `do_not_keywords` — negative constraints injected alongside style bible rules
+
+Scene cards and element records declare which packs apply via `aesthetic_pack_refs`. The prompt pipeline resolves keywords deterministically by `(pack_id, element_type)` pair — no randomness, no web fetches. Each adapter injects them in its native idiom:
+
+| Adapter | Injection style |
+|---|---|
+| Midjourney | Compact comma-tail, ≤80 words |
+| ChatGPT Image | `"Visual world: …"` natural-language phrase |
+| Nano Banana | `"World consistency: …"` identity anchor |
+
+Pack provenance is recorded in every prompt record under `source_refs.aesthetic_refs` and `generation_params.aesthetic_keywords_injected`.
+
+Starter packs: `VALE_DOMESTIC_RESTRAINT`, `KASPAR_INSTITUTIONAL_SURVEILLANCE`, `MERIN_INDUSTRIAL_DECAY`, `ORACLE_BROADCAST_CLEAN`.
+
+See `docs/publication/aesthetic_bible_overview.md` for pack rationale and `schemas/aesthetic_bible.schema.json` for the registry schema.
+
 ## Scientific Clean Release / Reviewer Entrypoint
 
 The Human-Agent Production Copilot layer (HA-0 → HA-6) is complete and merged.
