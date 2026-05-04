@@ -26,6 +26,32 @@ VISUAL_TARGET_FIELDS = (
     ("lighting_bias", "Represent the source-stated lighting treatment."),
 )
 
+DURATION_PROFILES = (
+    {
+        "total_duration_seconds": 5,
+        "recommended_shot_count": 1,
+        "rhythm": "single held coverage beat",
+    },
+    {
+        "total_duration_seconds": 10,
+        "recommended_shot_count": 2,
+        "rhythm": "establish the scene geometry, then register the source-stated action beat",
+    },
+    {
+        "total_duration_seconds": 15,
+        "recommended_shot_count": 3,
+        "rhythm": "establish the geometry, isolate the source-stated deviation, then hold reaction",
+    },
+)
+
+COVERAGE_STRATEGIES = {
+    "palette": "environmental_atmosphere_coverage",
+    "lens_bias": "intimate_behavioral_coverage",
+    "framing_bias": "threshold_geometry_coverage",
+    "movement_bias": "route_logic_coverage",
+    "lighting_bias": "lighting_continuity_coverage",
+}
+
 
 class StoryboardOptionsError(ValueError):
     """Raised when storyboard options cannot be grounded in scene sources."""
@@ -176,6 +202,17 @@ class StoryboardOptionsAgent:
             option: dict[str, Any] = {
                 "option_id": f"{scene_id}_SB{index:02d}",
                 "purpose": f"{purpose_prefix} Source: {source_text}",
+                "coverage_strategy": COVERAGE_STRATEGIES[field_name],
+                "scene_action_type": "static_tension",
+                "duration_profiles": [dict(profile) for profile in DURATION_PROFILES],
+                "coverage_shots": StoryboardOptionsAgent._build_coverage_shots(
+                    field_name=field_name,
+                    source_text=source_text,
+                    lens_bias=lens_bias,
+                    framing_bias=framing_bias,
+                    movement_bias=movement_bias,
+                    lighting_bias=lighting_bias,
+                ),
                 "camera_angle": lens_bias,
                 "framing": framing_bias,
                 "movement": movement_bias,
@@ -189,3 +226,50 @@ class StoryboardOptionsAgent:
             options.append(option)
 
         return options
+
+    @staticmethod
+    def _build_coverage_shots(
+        *,
+        field_name: str,
+        source_text: str,
+        lens_bias: str,
+        framing_bias: str,
+        movement_bias: str,
+        lighting_bias: str,
+    ) -> list[dict[str, Any]]:
+        source_field = f"scene_card.visual_targets.{field_name}"
+        return [
+            {
+                "role": "establish_coverage",
+                "subject": f"Establish the scene treatment through: {source_text}",
+                "camera_angle": lens_bias,
+                "framing": framing_bias,
+                "camera_movement": movement_bias,
+                "lighting": lighting_bias,
+                "min_duration_seconds": 2,
+                "max_duration_seconds": 5,
+                "source_field": source_field,
+            },
+            {
+                "role": "action_or_deviation_coverage",
+                "subject": "Register the source-stated action beat without adding new story facts.",
+                "camera_angle": lens_bias,
+                "framing": framing_bias,
+                "camera_movement": movement_bias,
+                "lighting": lighting_bias,
+                "min_duration_seconds": 2,
+                "max_duration_seconds": 5,
+                "source_field": source_field,
+            },
+            {
+                "role": "reaction_or_hold_coverage",
+                "subject": "Hold the scene response within the selected visual treatment.",
+                "camera_angle": lens_bias,
+                "framing": framing_bias,
+                "camera_movement": movement_bias,
+                "lighting": lighting_bias,
+                "min_duration_seconds": 2,
+                "max_duration_seconds": 5,
+                "source_field": source_field,
+            },
+        ]
