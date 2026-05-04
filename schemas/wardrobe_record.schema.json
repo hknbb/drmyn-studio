@@ -48,16 +48,28 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "initial_state": { "type": "string", "maxLength": 400 },
+        "initial_state": {
+          "type": "string",
+          "maxLength": 400
+        },
         "state_changes": {
           "type": "array",
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["scene_id", "new_state"],
+            "required": [
+              "scene_id",
+              "new_state"
+            ],
             "properties": {
-              "scene_id": { "type": "string", "pattern": "^SC\\d{4}$" },
-              "new_state": { "type": "string", "maxLength": 400 }
+              "scene_id": {
+                "type": "string",
+                "pattern": "^SC\\d{4}$"
+              },
+              "new_state": {
+                "type": "string",
+                "maxLength": 400
+              }
             }
           }
         }
@@ -66,35 +78,81 @@
     "scene_refs": {
       "type": "array",
       "uniqueItems": true,
-      "items": { "type": "string", "pattern": "^SC\\d{4}$" }
+      "items": {
+        "type": "string",
+        "pattern": "^SC\\d{4}$"
+      }
     },
     "status": {
       "type": "string",
-      "enum": ["draft", "review", "approved", "locked", "deprecated"]
+      "enum": [
+        "draft",
+        "review",
+        "approved",
+        "locked",
+        "deprecated"
+      ]
     },
     "review_status": {
       "type": "string",
-      "enum": ["pending", "changes_requested", "approved", "rejected"]
+      "enum": [
+        "pending",
+        "changes_requested",
+        "approved",
+        "rejected"
+      ]
     },
-    "canon_lock": { "type": "boolean" },
+    "canon_lock": {
+      "type": "boolean"
+    },
     "approval": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "approved_by": { "type": "string" },
-        "approved_at": { "type": "string", "format": "date-time" },
-        "approval_note": { "type": "string", "maxLength": 1000 }
+        "approved_by": {
+          "type": "string"
+        },
+        "approved_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "approval_note": {
+          "type": "string",
+          "maxLength": 1000
+        }
       }
     },
     "provenance": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "created_by": { "type": "string" },
-        "created_at": { "type": "string", "format": "date-time" },
-        "updated_by": { "type": "string" },
-        "updated_at": { "type": "string", "format": "date-time" },
-        "git_commit": { "type": "string", "pattern": "^[a-f0-9]{7,40}$" }
+        "created_by": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_by": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "git_commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{7,40}$"
+        }
+      }
+    },
+    "aesthetic_pack_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9_]+$",
+        "maxLength": 80
       }
     }
   }

@@ -59,6 +59,11 @@ class ChatGPTImageAdapter(BaseAdapter):
             if desc:
                 parts.append(desc[:300])
 
+        # Aesthetic world phrase — natural language, not raw comma-tail
+        if brief.aesthetic_keywords:
+            world_phrase = "Visual world: " + "; ".join(brief.aesthetic_keywords) + "."
+            parts.append(world_phrase)
+
         # Embedded constraints (first 4 key constraints as an Avoid clause)
         constraints = brief.negative_constraints[:4]
         if constraints:

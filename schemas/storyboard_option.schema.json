@@ -26,7 +26,10 @@
     "source_refs": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["scene_card", "scene_excerpt"],
+      "required": [
+        "scene_card",
+        "scene_excerpt"
+      ],
       "properties": {
         "scene_card": {
           "type": "string",
@@ -99,7 +102,20 @@
           },
           "status": {
             "type": "string",
-            "enum": ["candidate", "blocked", "evidence_thin"]
+            "enum": [
+              "candidate",
+              "blocked",
+              "evidence_thin"
+            ]
+          },
+          "aesthetic_pack_refs": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Z][A-Z0-9_]+$",
+              "maxLength": 80
+            }
           }
         }
       }

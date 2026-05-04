@@ -15,6 +15,8 @@ from typing import Any
 
 import yaml
 
+from scripts.agents.aesthetic_bible import AestheticBible, load_aesthetic_bible
+
 
 UNRESOLVED_RE = re.compile(r"\b(UNRESOLVED|TODO_REVIEW|TODO|EVIDENCE_THIN)\b")
 
@@ -31,6 +33,7 @@ class SourceContext:
     props: dict[str, dict[str, Any]]
     wardrobe: dict[str, dict[str, Any]]
     style_bible_text: str | None
+    aesthetic_bible: AestheticBible | None = None
     unresolved_warnings: list[str] = field(default_factory=list)
     missing_records: list[str] = field(default_factory=list)
     escalate: bool = False
@@ -169,6 +172,8 @@ class SourceContextAgent:
         elif UNRESOLVED_RE.search(style_bible_text):
             warnings.append(f"UNRESOLVED marker in style_bible: {style_bible_path}")
 
+        aesthetic_bible = load_aesthetic_bible(self.repo_root)
+
         return SourceContext(
             scene_id=scene_id,
             scene_card=scene_card,
@@ -178,6 +183,7 @@ class SourceContextAgent:
             props=props,
             wardrobe=wardrobe,
             style_bible_text=style_bible_text,
+            aesthetic_bible=aesthetic_bible,
             unresolved_warnings=warnings,
             missing_records=missing,
             escalate=escalate,

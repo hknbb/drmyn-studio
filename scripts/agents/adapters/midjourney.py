@@ -53,6 +53,21 @@ class MidjourneyAdapter(BaseAdapter):
 
         text = ", ".join(parts)
 
+        # Aesthetic tail: append pack keywords within remaining word budget
+        if brief.aesthetic_keywords:
+            aesthetic_tail = ", ".join(brief.aesthetic_keywords)
+            candidate = f"{text}, {aesthetic_tail}"
+            words = candidate.split()
+            if len(words) <= 80:
+                text = candidate
+            else:
+                # Fit as many aesthetic keywords as the budget allows
+                base_words = text.split()
+                budget = 80 - len(base_words) - 1  # -1 for separator comma
+                if budget > 0:
+                    tail_words = aesthetic_tail.split()[:budget]
+                    text = text + ", " + " ".join(tail_words)
+
         # Enforce ≤80 words
         words = text.split()
         if len(words) > 80:
