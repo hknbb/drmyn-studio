@@ -1,10 +1,9 @@
 cff-version: 1.2.0
 message: "If you use this repository, please cite it as below."
-doi: 10.5281/zenodo.19988619
 title: "DRMYN Studio: A Metadata-Only Human-Agent Film Production Workflow"
 type: software
-version: 0.1.4
-date-released: 2026-05-03
+version: 0.2.0
+date-released: 2026-05-04
 repository-code: "https://github.com/hknbb/drmyn-studio"
 url: "https://github.com/hknbb/drmyn-studio"
 abstract: >
@@ -13,8 +12,10 @@ abstract: >
   scene cards, character and location records, continuity files, prompt
   lifecycle infrastructure, JSON schema validation (20+ schemas, draft 2020-12),
   a Human-Agent Production Copilot layer (HA-0 to HA-6) enabling structured
-  multi-agent coordination without external APIs, and a Streamlit dashboard for
-  operator oversight. All production decisions are reproducible and academically
+  multi-agent coordination without external APIs, a Streamlit dashboard for
+  operator oversight, and a Film Aesthetic Bible system that injects
+  deterministic, scene-grounded visual keywords into T2I prompts via named
+  aesthetic packs. All production decisions are reproducible and academically
   defensible; generated media outputs are stored externally and referenced by
   metadata-only records. Demonstrated through the Closing Price AI-assisted
   film project.
