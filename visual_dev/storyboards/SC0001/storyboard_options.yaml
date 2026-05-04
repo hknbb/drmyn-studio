@@ -76,6 +76,6 @@ options:
   prompt_ids: []
   status: candidate
   aesthetic_pack_refs: *id001
-selected_option: null
+selected_option: SC0001_SB03
 review_status: pending
 storage_policy: no_binary_commits
