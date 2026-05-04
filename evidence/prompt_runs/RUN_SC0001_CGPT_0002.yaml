@@ -1,0 +1,9 @@
+run_id: RUN_SC0001_CGPT_0002
+prompt_id: SC0001__t2i-char-c01-chatgpt-image__v01
+model: chatgpt_image
+run_at: '2026-05-04T10:56:40Z'
+outputs_expected: 4
+cost:
+  unit: credits
+  value: 1
+status: pending

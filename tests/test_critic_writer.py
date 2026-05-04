@@ -35,7 +35,7 @@ def _make_valid_record(
     *,
     scene_id: str = "SC0003",
     prompt_id: str = "SC0003__t2i-char-c01-midjourney__v01",
-    prompt_text: str = "Nadia Vale, lean upright silhouette, muted domestic neutrals",
+    prompt_text: str = "Nadia, lean upright silhouette, muted domestic neutrals",
     negative_prompt: str | None = "neon cyberpunk, teal-orange grading",
     target_models: list | None = None,
     lifecycle_stage: str = "draft",
@@ -264,7 +264,7 @@ def test_critic_dynamic_snapshot_missing_fails(tmp_path: Path) -> None:
 def test_critic_unresolved_in_prompt_text_is_soft_warning() -> None:
     critic = CriticAgent(REPO_ROOT)
     record = _make_valid_record(
-        prompt_text="Nadia Vale, UNRESOLVED state, lean silhouette"
+        prompt_text="Nadia, UNRESOLVED state, lean silhouette"
     )
     result = critic.check(record)
     assert result.passed is False or (
@@ -495,7 +495,7 @@ def test_adapters_produce_critic_passing_records(tmp_path: Path) -> None:
         tmp_path / "schemas" / "prompt_record.schema.json",
     )
 
-    # Create a brief with clean prompt text (no canonical IDs)
+    # Create a brief with clean prompt text (no canonical IDs, no planning names)
     brief = NeutralBrief(
         scene_id="SC0003",
         element_type="character",
@@ -520,6 +520,8 @@ def test_adapters_produce_critic_passing_records(tmp_path: Path) -> None:
         continuity_warning=None,
         model_guidance_required=True,
         is_ready=True,
+        prompt_subject_label="Nadia",
+        planning_aliases=("Nadia Vale",),
     )
 
     critic = CriticAgent(tmp_path)

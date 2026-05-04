@@ -119,6 +119,7 @@ class CriticAgent:
         self._check_lifecycle_stage(prompt_record, hard)
         self._check_source_refs(prompt_record, hard)
         self._check_no_canonical_ids(prompt_record, hard)
+        self._check_no_planning_aliases(prompt_record, hard)
         self._check_target_models(prompt_record, hard)
         self._check_model_guidance(prompt_record, hard)
         self._check_negative_prompt_rule(prompt_record, hard)
@@ -175,6 +176,20 @@ class CriticAgent:
                 f"Canonical planning ID {match.group()!r} found in prompt_text. "
                 "Remove planning IDs from generated text; they belong in source_refs only."
             )
+
+    def _check_no_planning_aliases(self, record: dict, errors: list[str]) -> None:
+        """Planning display names declared in planning_name_filter must not appear in prompt_text."""
+        params = record.get("generation_params") or {}
+        forbidden = (params.get("planning_name_filter") or {}).get("forbidden") or []
+        if not forbidden:
+            return
+        text = str(record.get("prompt_text") or "")
+        for alias in forbidden:
+            if alias and alias in text:
+                errors.append(
+                    f"Planning name {alias!r} found in prompt_text. "
+                    "Use prompt_subject_label (safe visual label) instead of planning display names."
+                )
 
     def _check_target_models(self, record: dict, errors: list[str]) -> None:
         models = record.get("target_models") or []

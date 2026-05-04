@@ -32,9 +32,12 @@ class MidjourneyAdapter(BaseAdapter):
     def _build_prompt_text(self, brief: NeutralBrief) -> str:
         parts: list[str] = []
 
-        # Leading subject (not for style briefs)
-        if brief.element_type != "style" and brief.element_name:
-            parts.append(brief.element_name)
+        # Leading subject — use safe label; skip if no safe label but aliases exist (e.g. location)
+        if brief.element_type != "style":
+            if brief.prompt_subject_label:
+                parts.append(brief.prompt_subject_label)
+            elif brief.element_name and not brief.planning_aliases:
+                parts.append(brief.element_name)
 
         # Continuity state as a compact clause for prop/wardrobe
         if brief.element_type in ("prop", "wardrobe") and brief.continuity_state:

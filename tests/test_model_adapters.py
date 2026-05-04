@@ -57,6 +57,7 @@ def _make_brief(
     is_ready: bool = True,
     warnings: list | None = None,
 ) -> NeutralBrief:
+    from scripts.agents.neutral_brief import _safe_subject_label, _planning_aliases_for
     return NeutralBrief(
         scene_id=scene_id,
         element_type=element_type,
@@ -80,6 +81,8 @@ def _make_brief(
         model_guidance_required=True,
         is_ready=is_ready,
         warnings=warnings or [],
+        prompt_subject_label=_safe_subject_label(element_name, element_type),
+        planning_aliases=_planning_aliases_for(element_name, element_type),
     )
 
 
@@ -282,7 +285,9 @@ def test_midjourney_prompt_text_word_count(tmp_path: Path) -> None:
 def test_midjourney_prompt_text_has_subject(tmp_path: Path) -> None:
     adapter = MidjourneyAdapter(tmp_path)
     record, _ = adapter.generate(CHAR_BRIEF)
-    assert "Nadia Vale" in record["prompt_text"]
+    # Safe first-name label used, not full planning display name
+    assert "Nadia" in record["prompt_text"]
+    assert "Nadia Vale" not in record["prompt_text"]
 
 
 def test_midjourney_generation_params(tmp_path: Path) -> None:
