@@ -1,12 +1,12 @@
 cff-version: 1.2.0
 message: "If you use this repository, please cite it as below."
-doi: 10.5281/zenodo.20020007
+doi: 10.5281/zenodo.20036189
 title: "DRMYN Studio: A Metadata-Only Human-Agent Film Production Workflow"
 type: software
-version: 0.2.0
-date-released: 2026-05-04
-repository-code: "https://github.com/hknbb/drmyn-studio"
-url: "https://github.com/hknbb/drmyn-studio"
+version: 0.3.0
+date-released: 2026-05-05
+repository-code: "https://github.com/hknbb/drmyn-studio-public"
+url: "https://github.com/hknbb/drmyn-studio-public/releases/tag/v0.3.0"
 abstract: >
   DRMYN Studio is a metadata-only, schema-validated, human-gated pre-production
   and prompt governance pipeline for AI-assisted film production. It provides
