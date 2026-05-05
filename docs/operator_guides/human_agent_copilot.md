@@ -26,6 +26,10 @@ HA-4b-1 adds dashboard buttons for the same existing command vocabulary.
 
 ## Actors
 
+For the canonical Producer/Critic/Director contract, see
+[`agent_role_contract.md`](agent_role_contract.md). This section is the
+operator-facing quick reference.
+
 | Actor | Can do | Must not do |
 |---|---|---|
 | `human_operator` | Approve work, run external tools manually, create PRs, promote lifecycle fields through review. | Store credentials in repo files or bypass PR review. |

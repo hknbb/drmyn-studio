@@ -6,6 +6,9 @@ review remains the approval boundary.
 
 ## Roles
 
+The canonical role contract lives in
+`docs/operator_guides/agent_role_contract.md`. This table is the short form.
+
 | Actor | Role |
 |---|---|
 | `human_operator` | Owns decisions, external tools, lifecycle promotion, and PR approval. |
