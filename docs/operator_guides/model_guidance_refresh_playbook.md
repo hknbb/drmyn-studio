@@ -19,8 +19,8 @@ Refresh a snapshot before prompt generation when any of these are true:
 
 ## Manual Research Flow
 
-1. Use a web-capable tool such as Gemini Code Assist, ChatGPT Project, or a
-   browser controlled by the human operator.
+1. Use a web-capable tool such as Gemini Code Assist or a browser controlled
+   by the human operator.
 2. Search official or verified sources only:
    - Midjourney official documentation
    - OpenAI image API or ChatGPT Image official documentation

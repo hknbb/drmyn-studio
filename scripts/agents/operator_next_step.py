@@ -281,7 +281,7 @@ def _placeholder_snapshot_refresh_step(
         scene_id=draft.scene_id,
         open_files=open_files,
         do_steps=[
-            "Run a web-capable agent such as Gemini Code Assist or ChatGPT Project to refresh the snapshot from official model documentation.",
+            "Run a web-capable agent such as Gemini Code Assist to refresh the snapshot from official model documentation.",
             "Record source URLs, retrieval timestamps, content hashes, and human verification in the snapshot YAML.",
             "Set do_not_use_without_verification to an empty list only after the human has verified the extracted rules.",
             "Rerun prompt generation or review only after the refreshed snapshot passes the critic gate.",

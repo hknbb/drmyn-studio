@@ -26,7 +26,6 @@ ALLOWED_AGENTS = {
     "claude_code",
     "codex",
     "gemini_code_assist",
-    "chatgpt_project",
 }
 ALLOWED_REASONS = {
     "limit_reached",

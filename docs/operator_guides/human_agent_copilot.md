@@ -1,8 +1,7 @@
 # Human-Agent Production Copilot
 
 The copilot layer lets a human operator coordinate Claude Code, Codex, Gemini
-Code Assist, ChatGPT Project, Visual Studio, and GitHub without adding external
-APIs. It sits above the existing production pipeline and does not weaken any
+Code Assist, Visual Studio, and GitHub without adding external APIs. It sits above the existing production pipeline and does not weaken any
 schema, validator, storage, or lifecycle gate.
 
 ## Operating Model
@@ -32,8 +31,7 @@ HA-4b-1 adds dashboard buttons for the same existing command vocabulary.
 | `human_operator` | Approve work, run external tools manually, create PRs, promote lifecycle fields through review. | Store credentials in repo files or bypass PR review. |
 | `claude_code` | Implement scoped batch work and write metadata-only files. | Promote lifecycle fields, commit binaries, or merge directly to main. |
 | `codex` | Review, repair, validate, and implement scoped fixes on the same feature branch. | Create parallel permanent implementation branches or silently approve unsafe changes. |
-| `gemini_code_assist` | Review Claude/Codex diffs, provide second opinions, and act as pinch-hitter implementor if both are unavailable. | Replace human approval or write credentials/API-driven automation. |
-| `chatgpt_project` | Explore long-form context and draft prose outside the repo. | Write files directly to the repository. |
+| `gemini_code_assist` | Review Claude/Codex diffs, provide second opinions, draft long-form planning/prose, and act as pinch-hitter implementor if both are unavailable. | Replace human approval or write credentials/API-driven automation. |
 
 ## Command Vocabulary
 
@@ -145,16 +143,12 @@ or merging any PR outside this dashboard panel.
 
 ## Gemini Code Assist
 
-Gemini Code Assist is primarily a reviewer and second-opinion tool inside the
-editor. It can become a pinch-hitter implementor only when Claude Code and Codex
-are both unavailable or context-limited. In that case it uses the same
-`agent_handoff` record and must follow the same metadata-only restrictions.
-
-## ChatGPT Project
-
-ChatGPT Project is for long-form planning, source-context exploration, and prose
-drafting outside the repo. The human may paste its useful output into an
-`agent_handoff.notes` field. It does not write repository files directly.
+Gemini Code Assist is the reviewer, second-opinion tool, and long-form
+planning/research surface inside the editor. It can also act as a pinch-hitter
+implementor when Claude Code and Codex are both unavailable or context-limited.
+Gemini uses the same `agent_handoff` record as the other agents and must follow
+the same metadata-only restrictions. Long-form notes (planning, research,
+prose) may be captured under `agent_handoff.notes`.
 
 ## End-to-End Dry Run
 

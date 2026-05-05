@@ -1,9 +1,9 @@
 # Agent Handoff Playbook
 
 This playbook explains how the human operator rotates work between Claude Code,
-Codex, Gemini Code Assist, and ChatGPT Project without losing repo context.
-It uses the existing Human-Agent Copilot `switch` command and does not change
-the handoff implementation.
+Codex, and Gemini Code Assist without losing repo context. It uses the existing
+Human-Agent Copilot `switch` command and does not change the handoff
+implementation.
 
 ## Purpose
 
@@ -41,7 +41,8 @@ python scripts/agents/run_pipeline.py \
   --repo-root .
 ```
 
-Switch to Gemini Code Assist for second opinion or pinch-hit implementation:
+Switch to Gemini Code Assist for second opinion, long-form planning/prose, or
+pinch-hit implementation:
 
 ```bash
 python scripts/agents/run_pipeline.py \
@@ -49,17 +50,6 @@ python scripts/agents/run_pipeline.py \
   --command switch \
   --to-agent gemini_code_assist \
   --reason second_opinion \
-  --repo-root .
-```
-
-Switch to ChatGPT Project for planning or prose only:
-
-```bash
-python scripts/agents/run_pipeline.py \
-  --mode copilot-command \
-  --command switch \
-  --to-agent chatgpt_project \
-  --reason context_too_large \
   --repo-root .
 ```
 
@@ -97,18 +87,8 @@ Continue from this repository handoff:
 evidence/agent_handoffs/HO-YYYYMMDD-HHMMSS.yaml
 
 Use only the listed files and current branch context. Keep changes within the
-expected_outputs and do not touch scope-guarded files.
-```
-
-Any agent to ChatGPT Project:
-
-```text
-Use this handoff for planning/prose context only:
-
-evidence/agent_handoffs/HO-YYYYMMDD-HHMMSS.yaml
-
-Do not write repository files. Return a text plan or review note that the human
-operator can paste back into the repo workflow if needed.
+expected_outputs and do not touch scope-guarded files. For planning/prose-only
+follow-ups, return a text plan in your reply rather than writing repo files.
 ```
 
 ## Reason Definitions
