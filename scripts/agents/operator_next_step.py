@@ -32,6 +32,28 @@ from scripts.agents.production_status import (
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff"}
 SCENE_ID_RE = re.compile(r"SC\d{4}")
+RECOMMENDED_ROUTE_BY_TASK = {
+    "storyboard_selection": ("gemini_code_assist", "second_opinion"),
+    "model_guidance_snapshot_refresh": ("gemini_code_assist", "drafting_assist"),
+    "image_review_preparation": ("claude_code", "drafting_assist"),
+    "image_review": ("codex", "review_requested"),
+    "t2i_image_generation": ("claude_code", "manual_pickup"),
+    "blocked": ("claude_code", "manual_pickup"),
+}
+ALLOWED_RECOMMENDED_NEXT_AGENTS = frozenset(
+    {"human_operator", "claude_code", "codex", "gemini_code_assist"}
+)
+ALLOWED_RECOMMENDED_REASONS = frozenset(
+    {
+        "limit_reached",
+        "review_requested",
+        "second_opinion",
+        "drafting_assist",
+        "manual_pickup",
+        "context_too_large",
+        "task_complete",
+    }
+)
 
 PROMPT_TYPE_TARGETS = {
     "t2i_character_element": ("characters", "character_refs"),
@@ -55,6 +77,8 @@ PROMPT_ID_TARGET_PATTERNS = (
 class OperatorNextStep:
     current_task: str
     scene_id: str | None
+    recommended_next_agent: str
+    recommended_reason: str
     open_files: list[str]
     do_steps: list[str]
     expected_outputs: list[str]
@@ -63,6 +87,14 @@ class OperatorNextStep:
     allowed_commands: tuple[str, ...] = ("yes", "no", "revise", "switch")
     blocked_reason: str | None = None
 
+    def __post_init__(self) -> None:
+        if self.recommended_next_agent not in ALLOWED_RECOMMENDED_NEXT_AGENTS:
+            raise ValueError(
+                f"Unsupported recommended_next_agent: {self.recommended_next_agent}"
+            )
+        if self.recommended_reason not in ALLOWED_RECOMMENDED_REASONS:
+            raise ValueError(f"Unsupported recommended_reason: {self.recommended_reason}")
+
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
 
@@ -70,6 +102,8 @@ class OperatorNextStep:
         lines = [
             f"current_task: {self.current_task}",
             f"scene_id: {self.scene_id or 'none'}",
+            f"recommended_next_agent: {self.recommended_next_agent}",
+            f"recommended_reason: {self.recommended_reason}",
             "open_files:",
         ]
         lines.extend(f"- {path}" for path in self.open_files)
@@ -230,6 +264,10 @@ def _safe_warnings() -> list[str]:
     ]
 
 
+def _recommended_route(current_task: str) -> tuple[str, str]:
+    return RECOMMENDED_ROUTE_BY_TASK.get(current_task, ("human_operator", "manual_pickup"))
+
+
 def _snapshot_payload_needs_refresh(payload: dict[str, Any]) -> bool:
     if payload.get("model_version_observed") == "unknown_placeholder":
         return True
@@ -276,9 +314,13 @@ def _placeholder_snapshot_refresh_step(
         ],
         repo_root,
     )
+    current_task = "model_guidance_snapshot_refresh"
+    recommended_next_agent, recommended_reason = _recommended_route(current_task)
     return OperatorNextStep(
-        current_task="model_guidance_snapshot_refresh",
+        current_task=current_task,
         scene_id=draft.scene_id,
+        recommended_next_agent=recommended_next_agent,
+        recommended_reason=recommended_reason,
         open_files=open_files,
         do_steps=[
             "Run a web-capable agent such as Gemini Code Assist to refresh the snapshot from official model documentation.",
@@ -320,9 +362,13 @@ def _storyboard_selection_step(repo_root: Path) -> OperatorNextStep | None:
             if source_refs.get(key)
         ]
         open_files = _existing_rels([path, *source_paths], repo_root)
+        current_task = "storyboard_selection"
+        recommended_next_agent, recommended_reason = _recommended_route(current_task)
         return OperatorNextStep(
-            current_task="storyboard_selection",
+            current_task=current_task,
             scene_id=scene_id,
+            recommended_next_agent=recommended_next_agent,
+            recommended_reason=recommended_reason,
             open_files=open_files,
             do_steps=[
                 "Read each option and compare purpose, camera_angle, framing, movement, lighting, and status.",
@@ -363,9 +409,13 @@ def _prompt_review_or_generation_step(repo_root: Path) -> OperatorNextStep | Non
         open_files = _existing_rels(open_file_paths, repo_root)
 
         if candidates and notes_path.exists():
+            current_task = "image_review"
+            recommended_next_agent, recommended_reason = _recommended_route(current_task)
             return OperatorNextStep(
-                current_task="image_review",
+                current_task=current_task,
                 scene_id=draft.scene_id,
+                recommended_next_agent=recommended_next_agent,
+                recommended_reason=recommended_reason,
                 open_files=open_files,
                 do_steps=[
                     "Review the existing candidate images against the prompt draft and source references.",
@@ -385,9 +435,13 @@ def _prompt_review_or_generation_step(repo_root: Path) -> OperatorNextStep | Non
 
         if candidates and not notes_path.exists():
             missing = _relative(notes_path, repo_root)
+            current_task = "image_review_preparation"
+            recommended_next_agent, recommended_reason = _recommended_route(current_task)
             return OperatorNextStep(
-                current_task="image_review_preparation",
+                current_task=current_task,
                 scene_id=draft.scene_id,
+                recommended_next_agent=recommended_next_agent,
+                recommended_reason=recommended_reason,
                 open_files=open_files,
                 do_steps=[
                     "Open the prompt draft and inspect the candidate images already present.",
@@ -405,9 +459,13 @@ def _prompt_review_or_generation_step(repo_root: Path) -> OperatorNextStep | Non
                 blocked_reason=f"Candidate images exist, but review notes are missing: {missing}",
             )
 
+        current_task = "t2i_image_generation"
+        recommended_next_agent, recommended_reason = _recommended_route(current_task)
         return OperatorNextStep(
-            current_task="t2i_image_generation",
+            current_task=current_task,
             scene_id=draft.scene_id,
+            recommended_next_agent=recommended_next_agent,
+            recommended_reason=recommended_reason,
             open_files=open_files,
             do_steps=[
                 "Open the prompt draft and copy only the prompt text needed by the external T2I tool.",
@@ -445,9 +503,13 @@ def _blocked_step(
     if not statuses and not csv_rows:
         reason = "No production status rows or actionable production metadata were found."
 
+    current_task = "blocked"
+    recommended_next_agent, recommended_reason = _recommended_route(current_task)
     return OperatorNextStep(
-        current_task="blocked",
+        current_task=current_task,
         scene_id=None,
+        recommended_next_agent=recommended_next_agent,
+        recommended_reason=recommended_reason,
         open_files=open_files,
         do_steps=[
             "Inspect production_status.csv if it exists.",
