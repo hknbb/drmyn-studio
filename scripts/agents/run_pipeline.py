@@ -617,7 +617,6 @@ def build_parser() -> argparse.ArgumentParser:
             "claude_code",
             "codex",
             "gemini_code_assist",
-            "chatgpt_project",
         ),
     )
     parser.add_argument("--reason", default="limit_reached")

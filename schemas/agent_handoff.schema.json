@@ -33,8 +33,7 @@
         "human_operator",
         "claude_code",
         "codex",
-        "gemini_code_assist",
-        "chatgpt_project"
+        "gemini_code_assist"
       ]
     },
     "to_agent": {
@@ -43,8 +42,7 @@
         "human_operator",
         "claude_code",
         "codex",
-        "gemini_code_assist",
-        "chatgpt_project"
+        "gemini_code_assist"
       ]
     },
     "reason": {

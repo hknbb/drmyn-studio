@@ -116,6 +116,20 @@ def test_unknown_agent_enum_fails(tmp_path: Path) -> None:
     assert any("unknown_agent" in issue.message for issue in report.issues)
 
 
+def test_chatgpt_project_agent_is_no_longer_accepted(tmp_path: Path) -> None:
+    # `chatgpt_project` was removed from the agent enum; the workflow now uses
+    # only Claude Code, Codex, Gemini Code Assist, and the human operator.
+    _copy_schemas(tmp_path)
+    payload = _valid_handoff()
+    payload["from_agent"] = "chatgpt_project"
+    _write_handoff(tmp_path, payload)
+
+    report = run_validation(tmp_path)
+
+    assert report.invalid_files == 1
+    assert any("chatgpt_project" in issue.message for issue in report.issues)
+
+
 def test_head_sha_too_short_fails(tmp_path: Path) -> None:
     _copy_schemas(tmp_path)
     payload = _valid_handoff()

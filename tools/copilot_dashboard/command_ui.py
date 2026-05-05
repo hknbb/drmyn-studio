@@ -16,7 +16,6 @@ TARGET_AGENT_OPTIONS = (
     "claude_code",
     "codex",
     "gemini_code_assist",
-    "chatgpt_project",
 )
 HANDOFF_REASON_OPTIONS = (
     "manual_pickup",

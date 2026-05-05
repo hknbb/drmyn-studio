@@ -215,8 +215,7 @@ The validator (`FORBIDDEN_LIFECYCLE_KEYS`) enforces this at every run.
 |---|---|---|
 | `claude_code` | Claude Code (Anthropic) | Implementation, schema/validator authoring |
 | `codex` | Codex (OpenAI) | Review, repair, second opinion |
-| `gemini_code_assist` | Gemini Code Assist (Google) | Diff review, pinch-hitter implementor |
-| `chatgpt_project` | ChatGPT Project (OpenAI) | Long-form planning, prose drafting (outside repo) |
+| `gemini_code_assist` | Gemini Code Assist (Google) | Diff review, pinch-hitter implementor, long-form planning/prose drafting |
 
 Exact model version labels are recorded by the human operator in
 `agent_handoff.notes` when scientifically relevant. Automatic model version
