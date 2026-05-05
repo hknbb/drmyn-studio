@@ -9,6 +9,9 @@ schema, validator, storage, or lifecycle gate.
 `operator_next_step.py` observes the repo and recommends the next safe task.
 `copilot_command.py` writes only command records that the human explicitly
 requests. This keeps the recommender and writer responsibilities separate.
+In B8-3, recommendations may also show `recommended_next_agent` and
+`recommended_reason`. These fields are advisory only; they do not write
+handoff records or perform pickup behavior.
 
 Text cycle:
 

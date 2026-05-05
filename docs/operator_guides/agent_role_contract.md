@@ -35,6 +35,31 @@ handoff record routes work through the repo.
 - Never update `pack_status`, `canon_lock`, `approved`, `locked`, copyright
   completion, provenance completion, or lifecycle promotion fields directly.
 
+## Read-Only Routing Recommendations
+
+`operator_next_step.py` may include advisory routing fields:
+
+```text
+recommended_next_agent
+recommended_reason
+```
+
+In B8-3 these fields are read-only guidance. They do not write handoff records,
+start pickup mode, place assets, run external tools, or advance lifecycle state.
+The human operator still decides whether to follow the recommendation with a
+separate `switch`, `yes`, `no`, or `revise` command.
+
+Current routing policy:
+
+| Task | Recommended agent | Reason |
+|---|---|---|
+| `storyboard_selection` | `gemini_code_assist` | `second_opinion` |
+| `model_guidance_snapshot_refresh` | `gemini_code_assist` | `drafting_assist` |
+| `image_review_preparation` | `claude_code` | `drafting_assist` |
+| `image_review` | `codex` | `review_requested` |
+| `t2i_image_generation` | `claude_code` | `manual_pickup` |
+| `blocked` | `claude_code` | `manual_pickup` |
+
 ## Producer: `claude_code`
 
 Claude Code is the primary implementation agent.

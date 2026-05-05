@@ -90,11 +90,18 @@ def _assert_allowed_commands(step, expected: tuple[str, ...] | None = None) -> N
         assert step.allowed_commands == expected
 
 
+def _assert_recommended_route(step, agent: str, reason: str) -> None:
+    assert step.recommended_next_agent == agent
+    assert step.recommended_reason == reason
+    assert step.recommended_next_agent != "chatgpt_project"
+
+
 def test_empty_repo_returns_blocked_no_available_task(tmp_path: Path) -> None:
     step = recommend_next_step(tmp_path)
 
     assert step.current_task == "blocked"
     assert step.scene_id is None
+    _assert_recommended_route(step, "claude_code", "manual_pickup")
     _assert_allowed_commands(step, ("switch",))
     assert "No production status rows" in (step.blocked_reason or "")
     assert step.expected_outputs == ["No files are written by this guidance helper."]
@@ -108,6 +115,7 @@ def test_prompt_draft_recommends_external_image_generation(tmp_path: Path) -> No
 
     assert step.current_task == "t2i_image_generation"
     assert step.scene_id == "SC0001"
+    _assert_recommended_route(step, "claude_code", "manual_pickup")
     _assert_allowed_commands(step)
     assert prompt_path.relative_to(tmp_path).as_posix() in step.open_files
     assert "external T2I" in " ".join(step.do_steps)
@@ -136,6 +144,7 @@ def test_candidate_images_without_review_notes_recommends_review_preparation(
     after = sorted(path.relative_to(tmp_path).as_posix() for path in tmp_path.rglob("*"))
 
     assert step.current_task == "image_review_preparation"
+    _assert_recommended_route(step, "claude_code", "drafting_assist")
     _assert_allowed_commands(step)
     assert "review notes are missing" in (step.blocked_reason or "")
     assert f"evidence/prompt_reviews/{PROMPT_ID}_review.md" in step.expected_outputs
@@ -165,6 +174,7 @@ def test_candidate_images_with_review_notes_recommends_image_review(
     step = recommend_next_step(tmp_path)
 
     assert step.current_task == "image_review"
+    _assert_recommended_route(step, "codex", "review_requested")
     _assert_allowed_commands(step)
     assert notes.relative_to(tmp_path).as_posix() in step.open_files
     assert any("ImageReviewAgent" in item for item in step.do_steps)
@@ -181,6 +191,7 @@ def test_storyboard_options_with_null_selection_recommends_human_selection(
 
     assert step.current_task == "storyboard_selection"
     assert step.scene_id == "SC0001"
+    _assert_recommended_route(step, "gemini_code_assist", "second_opinion")
     _assert_allowed_commands(step)
     assert path.relative_to(tmp_path).as_posix() in step.open_files
     assert "selected_option unchanged" in " ".join(step.do_steps)
@@ -220,3 +231,55 @@ def test_no_binaries_or_lifecycle_files_are_created(tmp_path: Path) -> None:
     assert scene_card.read_text(encoding="utf-8") == before_scene_card
     assert pack_manifest.read_text(encoding="utf-8") == before_pack_manifest
     assert not (tmp_path / "scripts" / "agents" / "run_pipeline.py").exists()
+
+
+def test_placeholder_snapshot_refresh_recommends_gemini_drafting_assist(
+    tmp_path: Path,
+) -> None:
+    _write_scene(tmp_path)
+    prompt_path = _write_prompt_draft(tmp_path)
+    snapshot_ref = "evidence/model_guidance_snapshots/placeholder_midjourney.yaml"
+    _write_yaml(
+        tmp_path / snapshot_ref,
+        {
+            "model_id": "midjourney",
+            "model_version_observed": "unknown_placeholder",
+            "sources": [
+                {
+                    "url": "https://example.org/placeholder",
+                    "human_verified": False,
+                }
+            ],
+            "extracted_rules": ["PLACEHOLDER"],
+            "do_not_use_without_verification": ["placeholder"],
+        },
+    )
+    payload = yaml.safe_load(prompt_path.read_text(encoding="utf-8"))
+    payload["generation_params"] = {
+        "model_guidance_mode": "dynamic_snapshot",
+        "model_guidance_snapshot": snapshot_ref,
+    }
+    _write_yaml(prompt_path, payload)
+
+    step = recommend_next_step(tmp_path)
+
+    assert step.current_task == "model_guidance_snapshot_refresh"
+    _assert_recommended_route(step, "gemini_code_assist", "drafting_assist")
+    assert snapshot_ref in step.expected_outputs
+
+
+def test_recommendation_serialization_and_render_include_routing(
+    tmp_path: Path,
+) -> None:
+    _write_scene(tmp_path)
+    _write_prompt_draft(tmp_path)
+
+    step = recommend_next_step(tmp_path)
+    payload = step.to_dict()
+    rendered = step.render()
+
+    assert payload["recommended_next_agent"] == "claude_code"
+    assert payload["recommended_reason"] == "manual_pickup"
+    assert "recommended_next_agent: claude_code" in rendered
+    assert "recommended_reason: manual_pickup" in rendered
+    assert "chatgpt_project" not in rendered
