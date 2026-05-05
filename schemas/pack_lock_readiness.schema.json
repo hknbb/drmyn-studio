@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/pack_lock_readiness.schema.json",
+  "title": "Pack Lock Readiness Report",
+  "description": "Metadata-only report of missing canonical asset requirements before human pack locking.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scene_id",
+    "report_at",
+    "source_gate_ref",
+    "report_status",
+    "ready_for_human_lock_review",
+    "summary",
+    "pack_requirements",
+    "packs",
+    "lock_action_performed",
+    "pack_manifest_mutation_performed",
+    "canonical_assets_created",
+    "external_generation_performed",
+    "binary_outputs_created",
+    "lifecycle_promotion_performed",
+    "storage_policy"
+  ],
+  "properties": {
+    "scene_id": {
+      "type": "string",
+      "pattern": "^SC\\d{4}$"
+    },
+    "report_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source_gate_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "report_status": {
+      "type": "string",
+      "enum": [
+        "ready_for_human_lock_review",
+        "blocked_missing_canonical_assets"
+      ]
+    },
+    "ready_for_human_lock_review": {
+      "type": "boolean"
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_packs",
+        "ready_for_lock_review",
+        "blocked_packs",
+        "packs_with_canonical_assets",
+        "packs_missing_canonical_assets"
+      ],
+      "properties": {
+        "total_packs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "ready_for_lock_review": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "blocked_packs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "packs_with_canonical_assets": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "packs_missing_canonical_assets": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "pack_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_assets_required",
+        "source_images_must_be_in_repo",
+        "copyright_review_required",
+        "provenance_review_required",
+        "intake_ready_to_proceed_required",
+        "lfs_tracking_required"
+      ],
+      "properties": {
+        "canonical_assets_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "source_images_must_be_in_repo": {
+          "type": "boolean",
+          "const": true
+        },
+        "copyright_review_required": {
+          "type": "string",
+          "const": "complete"
+        },
+        "provenance_review_required": {
+          "type": "string",
+          "const": "complete"
+        },
+        "intake_ready_to_proceed_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "lfs_tracking_required": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "packs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "element_ref",
+          "pack_path",
+          "pack_manifest_ref",
+          "image_intake_manifest_ref",
+          "source_notes_ref",
+          "pack_status",
+          "canonical_asset_count",
+          "canonical_assets",
+          "source_status",
+          "copyright_review",
+          "provenance_review",
+          "intake_ready_to_proceed",
+          "source_notes_present",
+          "lfs_tracking_configured",
+          "ready_for_lock_review",
+          "missing_requirements",
+          "open_blockers"
+        ],
+        "properties": {
+          "element_ref": {
+            "type": ["string", "null"]
+          },
+          "pack_path": {
+            "type": ["string", "null"]
+          },
+          "pack_manifest_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "image_intake_manifest_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_notes_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "pack_status": {
+            "type": ["string", "null"]
+          },
+          "canonical_asset_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "canonical_assets": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "source_status": {
+            "type": ["string", "null"]
+          },
+          "copyright_review": {
+            "type": ["string", "null"]
+          },
+          "provenance_review": {
+            "type": ["string", "null"]
+          },
+          "intake_ready_to_proceed": {
+            "type": "boolean"
+          },
+          "source_notes_present": {
+            "type": "boolean"
+          },
+          "lfs_tracking_configured": {
+            "type": "boolean"
+          },
+          "ready_for_lock_review": {
+            "type": "boolean"
+          },
+          "missing_requirements": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "open_blockers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "lock_action_performed": {
+      "type": "boolean",
+      "const": false
+    },
+    "pack_manifest_mutation_performed": {
+      "type": "boolean",
+      "const": false
+    },
+    "canonical_assets_created": {
+      "type": "boolean",
+      "const": false
+    },
+    "external_generation_performed": {
+      "type": "boolean",
+      "const": false
+    },
+    "binary_outputs_created": {
+      "type": "boolean",
+      "const": false
+    },
+    "lifecycle_promotion_performed": {
+      "type": "boolean",
+      "const": false
+    },
+    "storage_policy": {
+      "type": "string",
+      "const": "no_binary_commits"
+    }
+  }
+}

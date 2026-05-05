@@ -1,0 +1,86 @@
+model_id: kling_omni
+snapshot_taken_at: '2026-05-04T14:00:00Z'
+snapshot_hash: sha256:7701e1361a5b15c76228e543030ff2a53f011a65c3466fc2340bba47494f81a9
+model_version_observed: Kling 3.0 Omni
+model_version_confidence: high
+sources:
+- url: https://docs.magnific.com/api-reference/video/kling-v3-omni/generate-std-video-reference
+  retrieved_at: '2026-05-04T14:00:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-fetch-2026-05-04
+  human_verified: true
+  source_class: official_docs
+  notes: 'Magnific API reference for Kling 3 Omni Standard. Confirms parameters: negative_prompt (max 2500 chars), cfg_scale
+    (0-1.0), aspect ratio, duration 3-15s, element references up to 3.'
+- url: https://blog.fal.ai/kling-3-0-prompting-guide/
+  retrieved_at: '2026-05-04T14:00:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-fetch-2026-05-04
+  human_verified: true
+  source_class: verified_platform_blog
+  notes: FAL.ai official prompting guide for Kling 3.0. Cinematic direction style, motion intensity scale, T2V vs I2V differences,
+    30-60 word optimal length, end-state descriptions required.
+- url: https://www.veed.io/learn/kling-ai-prompting-guide
+  retrieved_at: '2026-05-04T14:00:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-fetch-2026-05-04
+  human_verified: true
+  source_class: verified_platform_blog
+  notes: VEED.io Kling AI prompt guide for all models including Kling 3.0. Shot structure, multi-shot labeling, character
+    consistency rules, I2V vs T2V distinction.
+- url: https://filmora.wondershare.com/ai-prompt/kling-ai-negative-prompt.html
+  retrieved_at: '2026-05-04T14:00:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-fetch-2026-05-04
+  human_verified: true
+  source_class: verified_platform_blog
+  notes: 'Negative prompt guidance. Default value: blur, distort, and low quality. Max 2500 chars. Write term directly (not
+    no-term). Focus on motion artifacts and stability issues.'
+- url: https://www.kling3.online/tutorials/motion-control.html
+  retrieved_at: '2026-05-04T14:00:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-fetch-2026-05-04
+  human_verified: true
+  source_class: verified_platform_blog
+  notes: 'Kling 3.0 camera motion control guide. 8 core movement types: pan, tilt, zoom, dolly, crane, tracking, orbital,
+    static. Physics-aware rendering. Max 2 compatible movements stacked.'
+- url: https://www.atlascloud.ai/blog/guides/kling-3.0-review-features-pricing-ai-alternatives
+  retrieved_at: '2026-05-04T14:00:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-fetch-2026-05-04
+  human_verified: true
+  source_class: verified_platform_blog
+  notes: 'Kling 3.0 Omni released February 5, 2026. Flagship as of May 2026. Unified multimodal: video + native audio + images.
+    4K native, 30fps, 16-bit HDR. Up to 6 shots per generation.'
+extracted_rules:
+- 'Current model: Kling 3.0 Omni (released 2026-02-05). Unified multimodal: video + native audio + images in single generation.
+  4K native, 30fps, 16-bit HDR.'
+- 'Prompt style: cinematic direction, NOT visual inventory. Write like shot notes: composition, camera movement, narrative
+  flow. Example: dolly forward through threshold, revealing kitchen passage not a kitchen with a table and chairs.'
+- 'Text-to-video prompt length: 30-60 words optimal; max 100 words (above 100 causes generation hang at 99% completion). Image-to-video:
+  15-40 words, describe motion ONLY (not visuals already in source image).'
+- 'Multi-shot structure: label each shot explicitly (Shot 1: ..., Shot 2: ...). Up to 6 shots per generation. Specify framing,
+  subject movement, and transitions per shot.'
+- 'Camera motion: use professional cinematography terms for physics-aware rendering. dolly (real parallax), pan, tilt, zoom,
+  crane, tracking/follow, orbital/arc, static. Max 2 compatible movements stacked simultaneously.'
+- 'Motion intensity scale 0.1-1.0: 0.1-0.3=subtle (breathing, slight sway), 0.4-0.6=natural (walking, gestures), 0.7-1.0=dynamic
+  (running, dancing). Always specify intensity.'
+- 'End-state descriptions required: specify how action resolves to prevent 99% generation hang. Example: dolly forward through
+  the crowd, then settles back not just dolly forward through crowd.'
+- 'Character consistency: define subjects with unique identifiers early (a woman in grey linen, lean upright posture). Maintain
+  consistent description throughout multi-shot sequences.'
+- 'Negative prompt: SUPPORTED (max 2500 chars). Write term directly, not no-term. Default: blur, distort, low quality. Focus
+  on motion artifacts: sliding feet, morphing, warping, floating objects, flickering.'
+- 'Image-to-video: motion-only prompting. Never redescribe visuals in source image. Focus exclusively on camera movement and
+  subject motion changes.'
+- 'Audio/dialogue: label speakers with tone descriptors. Character A (hesitant voice): dialogue or Character B (controlled
+  serious voice): dialogue.'
+- Never include canonical planning IDs (C01, LOC001, SC0001) or character full display names in prompt_text. First-name only.
+  Critic enforces both checks.
+- 'Phase 3 prerequisites: shot_list_omni non-empty in scene_card, selected_option non-null, element packs at appropriate lock
+  state, this guide active, fresh snapshot < 7 days.'
+confidence: high
+snapshot_validity:
+  max_age_days: 7
+  expires_at: '2026-05-11T14:00:00Z'
+schema_version: '1.0'

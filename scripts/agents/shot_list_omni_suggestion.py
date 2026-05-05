@@ -14,6 +14,8 @@ from typing import Any
 
 import yaml
 
+from scripts.agents.omni_duration_planner import plan_omni_duration
+
 
 class ShotListOmniSuggestionError(ValueError):
     """Raised when a shot list suggestion cannot be safely produced."""
@@ -44,7 +46,13 @@ class ShotListOmniSuggestionAgent:
     def __init__(self, repo_root: str | Path) -> None:
         self.repo_root = Path(repo_root)
 
-    def build(self, scene_id: str, *, write: bool = True) -> ShotListOmniSuggestionResult:
+    def build(
+        self,
+        scene_id: str,
+        *,
+        target_duration_seconds: int = 10,
+        write: bool = True,
+    ) -> ShotListOmniSuggestionResult:
         storyboard_path = (
             self.repo_root
             / "visual_dev"
@@ -80,27 +88,36 @@ class ShotListOmniSuggestionAgent:
                 f"selected_option {selected_option_id!r} does not match any option_id."
             )
 
-        source_refs = storyboard.get("source_refs")
-        if not isinstance(source_refs, dict):
-            source_refs = {}
+        scene_action_type = _source_text(
+            selected_option.get("scene_action_type"),
+            "static_tension",
+        )
+        try:
+            duration_plan = plan_omni_duration(scene_action_type, target_duration_seconds)
+        except ValueError as exc:
+            raise ShotListOmniSuggestionError(str(exc)) from exc
+
+        coverage_strategy = _source_text(
+            selected_option.get("coverage_strategy"),
+            "source_grounded_single_option_coverage",
+        )
 
         payload = {
             "scene_id": scene_id,
-            "source_storyboard_option": selected_option_id,
-            "source_refs": {
-                "storyboard_options": storyboard_path.relative_to(self.repo_root).as_posix(),
-                "scene_card": _source_text(
-                    source_refs.get("scene_card"),
-                    f"planning/scenes/{scene_id}/scene_card.yaml",
-                ),
-                "scene_excerpt": _source_text(
-                    source_refs.get("scene_excerpt"),
-                    f"planning/scenes/{scene_id}/scene_excerpt.md",
-                ),
-            },
-            "suggested_shot_list": [
-                self._build_shot(scene_id, selected_index, selected_option)
-            ],
+            "source_storyboard_options": storyboard_path.relative_to(
+                self.repo_root
+            ).as_posix(),
+            "source_selected_option": selected_option_id,
+            "target_duration_seconds": target_duration_seconds,
+            "coverage_strategy": coverage_strategy,
+            "scene_action_type": scene_action_type,
+            "duration_plan": duration_plan,
+            "suggested_shot_list": self._build_shots(
+                scene_id=scene_id,
+                selected_option_id=selected_option_id,
+                option=selected_option,
+                duration_slots=list(duration_plan["duration_slots"]),
+            ),
             "suggested_by": "storyboard_agent",
             "applied_to_scene_card": False,
             "applied_at": None,
@@ -125,35 +142,64 @@ class ShotListOmniSuggestionAgent:
         return ShotListOmniSuggestionResult(suggestion_path=out_path, payload=payload)
 
     @staticmethod
-    def _build_shot(
+    def _build_shots(
+        *,
         scene_id: str,
-        selected_index: int,
+        selected_option_id: str,
         option: dict[str, Any],
-    ) -> dict[str, Any]:
-        option_field = f"options[{selected_index}]"
-        lighting = _source_text(option.get("lighting"), "No source-stated lighting.")
-        status = _source_text(option.get("status"), "candidate")
-        return {
-            "shot_id": f"{scene_id}_OMNI01",
-            "type": "single_omni_shot",
-            "subject": _source_text(option.get("purpose"), "Selected storyboard option."),
-            "camera_angle": _source_text(
-                option.get("camera_angle"),
-                "EVIDENCE_THIN: no source-stated camera angle.",
-            ),
-            "framing": _source_text(
-                option.get("framing"),
-                "EVIDENCE_THIN: no source-stated framing.",
-            ),
-            "camera_movement": _source_text(
-                option.get("movement"),
-                "EVIDENCE_THIN: no source-stated movement.",
-            ),
-            "duration_seconds": 5,
-            "source_field": _source_text(
-                option.get("source_field"),
-                "storyboard_options.selected_option",
-            ),
-            "source_option_field": option_field,
-            "notes": f"Lighting: {lighting}. Storyboard option status: {status}.",
-        }
+        duration_slots: list[int],
+    ) -> list[dict[str, Any]]:
+        coverage_shots = option.get("coverage_shots")
+        if not isinstance(coverage_shots, list) or not coverage_shots:
+            coverage_shots = [
+                {
+                    "role": "selected_option_coverage",
+                    "subject": _source_text(
+                        option.get("purpose"),
+                        "Selected storyboard option.",
+                    ),
+                    "camera_angle": option.get("camera_angle"),
+                    "framing": option.get("framing"),
+                    "camera_movement": option.get("movement"),
+                    "lighting": option.get("lighting"),
+                }
+            ]
+
+        shots: list[dict[str, Any]] = []
+        for index, duration_seconds in enumerate(duration_slots, start=1):
+            coverage_shot = coverage_shots[min(index - 1, len(coverage_shots) - 1)]
+            if not isinstance(coverage_shot, dict):
+                coverage_shot = {}
+            shots.append(
+                {
+                    "shot_id": f"{scene_id}_OMNI{index:02d}",
+                    "role": _source_text(coverage_shot.get("role"), "coverage"),
+                    "subject": _source_text(
+                        coverage_shot.get("subject"),
+                        _source_text(option.get("purpose"), "Selected storyboard option."),
+                    ),
+                    "camera_angle": _source_text(
+                        coverage_shot.get("camera_angle") or option.get("camera_angle"),
+                        "EVIDENCE_THIN: no source-stated camera angle.",
+                    ),
+                    "framing": _source_text(
+                        coverage_shot.get("framing") or option.get("framing"),
+                        "EVIDENCE_THIN: no source-stated framing.",
+                    ),
+                    "camera_movement": _source_text(
+                        coverage_shot.get("camera_movement") or option.get("movement"),
+                        "EVIDENCE_THIN: no source-stated movement.",
+                    ),
+                    "lighting": _source_text(
+                        coverage_shot.get("lighting") or option.get("lighting"),
+                        "EVIDENCE_THIN: no source-stated lighting.",
+                    ),
+                    "duration_seconds": duration_seconds,
+                    "source_storyboard_option": selected_option_id,
+                    "source_coverage_role": _source_text(
+                        coverage_shot.get("role"),
+                        "selected_option_coverage",
+                    ),
+                }
+            )
+        return shots

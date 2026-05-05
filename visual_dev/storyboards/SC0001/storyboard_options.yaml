@@ -7,6 +7,57 @@ options:
 - option_id: SC0001_SB01
   purpose: 'Represent the source-stated palette and material atmosphere. Source: Pale
     stone, muted domestic neutrals, and warm dimness in Jin''s room.'
+  coverage_strategy: environmental_atmosphere_coverage
+  scene_action_type: static_tension
+  duration_profiles: &duration_profiles
+  - total_duration_seconds: 5
+    recommended_shot_count: 1
+    rhythm: single held coverage beat
+  - total_duration_seconds: 10
+    recommended_shot_count: 2
+    rhythm: establish the scene geometry, then register the source-stated action beat
+  - total_duration_seconds: 15
+    recommended_shot_count: 3
+    rhythm: establish the geometry, isolate the source-stated deviation, then hold
+      reaction
+  coverage_shots:
+  - role: establish_coverage
+    subject: 'Establish the scene treatment through: Pale stone, muted domestic neutrals,
+      and warm dimness in Jin''s room.'
+    camera_angle: Restrained intimate coverage that stays close enough to register
+      object deviation and body habit.
+    framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+      geometry.
+    camera_movement: Minimal, exact movement aligned to Nadia's route logic.
+    lighting: Filtered early daylight and low-key interior practicals; warmth stays
+      contained.
+    min_duration_seconds: 2
+    max_duration_seconds: 5
+    source_field: scene_card.visual_targets.palette
+  - role: action_or_deviation_coverage
+    subject: Register the source-stated action beat without adding new story facts.
+    camera_angle: Restrained intimate coverage that stays close enough to register
+      object deviation and body habit.
+    framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+      geometry.
+    camera_movement: Minimal, exact movement aligned to Nadia's route logic.
+    lighting: Filtered early daylight and low-key interior practicals; warmth stays
+      contained.
+    min_duration_seconds: 2
+    max_duration_seconds: 5
+    source_field: scene_card.visual_targets.palette
+  - role: reaction_or_hold_coverage
+    subject: Hold the scene response within the selected visual treatment.
+    camera_angle: Restrained intimate coverage that stays close enough to register
+      object deviation and body habit.
+    framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+      geometry.
+    camera_movement: Minimal, exact movement aligned to Nadia's route logic.
+    lighting: Filtered early daylight and low-key interior practicals; warmth stays
+      contained.
+    min_duration_seconds: 2
+    max_duration_seconds: 5
+    source_field: scene_card.visual_targets.palette
   camera_angle: Restrained intimate coverage that stays close enough to register object
     deviation and body habit.
   framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
@@ -23,6 +74,47 @@ options:
   purpose: 'Represent the source-stated lens and coverage behavior. Source: Restrained
     intimate coverage that stays close enough to register object deviation and body
     habit.'
+  coverage_strategy: intimate_behavioral_coverage
+  scene_action_type: static_tension
+  duration_profiles: *duration_profiles
+  coverage_shots:
+  - role: establish_coverage
+    subject: 'Establish the scene treatment through: Restrained intimate coverage
+      that stays close enough to register object deviation and body habit.'
+    camera_angle: Restrained intimate coverage that stays close enough to register
+      object deviation and body habit.
+    framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+      geometry.
+    camera_movement: Minimal, exact movement aligned to Nadia's route logic.
+    lighting: Filtered early daylight and low-key interior practicals; warmth stays
+      contained.
+    min_duration_seconds: 2
+    max_duration_seconds: 5
+    source_field: scene_card.visual_targets.lens_bias
+  - role: action_or_deviation_coverage
+    subject: Register the source-stated action beat without adding new story facts.
+    camera_angle: Restrained intimate coverage that stays close enough to register
+      object deviation and body habit.
+    framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+      geometry.
+    camera_movement: Minimal, exact movement aligned to Nadia's route logic.
+    lighting: Filtered early daylight and low-key interior practicals; warmth stays
+      contained.
+    min_duration_seconds: 2
+    max_duration_seconds: 5
+    source_field: scene_card.visual_targets.lens_bias
+  - role: reaction_or_hold_coverage
+    subject: Hold the scene response within the selected visual treatment.
+    camera_angle: Restrained intimate coverage that stays close enough to register
+      object deviation and body habit.
+    framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+      geometry.
+    camera_movement: Minimal, exact movement aligned to Nadia's route logic.
+    lighting: Filtered early daylight and low-key interior practicals; warmth stays
+      contained.
+    min_duration_seconds: 2
+    max_duration_seconds: 5
+    source_field: scene_card.visual_targets.lens_bias
   camera_angle: Restrained intimate coverage that stays close enough to register object
     deviation and body habit.
   framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
@@ -37,6 +129,47 @@ options:
 - option_id: SC0001_SB03
   purpose: 'Represent the source-stated framing geometry. Source: Thresholds, corridor
     depth, doorways, and the off-angle frame as surveillance geometry.'
+  coverage_strategy: threshold_geometry_coverage
+  scene_action_type: static_tension
+  duration_profiles: *duration_profiles
+  coverage_shots:
+  - role: establish_coverage
+    subject: 'Establish the scene treatment through: Thresholds, corridor depth, doorways,
+      and the off-angle frame as surveillance geometry.'
+    camera_angle: Restrained intimate coverage that stays close enough to register
+      object deviation and body habit.
+    framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+      geometry.
+    camera_movement: Minimal, exact movement aligned to Nadia's route logic.
+    lighting: Filtered early daylight and low-key interior practicals; warmth stays
+      contained.
+    min_duration_seconds: 2
+    max_duration_seconds: 5
+    source_field: scene_card.visual_targets.framing_bias
+  - role: action_or_deviation_coverage
+    subject: Register the source-stated action beat without adding new story facts.
+    camera_angle: Restrained intimate coverage that stays close enough to register
+      object deviation and body habit.
+    framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+      geometry.
+    camera_movement: Minimal, exact movement aligned to Nadia's route logic.
+    lighting: Filtered early daylight and low-key interior practicals; warmth stays
+      contained.
+    min_duration_seconds: 2
+    max_duration_seconds: 5
+    source_field: scene_card.visual_targets.framing_bias
+  - role: reaction_or_hold_coverage
+    subject: Hold the scene response within the selected visual treatment.
+    camera_angle: Restrained intimate coverage that stays close enough to register
+      object deviation and body habit.
+    framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+      geometry.
+    camera_movement: Minimal, exact movement aligned to Nadia's route logic.
+    lighting: Filtered early daylight and low-key interior practicals; warmth stays
+      contained.
+    min_duration_seconds: 2
+    max_duration_seconds: 5
+    source_field: scene_card.visual_targets.framing_bias
   camera_angle: Restrained intimate coverage that stays close enough to register object
     deviation and body habit.
   framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
@@ -51,6 +184,47 @@ options:
 - option_id: SC0001_SB04
   purpose: 'Represent the source-stated movement logic. Source: Minimal, exact movement
     aligned to Nadia''s route logic.'
+  coverage_strategy: route_logic_coverage
+  scene_action_type: static_tension
+  duration_profiles: *duration_profiles
+  coverage_shots:
+  - role: establish_coverage
+    subject: 'Establish the scene treatment through: Minimal, exact movement aligned
+      to Nadia''s route logic.'
+    camera_angle: Restrained intimate coverage that stays close enough to register
+      object deviation and body habit.
+    framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+      geometry.
+    camera_movement: Minimal, exact movement aligned to Nadia's route logic.
+    lighting: Filtered early daylight and low-key interior practicals; warmth stays
+      contained.
+    min_duration_seconds: 2
+    max_duration_seconds: 5
+    source_field: scene_card.visual_targets.movement_bias
+  - role: action_or_deviation_coverage
+    subject: Register the source-stated action beat without adding new story facts.
+    camera_angle: Restrained intimate coverage that stays close enough to register
+      object deviation and body habit.
+    framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+      geometry.
+    camera_movement: Minimal, exact movement aligned to Nadia's route logic.
+    lighting: Filtered early daylight and low-key interior practicals; warmth stays
+      contained.
+    min_duration_seconds: 2
+    max_duration_seconds: 5
+    source_field: scene_card.visual_targets.movement_bias
+  - role: reaction_or_hold_coverage
+    subject: Hold the scene response within the selected visual treatment.
+    camera_angle: Restrained intimate coverage that stays close enough to register
+      object deviation and body habit.
+    framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+      geometry.
+    camera_movement: Minimal, exact movement aligned to Nadia's route logic.
+    lighting: Filtered early daylight and low-key interior practicals; warmth stays
+      contained.
+    min_duration_seconds: 2
+    max_duration_seconds: 5
+    source_field: scene_card.visual_targets.movement_bias
   camera_angle: Restrained intimate coverage that stays close enough to register object
     deviation and body habit.
   framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
@@ -65,6 +239,47 @@ options:
 - option_id: SC0001_SB05
   purpose: 'Represent the source-stated lighting treatment. Source: Filtered early
     daylight and low-key interior practicals; warmth stays contained.'
+  coverage_strategy: lighting_continuity_coverage
+  scene_action_type: static_tension
+  duration_profiles: *duration_profiles
+  coverage_shots:
+  - role: establish_coverage
+    subject: 'Establish the scene treatment through: Filtered early daylight and low-key
+      interior practicals; warmth stays contained.'
+    camera_angle: Restrained intimate coverage that stays close enough to register
+      object deviation and body habit.
+    framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+      geometry.
+    camera_movement: Minimal, exact movement aligned to Nadia's route logic.
+    lighting: Filtered early daylight and low-key interior practicals; warmth stays
+      contained.
+    min_duration_seconds: 2
+    max_duration_seconds: 5
+    source_field: scene_card.visual_targets.lighting_bias
+  - role: action_or_deviation_coverage
+    subject: Register the source-stated action beat without adding new story facts.
+    camera_angle: Restrained intimate coverage that stays close enough to register
+      object deviation and body habit.
+    framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+      geometry.
+    camera_movement: Minimal, exact movement aligned to Nadia's route logic.
+    lighting: Filtered early daylight and low-key interior practicals; warmth stays
+      contained.
+    min_duration_seconds: 2
+    max_duration_seconds: 5
+    source_field: scene_card.visual_targets.lighting_bias
+  - role: reaction_or_hold_coverage
+    subject: Hold the scene response within the selected visual treatment.
+    camera_angle: Restrained intimate coverage that stays close enough to register
+      object deviation and body habit.
+    framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance
+      geometry.
+    camera_movement: Minimal, exact movement aligned to Nadia's route logic.
+    lighting: Filtered early daylight and low-key interior practicals; warmth stays
+      contained.
+    min_duration_seconds: 2
+    max_duration_seconds: 5
+    source_field: scene_card.visual_targets.lighting_bias
   camera_angle: Restrained intimate coverage that stays close enough to register object
     deviation and body habit.
   framing: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance

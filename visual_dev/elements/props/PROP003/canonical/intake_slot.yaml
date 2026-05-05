@@ -1,0 +1,28 @@
+scene_id: SC0001
+work_order_id: SC0001_ASSET_04_PROP003
+element_id: PROP003
+element_type: prop
+group_id: sc0001_canonical_prop_reference
+group_type: prop_reference_set
+context: Vardova skyline photo frame
+required_views:
+- in_situ_context
+- detail_closeup
+notes: "Framed landscape photograph; Vardova skyline at dusk | Domestic, generic frame\
+  \ \u2014 not ornate or architecturally distinctive | Critical: misalignment of several\
+  \ degrees must be visible | Critical: a larger dust-shadow behind the frame must\
+  \ be readable on camera | Context: third photograph in the east-wing corridor sequence\
+  \ (corridor geometry around it) | Reference should show in-situ positioning to confirm\
+  \ angle shift reads at corridor scale"
+source_status: not_collected
+copyright_review: pending
+provenance_review: pending
+intake_ready_to_proceed: false
+canonical_assets_committed: []
+storage_policy: no_binary_commits
+forbidden_actions:
+- Do not add placeholder binaries.
+- Do not mark copyright_review complete without reviewed evidence.
+- Do not mark provenance_review complete without reviewed evidence.
+- Do not change pack_status from this intake slot.
+- Do not run external generation from this metadata scaffold.

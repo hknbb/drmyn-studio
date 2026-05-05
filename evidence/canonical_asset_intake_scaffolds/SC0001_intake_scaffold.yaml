@@ -1,0 +1,104 @@
+scene_id: SC0001
+report_at: '2026-05-05T07:30:00Z'
+source_work_orders_ref: evidence/canonical_asset_work_orders/SC0001_asset_work_orders.yaml
+report_status: intake_scaffold_created
+summary:
+  total_slots: 7
+  canonical_assets_created: false
+  pack_locking_performed: false
+  pack_manifest_mutation_performed: false
+  external_generation_performed: false
+slots:
+- work_order_id: SC0001_ASSET_01_C01
+  element_id: C01
+  group_id: wd001
+  slot_dir: visual_dev/elements/characters/C01/wardrobe/WD001
+  intake_slot_ref: visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml
+  readme_ref: visual_dev/elements/characters/C01/wardrobe/WD001/README.md
+  gitkeep_ref: visual_dev/elements/characters/C01/wardrobe/WD001/.gitkeep
+  source_status: not_collected
+  copyright_review: pending
+  provenance_review: pending
+  intake_ready_to_proceed: false
+  canonical_assets_created: false
+- work_order_id: SC0001_ASSET_01_C01
+  element_id: C01
+  group_id: wd002
+  slot_dir: visual_dev/elements/characters/C01/wardrobe/WD002
+  intake_slot_ref: visual_dev/elements/characters/C01/wardrobe/WD002/intake_slot.yaml
+  readme_ref: visual_dev/elements/characters/C01/wardrobe/WD002/README.md
+  gitkeep_ref: visual_dev/elements/characters/C01/wardrobe/WD002/.gitkeep
+  source_status: not_collected
+  copyright_review: pending
+  provenance_review: pending
+  intake_ready_to_proceed: false
+  canonical_assets_created: false
+- work_order_id: SC0001_ASSET_02_C03
+  element_id: C03
+  group_id: wd004
+  slot_dir: visual_dev/elements/characters/C03/wardrobe/WD004
+  intake_slot_ref: visual_dev/elements/characters/C03/wardrobe/WD004/intake_slot.yaml
+  readme_ref: visual_dev/elements/characters/C03/wardrobe/WD004/README.md
+  gitkeep_ref: visual_dev/elements/characters/C03/wardrobe/WD004/.gitkeep
+  source_status: not_collected
+  copyright_review: pending
+  provenance_review: pending
+  intake_ready_to_proceed: false
+  canonical_assets_created: false
+- work_order_id: SC0001_ASSET_03_LOC001
+  element_id: LOC001
+  group_id: kitchen_passage
+  slot_dir: visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage
+  intake_slot_ref: visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage/intake_slot.yaml
+  readme_ref: visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage/README.md
+  gitkeep_ref: visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage/.gitkeep
+  source_status: not_collected
+  copyright_review: pending
+  provenance_review: pending
+  intake_ready_to_proceed: false
+  canonical_assets_created: false
+- work_order_id: SC0001_ASSET_03_LOC001
+  element_id: LOC001
+  group_id: jins_room
+  slot_dir: visual_dev/elements/locations/LOC001/sub_areas/jins_room
+  intake_slot_ref: visual_dev/elements/locations/LOC001/sub_areas/jins_room/intake_slot.yaml
+  readme_ref: visual_dev/elements/locations/LOC001/sub_areas/jins_room/README.md
+  gitkeep_ref: visual_dev/elements/locations/LOC001/sub_areas/jins_room/.gitkeep
+  source_status: not_collected
+  copyright_review: pending
+  provenance_review: pending
+  intake_ready_to_proceed: false
+  canonical_assets_created: false
+- work_order_id: SC0001_ASSET_03_LOC001
+  element_id: LOC001
+  group_id: trophy_room
+  slot_dir: visual_dev/elements/locations/LOC001/sub_areas/trophy_room
+  intake_slot_ref: visual_dev/elements/locations/LOC001/sub_areas/trophy_room/intake_slot.yaml
+  readme_ref: visual_dev/elements/locations/LOC001/sub_areas/trophy_room/README.md
+  gitkeep_ref: visual_dev/elements/locations/LOC001/sub_areas/trophy_room/.gitkeep
+  source_status: not_collected
+  copyright_review: pending
+  provenance_review: pending
+  intake_ready_to_proceed: false
+  canonical_assets_created: false
+- work_order_id: SC0001_ASSET_04_PROP003
+  element_id: PROP003
+  group_id: sc0001_canonical_prop_reference
+  slot_dir: visual_dev/elements/props/PROP003/canonical
+  intake_slot_ref: visual_dev/elements/props/PROP003/canonical/intake_slot.yaml
+  readme_ref: visual_dev/elements/props/PROP003/canonical/README.md
+  gitkeep_ref: visual_dev/elements/props/PROP003/canonical/.gitkeep
+  source_status: not_collected
+  copyright_review: pending
+  provenance_review: pending
+  intake_ready_to_proceed: false
+  canonical_assets_created: false
+storage_policy: no_binary_commits
+canonical_assets_created: false
+pack_manifest_mutation_performed: false
+lock_action_performed: false
+copyright_completion_claimed: false
+provenance_completion_claimed: false
+external_generation_performed: false
+binary_outputs_created: false
+lifecycle_promotion_performed: false

@@ -52,6 +52,15 @@ LOCAL_MEDIA_INDEX_PATTERN = "evidence/local_media_indices/*.yaml"
 VIDEO_TAKE_PATTERN = "visual_dev/omni_sets/SC*/video_takes.yaml"
 VIDEO_REVIEW_PATTERN = "evidence/video_reviews/*.yaml"
 SELECTED_TAKE_PATTERN = "visual_dev/omni_sets/SC*/selected_take.yaml"
+OMNI_SET_GATE_PATTERN = "evidence/omni_set_gates/*.yaml"
+PACK_LOCK_READINESS_PATTERN = "evidence/pack_lock_readiness/*.yaml"
+CANONICAL_ASSET_WORK_ORDER_PATTERN = "evidence/canonical_asset_work_orders/*.yaml"
+CANONICAL_ASSET_INTAKE_SCAFFOLD_PATTERN = (
+    "evidence/canonical_asset_intake_scaffolds/*.yaml"
+)
+CANONICAL_ASSET_INTAKE_INSTRUCTION_PATTERN = (
+    "evidence/canonical_asset_intake_instructions/*.yaml"
+)
 AESTHETIC_BIBLE_PATH = "planning/aesthetic_bible.yaml"
 SCENE_CLIP_MAP_PATH = "evidence/scene_clip_map.csv"
 
@@ -138,6 +147,17 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         "video_take": sorted(repo_root.glob(VIDEO_TAKE_PATTERN)),
         "video_review": sorted(repo_root.glob(VIDEO_REVIEW_PATTERN)),
         "selected_take": sorted(repo_root.glob(SELECTED_TAKE_PATTERN)),
+        "omni_set_gate": sorted(repo_root.glob(OMNI_SET_GATE_PATTERN)),
+        "pack_lock_readiness": sorted(repo_root.glob(PACK_LOCK_READINESS_PATTERN)),
+        "canonical_asset_work_order": sorted(
+            repo_root.glob(CANONICAL_ASSET_WORK_ORDER_PATTERN)
+        ),
+        "canonical_asset_intake_scaffold": sorted(
+            repo_root.glob(CANONICAL_ASSET_INTAKE_SCAFFOLD_PATTERN)
+        ),
+        "canonical_asset_intake_instruction": sorted(
+            repo_root.glob(CANONICAL_ASSET_INTAKE_INSTRUCTION_PATTERN)
+        ),
         "aesthetic_bible": (
             [repo_root / AESTHETIC_BIBLE_PATH]
             if (repo_root / AESTHETIC_BIBLE_PATH).is_file()
@@ -816,6 +836,11 @@ def run_validation(
     video_take_validator: Draft202012Validator | None = None
     video_review_validator: Draft202012Validator | None = None
     selected_take_validator: Draft202012Validator | None = None
+    omni_set_gate_validator: Draft202012Validator | None = None
+    pack_lock_readiness_validator: Draft202012Validator | None = None
+    canonical_asset_work_order_validator: Draft202012Validator | None = None
+    canonical_asset_intake_scaffold_validator: Draft202012Validator | None = None
+    canonical_asset_intake_instruction_validator: Draft202012Validator | None = None
     aesthetic_bible_validator: Draft202012Validator | None = None
 
     grouped_files = collect_production_files(repo_root)
@@ -948,6 +973,82 @@ def run_validation(
                     validator=selected_take_validator,
                 )
                 file_issues.extend(validate_selected_take_extra(path, repo_root))
+            elif record_type == "omni_set_gate":
+                if omni_set_gate_validator is None:
+                    omni_set_gate_schema = load_schema(
+                        repo_root / "schemas" / "omni_set_gate.schema.json"
+                    )
+                    omni_set_gate_validator = Draft202012Validator(
+                        omni_set_gate_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=omni_set_gate_validator,
+                )
+            elif record_type == "pack_lock_readiness":
+                if pack_lock_readiness_validator is None:
+                    pack_lock_readiness_schema = load_schema(
+                        repo_root / "schemas" / "pack_lock_readiness.schema.json"
+                    )
+                    pack_lock_readiness_validator = Draft202012Validator(
+                        pack_lock_readiness_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=pack_lock_readiness_validator,
+                )
+            elif record_type == "canonical_asset_work_order":
+                if canonical_asset_work_order_validator is None:
+                    canonical_asset_work_order_schema = load_schema(
+                        repo_root
+                        / "schemas"
+                        / "canonical_asset_work_order.schema.json"
+                    )
+                    canonical_asset_work_order_validator = Draft202012Validator(
+                        canonical_asset_work_order_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=canonical_asset_work_order_validator,
+                )
+            elif record_type == "canonical_asset_intake_scaffold":
+                if canonical_asset_intake_scaffold_validator is None:
+                    canonical_asset_intake_scaffold_schema = load_schema(
+                        repo_root
+                        / "schemas"
+                        / "canonical_asset_intake_scaffold.schema.json"
+                    )
+                    canonical_asset_intake_scaffold_validator = Draft202012Validator(
+                        canonical_asset_intake_scaffold_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=canonical_asset_intake_scaffold_validator,
+                )
+            elif record_type == "canonical_asset_intake_instruction":
+                if canonical_asset_intake_instruction_validator is None:
+                    canonical_asset_intake_instruction_schema = load_schema(
+                        repo_root
+                        / "schemas"
+                        / "canonical_asset_intake_instruction.schema.json"
+                    )
+                    canonical_asset_intake_instruction_validator = Draft202012Validator(
+                        canonical_asset_intake_instruction_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=canonical_asset_intake_instruction_validator,
+                )
             elif record_type == "aesthetic_bible":
                 if aesthetic_bible_validator is None:
                     aesthetic_bible_schema = load_schema(

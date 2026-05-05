@@ -66,7 +66,37 @@ element_slot_allocation:
   allocation: []
   slots_free: 7
   economy_notes: "Pending Stage C pilot review."
-shot_list_omni: []
+shot_list_omni:
+  - shot_id: SC0001_OMNI01
+    role: establish_coverage
+    subject: "Establish the scene treatment through: Thresholds, corridor depth, doorways, and the off-angle frame as surveillance geometry."
+    camera_angle: "Restrained intimate coverage that stays close enough to register object deviation and body habit."
+    framing: "Thresholds, corridor depth, doorways, and the off-angle frame as surveillance geometry."
+    camera_movement: "Minimal, exact movement aligned to Nadia's route logic."
+    lighting: "Filtered early daylight and low-key interior practicals; warmth stays contained."
+    duration_seconds: 5
+    source_storyboard_option: SC0001_SB03
+    source_coverage_role: establish_coverage
+  - shot_id: SC0001_OMNI02
+    role: action_or_deviation_coverage
+    subject: "Register the source-stated action beat without adding new story facts."
+    camera_angle: "Restrained intimate coverage that stays close enough to register object deviation and body habit."
+    framing: "Thresholds, corridor depth, doorways, and the off-angle frame as surveillance geometry."
+    camera_movement: "Minimal, exact movement aligned to Nadia's route logic."
+    lighting: "Filtered early daylight and low-key interior practicals; warmth stays contained."
+    duration_seconds: 5
+    source_storyboard_option: SC0001_SB03
+    source_coverage_role: action_or_deviation_coverage
+  - shot_id: SC0001_OMNI03
+    role: reaction_or_hold_coverage
+    subject: "Hold the scene response within the selected visual treatment."
+    camera_angle: "Restrained intimate coverage that stays close enough to register object deviation and body habit."
+    framing: "Thresholds, corridor depth, doorways, and the off-angle frame as surveillance geometry."
+    camera_movement: "Minimal, exact movement aligned to Nadia's route logic."
+    lighting: "Filtered early daylight and low-key interior practicals; warmth stays contained."
+    duration_seconds: 5
+    source_storyboard_option: SC0001_SB03
+    source_coverage_role: reaction_or_hold_coverage
 lipsync_plan:
   sync_bearing_shots: []
   sync_free_shots: []

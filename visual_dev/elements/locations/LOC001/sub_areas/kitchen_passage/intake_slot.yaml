@@ -1,0 +1,25 @@
+scene_id: SC0001
+work_order_id: SC0001_ASSET_03_LOC001
+element_id: LOC001
+element_type: location
+group_id: kitchen_passage
+group_type: location_sub_area_reference_set
+context: Pale stone, filtered early daylight, surveillance-geometry framing.
+required_views:
+- wide_establishing
+- threshold_or_route_geometry
+- lighting_reference
+notes: PROP003 (tilted photo frame) is a critical visual element for this sub-area
+  in SC0001.
+source_status: not_collected
+copyright_review: pending
+provenance_review: pending
+intake_ready_to_proceed: false
+canonical_assets_committed: []
+storage_policy: no_binary_commits
+forbidden_actions:
+- Do not add placeholder binaries.
+- Do not mark copyright_review complete without reviewed evidence.
+- Do not mark provenance_review complete without reviewed evidence.
+- Do not change pack_status from this intake slot.
+- Do not run external generation from this metadata scaffold.

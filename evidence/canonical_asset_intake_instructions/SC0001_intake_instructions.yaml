@@ -1,0 +1,376 @@
+scene_id: SC0001
+report_at: '2026-05-05T08:15:00Z'
+source_intake_scaffold_ref: evidence/canonical_asset_intake_scaffolds/SC0001_intake_scaffold.yaml
+report_status: human_intake_instructions_ready
+summary:
+  total_instructions: 7
+  canonical_assets_created: false
+  pack_locking_performed: false
+  pack_manifest_mutation_performed: false
+  external_generation_performed: false
+instructions:
+- instruction_id: SC0001_ASSET_01_C01_wd001_INTAKE
+  work_order_id: SC0001_ASSET_01_C01
+  element_id: C01
+  element_type: character
+  group_id: wd001
+  target_dir: visual_dev/elements/characters/C01/wardrobe/WD001
+  intake_slot_ref: visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml
+  required_asset_count: 3 images minimum, one per required view
+  required_views:
+  - front_reference
+  - three_quarter_reference
+  - context_reference
+  guidance_sources:
+  - evidence/canonical_asset_work_orders/SC0001_asset_work_orders.yaml
+  - visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml
+  - visual_dev/elements/characters/C01/wardrobe/WD001/README.md
+  prompt_guidance:
+  - Use the planning character record and source_notes.md for silhouette, wardrobe,
+    and restraint.
+  - Do not invent styling beyond the slot context.
+  - Keep identity/name details out of downstream model prompts unless the prompt adapter
+    explicitly permits them.
+  operator_steps:
+  - Acquire or create real canonical reference image assets for wd001.
+  - Place approved image files under visual_dev/elements/characters/C01/wardrobe/WD001.
+  - Record provenance source, rights holder or generation source, and acquisition
+    timestamp.
+  - Complete copyright review before changing copyright_review from pending.
+  - Complete provenance review before changing provenance_review from pending.
+  - Update canonical_assets_committed only with real image paths committed to the
+    pack.
+  intake_ready_to_proceed_conditions:
+  - At least one real canonical asset exists for every required view.
+  - All listed assets are in the slot target directory.
+  - Assets are covered by visual_dev/elements Git LFS tracking rules.
+  - source_status is source_images_in_repo.
+  - copyright_review is complete.
+  - provenance_review is complete.
+  - canonical_assets_committed lists the committed asset paths.
+  forbidden_actions:
+  - Do not add placeholder binaries.
+  - Do not mark copyright_review complete without reviewed evidence.
+  - Do not mark provenance_review complete without reviewed evidence.
+  - Do not change pack_status from this intake slot.
+  - Do not run external generation from this metadata scaffold.
+  status_after_this_batch:
+    source_status: not_collected
+    copyright_review: pending
+    provenance_review: pending
+    intake_ready_to_proceed: false
+    canonical_assets_committed: []
+- instruction_id: SC0001_ASSET_01_C01_wd002_INTAKE
+  work_order_id: SC0001_ASSET_01_C01
+  element_id: C01
+  element_type: character
+  group_id: wd002
+  target_dir: visual_dev/elements/characters/C01/wardrobe/WD002
+  intake_slot_ref: visual_dev/elements/characters/C01/wardrobe/WD002/intake_slot.yaml
+  required_asset_count: 3 images minimum, one per required view
+  required_views:
+  - front_reference
+  - three_quarter_reference
+  - context_reference
+  guidance_sources:
+  - evidence/canonical_asset_work_orders/SC0001_asset_work_orders.yaml
+  - visual_dev/elements/characters/C01/wardrobe/WD002/intake_slot.yaml
+  - visual_dev/elements/characters/C01/wardrobe/WD002/README.md
+  prompt_guidance:
+  - Use the planning character record and source_notes.md for silhouette, wardrobe,
+    and restraint.
+  - Do not invent styling beyond the slot context.
+  - Keep identity/name details out of downstream model prompts unless the prompt adapter
+    explicitly permits them.
+  operator_steps:
+  - Acquire or create real canonical reference image assets for wd002.
+  - Place approved image files under visual_dev/elements/characters/C01/wardrobe/WD002.
+  - Record provenance source, rights holder or generation source, and acquisition
+    timestamp.
+  - Complete copyright review before changing copyright_review from pending.
+  - Complete provenance review before changing provenance_review from pending.
+  - Update canonical_assets_committed only with real image paths committed to the
+    pack.
+  intake_ready_to_proceed_conditions:
+  - At least one real canonical asset exists for every required view.
+  - All listed assets are in the slot target directory.
+  - Assets are covered by visual_dev/elements Git LFS tracking rules.
+  - source_status is source_images_in_repo.
+  - copyright_review is complete.
+  - provenance_review is complete.
+  - canonical_assets_committed lists the committed asset paths.
+  forbidden_actions:
+  - Do not add placeholder binaries.
+  - Do not mark copyright_review complete without reviewed evidence.
+  - Do not mark provenance_review complete without reviewed evidence.
+  - Do not change pack_status from this intake slot.
+  - Do not run external generation from this metadata scaffold.
+  status_after_this_batch:
+    source_status: not_collected
+    copyright_review: pending
+    provenance_review: pending
+    intake_ready_to_proceed: false
+    canonical_assets_committed: []
+- instruction_id: SC0001_ASSET_02_C03_wd004_INTAKE
+  work_order_id: SC0001_ASSET_02_C03
+  element_id: C03
+  element_type: character
+  group_id: wd004
+  target_dir: visual_dev/elements/characters/C03/wardrobe/WD004
+  intake_slot_ref: visual_dev/elements/characters/C03/wardrobe/WD004/intake_slot.yaml
+  required_asset_count: 3 images minimum, one per required view
+  required_views:
+  - front_reference
+  - three_quarter_reference
+  - context_reference
+  guidance_sources:
+  - evidence/canonical_asset_work_orders/SC0001_asset_work_orders.yaml
+  - visual_dev/elements/characters/C03/wardrobe/WD004/intake_slot.yaml
+  - visual_dev/elements/characters/C03/wardrobe/WD004/README.md
+  prompt_guidance:
+  - Use the planning character record and source_notes.md for silhouette, wardrobe,
+    and restraint.
+  - Do not invent styling beyond the slot context.
+  - Keep identity/name details out of downstream model prompts unless the prompt adapter
+    explicitly permits them.
+  operator_steps:
+  - Acquire or create real canonical reference image assets for wd004.
+  - Place approved image files under visual_dev/elements/characters/C03/wardrobe/WD004.
+  - Record provenance source, rights holder or generation source, and acquisition
+    timestamp.
+  - Complete copyright review before changing copyright_review from pending.
+  - Complete provenance review before changing provenance_review from pending.
+  - Update canonical_assets_committed only with real image paths committed to the
+    pack.
+  intake_ready_to_proceed_conditions:
+  - At least one real canonical asset exists for every required view.
+  - All listed assets are in the slot target directory.
+  - Assets are covered by visual_dev/elements Git LFS tracking rules.
+  - source_status is source_images_in_repo.
+  - copyright_review is complete.
+  - provenance_review is complete.
+  - canonical_assets_committed lists the committed asset paths.
+  forbidden_actions:
+  - Do not add placeholder binaries.
+  - Do not mark copyright_review complete without reviewed evidence.
+  - Do not mark provenance_review complete without reviewed evidence.
+  - Do not change pack_status from this intake slot.
+  - Do not run external generation from this metadata scaffold.
+  status_after_this_batch:
+    source_status: not_collected
+    copyright_review: pending
+    provenance_review: pending
+    intake_ready_to_proceed: false
+    canonical_assets_committed: []
+- instruction_id: SC0001_ASSET_03_LOC001_kitchen_passage_INTAKE
+  work_order_id: SC0001_ASSET_03_LOC001
+  element_id: LOC001
+  element_type: location
+  group_id: kitchen_passage
+  target_dir: visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage
+  intake_slot_ref: visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage/intake_slot.yaml
+  required_asset_count: 3 images minimum, one per required view
+  required_views:
+  - wide_establishing
+  - threshold_or_route_geometry
+  - lighting_reference
+  guidance_sources:
+  - evidence/canonical_asset_work_orders/SC0001_asset_work_orders.yaml
+  - visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage/intake_slot.yaml
+  - visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage/README.md
+  prompt_guidance:
+  - Use the planning location record, source_notes.md, and slot context for architecture
+    and light.
+  - Keep sub-areas visually distinct; do not merge kitchen_passage, jins_room, and
+    trophy_room registers.
+  - Do not introduce ungrounded decor or genre exaggeration.
+  operator_steps:
+  - Acquire or create real canonical reference image assets for kitchen_passage.
+  - Place approved image files under visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage.
+  - Record provenance source, rights holder or generation source, and acquisition
+    timestamp.
+  - Complete copyright review before changing copyright_review from pending.
+  - Complete provenance review before changing provenance_review from pending.
+  - Update canonical_assets_committed only with real image paths committed to the
+    pack.
+  intake_ready_to_proceed_conditions:
+  - At least one real canonical asset exists for every required view.
+  - All listed assets are in the slot target directory.
+  - Assets are covered by visual_dev/elements Git LFS tracking rules.
+  - source_status is source_images_in_repo.
+  - copyright_review is complete.
+  - provenance_review is complete.
+  - canonical_assets_committed lists the committed asset paths.
+  forbidden_actions:
+  - Do not add placeholder binaries.
+  - Do not mark copyright_review complete without reviewed evidence.
+  - Do not mark provenance_review complete without reviewed evidence.
+  - Do not change pack_status from this intake slot.
+  - Do not run external generation from this metadata scaffold.
+  status_after_this_batch:
+    source_status: not_collected
+    copyright_review: pending
+    provenance_review: pending
+    intake_ready_to_proceed: false
+    canonical_assets_committed: []
+- instruction_id: SC0001_ASSET_03_LOC001_jins_room_INTAKE
+  work_order_id: SC0001_ASSET_03_LOC001
+  element_id: LOC001
+  element_type: location
+  group_id: jins_room
+  target_dir: visual_dev/elements/locations/LOC001/sub_areas/jins_room
+  intake_slot_ref: visual_dev/elements/locations/LOC001/sub_areas/jins_room/intake_slot.yaml
+  required_asset_count: 3 images minimum, one per required view
+  required_views:
+  - wide_establishing
+  - threshold_or_route_geometry
+  - lighting_reference
+  guidance_sources:
+  - evidence/canonical_asset_work_orders/SC0001_asset_work_orders.yaml
+  - visual_dev/elements/locations/LOC001/sub_areas/jins_room/intake_slot.yaml
+  - visual_dev/elements/locations/LOC001/sub_areas/jins_room/README.md
+  prompt_guidance:
+  - Use the planning location record, source_notes.md, and slot context for architecture
+    and light.
+  - Keep sub-areas visually distinct; do not merge kitchen_passage, jins_room, and
+    trophy_room registers.
+  - Do not introduce ungrounded decor or genre exaggeration.
+  operator_steps:
+  - Acquire or create real canonical reference image assets for jins_room.
+  - Place approved image files under visual_dev/elements/locations/LOC001/sub_areas/jins_room.
+  - Record provenance source, rights holder or generation source, and acquisition
+    timestamp.
+  - Complete copyright review before changing copyright_review from pending.
+  - Complete provenance review before changing provenance_review from pending.
+  - Update canonical_assets_committed only with real image paths committed to the
+    pack.
+  intake_ready_to_proceed_conditions:
+  - At least one real canonical asset exists for every required view.
+  - All listed assets are in the slot target directory.
+  - Assets are covered by visual_dev/elements Git LFS tracking rules.
+  - source_status is source_images_in_repo.
+  - copyright_review is complete.
+  - provenance_review is complete.
+  - canonical_assets_committed lists the committed asset paths.
+  forbidden_actions:
+  - Do not add placeholder binaries.
+  - Do not mark copyright_review complete without reviewed evidence.
+  - Do not mark provenance_review complete without reviewed evidence.
+  - Do not change pack_status from this intake slot.
+  - Do not run external generation from this metadata scaffold.
+  status_after_this_batch:
+    source_status: not_collected
+    copyright_review: pending
+    provenance_review: pending
+    intake_ready_to_proceed: false
+    canonical_assets_committed: []
+- instruction_id: SC0001_ASSET_03_LOC001_trophy_room_INTAKE
+  work_order_id: SC0001_ASSET_03_LOC001
+  element_id: LOC001
+  element_type: location
+  group_id: trophy_room
+  target_dir: visual_dev/elements/locations/LOC001/sub_areas/trophy_room
+  intake_slot_ref: visual_dev/elements/locations/LOC001/sub_areas/trophy_room/intake_slot.yaml
+  required_asset_count: 3 images minimum, one per required view
+  required_views:
+  - wide_establishing
+  - threshold_or_route_geometry
+  - lighting_reference
+  guidance_sources:
+  - evidence/canonical_asset_work_orders/SC0001_asset_work_orders.yaml
+  - visual_dev/elements/locations/LOC001/sub_areas/trophy_room/intake_slot.yaml
+  - visual_dev/elements/locations/LOC001/sub_areas/trophy_room/README.md
+  prompt_guidance:
+  - Use the planning location record, source_notes.md, and slot context for architecture
+    and light.
+  - Keep sub-areas visually distinct; do not merge kitchen_passage, jins_room, and
+    trophy_room registers.
+  - Do not introduce ungrounded decor or genre exaggeration.
+  operator_steps:
+  - Acquire or create real canonical reference image assets for trophy_room.
+  - Place approved image files under visual_dev/elements/locations/LOC001/sub_areas/trophy_room.
+  - Record provenance source, rights holder or generation source, and acquisition
+    timestamp.
+  - Complete copyright review before changing copyright_review from pending.
+  - Complete provenance review before changing provenance_review from pending.
+  - Update canonical_assets_committed only with real image paths committed to the
+    pack.
+  intake_ready_to_proceed_conditions:
+  - At least one real canonical asset exists for every required view.
+  - All listed assets are in the slot target directory.
+  - Assets are covered by visual_dev/elements Git LFS tracking rules.
+  - source_status is source_images_in_repo.
+  - copyright_review is complete.
+  - provenance_review is complete.
+  - canonical_assets_committed lists the committed asset paths.
+  forbidden_actions:
+  - Do not add placeholder binaries.
+  - Do not mark copyright_review complete without reviewed evidence.
+  - Do not mark provenance_review complete without reviewed evidence.
+  - Do not change pack_status from this intake slot.
+  - Do not run external generation from this metadata scaffold.
+  status_after_this_batch:
+    source_status: not_collected
+    copyright_review: pending
+    provenance_review: pending
+    intake_ready_to_proceed: false
+    canonical_assets_committed: []
+- instruction_id: SC0001_ASSET_04_PROP003_sc0001_canonical_prop_reference_INTAKE
+  work_order_id: SC0001_ASSET_04_PROP003
+  element_id: PROP003
+  element_type: prop
+  group_id: sc0001_canonical_prop_reference
+  target_dir: visual_dev/elements/props/PROP003/canonical
+  intake_slot_ref: visual_dev/elements/props/PROP003/canonical/intake_slot.yaml
+  required_asset_count: 2 images minimum, one per required view
+  required_views:
+  - in_situ_context
+  - detail_closeup
+  guidance_sources:
+  - evidence/canonical_asset_work_orders/SC0001_asset_work_orders.yaml
+  - visual_dev/elements/props/PROP003/canonical/intake_slot.yaml
+  - visual_dev/elements/props/PROP003/canonical/README.md
+  prompt_guidance:
+  - Use the planning prop record, source_notes.md, and slot notes for the required
+    physical cue.
+  - For PROP003, resolve the Vardova skyline image copyright decision before intake
+    can proceed.
+  - Do not imply recurrence beyond SC0001 unless the planning source changes.
+  operator_steps:
+  - Acquire or create real canonical reference image assets for sc0001_canonical_prop_reference.
+  - Place approved image files under visual_dev/elements/props/PROP003/canonical.
+  - Record provenance source, rights holder or generation source, and acquisition
+    timestamp.
+  - Complete copyright review before changing copyright_review from pending.
+  - Complete provenance review before changing provenance_review from pending.
+  - Update canonical_assets_committed only with real image paths committed to the
+    pack.
+  intake_ready_to_proceed_conditions:
+  - At least one real canonical asset exists for every required view.
+  - All listed assets are in the slot target directory.
+  - Assets are covered by visual_dev/elements Git LFS tracking rules.
+  - source_status is source_images_in_repo.
+  - copyright_review is complete.
+  - provenance_review is complete.
+  - canonical_assets_committed lists the committed asset paths.
+  forbidden_actions:
+  - Do not add placeholder binaries.
+  - Do not mark copyright_review complete without reviewed evidence.
+  - Do not mark provenance_review complete without reviewed evidence.
+  - Do not change pack_status from this intake slot.
+  - Do not run external generation from this metadata scaffold.
+  status_after_this_batch:
+    source_status: not_collected
+    copyright_review: pending
+    provenance_review: pending
+    intake_ready_to_proceed: false
+    canonical_assets_committed: []
+storage_policy: no_binary_commits
+canonical_assets_created: false
+pack_manifest_mutation_performed: false
+lock_action_performed: false
+copyright_completion_claimed: false
+provenance_completion_claimed: false
+external_generation_performed: false
+binary_outputs_created: false
+lifecycle_promotion_performed: false
