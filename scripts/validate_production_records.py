@@ -54,6 +54,7 @@ VIDEO_REVIEW_PATTERN = "evidence/video_reviews/*.yaml"
 SELECTED_TAKE_PATTERN = "visual_dev/omni_sets/SC*/selected_take.yaml"
 OMNI_SET_GATE_PATTERN = "evidence/omni_set_gates/*.yaml"
 PACK_LOCK_READINESS_PATTERN = "evidence/pack_lock_readiness/*.yaml"
+CANONICAL_ASSET_WORK_ORDER_PATTERN = "evidence/canonical_asset_work_orders/*.yaml"
 AESTHETIC_BIBLE_PATH = "planning/aesthetic_bible.yaml"
 SCENE_CLIP_MAP_PATH = "evidence/scene_clip_map.csv"
 
@@ -142,6 +143,9 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         "selected_take": sorted(repo_root.glob(SELECTED_TAKE_PATTERN)),
         "omni_set_gate": sorted(repo_root.glob(OMNI_SET_GATE_PATTERN)),
         "pack_lock_readiness": sorted(repo_root.glob(PACK_LOCK_READINESS_PATTERN)),
+        "canonical_asset_work_order": sorted(
+            repo_root.glob(CANONICAL_ASSET_WORK_ORDER_PATTERN)
+        ),
         "aesthetic_bible": (
             [repo_root / AESTHETIC_BIBLE_PATH]
             if (repo_root / AESTHETIC_BIBLE_PATH).is_file()
@@ -822,6 +826,7 @@ def run_validation(
     selected_take_validator: Draft202012Validator | None = None
     omni_set_gate_validator: Draft202012Validator | None = None
     pack_lock_readiness_validator: Draft202012Validator | None = None
+    canonical_asset_work_order_validator: Draft202012Validator | None = None
     aesthetic_bible_validator: Draft202012Validator | None = None
 
     grouped_files = collect_production_files(repo_root)
@@ -981,6 +986,22 @@ def run_validation(
                     repo_root=repo_root,
                     record_type=record_type,
                     validator=pack_lock_readiness_validator,
+                )
+            elif record_type == "canonical_asset_work_order":
+                if canonical_asset_work_order_validator is None:
+                    canonical_asset_work_order_schema = load_schema(
+                        repo_root
+                        / "schemas"
+                        / "canonical_asset_work_order.schema.json"
+                    )
+                    canonical_asset_work_order_validator = Draft202012Validator(
+                        canonical_asset_work_order_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=canonical_asset_work_order_validator,
                 )
             elif record_type == "aesthetic_bible":
                 if aesthetic_bible_validator is None:

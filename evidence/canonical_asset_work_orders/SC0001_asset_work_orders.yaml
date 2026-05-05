@@ -1,0 +1,276 @@
+scene_id: SC0001
+report_at: '2026-05-05T07:00:00Z'
+source_readiness_ref: evidence/pack_lock_readiness/SC0001_pack_lock_readiness.yaml
+report_status: work_orders_open
+summary:
+  total_work_orders: 4
+  asset_creation_performed: false
+  pack_locking_performed: false
+  external_generation_performed: false
+  packs_ready_for_lock_review: 0
+work_orders:
+- work_order_id: SC0001_ASSET_01_C01
+  element_id: C01
+  element_type: character
+  pack_path: visual_dev/elements/characters/C01/
+  source_pack_readiness:
+    pack_manifest_ref: visual_dev/elements/characters/C01/pack_manifest.yaml
+    image_intake_manifest_ref: visual_dev/elements/characters/C01/image_intake_manifest.yaml
+    source_notes_ref: visual_dev/elements/characters/C01/source_notes.md
+    pack_status: metadata_only
+    canonical_asset_count: 0
+    source_status: no_source_images_in_repo
+    copyright_review: pending
+    provenance_review: pending
+    intake_ready_to_proceed: false
+  required_asset_groups:
+  - group_id: wd001
+    group_type: wardrobe_reference_set
+    target_path: wardrobe/WD001/
+    context: early-morning domestic control (SC0001, SC0003)
+    required_views:
+    - front_reference
+    - three_quarter_reference
+    - context_reference
+    notes: Lean, upright silhouette; muted domestic neutrals; early-morning/mid-morning
+      light.
+    source_status: not_collected
+  - group_id: wd002
+    group_type: wardrobe_reference_set
+    target_path: wardrobe/WD002/
+    context: night / private (SC0006, SC0008, SC0009 carry-over)
+    required_views:
+    - front_reference
+    - three_quarter_reference
+    - context_reference
+    notes: Same silhouette; low-key night register; fatigue and vigilance readable.
+    source_status: not_collected
+  provenance_required: true
+  copyright_required: true
+  intake_ready_to_proceed_required: true
+  lfs_required: true
+  blocking_notes:
+  - No source images available in repo.
+  - Two wardrobe contexts (WD001, WD002) each require separate reference image sets.
+  missing_requirements:
+  - image_intake_manifest.intake_ready_to_proceed is not true
+  - source images are not present in repo
+  - copyright_review is not complete
+  - provenance_review is not complete
+  - no canonical image assets found in pack
+  acceptance_checklist:
+  - Real canonical reference image assets are committed under the pack path.
+  - Committed image assets match the required asset groups and views.
+  - Image assets are tracked by the configured visual_dev/elements Git LFS rules.
+  - image_intake_manifest.yaml source_status is updated to source_images_in_repo.
+  - copyright_review is complete.
+  - provenance_review is complete.
+  - intake_ready_to_proceed is true.
+  - pack_manifest.yaml lists the relevant text assets and remains metadata_only until
+    human lock review.
+  forbidden_actions:
+  - Do not change pack_status to locked in this work order.
+  - Do not fabricate placeholder binaries.
+  - Do not mark copyright or provenance complete without reviewed evidence.
+  - Do not run external generation from this metadata batch.
+- work_order_id: SC0001_ASSET_02_C03
+  element_id: C03
+  element_type: character
+  pack_path: visual_dev/elements/characters/C03/
+  source_pack_readiness:
+    pack_manifest_ref: visual_dev/elements/characters/C03/pack_manifest.yaml
+    image_intake_manifest_ref: visual_dev/elements/characters/C03/image_intake_manifest.yaml
+    source_notes_ref: visual_dev/elements/characters/C03/source_notes.md
+    pack_status: metadata_only
+    canonical_asset_count: 0
+    source_status: no_source_images_in_repo
+    copyright_review: pending
+    provenance_review: pending
+    intake_ready_to_proceed: false
+  required_asset_groups:
+  - group_id: wd004
+    group_type: wardrobe_reference_set
+    target_path: wardrobe/WD004/
+    context: domestic workwear, corridor routine (SC0001 only)
+    required_views:
+    - front_reference
+    - three_quarter_reference
+    - context_reference
+    notes: "Compact working silhouette; muted service neutrals; practical not ornate.\
+      \ Exact WD004 garment breakdown is unresolved in planning \u2014 do not over-specify."
+    source_status: not_collected
+  provenance_required: true
+  copyright_required: true
+  intake_ready_to_proceed_required: true
+  lfs_required: true
+  blocking_notes:
+  - No source images available in repo.
+  - WD004 exact garment breakdown is unresolved in source; image selection must not
+    pre-empt that decision.
+  missing_requirements:
+  - image_intake_manifest.intake_ready_to_proceed is not true
+  - source images are not present in repo
+  - copyright_review is not complete
+  - provenance_review is not complete
+  - no canonical image assets found in pack
+  acceptance_checklist:
+  - Real canonical reference image assets are committed under the pack path.
+  - Committed image assets match the required asset groups and views.
+  - Image assets are tracked by the configured visual_dev/elements Git LFS rules.
+  - image_intake_manifest.yaml source_status is updated to source_images_in_repo.
+  - copyright_review is complete.
+  - provenance_review is complete.
+  - intake_ready_to_proceed is true.
+  - pack_manifest.yaml lists the relevant text assets and remains metadata_only until
+    human lock review.
+  forbidden_actions:
+  - Do not change pack_status to locked in this work order.
+  - Do not fabricate placeholder binaries.
+  - Do not mark copyright or provenance complete without reviewed evidence.
+  - Do not run external generation from this metadata batch.
+- work_order_id: SC0001_ASSET_03_LOC001
+  element_id: LOC001
+  element_type: location
+  pack_path: visual_dev/elements/locations/LOC001/
+  source_pack_readiness:
+    pack_manifest_ref: visual_dev/elements/locations/LOC001/pack_manifest.yaml
+    image_intake_manifest_ref: visual_dev/elements/locations/LOC001/image_intake_manifest.yaml
+    source_notes_ref: visual_dev/elements/locations/LOC001/source_notes.md
+    pack_status: metadata_only
+    canonical_asset_count: 0
+    source_status: no_source_images_in_repo
+    copyright_review: pending
+    provenance_review: pending
+    intake_ready_to_proceed: false
+  required_asset_groups:
+  - group_id: kitchen_passage
+    group_type: location_sub_area_reference_set
+    target_path: sub_areas/kitchen_passage/
+    context: Pale stone, filtered early daylight, surveillance-geometry framing.
+    required_views:
+    - wide_establishing
+    - threshold_or_route_geometry
+    - lighting_reference
+    notes: PROP003 (tilted photo frame) is a critical visual element for this sub-area
+      in SC0001.
+    source_status: not_collected
+  - group_id: jins_room
+    group_type: location_sub_area_reference_set
+    target_path: sub_areas/jins_room/
+    context: Warm tones, filtered morning light, closed curtains, crib, white-noise
+      machine.
+    required_views:
+    - wide_establishing
+    - threshold_or_route_geometry
+    - lighting_reference
+    notes: Warmer and more intimate pocket than the corridor. Keep crib and nursery
+      texture readable.
+    source_status: not_collected
+  - group_id: trophy_room
+    group_type: location_sub_area_reference_set
+    target_path: sub_areas/trophy_room/
+    context: Curated private-room darkness, glass cases, shelf objects, hard-controlled
+      night tones.
+    required_views:
+    - wide_establishing
+    - threshold_or_route_geometry
+    - lighting_reference
+    notes: Register is system-recalibration, not grief or overt loss. Do not over-theatricalize.
+    source_status: not_collected
+  provenance_required: true
+  copyright_required: true
+  intake_ready_to_proceed_required: true
+  lfs_required: true
+  blocking_notes:
+  - No source images available in repo.
+  - Three distinct sub-area image groups are required; they must not be conflated.
+  - Sub-area folder structure (sub_areas/kitchen_passage/, sub_areas/jins_room/, sub_areas/trophy_room/)
+    should be established before images are committed to preserve visual separation.
+  missing_requirements:
+  - image_intake_manifest.intake_ready_to_proceed is not true
+  - source images are not present in repo
+  - copyright_review is not complete
+  - provenance_review is not complete
+  - no canonical image assets found in pack
+  acceptance_checklist:
+  - Real canonical reference image assets are committed under the pack path.
+  - Committed image assets match the required asset groups and views.
+  - Image assets are tracked by the configured visual_dev/elements Git LFS rules.
+  - image_intake_manifest.yaml source_status is updated to source_images_in_repo.
+  - copyright_review is complete.
+  - provenance_review is complete.
+  - intake_ready_to_proceed is true.
+  - pack_manifest.yaml lists the relevant text assets and remains metadata_only until
+    human lock review.
+  forbidden_actions:
+  - Do not change pack_status to locked in this work order.
+  - Do not fabricate placeholder binaries.
+  - Do not mark copyright or provenance complete without reviewed evidence.
+  - Do not run external generation from this metadata batch.
+- work_order_id: SC0001_ASSET_04_PROP003
+  element_id: PROP003
+  element_type: prop
+  pack_path: visual_dev/elements/props/PROP003/
+  source_pack_readiness:
+    pack_manifest_ref: visual_dev/elements/props/PROP003/pack_manifest.yaml
+    image_intake_manifest_ref: visual_dev/elements/props/PROP003/image_intake_manifest.yaml
+    source_notes_ref: visual_dev/elements/props/PROP003/source_notes.md
+    pack_status: metadata_only
+    canonical_asset_count: 0
+    source_status: no_source_images_in_repo
+    copyright_review: pending
+    provenance_review: pending
+    intake_ready_to_proceed: false
+  required_asset_groups:
+  - group_id: sc0001_canonical_prop_reference
+    group_type: prop_reference_set
+    target_path: canonical/
+    context: Vardova skyline photo frame
+    required_views:
+    - in_situ_context
+    - detail_closeup
+    notes: "Framed landscape photograph; Vardova skyline at dusk | Domestic, generic\
+      \ frame \u2014 not ornate or architecturally distinctive | Critical: misalignment\
+      \ of several degrees must be visible | Critical: a larger dust-shadow behind\
+      \ the frame must be readable on camera | Context: third photograph in the east-wing\
+      \ corridor sequence (corridor geometry around it) | Reference should show in-situ\
+      \ positioning to confirm angle shift reads at corridor scale"
+    source_status: not_collected
+  provenance_required: true
+  copyright_required: true
+  intake_ready_to_proceed_required: true
+  lfs_required: true
+  blocking_notes:
+  - No source images available in repo.
+  - "SC0001 only \u2014 no later recurrence is source-grounded; image needed for pilot\
+    \ SC0001 generation only."
+  - Vardova skyline image itself (the photograph inside the frame) may require a separate
+    copyright clearance decision if a real-world location reference is used.
+  missing_requirements:
+  - image_intake_manifest.intake_ready_to_proceed is not true
+  - source images are not present in repo
+  - copyright_review is not complete
+  - provenance_review is not complete
+  - no canonical image assets found in pack
+  acceptance_checklist:
+  - Real canonical reference image assets are committed under the pack path.
+  - Committed image assets match the required asset groups and views.
+  - Image assets are tracked by the configured visual_dev/elements Git LFS rules.
+  - image_intake_manifest.yaml source_status is updated to source_images_in_repo.
+  - copyright_review is complete.
+  - provenance_review is complete.
+  - intake_ready_to_proceed is true.
+  - pack_manifest.yaml lists the relevant text assets and remains metadata_only until
+    human lock review.
+  forbidden_actions:
+  - Do not change pack_status to locked in this work order.
+  - Do not fabricate placeholder binaries.
+  - Do not mark copyright or provenance complete without reviewed evidence.
+  - Do not run external generation from this metadata batch.
+storage_policy: no_binary_commits
+canonical_assets_created: false
+pack_manifest_mutation_performed: false
+lock_action_performed: false
+external_generation_performed: false
+binary_outputs_created: false
+lifecycle_promotion_performed: false
