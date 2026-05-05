@@ -63,6 +63,11 @@ the human wants a different tool to continue. The handoff record captures:
 
 The next agent should read the newest relevant handoff before editing files.
 
+For B8A and later asset-intake work, use
+[`agent_handoff_playbook.md`](agent_handoff_playbook.md) for copy-paste command
+examples, agent-to-agent message templates, commit/stage guidance, forbidden
+handoff contents, and the one-slot B8A handoff rule.
+
 ## Safety Rules
 
 - Metadata-only: no image, video, audio, proxy, or generated binary commits.
