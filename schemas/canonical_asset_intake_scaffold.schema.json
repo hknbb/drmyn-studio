@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/canonical_asset_intake_scaffold.schema.json",
+  "title": "Canonical Asset Intake Scaffold Report",
+  "description": "Metadata-only report for canonical asset intake folder scaffolding.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scene_id",
+    "report_at",
+    "source_work_orders_ref",
+    "report_status",
+    "summary",
+    "slots",
+    "storage_policy",
+    "canonical_assets_created",
+    "pack_manifest_mutation_performed",
+    "lock_action_performed",
+    "copyright_completion_claimed",
+    "provenance_completion_claimed",
+    "external_generation_performed",
+    "binary_outputs_created",
+    "lifecycle_promotion_performed"
+  ],
+  "properties": {
+    "scene_id": {
+      "type": "string",
+      "pattern": "^SC\\d{4}$"
+    },
+    "report_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source_work_orders_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "report_status": {
+      "type": "string",
+      "const": "intake_scaffold_created"
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_slots",
+        "canonical_assets_created",
+        "pack_locking_performed",
+        "pack_manifest_mutation_performed",
+        "external_generation_performed"
+      ],
+      "properties": {
+        "total_slots": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "canonical_assets_created": {
+          "type": "boolean",
+          "const": false
+        },
+        "pack_locking_performed": {
+          "type": "boolean",
+          "const": false
+        },
+        "pack_manifest_mutation_performed": {
+          "type": "boolean",
+          "const": false
+        },
+        "external_generation_performed": {
+          "type": "boolean",
+          "const": false
+        }
+      }
+    },
+    "slots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "work_order_id",
+          "element_id",
+          "group_id",
+          "slot_dir",
+          "intake_slot_ref",
+          "readme_ref",
+          "gitkeep_ref",
+          "source_status",
+          "copyright_review",
+          "provenance_review",
+          "intake_ready_to_proceed",
+          "canonical_assets_created"
+        ],
+        "properties": {
+          "work_order_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "element_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "group_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "slot_dir": {
+            "type": "string",
+            "minLength": 1
+          },
+          "intake_slot_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "readme_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "gitkeep_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_status": {
+            "type": "string",
+            "const": "not_collected"
+          },
+          "copyright_review": {
+            "type": "string",
+            "const": "pending"
+          },
+          "provenance_review": {
+            "type": "string",
+            "const": "pending"
+          },
+          "intake_ready_to_proceed": {
+            "type": "boolean",
+            "const": false
+          },
+          "canonical_assets_created": {
+            "type": "boolean",
+            "const": false
+          }
+        }
+      }
+    },
+    "storage_policy": {
+      "type": "string",
+      "const": "no_binary_commits"
+    },
+    "canonical_assets_created": {
+      "type": "boolean",
+      "const": false
+    },
+    "pack_manifest_mutation_performed": {
+      "type": "boolean",
+      "const": false
+    },
+    "lock_action_performed": {
+      "type": "boolean",
+      "const": false
+    },
+    "copyright_completion_claimed": {
+      "type": "boolean",
+      "const": false
+    },
+    "provenance_completion_claimed": {
+      "type": "boolean",
+      "const": false
+    },
+    "external_generation_performed": {
+      "type": "boolean",
+      "const": false
+    },
+    "binary_outputs_created": {
+      "type": "boolean",
+      "const": false
+    },
+    "lifecycle_promotion_performed": {
+      "type": "boolean",
+      "const": false
+    }
+  }
+}
