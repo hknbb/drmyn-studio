@@ -61,6 +61,7 @@ CANONICAL_ASSET_INTAKE_SCAFFOLD_PATTERN = (
 CANONICAL_ASSET_INTAKE_INSTRUCTION_PATTERN = (
     "evidence/canonical_asset_intake_instructions/*.yaml"
 )
+CLEAN_START_AUDIT_PATTERN = "evidence/clean_start_audits/*.yaml"
 AESTHETIC_BIBLE_PATH = "planning/aesthetic_bible.yaml"
 SCENE_CLIP_MAP_PATH = "evidence/scene_clip_map.csv"
 
@@ -158,6 +159,7 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         "canonical_asset_intake_instruction": sorted(
             repo_root.glob(CANONICAL_ASSET_INTAKE_INSTRUCTION_PATTERN)
         ),
+        "clean_start_audit": sorted(repo_root.glob(CLEAN_START_AUDIT_PATTERN)),
         "aesthetic_bible": (
             [repo_root / AESTHETIC_BIBLE_PATH]
             if (repo_root / AESTHETIC_BIBLE_PATH).is_file()
@@ -841,6 +843,7 @@ def run_validation(
     canonical_asset_work_order_validator: Draft202012Validator | None = None
     canonical_asset_intake_scaffold_validator: Draft202012Validator | None = None
     canonical_asset_intake_instruction_validator: Draft202012Validator | None = None
+    clean_start_audit_validator: Draft202012Validator | None = None
     aesthetic_bible_validator: Draft202012Validator | None = None
 
     grouped_files = collect_production_files(repo_root)
@@ -1048,6 +1051,20 @@ def run_validation(
                     repo_root=repo_root,
                     record_type=record_type,
                     validator=canonical_asset_intake_instruction_validator,
+                )
+            elif record_type == "clean_start_audit":
+                if clean_start_audit_validator is None:
+                    clean_start_audit_schema = load_schema(
+                        repo_root / "schemas" / "clean_start_audit.schema.json"
+                    )
+                    clean_start_audit_validator = Draft202012Validator(
+                        clean_start_audit_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=clean_start_audit_validator,
                 )
             elif record_type == "aesthetic_bible":
                 if aesthetic_bible_validator is None:
