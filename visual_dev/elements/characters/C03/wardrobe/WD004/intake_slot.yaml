@@ -1,0 +1,25 @@
+scene_id: SC0001
+work_order_id: SC0001_ASSET_02_C03
+element_id: C03
+element_type: character
+group_id: wd004
+group_type: wardrobe_reference_set
+context: domestic workwear, corridor routine (SC0001 only)
+required_views:
+- front_reference
+- three_quarter_reference
+- context_reference
+notes: "Compact working silhouette; muted service neutrals; practical not ornate.\
+  \ Exact WD004 garment breakdown is unresolved in planning \u2014 do not over-specify."
+source_status: not_collected
+copyright_review: pending
+provenance_review: pending
+intake_ready_to_proceed: false
+canonical_assets_committed: []
+storage_policy: no_binary_commits
+forbidden_actions:
+- Do not add placeholder binaries.
+- Do not mark copyright_review complete without reviewed evidence.
+- Do not mark provenance_review complete without reviewed evidence.
+- Do not change pack_status from this intake slot.
+- Do not run external generation from this metadata scaffold.
