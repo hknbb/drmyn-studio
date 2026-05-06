@@ -3,10 +3,10 @@
   "@type": "SoftwareSourceCode",
 
   "name": "DRMYN Studio",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Metadata-only research software for AI-assisted movie development and movie production process design, validation, and reproducibility.",
   "codeRepository": "https://github.com/hknbb/drmyn-studio-public",
-  "identifier": "https://doi.org/10.5281/zenodo.20052981",
+  "identifier": "https://doi.org/10.5281/zenodo.20055802",
   "license": "https://spdx.org/licenses/MIT",
 
   "applicationCategory": "Research software",
