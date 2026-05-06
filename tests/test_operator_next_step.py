@@ -118,7 +118,7 @@ def test_prompt_draft_recommends_external_image_generation(tmp_path: Path) -> No
     _assert_recommended_route(step, "claude_code", "manual_pickup")
     _assert_allowed_commands(step)
     assert prompt_path.relative_to(tmp_path).as_posix() in step.open_files
-    assert "external T2I" in " ".join(step.do_steps)
+    assert "external tool" in " ".join(step.do_steps)
     assert "external T2I model" in step.next_command_or_manual_step
 
 

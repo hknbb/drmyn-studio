@@ -476,6 +476,15 @@ def _prompt_review_or_generation_step(repo_root: Path) -> OperatorNextStep | Non
 
         current_task = "t2i_image_generation"
         recommended_next_agent, recommended_reason = _recommended_route(current_task)
+        adapter_count = 1 + len(sibling_drafts)
+        adapter_label = (
+            f"all {adapter_count} adapter prompt drafts" if adapter_count > 1 else "the prompt draft"
+        )
+        all_adapter_drafts = [draft, *sibling_drafts]
+        review_note_lines = [
+            f"Text review notes at {_relative(_review_notes_path(repo_root, d.prompt_id), repo_root)} after candidates are available."
+            for d in all_adapter_drafts
+        ]
         return OperatorNextStep(
             current_task=current_task,
             scene_id=draft.scene_id,
@@ -483,13 +492,13 @@ def _prompt_review_or_generation_step(repo_root: Path) -> OperatorNextStep | Non
             recommended_reason=recommended_reason,
             open_files=open_files,
             do_steps=[
-                "Open the prompt draft and copy only the prompt text needed by the external T2I tool.",
+                f"Open {adapter_label} listed above and copy the prompt text for each target model.",
                 "Generate candidate images manually in the external tool named by target_models.",
                 "Save candidates according to the storage policy before requesting image review.",
             ],
             expected_outputs=[
                 "Candidate image files saved by the human operator under the correct element candidates folder or external storage reference.",
-                f"Text review notes at {_relative(notes_path, repo_root)} after candidates are available.",
+                *review_note_lines,
             ],
             next_command_or_manual_step=(
                 "Manual step: run the external T2I model yourself using the listed prompt draft."
