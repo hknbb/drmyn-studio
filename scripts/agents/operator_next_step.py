@@ -407,6 +407,8 @@ def _prompt_review_or_generation_step(repo_root: Path) -> OperatorNextStep | Non
         sibling_drafts = [
             d for d in all_drafts
             if d.path != draft.path
+            and draft.element_dir_name is not None
+            and draft.element_id is not None
             and d.scene_id == draft.scene_id
             and d.element_dir_name == draft.element_dir_name
             and d.element_id == draft.element_id
