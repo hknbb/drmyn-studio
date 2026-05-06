@@ -34,6 +34,6 @@ expected_output:
   variation_count: 4
 status: active
 canon_lock: false
-negative_prompt: maternal warmth softening, neon cyberpunk, teal-orange blockbuster,
-  golden sentimental glow, glossy near-future luxury, beauty lighting, spectacle
-  cinematography, smile, makeup retouching
+negative_prompt: maternal-warmth softening, neon-cyberpunk, teal-orange-blockbuster,
+  golden-sentimental glow, glossy-near-future luxury, beauty-lighting, spectacle-cinematography,
+  smile, makeup-retouching
