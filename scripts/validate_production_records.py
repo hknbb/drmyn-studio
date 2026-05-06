@@ -63,6 +63,7 @@ CANONICAL_ASSET_INTAKE_INSTRUCTION_PATTERN = (
 )
 CANONICAL_ASSET_INTAKE_SLOT_PATTERN = "visual_dev/elements/**/intake_slot.yaml"
 CLEAN_START_AUDIT_PATTERN = "evidence/clean_start_audits/*.yaml"
+PRE_B8A_CLEAN_RESET_PATTERN = "evidence/pre_b8a_clean_resets/*.yaml"
 AESTHETIC_BIBLE_PATH = "planning/aesthetic_bible.yaml"
 SCENE_CLIP_MAP_PATH = "evidence/scene_clip_map.csv"
 
@@ -164,6 +165,7 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
             repo_root.glob(CANONICAL_ASSET_INTAKE_SLOT_PATTERN)
         ),
         "clean_start_audit": sorted(repo_root.glob(CLEAN_START_AUDIT_PATTERN)),
+        "pre_b8a_clean_reset": sorted(repo_root.glob(PRE_B8A_CLEAN_RESET_PATTERN)),
         "aesthetic_bible": (
             [repo_root / AESTHETIC_BIBLE_PATH]
             if (repo_root / AESTHETIC_BIBLE_PATH).is_file()
@@ -849,6 +851,7 @@ def run_validation(
     canonical_asset_intake_instruction_validator: Draft202012Validator | None = None
     canonical_asset_intake_slot_validator: Draft202012Validator | None = None
     clean_start_audit_validator: Draft202012Validator | None = None
+    pre_b8a_clean_reset_validator: Draft202012Validator | None = None
     aesthetic_bible_validator: Draft202012Validator | None = None
 
     grouped_files = collect_production_files(repo_root)
@@ -1086,6 +1089,20 @@ def run_validation(
                     repo_root=repo_root,
                     record_type=record_type,
                     validator=clean_start_audit_validator,
+                )
+            elif record_type == "pre_b8a_clean_reset":
+                if pre_b8a_clean_reset_validator is None:
+                    pre_b8a_clean_reset_schema = load_schema(
+                        repo_root / "schemas" / "pre_b8a_clean_reset.schema.json"
+                    )
+                    pre_b8a_clean_reset_validator = Draft202012Validator(
+                        pre_b8a_clean_reset_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=pre_b8a_clean_reset_validator,
                 )
             elif record_type == "aesthetic_bible":
                 if aesthetic_bible_validator is None:
