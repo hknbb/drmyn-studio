@@ -1,8 +1,8 @@
 {
   "title": "DRMYN Studio: A Metadata-Only Human-Agent Film Production Workflow",
   "upload_type": "software",
-  "version": "0.2.0",
-  "description": "DRMYN Studio is a metadata-only, schema-validated, human-gated pre-production and prompt governance pipeline for AI-assisted film production. Includes scene cards, character and location records, continuity files, prompt lifecycle infrastructure, JSON schema validation (20+ schemas, draft 2020-12), a Human-Agent Production Copilot layer (HA-0 to HA-6) enabling structured multi-agent coordination without external APIs, a Streamlit dashboard for operator oversight, and a Film Aesthetic Bible system that injects deterministic, scene-grounded visual keywords into T2I prompts via named aesthetic packs. All production decisions are reproducible and academically defensible; generated media outputs are stored externally and referenced by metadata-only records. Demonstrated through the Closing Price AI-assisted film project. Release v0.2.0 introduces the Film Aesthetic Bible registry (aesthetic_bible.schema.json), deterministic keyword injection across Midjourney, ChatGPT Image, and Nano Banana adapters, and aesthetic_pack_refs hooks in all element and storyboard schemas.",
+  "version": "0.3.1",
+  "description": "DRMYN Studio is a metadata-only, schema-validated, human-gated pre-production and prompt governance pipeline for AI-assisted film production. Includes scene cards, character and location records, continuity files, prompt lifecycle infrastructure, JSON schema validation (20+ schemas, draft 2020-12), a three-agent autonomous orchestration layer (Claude Code / Codex / Gemini Code Assist) with auto-handoff and pickup mode enabling structured multi-agent coordination without external APIs, a Streamlit dashboard for operator oversight, and a Film Aesthetic Bible system that injects deterministic, scene-grounded visual keywords into T2I prompts via named aesthetic packs. All production decisions are reproducible and academically defensible; generated media outputs are stored externally and referenced by metadata-only records. Demonstrated through the Closing Price AI-assisted film project. Release v0.3.1 introduces the three-agent orchestration workflow with auto-handoff on operator approval, pickup mode for VS Code agent context transfer, and canonical asset storage policy schema with Git LFS governance for reference image intake.",
   "creators": [
     {
       "name": "Babacan, Hakan",
@@ -23,7 +23,9 @@
     "multi-agent coordination",
     "workflow automation",
     "film aesthetic bible",
-    "visual keyword injection"
+    "visual keyword injection",
+    "autonomous orchestration",
+    "agent handoff"
   ],
   "license": "MIT"
 }
