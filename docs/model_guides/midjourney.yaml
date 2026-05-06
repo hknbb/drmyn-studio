@@ -11,7 +11,7 @@ status: active
 last_updated: "2026-05-07"
 maintained_by: "human PR only"
 phase: 1
-snapshot_ref: "evidence/model_guidance_snapshots/20260504T113000Z_midjourney.yaml"
+snapshot_ref: "evidence/model_guidance_snapshots/20260507T140000Z_midjourney.yaml"
 
 capability:
   output_type: image
