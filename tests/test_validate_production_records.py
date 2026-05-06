@@ -33,6 +33,7 @@ def _copy_schemas(repo_root: Path) -> None:
         "selected_take.schema.json",
         "batch_job.schema.json",
         "operator_session.schema.json",
+        "pre_b8a_clean_reset.schema.json",
     ):
         (schemas_dir / name).write_text(
             (REPO_ROOT / "schemas" / name).read_text(encoding="utf-8"),
@@ -290,3 +291,67 @@ def test_invalid_operator_session_status_fails(tmp_path: Path) -> None:
 
     assert report.invalid_files == 1
     assert any(issue.record_type == "operator_session" for issue in report.issues)
+
+
+def test_valid_pre_b8a_clean_reset_passes(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "evidence/pre_b8a_clean_resets/SC0001_pre_b8a_clean_reset.yaml",
+        {
+            "scene_id": "SC0001",
+            "audit_at": "2026-05-06T14:30:00Z",
+            "target_slot": "visual_dev/elements/characters/C01/wardrobe/WD001/",
+            "reset_status": "clean_for_b8a_start",
+            "ready_for_b8a_clean_branch": True,
+            "staging_scan_complete": True,
+            "unexpected_staging_files_found": False,
+            "unsafe_paths_found": False,
+            "duplicate_targets_found": False,
+            "non_wd001_staging_found": False,
+            "canonical_slot_unexpected_files_found": False,
+            "scan_roots": {
+                "staging_root": "visual_dev/intake_staging",
+                "approved_staging_dir": "visual_dev/intake_staging/C01_WD001",
+                "target_slot_dir": "visual_dev/elements/characters/C01/wardrobe/WD001",
+                "target_slot_ref": "visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml",
+            },
+            "staged_files_count": 0,
+            "sidecar_files_count": 0,
+            "orphan_sidecars": [],
+            "staged_images_without_sidecars": [],
+            "duplicate_target_canonical_paths": [],
+            "unsafe_paths": [],
+            "staged_files_outside_wd001": [],
+            "unexpected_staging_paths": [],
+            "unexpected_canonical_files": [],
+            "wd001_slot_state": {
+                "slot_path": "visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml",
+                "source_status": "not_collected",
+                "storage_policy": "no_binary_commits",
+                "canonical_assets_committed_count": 0,
+                "intake_ready_to_proceed": False,
+                "copyright_review": "pending",
+                "provenance_review": "pending",
+            },
+            "deleted_files": False,
+            "moved_files": False,
+            "copied_files": False,
+            "wrote_canonical_assets": False,
+            "mutated_intake_slot": False,
+            "updated_canonical_assets_committed": False,
+            "changed_storage_policy": False,
+            "approved_copyright": False,
+            "approved_provenance": False,
+            "set_intake_ready_to_proceed": False,
+            "pack_locking_performed": False,
+            "kling_generation_performed": False,
+            "lifecycle_promotion_performed": False,
+            "binaries_added": False,
+        },
+    )
+
+    report = run_validation(tmp_path)
+
+    assert report.total_files == 1
+    assert report.valid_files == 1
+    assert report.by_record_type["pre_b8a_clean_reset"] == 1

@@ -1,0 +1,272 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/pre_b8a_clean_reset.schema.json",
+  "title": "Pre-B8A Clean Reset",
+  "description": "Metadata-only readiness audit before starting B8A canonical asset intake.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scene_id",
+    "audit_at",
+    "target_slot",
+    "reset_status",
+    "ready_for_b8a_clean_branch",
+    "staging_scan_complete",
+    "unexpected_staging_files_found",
+    "unsafe_paths_found",
+    "duplicate_targets_found",
+    "non_wd001_staging_found",
+    "canonical_slot_unexpected_files_found",
+    "scan_roots",
+    "staged_files_count",
+    "sidecar_files_count",
+    "orphan_sidecars",
+    "staged_images_without_sidecars",
+    "duplicate_target_canonical_paths",
+    "unsafe_paths",
+    "staged_files_outside_wd001",
+    "unexpected_staging_paths",
+    "unexpected_canonical_files",
+    "wd001_slot_state",
+    "deleted_files",
+    "moved_files",
+    "copied_files",
+    "wrote_canonical_assets",
+    "mutated_intake_slot",
+    "updated_canonical_assets_committed",
+    "changed_storage_policy",
+    "approved_copyright",
+    "approved_provenance",
+    "set_intake_ready_to_proceed",
+    "pack_locking_performed",
+    "kling_generation_performed",
+    "lifecycle_promotion_performed",
+    "binaries_added"
+  ],
+  "properties": {
+    "scene_id": {
+      "type": "string",
+      "pattern": "^SC\\d{4}$"
+    },
+    "audit_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "target_slot": {
+      "type": "string",
+      "const": "visual_dev/elements/characters/C01/wardrobe/WD001/"
+    },
+    "reset_status": {
+      "type": "string",
+      "enum": [
+        "clean_for_b8a_start",
+        "cleanup_required_before_b8a"
+      ]
+    },
+    "ready_for_b8a_clean_branch": {
+      "type": "boolean"
+    },
+    "staging_scan_complete": {
+      "type": "boolean",
+      "const": true
+    },
+    "unexpected_staging_files_found": {
+      "type": "boolean"
+    },
+    "unsafe_paths_found": {
+      "type": "boolean"
+    },
+    "duplicate_targets_found": {
+      "type": "boolean"
+    },
+    "non_wd001_staging_found": {
+      "type": "boolean"
+    },
+    "canonical_slot_unexpected_files_found": {
+      "type": "boolean"
+    },
+    "scan_roots": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "staging_root",
+        "approved_staging_dir",
+        "target_slot_dir",
+        "target_slot_ref"
+      ],
+      "properties": {
+        "staging_root": {
+          "type": "string",
+          "const": "visual_dev/intake_staging"
+        },
+        "approved_staging_dir": {
+          "type": "string",
+          "const": "visual_dev/intake_staging/C01_WD001"
+        },
+        "target_slot_dir": {
+          "type": "string",
+          "const": "visual_dev/elements/characters/C01/wardrobe/WD001"
+        },
+        "target_slot_ref": {
+          "type": "string",
+          "const": "visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml"
+        }
+      }
+    },
+    "staged_files_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "sidecar_files_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "orphan_sidecars": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "staged_images_without_sidecars": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "duplicate_target_canonical_paths": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "unsafe_paths": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "staged_files_outside_wd001": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "unexpected_staging_paths": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "unexpected_canonical_files": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "wd001_slot_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slot_path",
+        "source_status",
+        "storage_policy",
+        "canonical_assets_committed_count",
+        "intake_ready_to_proceed",
+        "copyright_review",
+        "provenance_review"
+      ],
+      "properties": {
+        "slot_path": {
+          "type": "string",
+          "const": "visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml"
+        },
+        "source_status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "storage_policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "canonical_assets_committed_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "intake_ready_to_proceed": {
+          "type": "boolean"
+        },
+        "copyright_review": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance_review": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "deleted_files": {
+      "type": "boolean",
+      "const": false
+    },
+    "moved_files": {
+      "type": "boolean",
+      "const": false
+    },
+    "copied_files": {
+      "type": "boolean",
+      "const": false
+    },
+    "wrote_canonical_assets": {
+      "type": "boolean",
+      "const": false
+    },
+    "mutated_intake_slot": {
+      "type": "boolean",
+      "const": false
+    },
+    "updated_canonical_assets_committed": {
+      "type": "boolean",
+      "const": false
+    },
+    "changed_storage_policy": {
+      "type": "boolean",
+      "const": false
+    },
+    "approved_copyright": {
+      "type": "boolean",
+      "const": false
+    },
+    "approved_provenance": {
+      "type": "boolean",
+      "const": false
+    },
+    "set_intake_ready_to_proceed": {
+      "type": "boolean",
+      "const": false
+    },
+    "pack_locking_performed": {
+      "type": "boolean",
+      "const": false
+    },
+    "kling_generation_performed": {
+      "type": "boolean",
+      "const": false
+    },
+    "lifecycle_promotion_performed": {
+      "type": "boolean",
+      "const": false
+    },
+    "binaries_added": {
+      "type": "boolean",
+      "const": false
+    }
+  }
+}

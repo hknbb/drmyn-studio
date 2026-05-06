@@ -1,0 +1,47 @@
+scene_id: SC0001
+audit_at: '2026-05-06T14:30:00Z'
+target_slot: visual_dev/elements/characters/C01/wardrobe/WD001/
+reset_status: clean_for_b8a_start
+ready_for_b8a_clean_branch: true
+staging_scan_complete: true
+unexpected_staging_files_found: false
+unsafe_paths_found: false
+duplicate_targets_found: false
+non_wd001_staging_found: false
+canonical_slot_unexpected_files_found: false
+scan_roots:
+  staging_root: visual_dev/intake_staging
+  approved_staging_dir: visual_dev/intake_staging/C01_WD001
+  target_slot_dir: visual_dev/elements/characters/C01/wardrobe/WD001
+  target_slot_ref: visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml
+staged_files_count: 0
+sidecar_files_count: 0
+orphan_sidecars: []
+staged_images_without_sidecars: []
+duplicate_target_canonical_paths: []
+unsafe_paths: []
+staged_files_outside_wd001: []
+unexpected_staging_paths: []
+unexpected_canonical_files: []
+wd001_slot_state:
+  slot_path: visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml
+  source_status: not_collected
+  storage_policy: no_binary_commits
+  canonical_assets_committed_count: 0
+  intake_ready_to_proceed: false
+  copyright_review: pending
+  provenance_review: pending
+deleted_files: false
+moved_files: false
+copied_files: false
+wrote_canonical_assets: false
+mutated_intake_slot: false
+updated_canonical_assets_committed: false
+changed_storage_policy: false
+approved_copyright: false
+approved_provenance: false
+set_intake_ready_to_proceed: false
+pack_locking_performed: false
+kling_generation_performed: false
+lifecycle_promotion_performed: false
+binaries_added: false
