@@ -145,7 +145,7 @@
     },
     "storage_policy": {
       "type": "string",
-      "const": "no_binary_commits"
+      "enum": ["no_binary_commits", "git_lfs_approved_references_only"]
     },
     "canonical_assets_created": {
       "type": "boolean",

@@ -26,7 +26,6 @@ ALLOWED_AGENTS = {
     "claude_code",
     "codex",
     "gemini_code_assist",
-    "chatgpt_project",
 }
 ALLOWED_REASONS = {
     "limit_reached",
@@ -232,6 +231,49 @@ def _write_revision_markdown(
     return _relative(path, repo_root)
 
 
+def _write_handoff_record(
+    repo_root: Path,
+    *,
+    recommendation: OperatorNextStep,
+    target_agent: str,
+    reason: str,
+    timestamp: str,
+    created_at: str,
+    from_agent: str,
+    session_id: str | None,
+    branch: str | None,
+    head_sha: str | None,
+) -> str:
+    """Write one HO-*.yaml and return its repo-relative path."""
+    handoff_path = _next_handoff_path(repo_root, timestamp)
+    payload: dict = {
+        "handoff_id": handoff_path.stem,
+        "created_at": created_at,
+        "from_agent": from_agent,
+        "to_agent": target_agent,
+        "reason": reason,
+        "current_task": recommendation.current_task,
+        "context_files": recommendation.open_files,
+        "do_steps": recommendation.do_steps,
+        "expected_outputs": recommendation.expected_outputs,
+        "safety_warnings": recommendation.safety_warnings,
+        "status": "open",
+    }
+    if recommendation.scene_id is not None:
+        payload["scene_id"] = recommendation.scene_id
+    if session_id is not None:
+        payload["session_id"] = session_id
+    if branch:
+        payload["branch"] = branch
+    if head_sha:
+        payload["head_sha"] = head_sha
+    handoff_path.write_text(
+        yaml.safe_dump(payload, sort_keys=False),
+        encoding="utf-8",
+    )
+    return _relative(handoff_path, repo_root)
+
+
 def apply_command(
     repo_root: Path,
     *,
@@ -244,6 +286,7 @@ def apply_command(
     branch: str | None = None,
     head_sha: str | None = None,
     from_agent: str | None = None,
+    auto_handoff: bool = True,
 ) -> CopilotCommandResult:
     """Apply a human copilot command as metadata-only evidence."""
     if command not in COMMANDS:
@@ -256,7 +299,7 @@ def apply_command(
     created_at = _created_at(timestamp_source)
 
     if command == "yes":
-        written = _write_operator_session(
+        written_op = _write_operator_session(
             root,
             recommendation=recommendation,
             timestamp=timestamp,
@@ -264,10 +307,39 @@ def apply_command(
             status="in_progress",
             notes=note or "Operator accepted the current recommendation.",
         )
+        written_files: list[str] = [written_op]
+        if auto_handoff and recommendation.recommended_next_agent != "human_operator":
+            source_agent = from_agent or os.environ.get("CP_AGENT_NAME") or "human_operator"
+            if source_agent not in ALLOWED_AGENTS:
+                source_agent = "human_operator"
+            if source_agent != recommendation.recommended_next_agent:
+                resolved_branch = branch
+                resolved_sha = head_sha
+                if resolved_branch is None:
+                    resolved_branch = _git_value(root, ["rev-parse", "--abbrev-ref", "HEAD"])
+                if resolved_sha is None:
+                    raw = _git_value(root, ["rev-parse", "HEAD"])
+                    resolved_sha = raw[:12] if raw else None
+                written_ho = _write_handoff_record(
+                    root,
+                    recommendation=recommendation,
+                    target_agent=recommendation.recommended_next_agent,
+                    reason=recommendation.recommended_reason,
+                    timestamp=timestamp,
+                    created_at=created_at,
+                    from_agent=source_agent,
+                    session_id=session_id,
+                    branch=resolved_branch,
+                    head_sha=resolved_sha,
+                )
+                written_files.append(written_ho)
+        message = f"Operator session written: {written_op}"
+        if len(written_files) > 1:
+            message += f"; handoff written: {written_files[1]}"
         return CopilotCommandResult(
-            written_files=(written,),
+            written_files=tuple(written_files),
             next_recommendation=recommendation,
-            message=f"Operator session written: {written}",
+            message=message,
         )
 
     if command == "no":
@@ -314,6 +386,7 @@ def apply_command(
             message=f"Operator revision note written: {written}",
         )
 
+    # switch
     if not target_agent:
         raise ValueError("switch command requires target_agent.")
     if target_agent not in ALLOWED_AGENTS:
@@ -333,34 +406,18 @@ def apply_command(
         raw_head_sha = _git_value(root, ["rev-parse", "HEAD"])
         head_sha = raw_head_sha[:12] if raw_head_sha else None
 
-    handoff_path = _next_handoff_path(root, timestamp)
-    payload = {
-        "handoff_id": handoff_path.stem,
-        "created_at": created_at,
-        "from_agent": source_agent,
-        "to_agent": target_agent,
-        "reason": reason,
-        "current_task": recommendation.current_task,
-        "context_files": recommendation.open_files,
-        "do_steps": recommendation.do_steps,
-        "expected_outputs": recommendation.expected_outputs,
-        "safety_warnings": recommendation.safety_warnings,
-        "status": "open",
-    }
-    if recommendation.scene_id is not None:
-        payload["scene_id"] = recommendation.scene_id
-    if session_id is not None:
-        payload["session_id"] = session_id
-    if branch:
-        payload["branch"] = branch
-    if head_sha:
-        payload["head_sha"] = head_sha
-
-    handoff_path.write_text(
-        yaml.safe_dump(payload, sort_keys=False),
-        encoding="utf-8",
+    written = _write_handoff_record(
+        root,
+        recommendation=recommendation,
+        target_agent=target_agent,
+        reason=reason,
+        timestamp=timestamp,
+        created_at=created_at,
+        from_agent=source_agent,
+        session_id=session_id,
+        branch=branch,
+        head_sha=head_sha,
     )
-    written = _relative(handoff_path, root)
     return CopilotCommandResult(
         written_files=(written,),
         next_recommendation=recommendation,

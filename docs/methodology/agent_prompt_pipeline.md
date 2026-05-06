@@ -56,8 +56,10 @@ The layer follows the same production boundaries as the rest of the repo:
 - `operator_next_step.py` stays a read-only recommender.
 - `copilot_command.py` performs human-triggered write actions.
 - `agent_handoff` records in `evidence/agent_handoffs/` let Claude Code, Codex,
-  Gemini Code Assist, ChatGPT Project, and the human operator pass context
-  without external APIs.
+  Gemini Code Assist, and the human operator pass context without external
+  APIs.
+- The canonical Producer/Critic/Director role contract is documented in
+  `docs/operator_guides/agent_role_contract.md`.
 - The human operator still owns external generation, PR approval, lifecycle
   promotion, and final merges.
 - Agents still must not commit binaries, write credentials, use Google Drive

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/canonical_asset_intake_slot.schema.json",
+  "title": "Canonical Asset Intake Slot",
+  "description": "Per-element-group intake slot metadata. Tracks acquisition status, required views, copyright/provenance state, and storage policy for one canonical reference set. storage_policy transitions from no_binary_commits to git_lfs_approved_references_only only after a human-reviewed PR that confirms copyright, provenance, and all required_views are committed via LFS.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scene_id",
+    "work_order_id",
+    "element_id",
+    "element_type",
+    "group_id",
+    "group_type",
+    "context",
+    "required_views",
+    "source_status",
+    "copyright_review",
+    "provenance_review",
+    "intake_ready_to_proceed",
+    "canonical_assets_committed",
+    "storage_policy",
+    "forbidden_actions"
+  ],
+  "properties": {
+    "scene_id": { "type": "string", "pattern": "^SC\\d{4}$" },
+    "work_order_id": { "type": "string", "minLength": 1 },
+    "element_id": { "type": "string", "minLength": 1 },
+    "element_type": {
+      "type": "string",
+      "enum": ["character", "location", "prop", "wardrobe", "unknown"]
+    },
+    "group_id": { "type": "string", "minLength": 1 },
+    "group_type": {
+      "type": "string",
+      "enum": [
+        "wardrobe_reference_set",
+        "location_sub_area_reference_set",
+        "prop_reference_set",
+        "character_reference_set",
+        "unknown"
+      ]
+    },
+    "context": { "type": "string", "minLength": 1 },
+    "required_views": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "notes": { "type": "string" },
+    "source_status": {
+      "type": "string",
+      "enum": ["not_collected", "source_images_in_repo", "source_images_external"]
+    },
+    "copyright_review": {
+      "type": "string",
+      "enum": ["pending", "approved", "rejected"]
+    },
+    "provenance_review": {
+      "type": "string",
+      "enum": ["pending", "approved", "rejected"]
+    },
+    "intake_ready_to_proceed": { "type": "boolean" },
+    "canonical_assets_committed": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "storage_policy": {
+      "type": "string",
+      "enum": ["no_binary_commits", "git_lfs_approved_references_only"],
+      "description": "no_binary_commits = no images may be added yet. git_lfs_approved_references_only = approved canonical reference images may be committed via Git LFS only after human copyright and provenance review."
+    },
+    "forbidden_actions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "target_dir": { "type": "string", "minLength": 1 }
+  }
+}

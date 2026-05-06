@@ -1,0 +1,60 @@
+scene_id: SC0001
+audit_at: '2026-05-05T11:15:00Z'
+audit_status: clean_pre_asset_baseline
+ready_for_first_asset_intake: true
+blocked_for_kling_generation: true
+summary:
+  tracked_media_binaries_found: false
+  tracked_media_binary_count: 0
+  canonical_assets_present: false
+  canonical_asset_count: 0
+  external_generation_performed: false
+  pack_locking_performed: false
+  pack_manifest_mutation_performed: false
+  copyright_completion_claimed: false
+  provenance_completion_claimed: false
+  lifecycle_promotion_performed: false
+publication_checkpoint:
+  public_release_version: v0.3.0
+  zenodo_doi: 10.5281/zenodo.20036189
+  zenodo_record: https://zenodo.org/records/20036189
+  citation_updated: true
+baseline_refs:
+  omni_gate: evidence/omni_set_gates/SC0001_gate.yaml
+  pack_lock_readiness: evidence/pack_lock_readiness/SC0001_pack_lock_readiness.yaml
+  intake_instructions: evidence/canonical_asset_intake_instructions/SC0001_intake_instructions.yaml
+sc0001_gate_state:
+  ready_for_kling_prompt_generation: false
+  gate_status: blocked_pending_locked_element_packs
+  ready_packs: 0
+  metadata_only_packs: 4
+pack_baseline:
+  required_pack_count: 4
+  metadata_only_pack_count: 4
+  ready_for_lock_review: 0
+  packs_missing_canonical_assets: 4
+tracked_media_binaries: []
+canonical_assets_committed: []
+local_non_baseline_artifacts:
+- path: evidence/provenance/dryrun-z1p1/
+  status: ignored_local_artifact
+  part_of_first_asset_intake: false
+  affects_repo_baseline: false
+- path: .claude/worktrees/
+  status: ignored_local_worktree_artifact
+  part_of_first_asset_intake: false
+  affects_repo_baseline: false
+- path: prompts/prompt_library.yaml
+  status: local_dirty_tracked_file
+  staged_for_this_batch: false
+  touched_by_this_batch: false
+  part_of_first_asset_intake: false
+  affects_repo_baseline: false
+storage_policy: no_binary_commits
+external_generation_performed: false
+binary_outputs_created: false
+pack_locking_performed: false
+pack_manifest_mutation_performed: false
+copyright_completion_claimed: false
+provenance_completion_claimed: false
+lifecycle_promotion_performed: false

@@ -6,13 +6,15 @@ review remains the approval boundary.
 
 ## Roles
 
+The canonical role contract lives in
+`docs/operator_guides/agent_role_contract.md`. This table is the short form.
+
 | Actor | Role |
 |---|---|
 | `human_operator` | Owns decisions, external tools, lifecycle promotion, and PR approval. |
 | `claude_code` | Primary implementation agent for scoped batch work. |
 | `codex` | Review and repair agent for repo-faithfulness, tests, validators, and safety gates. |
-| `gemini_code_assist` | Second-opinion reviewer and pinch-hitter implementor when Claude and Codex are unavailable. |
-| `chatgpt_project` | Long-form planning and source-context exploration outside the repo; output is pasted into notes. |
+| `gemini_code_assist` | Second-opinion reviewer, long-form planning/research, and pinch-hitter implementor when Claude and Codex are unavailable. |
 
 ## Non-Negotiable Invariants
 
@@ -38,8 +40,8 @@ The human operator may use a small command vocabulary:
 
 ## Handoff Discipline
 
-- Use `evidence/agent_handoffs/HO-*.yaml` for Claude, Codex, Gemini, ChatGPT
-  Project, or human handoffs.
+- Use `evidence/agent_handoffs/HO-*.yaml` for Claude, Codex, Gemini, or human
+  handoffs.
 - Handoff records are repo-relative and metadata-only.
 - Do not place tokens, API keys, Google Drive credentials, or GitHub secrets in
   handoff records, notes, docs, logs, or environment files.

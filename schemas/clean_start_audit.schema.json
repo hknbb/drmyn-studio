@@ -1,0 +1,296 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/clean_start_audit.schema.json",
+  "title": "Clean Start Audit",
+  "description": "Metadata-only pre-asset baseline audit before first canonical asset intake.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scene_id",
+    "audit_at",
+    "audit_status",
+    "ready_for_first_asset_intake",
+    "blocked_for_kling_generation",
+    "summary",
+    "publication_checkpoint",
+    "baseline_refs",
+    "sc0001_gate_state",
+    "pack_baseline",
+    "tracked_media_binaries",
+    "canonical_assets_committed",
+    "local_non_baseline_artifacts",
+    "storage_policy",
+    "external_generation_performed",
+    "binary_outputs_created",
+    "pack_locking_performed",
+    "pack_manifest_mutation_performed",
+    "copyright_completion_claimed",
+    "provenance_completion_claimed",
+    "lifecycle_promotion_performed"
+  ],
+  "properties": {
+    "scene_id": {
+      "type": "string",
+      "pattern": "^SC\\d{4}$"
+    },
+    "audit_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "audit_status": {
+      "type": "string",
+      "const": "clean_pre_asset_baseline"
+    },
+    "ready_for_first_asset_intake": {
+      "type": "boolean",
+      "const": true
+    },
+    "blocked_for_kling_generation": {
+      "type": "boolean",
+      "const": true
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tracked_media_binaries_found",
+        "tracked_media_binary_count",
+        "canonical_assets_present",
+        "canonical_asset_count",
+        "external_generation_performed",
+        "pack_locking_performed",
+        "pack_manifest_mutation_performed",
+        "copyright_completion_claimed",
+        "provenance_completion_claimed",
+        "lifecycle_promotion_performed"
+      ],
+      "properties": {
+        "tracked_media_binaries_found": {
+          "type": "boolean",
+          "const": false
+        },
+        "tracked_media_binary_count": {
+          "type": "integer",
+          "const": 0
+        },
+        "canonical_assets_present": {
+          "type": "boolean",
+          "const": false
+        },
+        "canonical_asset_count": {
+          "type": "integer",
+          "const": 0
+        },
+        "external_generation_performed": {
+          "type": "boolean",
+          "const": false
+        },
+        "pack_locking_performed": {
+          "type": "boolean",
+          "const": false
+        },
+        "pack_manifest_mutation_performed": {
+          "type": "boolean",
+          "const": false
+        },
+        "copyright_completion_claimed": {
+          "type": "boolean",
+          "const": false
+        },
+        "provenance_completion_claimed": {
+          "type": "boolean",
+          "const": false
+        },
+        "lifecycle_promotion_performed": {
+          "type": "boolean",
+          "const": false
+        }
+      }
+    },
+    "publication_checkpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "public_release_version",
+        "zenodo_doi",
+        "zenodo_record",
+        "citation_updated"
+      ],
+      "properties": {
+        "public_release_version": {
+          "type": "string",
+          "const": "v0.3.0"
+        },
+        "zenodo_doi": {
+          "type": "string",
+          "const": "10.5281/zenodo.20036189"
+        },
+        "zenodo_record": {
+          "type": "string",
+          "const": "https://zenodo.org/records/20036189"
+        },
+        "citation_updated": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "baseline_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "omni_gate",
+        "pack_lock_readiness",
+        "intake_instructions"
+      ],
+      "properties": {
+        "omni_gate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pack_lock_readiness": {
+          "type": "string",
+          "minLength": 1
+        },
+        "intake_instructions": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "sc0001_gate_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ready_for_kling_prompt_generation",
+        "gate_status",
+        "ready_packs",
+        "metadata_only_packs"
+      ],
+      "properties": {
+        "ready_for_kling_prompt_generation": {
+          "type": "boolean",
+          "const": false
+        },
+        "gate_status": {
+          "type": "string",
+          "const": "blocked_pending_locked_element_packs"
+        },
+        "ready_packs": {
+          "type": "integer",
+          "const": 0
+        },
+        "metadata_only_packs": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "pack_baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_pack_count",
+        "metadata_only_pack_count",
+        "ready_for_lock_review",
+        "packs_missing_canonical_assets"
+      ],
+      "properties": {
+        "required_pack_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "metadata_only_pack_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "ready_for_lock_review": {
+          "type": "integer",
+          "const": 0
+        },
+        "packs_missing_canonical_assets": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "tracked_media_binaries": {
+      "type": "array",
+      "maxItems": 0
+    },
+    "canonical_assets_committed": {
+      "type": "array",
+      "maxItems": 0
+    },
+    "local_non_baseline_artifacts": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "status",
+          "part_of_first_asset_intake",
+          "affects_repo_baseline"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "minLength": 1
+          },
+          "staged_for_this_batch": {
+            "type": "boolean"
+          },
+          "touched_by_this_batch": {
+            "type": "boolean"
+          },
+          "part_of_first_asset_intake": {
+            "type": "boolean",
+            "const": false
+          },
+          "affects_repo_baseline": {
+            "type": "boolean",
+            "const": false
+          }
+        }
+      }
+    },
+    "storage_policy": {
+      "type": "string",
+      "const": "no_binary_commits"
+    },
+    "external_generation_performed": {
+      "type": "boolean",
+      "const": false
+    },
+    "binary_outputs_created": {
+      "type": "boolean",
+      "const": false
+    },
+    "pack_locking_performed": {
+      "type": "boolean",
+      "const": false
+    },
+    "pack_manifest_mutation_performed": {
+      "type": "boolean",
+      "const": false
+    },
+    "copyright_completion_claimed": {
+      "type": "boolean",
+      "const": false
+    },
+    "provenance_completion_claimed": {
+      "type": "boolean",
+      "const": false
+    },
+    "lifecycle_promotion_performed": {
+      "type": "boolean",
+      "const": false
+    }
+  }
+}
