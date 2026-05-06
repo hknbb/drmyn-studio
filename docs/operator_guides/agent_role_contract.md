@@ -62,7 +62,7 @@ Current routing policy:
 | `storyboard_selection` | `gemini_code_assist` | `second_opinion` |
 | `model_guidance_snapshot_refresh` | `gemini_code_assist` | `drafting_assist` |
 | `image_review_preparation` | `claude_code` | `drafting_assist` |
-| `image_review` | `codex` | `review_requested` |
+| `image_review` | `claude_code` | `review_requested` |
 | `t2i_image_generation` | `claude_code` | `manual_pickup` |
 | `blocked` | `claude_code` | `manual_pickup` |
 
