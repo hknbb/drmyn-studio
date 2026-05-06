@@ -174,7 +174,7 @@ def test_candidate_images_with_review_notes_recommends_image_review(
     step = recommend_next_step(tmp_path)
 
     assert step.current_task == "image_review"
-    _assert_recommended_route(step, "codex", "review_requested")
+    _assert_recommended_route(step, "claude_code", "review_requested")
     _assert_allowed_commands(step)
     assert notes.relative_to(tmp_path).as_posix() in step.open_files
     assert any("ImageReviewAgent" in item for item in step.do_steps)
