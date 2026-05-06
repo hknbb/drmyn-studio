@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from dataclasses import asdict, dataclass
@@ -224,6 +225,7 @@ def run_copilot_command(args: argparse.Namespace) -> PipelineResult:
     repo_root = args.repo_root.resolve()
     if not args.command:
         raise PipelineError("copilot-command requires --command.")
+    auto_handoff = getattr(args, "auto_handoff", True)
     result = apply_command(
         repo_root,
         command=args.command,
@@ -231,6 +233,7 @@ def run_copilot_command(args: argparse.Namespace) -> PipelineResult:
         reason=args.reason,
         session_id=args.session_id,
         note=args.note,
+        auto_handoff=auto_handoff,
     )
     return PipelineResult(
         mode=args.mode,
@@ -238,6 +241,110 @@ def run_copilot_command(args: argparse.Namespace) -> PipelineResult:
         skipped=[],
         message=result.message,
     )
+
+
+_PICKUP_ROLE_LABELS = {
+    "claude_code": "Producer",
+    "codex": "Critic",
+    "gemini_code_assist": "Director",
+}
+
+_PICKUP_ALLOWED_AGENTS = frozenset({"claude_code", "codex", "gemini_code_assist"})
+
+
+def run_pickup(args: argparse.Namespace) -> int:
+    """Print a ready-to-use agent prompt from the latest matching open handoff."""
+    repo_root = args.repo_root.resolve()
+    agent_name = os.environ.get("CP_AGENT_NAME", "").strip()
+    if not agent_name:
+        print("error: CP_AGENT_NAME environment variable is not set.", file=sys.stderr)
+        return 2
+    if agent_name not in _PICKUP_ALLOWED_AGENTS:
+        print(
+            f"error: CP_AGENT_NAME '{agent_name}' is not a valid pickup agent. "
+            f"Allowed: {', '.join(sorted(_PICKUP_ALLOWED_AGENTS))}",
+            file=sys.stderr,
+        )
+        return 2
+
+    handoffs_dir = repo_root / "evidence" / "agent_handoffs"
+    if not handoffs_dir.is_dir():
+        print("error: no evidence/agent_handoffs directory found.", file=sys.stderr)
+        return 2
+
+    candidates = sorted(handoffs_dir.glob("HO-*.yaml"), reverse=True)
+    matched_path: Path | None = None
+    matched_payload: dict | None = None
+    for ho_path in candidates:
+        try:
+            payload = yaml.safe_load(ho_path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if not isinstance(payload, dict):
+            continue
+        if payload.get("to_agent") == agent_name and payload.get("status") == "open":
+            matched_path = ho_path
+            matched_payload = payload
+            break
+
+    if matched_path is None or matched_payload is None:
+        print(
+            f"error: no open handoff found for agent '{agent_name}'.",
+            file=sys.stderr,
+        )
+        return 2
+
+    ho_rel = _relative(matched_path, repo_root)
+    role_label = _PICKUP_ROLE_LABELS.get(agent_name, agent_name)
+    current_task = matched_payload.get("current_task", "unknown")
+    scene_id = matched_payload.get("scene_id", "n/a")
+    branch = matched_payload.get("branch", "unknown")
+    head_sha = matched_payload.get("head_sha", "unknown")
+    context_files: list[str] = matched_payload.get("context_files", []) or []
+    do_steps: list[str] = matched_payload.get("do_steps", []) or []
+    expected_outputs: list[str] = matched_payload.get("expected_outputs", []) or []
+    safety_warnings: list[str] = matched_payload.get("safety_warnings", []) or []
+
+    context_lines = "\n".join(f"  - {f}" for f in context_files) or "  (none)"
+    steps_lines = "\n".join(f"  - {s}" for s in do_steps) or "  (none)"
+    outputs_lines = "\n".join(f"  - {o}" for o in expected_outputs) or "  (none)"
+    warnings_lines = "\n".join(f"  - {w}" for w in safety_warnings) or "  (none)"
+
+    prompt_block = f"""\
+=== AGENT PICKUP PROMPT ===
+
+Role: {agent_name} ({role_label})
+Agent Role Contract: docs/operator_guides/agent_role_contract.md
+
+Handoff: {ho_rel}
+Current Task: {current_task}
+Scene ID: {scene_id}
+Branch: {branch}
+Head SHA: {head_sha}
+
+Context Files:
+{context_lines}
+
+Steps To Complete:
+{steps_lines}
+
+Expected Outputs:
+{outputs_lines}
+
+Safety Warnings:
+{warnings_lines}
+
+--- SCOPE GUARD ---
+Read the handoff, verify branch/head_sha, inspect context_files and
+safety_warnings. Complete only the listed expected_outputs.
+Do not touch files outside the approved batch scope.
+Do not promote lifecycle fields, pack locks, or copyright/provenance status.
+Do not commit image, video, audio, or binary production outputs.
+Do not modify prompts/prompt_library.yaml or visual_dev/elements/**.
+---
+"""
+    print(prompt_block, end="")
+    return 0
 
 
 def run_suggest_pr(args: argparse.Namespace) -> PipelineResult:
@@ -592,6 +699,7 @@ def build_parser() -> argparse.ArgumentParser:
             "operator-next-step",
             "copilot-command",
             "suggest-pr",
+            "pickup",
         ],
     )
     parser.add_argument("--repo-root", type=Path, default=Path("."))
@@ -624,6 +732,20 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--note")
     parser.add_argument("--branch")
     parser.add_argument("--base", default="main")
+    handoff_group = parser.add_mutually_exclusive_group()
+    handoff_group.add_argument(
+        "--auto-handoff",
+        dest="auto_handoff",
+        action="store_true",
+        default=True,
+        help="Automatically write a handoff record when yes command routes to an agent (default on).",
+    )
+    handoff_group.add_argument(
+        "--no-auto-handoff",
+        dest="auto_handoff",
+        action="store_false",
+        help="Disable automatic handoff writing for the yes command.",
+    )
     return parser
 
 
@@ -634,6 +756,8 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.mode == "operator-next-step":
             return run_operator_next_step(args)
+        if args.mode == "pickup":
+            return run_pickup(args)
         if args.mode == "refresh-model-guidance":
             result = run_refresh_model_guidance(args)
         elif args.mode == "copilot-command":
