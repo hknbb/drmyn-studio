@@ -1,12 +1,20 @@
-# DRMYN Studio — Metadata-Only Human-Agent Film Production Workflow
+# DRMYN Studio — Metadata-Only AI-Assisted Movie Development and Production Workflow
 
 [![DOI](https://zenodo.org/badge/1227492409.svg)](https://doi.org/10.5281/zenodo.19987410)
 
-This repository contains the canonical planning, prompt-governance, validation, and reproducibility infrastructure for **DRMYN Studio**, demonstrated through **Zone 1 / Phase 1** of the *Closing Price* AI-assisted film project.
+This repository contains the canonical source records, planning metadata, prompt-governance, validation, and reproducibility infrastructure for **DRMYN Studio**, demonstrated through the *Closing Price* AI-assisted film project.
+
+## Scope
+
+DRMYN Studio is a metadata-only, schema-validated, human-gated research software framework for AI-assisted **movie development and movie production process** design, documentation, validation, and reproducibility.
+
+The repository is not a generated-media repository and is not limited to screenplay generation. Screenplay-related files, when present, are treated as one component of the broader movie development process.
+
+The repository records source truth, planning metadata, prompt governance, validation evidence, human approval decisions, agent handoffs, and reproducibility artifacts for an AI-assisted film production workflow.
 
 ## Purpose
 
-DRMYN Studio is the **pre-production and prompt-engineering layer** of the AI-assisted film production pipeline. It is responsible for:
+DRMYN Studio governs the **pre-production and production-process metadata layer** of an AI-assisted film production pipeline. It is responsible for:
 
 - defining canonical source truth
 - stabilizing scene, character, location, continuity, and prompt records
@@ -14,7 +22,7 @@ DRMYN Studio is the **pre-production and prompt-engineering layer** of the AI-as
 - supporting GitHub-based review and approval
 - generating reproducible artifacts before downstream runtime generation
 
-This repository is **not** the runtime output layer. Runtime graph artifacts, event logs, and materialized indices belong to later stages of the broader Nexus Zero pipeline.
+This repository is **not** a runtime output repository. Generated image, video, audio, and post-production binaries are stored externally per the storage policy and referenced by metadata-only records.
 
 ## Core principles
 
@@ -144,7 +152,6 @@ See `docs/publication/aesthetic_bible_overview.md` for pack rationale and `schem
 
 ## Scientific Clean Release / Reviewer Entrypoint
 
-The Human-Agent Production Copilot layer (HA-0 → HA-6) is complete and merged.
 For journal reviewers and reproducibility auditors, the canonical entrypoint is:
 
 ```
@@ -164,7 +171,17 @@ python scripts/validate_prompt_records.py --repo-root .
 
 ## Citation
 
-If you use this repository in a publication, please cite it using the metadata in [CITATION.cff](CITATION.cff).
+If you use this repository in a publication, please cite the archived Zenodo software release:
+
+```
+Babacan, H. (2026). DRMYN Studio: Metadata-Only AI-Assisted Movie Development and
+Production Workflow (Version 0.4.0) [Computer software]. Zenodo.
+https://doi.org/10.5281/zenodo.PENDING_V040
+```
+
+For machine-readable citation metadata, see [CITATION.cff](CITATION.cff).
+For authorship and contribution details, see [AUTHORS.md](AUTHORS.md), [CONTRIBUTORS.md](CONTRIBUTORS.md),
+and [docs/publication/contributor_roles.md](docs/publication/contributor_roles.md).
 
 ## Archiving
 
