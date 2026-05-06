@@ -1,0 +1,59 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+
+  "name": "DRMYN Studio",
+  "version": "0.4.0",
+  "description": "Metadata-only research software for AI-assisted movie development and movie production process design, validation, and reproducibility.",
+  "codeRepository": "https://github.com/hknbb/drmyn-studio-public",
+  "identifier": "https://doi.org/10.5281/zenodo.PENDING_V040",
+  "license": "https://spdx.org/licenses/MIT",
+
+  "applicationCategory": "Research software",
+  "keywords": [
+    "AI-assisted movie development",
+    "movie development process",
+    "movie production process",
+    "computational film production",
+    "cinema studies",
+    "social sciences",
+    "metadata-only pipeline",
+    "schema validation",
+    "human-agent collaboration",
+    "reproducibility"
+  ],
+
+  "author": [
+    {
+      "@type": "Person",
+      "@id": "https://orcid.org/0009-0006-5152-7728",
+      "givenName": "Hakan",
+      "familyName": "Babacan",
+      "affiliation": "Independent Researcher, Istanbul, Turkey",
+      "email": "babacanhakan@gmail.com"
+    }
+  ],
+
+  "contributor": [
+    {
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-6652-2125",
+      "givenName": "Gizem",
+      "familyName": "Parlayandemir Sayan",
+      "affiliation": "Istanbul University, Radio, Television and Cinema, Istanbul, Turkey",
+      "email": "gizem.parlayandemir@istanbul.edu.tr",
+      "roleName": "Cinema studies validation; social-science evaluation; conceptual review; manuscript review and correction"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-4916-3989",
+      "givenName": "Serra",
+      "familyName": "Çelik",
+      "affiliation": "Istanbul University, Informatics, Istanbul, Turkey",
+      "email": "serra.celik@istanbul.edu.tr",
+      "roleName": "Technical-scientific validation; computer science review; software correction; methodological verification"
+    }
+  ],
+
+  "referencePublication": "https://doi.org/10.XXXX/ARTICLE_DOI_PENDING"
+}
