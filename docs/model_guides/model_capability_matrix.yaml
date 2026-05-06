@@ -5,7 +5,7 @@
 # All adapters read this file — never hardcode capability assumptions in adapter code.
 
 schema_version: "1.0"
-last_updated: "2026-05-04"
+last_updated: "2026-05-07"
 maintained_by: "human PR only"
 
 models:
@@ -46,13 +46,15 @@ models:
     canonical_id: nano_banana
     guide_file: docs/model_guides/nano_banana.yaml
     output_type: image
-    supports_negative_prompt: true
+    supports_negative_prompt: false
     supports_identity_consistency: true
     supports_variation_prompting: true
     supports_seed: false
     prompt_style: variation_and_consistency_logic
+    constraint_strategy: semantic_negation
     notes: >
       Designed for identity-consistent variation generation.
+      No negative_prompt field; uses semantic negation in prompt text.
       Prompt ID suffix (CLI): nano-banana
       File naming (snake_case): nano_banana
 

@@ -8,7 +8,7 @@ model_id: midjourney
 schema_version: "1.0"
 guide_version: "0.2.0"
 status: active
-last_updated: "2026-05-04"
+last_updated: "2026-05-07"
 maintained_by: "human PR only"
 phase: 1
 snapshot_ref: "evidence/model_guidance_snapshots/20260504T113000Z_midjourney.yaml"
@@ -20,7 +20,7 @@ capability:
   supports_seed: true
   supports_consistency_reference: true  # --oref + --ow (Omni Reference, V7+)
   max_prompt_length: unlimited
-  current_version: "V8.1 (alpha) / V7 (default)"
+  current_version: "V8.1 / V7 (default)"
 
 prompt_rules:
   style: compact_visual_clauses
@@ -30,10 +30,10 @@ prompt_rules:
   rules:
     - id: word_limit
       rule: >
-        Keep prompts under 60 words. Prioritise subject and scene in the first
-        40 words — Midjourney's attention drops sharply beyond 60 words.
-        Diminishing returns past 60; do not pad to reach an arbitrary word count.
-      source: "https://docs.midjourney.com/hc/en-us/articles/32023408776205-Prompt-Basics"
+        V8.1 has 74-token hard cap (tokenizer-based, not word count; tokens ≠ words).
+        Target 40-50 meaningful words. First 40 words get strongest attention.
+        Do not pad. V7 60-word heuristic is outdated for V8.1; precision matters more.
+      source: "https://docs.midjourney.com/hc/en-us/articles/32199405667853-Version"
       confidence: high
       human_verified: true
     - id: subject_first
@@ -47,9 +47,10 @@ prompt_rules:
       human_verified: true
     - id: compact_clauses
       rule: >
-        Use comma-separated noun phrases, not full sentences.
-        Midjourney parses prompts word-by-word; complex syntax is ignored.
-        Avoid nested clauses; use short concrete fragments.
+        V8.1 prefers natural language sentences over V7's comma-clause pattern.
+        V8.1 is a literal executor: what you write is what you get (no creative gap-filling).
+        Structure: Subject → Environment → Style/Aesthetics → Lighting → Technical Parameters.
+        Explicit description replaces sparse prompting; be specific about scene direction.
       source: "https://docs.midjourney.com/hc/en-us/articles/32023408776205-Prompt-Basics"
       confidence: high
       human_verified: true
@@ -65,25 +66,25 @@ prompt_rules:
       human_verified: true
     - id: omni_reference
       rule: >
-        Character and object consistency uses --oref (Omni Reference), NOT --cref.
-        --cref is REMOVED in V7 and later. Use: "--oref <image-url> --ow <1-1000>"
-        --ow (Omni Weight) controls strength; default 100, keep below 400 for stability.
-        Operator must verify URL format and upload method before batch use.
-      source: "https://docs.midjourney.com/hc/en-us/articles/36285124473997-Omni-Reference"
+        V7: --oref (Omni Reference) with --ow <1-1000> for character/object consistency.
+        V8.1: --oref NOT available yet (on roadmap, not live as of May 2026).
+        V8.1 workarounds: --seed for reproducible variants, --sref for style anchoring (--sv 7 for stability),
+        --iw for image reference seeding. Operator must use V7 if --oref needed now.
+      source: "https://updates.midjourney.com/omni-reference-oref/"
       confidence: high
       human_verified: true
     - id: aspect_ratio
       rule: >
-        Use --ar 16:9 for cinematic wide, --ar 2.39:1 for anamorphic,
-        --ar 1:1 for square. Always specify for production shots.
+        Cinematic: --ar 16:9 or --ar 2.39:1 (anamorphic). Portraits/characters: --ar 2:3 (standard).
+        Always specify for production. V8.1 native 2K default; no separate upscale needed.
       source: "https://docs.midjourney.com/hc/en-us/articles/32859204029709-Parameter-List"
       confidence: high
       human_verified: true
     - id: pin_version
       rule: >
-        Always specify --v 7 or --v 8 to pin output style. Default is V7.
-        V8.1 is available on alpha.midjourney.com (faster, HD mode). Do not
-        rely on the default as it changes over time.
+        Always specify --v 7, --v 8, or --v 8.1. V8.1 is the current full release (2026-04-30).
+        Default is V7. Do not rely on default as it changes over time.
+        Add --style raw for commercial/brand/character work to suppress built-in aesthetic bias.
       source: "https://docs.midjourney.com/hc/en-us/articles/32199405667853-Version"
       confidence: high
       human_verified: true
@@ -103,10 +104,18 @@ prompt_rules:
       source: "plan invariant"
       confidence: high
       human_verified: true
+    - id: style_raw_for_production
+      rule: >
+        V8.1: Add --style raw to all character/commercial work.
+        --style raw strips built-in aesthetic bias, giving photorealistic/controlled output.
+        Default V8.1 can be over-processed; --style raw is production standard for portraits.
+      source: "https://docs.midjourney.com/hc/en-us/articles/32634113811853-Raw-Mode"
+      confidence: high
+      human_verified: true
   do_not_invent:
     - "Prompt weighting syntax (::2) — not confirmed in V7/V8"
     - "--cref — removed in V7; use --oref instead"
-    - "Style raw mode (--style raw) behavior — verify in current version"
+    - "Seed parameter in V8.1 character consistency (use for reproducible variants only)"
 
 source_refs:
   - url: "https://docs.midjourney.com/hc/en-us/articles/32199405667853-Version"
@@ -125,6 +134,18 @@ source_refs:
     source_class: official_docs
     human_verified: true
     notes: "--oref replaces --cref in V7+. Confirmed 2026-05-04."
+  - url: "https://updates.midjourney.com/v8-1-alpha/"
+    source_class: official_release_notes
+    human_verified: true
+    notes: "V8.1 full release 2026-04-30. Natural language, literal execution, token limits."
+  - url: "https://docs.midjourney.com/hc/en-us/articles/32634113811853-Raw-Mode"
+    source_class: official_docs
+    human_verified: true
+    notes: "--style raw strips aesthetic bias; essential for production character work."
+  - url: "https://updates.midjourney.com/omni-reference-oref/"
+    source_class: official_release_notes
+    human_verified: true
+    notes: "--oref not available in V8.1 (on roadmap). V7 workaround documented."
 
 notes: >
   Updated 2026-05-04 from web research. Key changes from v0.1.0:

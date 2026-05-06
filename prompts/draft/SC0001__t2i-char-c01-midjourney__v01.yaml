@@ -11,11 +11,10 @@ source_refs:
   - C01
   aesthetic_refs:
   - VALE_DOMESTIC_RESTRAINT
-prompt_text: Nadia, early to mid 30s, Controlled, observant, and physically exact,
-  Lean, upright, economical silhouette with no wasted motion, Muted neutrals and controlled
-  domestic tones, Elite domestic presentation in early Vale residence scenes, but
-  always practical enough, composed elite presentation, restrained posture, muted
-  domestic neutrals, no ornament
+prompt_text: A woman, early to mid thirties. Lean and upright with no wasted motion,
+  economical silhouette and controlled posture. Self-contained and observant. Composed
+  domestic presentation, muted neutrals, no ornament or decorative saturation. Hard
+  single key light, Nadav Kander skin tones. No beauty-lighting default.
 generation_params:
   model_guidance_mode: locked_guide
   model_guidance_ref: docs/model_guides/midjourney.yaml
@@ -23,18 +22,18 @@ generation_params:
   aesthetic_keywords_injected:
   - composed elite presentation, restrained posture
   - muted domestic neutrals, no ornament
+  - Nadav Kander cinematography
   planning_name_filter:
     forbidden:
     - Nadia Vale
-  recommended_model_version: --v 7
-  recommended_ar: --ar 16:9
+  recommended_model_version: --v 8.1
+  recommended_style: --style raw
+  recommended_ar: --ar 2:3
 expected_output:
   asset_type: image_set
   variation_count: 4
 status: active
 canon_lock: false
-negative_prompt: do-not-soften-into-maternal-warmth, do-not-erase-compliance-wound,
-  do-not-style-as-action-invulnerable, neon-cyberpunk-color-design, teal-orange-blockbuster-simplification,
-  golden-sentimental-domestic-warmth, do-not-aestheticize-blood, no-glossy-near-future-luxury,
-  no-comic-book-violence, no-beauty-light-default-on, no-abstract-drone-language,
-  no-omniscient-spectacle-camera, no-sentimental-mother-and-child-glow
+negative_prompt: maternal warmth softening, neon cyberpunk, teal-orange blockbuster,
+  golden sentimental glow, glossy near-future luxury, beauty lighting, spectacle
+  cinematography, smile, makeup retouching
