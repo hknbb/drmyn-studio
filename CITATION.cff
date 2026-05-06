@@ -1,39 +1,44 @@
 cff-version: 1.2.0
-message: "If you use this repository, please cite it as below."
-doi: 10.5281/zenodo.20049636
-title: "DRMYN Studio: A Metadata-Only Human-Agent Film Production Workflow"
+message: "If you use this repository, please cite the archived Zenodo software release."
+doi: 10.5281/zenodo.PENDING_V040
+title: "DRMYN Studio: Metadata-Only AI-Assisted Movie Development and Production Workflow"
 type: software
-version: 0.3.1
+version: 0.4.0
 date-released: 2026-05-06
 repository-code: "https://github.com/hknbb/drmyn-studio"
 url: "https://github.com/hknbb/drmyn-studio"
 abstract: >
-  DRMYN Studio is a metadata-only, schema-validated, human-gated pre-production
-  and prompt governance pipeline for AI-assisted film production. It provides
-  scene cards, character and location records, continuity files, prompt
-  lifecycle infrastructure, JSON schema validation (20+ schemas, draft 2020-12),
-  a three-agent autonomous orchestration layer (Claude Code / Codex / Gemini
-  Code Assist) with auto-handoff and pickup mode enabling structured multi-agent
-  coordination without external APIs, a Streamlit dashboard for operator
-  oversight, and a Film Aesthetic Bible system that injects deterministic,
-  scene-grounded visual keywords into T2I prompts via named aesthetic packs.
-  All production decisions are reproducible and academically defensible;
-  generated media outputs are stored externally and referenced by metadata-only
-  records. Demonstrated through the Closing Price AI-assisted film project.
+  DRMYN Studio is a metadata-only, schema-validated, human-gated research
+  software framework for AI-assisted movie development and movie production
+  process design, documentation, validation, and reproducibility. It provides
+  canonical source records, planning metadata, prompt governance, JSON schema
+  validation (20+ schemas, draft 2020-12), human approval workflows, evidence
+  records, release manifests, and reproducibility infrastructure for AI-assisted
+  film production processes. The repository also includes a three-agent
+  autonomous orchestration layer (Claude Code / Codex / Gemini Code Assist)
+  with auto-handoff and pickup mode enabling structured multi-agent coordination
+  without external APIs. Generated media outputs are stored externally and
+  referenced through metadata-only records. Demonstrated through the Closing
+  Price AI-assisted film project.
 keywords:
-  - screenplay generation
+  - movie development process
+  - movie production process
+  - AI-assisted film production
   - pre-production
   - prompt engineering
   - reproducibility
-  - github actions
-  - previsualization
   - human-agent collaboration
-  - AI-assisted film production
   - metadata-only pipeline
   - schema validation
+  - computational film production
+  - cinema studies
+  - social sciences
+  - software validation
+  - multi-agent coordination
+  - human-gated workflow
 license: "MIT"
 authors:
   - family-names: "Babacan"
     given-names: "Hakan"
     orcid: "https://orcid.org/0009-0006-5152-7728"
-    affiliation: "Independent Research"
+    affiliation: "Independent Researcher, Istanbul, Turkey"

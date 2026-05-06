@@ -1,38 +1,55 @@
 # Scientific Clean Release Manifest
 
 **Project:** DRMYN Studio  
-**Case study:** *Closing Price* AI-assisted film project (Zone 1 / Phase 1)  
-**Release state:** Human-Agent Production Copilot Layer complete (HA-0 → HA-6)  
-**Verified date:** 2026-05-02  
-**Tests:** 328 passed  
+**Case study:** *Closing Price* AI-assisted film project  
+**Release state:** v0.4.0 — Three-agent orchestration + movie development and production process scope  
+**Verified date:** 2026-05-06  
+**Tests:** 505 passed  
 **Validators:** clean  
 
 This document is the authoritative reference for what is and is not included in
 the scientific clean release of this repository. It is intended for journal
 reviewers, editors, dataset curators, and reproducibility auditors.
 
+For authorship and contributor roles, see [AUTHORS.md](../../AUTHORS.md),
+[CONTRIBUTORS.md](../../CONTRIBUTORS.md), and
+[docs/publication/contributor_roles.md](contributor_roles.md).
+
 ---
 
 ## 1. Purpose
 
-DRMYN Studio is a **metadata-only, schema-validated, human-gated**
-pre-production and prompt-governance pipeline for AI-assisted film production.
+DRMYN Studio is a **metadata-only, schema-validated, human-gated** research
+software framework for AI-assisted **movie development and movie production
+process** design, documentation, validation, and reproducibility.
 Demonstrated through the *Closing Price* film project, its primary scientific
-contribution is:
+contributions are:
 
-- A reproducible, auditable methodology for source-grounded AI-assisted
-  pre-production.
+- A reproducible, auditable methodology for source-grounded AI-assisted movie
+  development and movie production process governance.
 - Schema-validated metadata records for every decision point (scene cards,
   prompt records, storyboard options, image selection, video takes, agent
   handoffs, operator sessions).
-- A Human-Agent Production Copilot layer (HA-0 → HA-6) enabling structured
+- A three-agent autonomous orchestration layer (Claude Code / Codex / Gemini
+  Code Assist) with auto-handoff and pickup mode enabling structured
   multi-agent coordination without external APIs, automatic merges, or
   credential exposure.
 - A lifecycle promotion gate ensuring that no record reaches `approved` or
   `locked` status without a human pull-request review.
+- A Film Aesthetic Bible system that injects deterministic, scene-grounded
+  visual keywords into T2I prompts via named aesthetic packs.
 
 The repository does **not** contain generated image or video outputs. Those are
 stored externally per the storage policy and referenced by metadata-only records.
+
+The repository is not limited to screenplay generation. Screenplay-related files,
+when present, are treated as one source component within the broader movie
+development process.
+
+The software citation author is Hakan Babacan. Ra. Dr. Serra Çelik and
+Assoc. Prof. Dr. Gizem Parlayandemir Sayan are recorded as software contributors
+in `.zenodo.json` and in [docs/publication/contributor_roles.md](contributor_roles.md).
+The related article is authored by all three researchers.
 
 ---
 
@@ -40,20 +57,24 @@ stored externally per the storage policy and referenced by metadata-only records
 
 | Component | Location | Description |
 |---|---|---|
-| Source screenplay | `source/screenplay/` | Canonical unnumbered + numbered Fountain script |
-| Scene cards | `planning/scenes/SC####/` | Per-scene canonical metadata |
-| Prompt records | `prompts/` | Prompt lifecycle: draft → review → approved → locked |
+| Development source package | `source/` | Canonical source records for the movie development process; screenplay files are one source component |
+| Planning records | `planning/` | Scene, character, location, continuity, aesthetic, and production-planning metadata |
+| Prompt governance records | `prompts/` | Prompt lifecycle: draft → review → approved → locked |
 | JSON Schemas | `schemas/` | 20+ schemas, all `additionalProperties: false`, draft 2020-12 |
 | Validators | `scripts/validate_*.py` | Production, prompt, phase1, referential integrity |
-| HA copilot layer | `scripts/agents/` | `operator_next_step.py`, `copilot_command.py`, `pr_helper.py` |
+| Three-agent copilot layer | `scripts/agents/` | `operator_next_step.py`, `copilot_command.py`, `pr_helper.py`; auto-handoff + pickup mode |
 | Streamlit dashboard | `tools/copilot_dashboard/` | Read-only + command + review + PR suggestion panels |
-| Evidence records | `evidence/` | Agent handoffs, operator sessions, local media indices, reports |
+| Evidence records | `evidence/` | Agent handoffs, operator sessions, local media indices, validation reports |
 | Model guidance | `model_guidance_snapshots/` | Human-verified model capability snapshots |
 | Docs | `docs/` | Methodology, operator guides, publication docs |
-| Tests | `tests/` | 328 tests; all use `tmp_path` only |
+| Tests | `tests/` | 505 tests; all use `tmp_path` only |
 | AGENTS.md | `AGENTS.md` | Agent role definitions for CLI agent probe |
 | CITATION.cff | `CITATION.cff` | Machine-readable citation metadata |
 | `.zenodo.json` | `.zenodo.json` | Zenodo archive metadata |
+| AUTHORS.md | `AUTHORS.md` | Software creator and article authorship |
+| CONTRIBUTORS.md | `CONTRIBUTORS.md` | Contributor role table |
+| AI_USE_DISCLOSURE.md | `AI_USE_DISCLOSURE.md` | AI tool use disclosure |
+| codemeta.json | `codemeta.json` | Machine-readable software metadata (Schema.org / CodeMeta 2.0) |
 
 ---
 
@@ -130,9 +151,13 @@ validate_prompt_records.py        → 0 files or N passed
 | HA-4a/b-1/b-2/c Streamlit dashboard (read + command + review + PR panel) | ✅ merged PR #14–#18 |
 | HA-5 local media index schema + validator | ✅ merged PR #19 |
 | HA-6 end-to-end operator loop dry-run test | ✅ merged PR #20 |
-| Full test suite | ✅ 328 passed |
-| Production records validator | ✅ clean |
-| Prompt records validator | ✅ clean (0 files) |
+| B8-3 recommended_next_agent routing | ✅ merged PR #51 |
+| B8-4 auto-handoff + pickup mode | ✅ merged PR #53 |
+| B8-5 storage_policy clarification + intake_slot schema | ✅ merged PR #54 |
+| v0.4.0 publication metadata (authorship, scope, contributors) | ✅ this batch |
+| Full test suite | ✅ 505 passed |
+| Production records validator | ✅ valid: 18, invalid: 0 |
+| Prompt records validator | ✅ clean |
 | No binaries committed | ✅ confirmed |
 | No tokens or credentials in repo | ✅ confirmed |
 
@@ -248,3 +273,13 @@ detection is not implemented.
 
 See [CITATION.cff](../../CITATION.cff) and [.zenodo.json](../../.zenodo.json)
 for machine-readable citation metadata.
+
+The software citation author is **Hakan Babacan**.
+
+Ra. Dr. Serra Çelik and Assoc. Prof. Dr. Gizem Parlayandemir Sayan are
+recorded as software contributors in `.zenodo.json` and in
+[docs/publication/contributor_roles.md](contributor_roles.md).
+The related article is authored by all three researchers.
+
+For full authorship details, see [AUTHORS.md](../../AUTHORS.md) and
+[CONTRIBUTORS.md](../../CONTRIBUTORS.md).

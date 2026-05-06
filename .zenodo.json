@@ -1,29 +1,46 @@
 {
-  "title": "DRMYN Studio: A Metadata-Only Human-Agent Film Production Workflow",
+  "title": "DRMYN Studio: Metadata-Only AI-Assisted Movie Development and Production Workflow",
   "upload_type": "software",
-  "version": "0.3.1",
-  "description": "DRMYN Studio is a metadata-only, schema-validated, human-gated pre-production and prompt governance pipeline for AI-assisted film production. Includes scene cards, character and location records, continuity files, prompt lifecycle infrastructure, JSON schema validation (20+ schemas, draft 2020-12), a three-agent autonomous orchestration layer (Claude Code / Codex / Gemini Code Assist) with auto-handoff and pickup mode enabling structured multi-agent coordination without external APIs, a Streamlit dashboard for operator oversight, and a Film Aesthetic Bible system that injects deterministic, scene-grounded visual keywords into T2I prompts via named aesthetic packs. All production decisions are reproducible and academically defensible; generated media outputs are stored externally and referenced by metadata-only records. Demonstrated through the Closing Price AI-assisted film project. Release v0.3.1 introduces the three-agent orchestration workflow with auto-handoff on operator approval, pickup mode for VS Code agent context transfer, and canonical asset storage policy schema with Git LFS governance for reference image intake.",
+  "version": "0.4.0",
+  "description": "DRMYN Studio is a metadata-only, schema-validated, human-gated research software framework for AI-assisted movie development and movie production process design, documentation, validation, and reproducibility. The repository records canonical source truth, planning metadata, prompt governance, validation evidence, human approval decisions, agent handoffs, and reproducibility artifacts for an AI-assisted film production workflow. It includes a three-agent autonomous orchestration layer (Claude Code / Codex / Gemini Code Assist) with auto-handoff and pickup mode enabling structured multi-agent coordination without external APIs, a Streamlit dashboard for operator oversight, 20+ JSON Schemas (draft 2020-12), and a Film Aesthetic Bible system for deterministic visual keyword injection into T2I prompts. Generated media outputs are stored externally and referenced through metadata-only records. Demonstrated through the Closing Price AI-assisted film project.",
   "creators": [
     {
       "name": "Babacan, Hakan",
       "orcid": "0009-0006-5152-7728",
-      "affiliation": "Independent Research"
+      "affiliation": "Independent Researcher, Istanbul, Turkey"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Parlayandemir Sayan, Gizem",
+      "orcid": "0000-0001-6652-2125",
+      "affiliation": "Istanbul University, Radio, Television and Cinema, Istanbul, Turkey",
+      "type": "Researcher"
+    },
+    {
+      "name": "Çelik, Serra",
+      "orcid": "0000-0003-4916-3989",
+      "affiliation": "Istanbul University, Informatics, Istanbul, Turkey",
+      "type": "Researcher"
     }
   ],
   "keywords": [
-    "screenplay",
+    "movie development process",
+    "movie production process",
+    "AI-assisted film production",
     "pre-production",
     "prompt engineering",
     "reproducibility",
-    "previsualization",
     "human-agent collaboration",
-    "AI-assisted film production",
     "metadata-only pipeline",
     "schema validation",
+    "computational film production",
+    "cinema studies",
+    "social sciences",
+    "software validation",
+    "technical-scientific validation",
     "multi-agent coordination",
-    "workflow automation",
-    "film aesthetic bible",
-    "visual keyword injection",
+    "human-gated workflow",
     "autonomous orchestration",
     "agent handoff"
   ],
