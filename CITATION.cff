@@ -1,10 +1,10 @@
 cff-version: 1.2.0
 message: "If you use this repository, please cite it as below."
-doi: 10.5281/zenodo.20020007
+doi: 10.5281/zenodo.20049636
 title: "DRMYN Studio: A Metadata-Only Human-Agent Film Production Workflow"
 type: software
-version: 0.2.0
-date-released: 2026-05-04
+version: 0.3.1
+date-released: 2026-05-06
 repository-code: "https://github.com/hknbb/drmyn-studio"
 url: "https://github.com/hknbb/drmyn-studio"
 abstract: >
@@ -12,14 +12,14 @@ abstract: >
   and prompt governance pipeline for AI-assisted film production. It provides
   scene cards, character and location records, continuity files, prompt
   lifecycle infrastructure, JSON schema validation (20+ schemas, draft 2020-12),
-  a Human-Agent Production Copilot layer (HA-0 to HA-6) enabling structured
-  multi-agent coordination without external APIs, a Streamlit dashboard for
-  operator oversight, and a Film Aesthetic Bible system that injects
-  deterministic, scene-grounded visual keywords into T2I prompts via named
-  aesthetic packs. All production decisions are reproducible and academically
-  defensible; generated media outputs are stored externally and referenced by
-  metadata-only records. Demonstrated through the Closing Price AI-assisted
-  film project.
+  a three-agent autonomous orchestration layer (Claude Code / Codex / Gemini
+  Code Assist) with auto-handoff and pickup mode enabling structured multi-agent
+  coordination without external APIs, a Streamlit dashboard for operator
+  oversight, and a Film Aesthetic Bible system that injects deterministic,
+  scene-grounded visual keywords into T2I prompts via named aesthetic packs.
+  All production decisions are reproducible and academically defensible;
+  generated media outputs are stored externally and referenced by metadata-only
+  records. Demonstrated through the Closing Price AI-assisted film project.
 keywords:
   - screenplay generation
   - pre-production
