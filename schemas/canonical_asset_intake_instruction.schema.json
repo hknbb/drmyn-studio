@@ -136,7 +136,10 @@
         }
       }
     },
-    "storage_policy": { "type": "string", "const": "no_binary_commits" },
+    "storage_policy": {
+      "type": "string",
+      "enum": ["no_binary_commits", "git_lfs_approved_references_only"]
+    },
     "canonical_assets_created": { "type": "boolean", "const": false },
     "pack_manifest_mutation_performed": { "type": "boolean", "const": false },
     "lock_action_performed": { "type": "boolean", "const": false },
