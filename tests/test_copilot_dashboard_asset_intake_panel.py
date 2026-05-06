@@ -142,6 +142,60 @@ def test_committed_count_matches_list_length(tmp_path: Path) -> None:
     assert rows[0]["committed_count"] == 2
 
 
+def test_missing_views_matches_three_quarter_underscore_committed_name(
+    tmp_path: Path,
+) -> None:
+    slot_path = tmp_path / "visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml"
+    _write_yaml(
+        slot_path,
+        _minimal_slot(
+            required_views=["three_quarter_reference"],
+            canonical_assets_committed=[
+                "visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_three_quarter.jpg"
+            ],
+        ),
+    )
+
+    rows = asset_intake_panel.load_intake_slot_rows(tmp_path)
+
+    assert rows[0]["missing_views"] == "—"
+
+
+def test_missing_views_matches_hyphen_and_space_variants(tmp_path: Path) -> None:
+    slot_path = tmp_path / "visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml"
+    _write_yaml(
+        slot_path,
+        _minimal_slot(
+            required_views=["three-quarter reference", "context reference"],
+            canonical_assets_committed=[
+                "visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_three_quarter.jpg",
+                "visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_context.jpg",
+            ],
+        ),
+    )
+
+    rows = asset_intake_panel.load_intake_slot_rows(tmp_path)
+
+    assert rows[0]["missing_views"] == "—"
+
+
+def test_missing_views_normalization_does_not_match_unrelated_view(tmp_path: Path) -> None:
+    slot_path = tmp_path / "visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml"
+    _write_yaml(
+        slot_path,
+        _minimal_slot(
+            required_views=["front_reference"],
+            canonical_assets_committed=[
+                "visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_three_quarter.jpg"
+            ],
+        ),
+    )
+
+    rows = asset_intake_panel.load_intake_slot_rows(tmp_path)
+
+    assert rows[0]["missing_views"] == "front_reference"
+
+
 # ---------------------------------------------------------------------------
 # Intake slot values are not mutated
 # ---------------------------------------------------------------------------
@@ -318,6 +372,62 @@ def test_stage_lowercases_filename(tmp_path: Path) -> None:
     assert filename == "myphoto.jpg"
 
 
+def test_stage_rejects_existing_staged_filename_collision(tmp_path: Path) -> None:
+    first = asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"first", "C01 WD001 Front.JPG", "front_reference"
+    )
+    second = asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"second", "c01_wd001_front.jpg", "front_reference"
+    )
+
+    staged = tmp_path / "visual_dev/intake_staging/C01_WD001/c01_wd001_front.jpg"
+    sidecar = (
+        tmp_path
+        / "visual_dev/intake_staging/C01_WD001/c01_wd001_front.jpg.sidecar.yaml"
+    )
+
+    assert first.success
+    assert not second.success
+    assert "collision" in second.message.lower()
+    assert staged.read_bytes() == b"first"
+    assert yaml.safe_load(sidecar.read_text(encoding="utf-8"))["original_filename"] == (
+        "C01 WD001 Front.JPG"
+    )
+
+
+def test_stage_rejects_existing_sidecar_collision(tmp_path: Path) -> None:
+    staging_dir = tmp_path / "visual_dev/intake_staging/C01_WD001"
+    staging_dir.mkdir(parents=True, exist_ok=True)
+    sidecar = staging_dir / "front.jpg.sidecar.yaml"
+    _write_yaml(
+        sidecar,
+        {
+            "target_slot_ref": asset_intake_panel.FIRST_INTAKE_SLOT_REF,
+            "element_id": "C01",
+            "group_id": "WD001",
+            "view_role": "front_reference",
+            "original_filename": "front.jpg",
+            "staged_path": "visual_dev/intake_staging/C01_WD001/front.jpg",
+            "source_type": "human_uploaded_reference",
+            "copyright_review": "pending",
+            "provenance_review": "pending",
+            "operator_note": "existing sidecar",
+        },
+    )
+
+    result = asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"data", "front.jpg", "front_reference"
+    )
+
+    staged = staging_dir / "front.jpg"
+    assert not result.success
+    assert "sidecar collision" in result.message.lower()
+    assert not staged.exists()
+    assert yaml.safe_load(sidecar.read_text(encoding="utf-8"))["operator_note"] == (
+        "existing sidecar"
+    )
+
+
 # ---------------------------------------------------------------------------
 # B8-6B: canonical and intake_slot isolation
 # ---------------------------------------------------------------------------
@@ -427,3 +537,19 @@ def test_preview_warns_on_unsafe_sidecar_target_scope(tmp_path: Path) -> None:
 
     assert "Unsafe target slot ref outside approved B8A scope." in preview["rows"][0]["warning"]
     assert any("Unsafe target slot ref outside approved B8A scope." in warning for warning in preview["rows"][0]["warning"].split(" | "))
+
+
+def test_preview_does_not_warn_for_normalized_view_role_variant(tmp_path: Path) -> None:
+    slot_path = tmp_path / "visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml"
+    _write_yaml(
+        slot_path,
+        _minimal_slot(required_views=["three_quarter_reference"]),
+    )
+    asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"data", "three quarter.jpg", "three-quarter reference"
+    )
+
+    preview = asset_intake_panel.load_placement_preview(tmp_path)
+
+    assert preview["rows"][0]["warning"] == ""
+    assert preview["missing_views_after_preview"] == []
