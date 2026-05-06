@@ -4,8 +4,8 @@
 
 ```
 Babacan, H. (2026). DRMYN Studio: Metadata-Only AI-Assisted Movie Development
-and Production Workflow (Version 0.4.0) [Computer software]. Zenodo.
-https://doi.org/10.5281/zenodo.20052981
+and Production Workflow (Version 0.4.1) [Computer software]. Zenodo.
+https://doi.org/10.5281/zenodo.20055802
 ```
 
 ## Machine-readable metadata
@@ -17,7 +17,7 @@ https://doi.org/10.5281/zenodo.20052981
 ## Zenodo archive
 
 Concept DOI (always resolves to latest version): https://doi.org/10.5281/zenodo.19987410  
-Version DOI (v0.4.0): https://doi.org/10.5281/zenodo.20052981
+Version DOI (v0.4.1): https://doi.org/10.5281/zenodo.20055802
 
 ## Authorship note
 
