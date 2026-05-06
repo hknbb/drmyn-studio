@@ -61,11 +61,38 @@ def _safe_repo_relative_path(ref: str, repo_root: Path) -> Path | None:
     return resolved
 
 
+def _normalize_view_name(value: str) -> str:
+    normalized = str(value or "").strip().lower()
+    normalized = re.sub(r"[\s\-]+", "_", normalized)
+    normalized = re.sub(r"_+", "_", normalized).strip("_")
+    return normalized
+
+
+def _comparison_view_tokens(value: str) -> tuple[str, ...]:
+    normalized = _normalize_view_name(value)
+    if not normalized:
+        return ()
+    tokens = tuple(token for token in normalized.split("_") if token)
+    if tokens and tokens[-1] == "reference":
+        tokens = tokens[:-1]
+    return tokens
+
+
+def _view_matches_reference(view: str, ref: object) -> bool:
+    view_tokens = _comparison_view_tokens(view)
+    if not view_tokens:
+        return False
+
+    stem_tokens = _comparison_view_tokens(Path(str(ref)).stem)
+    if len(stem_tokens) < len(view_tokens):
+        return False
+    return stem_tokens[-len(view_tokens) :] == view_tokens
+
+
 def _missing_views(required: list[str], committed: list[Any]) -> list[str]:
     missing = []
     for view in required:
-        view_stem = view.lower().replace("_reference", "").replace("_", "")
-        matched = any(view_stem in Path(str(c)).stem.lower() for c in committed if c)
+        matched = any(_view_matches_reference(view, c) for c in committed if c)
         if not matched:
             missing.append(view)
     return missing
@@ -79,10 +106,7 @@ def _sanitize_filename(name: str) -> str:
 
 
 def _canonical_view_token(view_role: str) -> str:
-    token = str(view_role or "").strip().lower()
-    token = token.replace("_reference", "")
-    token = re.sub(r"[^\w]+", "_", token)
-    token = re.sub(r"_+", "_", token).strip("_")
+    token = "_".join(_comparison_view_tokens(view_role))
     return token or "unassigned"
 
 
@@ -134,6 +158,22 @@ def stage_uploaded_file(
     staging_dir.mkdir(parents=True, exist_ok=True)
 
     staged = staging_dir / safe_name
+    sidecar = staging_dir / f"{safe_name}.sidecar.yaml"
+    if staged.exists():
+        return StagingResult(
+            False,
+            _relative(staged, root),
+            _relative(sidecar, root),
+            f"Rejected: staging collision for '{safe_name}'",
+        )
+    if sidecar.exists():
+        return StagingResult(
+            False,
+            _relative(staged, root),
+            _relative(sidecar, root),
+            f"Rejected: sidecar collision for '{safe_name}'",
+        )
+
     staged.write_bytes(file_bytes)
 
     sidecar_data = {
@@ -148,7 +188,6 @@ def stage_uploaded_file(
         "provenance_review": "pending",
         "operator_note": operator_note,
     }
-    sidecar = staging_dir / f"{safe_name}.sidecar.yaml"
     sidecar.write_text(yaml.safe_dump(sidecar_data, sort_keys=False), encoding="utf-8")
 
     return StagingResult(
@@ -232,7 +271,10 @@ def load_placement_preview(repo_root: str | Path) -> dict[str, Any]:
                         "Target canonical path already exists in canonical_assets_committed."
                     )
 
-            if view_role and required_views and view_role not in required_views:
+            if view_role and required_views and not any(
+                _comparison_view_tokens(view_role) == _comparison_view_tokens(required_view)
+                for required_view in required_views
+            ):
                 row_warnings.append("View role is not in required_views for the intake slot.")
 
             rows.append(
