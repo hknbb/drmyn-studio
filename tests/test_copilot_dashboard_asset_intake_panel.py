@@ -354,3 +354,76 @@ def test_stage_lifecycle_fields_remain_pending(tmp_path: Path) -> None:
     data = yaml.safe_load(sidecar.read_text(encoding="utf-8"))
     assert data["copyright_review"] == "pending"
     assert data["provenance_review"] == "pending"
+
+
+# ---------------------------------------------------------------------------
+# B8-6C: placement preview panel data
+# ---------------------------------------------------------------------------
+
+def test_preview_loader_writes_no_files(tmp_path: Path) -> None:
+    slot_path = tmp_path / "visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml"
+    _write_yaml(slot_path, _minimal_slot())
+    asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"data", "front.jpg", "front_reference"
+    )
+    before = sorted(p.relative_to(tmp_path).as_posix() for p in tmp_path.rglob("*"))
+
+    asset_intake_panel.load_placement_preview(tmp_path)
+
+    after = sorted(p.relative_to(tmp_path).as_posix() for p in tmp_path.rglob("*"))
+    assert after == before
+
+
+def test_preview_reports_target_canonical_path_and_missing_after_preview(tmp_path: Path) -> None:
+    slot_path = tmp_path / "visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml"
+    _write_yaml(slot_path, _minimal_slot())
+    asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"data", "front shot.JPG", "front_reference"
+    )
+
+    preview = asset_intake_panel.load_placement_preview(tmp_path)
+
+    assert preview["slot_path"] == asset_intake_panel.FIRST_INTAKE_SLOT_REF
+    assert preview["missing_views_now"] == [
+        "front_reference",
+        "three_quarter_reference",
+    ]
+    assert preview["missing_views_after_preview"] == ["three_quarter_reference"]
+    assert preview["rows"][0]["target_canonical_path"] == (
+        "visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_front.jpg"
+    )
+
+
+def test_preview_warns_on_duplicate_target_paths(tmp_path: Path) -> None:
+    slot_path = tmp_path / "visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml"
+    _write_yaml(slot_path, _minimal_slot())
+    asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"one", "front_a.jpg", "front_reference"
+    )
+    asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"two", "front_b.jpg", "front_reference"
+    )
+
+    preview = asset_intake_panel.load_placement_preview(tmp_path)
+
+    assert preview["duplicate_targets"] == [
+        "visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_front.jpg"
+    ]
+    assert all("Duplicate preview target path." in row["warning"] for row in preview["rows"])
+
+
+def test_preview_warns_on_unsafe_sidecar_target_scope(tmp_path: Path) -> None:
+    slot_path = tmp_path / "visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml"
+    _write_yaml(slot_path, _minimal_slot())
+    asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"data", "front.jpg", "front_reference"
+    )
+    sidecar = tmp_path / "visual_dev/intake_staging/C01_WD001/front.jpg.sidecar.yaml"
+    payload = yaml.safe_load(sidecar.read_text(encoding="utf-8"))
+    payload["target_slot_ref"] = "visual_dev/elements/characters/C01/wardrobe/WD002/intake_slot.yaml"
+    _write_yaml(sidecar, payload)
+
+    preview = asset_intake_panel.load_placement_preview(tmp_path)
+
+    assert "Unsafe target slot ref outside approved B8A scope." in preview["rows"][0]["warning"]
+    assert any("Unsafe target slot ref outside approved B8A scope." in warning for warning in preview["rows"][0]["warning"].split(" | "))

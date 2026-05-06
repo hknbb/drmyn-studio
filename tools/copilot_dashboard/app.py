@@ -1,5 +1,7 @@
 """Streamlit entry point for the copilot dashboard."""
 
+# ruff: noqa: E402
+
 from __future__ import annotations
 
 import sys
@@ -34,6 +36,7 @@ from tools.copilot_dashboard.review_panels import load_review_panel_data
 from tools.copilot_dashboard.pr_panel import PrPanelData, load_pr_panel_data
 from tools.copilot_dashboard.asset_intake_panel import (
     load_intake_slot_rows,
+    load_placement_preview,
     stage_uploaded_file,
     VIEW_ROLE_OPTIONS,
     ALLOWED_IMAGE_SUFFIXES,
@@ -178,6 +181,48 @@ def _render_staging_wizard() -> None:
                 st.error(result.message)
 
 
+def _render_placement_preview() -> None:
+    preview = load_placement_preview(REPO_ROOT)
+
+    st.subheader("Placement Preview")
+    st.caption(
+        "Read-only preview from staged files and sidecars. No file moves. "
+        "No canonical writes. No intake_slot mutation."
+    )
+    st.info(preview["git_lfs_reminder"])
+
+    metric1, metric2, metric3 = st.columns(3)
+    metric1.metric("staged files", preview["staged_count"])
+    metric2.metric("committed", preview["committed_count"])
+    metric3.metric("duplicate targets", len(preview["duplicate_targets"]))
+
+    st.write(f"**Target slot:** `{preview['slot_path']}`")
+    if preview["required_views"]:
+        st.write("**Required views:** " + ", ".join(preview["required_views"]))
+    if preview["missing_views_now"]:
+        st.write("**Missing now:** " + ", ".join(preview["missing_views_now"]))
+    else:
+        st.write("**Missing now:** none")
+    if preview["missing_views_after_preview"]:
+        st.write(
+            "**Missing after staged preview:** "
+            + ", ".join(preview["missing_views_after_preview"])
+        )
+    else:
+        st.success("Staged preview covers all currently required views.")
+
+    if not preview["slot_exists"]:
+        st.warning("Approved target intake slot is missing from the repo.")
+    for warning in preview["warnings"]:
+        st.warning(warning)
+
+    rows = preview["rows"]
+    if rows:
+        st.dataframe(rows, hide_index=True, use_container_width=True)
+    else:
+        st.write("No staged files found in the local intake staging area.")
+
+
 def _render_asset_intake_panel() -> None:
     rows = load_intake_slot_rows(REPO_ROOT)
 
@@ -251,6 +296,7 @@ def _render_asset_intake_panel() -> None:
                 )
 
     _render_staging_wizard()
+    _render_placement_preview()
 
 
 def _render_pr_panel() -> None:
