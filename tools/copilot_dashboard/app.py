@@ -32,7 +32,12 @@ from tools.copilot_dashboard.command_ui import (
 )
 from tools.copilot_dashboard.review_panels import load_review_panel_data
 from tools.copilot_dashboard.pr_panel import PrPanelData, load_pr_panel_data
-from tools.copilot_dashboard.asset_intake_panel import load_intake_slot_rows
+from tools.copilot_dashboard.asset_intake_panel import (
+    load_intake_slot_rows,
+    stage_uploaded_file,
+    VIEW_ROLE_OPTIONS,
+    ALLOWED_IMAGE_SUFFIXES,
+)
 
 
 def _stringify_record(record: dict[str, Any]) -> dict[str, str]:
@@ -135,12 +140,50 @@ def _render_review_panels() -> None:
             st.write("No video take metadata records.")
 
 
+def _render_staging_wizard() -> None:
+    st.subheader("Upload to Local Staging")
+    st.caption(
+        "Writes only to gitignored visual_dev/intake_staging/C01_WD001/. "
+        "No canonical directory writes. No intake_slot mutation. No Git LFS action."
+    )
+    st.info(
+        "Target slot: **C01 / wardrobe / WD001** (B8A scope — only slot approved for staging). "
+        f"Accepted formats: {', '.join(sorted(ALLOWED_IMAGE_SUFFIXES))}."
+    )
+
+    uploaded_files = st.file_uploader(
+        "Select reference image(s)",
+        type=[s.lstrip(".") for s in sorted(ALLOWED_IMAGE_SUFFIXES)],
+        accept_multiple_files=True,
+        key="staging_uploader",
+    )
+    view_role = st.selectbox("View role", VIEW_ROLE_OPTIONS, key="staging_view_role")
+    operator_note = st.text_area(
+        "Operator note (optional)", key="staging_operator_note", height=70
+    )
+
+    if st.button("Stage files", disabled=not uploaded_files):
+        for uf in uploaded_files:
+            result = stage_uploaded_file(
+                REPO_ROOT,
+                uf.read(),
+                uf.name,
+                view_role,
+                operator_note,
+            )
+            if result.success:
+                st.success(f"{result.message} → `{result.staged_path}`")
+                st.caption(f"Sidecar: `{result.sidecar_path}`")
+            else:
+                st.error(result.message)
+
+
 def _render_asset_intake_panel() -> None:
     rows = load_intake_slot_rows(REPO_ROOT)
 
     st.header("Asset Intake Readiness")
     st.caption(
-        "Read-only. No uploads, file writes, intake_slot mutations, or lifecycle promotion."
+        "Readiness panel is read-only. Staging wizard writes only to gitignored staging area."
     )
     st.info(
         "B8A first canonical asset intake is limited to **C01 / wardrobe / WD001**. "
@@ -151,62 +194,63 @@ def _render_asset_intake_panel() -> None:
 
     if not rows:
         st.write("No intake slot records found.")
-        return
+    else:
+        first_slot_rows = [r for r in rows if r["is_first_intake_slot"]]
+        other_rows = [r for r in rows if not r["is_first_intake_slot"]]
 
-    first_slot_rows = [r for r in rows if r["is_first_intake_slot"]]
-    other_rows = [r for r in rows if not r["is_first_intake_slot"]]
-
-    if first_slot_rows:
-        st.subheader("B8A — First Intake Slot (C01 / WD001)")
-        row = first_slot_rows[0]
-        col1, col2, col3 = st.columns(3)
-        col1.metric("source_status", row["source_status"])
-        col2.metric("committed", row["committed_count"])
-        col3.metric("storage_policy", row["storage_policy"])
-        st.write(f"**Required views:** {row['required_views']}")
-        if row["missing_views"] != "—":
-            st.warning(f"Missing views: {row['missing_views']}")
-        else:
-            st.success("All required views committed.")
-        for field in ("copyright_review", "provenance_review"):
-            status = row[field]
-            if status == "pending":
-                st.warning(f"{field}: pending")
-            elif status == "approved":
-                st.success(f"{field}: approved")
+        if first_slot_rows:
+            st.subheader("B8A — First Intake Slot (C01 / WD001)")
+            row = first_slot_rows[0]
+            col1, col2, col3 = st.columns(3)
+            col1.metric("source_status", row["source_status"])
+            col2.metric("committed", row["committed_count"])
+            col3.metric("storage_policy", row["storage_policy"])
+            st.write(f"**Required views:** {row['required_views']}")
+            if row["missing_views"] != "—":
+                st.warning(f"Missing views: {row['missing_views']}")
             else:
-                st.write(f"{field}: {status}")
-        st.write(f"**intake_ready_to_proceed:** {row['intake_ready_to_proceed']}")
-        st.write(f"**Context:** {row['context']}")
-        st.caption(f"slot: `{row['slot_path']}`")
+                st.success("All required views committed.")
+            for field in ("copyright_review", "provenance_review"):
+                status = row[field]
+                if status == "pending":
+                    st.warning(f"{field}: pending")
+                elif status == "approved":
+                    st.success(f"{field}: approved")
+                else:
+                    st.write(f"{field}: {status}")
+            st.write(f"**intake_ready_to_proceed:** {row['intake_ready_to_proceed']}")
+            st.write(f"**Context:** {row['context']}")
+            st.caption(f"slot: `{row['slot_path']}`")
 
-    if other_rows:
-        st.subheader("Other Intake Slots")
-        display = [
-            {
-                "slot_path": r["slot_path"],
-                "element_id": r["element_id"],
-                "group_id": r["group_id"],
-                "element_type": r["element_type"],
-                "source_status": r["source_status"],
-                "storage_policy": r["storage_policy"],
-                "copyright_review": r["copyright_review"],
-                "provenance_review": r["provenance_review"],
-                "committed": r["committed_count"],
-                "missing_views": r["missing_views"],
-                "intake_ready_to_proceed": r["intake_ready_to_proceed"],
-            }
-            for r in other_rows
-        ]
-        st.dataframe(display, hide_index=True, use_container_width=True)
-        ready_outside_b8a = [
-            r for r in other_rows if r["source_status"] != "not_collected"
-        ]
-        if ready_outside_b8a:
-            st.warning(
-                "Warning: slot(s) outside WD001 show source_status != not_collected. "
-                "B8A scope guard: only C01/WD001 is approved for first intake."
-            )
+        if other_rows:
+            st.subheader("Other Intake Slots")
+            display = [
+                {
+                    "slot_path": r["slot_path"],
+                    "element_id": r["element_id"],
+                    "group_id": r["group_id"],
+                    "element_type": r["element_type"],
+                    "source_status": r["source_status"],
+                    "storage_policy": r["storage_policy"],
+                    "copyright_review": r["copyright_review"],
+                    "provenance_review": r["provenance_review"],
+                    "committed": r["committed_count"],
+                    "missing_views": r["missing_views"],
+                    "intake_ready_to_proceed": r["intake_ready_to_proceed"],
+                }
+                for r in other_rows
+            ]
+            st.dataframe(display, hide_index=True, use_container_width=True)
+            ready_outside_b8a = [
+                r for r in other_rows if r["source_status"] != "not_collected"
+            ]
+            if ready_outside_b8a:
+                st.warning(
+                    "Warning: slot(s) outside WD001 show source_status != not_collected. "
+                    "B8A scope guard: only C01/WD001 is approved for first intake."
+                )
+
+    _render_staging_wizard()
 
 
 def _render_pr_panel() -> None:
