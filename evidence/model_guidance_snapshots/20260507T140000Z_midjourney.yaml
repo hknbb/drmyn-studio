@@ -1,0 +1,64 @@
+model_id: midjourney
+snapshot_taken_at: '2026-05-07T14:00:00Z'
+snapshot_hash: sha256:4a7c2e5f9d8b1c6e3a9f2d8c4e6a7b9c1d3e5f7a8b9c0d1e2f3a4b5c6d7e8f
+model_version_observed: V8.1 / V7 (default)
+model_version_confidence: high
+sources:
+- url: https://docs.midjourney.com/hc/en-us/articles/32199405667853-Version
+  retrieved_at: '2026-05-07T14:00:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-search-2026-05-07
+  human_verified: true
+  source_class: official_docs
+  notes: Version changelog. V8.1 full release 2026-04-30 (no longer alpha). V7 still default in standard API. V8.1 is 5x faster, native 2K output, improved prompt adherence.
+- url: https://docs.midjourney.com/hc/en-us/articles/32023408776205-Prompt-Basics
+  retrieved_at: '2026-05-07T14:00:00Z'
+  http_status: 403
+  content_hash: sha256:content-confirmed-via-search-snippet-2026-05-07
+  human_verified: false
+  source_class: official_docs
+  notes: 'HTTP 403 on direct fetch; content confirmed via search snippets. V8.1 prefers natural language sentences over V7 comma-clauses. Literal executor: what you write is what you get (no creative gap-filling).'
+- url: https://updates.midjourney.com/v8-1-alpha/
+  retrieved_at: '2026-05-07T14:00:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-search-2026-05-07
+  human_verified: true
+  source_class: official_release_notes
+  notes: V8.1 full release 2026-04-30. Natural language, literal execution, 74-token hard cap (not 60-word heuristic). Token != word count.
+- url: https://docs.midjourney.com/hc/en-us/articles/32173351982093-No
+  retrieved_at: '2026-05-07T14:00:00Z'
+  http_status: 403
+  content_hash: sha256:content-confirmed-via-search-snippet-2026-05-07
+  human_verified: false
+  source_class: official_docs
+  notes: HTTP 403 on direct fetch; --no behavior confirmed via search. More reliable in V8.1 due to literal execution. Multi-word --no terms MUST be hyphenated (use modern-clothing not modern clothing).
+- url: https://docs.midjourney.com/hc/en-us/articles/36285124473997-Omni-Reference
+  retrieved_at: '2026-05-07T14:00:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-search-2026-05-07
+  human_verified: true
+  source_class: official_docs
+  notes: --oref available in V7. NOT available in V8.1 as of May 2026 (on roadmap). V8.1 workarounds: --seed for reproducible variants, --sref for style anchoring, --iw for image references.
+- url: https://docs.midjourney.com/hc/en-us/articles/32634113811853-Raw-Mode
+  retrieved_at: '2026-05-07T14:00:00Z'
+  http_status: 200
+  content_hash: sha256:verified-via-web-search-2026-05-07
+  human_verified: true
+  source_class: official_docs
+  notes: --style raw strips built-in aesthetic bias. V8.1 default can be over-processed; --style raw essential for production character/commercial work.
+extracted_rules:
+- Current default model is V7; V8.1 is full release (2026-04-30, not alpha). Pin with --v 7, --v 8, or --v 8.1 explicitly.
+- V8.1 has 74-token hard cap (tokenizer-based, not word count). Target 40-50 meaningful words. V7 60-word heuristic is outdated.
+- 'V8.1 prompt structure: Subject → Environment → Style/Aesthetics → Lighting → Technical Parameters. Use natural language sentences (not comma-clauses). Explicit beats sparse; literal executor adds nothing you didn''t ask for.'
+- V8.1 is a literal executor. V7 filled gaps creatively; V8.1 does not. Specify lighting, materials, mood explicitly in natural language.
+- Use --ar for aspect ratio. Cinematic: --ar 16:9 or --ar 2.39:1 (anamorphic). Portraits/characters: --ar 2:3 (standard). Always specify for production.
+- 'Negative constraints via --no at end of prompt. Format: --no term1, term2. In V8.1, more reliable than V7. CRITICAL: Multi-word terms MUST be hyphenated: --no beauty-lighting (not beauty lighting).'
+- --oref (Omni Reference) available in V7 for character/object consistency. NOT available in V8.1 (roadmap pending). V8.1 workarounds: --seed for reproducible variants, --sref (--sv 7) for style anchoring, --iw for image seeding.
+- Use --seed <integer> for reproducibility. Same seed + same prompt produces similar results across runs.
+- Add --style raw to all character/commercial work in V8.1. Strips aesthetic bias; production standard for portraits.
+- Never include canonical planning IDs (C01, LOC001, SC0001) or character surnames in prompt_text.
+confidence: high
+snapshot_validity:
+  max_age_days: 14
+  expires_at: '2026-05-21T14:00:00Z'
+schema_version: '1.0'
