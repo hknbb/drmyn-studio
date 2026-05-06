@@ -200,7 +200,7 @@ def test_multiple_slots_returned(tmp_path: Path) -> None:
 
 
 # ---------------------------------------------------------------------------
-# No image or video binary produced
+# No image or video binary produced (loader)
 # ---------------------------------------------------------------------------
 
 def test_no_image_or_video_files_created(tmp_path: Path) -> None:
@@ -213,3 +213,144 @@ def test_no_image_or_video_files_created(tmp_path: Path) -> None:
     binary_extensions = {".png", ".jpg", ".jpeg", ".webp", ".mp4", ".mov", ".mkv", ".wav"}
     binaries = [f for f in all_files if f.suffix.lower() in binary_extensions]
     assert binaries == []
+
+
+# ---------------------------------------------------------------------------
+# B8-6B: stage_uploaded_file — correct staging directory
+# ---------------------------------------------------------------------------
+
+def test_stage_writes_to_staging_dir(tmp_path: Path) -> None:
+    result = asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"\xff\xd8\xff", "photo.jpg", "front_reference"
+    )
+    assert result.success
+    staged = tmp_path / "visual_dev/intake_staging/C01_WD001/photo.jpg"
+    assert staged.exists()
+    assert staged.read_bytes() == b"\xff\xd8\xff"
+
+
+def test_stage_writes_sidecar_yaml(tmp_path: Path) -> None:
+    asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"data", "ref.jpg", "back_reference", "test note"
+    )
+    sidecar = tmp_path / "visual_dev/intake_staging/C01_WD001/ref.jpg.sidecar.yaml"
+    assert sidecar.exists()
+    data = yaml.safe_load(sidecar.read_text(encoding="utf-8"))
+    assert data["element_id"] == "C01"
+    assert data["group_id"] == "WD001"
+    assert data["view_role"] == "back_reference"
+    assert data["original_filename"] == "ref.jpg"
+    assert data["source_type"] == "human_uploaded_reference"
+    assert data["copyright_review"] == "pending"
+    assert data["provenance_review"] == "pending"
+    assert data["operator_note"] == "test note"
+    assert "intake_ready_to_proceed" not in data
+    assert "storage_policy" not in data
+    assert "canonical_assets_committed" not in data
+
+
+def test_stage_sidecar_staged_path_is_relative(tmp_path: Path) -> None:
+    result = asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"data", "ref.png", "front_reference"
+    )
+    assert result.success
+    assert not result.staged_path.startswith("/")
+    assert result.staged_path.startswith("visual_dev/intake_staging/")
+
+
+# ---------------------------------------------------------------------------
+# B8-6B: rejected extension
+# ---------------------------------------------------------------------------
+
+def test_stage_rejects_non_image_extension(tmp_path: Path) -> None:
+    result = asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"data", "script.py", "front_reference"
+    )
+    assert not result.success
+    assert "Rejected" in result.message
+
+
+def test_stage_rejects_video_extension(tmp_path: Path) -> None:
+    result = asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"data", "clip.mp4", "front_reference"
+    )
+    assert not result.success
+
+
+def test_stage_rejects_yaml_extension(tmp_path: Path) -> None:
+    result = asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"data", "config.yaml", "front_reference"
+    )
+    assert not result.success
+
+
+# ---------------------------------------------------------------------------
+# B8-6B: filename sanitization
+# ---------------------------------------------------------------------------
+
+def test_stage_sanitizes_spaces_in_filename(tmp_path: Path) -> None:
+    result = asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"data", "my photo.jpg", "front_reference"
+    )
+    assert result.success
+    assert " " not in result.staged_path
+    staged = tmp_path / "visual_dev/intake_staging/C01_WD001/my_photo.jpg"
+    assert staged.exists()
+
+
+def test_stage_strips_path_traversal(tmp_path: Path) -> None:
+    result = asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"data", "../evil.jpg", "front_reference"
+    )
+    assert result.success
+    assert ".." not in result.staged_path
+    staged = tmp_path / "visual_dev/intake_staging/C01_WD001/evil.jpg"
+    assert staged.exists()
+
+
+def test_stage_lowercases_filename(tmp_path: Path) -> None:
+    result = asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"data", "MyPhoto.JPG", "front_reference"
+    )
+    assert result.success
+    filename = Path(result.staged_path).name
+    assert filename == filename.lower()
+    assert filename == "myphoto.jpg"
+
+
+# ---------------------------------------------------------------------------
+# B8-6B: canonical and intake_slot isolation
+# ---------------------------------------------------------------------------
+
+def test_stage_does_not_write_to_elements_dir(tmp_path: Path) -> None:
+    elements_dir = tmp_path / "visual_dev/elements"
+    elements_dir.mkdir(parents=True)
+
+    asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"data", "photo.jpg", "front_reference"
+    )
+
+    assert list(elements_dir.rglob("*")) == []
+
+
+def test_stage_does_not_mutate_intake_slot(tmp_path: Path) -> None:
+    slot_path = tmp_path / "visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml"
+    original = _minimal_slot()
+    _write_yaml(slot_path, original)
+
+    asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"data", "photo.jpg", "front_reference"
+    )
+
+    reloaded = yaml.safe_load(slot_path.read_text(encoding="utf-8"))
+    assert reloaded == original
+
+
+def test_stage_lifecycle_fields_remain_pending(tmp_path: Path) -> None:
+    asset_intake_panel.stage_uploaded_file(
+        tmp_path, b"data", "ref.png", "context_reference"
+    )
+    sidecar = tmp_path / "visual_dev/intake_staging/C01_WD001/ref.png.sidecar.yaml"
+    data = yaml.safe_load(sidecar.read_text(encoding="utf-8"))
+    assert data["copyright_review"] == "pending"
+    assert data["provenance_review"] == "pending"
