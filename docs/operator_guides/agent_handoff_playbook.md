@@ -2,8 +2,8 @@
 
 This playbook explains how the human operator rotates work between Claude Code,
 Codex, and Gemini Code Assist without losing repo context. It uses the existing
-Human-Agent Copilot `switch` command and does not change the handoff
-implementation.
+Human-Agent Copilot `switch` and `yes` commands. B8-4 adds automatic handoff
+writing for `yes` and a `pickup` mode for the next agent.
 
 ## Purpose
 
@@ -14,6 +14,47 @@ YAML file under `evidence/agent_handoffs/HO-*.yaml`.
 The next agent must read the handoff, inspect the listed `context_files`, verify
 the `branch` and `head_sha`, and continue only the listed `do_steps` and
 `expected_outputs`.
+
+## B8-4: Auto-Handoff and Pickup
+
+### yes with auto-handoff (default on)
+
+When the operator accepts a recommendation with `yes`, the pipeline
+automatically writes both the operator session and an agent handoff to the
+recommended next agent. The handoff uses `recommended_next_agent` and
+`recommended_reason` from `operator_next_step`.
+
+```bash
+# Default: writes OP-*.yaml + HO-*.yaml (when recommended agent is not human_operator)
+python scripts/agents/run_pipeline.py \
+  --mode copilot-command \
+  --command yes \
+  --repo-root .
+
+# Opt out: writes OP-*.yaml only
+python scripts/agents/run_pipeline.py \
+  --mode copilot-command \
+  --command yes \
+  --no-auto-handoff \
+  --repo-root .
+```
+
+### pickup mode
+
+The next agent retrieves a ready-to-use prompt block from the latest open
+handoff addressed to them:
+
+```bash
+CP_AGENT_NAME=codex python scripts/agents/run_pipeline.py \
+  --mode pickup \
+  --repo-root .
+```
+
+Valid `CP_AGENT_NAME` values: `claude_code`, `codex`, `gemini_code_assist`.
+
+The printed block contains the handoff path, current task, context files,
+steps, expected outputs, safety warnings, and a scope guard reminder. Paste it
+directly into the agent's IDE session.
 
 ## Canonical Commands
 

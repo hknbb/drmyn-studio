@@ -35,19 +35,25 @@ handoff record routes work through the repo.
 - Never update `pack_status`, `canon_lock`, `approved`, `locked`, copyright
   completion, provenance completion, or lifecycle promotion fields directly.
 
-## Read-Only Routing Recommendations
+## Routing Recommendations and Auto-Handoff (B8-4)
 
-`operator_next_step.py` may include advisory routing fields:
+`operator_next_step.py` includes routing fields:
 
 ```text
 recommended_next_agent
 recommended_reason
 ```
 
-In B8-3 these fields are read-only guidance. They do not write handoff records,
-start pickup mode, place assets, run external tools, or advance lifecycle state.
-The human operator still decides whether to follow the recommendation with a
-separate `switch`, `yes`, `no`, or `revise` command.
+In B8-4 these fields drive automatic handoff writing. When the operator runs
+`yes`, the pipeline writes both an operator session and a handoff to the
+recommended agent (unless `--no-auto-handoff` is passed or
+`recommended_next_agent` is `human_operator`).
+
+The next agent retrieves their prompt with:
+
+```bash
+CP_AGENT_NAME=<agent> python scripts/agents/run_pipeline.py --mode pickup --repo-root .
+```
 
 Current routing policy:
 

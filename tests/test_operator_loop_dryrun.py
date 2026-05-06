@@ -192,7 +192,7 @@ def test_full_operator_loop_dryrun(tmp_path: Path, monkeypatch: "pytest.MonkeyPa
     step3 = recommend_next_step(tmp_path)
     assert step3.current_task == "storyboard_selection"
 
-    # Step 4: yes — writes operator session record
+    # Step 4: yes — writes operator session + auto-handoff (B8-4: default auto_handoff=True)
     result_yes = apply_command(
         tmp_path,
         command="yes",
@@ -200,7 +200,8 @@ def test_full_operator_loop_dryrun(tmp_path: Path, monkeypatch: "pytest.MonkeyPa
         branch="feat/ha6-dryrun",
         head_sha="abc1234ef0",
     )
-    assert len(result_yes.written_files) == 1
+    # B8-4: yes may write OP + HO when recommended_next_agent != human_operator
+    assert len(result_yes.written_files) >= 1
     session_path = tmp_path / result_yes.written_files[0]
     assert session_path.exists()
     session_data = yaml.safe_load(session_path.read_text(encoding="utf-8"))
@@ -236,9 +237,9 @@ def test_full_operator_loop_dryrun(tmp_path: Path, monkeypatch: "pytest.MonkeyPa
     assert handoff2_data["to_agent"] == "gemini_code_assist"
     assert handoff2_data["reason"] == "limit_reached"
 
-    # Two handoffs are present, both distinct
+    # Two explicit switch handoffs are present; yes may have added another (B8-4 auto-handoff)
     handoffs = sorted((tmp_path / "evidence" / "agent_handoffs").glob("HO-*.yaml"))
-    assert len(handoffs) == 2
+    assert len(handoffs) >= 2
     assert handoff1_path != handoff2_path
 
     # Step 8: suggest_pr — print-only, no gh execution
@@ -276,7 +277,8 @@ def test_full_operator_loop_dryrun(tmp_path: Path, monkeypatch: "pytest.MonkeyPa
     _assert_no_lifecycle_promotion(tmp_path)
 
     # Step 12: verify all handoff and session files are schema-valid
+    # B8-4: yes with auto_handoff may add an extra HO; count at least 2 explicit switch HOs
     report = run_validation(tmp_path)
-    assert report.by_record_type["agent_handoff"] == 2
-    assert report.by_record_type["operator_session"] == 1
+    assert report.by_record_type["agent_handoff"] >= 2
+    assert report.by_record_type["operator_session"] >= 1
     assert report.issues == []

@@ -113,7 +113,7 @@ def _seed_storyboard_repo(repo_root: Path) -> None:
 def test_yes_writes_operator_session_in_progress(tmp_path: Path) -> None:
     _seed_prompt_repo(tmp_path)
 
-    result = apply_command(tmp_path, command="yes", now=FIXED_NOW)
+    result = apply_command(tmp_path, command="yes", now=FIXED_NOW, auto_handoff=False)
 
     path = tmp_path / "evidence/operator_sessions/OP-20260501-120000.yaml"
     payload = yaml.safe_load(path.read_text(encoding="utf-8"))
@@ -200,8 +200,8 @@ def test_revise_requires_note_and_writes_no_file_on_failure(tmp_path: Path) -> N
 def test_yes_collision_adds_suffix(tmp_path: Path) -> None:
     _seed_prompt_repo(tmp_path)
 
-    first = apply_command(tmp_path, command="yes", now=FIXED_NOW)
-    second = apply_command(tmp_path, command="yes", now=FIXED_NOW)
+    first = apply_command(tmp_path, command="yes", now=FIXED_NOW, auto_handoff=False)
+    second = apply_command(tmp_path, command="yes", now=FIXED_NOW, auto_handoff=False)
 
     assert first.written_files == ("evidence/operator_sessions/OP-20260501-120000.yaml",)
     assert second.written_files == (
