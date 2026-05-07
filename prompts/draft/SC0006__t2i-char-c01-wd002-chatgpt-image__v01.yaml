@@ -6,17 +6,21 @@ target_models:
 - chatgpt_image
 source_refs:
   scene_card: planning/scenes/SC0006/scene_card.yaml
+  scene_excerpt: "Late-night, private apartment. C01 in domestic nighttime clothes. Low-key lighting, fatigue and vigilance readable in her frame."
   character_refs:
   - C01
-  wardrobe_context: C01 WD002 (night/private)
+  wardrobe_refs:
+  - WD002
   aesthetic_refs:
   - VALE_DOMESTIC_RESTRAINT
 prompt_text: A woman in her early thirties wearing worn nighttime domestic clothes,
-  muted tones. Same lean, upright silhouette as reference WD001 images, but now in
-  a low-key night interior. Her posture conveys fatigue and sustained vigilance.
+  muted tones. Same lean, upright silhouette as the daytime wardrobe reference, but
+  now in a low-key night interior. Her posture conveys fatigue and sustained vigilance.
   No key lighting—only practicals and ambient darkness. Nadav Kander-like skin tone
   in dim light. Interior available light only. Same economical movement and controlled
   bearing, but clearly tired, clearly watching.
+status: active
+canon_lock: false
 generation_params:
   model_guidance_mode: locked_guide
   model_guidance_ref: docs/model_guides/chatgpt_image.yaml
