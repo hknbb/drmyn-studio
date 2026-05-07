@@ -1,25 +1,24 @@
 element_id: C01
 element_type: character
 canonical_name: Nadia Vale
-intake_status: not_yet_collected
+intake_status: partially_collected
 image_count_expected: pending_review
 lfs_ready: true
 lfs_note: "*.png / *.jpg / *.jpeg / *.webp in this folder are LFS-tracked per .gitattributes (PR4B)."
-source_status: no_source_images_in_repo
+source_status: source_images_in_repo
 copyright_review: pending
 provenance_review: pending
 wardrobe_image_groups:
   - wardrobe_id: WD001
     context: early-morning domestic control (SC0001, SC0003)
-    image_status: not_collected
-    notes: "Lean, upright silhouette; muted domestic neutrals; early-morning/mid-morning light."
+    image_status: collected
+    notes: "Lean, upright silhouette; muted domestic neutrals; early-morning/mid-morning light. 4 canonical refs via B8A (1 Midjourney + 3 ChatGPT)."
   - wardrobe_id: WD002
     context: night / private (SC0006, SC0008, SC0009 carry-over)
     image_status: not_collected
     notes: "Same silhouette; low-key night register; fatigue and vigilance readable."
 open_blockers:
-  - "No source images available in repo."
-  - "Two wardrobe contexts (WD001, WD002) each require separate reference image sets."
+  - "WD002 (night/private wardrobe) requires separate reference image set for SC0006, SC0008, SC0009."
 intake_ready_to_proceed: false
 provenance:
   created_by: hknbb
