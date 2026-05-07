@@ -1,6 +1,6 @@
 # PROP003 — Vardova Skyline Photo Frame — Image Selection Status
 
-**Status: BLOCKED — no source images collected**
+**Status: COLLECTED — two composition variants selected**
 
 ## What Is Needed
 
@@ -29,14 +29,28 @@ clearance may be needed for that content. Coordinate with copyright review befor
 Vardova is a fictional city — a stylized or synthetic skyline image may be preferable to
 avoid real-location association.
 
+## Selection Summary
+
+**Skyline Photograph:** ChatGPT Image 7 May 2026 21_22_49.png
+- Landscape composition: Vardova skyline at dusk with cool-to-warm gradient
+- Suitable for framed domestic display
+- Selected 2026-05-07
+
+**In-Situ Composition Variant:** 8d4070a4-b83f-49d0-9b9a-c4a3cf9f7be6.png
+- Frame positioned in corridor context, tilted several degrees off-angle
+- Dust-shadow artifact visible behind frame on wall
+- Generated via ChatGPT Image in-situ composition prompt (SC0001__t2i-prop-prop003-frame-in-situ-corridor-chatgpt-image__v01)
+- Selected 2026-05-07
+
 ## Copyright / Provenance
 
-Pending. No images selected or sourced.
+Pending. Both images selected; formal clearance review required for:
+1. ChatGPT Image skyline photograph (potential real-location content)
+2. ChatGPT Image in-situ corridor composition (includes character reference space)
 
 ## Next Steps
 
-1. Source or commission a domestic-generic frame reference (or in-situ corridor mock-up)
-2. Decide on Vardova skyline content strategy (real location vs synthetic/stylized)
-3. Confirm copyright/provenance clearance for both the frame and the photograph-within-the-frame
-4. Commit as `.png` / `.jpg` / `.jpeg` / `.webp` — LFS tracking is automatic (PR4B)
-5. Update `pack_manifest.yaml` on seeding
+1. Copyright review clearance for both selected images
+2. Provenance review and documentation
+3. Commit images to LFS tracking (automatic per .gitattributes PR4B)
+4. Consider additional composition variants (Midjourney, Nano Banana) or lock pack
