@@ -74,6 +74,9 @@ post/edit/proxies/**/*.wav
 # Storyboard candidate stills — external storage only; repo holds storyboard_options.yaml metadata
 visual_dev/storyboards/**/candidates/
 
+# Element wardrobe/prop model-specific candidate working folders — not canonical assets
+visual_dev/elements/**/candidates_*/
+
 # B8A canonical asset intake staging — local drop zone; files moved to elements/** via auto-placer
 visual_dev/intake_staging/
 # ──────────────────────────────────────────────────────────────────────────────
