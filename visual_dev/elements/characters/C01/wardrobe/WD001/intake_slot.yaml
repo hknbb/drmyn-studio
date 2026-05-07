@@ -16,22 +16,10 @@ copyright_review: approved
 provenance_review: approved
 intake_ready_to_proceed: false
 canonical_assets_committed:
-- view_role: front_reference
-  lfs_path: visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_front.png
-  source_type: ai_generated_midjourney
-  clearance_ref: evidence/asset_clearance/C01_WD001_front_reference_clearance.yaml
-- view_role: three_quarter_reference
-  lfs_path: visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_three_quarter.png
-  source_type: ai_generated_chatgpt_image
-  clearance_ref: evidence/asset_clearance/C01_WD001_three_quarter_reference_clearance.yaml
-- view_role: back_reference
-  lfs_path: visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_back.png
-  source_type: ai_generated_chatgpt_image
-  clearance_ref: evidence/asset_clearance/C01_WD001_back_reference_clearance.yaml
-- view_role: context_reference
-  lfs_path: visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_context.png
-  source_type: ai_generated_chatgpt_image
-  clearance_ref: evidence/asset_clearance/C01_WD001_context_reference_clearance.yaml
+- visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_front.png
+- visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_three_quarter.png
+- visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_back.png
+- visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_context.png
 storage_policy: git_lfs_approved_references_only
 forbidden_actions:
 - Do not add placeholder binaries.
