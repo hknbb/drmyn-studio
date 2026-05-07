@@ -26,14 +26,15 @@ component_image_groups:
   - component: frame_in_situ_composition
     context: framed photograph in corridor context with tilt and dust-shadow
     image_status: collected
-    selected_image: 8d4070a4-b83f-49d0-9b9a-c4a3cf9f7be6.png
+    selected_image: 73978138-2391-410e-85ae-f4992e567bb1.png
     model_source: chatgpt_image
-    selection_date: "2026-05-07T21:22:49Z"
+    selection_date: "2026-05-07T22:02:00Z"
     composition_specs:
       frame_tilt_degrees: several
       dust_shadow_visible: true
       corridor_context_legible: true
-    notes: "Selected from ChatGPT Image in-situ candidates via SC0001__t2i-prop-prop003-frame-in-situ-corridor-chatgpt-image__v01 prompt. Composition shows frame tilted off-angle in corridor geometry with dust-shadow artifact visible on wall behind frame."
+      interior_skyline_legible: true
+    notes: "Selected from ChatGPT Image in-situ candidates via SC0001__t2i-prop-prop003-frame-in-situ-corridor-chatgpt-image__v02 prompt. Composition successfully renders frame tilted off-angle on pale stone wall with dust-shadow artifact visible. Interior Vardova skyline photograph (dusk, warm amber-to-orange gradient) legible through frame glass. Corridor geometry and filtered light visible as secondary context. All critical requirements met: frame tilt readable, dust-shadow visible, narrative function (displacement evidence) clear."
 open_blockers: []
 intake_ready_to_proceed: true
 provenance:

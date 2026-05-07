@@ -36,10 +36,12 @@ avoid real-location association.
 - Suitable for framed domestic display
 - Selected 2026-05-07
 
-**In-Situ Composition Variant:** 8d4070a4-b83f-49d0-9b9a-c4a3cf9f7be6.png
-- Frame positioned in corridor context, tilted several degrees off-angle
-- Dust-shadow artifact visible behind frame on wall
-- Generated via ChatGPT Image in-situ composition prompt (SC0001__t2i-prop-prop003-frame-in-situ-corridor-chatgpt-image__v01)
+**In-Situ Composition Variant:** 73978138-2391-410e-85ae-f4992e567bb1.png
+- Frame positioned in corridor context, tilted several degrees off-angle (tilt immediately legible)
+- Dust-shadow artifact visible on pale stone wall behind frame (rectangular shadow readable)
+- Interior Vardova skyline photograph visible through frame glass (dusk, warm amber-to-orange gradient)
+- Generated via ChatGPT Image in-situ composition prompt v02 (SC0001__t2i-prop-prop003-frame-in-situ-corridor-chatgpt-image__v02)
+- All critical composition requirements met
 - Selected 2026-05-07
 
 ## Copyright / Provenance
