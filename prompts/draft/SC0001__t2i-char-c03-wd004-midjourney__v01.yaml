@@ -1,0 +1,32 @@
+prompt_id: SC0001__t2i-char-c03-wd004-midjourney__v01
+scene_id: SC0001
+prompt_type: t2i_character_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0001/scene_card.yaml
+  scene_excerpt: "Early morning, Vale residence kitchen passage. C03 in practical domestic workwear. Compact, work-shaped silhouette. Pale stone and muted domestic neutrals. Filtered early daylight and low-key practicals."
+  character_refs:
+  - C03
+  wardrobe_refs:
+  - WD004
+  aesthetic_refs:
+  - VALE_DOMESTIC_RESTRAINT
+prompt_text: "A woman in her seventies, compact and work-shaped. Practical domestic working clothes in muted neutrals—chosen for function, not ornament. Early morning in a pale stone corridor, filtered daylight and low-key practicals only. Her movement is minimal and exact, aligned to years of corridor routine. Hands ready to carry, posture steady and authoritative. Age reads honestly; no caricature. Someone who has carried the house's routine for decades. Muted palette: pale stone, warm dimness, service neutrals."
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  aesthetic_keywords_injected:
+  - seventies, compact working silhouette
+  - practical domestic workwear, muted neutrals
+  - pale stone corridor, filtered daylight
+  - minimal exact movement, authoritative presence
+  planning_name_filter:
+    forbidden:
+    - Birta
+  recommended_model_version: --v 8.1
+  recommended_style: --style raw
