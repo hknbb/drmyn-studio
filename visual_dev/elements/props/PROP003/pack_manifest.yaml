@@ -5,9 +5,11 @@ planning_record: planning/props/PROP003.yaml
 pack_status: locked
 image_seeding_blocked: false
 image_seeding_note: >
-  SC0001 source image selected and locked. Skyline photograph reference ready
-  for downstream composition work (framing, tilted positioning, dust-shadow
-  effect creation). LFS-tracked per .gitattributes.
+  SC0001 composition complete. Two source images selected and locked: (1) skyline
+  photograph (ChatGPT Image base), (2) in-situ corridor composition showing frame
+  tilted off-angle with dust-shadow visible (ChatGPT Image v02). Frame tilt and
+  dust-shadow narrative function verified. Interior Vardova skyline legible through
+  frame. All critical composition requirements met. LFS-tracked per .gitattributes.
 text_assets:
   - pack_manifest.yaml
   - source_notes.md

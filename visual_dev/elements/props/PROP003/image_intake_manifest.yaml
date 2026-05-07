@@ -1,7 +1,7 @@
 element_id: PROP003
 element_type: prop
 canonical_name: Vardova skyline photo frame
-intake_status: collected
+intake_status: composition_complete
 image_count_expected: 1_to_2
 lfs_ready: true
 lfs_note: "*.png / *.jpg / *.jpeg / *.webp in this folder are LFS-tracked per .gitattributes (PR4B)."
