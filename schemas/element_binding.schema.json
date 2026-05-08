@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/element_binding.schema.json",
+  "title": "Element Binding",
+  "description": "Binding record mapping repo elements to Kling Library @Aliases and Kling-native audio readiness. This record separates Kling production concerns (kling_alias, speaker_mapping, voice_capability, native_audio_readiness) from element view planning (element_view_plan.schema.json). No lifecycle keys (pack_status, canon_lock, approved, locked, selected) permitted.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "element_id",
+    "element_type",
+    "kling_alias",
+    "binding_status",
+    "voice_capability",
+    "native_audio_readiness",
+    "kling_native_audio",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.x-draft",
+      "description": "Pre-1.0 draft. Promoted to 1.0 after B0/B1/B2 feedback loop closes."
+    },
+    "record_type": {
+      "type": "string",
+      "const": "element_binding"
+    },
+    "element_id": {
+      "type": "string",
+      "pattern": "^(C\\d{2}|LOC\\d{3}|PROP\\d{3}|WD\\d{3}|STYLE\\d{3})$",
+      "description": "Element identifier: C01, LOC001, PROP003, WD001, STYLE001, etc."
+    },
+    "element_type": {
+      "type": "string",
+      "enum": ["character", "wardrobe", "location", "location_sub_area", "prop", "style"],
+      "description": "Type of element being bound to Kling."
+    },
+    "source_element_view_plan_ref": {
+      "type": ["string", "null"],
+      "maxLength": 500,
+      "description": "Relative path to the corresponding element_view_plan.yaml that defines the element's views and retrofit status."
+    },
+    "kling_alias": {
+      "type": "string",
+      "pattern": "^@[A-Za-z0-9_]+$",
+      "minLength": 2,
+      "maxLength": 100,
+      "description": "Kling Library element reference. Regex requires leading @ and alphanumeric/underscore characters only. Example: @Nadia, @NadiaWD001, @KitchenPassage."
+    },
+    "binding_status": {
+      "type": "string",
+      "enum": ["planned", "created", "voice_capable", "voice_locked"],
+      "description": "planned: Kling asset does not yet exist. created: Kling asset exists but not voice-capable. voice_capable: Asset exists and can voice dialogue. voice_locked: Asset is ready for final voice-locked SC0001 generation."
+    },
+    "voice_capability": {
+      "type": "string",
+      "enum": ["none", "video_ref", "audio_ref", "library_provided"],
+      "description": "none: element has no voice capability. video_ref: voice exists as video reference, not directly generatable. audio_ref: voice exists as audio reference, not directly generatable. library_provided: Kling Element Library provides voice-capable asset."
+    },
+    "native_audio_readiness": {
+      "type": "string",
+      "enum": ["not_required", "blocked", "metadata_only", "ready"],
+      "description": "not_required: element has no dialogue. blocked: element needs voice but Kling-native voice not available. metadata_only: voice info recorded but not yet integrated. ready: element is voice-ready for SC0001 generation."
+    },
+    "kling_native_audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled", "provider_policy", "external_tts_allowed", "adr_vendor_allowed"],
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "True if this element uses Kling-native audio."
+        },
+        "provider_policy": {
+          "type": "string",
+          "const": "kling_native_only",
+          "description": "Audio must originate from Kling Element Library or Kling-compatible sources only. No external voice synthesis."
+        },
+        "external_tts_allowed": {
+          "type": "boolean",
+          "const": false,
+          "description": "External text-to-speech is never permitted. Must be false."
+        },
+        "adr_vendor_allowed": {
+          "type": "boolean",
+          "const": false,
+          "description": "Automated dialogue replacement (ADR) via external vendor is never permitted. Must be false."
+        }
+      }
+    },
+    "speaker_mapping": {
+      "type": "array",
+      "description": "Maps character elements to speaker aliases and dialogue readiness. Optional; used only when dialogue is present.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["speaker_element_id", "speaker_kling_alias", "dialogue_required", "native_audio_readiness"],
+        "properties": {
+          "speaker_element_id": {
+            "type": "string",
+            "pattern": "^C\\d{2}$",
+            "description": "Character element ID (e.g., C01, C02)."
+          },
+          "speaker_kling_alias": {
+            "type": "string",
+            "pattern": "^@[A-Za-z0-9_]+$",
+            "description": "Kling alias for this speaker."
+          },
+          "dialogue_required": {
+            "type": "boolean",
+            "description": "True if this character must speak in SC0001."
+          },
+          "native_audio_readiness": {
+            "type": "string",
+            "enum": ["not_required", "blocked", "metadata_only", "ready"],
+            "description": "Voice readiness state for this speaker specifically."
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Human-readable notes about this binding, including voice provisioning status and any blockers."
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_by", "created_at"],
+      "properties": {
+        "created_by": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}
