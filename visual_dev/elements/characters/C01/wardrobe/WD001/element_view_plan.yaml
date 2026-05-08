@@ -1,0 +1,70 @@
+schema_version: "0.x-draft"
+record_type: element_view_plan
+element_id: WD001
+element_type: wardrobe
+element_subtype: WD001
+element_context: >
+  C01 / Nadia Vale — early-morning domestic control. WD001 is the primary Kling
+  element reference set for SC0001 and SC0003 (kitchen passage, corridor geometry,
+  filtered early daylight). All four canonical assets are committed to the repo
+  via Git LFS (B8A, PR #68).
+retrofit_status: historical
+anchor_view: front_reference
+views:
+  - view_id: front_reference
+    view_label: Front reference (anchor)
+    generation_pattern: independent_t2i
+    anchor_dependency: none
+    model_adapter_target: midjourney_image_best_available
+    status: complete
+    canonical_asset_path: visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_front.png
+    generation_notes: >
+      Midjourney v8.1 output. Strong lean-upright silhouette, muted domestic neutral
+      palette, filtered early daylight. Selected as front_reference (Path B, 2026-05-07).
+      Prompt: SC0001__t2i-char-c01-midjourney__v01.
+  - view_id: three_quarter_reference
+    view_label: Three-quarter reference
+    generation_pattern: independent_t2i
+    anchor_dependency: none
+    model_adapter_target: chatgpt_image_best_available
+    status: complete
+    canonical_asset_path: visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_three_quarter.png
+    generation_notes: >
+      ChatGPT Image output. Three-quarter angle confirms silhouette read and
+      fabric drape without ornament. Prompt: SC0001__t2i-char-c01-chatgpt-image__v01.
+  - view_id: back_reference
+    view_label: Back reference
+    generation_pattern: independent_t2i
+    anchor_dependency: none
+    model_adapter_target: chatgpt_image_best_available
+    status: complete
+    canonical_asset_path: visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_back.png
+    generation_notes: >
+      ChatGPT Image output. Back view documents closure details and fabric fall.
+      Committed as supplementary back_reference beyond the three required views.
+      Prompt: SC0001__t2i-char-c01-chatgpt-image__v01.
+  - view_id: context_reference
+    view_label: Context reference — in-setting (kitchen passage, SC0001)
+    generation_pattern: independent_t2i
+    anchor_dependency: none
+    model_adapter_target: chatgpt_image_best_available
+    status: complete
+    canonical_asset_path: visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_context.png
+    generation_notes: >
+      ChatGPT Image output. Full figure in kitchen passage framing (VALE RESIDENCE —
+      VARDOVA — KITCHEN PASSAGE — EARLY MORNING). Confirms wardrobe read in
+      production context. Prompt: SC0001__t2i-char-c01-chatgpt-image__v01.
+original_locked_at: "2026-05-07T19:11:00Z"
+original_method_summary: >
+  All four views generated as independent T2I without anchor-then-refine workflow.
+  View 1 (front): Midjourney v8.1. Views 2-4 (three-quarter, back, context):
+  ChatGPT Image. Nano Banana adapter prompt (SC0001__t2i-char-c01-nano-banana__v01)
+  was drafted but not used in this round — retained for future rounds.
+  Cleared under Path B operator decision (2026-05-07).
+evidence_refs:
+  - visual_dev/elements/characters/C01/wardrobe/WD001/intake_slot.yaml
+  - visual_dev/elements/characters/C01/image_selection.yaml
+  - visual_dev/elements/characters/C01/pack_manifest.yaml
+provenance:
+  created_by: hknbb
+  created_at: "2026-05-08T00:00:00Z"
