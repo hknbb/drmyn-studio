@@ -1,0 +1,58 @@
+schema_version: "0.x-draft"
+record_type: element_view_plan
+element_id: LOC001
+element_type: location
+element_subtype: kitchen_passage
+element_context: >
+  Vale Residence — Vardova — Kitchen Passage — early morning. Required for SC0001
+  (Nadia's surveillance-geometry corridor route). PROP003 (tilted photo frame) is
+  a critical visual element for this sub-area. Source images not yet collected.
+retrofit_status: planned
+anchor_view: null
+views:
+  - view_id: wide_establishing
+    view_label: Wide establishing shot (kitchen passage geometry)
+    generation_pattern: independent_t2i
+    anchor_dependency: none
+    model_adapter_target: null
+    status: blocked
+    canonical_asset_path: null
+    generation_notes: >
+      Required view: pale stone walls, filtered early daylight, surveillance-geometry
+      framing. Blocked: zero source images collected; copyright and provenance reviews
+      pending (see open_blockers).
+  - view_id: threshold_or_route_geometry
+    view_label: Threshold / route geometry reference
+    generation_pattern: independent_t2i
+    anchor_dependency: none
+    model_adapter_target: null
+    status: blocked
+    canonical_asset_path: null
+    generation_notes: >
+      Required view: door threshold or corridor routing geometry that establishes
+      Nadia's movement path and sightlines in SC0001.
+  - view_id: lighting_reference
+    view_label: Lighting reference (early morning filtered light)
+    generation_pattern: independent_t2i
+    anchor_dependency: none
+    model_adapter_target: null
+    status: blocked
+    canonical_asset_path: null
+    generation_notes: >
+      Required view: directional early-morning light quality confirming pale stone
+      tonality and filtered daylight aesthetics per VALE_DOMESTIC_RESTRAINT pack.
+open_blockers:
+  - "Zero source images collected per evidence/pack_lock_readiness/SC0001_pack_lock_readiness.yaml (source_status: not_collected)."
+  - "copyright_review pending on intake_slot.yaml."
+  - "provenance_review pending on intake_slot.yaml."
+  - "B2 batch required to unblock: collect reference source images for kitchen_passage sub-area before view plan can be executed."
+notes: >
+  This record documents the planned view set for LOC001/kitchen_passage prior to
+  source image collection. Location views do not use anchor-then-refine identity
+  coherence (no persistent character identity to anchor); all views are planned as
+  independent_t2i reference shots. No model_adapter_target selected until B2 source
+  images are collected and provider guidance is verified. anchor_view is null:
+  location views have no identity anchor relationship.
+provenance:
+  created_by: hknbb
+  created_at: "2026-05-08T00:00:00Z"

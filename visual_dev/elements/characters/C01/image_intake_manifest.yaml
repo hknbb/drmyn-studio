@@ -15,11 +15,13 @@ wardrobe_image_groups:
     notes: "Lean, upright silhouette; muted domestic neutrals; early-morning/mid-morning light. 4 canonical refs via B8A (1 Midjourney + 3 ChatGPT)."
   - wardrobe_id: WD002
     context: night / private (SC0006, SC0008, SC0009 carry-over)
-    image_status: not_collected
-    notes: "Same silhouette; low-key night register; fatigue and vigilance readable."
-open_blockers:
-  - "WD002 (night/private wardrobe) requires separate reference image set for SC0006, SC0008, SC0009."
-intake_ready_to_proceed: false
+    image_status: collected
+    selected_image: ChatGPT Image 7 May 2026 19_10_25.png
+    model_source: chatgpt_image
+    selection_date: "2026-05-07T19:10:25Z"
+    notes: "Same silhouette; low-key night register; fatigue and vigilance readable. Selected from ChatGPT Image candidates via SC0006__t2i-char-c01-wd002-chatgpt-image__v01 prompt."
+open_blockers: []
+intake_ready_to_proceed: true
 provenance:
   created_by: hknbb
   created_at: "2026-04-20T09:11:35Z"

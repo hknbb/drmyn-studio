@@ -1,0 +1,46 @@
+prompt_id: SC0001__t2i-prop-prop003-frame-in-situ-corridor-midjourney__v01
+scene_id: SC0001
+prompt_type: t2i_prop_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0001/scene_card.yaml
+  scene_excerpt: "Early morning, Vale residence kitchen passage. A framed landscape photograph hangs slightly off-angle. The photograph shows Vardova skyline at dusk."
+  location_refs:
+  - LOC001
+  prop_refs:
+  - PROP003
+  aesthetic_refs:
+  - VALE_DOMESTIC_RESTRAINT
+prompt_text: "Elite residence corridor, early morning. Pale stone walls, filtered daylight from high windows. Third in a sequence of framed photographs hanging along the passage. This particular frame hangs noticeably tilted—several degrees off-angle, the kind of tilt that signals disturbance or deliberate misalignment. The frame itself is domestic and generic, not ornate. Behind the frame, a distinct dust-shadow is visible on the wall—a larger rectangular shadow that proves the frame was displaced from its original position. Inside the frame: a landscape photograph of Vardova city skyline at dusk, showing cool-to-warm gradient from deep blues to amber and rose at horizon. The skyline is distinctive but restrained, befitting an elite residential urban center. The composition emphasizes the visual relationship between the tilted frame, the dust-shadow evidence, and the corridor geometry receding around it. Light is cool and controlled. No people in frame. The tilt and shadow must be legible at residential scale—visible enough to notice the disturbance immediately."
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  aesthetic_keywords_injected:
+  - elite residence corridor, pale stone, filtered morning light
+  - framed photograph, tilted off-angle, misalignment readable
+  - dust-shadow behind frame, displacement evidence
+  - Vardova skyline dusk, cool-to-warm gradient inside frame
+  - generic domestic frame, no ornament
+  - third in sequence, corridor geometry context
+  composition_requirements:
+  - "Frame tilt: several degrees off-vertical, clearly visible"
+  - "Dust-shadow: larger rectangular shadow on wall behind frame, evidence of displacement"
+  - "In-situ context: corridor geometry, walls, window light visible around frame"
+  - "Interior photograph: Vardova skyline with cool-to-warm gradient legible through glass"
+  - "Scale: frame must read as domestic wall-hanging, tilt legible at residential viewing distance"
+  location_name_filter:
+    forbidden:
+    - Vale Residence
+    - Vale
+  planning_name_filter:
+    forbidden:
+    - Nadia
+    - Birta
+    - Jin
+  recommended_model_version: --v 8.1
+  recommended_style: --style raw

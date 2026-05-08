@@ -1,0 +1,29 @@
+prompt_id: SC0001__t2i-prop-prop003-vardova-skyline-nano-banana__v01
+scene_id: SC0001
+prompt_type: t2i_prop_element
+lifecycle_stage: draft
+target_models:
+- nano_banana
+source_refs:
+  scene_card: planning/scenes/SC0001/scene_card.yaml
+  scene_excerpt: "Early morning, Vale residence kitchen passage. A framed landscape photograph hangs slightly off-angle. The photograph shows Vardova skyline at dusk."
+  prop_refs:
+  - PROP003
+  aesthetic_refs:
+  - VALE_DOMESTIC_RESTRAINT
+prompt_text: "Landscape photograph: Vardova city skyline at dusk. City silhouette against twilight sky, cool blues shifting to warm amber and rose at horizon. The skyline is distinctive but not caricatured—an elite residential urban center. Landscape composition: horizon in middle-to-lower third, sky-dominated upper space. Muted palette throughout: deep blues, ambers, roses, atmospheric depth. No people, no street detail, no foreground activity. Pure skyline and light. Image should work as a domestic framed photograph—something that would hang in a residential corridor and be specific enough to notice if moved. Generic frame suitable, landscape composition clean and clear."
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/nano_banana.yaml
+  adapter_name: nano_banana
+  aesthetic_keywords_injected:
+  - Vardova skyline, dusk twilight
+  - cool-to-warm gradient, atmospheric depth
+  - elite city skyline, muted palette
+  - landscape photograph, framed domestic interior
+  location_name_filter:
+    forbidden:
+    - Vardova
+    - skyline

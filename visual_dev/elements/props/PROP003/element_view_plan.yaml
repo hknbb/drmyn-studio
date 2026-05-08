@@ -1,0 +1,58 @@
+schema_version: "0.x-draft"
+record_type: element_view_plan
+element_id: PROP003
+element_type: prop
+element_context: >
+  Vardova skyline photo frame — third framed photograph in the east-wing corridor
+  sequence (SC0001). Critical narrative prop: frame tilted off-angle, dust-shadow
+  visible behind. Two component images collected: skyline photograph for framing,
+  and in-situ corridor composition showing tilt and dust-shadow.
+retrofit_status: historical
+anchor_view: null
+views:
+  - view_id: skyline_photograph
+    view_label: Skyline photograph (framed content)
+    generation_pattern: independent_t2i
+    anchor_dependency: none
+    model_adapter_target: chatgpt_image_best_available
+    status: complete
+    canonical_asset_path: >
+      visual_dev/elements/props/PROP003/canonical/ChatGPT Image 7 May 2026 21_22_49.png
+    generation_notes: >
+      ChatGPT Image output. Landscape composition: Vardova skyline at dusk, muted
+      amber-to-orange gradient, elite residential character. Suitable for framed
+      domestic display. Selected via SC0001__t2i-prop-prop003-vardova-skyline-chatgpt-image__v01.
+  - view_id: frame_in_situ_composition
+    view_label: Frame in-situ composition (corridor context with tilt and dust-shadow)
+    generation_pattern: independent_t2i
+    anchor_dependency: none
+    model_adapter_target: chatgpt_image_best_available
+    status: complete
+    canonical_asset_path: >
+      visual_dev/elements/props/PROP003/canonical/73978138-2391-410e-85ae-f4992e567bb1.png
+    generation_notes: >
+      ChatGPT Image output. Prop rendered in corridor context: frame tilted several
+      degrees off-angle on pale stone wall, dust-shadow artifact visible behind frame,
+      interior Vardova skyline legible through frame glass, corridor geometry and
+      filtered light present as secondary context. All critical requirements met.
+      Selected via SC0001__t2i-prop-prop003-frame-in-situ-corridor-chatgpt-image__v02.
+original_locked_at: "2026-05-07T21:22:49Z"
+original_method_summary: >
+  Both component views generated as independent T2I using ChatGPT Image. No
+  anchor-then-refine workflow applicable: PROP003 is a prop with distinct component
+  image functions (skyline content and in-situ corridor composition) rather than
+  multi-angle identity views. Composition locked after SC0001 production requirements
+  verified (tilt, dust-shadow, legible interior, corridor geometry).
+evidence_refs:
+  - visual_dev/elements/props/PROP003/pack_manifest.yaml
+  - visual_dev/elements/props/PROP003/image_intake_manifest.yaml
+notes: >
+  PROP003 does not use the standard 4-view identity set. Its two component views
+  serve distinct narrative functions. anchor_view is null: no anchor-then-refine
+  strategy applies to prop component images. Canonical binaries are LFS-tracked
+  per .gitattributes but are not committed to the repository per
+  docs/operator_guides/canonical_asset_storage_policy.md (no_binary_commits policy).
+  Paths above are reference identifiers only.
+provenance:
+  created_by: hknbb
+  created_at: "2026-05-08T00:00:00Z"
