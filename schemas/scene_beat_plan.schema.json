@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/scene_beat_plan.schema.json",
+  "title": "Scene Beat Plan",
+  "description": "Source-beat semantic plan layer for a scene. Describes the fine-grained narrative/semantic units (beats) within a scene, independent of final Kling shot durations. This is the input layer to the omni_clip_planner, which computes Kling-valid integer-second shots (3..15s) from these source beats. Schema version 0.x-draft; promoted to 1.0 after A3 feedback loop closes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "scene_id",
+    "source_beats",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.x-draft",
+      "description": "Pre-1.0 draft. Promoted to 1.0 after A3 feedback loop closes."
+    },
+    "record_type": {
+      "type": "string",
+      "const": "scene_beat_plan"
+    },
+    "scene_id": {
+      "type": "string",
+      "pattern": "^SC\\d{4}$",
+      "description": "Scene identifier (e.g., SC0001)."
+    },
+    "source_beats": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Array of semantic source beats describing the scene's narrative/visual progression. Each beat is a fine-grained unit that may later be merged into Kling-valid shots by omni_clip_planner. Do NOT assign duration_seconds here; durations are computed by the packer during A5/B6.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "beat_id",
+          "content",
+          "semantic_duration_hint",
+          "may_merge_with_next",
+          "splittable"
+        ],
+        "properties": {
+          "beat_id": {
+            "type": "string",
+            "pattern": "^[A-Z0-9_]+$",
+            "minLength": 1,
+            "maxLength": 50,
+            "description": "Unique identifier for this beat within the scene (e.g., ESTABLISH_KITCHEN, DIALOGUE_NADIA_01, WRIST_INSERT_1)."
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "description": "Human-readable description of what happens in this beat. Example: 'Pan across kitchen counter, settling on Nadia's hands as she pours espresso.'"
+          },
+          "semantic_duration_hint": {
+            "type": "string",
+            "enum": ["short_insert", "normal", "long_hold"],
+            "description": "Semantic category guiding beat merging during packing: short_insert = sub-3s detail (eye movement, hand detail, object flourish); normal = standard beat (dialogue line, transition, action); long_hold = extended focus (establishing shot, meditation, sustained action). The packer uses this hint to decide merge-into-neighbor or standalone placement."
+          },
+          "may_merge_with_next": {
+            "type": "boolean",
+            "description": "True if this beat can be merged into the next beat during packing (preferred for short_insert and optional actions). False if this beat should preferably be its own shot or merged only as a last resort."
+          },
+          "splittable": {
+            "type": "boolean",
+            "description": "True if this beat can be split across multiple Kling shots during packing (e.g., a long sustained action or establishing shot). False if beat must remain atomic (e.g., dialogue punch-line, critical object reveal, narrative milestone)."
+          },
+          "narrative_role": {
+            "type": "string",
+            "enum": [
+              "establish",
+              "action",
+              "dialogue",
+              "hold",
+              "transition",
+              "pulse_check",
+              "insert"
+            ],
+            "description": "Optional semantic role classification for the beat. establish = scene setting, context establishment; action = character physical action; dialogue = speech/character interaction; hold = sustained focus without action change; transition = location/subject shift; pulse_check = brief moment confirming emotional/thematic beat; insert = detail shot (hand, object, expression close-up)."
+          },
+          "notes": {
+            "type": "string",
+            "maxLength": 1000,
+            "description": "Optional human-readable notes, such as visual style cues, emotional intent, or special technical considerations."
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Overall scene-level notes, such as mood, pacing constraints, or known dependencies on other scenes or elements."
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_by", "created_at"],
+      "properties": {
+        "created_by": {
+          "type": "string",
+          "description": "User or agent that created this record."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 creation timestamp."
+        }
+      }
+    }
+  }
+}
