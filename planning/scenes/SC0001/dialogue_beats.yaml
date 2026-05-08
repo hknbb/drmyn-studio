@@ -1,0 +1,118 @@
+schema_version: "0.x-draft"
+record_type: dialogue_beats
+scene_id: SC0001
+source_scene_beat_plan_ref: planning/scenes/SC0001/scene_beat_plan.yaml
+source_element_bindings_ref: visual_dev/omni_sets/SC0001/element_bindings.yaml
+dialogue_lines:
+  - line_id: DLG_BIRTA_SLEEP_01
+    target_beat_id: DIALOGUE_SLEEP_ACCUSATION
+    speaker_element_id: C03
+    speaker_kling_alias: "@Birta"
+    line_text: "You didn't sleep again."
+    line_type: spoken
+    native_audio_readiness: blocked
+    dialogue_required: true
+    delivery_note: "Observational, not accusatory. Birta's intimate knowledge of Nadia's patterns."
+    subtext_note: "Caregiving awareness masked as simple comment; detecting Nadia's controlled behavior."
+
+  - line_id: DLG_NADIA_SLEEP_01
+    target_beat_id: DIALOGUE_SLEEP_ACCUSATION
+    speaker_element_id: C01
+    speaker_kling_alias: "@Nadia"
+    line_text: "I slept."
+    line_type: spoken
+    native_audio_readiness: blocked
+    dialogue_required: true
+    delivery_note: "Brief, controlled. Minimal affect."
+    subtext_note: "Deflection; information control. Nadia does not invite further discussion."
+
+  - line_id: DLG_BIRTA_SLEEP_02
+    target_beat_id: DIALOGUE_SLEEP_ACCUSATION
+    speaker_element_id: C03
+    speaker_kling_alias: "@Birta"
+    line_text: "You slept the way you fold laundry. Very neat. Not restful."
+    line_type: spoken
+    native_audio_readiness: blocked
+    dialogue_required: true
+    delivery_note: "Warm, knowing. The laundry metaphor is affectionate, not critical."
+    subtext_note: "Birta sees through precision to exhaustion. The metaphor mirrors Nadia's character-defining exactness."
+
+  - line_id: DLG_NADIA_FORMULA_01
+    target_beat_id: DIALOGUE_FORMULA_VITAMIN
+    speaker_element_id: C01
+    speaker_kling_alias: "@Nadia"
+    line_text: "Jin's formula. There's a new tin in the second shelf, behind the vitamin drops."
+    line_type: spoken
+    native_audio_readiness: blocked
+    dialogue_required: true
+    delivery_note: "Rapid delegation of child-care logistics. Precise locations, practical tone."
+    subtext_note: "Nadia manages environment and information flow. Delegating to Birta while maintaining control of details."
+
+  - line_id: DLG_BIRTA_FORMULA_01
+    target_beat_id: DIALOGUE_FORMULA_VITAMIN
+    speaker_element_id: C03
+    speaker_kling_alias: "@Birta"
+    line_text: "I found it. He's still down. Your husband —"
+    line_type: interrupted
+    native_audio_readiness: blocked
+    dialogue_required: true
+    delivery_note: "Checks herself mid-sentence. Catches the familiar 'Your husband' and corrects to formality."
+    subtext_note: "Momentary slip into intimacy reveals Birta's internal relationship to the household. The self-correction signals power dynamic awareness."
+
+  - line_id: DLG_BIRTA_MR_VALE_01
+    target_beat_id: DIALOGUE_MR_VALE_CALL
+    speaker_element_id: C03
+    speaker_kling_alias: "@Birta"
+    line_text: "Mr. Vale called from the car. He said not to wait on breakfast."
+    line_type: spoken
+    native_audio_readiness: blocked
+    dialogue_required: true
+    delivery_note: "Factual report delivered with slight formality shift (using 'Mr. Vale' explicitly)."
+    subtext_note: "Relaying Mr. Vale's absence. The call suggests pre-planned departure, consistent with Nadia's prior knowledge."
+
+  - line_id: DLG_NADIA_PRIOR_01
+    target_beat_id: NADIA_PRIOR_KNOWLEDGE
+    speaker_element_id: C01
+    speaker_kling_alias: "@Nadia"
+    line_text: "He won't be back before eight."
+    line_type: spoken
+    native_audio_readiness: blocked
+    dialogue_required: true
+    delivery_note: "Flat statement delivered without looking at Birta. No inflection. Already-known information."
+    subtext_note: "Nadia's prior knowledge of Mr. Vale's schedule signals information control and embedded awareness of household rhythms."
+
+  - line_id: DLG_BIRTA_COVERED_01
+    target_beat_id: BIRTA_COVERED_LINENS
+    speaker_element_id: C03
+    speaker_kling_alias: "@Birta"
+    line_text: "I'll leave something covered."
+    line_type: spoken
+    native_audio_readiness: blocked
+    dialogue_required: true
+    delivery_note: "Domestic care offer, brief and practical."
+    subtext_note: "Birta's caretaking finality. The offer is accepted by Nadia's nod; exchange closes breakfast topic."
+
+ambient_sound_prompt: |
+  Expensive pale-stone kitchen passage, quiet morning domestic space. Corporate-art-lined corridor
+  suggests wealth and emotional distance. Transitional ambient: kitchen silence, footsteps on stone,
+  the quietness of a home where one person has mapped exits. Shift to warm, dim Jin's room with
+  white-noise machine hum as scene concludes. No external SFX vendors. Metadata-only soundscape
+  descriptor for Kling-native composition; no TTS, no ADR vendor claims.
+
+kling_native_audio:
+  enabled: false
+  provider_policy: "kling_native_only"
+  external_tts_allowed: false
+  adr_vendor_allowed: false
+
+notes: |
+  SC0001 dialogue_beats metadata for 8 source dialogue lines from Closing Price (lines 1–77).
+  All dialogue lines mapped to existing beat_ids from scene_beat_plan.yaml. All speakers are
+  C01 (@Nadia) and C03 (@Birta), referencing existing element_bindings.yaml. All lines marked
+  native_audio_readiness: blocked because current bindings show voice_capability: none.
+  All marked dialogue_required: true. Readiness blockers expected from semantic validator.
+  No voice provisioning claims. Kling-native audio only; no external TTS, ElevenLabs, ADR vendor.
+
+provenance:
+  created_by: "hknbb"
+  created_at: "2026-05-08T22:00:00Z"
