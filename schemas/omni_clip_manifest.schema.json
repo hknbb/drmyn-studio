@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/omni_clip_manifest.schema.json",
+  "title": "Omni Clip Manifest",
+  "description": "Per-clip Kling-bound metadata describing shot structure, dialogue assignment, audio readiness, and continuity frame references. Integer-only durations (3..15s). Enforces cross-field constraints via Python semantic validator. No prompt generation; no voice provisioning claims. Kling-native audio only.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "scene_id",
+    "clip_id",
+    "source_scene_beat_plan_ref",
+    "source_dialogue_beats_ref",
+    "total_duration_seconds",
+    "continuity_input_mode",
+    "shots",
+    "kling_native_audio",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.x-draft",
+      "description": "Pre-1.0 draft. Promoted to 1.0 after A5/B6 feedback loop closes."
+    },
+    "record_type": {
+      "type": "string",
+      "const": "omni_clip_manifest"
+    },
+    "scene_id": {
+      "type": "string",
+      "pattern": "^SC\\d{4}$",
+      "description": "Scene identifier (e.g., SC0001)."
+    },
+    "clip_id": {
+      "type": "string",
+      "pattern": "^CLIP_[A-Z0-9_]+$",
+      "minLength": 6,
+      "maxLength": 50,
+      "description": "Unique identifier for this clip (e.g., CLIP_SC0001_01)."
+    },
+    "source_scene_beat_plan_ref": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Relative path to source scene_beat_plan.yaml that defines beat_ids referenced in shots[].source_beat_ids."
+    },
+    "source_dialogue_beats_ref": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Relative path to source dialogue_beats.yaml that defines line_ids referenced in dialogue_line_ids."
+    },
+    "total_duration_seconds": {
+      "type": "integer",
+      "enum": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      "description": "Total duration of all shots in this clip. Must be >= 3, <= 15. Semantic validator enforces sum(shots[].duration_seconds) == total_duration_seconds."
+    },
+    "continuity_input_mode": {
+      "type": "string",
+      "enum": ["metadata_only", "frame_input_eligible", "frame_input_active"],
+      "description": "metadata_only: continuity frames (if present) are metadata hints, not Kling inputs; frame_input_eligible: eligible for first/last frame Kling inputs but not active yet; frame_input_active: first/last frame references will be passed to Kling generation."
+    },
+    "shots": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Array of shot definitions. Every shot has integer duration 3..15s. Semantic validator enforces no shot exceeds total clip duration.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "shot_id",
+          "duration_seconds",
+          "source_beat_ids",
+          "prompt_action",
+          "duration_reason"
+        ],
+        "properties": {
+          "shot_id": {
+            "type": "string",
+            "pattern": "^SHOT_[A-Z0-9_]+$",
+            "minLength": 6,
+            "maxLength": 50,
+            "description": "Unique identifier for this shot within the clip (e.g., SHOT_SC0001_01_A)."
+          },
+          "duration_seconds": {
+            "type": "integer",
+            "enum": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "description": "Duration of this shot in seconds. Must be 3..15 (integer-only, no decimals). Kling production policy: minimum 3s for stable cinematic readability."
+          },
+          "source_beat_ids": {
+            "type": "array",
+            "minItems": 1,
+            "description": "References to beat_id values from source_scene_beat_plan_ref. Semantic validator enforces all ids exist in referenced plan.",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Z0-9_]+$",
+              "minLength": 1,
+              "maxLength": 50
+            }
+          },
+          "dialogue_line_ids": {
+            "type": "array",
+            "description": "Optional references to line_id values from source_dialogue_beats_ref that occur in this shot. Semantic validator enforces all ids exist and no cross-clip duplication.",
+            "items": {
+              "type": "string",
+              "pattern": "^DLG_[A-Z0-9_]+$",
+              "minLength": 5,
+              "maxLength": 50
+            }
+          },
+          "prompt_action": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500,
+            "description": "Prompt-generation action description (e.g., 'Nadia fills glass, drinks, sets down'). No generation happens here; this is metadata for later prompt authoring."
+          },
+          "duration_reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500,
+            "description": "Explanation of why this shot has this duration (e.g., 'Merged WATER_GLASS_ACTION (normal) + WRIST_SCAR_INSERT (short_insert) into 5s shot for flow')."
+          },
+          "visual_pacing_note": {
+            "type": "string",
+            "maxLength": 300,
+            "description": "Optional note on visual pacing, action density, or rhythm relative to neighbouring shots."
+          }
+        }
+      }
+    },
+    "dialogue_line_ids": {
+      "type": "array",
+      "description": "Optional: flattened list of all dialogue_line_ids across all shots (for manifest-level reference).",
+      "items": {
+        "type": "string",
+        "pattern": "^DLG_[A-Z0-9_]+$"
+      }
+    },
+    "ambient_sound_prompt": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional: metadata-only description of ambient soundscape for this clip. No external SFX vendors, no TTS claims. Used for Kling-native composition hints."
+    },
+    "first_frame_reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional: metadata reference to first frame continuity (e.g., previous clip end frame). Used for frame_input_eligible or frame_input_active clips.",
+      "properties": {
+        "source_clip_id": {
+          "type": "string",
+          "description": "If referencing previous clip, the clip_id (e.g., CLIP_SC0001_01)."
+        },
+        "frame_description": {
+          "type": "string",
+          "maxLength": 300,
+          "description": "Human-readable description of the frame (e.g., 'Nadia stands in corridor, about to turn')."
+        },
+        "visual_continuity_note": {
+          "type": "string",
+          "maxLength": 300,
+          "description": "Continuity requirement or observation (e.g., 'Must maintain Nadia's left-to-right movement')."
+        }
+      }
+    },
+    "last_frame_reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional: metadata reference to last frame (e.g., for next clip continuity). Used for frame_input_eligible or frame_input_active clips.",
+      "properties": {
+        "target_clip_id": {
+          "type": "string",
+          "description": "If feeding next clip, the clip_id (e.g., CLIP_SC0001_02)."
+        },
+        "frame_description": {
+          "type": "string",
+          "maxLength": 300,
+          "description": "Human-readable description of the frame (e.g., 'Nadia's hand touches the frame')."
+        },
+        "visual_continuity_note": {
+          "type": "string",
+          "maxLength": 300,
+          "description": "Continuity requirement or observation."
+        }
+      }
+    },
+    "prompt_record_ref": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Optional: relative path to the prompt_record.yaml generated for this clip (e.g., prompts/SC0001/CLIP_SC0001_01_prompt.yaml). Populated after prompt generation."
+    },
+    "kling_native_audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled", "provider_policy", "external_tts_allowed", "adr_vendor_allowed"],
+      "description": "Audio configuration for this clip. Must forbid external TTS and ADR vendor.",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "True if this clip uses Kling-native audio features (dialogue or ambient)."
+        },
+        "provider_policy": {
+          "type": "string",
+          "const": "kling_native_only",
+          "description": "Audio must originate from Kling Element Library only. No external voice synthesis or ADR vendors."
+        },
+        "external_tts_allowed": {
+          "type": "boolean",
+          "const": false,
+          "description": "External text-to-speech is never permitted. Must be false."
+        },
+        "adr_vendor_allowed": {
+          "type": "boolean",
+          "const": false,
+          "description": "Automated dialogue replacement (ADR) via external vendor is never permitted. Must be false."
+        }
+      }
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Optional human-readable notes on clip structure, packing decisions, or known dependencies."
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_by", "created_at"],
+      "properties": {
+        "created_by": {
+          "type": "string",
+          "description": "User or agent (e.g., omni_clip_planner.py) that created this manifest."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 creation timestamp."
+        }
+      }
+    }
+  }
+}

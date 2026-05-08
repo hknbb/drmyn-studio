@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/omni_clip_plan.schema.json",
+  "title": "Omni Clip Plan",
+  "description": "Per-scene summary of clip-level structure and packing strategy. References source scene_beat_plan and dialogue_beats; describes how source beats are packed into Kling-duration shots. Computed by deterministic rhythm-aware packer; not authored manually. Schema version 0.x-draft pending packer feedback.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "scene_id",
+    "source_scene_beat_plan_ref",
+    "source_dialogue_beats_ref",
+    "clip_summaries",
+    "packing_strategy",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.x-draft",
+      "description": "Pre-1.0 draft. Promoted to 1.0 after A5/B6 feedback loop closes."
+    },
+    "record_type": {
+      "type": "string",
+      "const": "omni_clip_plan"
+    },
+    "scene_id": {
+      "type": "string",
+      "pattern": "^SC\\d{4}$",
+      "description": "Scene identifier (e.g., SC0001)."
+    },
+    "source_scene_beat_plan_ref": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Relative path to source scene_beat_plan.yaml that defines semantic source beats."
+    },
+    "source_dialogue_beats_ref": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Relative path to source dialogue_beats.yaml that maps dialogue lines to beats and speakers."
+    },
+    "clip_summaries": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Array of clip summaries (not full manifests; those are omni_clip_manifest.yaml per clip).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["clip_id", "clip_manifest_ref"],
+        "properties": {
+          "clip_id": {
+            "type": "string",
+            "pattern": "^CLIP_[A-Z0-9_]+$",
+            "minLength": 6,
+            "maxLength": 50,
+            "description": "Unique identifier for this clip within the scene (e.g., CLIP_SC0001_01)."
+          },
+          "clip_manifest_ref": {
+            "type": "string",
+            "maxLength": 500,
+            "description": "Relative path to the omni_clip_manifest.yaml for this clip (e.g., planning/scenes/SC0001/manifests/CLIP_SC0001_01_manifest.yaml)."
+          },
+          "total_duration_seconds": {
+            "type": "integer",
+            "minimum": 3,
+            "maximum": 15,
+            "description": "Total duration of all shots in this clip (cached summary; authoritative value in manifest)."
+          },
+          "source_beat_count": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Count of distinct source beats packed into this clip (for planning visibility)."
+          }
+        }
+      }
+    },
+    "packing_strategy": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Summary of packing strategy used by deterministic rhythm-aware packer.",
+      "properties": {
+        "packer_version": {
+          "type": "string",
+          "description": "Version of packing algorithm used (e.g., rhythm_aware_v1, for reproducibility)."
+        },
+        "packing_mode": {
+          "type": "string",
+          "enum": ["rhythm_aware_constrained", "rhythm_aware_soft_constraints"],
+          "description": "rhythm_aware_constrained: hard constraints only; rhythm_aware_soft_constraints: includes soft-cost preferences."
+        },
+        "cut_point_preference_order": {
+          "type": "array",
+          "description": "Order of cut-point preferences applied as soft constraints (e.g., location_transition, dialogue_exchange_end, silence).",
+          "items": {
+            "type": "string",
+            "enum": ["location_transition", "object_discovery", "dialogue_exchange_end", "silence", "beat_boundary"]
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Optional notes on packing strategy, constraints applied, or deviations from soft preferences."
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_by", "created_at"],
+      "properties": {
+        "created_by": {
+          "type": "string",
+          "description": "User or agent (e.g., omni_clip_planner.py) that created this plan."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 creation timestamp."
+        }
+      }
+    }
+  }
+}
