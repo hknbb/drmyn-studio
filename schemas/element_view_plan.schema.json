@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/element_view_plan.schema.json",
+  "title": "Element View Plan",
+  "description": "Planning and documentation record for element reference-view generation. Kling binding fields (kling_alias, speaker_mapping, etc.) belong in element_binding schema, not here. This record must never contain or modify pack_status, canon_lock, approved, locked, or selected lifecycle fields.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "element_id",
+    "element_type",
+    "retrofit_status",
+    "views",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.x-draft",
+      "description": "Pre-1.0 draft. Promoted to 1.0 after B0/B1/B2 feedback loop closes."
+    },
+    "record_type": {
+      "type": "string",
+      "const": "element_view_plan"
+    },
+    "element_id": {
+      "type": "string",
+      "pattern": "^(C\\d{2}|LOC\\d{3}|PROP\\d{3}|WD\\d{3})$",
+      "description": "Element identifier: C01, LOC001, PROP003, WD001, etc."
+    },
+    "element_type": {
+      "type": "string",
+      "enum": ["character", "location", "prop", "wardrobe"]
+    },
+    "element_subtype": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Optional qualifier: wardrobe_id for wardrobe-level plans (e.g., WD001), sub_area_id for location sub-areas (e.g., kitchen_passage)."
+    },
+    "element_context": {
+      "type": "string",
+      "maxLength": 400,
+      "description": "Brief human-readable description of this element's production role and relevant scene context."
+    },
+    "retrofit_status": {
+      "type": "string",
+      "enum": ["historical", "planned", "active"],
+      "description": "historical: views already generated using legacy methods; independent_t2i is permitted for any view. planned: view plan authored but generation not yet started. active: generation currently in progress using anchor-then-refine. For planned/active records, independent_t2i is only permitted for the anchor view itself."
+    },
+    "anchor_view": {
+      "type": ["string", "null"],
+      "description": "view_id of the anchor view (typically main_front, generated via anchor_t2i). Null when no anchor strategy applies — e.g., location plans, props without a natural identity anchor, or historical records where all views were independent_t2i."
+    },
+    "views": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Ordered list of element reference views. For anchor-then-refine workflow, the anchor view must appear before dependent views.",
+      "items": {
+        "$ref": "#/$defs/view_entry"
+      }
+    },
+    "original_locked_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp when element was originally locked. Populated for retrofit_status: historical records."
+    },
+    "original_method_summary": {
+      "type": ["string", "null"],
+      "maxLength": 1000,
+      "description": "For historical records: human-readable summary of how views were originally generated, including which models were used and whether anchor-then-refine was applied."
+    },
+    "evidence_refs": {
+      "type": "array",
+      "description": "Relative paths to supporting evidence files (e.g., image_selection.yaml, pack_manifest.yaml, intake_slot.yaml).",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+      }
+    },
+    "open_blockers": {
+      "type": "array",
+      "description": "Known blockers preventing view generation or completion. Populated for planned/active records where source images or decisions are missing.",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+      }
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_by", "created_at"],
+      "properties": {
+        "created_by": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "$defs": {
+    "view_entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "view_id",
+        "view_label",
+        "generation_pattern",
+        "anchor_dependency",
+        "status"
+      ],
+      "properties": {
+        "view_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Stable identifier for this view slot (e.g., main_front, three_quarter_left, wide_establishing, skyline_photograph)."
+        },
+        "view_label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160,
+          "description": "Human-readable label for this view."
+        },
+        "generation_pattern": {
+          "type": "string",
+          "enum": ["anchor_t2i", "anchor_refine_img2img", "independent_t2i"],
+          "description": "anchor_t2i: T2I generation of the anchor view itself. anchor_refine_img2img: img2img refinement of a non-anchor view using anchor as input_reference (requires adapter to populate generation_params.input_reference). independent_t2i: standalone T2I with no anchor dependency — permitted for any view when retrofit_status is historical; permitted only for the anchor view itself in planned/active records."
+        },
+        "anchor_dependency": {
+          "type": "string",
+          "enum": ["required", "optional", "none"],
+          "description": "required: this view must use anchor as input_reference (anchor_refine_img2img). optional: anchor reference is available but generation may proceed independently. none: no anchor relationship applies."
+        },
+        "model_adapter_target": {
+          "type": ["string", "null"],
+          "maxLength": 80,
+          "description": "Stable internal model ID (e.g., midjourney_image_best_available, chatgpt_image_best_available, nano_banana_best_available). Never a hardcoded provider version name — adapters resolve the current version at runtime from model_guidance_snapshot.yaml."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["not_started", "in_progress", "complete", "blocked"]
+        },
+        "canonical_asset_path": {
+          "type": ["string", "null"],
+          "maxLength": 500,
+          "description": "Relative path to the committed canonical asset for this view. Null if not yet generated or committed."
+        },
+        "generation_notes": {
+          "type": "string",
+          "maxLength": 1000,
+          "description": "Human-readable notes about how this view was or will be generated — model used, prompt reference, relevant constraints."
+        }
+      }
+    }
+  }
+}
