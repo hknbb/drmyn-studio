@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/dialogue_beats.schema.json",
+  "title": "Dialogue Beats",
+  "description": "Dialogue and audio metadata layer mapping source dialogue lines to scene beats and Kling element aliases. Defines native audio readiness and dialogue content metadata without claiming voice provisioning or generating audio. No external TTS, ElevenLabs, ADR vendors permitted. Kling-native audio only.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "scene_id",
+    "source_scene_beat_plan_ref",
+    "source_element_bindings_ref",
+    "dialogue_lines",
+    "ambient_sound_prompt",
+    "kling_native_audio",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.x-draft",
+      "description": "Pre-1.0 draft. Promoted to 1.0 after A4/B5 feedback loop closes."
+    },
+    "record_type": {
+      "type": "string",
+      "const": "dialogue_beats"
+    },
+    "scene_id": {
+      "type": "string",
+      "pattern": "^SC\\d{4}$",
+      "description": "Scene identifier (e.g., SC0001)."
+    },
+    "source_scene_beat_plan_ref": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Relative path to the source scene_beat_plan.yaml that defines target_beat_id values. Example: planning/scenes/SC0001/scene_beat_plan.yaml"
+    },
+    "source_element_bindings_ref": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Relative path to the element_bindings.yaml that defines speaker_element_id and speaker_kling_alias values. Example: visual_dev/omni_sets/SC0001/element_bindings.yaml"
+    },
+    "dialogue_lines": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Array of dialogue lines with speaker, beat reference, and audio metadata.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "line_id",
+          "target_beat_id",
+          "speaker_element_id",
+          "speaker_kling_alias",
+          "line_text",
+          "line_type",
+          "native_audio_readiness",
+          "dialogue_required"
+        ],
+        "properties": {
+          "line_id": {
+            "type": "string",
+            "pattern": "^DLG_[A-Z0-9_]+$",
+            "minLength": 5,
+            "maxLength": 50,
+            "description": "Unique identifier for this dialogue line within the scene (e.g., DLG_NADIA_SLEEP_01, DLG_BIRTA_FORMULA)."
+          },
+          "target_beat_id": {
+            "type": "string",
+            "pattern": "^[A-Z0-9_]+$",
+            "minLength": 1,
+            "maxLength": 50,
+            "description": "Reference to the source beat_id in scene_beat_plan.yaml where this dialogue occurs."
+          },
+          "speaker_element_id": {
+            "type": "string",
+            "pattern": "^C\\d{2}$",
+            "description": "Character element ID (e.g., C01 for Nadia, C03 for Birta)."
+          },
+          "speaker_kling_alias": {
+            "type": "string",
+            "pattern": "^@[A-Za-z0-9_]+$",
+            "minLength": 2,
+            "maxLength": 100,
+            "description": "Kling alias for the speaker (e.g., @Nadia, @Birta)."
+          },
+          "line_text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000,
+            "description": "The actual dialogue text as it appears in the source screenplay."
+          },
+          "line_type": {
+            "type": "string",
+            "enum": ["spoken", "interrupted", "offscreen", "implied"],
+            "description": "Classification of dialogue delivery: spoken = character speaks on-camera; interrupted = speech cut off; offscreen = voice heard but character not visible; implied = dialogue referenced but not heard."
+          },
+          "native_audio_readiness": {
+            "type": "string",
+            "enum": ["blocked", "metadata_only", "ready"],
+            "description": "blocked = element has no voice capability; metadata_only = dialogue recorded as metadata, not yet provisioned; ready = Kling element has voice asset ready."
+          },
+          "dialogue_required": {
+            "type": "boolean",
+            "description": "True if this dialogue line is essential to the scene. False if line can be cut or replaced without breaking narrative continuity."
+          },
+          "delivery_note": {
+            "type": "string",
+            "maxLength": 500,
+            "description": "Optional human-readable note on delivery, tone, or pacing (e.g., 'flat, no inflection', 'sarcastic', 'urgent whisper')."
+          },
+          "subtext_note": {
+            "type": "string",
+            "maxLength": 500,
+            "description": "Optional note on emotional subtext or character intent beneath the spoken words."
+          },
+          "source_quote_ref": {
+            "type": "string",
+            "maxLength": 500,
+            "description": "Optional reference to source material (e.g., 'source/screenplay/closing_price.fountain:line_42')."
+          },
+          "pronunciation_note": {
+            "type": "string",
+            "maxLength": 300,
+            "description": "Optional pronunciation guide for character names or foreign words in the line."
+          }
+        }
+      }
+    },
+    "ambient_sound_prompt": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000,
+      "description": "Metadata-only description of ambient sound environment (white-noise machine, quiet kitchen, etc.). Must not claim external SFX vendor provisioning or TTS generation."
+    },
+    "kling_native_audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled", "provider_policy", "external_tts_allowed", "adr_vendor_allowed"],
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "True if this scene uses Kling-native audio for dialogue lines."
+        },
+        "provider_policy": {
+          "type": "string",
+          "const": "kling_native_only",
+          "description": "Audio must originate from Kling Element Library or Kling-compatible sources only. No external voice synthesis."
+        },
+        "external_tts_allowed": {
+          "type": "boolean",
+          "const": false,
+          "description": "External text-to-speech is never permitted. Must be false."
+        },
+        "adr_vendor_allowed": {
+          "type": "boolean",
+          "const": false,
+          "description": "Automated dialogue replacement (ADR) via external vendor is never permitted. Must be false."
+        }
+      }
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Optional human-readable notes on dialogue/audio strategy, blocking constraints, or known dependencies."
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_by", "created_at"],
+      "properties": {
+        "created_by": {
+          "type": "string",
+          "description": "User or agent that created this record."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 creation timestamp."
+        }
+      }
+    }
+  }
+}
