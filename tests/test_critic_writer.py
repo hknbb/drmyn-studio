@@ -235,13 +235,91 @@ def test_critic_chatgpt_image_missing_constraint_strategy_fails() -> None:
     assert any("constraint_strategy" in e for e in result.hard_errors)
 
 
-def test_critic_dynamic_snapshot_missing_fails(tmp_path: Path) -> None:
-    """Dynamic snapshot mode with non-existent snapshot file fails."""
-    # Copy real repo guides into tmp_path so model_guidance_ref resolves
+def test_critic_dynamic_snapshot_kling_passes(tmp_path: Path) -> None:
+    """Dynamic snapshot mode Kling record passes critic with A6.3 fields, no model_guidance_ref."""
     import shutil
+    from datetime import datetime, timedelta, timezone
+
+    # Set up repo structure
     (tmp_path / "docs" / "model_guides").mkdir(parents=True)
-    shutil.copy(REPO_ROOT / "docs" / "model_guides" / "midjourney.yaml",
-                tmp_path / "docs" / "model_guides" / "midjourney.yaml")
+    (tmp_path / "schemas").mkdir()
+    shutil.copy(REPO_ROOT / "schemas" / "prompt_record.schema.json",
+                tmp_path / "schemas" / "prompt_record.schema.json")
+
+    # Create a valid Kling snapshot
+    snapshots_dir = tmp_path / "model_guidance_snapshots" / "kling"
+    snapshots_dir.mkdir(parents=True)
+    now = datetime.now(timezone.utc)
+    expires_at = now + timedelta(days=30)
+
+    snapshot = {
+        "record_type": "model_guidance_snapshot",
+        "schema_version": "0.x-draft",
+        "snapshot_id": "20260509T120000Z_kling_omni",
+        "internal_model_target": "kling_omni_video_best_available",
+        "provider": "kling",
+        "model_family": "video_generation",
+        "provider_surface": "api",
+        "observed_at": now.isoformat().replace("+00:00", "Z"),
+        "expires_at": expires_at.isoformat().replace("+00:00", "Z"),
+        "human_verified": True,
+        "current_default_model": "Kling 3.0 Omni",
+        "latest_available_model": "Kling 3.0 Omni",
+        "best_for_this_task": "Kling 3.0 Omni",
+        "version_policy": {
+            "hardcode_in_adapter": False,
+            "adapter_must_read_snapshot": True,
+            "prompt_generation_blocks_if_expired": True,
+            "prompt_generation_blocks_if_unverified": True,
+        },
+        "sources": [
+            {
+                "source_type": "official_docs",
+                "title": "Kling API Documentation",
+                "retrieved_at": now.isoformat().replace("+00:00", "Z"),
+                "url": "https://kling.ai/docs/api/video-generation",
+            }
+        ],
+        "capabilities": {
+            "output_type": "video",
+            "supports_negative_prompt": True,
+        },
+    }
+    snapshot_path = snapshots_dir / "20260509T120000Z_kling_omni_video_best_available.yaml"
+    with open(snapshot_path, "w") as f:
+        yaml.dump(snapshot, f)
+
+    critic = CriticAgent(tmp_path)
+    record = _make_valid_record(
+        prompt_id="SC0003__omni-kling__v01",
+        prompt_text="Create one external Kling Omni video instruction.",
+        target_models=["kling_omni"],
+        model_guidance_mode="dynamic_snapshot",
+        model_guidance_ref=None,  # NOT present in dynamic_snapshot
+        negative_prompt="blur, morphing",
+        extra_generation_params={
+            "model_guidance_snapshot_ref": "model_guidance_snapshots/kling/20260509T120000Z_kling_omni_video_best_available.yaml",
+            "provider": "kling",
+            "provider_surface": "api",
+            "resolved_model_name": "Kling 3.0 Omni",
+            "resolved_model_role": "best_for_this_task",
+            "guidance_observed_at": now.isoformat().replace("+00:00", "Z"),
+            "guidance_expires_at": expires_at.isoformat().replace("+00:00", "Z"),
+        },
+    )
+    # Remove model_guidance_ref since it's not used in dynamic_snapshot
+    if "model_guidance_ref" in record["generation_params"]:
+        del record["generation_params"]["model_guidance_ref"]
+
+    result = critic.check(record)
+    assert result.passed, f"Expected pass: {result.hard_errors}"
+
+
+def test_critic_dynamic_snapshot_missing_snapshot_ref_fails(tmp_path: Path) -> None:
+    """Dynamic snapshot mode without model_guidance_snapshot_ref fails."""
+    import shutil
+
+    (tmp_path / "docs" / "model_guides").mkdir(parents=True)
     (tmp_path / "schemas").mkdir()
     shutil.copy(REPO_ROOT / "schemas" / "prompt_record.schema.json",
                 tmp_path / "schemas" / "prompt_record.schema.json")
@@ -249,11 +327,202 @@ def test_critic_dynamic_snapshot_missing_fails(tmp_path: Path) -> None:
     critic = CriticAgent(tmp_path)
     record = _make_valid_record(
         model_guidance_mode="dynamic_snapshot",
-        model_guidance_snapshot="evidence/model_guidance_snapshots/nonexistent.yaml",
+        model_guidance_ref=None,  # Not in dynamic_snapshot mode
     )
+    del record["generation_params"]["model_guidance_ref"]
     result = critic.check(record)
     assert not result.passed
-    assert any("snapshot" in e.lower() for e in result.hard_errors)
+    assert any("model_guidance_snapshot_ref" in e for e in result.hard_errors)
+
+
+def test_critic_dynamic_snapshot_missing_snapshot_file_fails(tmp_path: Path) -> None:
+    """Dynamic snapshot mode with non-existent snapshot file fails."""
+    import shutil
+    from datetime import datetime, timedelta, timezone
+
+    (tmp_path / "schemas").mkdir()
+    shutil.copy(REPO_ROOT / "schemas" / "prompt_record.schema.json",
+                tmp_path / "schemas" / "prompt_record.schema.json")
+
+    critic = CriticAgent(tmp_path)
+    now = datetime.now(timezone.utc)
+    expires_at = now + timedelta(days=30)
+
+    record = _make_valid_record(
+        prompt_id="SC0003__omni-kling__v01",
+        target_models=["kling_omni"],
+        model_guidance_mode="dynamic_snapshot",
+        model_guidance_ref=None,
+        extra_generation_params={
+            "model_guidance_snapshot_ref": "model_guidance_snapshots/kling/nonexistent.yaml",
+            "provider": "kling",
+            "provider_surface": "api",
+            "resolved_model_name": "Kling 3.0 Omni",
+            "resolved_model_role": "best_for_this_task",
+            "guidance_observed_at": now.isoformat().replace("+00:00", "Z"),
+            "guidance_expires_at": expires_at.isoformat().replace("+00:00", "Z"),
+        },
+    )
+    del record["generation_params"]["model_guidance_ref"]
+    result = critic.check(record)
+    assert not result.passed
+    assert any("not found" in e.lower() for e in result.hard_errors)
+
+
+def test_critic_dynamic_snapshot_provider_mismatch_fails(tmp_path: Path) -> None:
+    """Dynamic snapshot with provider mismatch fails."""
+    import shutil
+    from datetime import datetime, timedelta, timezone
+
+    (tmp_path / "schemas").mkdir()
+    shutil.copy(REPO_ROOT / "schemas" / "prompt_record.schema.json",
+                tmp_path / "schemas" / "prompt_record.schema.json")
+
+    snapshots_dir = tmp_path / "model_guidance_snapshots" / "kling"
+    snapshots_dir.mkdir(parents=True)
+    now = datetime.now(timezone.utc)
+    expires_at = now + timedelta(days=30)
+
+    snapshot = {
+        "record_type": "model_guidance_snapshot",
+        "internal_model_target": "kling_omni_video_best_available",
+        "provider": "kling",  # Real provider in snapshot
+        "provider_surface": "api",
+        "observed_at": now.isoformat().replace("+00:00", "Z"),
+        "expires_at": expires_at.isoformat().replace("+00:00", "Z"),
+        "human_verified": True,
+        "best_for_this_task": "Kling 3.0 Omni",
+        "version_policy": {"hardcode_in_adapter": False},
+        "sources": [{"source_type": "official_docs", "title": "test", "url": "https://test.com"}],
+    }
+    snapshot_path = snapshots_dir / "20260509T120000Z_kling_omni_video_best_available.yaml"
+    with open(snapshot_path, "w") as f:
+        yaml.dump(snapshot, f)
+
+    critic = CriticAgent(tmp_path)
+    record = _make_valid_record(
+        prompt_id="SC0003__omni-kling__v01",
+        target_models=["kling_omni"],
+        model_guidance_mode="dynamic_snapshot",
+        model_guidance_ref=None,
+        extra_generation_params={
+            "model_guidance_snapshot_ref": "model_guidance_snapshots/kling/20260509T120000Z_kling_omni_video_best_available.yaml",
+            "provider": "midjourney",  # MISMATCH
+            "provider_surface": "api",
+            "resolved_model_name": "Kling 3.0 Omni",
+            "resolved_model_role": "best_for_this_task",
+            "guidance_observed_at": now.isoformat().replace("+00:00", "Z"),
+            "guidance_expires_at": expires_at.isoformat().replace("+00:00", "Z"),
+        },
+    )
+    del record["generation_params"]["model_guidance_ref"]
+    result = critic.check(record)
+    assert not result.passed
+    assert any("provider" in e.lower() for e in result.hard_errors)
+
+
+def test_critic_dynamic_snapshot_expired_fails(tmp_path: Path) -> None:
+    """Dynamic snapshot with expired expiry date fails."""
+    import shutil
+    from datetime import datetime, timedelta, timezone
+
+    (tmp_path / "schemas").mkdir()
+    shutil.copy(REPO_ROOT / "schemas" / "prompt_record.schema.json",
+                tmp_path / "schemas" / "prompt_record.schema.json")
+
+    snapshots_dir = tmp_path / "model_guidance_snapshots" / "kling"
+    snapshots_dir.mkdir(parents=True)
+    now = datetime.now(timezone.utc)
+    past = now - timedelta(days=1)  # EXPIRED
+
+    snapshot = {
+        "record_type": "model_guidance_snapshot",
+        "internal_model_target": "kling_omni_video_best_available",
+        "provider": "kling",
+        "provider_surface": "api",
+        "observed_at": past.isoformat().replace("+00:00", "Z"),
+        "expires_at": past.isoformat().replace("+00:00", "Z"),  # EXPIRED
+        "human_verified": True,
+        "best_for_this_task": "Kling 3.0 Omni",
+        "version_policy": {"hardcode_in_adapter": False},
+        "sources": [{"source_type": "official_docs", "title": "test", "url": "https://test.com"}],
+    }
+    snapshot_path = snapshots_dir / "20260509T120000Z_kling_omni_video_best_available.yaml"
+    with open(snapshot_path, "w") as f:
+        yaml.dump(snapshot, f)
+
+    critic = CriticAgent(tmp_path)
+    record = _make_valid_record(
+        prompt_id="SC0003__omni-kling__v01",
+        target_models=["kling_omni"],
+        model_guidance_mode="dynamic_snapshot",
+        model_guidance_ref=None,
+        extra_generation_params={
+            "model_guidance_snapshot_ref": "model_guidance_snapshots/kling/20260509T120000Z_kling_omni_video_best_available.yaml",
+            "provider": "kling",
+            "provider_surface": "api",
+            "resolved_model_name": "Kling 3.0 Omni",
+            "resolved_model_role": "best_for_this_task",
+            "guidance_observed_at": past.isoformat().replace("+00:00", "Z"),
+            "guidance_expires_at": past.isoformat().replace("+00:00", "Z"),
+        },
+    )
+    del record["generation_params"]["model_guidance_ref"]
+    result = critic.check(record)
+    assert not result.passed
+    assert any("expir" in e.lower() for e in result.hard_errors)
+
+
+def test_critic_dynamic_snapshot_wrong_internal_target_fails(tmp_path: Path) -> None:
+    """Dynamic snapshot with wrong internal_model_target fails."""
+    import shutil
+    from datetime import datetime, timedelta, timezone
+
+    (tmp_path / "schemas").mkdir()
+    shutil.copy(REPO_ROOT / "schemas" / "prompt_record.schema.json",
+                tmp_path / "schemas" / "prompt_record.schema.json")
+
+    snapshots_dir = tmp_path / "model_guidance_snapshots" / "kling"
+    snapshots_dir.mkdir(parents=True)
+    now = datetime.now(timezone.utc)
+    expires_at = now + timedelta(days=30)
+
+    snapshot = {
+        "record_type": "model_guidance_snapshot",
+        "internal_model_target": "midjourney_image_best_available",  # WRONG
+        "provider": "kling",
+        "provider_surface": "api",
+        "observed_at": now.isoformat().replace("+00:00", "Z"),
+        "expires_at": expires_at.isoformat().replace("+00:00", "Z"),
+        "human_verified": True,
+        "best_for_this_task": "Kling 3.0 Omni",
+        "version_policy": {"hardcode_in_adapter": False},
+        "sources": [{"source_type": "official_docs", "title": "test", "url": "https://test.com"}],
+    }
+    snapshot_path = snapshots_dir / "20260509T120000Z_kling_omni_video_best_available.yaml"
+    with open(snapshot_path, "w") as f:
+        yaml.dump(snapshot, f)
+
+    critic = CriticAgent(tmp_path)
+    record = _make_valid_record(
+        prompt_id="SC0003__omni-kling__v01",
+        target_models=["kling_omni"],
+        model_guidance_mode="dynamic_snapshot",
+        model_guidance_ref=None,
+        extra_generation_params={
+            "model_guidance_snapshot_ref": "model_guidance_snapshots/kling/20260509T120000Z_kling_omni_video_best_available.yaml",
+            "provider": "kling",
+            "provider_surface": "api",
+            "resolved_model_name": "Kling 3.0 Omni",
+            "resolved_model_role": "best_for_this_task",
+            "guidance_observed_at": now.isoformat().replace("+00:00", "Z"),
+            "guidance_expires_at": expires_at.isoformat().replace("+00:00", "Z"),
+        },
+    )
+    del record["generation_params"]["model_guidance_ref"]
+    result = critic.check(record)
+    assert not result.passed
+    assert any("internal_model_target" in e.lower() for e in result.hard_errors)
 
 
 # ---------------------------------------------------------------------------
