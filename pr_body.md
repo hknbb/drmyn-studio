@@ -1,27 +1,37 @@
 ## Summary
 
-Implements A6.1 only.
+Renames the Kling internal model target from generic `kling_video_best_available` to version-free Omni-family `kling_omni_video_best_available`.
 
-Adds the model guidance resolver used by later prompt/adapter work to resolve current model guidance from validated snapshot YAML files.
+This prevents the guidance resolver from confusing generic Kling Video T2V/I2V targets with the project's intended Kling Omni element-based production pipeline.
 
-## Files Changed (A6.1 scope)
+## Why
 
+The project targets Kling Omni-family capabilities:
+- Element Library
+- Element Reference
+- Video Element Reference
+- Native Audio
+- Element Voice Control
+- Multi-shot
+
+The internal target identifies the Omni family only. It does not encode an Omni version number.
+
+## Changed Files
+
+- `schemas/model_guidance_snapshot.schema.json`
 - `scripts/agents/model_guidance_resolver.py`
-- `tests/agents/__init__.py`
+- `tests/test_model_guidance_snapshot_schema.py`
 - `tests/agents/test_model_guidance_resolver.py`
 
-## Resolver Behavior
+## Validation
 
-- Loads snapshot YAML files from `model_guidance_snapshots/<provider>/*.yaml`
-- Validates snapshots against `schemas/model_guidance_snapshot.schema.json`
-- Filters by `internal_model_target`
-- Rejects missing, expired, unverified, schema-invalid, or placeholder-containing snapshots
-- Selects the newest valid `observed_at` when multiple valid snapshots exist
-- Resolves feature-specific model names via `feature_required_model[required_feature]`
-- Returns provider, provider surface, resolved model name, resolved role, expiry metadata, prompting rules, capabilities, and constraints
-- Does not modify adapters
-- Does not create snapshot YAML files
-- Does not modify `prompt_record.schema.json`
+- `kling_omni_video_best_available` is accepted.
+- `kling_video_best_available` is rejected.
+- No `kling_omni_3_*` internal target introduced.
+- No `VIDEO 3.0 Omni` hardcoded in resolver/adapters/schema defaults.
+- No `model_guidance_snapshots/` created.
+- No adapters modified.
+- No `prompt_record.schema.json` changes.
 
 ## Test Plan
 
@@ -29,7 +39,7 @@ Adds the model guidance resolver used by later prompt/adapter work to resolve cu
 python -m pytest tests/test_model_guidance_snapshot_schema.py tests/agents/test_model_guidance_resolver.py -q
 ```
 
-Result: 24 resolver tests passing, plus A6.0 schema tests passing.
+Result: 55 tests passing.
 
 ## Scope Guard
 
@@ -39,12 +49,11 @@ No changes to:
 * `scripts/agents/adapters/`
 * `schemas/prompt_record.schema.json`
 * `prompts/`
-* `planning/`
+* `planning/scenes/`
 * `visual_dev/`
 * `evidence/`
 * `assets/`
 
 ## Next Step
 
-After A6.1 merges, proceed to A6.2 snapshot records.
-A7 adapter work remains blocked until A6.1 + A6.2 + A6.3 are complete.
+After this PR merges, A6.2 snapshot records can be authored using `kling_omni_video_best_available`.
