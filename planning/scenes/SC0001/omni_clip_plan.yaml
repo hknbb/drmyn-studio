@@ -1,0 +1,52 @@
+schema_version: 0.x-draft
+record_type: omni_clip_plan
+scene_id: SC0001
+source_scene_beat_plan_ref: planning/scenes/SC0001/scene_beat_plan.yaml
+source_dialogue_beats_ref: planning/scenes/SC0001/dialogue_beats.yaml
+clip_summaries:
+- clip_id: CLIP_SC0001_01
+  clip_manifest_ref: planning/scenes/SC0001/manifests/CLIP_SC0001_01_manifest.yaml
+  total_duration_seconds: 15
+  source_beat_count: 3
+- clip_id: CLIP_SC0001_02
+  clip_manifest_ref: planning/scenes/SC0001/manifests/CLIP_SC0001_02_manifest.yaml
+  total_duration_seconds: 11
+  source_beat_count: 3
+- clip_id: CLIP_SC0001_03
+  clip_manifest_ref: planning/scenes/SC0001/manifests/CLIP_SC0001_03_manifest.yaml
+  total_duration_seconds: 13
+  source_beat_count: 2
+- clip_id: CLIP_SC0001_04
+  clip_manifest_ref: planning/scenes/SC0001/manifests/CLIP_SC0001_04_manifest.yaml
+  total_duration_seconds: 10
+  source_beat_count: 1
+- clip_id: CLIP_SC0001_05
+  clip_manifest_ref: planning/scenes/SC0001/manifests/CLIP_SC0001_05_manifest.yaml
+  total_duration_seconds: 11
+  source_beat_count: 3
+- clip_id: CLIP_SC0001_06
+  clip_manifest_ref: planning/scenes/SC0001/manifests/CLIP_SC0001_06_manifest.yaml
+  total_duration_seconds: 12
+  source_beat_count: 3
+- clip_id: CLIP_SC0001_07
+  clip_manifest_ref: planning/scenes/SC0001/manifests/CLIP_SC0001_07_manifest.yaml
+  total_duration_seconds: 15
+  source_beat_count: 4
+- clip_id: CLIP_SC0001_08
+  clip_manifest_ref: planning/scenes/SC0001/manifests/CLIP_SC0001_08_manifest.yaml
+  total_duration_seconds: 13
+  source_beat_count: 2
+packing_strategy:
+  packer_version: rhythm_aware_v1
+  packing_mode: rhythm_aware_constrained
+  cut_point_preference_order:
+  - location_transition
+  - dialogue_exchange_end
+  - object_discovery
+  - beat_boundary
+notes: 'Computed by omni_clip_planner packer_version=rhythm_aware_v1. Clip count is
+  derived, not authored. Hard constraints: shot [3..15]s integer-only, clip total
+  <=15s, no short_insert as standalone shot, no unsplittable beat split.'
+provenance:
+  created_by: B6_omni_clip_planner
+  created_at: '2026-05-09T00:00:00Z'
