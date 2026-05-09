@@ -1,0 +1,68 @@
+record_type: model_guidance_snapshot
+schema_version: "0.x-draft"
+snapshot_id: "20260508T120000Z_midjourney"
+internal_model_target: midjourney_image_best_available
+provider: midjourney
+model_family: image_generation
+provider_surface: web_ui
+observed_at: "2026-05-08T12:00:00Z"
+expires_at: "2026-06-08T12:00:00Z"
+human_verified: true
+current_default_model: "V7"
+latest_available_model: "V8.1"
+best_for_this_task: "V8.1"
+feature_required_model:
+  omni_reference: "V7"
+  consistency_reference: "V7"
+  style_raw: "V8.1"
+  character_consistency: "V7"
+version_policy:
+  hardcode_in_adapter: false
+  adapter_must_read_snapshot: true
+  prompt_generation_blocks_if_expired: true
+  prompt_generation_blocks_if_unverified: true
+sources:
+  - source_type: official_docs
+    title: "Midjourney Version Documentation"
+    retrieved_at: "2026-05-04T13:00:00Z"
+    url: "https://docs.midjourney.com/hc/en-us/articles/32199405667853-Version"
+  - source_type: official_release_notes
+    title: "Midjourney V8.1 Full Release 2026-04-30"
+    retrieved_at: "2026-05-04T14:00:00Z"
+    url: "https://updates.midjourney.com/v8-1-alpha/"
+  - source_type: official_docs
+    title: "Midjourney Omni Reference Documentation"
+    retrieved_at: "2026-05-04T15:00:00Z"
+    url: "https://updates.midjourney.com/omni-reference-oref/"
+capabilities:
+  output_type: image
+  supports_negative_prompt_via_flag: true
+  supports_image_reference: true
+  supports_seed: true
+  supports_consistency_reference: true
+  supports_omni_reference_v7_only: true
+  supports_style_raw: true
+  native_resolution: "2K"
+  max_prompt_tokens: 74
+constraints:
+  word_priority_window: 40
+  default_version: "V7"
+  current_full_release: "V8.1"
+  omni_reference_available_versions:
+    - "V7"
+  style_raw_production_recommended: true
+prompting_rules:
+  - "V8.1 has 74-token hard cap (tokenizer-based). Target 40-50 meaningful words. First 40 words get strongest attention."
+  - "Structure: Subject → Scene → Style → Details → Parameters. Lead with primary subject. Use specific material/camera terms instead of generic quality descriptors."
+  - "V8.1 prefers natural language sentences over comma-clause pattern. Literal executor: what you write is what you get."
+  - "Negative constraints use --no flag at end of prompt. Example: '... --no text overlays, motion blur, lens flare'."
+  - "V7: --oref (Omni Reference) with --ow <1-1000> for character/object consistency. V8.1: --oref NOT available yet (on roadmap)."
+  - "Always specify aspect ratio: --ar 16:9 (cinematic), --ar 2:3 (portrait). Specify for production."
+  - "Always specify version: --v 7, --v 8, or --v 8.1. Do not rely on default."
+  - "Use --seed <integer> to enable reproducibility across variants. Same seed + same prompt = similar results."
+  - "V8.1: Add --style raw to all character/commercial work. Strips aesthetic bias for photorealistic/controlled output."
+  - "Never include canonical IDs (C01, LOC001, PROP003, SC0001) or full character names. Use first-name only."
+provenance:
+  created_by: "Claude Haiku 4.5"
+  created_at: "2026-05-09T00:00:00Z"
+  git_commit: "8e4becb"

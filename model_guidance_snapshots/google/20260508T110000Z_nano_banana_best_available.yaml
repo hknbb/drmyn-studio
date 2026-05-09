@@ -1,0 +1,82 @@
+record_type: model_guidance_snapshot
+schema_version: "0.x-draft"
+snapshot_id: "20260508T110000Z_nano_banana"
+internal_model_target: nano_banana_best_available
+provider: google
+model_family: image_generation
+provider_surface: gemini_app
+observed_at: "2026-05-08T11:00:00Z"
+expires_at: "2026-06-08T11:00:00Z"
+human_verified: true
+current_default_model: "Nano Banana Pro / gemini-3-pro-image-preview"
+latest_available_model: "Nano Banana Pro / gemini-3-pro-image-preview"
+best_for_this_task: "Nano Banana Pro / gemini-3-pro-image-preview"
+feature_required_model:
+  character_consistency: "gemini-3-pro-image-preview"
+  object_fidelity: "gemini-3-pro-image-preview"
+  native_4k: "gemini-3-pro-image-preview"
+  variation_prompting: "gemini-3-pro-image-preview"
+version_policy:
+  hardcode_in_adapter: false
+  adapter_must_read_snapshot: true
+  prompt_generation_blocks_if_expired: true
+  prompt_generation_blocks_if_unverified: true
+sources:
+  - source_type: official_docs
+    title: "Google Gemini API Image Generation Guide"
+    retrieved_at: "2026-05-04T19:00:00Z"
+    url: "https://ai.google.dev/gemini-api/docs/image-generation"
+  - source_type: official_docs
+    title: "Vertex AI Gemini 3 Pro Image Model Spec"
+    retrieved_at: "2026-05-04T20:00:00Z"
+    url: "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/3-pro-image"
+  - source_type: official_docs
+    title: "Vertex AI Image Generation Prompt Guide"
+    retrieved_at: "2026-05-04T21:00:00Z"
+    url: "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/image/img-gen-prompt-guide"
+capabilities:
+  output_type: image
+  supports_negative_prompt: false
+  supports_identity_consistency: true
+  supports_object_fidelity: true
+  supports_variation_prompting: true
+  supports_4k: true
+  native_4k_available: true
+  max_prompt_tokens: 480
+  max_reference_images: 14
+  character_reference_images_max: 5
+  object_reference_images_max: 6
+  native_resolution: "4K"
+  temperature_default: 1.0
+constraints:
+  negative_prompt_not_available: true
+  negative_prompt_policy: "semantic negation in positive prompt"
+  token_limit_hard: 480
+  temperature_adjustment_not_recommended: true
+  aspectios_supported:
+    - "1:1"
+    - "2:3"
+    - "3:2"
+    - "3:4"
+    - "4:3"
+    - "4:5"
+    - "5:4"
+    - "9:16"
+    - "16:9"
+    - "21:9"
+  imagen_4_deprecated: "2026-06-24"
+prompting_rules:
+  - "Use narrative, descriptive sentences — NOT Midjourney comma-clauses. Structure: Subject → Context/environment → Artistic style."
+  - "Add photography-specific modifiers: camera proximity (close-up, aerial, low-angle), lighting (natural, dramatic), effects (bokeh, depth of field), lens type (35mm, macro), film style (B&W, Polaroid)."
+  - "gemini-3-pro-image-preview does NOT support negative_prompt parameter. Use semantic negation: rephrase as positive description instead of 'no cars' write 'empty deserted street with no signs of traffic'."
+  - "Character consistency: upload up to 5 character reference images per prompt. Additionally up to 6 object fidelity images (14 total). Maintains facial features across iterations."
+  - "Keep temperature at default 1.0. Do NOT adjust. Lowering causes looping and degraded output. top_p default 0.95; top_k fixed at 64."
+  - "Maximum prompt length: 480 tokens. Keep prompts concise. Verbose prompts cause over-analysis and degradation."
+  - "Supported aspect ratios: 1:1, 2:3, 3:2, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9. For cinematic use 16:9 or 21:9."
+  - "For text within images: keep under 25 characters per phrase, max 2-3 phrases. Reliable within these limits."
+  - "Critic MUST NOT flag missing negative_prompt for this model."
+  - "Never include canonical IDs (C01, LOC001, PROP003, SC0001) or full character names. Use first-name only."
+provenance:
+  created_by: "Claude Haiku 4.5"
+  created_at: "2026-05-09T00:00:00Z"
+  git_commit: "8e4becb"
