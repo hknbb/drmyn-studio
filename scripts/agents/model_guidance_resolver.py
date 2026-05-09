@@ -88,6 +88,7 @@ def resolve_model_guidance(
 		)
 
 	best_snapshot = None
+	best_snapshot_path = None
 	best_observed_at = None
 
 	for snapshot_path, snapshot_data in candidates:
@@ -108,9 +109,7 @@ def resolve_model_guidance(
 		if expires_at_str:
 			expires_at = datetime.fromisoformat(expires_at_str.replace("Z", "+00:00"))
 			if expires_at < now:
-				raise ModelGuidanceResolutionError(
-					f"Snapshot {snapshot_path} has expired (expires_at={expires_at_str})"
-				)
+				continue  # Skip expired, evaluate other candidates
 
 		latest_available = snapshot_data.get("latest_available_model")
 		best_for_task = snapshot_data.get("best_for_this_task")
@@ -145,6 +144,8 @@ def resolve_model_guidance(
 			f"No valid snapshot found for internal_model_target={internal_model_target!r}"
 		)
 
+	assert best_snapshot_path is not None  # Set together with best_snapshot in loop
+
 	if required_feature:
 		resolved_model_name = best_snapshot["feature_required_model"][required_feature]
 		resolved_model_role = "feature_required"
@@ -152,6 +153,11 @@ def resolve_model_guidance(
 		resolved_model_name = best_snapshot.get("best_for_this_task")
 		if not resolved_model_name:
 			resolved_model_name = best_snapshot.get("latest_available_model")
+			if not resolved_model_name:
+				raise ModelGuidanceResolutionError(
+					f"Snapshot {best_snapshot_path} has no resolvable model "
+					f"(best_for_this_task=null and latest_available_model=null)"
+				)
 			resolved_model_role = "latest_available"
 		else:
 			resolved_model_role = "best_for_this_task"
