@@ -164,6 +164,225 @@ class KlingOmniAdapter:
             warnings=warnings,
         )
 
+    def generate_from_clip_manifest(
+        self,
+        manifest_ref: str | Path,
+        *,
+        version: int = 1,
+        run_counter: int = 1,
+        run_at: str | None = None,
+    ) -> KlingOmniBuildResult:
+        """Generate prompt/run records from a single omni_clip_manifest.yaml.
+
+        Args:
+            manifest_ref: Path to omni_clip_manifest.yaml (relative or absolute)
+            version: Prompt version number (default 1)
+            run_counter: Run counter for run_id (default 1)
+            run_at: ISO 8601 timestamp for run execution (default now)
+
+        Returns:
+            KlingOmniBuildResult with prompt_record and run_record
+
+        Raises:
+            KlingOmniAdapterError: If manifest is missing, invalid, or constraints violated
+        """
+        manifest_path = Path(manifest_ref)
+        if not manifest_path.is_absolute():
+            manifest_path = self.repo_root / manifest_path
+
+        manifest = _read_yaml(manifest_path)
+        if manifest is None:
+            raise KlingOmniAdapterError(f"Missing manifest: {manifest_path}")
+
+        self._validate_manifest_shape(manifest)
+
+        scene_id = manifest["scene_id"]
+        clip_id = manifest["clip_id"]
+        shots = manifest["shots"]
+        total_duration = manifest["total_duration_seconds"]
+        continuity_mode = manifest["continuity_input_mode"]
+        kling_native_audio = manifest["kling_native_audio"]
+
+        scene_card_path = self.repo_root / "planning" / "scenes" / scene_id / "scene_card.yaml"
+        scene_card = _read_yaml(scene_card_path)
+
+        max_duration = self._max_duration_seconds()
+
+        prompt_text = self._build_prompt_text_from_manifest(
+            shots,
+            total_duration,
+            max_duration,
+            continuity_mode,
+        )
+
+        source_refs: dict[str, Any] = {
+            "scene_card": _relative(scene_card_path, self.repo_root),
+            "scene_excerpt": f"planning/scenes/{scene_id}/scene_excerpt.md",
+        }
+
+        # Use clip_id slug (replace underscores with hyphens) for prompt_id
+        clip_slug = clip_id.lower().replace("_", "-")
+        prompt_id = f"{scene_id}__omni-kling-omni-clip-{clip_slug}__v{version:02d}"
+
+        generation_params: dict[str, Any] = {
+            "model_guidance_mode": self.model_guidance_mode,
+            "adapter_name": self.MODEL_ID,
+            "clip_id": clip_id,
+            "total_duration_seconds": total_duration,
+            "continuity_input_mode": continuity_mode,
+            "repo_binary_committed": False,
+            "external_generation_required": True,
+            "recommended_cfg_scale": 0.5,
+            "recommended_ar": "16:9",
+        }
+
+        if kling_native_audio.get("enabled"):
+            generation_params["kling_native_audio"] = {
+                "enabled": True,
+                "provider_policy": kling_native_audio.get("provider_policy"),
+            }
+
+        if self.model_guidance_mode == "dynamic_snapshot":
+            resolved = resolve_model_guidance(
+                repo_root=self.repo_root,
+                internal_model_target=self.INTERNAL_MODEL_TARGET,
+            )
+            generation_params.update({
+                "model_guidance_snapshot_ref": resolved["model_guidance_snapshot_ref"],
+                "provider": resolved["provider"],
+                "provider_surface": resolved["provider_surface"],
+                "resolved_model_name": resolved["resolved_model_name"],
+                "resolved_model_role": resolved["resolved_model_role"],
+                "guidance_observed_at": resolved["guidance_observed_at"],
+                "guidance_expires_at": resolved["guidance_expires_at"],
+            })
+        else:
+            generation_params["model_guidance_ref"] = "docs/model_guides/kling_omni.yaml"
+            if self.model_guidance_snapshot:
+                generation_params["model_guidance_snapshot"] = self.model_guidance_snapshot
+
+        record: dict[str, Any] = {
+            "prompt_id": prompt_id,
+            "scene_id": scene_id,
+            "prompt_type": "omni_instruction",
+            "lifecycle_stage": "draft",
+            "target_models": [self.MODEL_ID],
+            "source_refs": source_refs,
+            "prompt_text": prompt_text,
+            "negative_prompt": self._build_negative_prompt(scene_card or {}),
+            "generation_params": generation_params,
+            "expected_output": {
+                "asset_type": "clip",
+                "duration_seconds": total_duration,
+            },
+            "status": "active",
+            "canon_lock": False,
+        }
+
+        run_record = self._run_record(
+            scene_id=scene_id,
+            prompt_id=prompt_id,
+            run_counter=run_counter,
+            run_at=run_at,
+        )
+
+        return KlingOmniBuildResult(
+            prompt_record=record,
+            run_record=run_record,
+            warnings=[],
+        )
+
+    def _validate_manifest_shape(self, manifest: dict[str, Any]) -> None:
+        """Defensive validation of omni_clip_manifest structure."""
+        if manifest.get("record_type") != "omni_clip_manifest":
+            raise KlingOmniAdapterError(
+                f"Manifest record_type must be 'omni_clip_manifest', got {manifest.get('record_type')!r}"
+            )
+
+        scene_id = manifest.get("scene_id")
+        if not scene_id or not isinstance(scene_id, str):
+            raise KlingOmniAdapterError("Manifest missing or invalid scene_id")
+
+        clip_id = manifest.get("clip_id")
+        if not clip_id or not isinstance(clip_id, str):
+            raise KlingOmniAdapterError("Manifest missing or invalid clip_id")
+
+        total_duration = manifest.get("total_duration_seconds")
+        if not isinstance(total_duration, int) or total_duration <= 0:
+            raise KlingOmniAdapterError("Manifest total_duration_seconds must be a positive integer")
+
+        shots = manifest.get("shots")
+        if not isinstance(shots, list) or not shots:
+            raise KlingOmniAdapterError("Manifest shots must be a non-empty array")
+
+        for idx, shot in enumerate(shots):
+            if not isinstance(shot, dict):
+                raise KlingOmniAdapterError(f"Manifest shots[{idx}] must be a mapping")
+
+            shot_id = shot.get("shot_id")
+            if not shot_id:
+                raise KlingOmniAdapterError(f"Manifest shots[{idx}] missing shot_id")
+
+            duration = shot.get("duration_seconds")
+            if not isinstance(duration, int) or duration <= 0:
+                raise KlingOmniAdapterError(
+                    f"Manifest shots[{idx}] duration_seconds must be a positive integer"
+                )
+
+            source_beat_ids = shot.get("source_beat_ids")
+            if not isinstance(source_beat_ids, list) or not source_beat_ids:
+                raise KlingOmniAdapterError(
+                    f"Manifest shots[{idx}] source_beat_ids must be a non-empty array"
+                )
+
+            prompt_action = shot.get("prompt_action")
+            if not prompt_action or not isinstance(prompt_action, str):
+                raise KlingOmniAdapterError(f"Manifest shots[{idx}] missing or invalid prompt_action")
+
+            duration_reason = shot.get("duration_reason")
+            if not duration_reason or not isinstance(duration_reason, str):
+                raise KlingOmniAdapterError(f"Manifest shots[{idx}] missing or invalid duration_reason")
+
+        kling_native_audio = manifest.get("kling_native_audio")
+        if not isinstance(kling_native_audio, dict):
+            raise KlingOmniAdapterError("Manifest kling_native_audio must be a mapping")
+
+    def _build_prompt_text_from_manifest(
+        self,
+        shots: list[Any],
+        total_duration: int,
+        max_duration: int,
+        continuity_mode: str,
+    ) -> str:
+        """Build prompt text from manifest shots (not scene_card.shot_list_omni)."""
+        shot_lines: list[str] = []
+        for index, shot in enumerate(shots, start=1):
+            duration = int(shot.get("duration_seconds", 0))
+            prompt_action = _text(shot.get("prompt_action"), "approved action")
+            shot_lines.append(f"Shot {index} ({duration}s): {prompt_action}")
+
+        parts = [
+            "Create one external Kling Omni video instruction.",
+            f"Total duration: {total_duration} seconds.",
+        ]
+
+        parts.extend(shot_lines)
+
+        continuity_note = f"Continuity mode: {continuity_mode}."
+        if continuity_mode == "frame_input_active":
+            continuity_note += " First/last frame inputs may be passed to Kling."
+        elif continuity_mode == "frame_input_eligible":
+            continuity_note += " Frame inputs eligible but not active in this generation."
+        else:
+            continuity_note += " Use continuity metadata only; do not claim frame inputs."
+        parts.append(continuity_note)
+
+        parts.append(
+            f"Keep the clip at {total_duration} seconds, never over {max_duration} seconds. "
+            "End with a clear settled state. Do not add new story facts."
+        )
+        return _sanitize_prompt_text(" ".join(part for part in parts if part))
+
     def _prompt_record(
         self,
         *,
