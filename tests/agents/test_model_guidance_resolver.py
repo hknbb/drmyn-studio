@@ -251,13 +251,14 @@ class TestExpiredSnapshot:
 		snapshots_dir = repo_root / "model_guidance_snapshots" / "kling"
 		snapshots_dir.mkdir(parents=True)
 
-		# Set expires_at in the past
+		# Set expires_at in the past; expired snapshot is skipped
 		valid_kling_snapshot["expires_at"] = "2026-05-01T14:00:00Z"
 
 		snapshot_file = snapshots_dir / "snapshot.yaml"
 		with open(snapshot_file, "w", encoding="utf-8") as f:
 			yaml.dump(valid_kling_snapshot, f)
 
+		# With new behavior, expired snapshots are skipped; if only expired exists, "no valid" error
 		with pytest.raises(ModelGuidanceResolutionError) as exc_info:
 			resolve_model_guidance(
 				repo_root,
@@ -265,7 +266,7 @@ class TestExpiredSnapshot:
 				now=now_utc,
 			)
 
-		assert "expired" in str(exc_info.value).lower()
+		assert "valid" in str(exc_info.value).lower()
 
 	def test_not_yet_expired_snapshot_resolves(
 		self, repo_structure, valid_kling_snapshot, now_utc
@@ -634,6 +635,7 @@ class TestErrorMessages:
 		snapshots_dir = repo_root / "model_guidance_snapshots" / "kling"
 		snapshots_dir.mkdir(parents=True)
 
+		# Expired snapshot is skipped; only one snapshot means "no valid" error
 		valid_kling_snapshot["expires_at"] = "2026-05-01T14:00:00Z"
 
 		snapshot_file = snapshots_dir / "snapshot.yaml"
@@ -648,7 +650,7 @@ class TestErrorMessages:
 			)
 
 		error_msg = str(exc_info.value).lower()
-		assert "expired" in error_msg
+		assert "valid" in error_msg
 
 
 # Tests: Model Role Resolution
@@ -755,3 +757,73 @@ class TestIntegration:
 			now=now_utc,
 		)
 		assert mj_result["provider"] == "midjourney"
+
+
+# Tests: Expired Snapshot Skipping
+
+class TestExpiredSnapshotSkipped:
+	"""Expired snapshots are skipped when newer valid snapshots exist."""
+
+	def test_expired_snapshot_skipped_for_newer_valid(
+		self, repo_structure, valid_kling_snapshot, now_utc
+	):
+		repo_root = repo_structure
+		snapshots_dir = repo_root / "model_guidance_snapshots" / "kling"
+		snapshots_dir.mkdir(parents=True)
+
+		# Expired snapshot (older)
+		expired_snapshot = valid_kling_snapshot.copy()
+		expired_snapshot["observed_at"] = "2026-05-02T10:00:00Z"
+		expired_snapshot["expires_at"] = "2026-05-03T10:00:00Z"  # Expired before now_utc
+		expired_snapshot["best_for_this_task"] = "kling-3.0-omni-expired"
+		with open(snapshots_dir / "expired_old.yaml", "w", encoding="utf-8") as f:
+			yaml.dump(expired_snapshot, f)
+
+		# Valid snapshot (newer)
+		valid_newer = valid_kling_snapshot.copy()
+		valid_newer["observed_at"] = "2026-05-04T14:00:00Z"
+		valid_newer["expires_at"] = "2026-06-04T14:00:00Z"
+		valid_newer["best_for_this_task"] = "kling-3.0-omni-v2"
+		with open(snapshots_dir / "valid_new.yaml", "w", encoding="utf-8") as f:
+			yaml.dump(valid_newer, f)
+
+		# Should resolve to the newer valid snapshot, skipping the expired one
+		result = resolve_model_guidance(
+			repo_root,
+			"kling_video_best_available",
+			now=now_utc,
+		)
+
+		assert result["resolved_model_name"] == "kling-3.0-omni-v2"
+		assert result["guidance_observed_at"] == "2026-05-04T14:00:00Z"
+
+
+# Tests: Null Model Rejection
+
+class TestNullModelRejection:
+	"""Snapshots with both best_for_this_task and latest_available_model null are rejected."""
+
+	def test_both_null_models_raises_error(
+		self, repo_structure, valid_kling_snapshot, now_utc
+	):
+		repo_root = repo_structure
+		snapshots_dir = repo_root / "model_guidance_snapshots" / "kling"
+		snapshots_dir.mkdir(parents=True)
+
+		null_snapshot = valid_kling_snapshot.copy()
+		null_snapshot["best_for_this_task"] = None
+		null_snapshot["latest_available_model"] = None
+
+		snapshot_file = snapshots_dir / "null_models.yaml"
+		with open(snapshot_file, "w", encoding="utf-8") as f:
+			yaml.dump(null_snapshot, f)
+
+		with pytest.raises(ModelGuidanceResolutionError) as exc_info:
+			resolve_model_guidance(
+				repo_root,
+				"kling_video_best_available",
+				now=now_utc,
+			)
+
+		error_msg = str(exc_info.value).lower()
+		assert "no resolvable model" in error_msg
