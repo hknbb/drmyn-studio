@@ -145,7 +145,47 @@
     },
     "generation_params": {
       "type": "object",
-      "additionalProperties": true
+      "additionalProperties": true,
+      "properties": {
+        "model_guidance_mode": {
+          "type": "string",
+          "const": "dynamic_snapshot",
+          "description": "Indicates this record uses dynamic model guidance snapshots for version resolution."
+        },
+        "model_guidance_snapshot_ref": {
+          "type": "string",
+          "description": "Relative path to the model guidance snapshot file used during generation (e.g., model_guidance_snapshots/kling/20260508T140000Z_kling_omni_video_best_available.yaml)."
+        },
+        "provider": {
+          "type": "string",
+          "enum": ["kling", "midjourney", "openai", "google"],
+          "description": "Provider platform resolved from the snapshot."
+        },
+        "provider_surface": {
+          "type": "string",
+          "enum": ["web_ui", "api", "app", "manual_external", "chatgpt_ui", "gemini_app"],
+          "description": "How the model is accessed (e.g., api, web_ui, chatgpt_ui, gemini_app)."
+        },
+        "resolved_model_name": {
+          "type": "string",
+          "description": "The actual model name resolved from the snapshot at generation time (e.g., 'Kling 3.0 Omni', 'V8.1', 'gpt-image-2', 'Nano Banana Pro / gemini-3-pro-image-preview')."
+        },
+        "resolved_model_role": {
+          "type": "string",
+          "enum": ["current_default", "latest_available", "best_for_this_task", "feature_required"],
+          "description": "Which role from the snapshot was used for resolution."
+        },
+        "guidance_observed_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the snapshot was observed/created (from snapshot observed_at)."
+        },
+        "guidance_expires_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the snapshot expires and requires refresh (from snapshot expires_at)."
+        }
+      }
     },
     "expected_output": {
       "type": "object",
