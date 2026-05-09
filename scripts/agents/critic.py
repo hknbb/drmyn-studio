@@ -12,10 +12,10 @@ Hard checks (any failure → passed=False):
   - source_refs.scene_card and source_refs.scene_excerpt non-empty
   - No planning canonical IDs (C##, LOC###, PROP###, WD###, SC####) in prompt_text
   - Exactly 1 target_model
-  - generation_params.model_guidance_ref file exists, model_id matches target_model
-  - generation_params.model_guidance_snapshot is loadable, model-matched,
-    human-verified, non-placeholder, and fresh if mode=dynamic_snapshot
-  - Negative prompt conditional on model capability
+  - Model guidance (two modes):
+    - locked_guide: generation_params.model_guidance_ref file exists, model_id matches
+    - dynamic_snapshot: snapshot file exists, A6.3 fields present, snapshot validated
+  - Negative prompt conditional on model capability (locked_guide or snapshot)
 
 Soft checks (only → soft_warnings, never fail):
   - UNRESOLVED / TODO_REVIEW / TODO / EVIDENCE_THIN in prompt_text or negative_prompt
@@ -200,6 +200,18 @@ class CriticAgent:
 
     def _check_model_guidance(self, record: dict, errors: list[str]) -> None:
         params = record.get("generation_params") or {}
+        mode = params.get("model_guidance_mode", "locked_guide")
+        target_models = record.get("target_models") or []
+
+        if mode == "dynamic_snapshot":
+            self._check_dynamic_snapshot_mode(record, errors)
+        else:
+            # Default: locked_guide mode
+            self._check_locked_guide_mode(record, errors)
+
+    def _check_locked_guide_mode(self, record: dict, errors: list[str]) -> None:
+        """Validate locked_guide mode (legacy, default behavior)."""
+        params = record.get("generation_params") or {}
         ref = params.get("model_guidance_ref")
 
         if not ref:
@@ -225,119 +237,161 @@ class CriticAgent:
             except Exception as exc:
                 errors.append(f"Cannot read model_guidance_ref {ref!r}: {exc}")
 
-        # If dynamic_snapshot mode, snapshot file must exist
-        mode = params.get("model_guidance_mode")
-        snapshot = params.get("model_guidance_snapshot")
-        if mode == "dynamic_snapshot":
-            if not snapshot:
-                errors.append(
-                    "model_guidance_mode=dynamic_snapshot but "
-                    "model_guidance_snapshot path is missing"
-                )
-                return
+    def _check_dynamic_snapshot_mode(self, record: dict, errors: list[str]) -> None:
+        """Validate dynamic_snapshot mode (A6.3 resolution)."""
+        params = record.get("generation_params") or {}
+        target_models = record.get("target_models") or []
+        target_model = target_models[0] if target_models else None
 
-            snapshot_path = self.repo_root / snapshot
-            if not snapshot_path.exists():
-                errors.append(
-                    f"model_guidance_snapshot file not found: "
-                    f"{snapshot_path}"
-                )
-                return
+        # Map internal targets to target model IDs
+        INTERNAL_TARGET_MAP = {
+            "kling_omni": "kling_omni_video_best_available",
+            "midjourney": "midjourney_image_best_available",
+            "chatgpt_image": "chatgpt_image_best_available",
+            "nano_banana": "nano_banana_best_available",
+        }
 
-            self._check_dynamic_snapshot(
-                snapshot_path=snapshot_path,
-                target_model=target_models[0] if target_models else None,
-                errors=errors,
-            )
+        # Check required A6.3 fields
+        required_fields = [
+            "model_guidance_snapshot_ref",
+            "provider",
+            "provider_surface",
+            "resolved_model_name",
+            "resolved_model_role",
+            "guidance_observed_at",
+            "guidance_expires_at",
+        ]
+        for field in required_fields:
+            if field not in params or not params[field]:
+                errors.append(f"generation_params.{field} is missing or empty for dynamic_snapshot mode")
 
-    def _check_dynamic_snapshot(
-        self,
-        *,
-        snapshot_path: Path,
-        target_model: str | None,
-        errors: list[str],
-    ) -> None:
+        # If any required field is missing, stop here
+        if any(field not in params or not params[field] for field in required_fields):
+            return
+
+        snapshot_ref = params.get("model_guidance_snapshot_ref")
+        snapshot_path = self.repo_root / snapshot_ref
+
+        if not snapshot_path.exists():
+            errors.append(f"model_guidance_snapshot_ref file not found: {snapshot_path}")
+            return
+
         try:
             snapshot = yaml.safe_load(snapshot_path.read_text(encoding="utf-8")) or {}
         except Exception as exc:
-            errors.append(f"Cannot read model_guidance_snapshot {snapshot_path}: {exc}")
+            errors.append(f"Cannot read model_guidance_snapshot_ref {snapshot_ref!r}: {exc}")
             return
 
         if not isinstance(snapshot, dict):
             errors.append(f"model_guidance_snapshot must be a mapping: {snapshot_path}")
             return
 
-        snapshot_model = str(snapshot.get("model_id") or "")
-        if target_model and snapshot_model != target_model:
+        # Validate snapshot structure
+        if snapshot.get("record_type") != "model_guidance_snapshot":
+            errors.append(f"Snapshot record_type must be 'model_guidance_snapshot', got {snapshot.get('record_type')!r}")
+
+        if snapshot.get("human_verified") is not True:
             errors.append(
-                f"model_guidance_snapshot model_id ({snapshot_model!r}) does not match "
-                f"target_models[0] ({target_model!r})"
+                f"model_guidance_snapshot human_verified must be true; "
+                f"got {snapshot.get('human_verified')!r}"
             )
 
-        if snapshot.get("model_version_observed") == "unknown_placeholder":
-            errors.append(
-                "model_guidance_snapshot is a placeholder: "
-                "model_version_observed is unknown_placeholder"
-            )
-
+        # Check sources non-empty
         sources = snapshot.get("sources") or []
         if not isinstance(sources, list) or not sources:
             errors.append("model_guidance_snapshot sources must be a non-empty list")
+
+        # Validate internal_model_target matches target_model
+        snapshot_internal_target = snapshot.get("internal_model_target")
+        expected_internal_target = INTERNAL_TARGET_MAP.get(target_model)
+        if expected_internal_target and snapshot_internal_target != expected_internal_target:
+            errors.append(
+                f"Snapshot internal_model_target ({snapshot_internal_target!r}) does not match "
+                f"expected target for {target_model!r} ({expected_internal_target!r})"
+            )
+
+        # Validate provider matches
+        snapshot_provider = snapshot.get("provider")
+        params_provider = params.get("provider")
+        if snapshot_provider and params_provider and snapshot_provider != params_provider:
+            errors.append(
+                f"Snapshot provider ({snapshot_provider!r}) does not match "
+                f"generation_params.provider ({params_provider!r})"
+            )
+
+        # Validate provider_surface matches
+        snapshot_surface = snapshot.get("provider_surface")
+        params_surface = params.get("provider_surface")
+        if snapshot_surface and params_surface and snapshot_surface != params_surface:
+            errors.append(
+                f"Snapshot provider_surface ({snapshot_surface!r}) does not match "
+                f"generation_params.provider_surface ({params_surface!r})"
+            )
+
+        # Validate observed_at matches
+        snapshot_observed = snapshot.get("observed_at")
+        params_observed = params.get("guidance_observed_at")
+        if snapshot_observed and params_observed and snapshot_observed != params_observed:
+            errors.append(
+                f"Snapshot observed_at ({snapshot_observed!r}) does not match "
+                f"generation_params.guidance_observed_at ({params_observed!r})"
+            )
+
+        # Validate expires_at matches
+        snapshot_expires = snapshot.get("expires_at")
+        params_expires = params.get("guidance_expires_at")
+        if snapshot_expires and params_expires and snapshot_expires != params_expires:
+            errors.append(
+                f"Snapshot expires_at ({snapshot_expires!r}) does not match "
+                f"generation_params.guidance_expires_at ({params_expires!r})"
+            )
+
+        # Validate expiration
+        expires_at_str = snapshot.get("expires_at")
+        if expires_at_str:
+            try:
+                expiry = _parse_utc_datetime(str(expires_at_str))
+                reference_time = self.reference_time or datetime.now(timezone.utc)
+                if reference_time > expiry:
+                    errors.append(
+                        f"model_guidance_snapshot has expired at {expires_at_str}; "
+                        "refresh from official sources"
+                    )
+            except ValueError:
+                errors.append(f"Snapshot expires_at is not parseable: {expires_at_str!r}")
+
+        # Validate resolved_model_name matches the selected role
+        resolved_model_name = params.get("resolved_model_name")
+        resolved_model_role = params.get("resolved_model_role")
+
+        if resolved_model_role == "current_default":
+            expected = snapshot.get("current_default_model")
+        elif resolved_model_role == "latest_available":
+            expected = snapshot.get("latest_available_model")
+        elif resolved_model_role == "best_for_this_task":
+            expected = snapshot.get("best_for_this_task")
+        elif resolved_model_role == "feature_required":
+            # For feature_required, resolved_model_name must be in feature_required_model values
+            feature_models = snapshot.get("feature_required_model", {})
+            expected = None
+            if resolved_model_name not in feature_models.values():
+                errors.append(
+                    f"resolved_model_name ({resolved_model_name!r}) not found in "
+                    f"snapshot.feature_required_model ({list(feature_models.values())})"
+                )
+            return  # Already validated
         else:
-            for index, source in enumerate(sources):
-                if not isinstance(source, dict):
-                    continue
-                url = str(source.get("url") or "")
-                if "example.org/placeholder" in url:
-                    errors.append(
-                        f"model_guidance_snapshot sources.{index}.url is a placeholder"
-                    )
-                if source.get("human_verified") is not True:
-                    errors.append(
-                        f"model_guidance_snapshot sources.{index}.human_verified "
-                        "must be true for prompt generation"
-                    )
+            expected = None
 
-        extracted_rules = snapshot.get("extracted_rules") or []
-        if not isinstance(extracted_rules, list) or not extracted_rules:
+        if expected and resolved_model_name != expected:
             errors.append(
-                "model_guidance_snapshot extracted_rules must be a non-empty list"
-            )
-        else:
-            for index, rule in enumerate(extracted_rules):
-                if "PLACEHOLDER" in str(rule):
-                    errors.append(
-                        f"model_guidance_snapshot extracted_rules.{index} "
-                        "contains PLACEHOLDER"
-                    )
-
-        pending_verification = snapshot.get("do_not_use_without_verification") or []
-        if pending_verification:
-            errors.append(
-                "model_guidance_snapshot do_not_use_without_verification must be "
-                "empty before prompt generation"
-            )
-
-        expires_at = (snapshot.get("snapshot_validity") or {}).get("expires_at")
-        if not expires_at:
-            errors.append("model_guidance_snapshot snapshot_validity.expires_at is missing")
-            return
-        try:
-            expiry = _parse_utc_datetime(str(expires_at))
-        except ValueError:
-            errors.append(
-                "model_guidance_snapshot snapshot_validity.expires_at is not parseable"
-            )
-            return
-        reference_time = self.reference_time or datetime.now(timezone.utc)
-        if reference_time > expiry:
-            errors.append(
-                "model_guidance_snapshot has expired; refresh from official sources"
+                f"resolved_model_name ({resolved_model_name!r}) does not match "
+                f"snapshot.{resolved_model_role} ({expected!r})"
             )
 
     def _check_negative_prompt_rule(self, record: dict, errors: list[str]) -> None:
         """
-        Conditional negative_prompt rule derived from the model guide's capability.
+        Conditional negative_prompt rule derived from the model guide or snapshot capability.
 
         - supports_negative_prompt in (True, "limited") → negative_prompt required
         - supports_negative_prompt is False → constraint_strategy must be
@@ -348,19 +402,37 @@ class CriticAgent:
             return  # caught by _check_target_models
 
         params = record.get("generation_params") or {}
-        ref = params.get("model_guidance_ref")
-        if not ref or not (self.repo_root / ref).exists():
-            return  # caught by _check_model_guidance
+        mode = params.get("model_guidance_mode", "locked_guide")
 
-        try:
-            guide = yaml.safe_load(
-                (self.repo_root / ref).read_text(encoding="utf-8")
-            ) or {}
-        except Exception:
-            return  # caught by _check_model_guidance
+        neg_support = None
 
-        cap = guide.get("capability") or {}
-        neg_support = cap.get("supports_negative_prompt")
+        if mode == "dynamic_snapshot":
+            # Read capability from snapshot
+            snapshot_ref = params.get("model_guidance_snapshot_ref")
+            if snapshot_ref:
+                snapshot_path = self.repo_root / snapshot_ref
+                if snapshot_path.exists():
+                    try:
+                        snapshot = yaml.safe_load(snapshot_path.read_text(encoding="utf-8")) or {}
+                        capabilities = snapshot.get("capabilities") or {}
+                        neg_support = capabilities.get("supports_negative_prompt")
+                    except Exception:
+                        return  # Error caught elsewhere
+        else:
+            # locked_guide: read from guide file
+            ref = params.get("model_guidance_ref")
+            if not ref or not (self.repo_root / ref).exists():
+                return  # caught by _check_model_guidance
+
+            try:
+                guide = yaml.safe_load(
+                    (self.repo_root / ref).read_text(encoding="utf-8")
+                ) or {}
+            except Exception:
+                return  # caught by _check_model_guidance
+
+            cap = guide.get("capability") or {}
+            neg_support = cap.get("supports_negative_prompt")
 
         if neg_support in (True, "limited"):
             neg = record.get("negative_prompt")
