@@ -34,7 +34,7 @@ def resolve_model_guidance(
 
 	Args:
 		repo_root: Repository root path.
-		internal_model_target: One of kling_video_best_available,
+		internal_model_target: One of kling_omni_video_best_available,
 			midjourney_image_best_available, chatgpt_image_best_available,
 			nano_banana_best_available.
 		required_feature: Optional feature name (e.g., 'omni_reference').

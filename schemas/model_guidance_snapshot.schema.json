@@ -45,12 +45,12 @@
     "internal_model_target": {
       "type": "string",
       "enum": [
-        "kling_video_best_available",
+        "kling_omni_video_best_available",
         "midjourney_image_best_available",
         "chatgpt_image_best_available",
         "nano_banana_best_available"
       ],
-      "description": "Internal canonical target identifying the model family and latest best version."
+      "description": "Internal canonical target identifying the model family and latest best version. kling_omni_video_best_available targets Kling Omni element-based video generation (Element Library, Element Reference, Native Audio, Multi-shot); version-free to allow future Omni versions to be resolved by snapshot without schema changes."
     },
     "provider": {
       "type": "string",
