@@ -2,133 +2,234 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.org/schemas/model_guidance_snapshot.schema.json",
   "title": "Model Guidance Snapshot",
-  "description": "Reproducibility-preserving snapshot of current model prompt guidance. Written once per production batch by the Model Research Agent. Each prompt record cites the snapshot that informed it.",
+  "description": "Deterministic point-in-time snapshot of model capabilities, constraints, and prompting rules for a given provider/model.",
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "model_id",
-    "snapshot_taken_at",
-    "snapshot_hash",
+    "record_type",
+    "schema_version",
+    "snapshot_id",
+    "internal_model_target",
+    "provider",
+    "model_family",
+    "provider_surface",
+    "observed_at",
+    "expires_at",
+    "human_verified",
+    "current_default_model",
+    "latest_available_model",
+    "best_for_this_task",
+    "feature_required_model",
+    "version_policy",
     "sources",
-    "extracted_rules",
-    "confidence",
-    "model_version_observed",
-    "model_version_confidence"
+    "capabilities",
+    "constraints",
+    "prompting_rules",
+    "provenance"
   ],
   "properties": {
-    "model_id": {
+    "record_type": {
       "type": "string",
-      "enum": ["midjourney", "chatgpt_image", "nano_banana", "kling_omni"],
-      "description": "Canonical snake_case model identifier. Maps to docs/model_guides/{model_id}.yaml."
+      "const": "model_guidance_snapshot",
+      "description": "Type identifier for this record."
     },
-    "snapshot_taken_at": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.x-draft",
+      "description": "Schema version. Must be 0.x-draft for A6 phase."
+    },
+    "snapshot_id": {
+      "type": "string",
+      "description": "Unique identifier for this snapshot, typically ISO-8601 timestamp format (e.g., 20260504T140000Z_kling_omni)."
+    },
+    "internal_model_target": {
+      "type": "string",
+      "enum": [
+        "kling_video_best_available",
+        "midjourney_image_best_available",
+        "chatgpt_image_best_available",
+        "nano_banana_best_available"
+      ],
+      "description": "Internal canonical target identifying the model family and latest best version."
+    },
+    "provider": {
+      "type": "string",
+      "enum": [
+        "kling",
+        "midjourney",
+        "openai",
+        "google"
+      ],
+      "description": "Provider platform for this model."
+    },
+    "model_family": {
+      "type": "string",
+      "enum": [
+        "video_generation",
+        "image_generation"
+      ],
+      "description": "Output modality family."
+    },
+    "provider_surface": {
+      "type": "string",
+      "enum": [
+        "web_ui",
+        "api",
+        "app",
+        "manual_external",
+        "chatgpt_ui",
+        "gemini_app"
+      ],
+      "description": "How the model is accessed (web UI, API, native app, etc.)."
+    },
+    "observed_at": {
       "type": "string",
       "format": "date-time",
-      "description": "ISO-8601 UTC timestamp when the snapshot was written."
+      "description": "When this snapshot was observed/created."
     },
-    "snapshot_hash": {
+    "expires_at": {
       "type": "string",
-      "pattern": "^sha256:[a-f0-9]{64}$",
-      "description": "SHA-256 hash of the snapshot file content (self-referential; computed after write)."
+      "format": "date-time",
+      "description": "When this snapshot expires and requires refresh."
     },
-    "model_version_observed": {
-      "type": "string",
-      "description": "Model version string as observed in official docs or platform UI (e.g. 'Midjourney 6.1', 'unknown_ui_current')."
+    "human_verified": {
+      "type": "boolean",
+      "description": "Whether a human has verified this snapshot's accuracy."
     },
-    "model_version_confidence": {
-      "type": "string",
-      "enum": ["high", "medium", "low"],
-      "description": "Confidence that model_version_observed is accurate. high=official docs; medium=verified 3rd party; low=community-reported."
+    "current_default_model": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The model version that is the current default when no version is specified."
+    },
+    "latest_available_model": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The latest available model version from the provider."
+    },
+    "best_for_this_task": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The recommended model version for production prompting, if different from default."
+    },
+    "feature_required_model": {
+      "type": "object",
+      "description": "Mapping of feature names to minimum required model versions.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "version_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hardcode_in_adapter",
+        "adapter_must_read_snapshot",
+        "prompt_generation_blocks_if_expired",
+        "prompt_generation_blocks_if_unverified"
+      ],
+      "properties": {
+        "hardcode_in_adapter": {
+          "type": "boolean",
+          "const": false,
+          "description": "Model version strings must NEVER be hardcoded in adapter code."
+        },
+        "adapter_must_read_snapshot": {
+          "type": "boolean",
+          "const": true,
+          "description": "Adapters must read this snapshot at prompt generation time."
+        },
+        "prompt_generation_blocks_if_expired": {
+          "type": "boolean",
+          "const": true,
+          "description": "Prompt generation is blocked if snapshot expires_at is in the past."
+        },
+        "prompt_generation_blocks_if_unverified": {
+          "type": "boolean",
+          "const": true,
+          "description": "Prompt generation is blocked if human_verified is false."
+        }
+      }
     },
     "sources": {
       "type": "array",
       "minItems": 1,
+      "description": "One or more sources of evidence for this snapshot.",
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["url", "retrieved_at", "http_status", "content_hash", "human_verified", "source_class"],
+        "required": [
+          "source_type",
+          "title",
+          "retrieved_at"
+        ],
         "properties": {
-          "url": {
+          "source_type": {
             "type": "string",
-            "format": "uri"
+            "description": "Classification of source (official_docs, verified_platform_blog, research_article, etc.)."
+          },
+          "title": {
+            "type": "string",
+            "description": "Human-readable title of the source."
           },
           "retrieved_at": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "When this source was accessed or verified."
           },
-          "http_status": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 599,
-            "description": "HTTP status code of the source fetch. Use 0 to indicate 'not fetched' (placeholder snapshots only)."
-          },
-          "content_hash": {
+          "url": {
             "type": "string",
-            "pattern": "^sha256:[a-f0-9]{64}$"
-          },
-          "human_verified": {
-            "type": "boolean"
-          },
-          "source_class": {
-            "type": "string",
-            "enum": [
-              "official_docs",
-              "official_release_notes",
-              "official_help_center",
-              "verified_platform_blog"
-            ],
-            "description": "Only approved source classes. forum_threads, prompt_hack_blogs, unsourced_social_media, and paid_prompt_packs are blocked."
-          },
-          "notes": {
-            "type": "string"
+            "format": "uri",
+            "description": "Optional URL to the source."
           }
         }
       }
     },
-    "extracted_rules": {
+    "capabilities": {
+      "type": "object",
+      "description": "Model capabilities (output_type, supports_X, max_duration, native_resolution, etc.).",
+      "additionalProperties": true
+    },
+    "constraints": {
+      "type": "object",
+      "description": "Model constraints and limitations.",
+      "additionalProperties": true
+    },
+    "prompting_rules": {
       "type": "array",
-      "minItems": 1,
-      "items": { "type": "string" },
-      "description": "Concrete prompt-writing rules extracted from sources. Must cite a source; no invented rules."
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of prompting rules/guidelines for this model."
     },
-    "confidence": {
-      "type": "string",
-      "enum": ["high", "medium", "low"],
-      "description": "Overall confidence in the snapshot. high=all official docs; medium=mix of verified sources; low=community-reported (flagged for human review)."
-    },
-    "do_not_use_without_verification": {
-      "type": "array",
-      "items": { "type": "string" },
-      "description": "Stylistic shorthands or rules that require human verification before use in prompts."
-    },
-    "snapshot_validity": {
+    "provenance": {
       "type": "object",
       "additionalProperties": false,
-      "description": "Freshness policy for this snapshot. Embedded to make each snapshot self-describing.",
       "properties": {
-        "max_age_days": {
-          "type": "integer",
-          "description": "Maximum age in days before this snapshot must be refreshed. 14 for image models, 7 for video models."
+        "created_by": {
+          "type": "string"
         },
-        "expires_at": {
+        "created_at": {
           "type": "string",
-          "format": "date-time",
-          "description": "Computed expiry: snapshot_taken_at + max_age_days."
+          "format": "date-time"
+        },
+        "updated_by": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "git_commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{7,40}$"
         }
       }
-    },
-    "schema_version": {
-      "type": "string",
-      "description": "Schema version used to write this snapshot. Allows future migration.",
-      "default": "1.0"
-    }
-  },
-  "$defs": {
-    "blocked_source_classes": {
-      "description": "These source classes are NEVER allowed in sources[*].source_class: forum_threads, prompt_hack_blogs, unsourced_social_media, paid_prompt_packs"
-    },
-    "snapshot_freshness_policy": {
-      "description": "image_models (midjourney, chatgpt_image, nano_banana): max_age_days=14. video_models (kling_omni): max_age_days=7. Refresh required before: batch_prompt_generation, model_version_change, failed_output_rate > 0.5."
     }
   }
 }
