@@ -545,11 +545,11 @@ def test_snapshot_propagates_to_generation_params(tmp_path: Path) -> None:
     snapshot_path = "evidence/model_guidance_snapshots/2026-04-30T120000Z_midjourney.yaml"
     adapter = MidjourneyAdapter(
         tmp_path,
-        model_guidance_mode="dynamic_snapshot",
+        model_guidance_mode="locked_guide",
         model_guidance_snapshot=snapshot_path,
     )
     record, run_record = adapter.generate(CHAR_BRIEF, run_counter=1)
-    assert record["generation_params"]["model_guidance_mode"] == "dynamic_snapshot"
+    assert record["generation_params"]["model_guidance_mode"] == "locked_guide"
     assert record["generation_params"]["model_guidance_snapshot"] == snapshot_path
     assert run_record["model_guidance_snapshot"] == snapshot_path
 

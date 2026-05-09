@@ -12,6 +12,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from scripts.agents.model_guidance_resolver import (
+    ModelGuidanceResolutionError,
+    resolve_model_guidance,
+)
 from scripts.agents.neutral_brief import NeutralBrief
 
 
@@ -122,11 +126,17 @@ class BaseAdapter:
     - ``_build_prompt_text(brief)``
     - ``_build_negative_prompt(brief)`` — optional override; returns None by default
     - ``_extra_generation_params(brief)`` — optional override for model-specific params
+
+    Subclasses targeting dynamic model resolution should set:
+    - ``INTERNAL_MODEL_TARGET`` — one of kling_omni_video_best_available,
+      midjourney_image_best_available, chatgpt_image_best_available,
+      nano_banana_best_available
     """
 
     MODEL_ID: str = ""
     MODEL_SLUG: str = ""
     ABBREV: str = ""
+    INTERNAL_MODEL_TARGET: str = ""
 
     def __init__(
         self,
@@ -221,6 +231,35 @@ class BaseAdapter:
         """Override to inject model-specific generation_params fields."""
         return {}
 
+    def _resolve_model(
+        self,
+        internal_model_target: str,
+        required_feature: str | None = None,
+    ) -> dict[str, Any]:
+        """
+        Resolve current model version from a human-verified snapshot.
+
+        Args:
+            internal_model_target: One of kling_omni_video_best_available,
+                midjourney_image_best_available, chatgpt_image_best_available,
+                nano_banana_best_available.
+            required_feature: Optional feature (e.g., 'omni_reference').
+
+        Returns:
+            Dict with model_guidance_snapshot_ref, provider, provider_surface,
+            resolved_model_name, resolved_model_role, guidance_observed_at,
+            guidance_expires_at, prompting_rules, capabilities, constraints.
+
+        Raises:
+            ModelGuidanceResolutionError if snapshot is missing, expired,
+            unverified, contains placeholders, or unsupported feature.
+        """
+        return resolve_model_guidance(
+            repo_root=self.repo_root,
+            internal_model_target=internal_model_target,
+            required_feature=required_feature,
+        )
+
     # ------------------------------------------------------------------
     # Shared internals
     # ------------------------------------------------------------------
@@ -237,11 +276,32 @@ class BaseAdapter:
     def _generation_params(self, brief: NeutralBrief) -> dict[str, Any]:
         params: dict[str, Any] = {
             "model_guidance_mode": self.model_guidance_mode,
-            "model_guidance_ref": f"docs/model_guides/{self.MODEL_ID}.yaml",
             "adapter_name": self.MODEL_ID,
         }
-        if self.model_guidance_snapshot:
-            params["model_guidance_snapshot"] = self.model_guidance_snapshot
+
+        # Dynamic model resolution: resolve from snapshot at runtime
+        if self.model_guidance_mode == "dynamic_snapshot":
+            if not self.INTERNAL_MODEL_TARGET:
+                raise ValueError(
+                    f"{type(self).__name__} has model_guidance_mode='dynamic_snapshot' "
+                    f"but INTERNAL_MODEL_TARGET is not set"
+                )
+            resolved = self._resolve_model(self.INTERNAL_MODEL_TARGET)
+            params.update({
+                "model_guidance_snapshot_ref": resolved["model_guidance_snapshot_ref"],
+                "provider": resolved["provider"],
+                "provider_surface": resolved["provider_surface"],
+                "resolved_model_name": resolved["resolved_model_name"],
+                "resolved_model_role": resolved["resolved_model_role"],
+                "guidance_observed_at": resolved["guidance_observed_at"],
+                "guidance_expires_at": resolved["guidance_expires_at"],
+            })
+        else:
+            # Legacy mode: locked_guide (default)
+            params["model_guidance_ref"] = f"docs/model_guides/{self.MODEL_ID}.yaml"
+            if self.model_guidance_snapshot:
+                params["model_guidance_snapshot"] = self.model_guidance_snapshot
+
         if brief.aesthetic_keywords:
             params["aesthetic_keywords_injected"] = list(brief.aesthetic_keywords)
         if brief.planning_aliases:
