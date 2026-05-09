@@ -27,19 +27,20 @@ class MidjourneyAdapter(BaseAdapter):
     Prompt style: comma-separated compact clauses, ≤60 words.
     Negative prompt: hyphenated compact terms for --no flag.
     Capability: supports_negative_prompt=limited (--no flag in practice).
+    Model version resolved from model_guidance_snapshot at runtime, not hardcoded.
     """
 
     MODEL_ID = "midjourney"
     MODEL_SLUG = "midjourney"
     ABBREV = "MJ"
+    INTERNAL_MODEL_TARGET = "midjourney_image_best_available"
 
     # ------------------------------------------------------------------
-    # generation_params — model version and AR recommendations
+    # generation_params — AR recommendation (model version from snapshot)
     # ------------------------------------------------------------------
 
     def _extra_generation_params(self, brief: NeutralBrief) -> dict[str, Any]:
         return {
-            "recommended_model_version": "--v 7",
             "recommended_ar": "--ar 16:9",
         }
 
