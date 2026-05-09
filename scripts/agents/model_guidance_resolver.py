@@ -92,6 +92,12 @@ def resolve_model_guidance(
 	best_observed_at = None
 
 	for snapshot_path, snapshot_data in candidates:
+		expires_at_str = snapshot_data.get("expires_at")
+		if expires_at_str:
+			expires_at = datetime.fromisoformat(expires_at_str.replace("Z", "+00:00"))
+			if expires_at < now:
+				continue  # Skip expired, evaluate other candidates
+
 		try:
 			validator.validate(snapshot_data)
 		except jsonschema.ValidationError as e:
@@ -104,12 +110,6 @@ def resolve_model_guidance(
 				f"Snapshot {snapshot_path} is unverified "
 				f"(human_verified={snapshot_data.get('human_verified')})"
 			)
-
-		expires_at_str = snapshot_data.get("expires_at")
-		if expires_at_str:
-			expires_at = datetime.fromisoformat(expires_at_str.replace("Z", "+00:00"))
-			if expires_at < now:
-				continue  # Skip expired, evaluate other candidates
 
 		latest_available = snapshot_data.get("latest_available_model")
 		best_for_task = snapshot_data.get("best_for_this_task")
