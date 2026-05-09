@@ -78,9 +78,9 @@ available through the associated GitHub repository.
 Software title: DRMYN Studio: Metadata-Only AI-Assisted Movie Development
 and Production Workflow
 Repository: https://github.com/hknbb/drmyn-studio-public
-Archived release DOI: https://doi.org/10.5281/zenodo.20055802
+Archived release DOI: https://doi.org/10.5281/zenodo.20059941
 Concept DOI: https://doi.org/10.5281/zenodo.19987410
-Version: 0.4.1
+Version: 0.4.4
 License: MIT
 
 The software supports AI-assisted movie development and movie production

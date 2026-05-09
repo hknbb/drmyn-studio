@@ -2,9 +2,9 @@
 
 **Project:** DRMYN Studio  
 **Case study:** *Closing Price* AI-assisted film project  
-**Release state:** v0.4.0 — Three-agent orchestration + movie development and production process scope  
-**Verified date:** 2026-05-06  
-**Tests:** 505 passed  
+**Release state:** v0.4.4 — Three-agent orchestration + movie development and production process scope  
+**Verified date:** 2026-05-09  
+**Tests:** 548 passed  
 **Validators:** clean  
 
 This document is the authoritative reference for what is and is not included in
@@ -106,7 +106,7 @@ Run from the repository root to verify reproducibility:
 # Python environment
 pip install -r requirements.txt           # or: pip install pyyaml jsonschema
 
-# 1. Full test suite (328 tests, all tmp_path only)
+# 1. Full test suite (548 tests, all tmp_path only)
 python -m pytest -q
 
 # 2. Production records validator
@@ -155,7 +155,7 @@ validate_prompt_records.py        → 0 files or N passed
 | B8-4 auto-handoff + pickup mode | ✅ merged PR #53 |
 | B8-5 storage_policy clarification + intake_slot schema | ✅ merged PR #54 |
 | v0.4.0 publication metadata (authorship, scope, contributors) | ✅ this batch |
-| Full test suite | ✅ 505 passed |
+| Full test suite | ✅ 548 passed |
 | Production records validator | ✅ valid: 18, invalid: 0 |
 | Prompt records validator | ✅ clean |
 | No binaries committed | ✅ confirmed |
