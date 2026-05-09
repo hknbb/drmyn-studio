@@ -29,7 +29,7 @@ All changes are in publication/citation metadata files only:
 ## Zenodo DOI
 
 Concept DOI (always latest): https://doi.org/10.5281/zenodo.19987410  
-Version DOI (v0.4.5): **pending** — to be recorded via S-PUB-2b after Zenodo archives this release.
+Version DOI (v0.4.5): https://doi.org/10.5281/zenodo.20100378
 
 ## Test verification
 
@@ -37,6 +37,6 @@ Version DOI (v0.4.5): **pending** — to be recorded via S-PUB-2b after Zenodo a
 python -m pytest -q  →  548 passed
 ```
 
-## Next step
+## DOI sync (S-PUB-2b)
 
-After Zenodo assigns the v0.4.5 version DOI, perform S-PUB-2b: update the version DOI in CITATION.cff, software_citation.md, article_metadata.md, and any other machine-readable metadata files.
+Completed. Zenodo assigned version DOI `10.5281/zenodo.20100378`. All citation metadata files updated via S-PUB-2b (PR #22).
