@@ -89,8 +89,10 @@ class MidjourneyAdapter:
         try:
             findings = audit_file(tmp_path)
             assert len(findings) > 0
+            # Either "Midjourney V8.1" or the substring "V8.1" may be reported first
+            # depending on set iteration order — both are valid blocked literals.
             assert any(
-                f.blocked_literal == "Midjourney V8.1"
+                f.blocked_literal in {"Midjourney V8.1", "V8.1"}
                 for f in findings
             )
         finally:
