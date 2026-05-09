@@ -456,18 +456,23 @@ def plan_omni_clips(
         dialogue_beats_ref: Relative path from repo_root to dialogue_beats.yaml.
         repo_root:          Repository root directory.
         created_by:         Provenance author field.
-        created_at:         ISO 8601 timestamp; defaults to current UTC time.
+        created_at:         ISO 8601 timestamp; if empty, derived from the later
+                            mtime of beat_plan_ref and dialogue_beats_ref to ensure
+                            deterministic output for identical inputs.
 
     Returns:
         Tuple of (omni_clip_plan dict, list of omni_clip_manifest dicts).
         Clip count is computed by the packer; never hardcoded.
     """
-    if not created_at:
-        created_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-
     root = Path(repo_root)
     beats = _load_beats(root / beat_plan_ref)
     db_record = _load_dialogue_record(root / dialogue_beats_ref)
+
+    if not created_at:
+        beat_mtime = (root / beat_plan_ref).stat().st_mtime
+        dialogue_mtime = (root / dialogue_beats_ref).stat().st_mtime
+        source_mtime = max(beat_mtime, dialogue_mtime)
+        created_at = datetime.fromtimestamp(source_mtime, timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     dmap = _build_dialogue_map(db_record)
 
     shots = _resolve_shots(beats, dmap)
