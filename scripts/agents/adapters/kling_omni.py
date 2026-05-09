@@ -4,6 +4,9 @@ Kling Omni metadata-only prompt adapter for Batch 8.
 This adapter writes draft prompt/run metadata for external Kling generation.
 It never calls Kling, never writes video binaries, and never creates video take
 review or selected clip records.
+
+Model version resolved from model_guidance_snapshot at runtime via dynamic_snapshot
+mode, not hardcoded.
 """
 
 from __future__ import annotations
@@ -15,6 +18,11 @@ from pathlib import Path
 from typing import Any
 
 import yaml
+
+from scripts.agents.model_guidance_resolver import (
+    ModelGuidanceResolutionError,
+    resolve_model_guidance,
+)
 
 
 CANONICAL_ID_RE = re.compile(r"\b(SC\d{4}|C\d{2}|LOC\d{3}|PROP\d{3}|WD\d{3})\b")
@@ -74,6 +82,7 @@ class KlingOmniAdapter:
     MODEL_ID = "kling_omni"
     MODEL_SLUG = "kling-omni"
     ABBREV = "KO"
+    INTERNAL_MODEL_TARGET = "kling_omni_video_best_available"
 
     def __init__(
         self,
@@ -192,7 +201,6 @@ class KlingOmniAdapter:
 
         generation_params: dict[str, Any] = {
             "model_guidance_mode": self.model_guidance_mode,
-            "model_guidance_ref": "docs/model_guides/kling_omni.yaml",
             "adapter_name": self.MODEL_ID,
             "max_duration_seconds": max_duration,
             "repo_binary_committed": False,
@@ -200,8 +208,27 @@ class KlingOmniAdapter:
             "recommended_cfg_scale": 0.5,
             "recommended_ar": "16:9",
         }
-        if self.model_guidance_snapshot:
-            generation_params["model_guidance_snapshot"] = self.model_guidance_snapshot
+
+        # Dynamic model resolution: resolve from snapshot at runtime
+        if self.model_guidance_mode == "dynamic_snapshot":
+            resolved = resolve_model_guidance(
+                repo_root=self.repo_root,
+                internal_model_target=self.INTERNAL_MODEL_TARGET,
+            )
+            generation_params.update({
+                "model_guidance_snapshot_ref": resolved["model_guidance_snapshot_ref"],
+                "provider": resolved["provider"],
+                "provider_surface": resolved["provider_surface"],
+                "resolved_model_name": resolved["resolved_model_name"],
+                "resolved_model_role": resolved["resolved_model_role"],
+                "guidance_observed_at": resolved["guidance_observed_at"],
+                "guidance_expires_at": resolved["guidance_expires_at"],
+            })
+        else:
+            # Legacy mode: locked_guide (default)
+            generation_params["model_guidance_ref"] = "docs/model_guides/kling_omni.yaml"
+            if self.model_guidance_snapshot:
+                generation_params["model_guidance_snapshot"] = self.model_guidance_snapshot
 
         record: dict[str, Any] = {
             "prompt_id": prompt_id,
@@ -239,6 +266,8 @@ class KlingOmniAdapter:
             "cost": {"unit": "unknown", "value": 0},
             "status": "pending",
         }
+        # In dynamic_snapshot mode, the snapshot ref is in generation_params;
+        # in locked_guide mode, optionally include it here
         if self.model_guidance_snapshot:
             record["model_guidance_snapshot"] = self.model_guidance_snapshot
         return record
