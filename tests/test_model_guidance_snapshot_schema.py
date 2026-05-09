@@ -19,7 +19,7 @@ def kling_snapshot():
         "record_type": "model_guidance_snapshot",
         "schema_version": "0.x-draft",
         "snapshot_id": "20260504T140000Z_kling_omni",
-        "internal_model_target": "kling_video_best_available",
+        "internal_model_target": "kling_omni_video_best_available",
         "provider": "kling",
         "model_family": "video_generation",
         "provider_surface": "api",
@@ -430,7 +430,7 @@ class TestAllValidEnums:
     def test_all_internal_model_targets_valid(self, schema, kling_snapshot):
         from jsonschema import validate
         targets = [
-            "kling_video_best_available",
+            "kling_omni_video_best_available",
             "midjourney_image_best_available",
             "chatgpt_image_best_available",
             "nano_banana_best_available"
@@ -439,6 +439,13 @@ class TestAllValidEnums:
             good_snapshot = kling_snapshot.copy()
             good_snapshot["internal_model_target"] = target
             validate(instance=good_snapshot, schema=schema)
+
+    def test_generic_kling_video_target_rejected(self, schema, kling_snapshot):
+        from jsonschema import ValidationError, validate
+        bad_snapshot = kling_snapshot.copy()
+        bad_snapshot["internal_model_target"] = "kling_video_best_available"
+        with pytest.raises(ValidationError):
+            validate(instance=bad_snapshot, schema=schema)
 
     def test_all_providers_valid(self, schema, kling_snapshot):
         from jsonschema import validate

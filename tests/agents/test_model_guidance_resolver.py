@@ -51,7 +51,7 @@ def valid_kling_snapshot():
 		"record_type": "model_guidance_snapshot",
 		"schema_version": "0.x-draft",
 		"snapshot_id": "20260504T140000Z_kling_omni",
-		"internal_model_target": "kling_video_best_available",
+		"internal_model_target": "kling_omni_video_best_available",
 		"provider": "kling",
 		"model_family": "video_generation",
 		"provider_surface": "api",
@@ -167,7 +167,7 @@ class TestValidSnapshotResolves:
 
 		result = resolve_model_guidance(
 			repo_root,
-			"kling_video_best_available",
+			"kling_omni_video_best_available",
 			now=now_utc,
 		)
 
@@ -211,7 +211,7 @@ class TestMissingSnapshot:
 		with pytest.raises(ModelGuidanceResolutionError) as exc_info:
 			resolve_model_guidance(
 				repo_root,
-				"kling_video_best_available",
+				"kling_omni_video_best_available",
 				now=now_utc,
 			)
 
@@ -262,7 +262,7 @@ class TestExpiredSnapshot:
 		with pytest.raises(ModelGuidanceResolutionError) as exc_info:
 			resolve_model_guidance(
 				repo_root,
-				"kling_video_best_available",
+				"kling_omni_video_best_available",
 				now=now_utc,
 			)
 
@@ -286,7 +286,7 @@ class TestExpiredSnapshot:
 
 		result = resolve_model_guidance(
 			repo_root,
-			"kling_video_best_available",
+			"kling_omni_video_best_available",
 			now=now_utc,
 		)
 
@@ -314,7 +314,7 @@ class TestUnverifiedSnapshot:
 		with pytest.raises(ModelGuidanceResolutionError) as exc_info:
 			resolve_model_guidance(
 				repo_root,
-				"kling_video_best_available",
+				"kling_omni_video_best_available",
 				now=now_utc,
 			)
 
@@ -342,7 +342,7 @@ class TestPlaceholderRejection:
 		with pytest.raises(ModelGuidanceResolutionError) as exc_info:
 			resolve_model_guidance(
 				repo_root,
-				"kling_video_best_available",
+				"kling_omni_video_best_available",
 				now=now_utc,
 			)
 
@@ -364,7 +364,7 @@ class TestPlaceholderRejection:
 		with pytest.raises(ModelGuidanceResolutionError) as exc_info:
 			resolve_model_guidance(
 				repo_root,
-				"kling_video_best_available",
+				"kling_omni_video_best_available",
 				now=now_utc,
 			)
 
@@ -386,7 +386,7 @@ class TestPlaceholderRejection:
 		with pytest.raises(ModelGuidanceResolutionError) as exc_info:
 			resolve_model_guidance(
 				repo_root,
-				"kling_video_best_available",
+				"kling_omni_video_best_available",
 				now=now_utc,
 			)
 
@@ -411,7 +411,7 @@ class TestFeatureResolution:
 
 		result = resolve_model_guidance(
 			repo_root,
-			"kling_video_best_available",
+			"kling_omni_video_best_available",
 			required_feature="native_audio",
 			now=now_utc,
 		)
@@ -433,7 +433,7 @@ class TestFeatureResolution:
 		with pytest.raises(ModelGuidanceResolutionError) as exc_info:
 			resolve_model_guidance(
 				repo_root,
-				"kling_video_best_available",
+				"kling_omni_video_best_available",
 				required_feature="nonexistent_feature",
 				now=now_utc,
 			)
@@ -456,7 +456,7 @@ class TestFeatureResolution:
 		with pytest.raises(ModelGuidanceResolutionError) as exc_info:
 			resolve_model_guidance(
 				repo_root,
-				"kling_video_best_available",
+				"kling_omni_video_best_available",
 				required_feature="omni_reference",
 				now=now_utc,
 			)
@@ -496,7 +496,7 @@ class TestMultipleSnapshots:
 
 		result = resolve_model_guidance(
 			repo_root,
-			"kling_video_best_available",
+			"kling_omni_video_best_available",
 			now=now_utc,
 		)
 
@@ -525,7 +525,7 @@ class TestSchemaValidation:
 		with pytest.raises(ModelGuidanceResolutionError) as exc_info:
 			resolve_model_guidance(
 				repo_root,
-				"kling_video_best_available",
+				"kling_omni_video_best_available",
 				now=now_utc,
 			)
 
@@ -550,7 +550,7 @@ class TestReturnStructure:
 
 		result = resolve_model_guidance(
 			repo_root,
-			"kling_video_best_available",
+			"kling_omni_video_best_available",
 			now=now_utc,
 		)
 
@@ -601,7 +601,7 @@ class TestReturnStructure:
 
 		result = resolve_model_guidance(
 			repo_root,
-			"kling_video_best_available",
+			"kling_omni_video_best_available",
 			now=now_utc,
 		)
 
@@ -622,11 +622,11 @@ class TestErrorMessages:
 		with pytest.raises(ModelGuidanceResolutionError) as exc_info:
 			resolve_model_guidance(
 				repo_root,
-				"kling_video_best_available",
+				"kling_omni_video_best_available",
 				now=now_utc,
 			)
 
-		assert "kling_video_best_available" in str(exc_info.value)
+		assert "kling_omni_video_best_available" in str(exc_info.value)
 
 	def test_error_names_failed_condition(
 		self, repo_structure, valid_kling_snapshot, now_utc
@@ -645,7 +645,7 @@ class TestErrorMessages:
 		with pytest.raises(ModelGuidanceResolutionError) as exc_info:
 			resolve_model_guidance(
 				repo_root,
-				"kling_video_best_available",
+				"kling_omni_video_best_available",
 				now=now_utc,
 			)
 
@@ -671,7 +671,7 @@ class TestModelRoleResolution:
 
 		result = resolve_model_guidance(
 			repo_root,
-			"kling_video_best_available",
+			"kling_omni_video_best_available",
 			now=now_utc,
 		)
 
@@ -693,7 +693,7 @@ class TestModelRoleResolution:
 
 		result = resolve_model_guidance(
 			repo_root,
-			"kling_video_best_available",
+			"kling_omni_video_best_available",
 			now=now_utc,
 		)
 
@@ -713,7 +713,7 @@ class TestModelRoleResolution:
 
 		result = resolve_model_guidance(
 			repo_root,
-			"kling_video_best_available",
+			"kling_omni_video_best_available",
 			required_feature="multi_shot",
 			now=now_utc,
 		)
@@ -746,7 +746,7 @@ class TestIntegration:
 		# Resolve each independently
 		kling_result = resolve_model_guidance(
 			repo_root,
-			"kling_video_best_available",
+			"kling_omni_video_best_available",
 			now=now_utc,
 		)
 		assert kling_result["provider"] == "kling"
@@ -790,7 +790,7 @@ class TestExpiredSnapshotSkipped:
 		# Should resolve to the newer valid snapshot, skipping the expired one
 		result = resolve_model_guidance(
 			repo_root,
-			"kling_video_best_available",
+			"kling_omni_video_best_available",
 			now=now_utc,
 		)
 
@@ -821,7 +821,7 @@ class TestNullModelRejection:
 		with pytest.raises(ModelGuidanceResolutionError) as exc_info:
 			resolve_model_guidance(
 				repo_root,
-				"kling_video_best_available",
+				"kling_omni_video_best_available",
 				now=now_utc,
 			)
 
