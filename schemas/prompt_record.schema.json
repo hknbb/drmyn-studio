@@ -168,7 +168,7 @@
         },
         "resolved_model_name": {
           "type": "string",
-          "description": "The actual model name resolved from the snapshot at generation time (e.g., 'Kling 3.0 Omni', 'V8.1', 'gpt-image-2', 'Nano Banana Pro / gemini-3-pro-image-preview')."
+          "description": "The actual provider model name resolved from the model guidance snapshot at generation time."
         },
         "resolved_model_role": {
           "type": "string",
