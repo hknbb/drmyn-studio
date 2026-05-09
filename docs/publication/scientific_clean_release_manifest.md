@@ -2,7 +2,7 @@
 
 **Project:** DRMYN Studio  
 **Case study:** *Closing Price* AI-assisted film project  
-**Release state:** v0.4.4 — Three-agent orchestration + movie development and production process scope  
+**Release state:** v0.4.5 — Scientific clean metadata alignment release  
 **Verified date:** 2026-05-09  
 **Tests:** 548 passed  
 **Validators:** clean  
