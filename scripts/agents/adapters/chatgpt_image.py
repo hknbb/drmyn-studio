@@ -22,11 +22,13 @@ class ChatGPTImageAdapter(BaseAdapter):
     Negative prompt: NOT populated (model capability: supports_negative_prompt=false).
     Constraints embedded in prompt_text via an "Avoid:" clause.
     generation_params: constraint_strategy=embedded_positive_constraints.
+    Model version resolved from model_guidance_snapshot at runtime, not hardcoded.
     """
 
     MODEL_ID = "chatgpt_image"
     MODEL_SLUG = "chatgpt-image"
     ABBREV = "CGPT"
+    INTERNAL_MODEL_TARGET = "chatgpt_image_best_available"
 
     # ------------------------------------------------------------------
     # generation_params — adds constraint_strategy
