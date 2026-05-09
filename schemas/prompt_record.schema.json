@@ -149,8 +149,8 @@
       "properties": {
         "model_guidance_mode": {
           "type": "string",
-          "const": "dynamic_snapshot",
-          "description": "Indicates this record uses dynamic model guidance snapshots for version resolution."
+          "enum": ["dynamic_snapshot", "locked_guide"],
+          "description": "Mode for model guidance: dynamic_snapshot resolves from snapshots; locked_guide uses static guidance."
         },
         "model_guidance_snapshot_ref": {
           "type": "string",

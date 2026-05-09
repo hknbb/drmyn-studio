@@ -147,12 +147,28 @@ class TestPromptRecordModelGuidanceFields:
 class TestPromptRecordModelGuidanceValidation:
     """Verify model guidance field validation rules."""
 
-    def test_model_guidance_mode_must_be_const_value(self, validator):
-        """model_guidance_mode must be exactly 'dynamic_snapshot' when present."""
+    def test_model_guidance_mode_must_be_valid_enum(self, validator):
+        """model_guidance_mode must be one of the allowed enum values."""
         prompt = get_valid_prompt_with_model_guidance()
-        prompt["generation_params"]["model_guidance_mode"] = "static"
+        # Invalid enum value should fail
+        prompt["generation_params"]["model_guidance_mode"] = "invalid_mode"
         with pytest.raises(jsonschema.ValidationError):
             validator.validate(prompt)
+
+    def test_model_guidance_mode_dynamic_snapshot_valid(self, validator):
+        """model_guidance_mode 'dynamic_snapshot' should be valid."""
+        prompt = get_valid_prompt_with_model_guidance()
+        prompt["generation_params"]["model_guidance_mode"] = "dynamic_snapshot"
+        validator.validate(prompt)
+
+    def test_model_guidance_mode_locked_guide_valid(self, validator):
+        """model_guidance_mode 'locked_guide' should be valid."""
+        prompt = get_valid_prompt_minimal()
+        prompt["generation_params"] = {
+            "model_guidance_mode": "locked_guide",
+            "model_guidance_ref": "docs/model_guides/midjourney.yaml"
+        }
+        validator.validate(prompt)
 
     def test_invalid_provider_fails(self, validator):
         """Invalid provider enum value should fail."""
@@ -260,15 +276,16 @@ class TestPromptRecordNoHardcodedVersionStrings:
         schema_str = SCHEMA_PATH.read_text()
         assert "gpt-image-2" not in schema_str or "model_guidance_snapshots" in schema_str
 
-    def test_schema_generation_params_mode_is_const(self):
-        """model_guidance_mode must be const, not default."""
+    def test_schema_generation_params_mode_is_enum(self):
+        """model_guidance_mode must use enum with allowed values."""
         with open(SCHEMA_PATH) as f:
             schema = json.load(f)
 
         mode_spec = schema["properties"]["generation_params"]["properties"]["model_guidance_mode"]
-        assert mode_spec.get("const") == "dynamic_snapshot", (
-            "model_guidance_mode should use const, not default"
-        )
+        assert "enum" in mode_spec, "model_guidance_mode should use enum"
+        assert "dynamic_snapshot" in mode_spec["enum"], "dynamic_snapshot should be allowed"
+        assert "locked_guide" in mode_spec["enum"], "locked_guide should be allowed"
+        assert mode_spec.get("const") is None, "model_guidance_mode should not use const"
 
 
 class TestPromptRecordPartialModelGuidance:
