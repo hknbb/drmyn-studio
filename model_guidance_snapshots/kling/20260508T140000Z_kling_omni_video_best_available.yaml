@@ -1,0 +1,73 @@
+record_type: model_guidance_snapshot
+schema_version: "0.x-draft"
+snapshot_id: "20260508T140000Z_kling_omni"
+internal_model_target: kling_omni_video_best_available
+provider: kling
+model_family: video_generation
+provider_surface: api
+observed_at: "2026-05-08T14:00:00Z"
+expires_at: "2026-06-08T14:00:00Z"
+human_verified: true
+current_default_model: "Kling 3.0 Omni"
+latest_available_model: "Kling 3.0 Omni"
+best_for_this_task: "Kling 3.0 Omni"
+feature_required_model:
+  omni_reference: "Kling 3.0 Omni"
+  native_audio: "Kling 3.0 Omni"
+  multi_shot: "Kling 3.0 Omni"
+  element_library: "Kling 3.0 Omni"
+version_policy:
+  hardcode_in_adapter: false
+  adapter_must_read_snapshot: true
+  prompt_generation_blocks_if_expired: true
+  prompt_generation_blocks_if_unverified: true
+sources:
+  - source_type: official_docs
+    title: "Kling 3.0 Release Documentation — Feb 2026"
+    retrieved_at: "2026-05-04T10:00:00Z"
+    url: "https://kling.ai/docs/api/video-generation"
+  - source_type: verified_platform_blog
+    title: "FAL.ai Kling 3.0 Prompting Guide"
+    retrieved_at: "2026-05-04T11:00:00Z"
+    url: "https://blog.fal.ai/kling-3-0-prompting-guide/"
+  - source_type: verified_platform_blog
+    title: "VEED.io Kling AI Prompting Guide"
+    retrieved_at: "2026-05-04T12:00:00Z"
+    url: "https://www.veed.io/learn/kling-ai-prompting-guide"
+capabilities:
+  output_type: video
+  supports_negative_prompt: true
+  supports_elements: true
+  supports_camera_motion: true
+  supports_multi_shot: true
+  supports_native_audio: true
+  supports_image_to_video: true
+  supports_text_to_video: true
+  max_duration_seconds: 15
+  native_fps: 30
+  native_resolution: "4K"
+  max_shots_per_generation: 6
+constraints:
+  min_duration_seconds: 3
+  aspect_ratios:
+    - "16:9"
+    - "9:16"
+    - "1:1"
+    - "2.39:1"
+  element_references_max: 3
+  negative_prompt_max_chars: 2500
+prompting_rules:
+  - "Write prompts as cinematic shot directions, NOT visual inventories. Focus on shot composition, camera movement, and narrative flow."
+  - "Text-to-video: 30–60 words optimal. Hard maximum: 100 words. Exceeding causes 99% completion hang."
+  - "Image-to-video: 15–40 words; describe motion ONLY, never redescribe visuals already in source image."
+  - "For multi-shot: label each shot explicitly: 'Shot 1: ... Shot 2: ...' Up to 6 shots per generation."
+  - "Use professional cinematography terms: dolly, pan, tilt, zoom, crane, tracking, orbital. NOT 'move forward' — use 'dolly forward'."
+  - "Specify motion intensity on 0.1–1.0 scale: 0.1–0.3 (subtle), 0.4–0.6 (natural), 0.7–1.0 (dynamic)."
+  - "Always specify end state to prevent 99% hang bug. WRONG: 'dolly forward through crowd'. RIGHT: 'dolly forward through crowd, then settles back'."
+  - "Define subjects with unique visual identifiers. Example: 'Nadia, lean upright posture, muted grey linen'."
+  - "Negative prompt supported (max 2500 chars). Write terms directly WITHOUT 'no' prefix — write 'blur' not 'no blur'."
+  - "Never include canonical IDs (C01, LOC001, SC0001) or full character names in prompt. Use first-name only."
+provenance:
+  created_by: "Claude Haiku 4.5"
+  created_at: "2026-05-09T00:00:00Z"
+  git_commit: "8e4becb"

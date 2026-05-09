@@ -1,0 +1,66 @@
+record_type: model_guidance_snapshot
+schema_version: "0.x-draft"
+snapshot_id: "20260508T130000Z_chatgpt_image"
+internal_model_target: chatgpt_image_best_available
+provider: openai
+model_family: image_generation
+provider_surface: chatgpt_ui
+observed_at: "2026-05-08T13:00:00Z"
+expires_at: "2026-06-08T13:00:00Z"
+human_verified: true
+current_default_model: "gpt-image-2"
+latest_available_model: "gpt-image-2"
+best_for_this_task: "gpt-image-2"
+feature_required_model:
+  natural_language_revision: "gpt-image-2"
+  image_editing: "gpt-image-2"
+  reasoning_mode: "gpt-image-2"
+  multi_panel: "gpt-image-2"
+version_policy:
+  hardcode_in_adapter: false
+  adapter_must_read_snapshot: true
+  prompt_generation_blocks_if_expired: true
+  prompt_generation_blocks_if_unverified: true
+sources:
+  - source_type: official_docs
+    title: "OpenAI Image Generation API Guide"
+    retrieved_at: "2026-05-04T16:00:00Z"
+    url: "https://developers.openai.com/api/docs/guides/image-generation"
+  - source_type: official_docs
+    title: "gpt-image-2 Model Specification"
+    retrieved_at: "2026-05-04T17:00:00Z"
+    url: "https://developers.openai.com/api/docs/models/gpt-image-2"
+  - source_type: verified_platform_blog
+    title: "Introducing ChatGPT Images 2.0"
+    retrieved_at: "2026-05-04T18:00:00Z"
+    url: "https://openai.com/index/introducing-chatgpt-images-2-0/"
+capabilities:
+  output_type: image
+  supports_negative_prompt: false
+  supports_natural_language_revision: true
+  supports_image_editing: true
+  supports_reasoning_mode: true
+  supports_multi_panel: true
+  constraint_strategy: embedded_positive_constraints
+  text_rendering_accuracy: "95%+"
+  max_resolution: "2560x1440"
+  native_resolution: "2K"
+constraints:
+  negative_prompt_not_available: true
+  negative_prompt_policy: "embed in positive prompt"
+  released_date: "2026-04-21"
+  dall_e_3_deprecated: "2026-05-12"
+prompting_rules:
+  - "Use full, well-formed sentences describing what to create. Do NOT use Midjourney-style comma-separated clauses."
+  - "gpt-image-2 has NO separate negative_prompt API parameter. All exclusions must be embedded in main prompt."
+  - "Pattern: 'No watermark, no text overlay, no additional objects.' Adapter sets constraint_strategy: embedded_positive_constraints."
+  - "For complex prompts, use labeled segments or line breaks. Structure: Scene → Subject → Details → Constraints."
+  - "For exact text: enclose literals in double quotes or use ALL CAPS. Specify placement, hierarchy, font style. 95%+ accuracy for text including non-Latin scripts."
+  - "For character identity across edits: provide explicit preserve list. 'Keep the same face, pose, lighting, background. Change only X.'"
+  - "Quality parameter: 'low' (fast), 'medium' (default), 'high' (premium, slower). Stay under 2560x1440 for production consistency."
+  - "Critic MUST NOT flag missing negative_prompt for this model."
+  - "Never include canonical IDs (C01, LOC001, PROP003, SC0001) or full character names. Use first-name only."
+provenance:
+  created_by: "Claude Haiku 4.5"
+  created_at: "2026-05-09T00:00:00Z"
+  git_commit: "8e4becb"
