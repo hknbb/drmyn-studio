@@ -32,31 +32,19 @@ REPO_ROOT = Path(__file__).parent.parent
 
 
 class TestAuditCurrentRepo:
-    """Verify audit detects known violations in current repo."""
+    """Verify audit passes with no violations in current repo."""
 
-    def test_repo_audit_detects_nano_banana_violations(self):
-        """Audit correctly identifies hardcoded model names in nano_banana.py.
+    def test_repo_audit_passes(self):
+        """Audit reports zero violations after A7.0 nano_banana refactor.
 
-        Note: These violations are expected to be fixed in A7 (Adapter v2).
-        This test documents that the audit script correctly detects them.
+        nano_banana.py has been refactored to use dynamic model guidance
+        resolution instead of hardcoded provider model/version names.
         """
         findings = audit_repo(REPO_ROOT)
-        nano_banana_findings = [
-            f for f in findings
-            if "nano_banana.py" in f.file_path
-            and not _is_false_positive(f)
-        ]
-        # Expected violations in nano_banana.py (to be fixed in A7):
-        # - "Nano Banana Pro" in module docstring (line 4)
-        # - "gemini-3-pro-image-preview" in module docstring (line 9)
-        # - "Nano Banana Pro" in class docstring (line 23)
-        assert len(nano_banana_findings) >= 2, (
-            f"Expected audit to find hardcoded model names in nano_banana.py, got {len(nano_banana_findings)}"
+        assert len(findings) == 0, (
+            f"Expected audit to pass with zero violations, got {len(findings)}: "
+            f"{[(f.file_path, f.line_no, f.blocked_literal) for f in findings]}"
         )
-        # Verify the audit found the expected blocked literals
-        blocked_literals = {f.blocked_literal for f in nano_banana_findings}
-        assert "Nano Banana Pro" in blocked_literals
-        assert "gemini-3-pro-image-preview" in blocked_literals
 
 
 class TestAuditBlocksHardcodedNames:

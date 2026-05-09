@@ -1,12 +1,13 @@
 """
-Nano Banana T2I prompt adapter for Batch 4.
+Google image generation T2I prompt adapter for Batch 4.
 
-Nano Banana Pro = gemini-3-pro-image-preview (Google Gemini 3 Pro Image).
+Targets nano_banana_best_available (Google Gemini image model, resolved from
+model_guidance_snapshot at runtime).
 
 Style: narrative identity-consistency framing. Subject is introduced first with
 an explicit identity/reference framing phrase. Visual anchors follow as
 descriptive sentences. Constraints are embedded as semantic negation (Avoid:
-clause) — gemini-3-pro-image-preview does NOT support a separate negative_prompt
+clause) — the resolved Google model does NOT support a separate negative_prompt
 parameter.
 """
 
@@ -20,8 +21,9 @@ from scripts.agents.neutral_brief import NeutralBrief
 
 class NanaBananaAdapter(BaseAdapter):
     """
-    Generates Nano Banana Pro (gemini-3-pro-image-preview) prompt records.
+    Generates Google image model prompt records via nano_banana_best_available.
 
+    Model version resolved from model_guidance_snapshot at runtime, not hardcoded.
     Prompt style: narrative identity-consistency reference framing.
     Negative prompt: NOT populated (supports_negative_prompt=false).
     Constraints embedded via semantic negation in prompt_text.
@@ -83,11 +85,11 @@ class NanaBananaAdapter(BaseAdapter):
         return " ".join(parts) if parts else "(no visual anchors available)"
 
     # ------------------------------------------------------------------
-    # Negative prompt — omitted (not supported by gemini-3-pro-image-preview)
+    # Negative prompt — omitted (not supported by resolved Google model)
     # ------------------------------------------------------------------
 
     def _build_negative_prompt(self, brief: NeutralBrief) -> str | None:
-        # gemini-3-pro-image-preview has no negative_prompt parameter.
+        # Resolved Google model has no negative_prompt parameter.
         # Constraints are embedded via semantic negation in _build_prompt_text.
         return None
 
