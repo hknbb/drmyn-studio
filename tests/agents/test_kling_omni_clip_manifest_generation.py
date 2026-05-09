@@ -273,6 +273,23 @@ class TestGenerateFromClipManifest:
         assert source_refs["scene_card"].endswith("scene_card.yaml")
         assert source_refs["scene_excerpt"].endswith("scene_excerpt.md")
 
+    def test_manifest_generation_params_includes_provenance(self, tmp_path):
+        """generation_params must include manifest provenance fields."""
+        manifest_path = _create_manifest(tmp_path)
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(str(manifest_path))
+
+        params = result.prompt_record["generation_params"]
+        assert "omni_clip_manifest_ref" in params
+        assert params["omni_clip_manifest_ref"].endswith("_manifest.yaml")
+        assert "source_scene_beat_plan_ref" in params
+        assert "SC0001" in params["source_scene_beat_plan_ref"]
+        assert "source_dialogue_beats_ref" in params
+        assert "SC0001" in params["source_dialogue_beats_ref"]
+
     def test_manifest_prompt_text_from_shots(self, tmp_path):
         """Prompt text must be built from manifest.shots."""
         manifest_path = _create_manifest(tmp_path)
@@ -630,3 +647,34 @@ class TestGenerateFromClipManifest:
         assert run_record["outputs_expected"] == 1
         assert "KO" in run_record["run_id"]  # KlingOmni abbreviation
         assert "0005" in run_record["run_id"]  # run_counter encoded in run_id
+
+    def test_manifest_run_id_includes_clip_id(self, tmp_path):
+        """Manifest-driven run_id must include clip_id for uniqueness across clips."""
+        manifest_path = _create_manifest(tmp_path, clip_id="CLIP_SC0001_03")
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(str(manifest_path))
+
+        run_id = result.run_record["run_id"]
+        assert "CLIP_SC0001_03" in run_id
+        # Full expected format: RUN_SC0001_CLIP_SC0001_03_KO_0001
+        assert run_id == "RUN_SC0001_CLIP_SC0001_03_KO_0001"
+
+    def test_legacy_generate_run_id_unchanged(self, tmp_path):
+        """Legacy generate(scene_id) run_id must not include clip_id."""
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+
+        omni_set_dir = tmp_path / "planning" / "omni_sets" / "omni_set_001"
+        omni_set_dir.mkdir(parents=True, exist_ok=True)
+        with open(omni_set_dir / "element_set.yaml", "w") as f:
+            yaml.dump({"element_refs": []}, f)
+
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate("SC0001", run_counter=2)
+
+        run_id = result.run_record["run_id"]
+        assert run_id == "RUN_SC0001_KO_0002"
+        assert "CLIP" not in run_id

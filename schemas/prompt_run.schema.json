@@ -16,8 +16,8 @@
   "properties": {
     "run_id": {
       "type": "string",
-      "description": "Unique run identifier. Format: RUN_{scene_id}_{MODEL_ABBREV}_{counter:04d}",
-      "pattern": "^RUN_SC\\d{4}_[A-Z]+_\\d{4}$"
+      "description": "Unique run identifier. Format: RUN_{scene_id}_{MODEL_ABBREV}_{counter:04d} or RUN_{scene_id}_{clip_id}_{MODEL_ABBREV}_{counter:04d} for manifest-driven clip runs.",
+      "pattern": "^RUN_SC\\d{4}(?:_CLIP_[A-Z0-9_]+)?_[A-Z]+_\\d{4}$"
     },
     "prompt_id": {
       "type": "string",

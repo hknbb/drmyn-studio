@@ -202,6 +202,8 @@ class KlingOmniAdapter:
         total_duration = manifest["total_duration_seconds"]
         continuity_mode = manifest["continuity_input_mode"]
         kling_native_audio = manifest["kling_native_audio"]
+        scene_beat_plan_ref = manifest["source_scene_beat_plan_ref"]
+        dialogue_beats_ref = manifest["source_dialogue_beats_ref"]
 
         scene_card_path = self.repo_root / "planning" / "scenes" / scene_id / "scene_card.yaml"
         scene_card = _read_yaml(scene_card_path)
@@ -230,6 +232,9 @@ class KlingOmniAdapter:
             "clip_id": clip_id,
             "total_duration_seconds": total_duration,
             "continuity_input_mode": continuity_mode,
+            "omni_clip_manifest_ref": _relative(manifest_path, self.repo_root),
+            "source_scene_beat_plan_ref": scene_beat_plan_ref,
+            "source_dialogue_beats_ref": dialogue_beats_ref,
             "repo_binary_committed": False,
             "external_generation_required": True,
             "recommended_cfg_scale": 0.5,
@@ -284,6 +289,7 @@ class KlingOmniAdapter:
             prompt_id=prompt_id,
             run_counter=run_counter,
             run_at=run_at,
+            clip_id=clip_id,
         )
 
         return KlingOmniBuildResult(
@@ -342,6 +348,14 @@ class KlingOmniAdapter:
             duration_reason = shot.get("duration_reason")
             if not duration_reason or not isinstance(duration_reason, str):
                 raise KlingOmniAdapterError(f"Manifest shots[{idx}] missing or invalid duration_reason")
+
+        scene_beat_plan = manifest.get("source_scene_beat_plan_ref")
+        if not scene_beat_plan or not isinstance(scene_beat_plan, str):
+            raise KlingOmniAdapterError("Manifest missing or invalid source_scene_beat_plan_ref")
+
+        dialogue_beats = manifest.get("source_dialogue_beats_ref")
+        if not dialogue_beats or not isinstance(dialogue_beats, str):
+            raise KlingOmniAdapterError("Manifest missing or invalid source_dialogue_beats_ref")
 
         kling_native_audio = manifest.get("kling_native_audio")
         if not isinstance(kling_native_audio, dict):
@@ -475,9 +489,14 @@ class KlingOmniAdapter:
         prompt_id: str,
         run_counter: int,
         run_at: str | None,
+        clip_id: str | None = None,
     ) -> dict[str, Any]:
+        if clip_id:
+            run_id = f"RUN_{scene_id}_{clip_id}_{self.ABBREV}_{run_counter:04d}"
+        else:
+            run_id = f"RUN_{scene_id}_{self.ABBREV}_{run_counter:04d}"
         record: dict[str, Any] = {
-            "run_id": f"RUN_{scene_id}_{self.ABBREV}_{run_counter:04d}",
+            "run_id": run_id,
             "prompt_id": prompt_id,
             "model": self.MODEL_ID,
             "run_at": run_at or _now_iso(),
