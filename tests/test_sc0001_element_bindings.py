@@ -39,11 +39,14 @@ def sc0001_bindings() -> list[dict]:
 
 
 def test_c01_nadia_binding_valid(sc0001_bindings: list[dict]) -> None:
-    """C01 (Nadia) binding must be valid: planned/none/blocked with kling_native_audio disabled."""
+    """C01 (Nadia) binding must be valid: created/none/blocked with kling_native_audio disabled.
+    binding_status updated to 'created' after operator confirmed @Nadia activation in Kling
+    Element Library (B-EL2b, 2026-05-10). platform_asset_ref is null; Kling UI exposes no ID.
+    """
     c01 = sc0001_bindings[0]
     assert c01["element_id"] == "C01"
     assert c01["kling_alias"] == "@Nadia"
-    assert c01["binding_status"] == "planned"
+    assert c01["binding_status"] == "created"
     assert c01["voice_capability"] == "none"
     assert c01["native_audio_readiness"] == "blocked"
     assert c01["kling_native_audio"]["enabled"] is False

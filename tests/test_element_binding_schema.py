@@ -433,3 +433,77 @@ def test_speaker_mapping_with_invalid_alias_pattern_fails() -> None:
     })
     errors = list(validator.iter_errors(record))
     assert errors, "speaker_kling_alias without @ must fail pattern validation"
+
+
+# ---------------------------------------------------------------------------
+# Activation evidence field tests
+# ---------------------------------------------------------------------------
+
+
+def test_created_binding_with_string_platform_asset_ref_passes() -> None:
+    schema = _load_schema()
+    validator = Draft202012Validator(schema)
+    record = _minimal_record({
+        "binding_status": "created",
+        "platform_asset_ref": "kling://element/abc123",
+    })
+    errors = list(validator.iter_errors(record))
+    assert errors == [], "\n".join(e.message for e in errors)
+
+
+def test_created_binding_with_null_platform_asset_ref_and_note_passes() -> None:
+    schema = _load_schema()
+    validator = Draft202012Validator(schema)
+    record = _minimal_record({
+        "binding_status": "created",
+        "platform_asset_ref": None,
+        "platform_asset_ref_note": "@Nadia created; verified via Omni @ picker; Kling UI exposes no separate ID.",
+    })
+    errors = list(validator.iter_errors(record))
+    assert errors == [], "\n".join(e.message for e in errors)
+
+
+def test_planned_binding_without_platform_asset_ref_passes() -> None:
+    schema = _load_schema()
+    validator = Draft202012Validator(schema)
+    record = _minimal_record()  # planned, no platform_asset_ref
+    errors = list(validator.iter_errors(record))
+    assert errors == [], "\n".join(e.message for e in errors)
+
+
+def test_provenance_with_activated_by_and_activated_at_passes() -> None:
+    schema = _load_schema()
+    validator = Draft202012Validator(schema)
+    record = _minimal_record({
+        "binding_status": "created",
+        "provenance": {
+            "created_by": "hknbb",
+            "created_at": "2026-05-08T00:00:00Z",
+            "activated_by": "hknbb",
+            "activated_at": "2026-05-10T00:00:00Z",
+        },
+    })
+    errors = list(validator.iter_errors(record))
+    assert errors == [], "\n".join(e.message for e in errors)
+
+
+def test_provenance_extra_field_fails() -> None:
+    schema = _load_schema()
+    validator = Draft202012Validator(schema)
+    record = _minimal_record({
+        "provenance": {
+            "created_by": "hknbb",
+            "created_at": "2026-05-08T00:00:00Z",
+            "unknown_field": "x",
+        }
+    })
+    errors = list(validator.iter_errors(record))
+    assert errors, "Unknown provenance field must be rejected by additionalProperties: false"
+
+
+def test_unknown_top_level_field_still_fails() -> None:
+    schema = _load_schema()
+    validator = Draft202012Validator(schema)
+    record = _minimal_record({"arbitrary_field": "should_fail"})
+    errors = list(validator.iter_errors(record))
+    assert errors, "Unknown top-level field must be rejected by additionalProperties: false"
