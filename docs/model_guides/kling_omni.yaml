@@ -32,7 +32,9 @@ capability:
 
 prompt_rules:
   style: cinematic_direction_spec
-  max_words_t2v: 60                   # Optimal 30-60; hard max 100 (above = 99% hang)
+  prompt_text_max_chars: 2500         # Hard limit: API rejects prompts over 2500 characters
+  recommended_words_t2v: "30–60 concise cinematic direction"
+  soft_warning_words_t2v: 100         # Soft threshold: prefer under 100 words; not an API limit
   max_words_i2v: 40                   # Image-to-video: motion description only
   negative_prompt_max_chars: 2500
   rules:
@@ -48,11 +50,14 @@ prompt_rules:
       human_verified: true
     - id: prompt_length_t2v
       rule: >
-        Text-to-video: 30–60 words optimal. Hard maximum: 100 words.
-        Exceeding 100 words causes generation to hang at 99% completion.
+        Text-to-video: 30–60 words optimal for simple shots. For element-based
+        multi-shot Omni prompts with required @ alias references, shot
+        directions, and continuity metadata, more words are expected and
+        acceptable. Hard limit: 2500 characters (API). Soft guidance: prefer
+        under 100 words when shot content allows; not a hard limit.
         Image-to-video: 15–40 words; describe motion ONLY, never redescribe
         visuals already in the source image.
-      source: "https://blog.fal.ai/kling-3-0-prompting-guide/"
+      source: "https://docs.magnific.com/api-reference/video/kling-v3-omni/generate-std-video-reference"
       confidence: high
       human_verified: true
     - id: multi_shot_structure
