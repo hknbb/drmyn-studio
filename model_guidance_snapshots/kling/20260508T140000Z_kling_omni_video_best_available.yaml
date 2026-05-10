@@ -55,10 +55,11 @@ constraints:
     - "1:1"
     - "2.39:1"
   element_references_max: 3
+  prompt_text_max_chars: 2500
   negative_prompt_max_chars: 2500
 prompting_rules:
   - "Write prompts as cinematic shot directions, NOT visual inventories. Focus on shot composition, camera movement, and narrative flow."
-  - "Text-to-video: 30–60 words optimal. Hard maximum: 100 words. Exceeding causes 99% completion hang."
+  - "Text-to-video: 30–60 words optimal for simple shots. Hard limit is 2500 characters (API). For element-based multi-shot Omni prompts with @ aliases, more words are expected. Soft warning threshold: 100 words."
   - "Image-to-video: 15–40 words; describe motion ONLY, never redescribe visuals already in source image."
   - "For multi-shot: label each shot explicitly: 'Shot 1: ... Shot 2: ...' Up to 6 shots per generation."
   - "Use professional cinematography terms: dolly, pan, tilt, zoom, crane, tracking, orbital. NOT 'move forward' — use 'dolly forward'."

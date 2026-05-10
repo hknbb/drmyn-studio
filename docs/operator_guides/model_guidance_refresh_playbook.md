@@ -54,8 +54,42 @@ research remains a human-controlled outside action that produces versioned YAML.
 No API keys, browser tokens, Google Drive credentials, or signed URLs belong in
 repo files.
 
+## Pre-Batch Gate (A6.5)
+
+Before starting any prompt generation batch, run the Model Research Refresh Gate
+to verify all required targets at once:
+
+```bash
+python scripts/validators/validate_model_research_gate.py \
+  --targets kling_omni_video_best_available \
+           chatgpt_image_best_available \
+           midjourney_image_best_available \
+           nano_banana_best_available
+```
+
+Exit code 0 = all targets pass. Exit code 1 = one or more targets require refresh.
+
+The gate checks per snapshot:
+- File exists for the target
+- `human_verified: true`
+- `expires_at` not in the past
+- No placeholder source URLs (`example.org/placeholder`, etc.)
+- `sources` non-empty
+- `prompting_rules` non-empty
+- `latest_available_model` or `best_for_this_task` is a real version string
+- (Soft warning) `constraints` present with hard API limits
+
+Source tiers for `prompting_rules` content:
+- **Tier 1** (official): official_docs, official_release_notes, official_help_center
+- **Tier 2** (verified): verified_platform_blog, provider partner docs
+- **Community reports**: note as low-confidence only; must not become hard rules
+  without human review and official corroboration
+
 ## Validation
 
 After refreshing a snapshot, rerun the relevant prompt generation or critic
 path. Dynamic snapshot mode passes only when the snapshot is human-verified,
 current, model-matched, and free of placeholder markers.
+
+Run the gate before each production batch to ensure no target has gone stale
+between batches.
