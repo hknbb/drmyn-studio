@@ -738,6 +738,187 @@ def test_critic_then_writer_integration(tmp_path: Path) -> None:
     assert not invalid_path.exists()
 
 
+# ---------------------------------------------------------------------------
+# A7.4f: element alias + character limit validation
+# ---------------------------------------------------------------------------
+
+
+def _make_kling_omni_record(
+    *,
+    prompt_text: str = (
+        "Create one Kling Omni element-based video clip. Total duration: 15 seconds. "
+        "Active elements: @Nadia, @ValeResidenceKitchenPassage. "
+        "Shot 1 (5s): @ValeResidenceKitchenPassage, pale stone surfaces. "
+        "Shot 2 (5s): @Nadia moves through. "
+        "Shot 3 (5s): @Nadia fills a glass. "
+        "Continuity: frame_input_eligible. Keep clip at 15 seconds."
+    ),
+    negative_prompt: str = "sliding-feet, morphing, floating-objects",
+    required_element_aliases: list | None = None,
+    model_guidance_ref: str = "docs/model_guides/kling_omni.yaml",
+) -> dict:
+    params: dict = {
+        "model_guidance_mode": "locked_guide",
+        "model_guidance_ref": model_guidance_ref,
+        "adapter_name": "kling_omni",
+        "clip_id": "CLIP_SC0003_01",
+        "total_duration_seconds": 15,
+        "continuity_input_mode": "frame_input_eligible",
+        "omni_clip_manifest_ref": "planning/scenes/SC0003/manifests/CLIP_SC0003_01_manifest.yaml",
+        "source_scene_beat_plan_ref": "planning/scenes/SC0003/scene_beat_plan.yaml",
+        "source_dialogue_beats_ref": "planning/scenes/SC0003/dialogue_beats.yaml",
+        "repo_binary_committed": False,
+        "external_generation_required": True,
+        "recommended_cfg_scale": 0.5,
+        "recommended_ar": "16:9",
+    }
+    if required_element_aliases is not None:
+        params["required_element_aliases"] = required_element_aliases
+
+    record: dict = {
+        "prompt_id": "SC0003__omni-kling-omni-clip-clip-sc0003-01__v01",
+        "scene_id": "SC0003",
+        "prompt_type": "omni_instruction",
+        "lifecycle_stage": "draft",
+        "target_models": ["kling_omni"],
+        "source_refs": {
+            "scene_card": "planning/scenes/SC0003/scene_card.yaml",
+            "scene_excerpt": "planning/scenes/SC0003/scene_excerpt.md",
+        },
+        "prompt_text": prompt_text,
+        "negative_prompt": negative_prompt,
+        "generation_params": params,
+        "expected_output": {"asset_type": "clip", "duration_seconds": 15},
+        "status": "active",
+        "canon_lock": False,
+    }
+    return record
+
+
+def test_critic_kling_with_aliases_present_passes(tmp_path: Path) -> None:
+    """Kling prompt with all required aliases in prompt_text must pass."""
+    import shutil
+    (tmp_path / "docs" / "model_guides").mkdir(parents=True)
+    (tmp_path / "schemas").mkdir()
+    shutil.copy(REPO_ROOT / "docs" / "model_guides" / "kling_omni.yaml",
+                tmp_path / "docs" / "model_guides" / "kling_omni.yaml")
+    shutil.copy(REPO_ROOT / "schemas" / "prompt_record.schema.json",
+                tmp_path / "schemas" / "prompt_record.schema.json")
+
+    critic = CriticAgent(tmp_path)
+    record = _make_kling_omni_record(
+        required_element_aliases=["@Nadia", "@ValeResidenceKitchenPassage"]
+    )
+    result = critic.check(record)
+    assert result.passed, f"Expected pass; hard_errors={result.hard_errors}"
+
+
+def test_critic_kling_missing_alias_fails(tmp_path: Path) -> None:
+    """Kling prompt missing a required alias from prompt_text must fail."""
+    import shutil
+    (tmp_path / "docs" / "model_guides").mkdir(parents=True)
+    (tmp_path / "schemas").mkdir()
+    shutil.copy(REPO_ROOT / "docs" / "model_guides" / "kling_omni.yaml",
+                tmp_path / "docs" / "model_guides" / "kling_omni.yaml")
+    shutil.copy(REPO_ROOT / "schemas" / "prompt_record.schema.json",
+                tmp_path / "schemas" / "prompt_record.schema.json")
+
+    critic = CriticAgent(tmp_path)
+    # @Birta is listed as required but not in prompt_text
+    record = _make_kling_omni_record(
+        required_element_aliases=["@Nadia", "@Birta"]
+    )
+    result = critic.check(record)
+    assert not result.passed
+    assert any("@Birta" in e for e in result.hard_errors)
+
+
+def test_critic_kling_invalid_alias_syntax_fails(tmp_path: Path) -> None:
+    """Alias not matching ^@[A-Za-z0-9_]+$ must be a hard error."""
+    import shutil
+    (tmp_path / "docs" / "model_guides").mkdir(parents=True)
+    (tmp_path / "schemas").mkdir()
+    shutil.copy(REPO_ROOT / "docs" / "model_guides" / "kling_omni.yaml",
+                tmp_path / "docs" / "model_guides" / "kling_omni.yaml")
+    shutil.copy(REPO_ROOT / "schemas" / "prompt_record.schema.json",
+                tmp_path / "schemas" / "prompt_record.schema.json")
+
+    critic = CriticAgent(tmp_path)
+    record = _make_kling_omni_record(
+        required_element_aliases=["@Nadia", "NotAnAlias"]  # missing @
+    )
+    result = critic.check(record)
+    assert not result.passed
+    assert any("NotAnAlias" in e for e in result.hard_errors)
+
+
+def test_critic_prompt_text_over_2500_chars_fails(tmp_path: Path) -> None:
+    """prompt_text exceeding 2500 characters must be a hard error."""
+    import shutil
+    (tmp_path / "docs" / "model_guides").mkdir(parents=True)
+    (tmp_path / "schemas").mkdir()
+    shutil.copy(REPO_ROOT / "docs" / "model_guides" / "kling_omni.yaml",
+                tmp_path / "docs" / "model_guides" / "kling_omni.yaml")
+    shutil.copy(REPO_ROOT / "schemas" / "prompt_record.schema.json",
+                tmp_path / "schemas" / "prompt_record.schema.json")
+
+    critic = CriticAgent(tmp_path)
+    long_text = "A " * 1300  # 2600 chars
+    record = _make_kling_omni_record(prompt_text=long_text)
+    result = critic.check(record)
+    assert not result.passed
+    assert any("2500" in e for e in result.hard_errors)
+
+
+def test_critic_negative_prompt_over_2500_chars_fails(tmp_path: Path) -> None:
+    """negative_prompt exceeding 2500 characters must be a hard error."""
+    import shutil
+    (tmp_path / "docs" / "model_guides").mkdir(parents=True)
+    (tmp_path / "schemas").mkdir()
+    shutil.copy(REPO_ROOT / "docs" / "model_guides" / "kling_omni.yaml",
+                tmp_path / "docs" / "model_guides" / "kling_omni.yaml")
+    shutil.copy(REPO_ROOT / "schemas" / "prompt_record.schema.json",
+                tmp_path / "schemas" / "prompt_record.schema.json")
+
+    critic = CriticAgent(tmp_path)
+    long_neg = "blur, " * 450  # > 2500 chars
+    record = _make_kling_omni_record(negative_prompt=long_neg)
+    result = critic.check(record)
+    assert not result.passed
+    assert any("2500" in e and "negative" in e.lower() for e in result.hard_errors)
+
+
+def test_critic_over_100_words_but_under_2500_chars_not_hard_fail(tmp_path: Path) -> None:
+    """Word count > 100 must NOT cause a hard failure (soft guidance only)."""
+    import shutil
+    (tmp_path / "docs" / "model_guides").mkdir(parents=True)
+    (tmp_path / "schemas").mkdir()
+    shutil.copy(REPO_ROOT / "docs" / "model_guides" / "kling_omni.yaml",
+                tmp_path / "docs" / "model_guides" / "kling_omni.yaml")
+    shutil.copy(REPO_ROOT / "schemas" / "prompt_record.schema.json",
+                tmp_path / "schemas" / "prompt_record.schema.json")
+
+    critic = CriticAgent(tmp_path)
+    # 110 words, well under 2500 chars
+    many_words = " ".join(["@Nadia action"] * 37)  # 111 words, ~450 chars
+    record = _make_kling_omni_record(prompt_text=many_words)
+    result = critic.check(record)
+    # Must not fail purely due to word count
+    word_count_errors = [e for e in result.hard_errors if "word" in e.lower() and "count" in e.lower()]
+    assert word_count_errors == [], (
+        f"Word count must not be a hard error; got: {word_count_errors}"
+    )
+
+
+def test_critic_no_required_element_aliases_field_unaffected(tmp_path: Path) -> None:
+    """Non-Kling prompts without required_element_aliases must not be affected by new checks."""
+    critic = CriticAgent(REPO_ROOT)
+    record = _make_valid_record()  # Midjourney prompt, no required_element_aliases
+    result = critic.check(record)
+    # Should pass as before
+    assert result.passed, f"Non-Kling prompt unexpectedly failed: {result.hard_errors}"
+
+
 def test_adapters_produce_critic_passing_records(tmp_path: Path) -> None:
     """
     End-to-end: adapter-generated records pass the Critic when using real model guides.
