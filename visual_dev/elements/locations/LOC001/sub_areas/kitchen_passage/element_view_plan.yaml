@@ -7,45 +7,45 @@ element_context: >
   Vale Residence — Vardova — Kitchen Passage — early morning. Required for SC0001
   (Nadia's surveillance-geometry corridor route). PROP003 (tilted photo frame) is
   a critical visual element for this sub-area. Source images not yet collected.
-retrofit_status: planned
+retrofit_status: historical
 anchor_view: null
 views:
   - view_id: wide_establishing
     view_label: Wide establishing shot (kitchen passage geometry)
     generation_pattern: independent_t2i
     anchor_dependency: none
-    model_adapter_target: null
-    status: blocked
-    canonical_asset_path: null
+    model_adapter_target: chatgpt_image_best_available
+    status: complete
+    canonical_asset_path: visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage/loc001_kitchen_passage_wide_establishing.png
     generation_notes: >
-      Required view: pale stone walls, filtered early daylight, surveillance-geometry
-      framing. Blocked: zero source images collected; copyright and provenance reviews
-      pending (see open_blockers).
+      ChatGPT Image output. Wide corridor depth: kitchen passage with multiple
+      thresholds, framed art on far wall, filtered directional daylight, pale
+      domestic surfaces. No people. Surveillance-geometry framing confirmed.
+      Selected 2026-05-10.
   - view_id: threshold_or_route_geometry
     view_label: Threshold / route geometry reference
     generation_pattern: independent_t2i
     anchor_dependency: none
-    model_adapter_target: null
-    status: blocked
-    canonical_asset_path: null
+    model_adapter_target: chatgpt_image_best_available
+    status: complete
+    canonical_asset_path: visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage/loc001_kitchen_passage_threshold_geometry.png
     generation_notes: >
-      Required view: door threshold or corridor routing geometry that establishes
-      Nadia's movement path and sightlines in SC0001.
+      ChatGPT Image output. Single door threshold close-up: pale stone doorframe,
+      sightline through to adjacent space, geometric shadow on floor. Route
+      geometry and movement path established. No people. Selected 2026-05-10.
   - view_id: lighting_reference
     view_label: Lighting reference (early morning filtered light)
     generation_pattern: independent_t2i
     anchor_dependency: none
-    model_adapter_target: null
-    status: blocked
-    canonical_asset_path: null
+    model_adapter_target: chatgpt_image_best_available
+    status: complete
+    canonical_asset_path: visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage/loc001_kitchen_passage_lighting_reference.png
     generation_notes: >
-      Required view: directional early-morning light quality confirming pale stone
-      tonality and filtered daylight aesthetics per VALE_DOMESTIC_RESTRAINT pack.
-open_blockers:
-  - "Zero source images collected per evidence/pack_lock_readiness/SC0001_pack_lock_readiness.yaml (source_status: not_collected)."
-  - "copyright_review pending on intake_slot.yaml."
-  - "provenance_review pending on intake_slot.yaml."
-  - "B2 batch required to unblock: collect reference source images for kitchen_passage sub-area before view plan can be executed."
+      ChatGPT Image output. Directional early-morning light on pale stone corridor
+      wall. Geometric shadow pattern, cool-to-warm gradient, muted palette.
+      Light quality confirms VALE_DOMESTIC_RESTRAINT aesthetic. No people.
+      Selected 2026-05-10.
+open_blockers: []
 notes: >
   This record documents the planned view set for LOC001/kitchen_passage prior to
   source image collection. Location views do not use anchor-then-refine identity
