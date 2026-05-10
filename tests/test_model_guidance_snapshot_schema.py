@@ -55,12 +55,14 @@ def kling_snapshot():
             "native_resolution": "4K"
         },
         "constraints": {
-            "max_words_t2v": 60,
-            "max_words_i2v": 40
+            "prompt_text_max_chars": 2500,
+            "negative_prompt_max_chars": 2500,
+            "max_words_i2v": 40,
+            "soft_warning_words_t2v": 100
         },
         "prompting_rules": [
             "Write prompts as cinematic shot directions, not visual inventories",
-            "Text-to-video: 30-60 words optimal, hard max 100 words"
+            "Text-to-video: 30-60 words optimal for simple shots; hard limit is 2500 characters, not 100 words"
         ],
         "provenance": {
             "created_by": "human_researcher",
