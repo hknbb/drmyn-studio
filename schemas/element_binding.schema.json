@@ -120,6 +120,16 @@
         }
       }
     },
+    "platform_asset_ref": {
+      "type": ["string", "null"],
+      "maxLength": 500,
+      "description": "Kling Element Library platform ref, URL, slug, or null when the UI exposes no separate asset ID. Populated only after operator confirms activation."
+    },
+    "platform_asset_ref_note": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Operator evidence note when platform_asset_ref is null or activation was confirmed via @ element picker only."
+    },
     "notes": {
       "type": "string",
       "maxLength": 2000,
@@ -131,7 +141,9 @@
       "required": ["created_by", "created_at"],
       "properties": {
         "created_by": { "type": "string" },
-        "created_at": { "type": "string", "format": "date-time" }
+        "created_at": { "type": "string", "format": "date-time" },
+        "activated_by": { "type": "string" },
+        "activated_at": { "type": "string", "format": "date-time" }
       }
     }
   }
