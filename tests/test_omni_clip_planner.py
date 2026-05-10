@@ -558,6 +558,171 @@ def test_sc0001_plan_validates_against_schema(sc0001_result, repo_root):
     )
 
 
+# ---------------------------------------------------------------------------
+# A7.4e0: required_element_ids propagation
+# ---------------------------------------------------------------------------
+
+
+def test_packer_propagates_element_ids_to_shot():
+    """Beats with required_element_ids must produce shots with those IDs."""
+    beats = [
+        {
+            "beat_id": "B1",
+            "content": "Nadia moves through the passage.",
+            "semantic_duration_hint": "normal",
+            "narrative_role": "action",
+            "may_merge_with_next": False,
+            "splittable": False,
+            "required_element_ids": ["C01", "LOC001"],
+        }
+    ]
+    dmap: dict = {}
+    shots = _resolve_shots(beats, dmap)
+    assert len(shots) == 1
+    assert "C01" in shots[0].required_element_ids
+    assert "LOC001" in shots[0].required_element_ids
+
+
+def test_packer_unions_element_ids_on_backward_merge():
+    """Short_insert merging backward must union required_element_ids from both beats."""
+    beats = [
+        {
+            "beat_id": "MAIN",
+            "content": "She moves through the passage.",
+            "semantic_duration_hint": "normal",
+            "narrative_role": "action",
+            "may_merge_with_next": True,
+            "splittable": False,
+            "required_element_ids": ["C01", "LOC001"],
+        },
+        {
+            "beat_id": "INSERT",
+            "content": "Her wrist turns.",
+            "semantic_duration_hint": "short_insert",
+            "narrative_role": "insert",
+            "may_merge_with_next": True,
+            "splittable": False,
+            "required_element_ids": ["C01"],
+        },
+    ]
+    dmap: dict = {}
+    shots = _resolve_shots(beats, dmap)
+    assert len(shots) == 1
+    assert set(shots[0].required_element_ids) >= {"C01", "LOC001"}
+
+
+def test_packer_unions_element_ids_on_forward_merge():
+    """Short_insert merging forward must union required_element_ids from all merged beats."""
+    beats = [
+        {
+            "beat_id": "HOST",
+            "content": "Preceding beat prevents backward merge.",
+            "semantic_duration_hint": "normal",
+            "narrative_role": "action",
+            "may_merge_with_next": False,
+            "splittable": False,
+        },
+        {
+            "beat_id": "INSERT",
+            "content": "PROP003 detail shot.",
+            "semantic_duration_hint": "short_insert",
+            "narrative_role": "insert",
+            "may_merge_with_next": True,
+            "splittable": False,
+            "required_element_ids": ["PROP003"],
+        },
+        {
+            "beat_id": "NEXT",
+            "content": "She straightens the frame.",
+            "semantic_duration_hint": "normal",
+            "narrative_role": "action",
+            "may_merge_with_next": False,
+            "splittable": False,
+            "required_element_ids": ["C01", "PROP003"],
+        },
+    ]
+    dmap: dict = {}
+    shots = _resolve_shots(beats, dmap)
+    # HOST is standalone; INSERT merges forward into NEXT
+    assert len(shots) == 2
+    merged = shots[1]
+    assert "PROP003" in merged.required_element_ids
+    assert "C01" in merged.required_element_ids
+
+
+def test_beat_without_element_ids_produces_empty_list():
+    """Beats without required_element_ids must produce shots with empty list (not error)."""
+    beats = [
+        {
+            "beat_id": "B1",
+            "content": "Ambient establishing shot.",
+            "semantic_duration_hint": "normal",
+            "narrative_role": "establish",
+            "may_merge_with_next": False,
+            "splittable": False,
+        }
+    ]
+    dmap: dict = {}
+    shots = _resolve_shots(beats, dmap)
+    assert shots[0].required_element_ids == []
+
+
+def test_sc0001_clip01_has_c01_and_loc001(sc0001_result):
+    """CLIP_SC0001_01 must have required_element_ids containing at least C01 and LOC001."""
+    _, manifests = sc0001_result
+    clip01 = next((m for m in manifests if m["clip_id"] == "CLIP_SC0001_01"), None)
+    assert clip01 is not None, "CLIP_SC0001_01 not found in generated manifests"
+    elem_ids = clip01.get("required_element_ids", [])
+    assert "C01" in elem_ids, f"C01 missing from CLIP_SC0001_01.required_element_ids: {elem_ids}"
+    assert "LOC001" in elem_ids, f"LOC001 missing from CLIP_SC0001_01.required_element_ids: {elem_ids}"
+
+
+def test_sc0001_nadia_movement_shot_has_c01_and_loc001(sc0001_result):
+    """Shot covering NADIA_PASSAGE_MOVEMENT beat must have C01 and LOC001."""
+    _, manifests = sc0001_result
+    clip01 = next((m for m in manifests if m["clip_id"] == "CLIP_SC0001_01"), None)
+    assert clip01 is not None
+    nadia_shot = next(
+        (s for s in clip01["shots"] if "NADIA_PASSAGE_MOVEMENT" in s["source_beat_ids"]),
+        None,
+    )
+    assert nadia_shot is not None, "No shot found containing NADIA_PASSAGE_MOVEMENT"
+    elem_ids = nadia_shot.get("required_element_ids", [])
+    assert "C01" in elem_ids
+    assert "LOC001" in elem_ids
+
+
+def test_sc0001_water_glass_shot_has_c01_and_loc001(sc0001_result):
+    """Shot covering WATER_GLASS_ACTION beat must have C01 and LOC001 (resolves 'She' pronoun)."""
+    _, manifests = sc0001_result
+    clip01 = next((m for m in manifests if m["clip_id"] == "CLIP_SC0001_01"), None)
+    assert clip01 is not None
+    water_shot = next(
+        (s for s in clip01["shots"] if "WATER_GLASS_ACTION" in s["source_beat_ids"]),
+        None,
+    )
+    assert water_shot is not None, "No shot found containing WATER_GLASS_ACTION"
+    elem_ids = water_shot.get("required_element_ids", [])
+    assert "C01" in elem_ids, (
+        "WATER_GLASS_ACTION shot is missing C01. "
+        "'She fills a glass' = Nadia (C01); must be explicit in required_element_ids."
+    )
+    assert "LOC001" in elem_ids
+
+
+def test_sc0001_clip_level_ids_are_union_of_shots(sc0001_result):
+    """Clip-level required_element_ids must be a superset of all shot-level IDs."""
+    _, manifests = sc0001_result
+    for m in manifests:
+        clip_ids = set(m.get("required_element_ids", []))
+        for shot in m["shots"]:
+            for eid in shot.get("required_element_ids", []):
+                assert eid in clip_ids, (
+                    f"{m['clip_id']}: element {eid!r} appears in shot "
+                    f"{shot['shot_id']!r} but not in clip-level required_element_ids"
+                )
+
+
 def test_sc0001_deterministic(repo_root):
     """Running plan_omni_clips twice on SC0001 produces identical results."""
     kwargs = dict(

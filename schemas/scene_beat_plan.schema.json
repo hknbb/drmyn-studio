@@ -81,6 +81,16 @@
             ],
             "description": "Optional semantic role classification for the beat. establish = scene setting, context establishment; action = character physical action; dialogue = speech/character interaction; hold = sustained focus without action change; transition = location/subject shift; pulse_check = brief moment confirming emotional/thematic beat; insert = detail shot (hand, object, expression close-up)."
           },
+          "required_element_ids": {
+            "type": "array",
+            "description": "Optional: repo element IDs (e.g. C01, LOC001, PROP003) that must be present or visible in this beat. Operator-authored; never computed or guessed from text. Used by packer to propagate to manifest shots. Resolves ambiguous pronouns (She/He/Her) at the manifest layer.",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Z][A-Z0-9]*\\d+$",
+              "minLength": 2,
+              "maxLength": 20
+            }
+          },
           "notes": {
             "type": "string",
             "maxLength": 1000,
