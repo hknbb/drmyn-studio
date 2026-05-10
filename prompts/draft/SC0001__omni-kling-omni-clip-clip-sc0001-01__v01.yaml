@@ -8,11 +8,11 @@ source_refs:
   scene_card: planning/scenes/SC0001/scene_card.yaml
   scene_excerpt: planning/scenes/SC0001/scene_excerpt.md
 prompt_text: 'Create one Kling Omni element-based video clip. Total duration: 15 seconds. Active elements:
-  @Nadia, @ValeResidenceKitchenPassage. Shot 1 (5s): INT. VALE RESIDENCE — KITCHEN PASSAGE. The kitchen
-  is expensive and underused. Pale stone surfaces. A single unwashed... Shot 2 (5s): @Nadia moves through
-  the passage with the economy of someone who has mapped every room for exits. Not rushed. Not nerv...
-  Shot 3 (5s): @Nadia fills a glass of water, drinks half, sets it exactly where she found it. Continuity:
-  frame_input_eligible. Keep clip at 15 seconds. Do not add new story facts.'
+  @Nadia, @ValeResidenceKitchenPassage. Shot 1 (5s): Establish @ValeResidenceKitchenPassage as an expensive,
+  underused kitchen passage with pale stone surfaces and one unwashed glass near the sink. Shot 2 (5s):
+  @Nadia moves through the passage with controlled precision, calm and alert, as if every exit is mapped.
+  Shot 3 (5s): @Nadia fills a glass of water, drinks half, and sets it exactly where she found it.
+  Continuity: frame_input_eligible. Keep clip at 15 seconds. End settled. Do not add new story facts.'
 negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
 generation_params:
   model_guidance_mode: locked_guide
