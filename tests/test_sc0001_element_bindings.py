@@ -66,12 +66,15 @@ def test_c03_birta_binding_valid(sc0001_bindings: list[dict]) -> None:
 
 
 def test_loc001_kitchen_passage_binding_valid(sc0001_bindings: list[dict]) -> None:
-    """LOC001 (kitchen_passage) binding must be valid: location_sub_area, planned, not_required readiness."""
+    """LOC001 (kitchen_passage) binding must be valid: location_sub_area, created, not_required readiness.
+    binding_status updated to 'created' after operator confirmed @ValeResidenceKitchenPassage
+    activation in Kling Element Library (B-EL4c, 2026-05-10).
+    """
     loc001 = sc0001_bindings[2]
     assert loc001["element_id"] == "LOC001"
     assert loc001["element_type"] == "location_sub_area"
     assert loc001["kling_alias"] == "@ValeResidenceKitchenPassage"
-    assert loc001["binding_status"] == "planned"
+    assert loc001["binding_status"] == "created"
     assert loc001["voice_capability"] == "none"
     assert loc001["native_audio_readiness"] == "not_required"
     assert loc001["kling_native_audio"]["enabled"] is False

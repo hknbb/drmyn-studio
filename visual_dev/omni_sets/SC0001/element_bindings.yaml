@@ -43,7 +43,9 @@ record_type: element_binding
 element_id: LOC001
 element_type: location_sub_area
 kling_alias: "@ValeResidenceKitchenPassage"
-binding_status: planned
+binding_status: created
+platform_asset_ref: null
+platform_asset_ref_note: "@ValeResidenceKitchenPassage created in Kling Element Library; verified by operator via Omni @ element picker. Kling UI did not expose a separate asset ID."
 voice_capability: none
 native_audio_readiness: not_required
 kling_native_audio:
@@ -55,6 +57,8 @@ source_element_view_plan_ref: "visual_dev/elements/locations/LOC001/sub_areas/ki
 provenance:
   created_by: "hknbb"
   created_at: "2026-05-08T00:00:00Z"
+  activated_by: "hknbb"
+  activated_at: "2026-05-10T00:00:00Z"
 ---
 schema_version: "0.x-draft"
 record_type: element_binding

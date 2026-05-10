@@ -8,7 +8,7 @@ cost:
   value: 0
 status: pending
 render_route: null
-element_readiness_gate: blocked
+element_readiness_gate: ready
 no_binary_commit: true
 external_storage_ref: null
 platform_asset_ref: null
