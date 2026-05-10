@@ -7,11 +7,10 @@ target_models:
 source_refs:
   scene_card: planning/scenes/SC0001/scene_card.yaml
   scene_excerpt: planning/scenes/SC0001/scene_excerpt.md
-prompt_text: 'Create one external Kling Omni video instruction. Total duration: 12
-  seconds. Shot 1 (7s): They pass each other. Birta continues down the corridor. Nadia
-  stops at the third framed photograph — a landscape, VA... Shot 2 (5s): Her fingertips
-  touch the frame. She straightens it. Continuity mode: frame_input_eligible. Frame
-  inputs eligible but not active in this generation. Keep the clip at 12 seconds,
+prompt_text: 'Create one external Kling Omni video instruction. Total duration: 12 seconds. Shot 1 (7s):
+  They pass each other. Birta continues down the corridor. Nadia stops at the third framed photograph
+  — a landscape, VA... Shot 2 (5s): Her fingertips touch the frame. She straightens it. Continuity mode:
+  frame_input_eligible. Frame inputs eligible but not active in this generation. Keep the clip at 12 seconds,
   never over 15 seconds. End with a clear settled state. Do not add new story facts.'
 negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
 generation_params:

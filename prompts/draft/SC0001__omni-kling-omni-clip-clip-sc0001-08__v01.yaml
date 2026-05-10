@@ -7,12 +7,11 @@ target_models:
 source_refs:
   scene_card: planning/scenes/SC0001/scene_card.yaml
   scene_excerpt: planning/scenes/SC0001/scene_excerpt.md
-prompt_text: 'Create one external Kling Omni video instruction. Total duration: 13
-  seconds. Shot 1 (13s): Nadia stands in the doorway. Doesn''t enter. JIN sleeps in
-  his crib, eight months, face turned sideways, one hand open... Continuity mode:
-  frame_input_eligible. Frame inputs eligible but not active in this generation. Keep
-  the clip at 13 seconds, never over 15 seconds. End with a clear settled state. Do
-  not add new story facts.'
+prompt_text: 'Create one external Kling Omni video instruction. Total duration: 13 seconds. Shot 1 (13s):
+  Nadia stands in the doorway. Doesn''t enter. JIN sleeps in his crib, eight months, face turned sideways,
+  one hand open... Continuity mode: frame_input_eligible. Frame inputs eligible but not active in this
+  generation. Keep the clip at 13 seconds, never over 15 seconds. End with a clear settled state. Do not
+  add new story facts.'
 negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
 generation_params:
   model_guidance_mode: locked_guide

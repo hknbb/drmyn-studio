@@ -7,13 +7,12 @@ target_models:
 source_refs:
   scene_card: planning/scenes/SC0001/scene_card.yaml
   scene_excerpt: planning/scenes/SC0001/scene_excerpt.md
-prompt_text: 'Create one external Kling Omni video instruction. Total duration: 15
-  seconds. Shot 1 (10s): The wall-mount''s dust-shadow is slightly larger than the
-  frame now sitting over it. Someone moved this. Recently. And... Shot 2 (5s): INT.
-  VALE RESIDENCE — JIN''S ROOM — CONTINUOUS. The room is warm and dim. A white-noise
-  machine hums. Continuity mode: frame_input_eligible. Frame inputs eligible but not
-  active in this generation. Keep the clip at 15 seconds, never over 15 seconds. End
-  with a clear settled state. Do not add new story facts.'
+prompt_text: 'Create one external Kling Omni video instruction. Total duration: 15 seconds. Shot 1 (10s):
+  The wall-mount''s dust-shadow is slightly larger than the frame now sitting over it. Someone moved this.
+  Recently. And... Shot 2 (5s): INT. VALE RESIDENCE — JIN''S ROOM — CONTINUOUS. The room is warm and dim.
+  A white-noise machine hums. Continuity mode: frame_input_eligible. Frame inputs eligible but not active
+  in this generation. Keep the clip at 15 seconds, never over 15 seconds. End with a clear settled state.
+  Do not add new story facts.'
 negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
 generation_params:
   model_guidance_mode: locked_guide

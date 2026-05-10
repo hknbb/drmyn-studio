@@ -7,13 +7,12 @@ target_models:
 source_refs:
   scene_card: planning/scenes/SC0001/scene_card.yaml
   scene_excerpt: planning/scenes/SC0001/scene_excerpt.md
-prompt_text: 'Create one external Kling Omni video instruction. Total duration: 11
-  seconds. Shot 1 (7s): She opens a cabinet. Inventories its contents the way a person
-  inventories a kit. Shot 2 (4s): INT. VALE RESIDENCE — EAST-WING CORRIDOR — CONTINUOUS.
-  The corridor is wide. Corporate art on the walls — purchased, ... Continuity mode:
-  frame_input_eligible. Frame inputs eligible but not active in this generation. Keep
-  the clip at 11 seconds, never over 15 seconds. End with a clear settled state. Do
-  not add new story facts.'
+prompt_text: 'Create one external Kling Omni video instruction. Total duration: 11 seconds. Shot 1 (7s):
+  She opens a cabinet. Inventories its contents the way a person inventories a kit. Shot 2 (4s): INT.
+  VALE RESIDENCE — EAST-WING CORRIDOR — CONTINUOUS. The corridor is wide. Corporate art on the walls —
+  purchased, ... Continuity mode: frame_input_eligible. Frame inputs eligible but not active in this generation.
+  Keep the clip at 11 seconds, never over 15 seconds. End with a clear settled state. Do not add new story
+  facts.'
 negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
 generation_params:
   model_guidance_mode: locked_guide
