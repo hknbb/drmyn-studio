@@ -120,6 +120,16 @@
             "maxLength": 500,
             "description": "Explanation of why this shot has this duration (e.g., 'Merged WATER_GLASS_ACTION (normal) + WRIST_SCAR_INSERT (short_insert) into 5s shot for flow')."
           },
+          "required_element_ids": {
+            "type": "array",
+            "description": "Optional: repo element IDs (e.g. C01, LOC001) required for this shot. Propagated from source beat required_element_ids by packer. Operator may override. Used by adapter for alias injection.",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Z][A-Z0-9]*\\d+$",
+              "minLength": 2,
+              "maxLength": 20
+            }
+          },
           "visual_pacing_note": {
             "type": "string",
             "maxLength": 300,
@@ -134,6 +144,16 @@
       "items": {
         "type": "string",
         "pattern": "^DLG_[A-Z0-9_]+$"
+      }
+    },
+    "required_element_ids": {
+      "type": "array",
+      "description": "Optional: union of all shot-level required_element_ids for this clip. Propagated by packer; operator may override. Used by adapter for alias injection and critic for validation.",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9]*\\d+$",
+        "minLength": 2,
+        "maxLength": 20
       }
     },
     "ambient_sound_prompt": {

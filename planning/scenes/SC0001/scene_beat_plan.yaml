@@ -8,6 +8,8 @@ source_beats:
     narrative_role: establish
     may_merge_with_next: true
     splittable: false
+    required_element_ids:
+      - LOC001
     notes: Sets visual/thematic anchor for entire scene. Establishes wealth, lack of use, Nadia''s precise domesticity.
 
   - beat_id: NADIA_PASSAGE_MOVEMENT
@@ -16,6 +18,9 @@ source_beats:
     narrative_role: action
     may_merge_with_next: true
     splittable: false
+    required_element_ids:
+      - C01
+      - LOC001
     notes: Establishes Nadia''s spatial awareness and controlled precision. Movement quality is character definition.
 
   - beat_id: WATER_GLASS_ACTION
@@ -24,7 +29,10 @@ source_beats:
     narrative_role: action
     may_merge_with_next: false
     splittable: false
-    notes: Precise action sequence. Exactness of placement is psychologically significant. Sets up frame-straightening parallel later.
+    required_element_ids:
+      - C01
+      - LOC001
+    notes: "Precise action sequence. 'She' = Nadia (C01). Exactness of placement is psychologically significant. Sets up frame-straightening parallel later."
 
   - beat_id: WRIST_SCAR_INSERT
     content: 'Her left wrist turns as she sets the glass down. A thin pale scar crosses the underside — surgical-clean, old, not decorative. She doesn''t look at it.'
@@ -32,7 +40,9 @@ source_beats:
     narrative_role: insert
     may_merge_with_next: true
     splittable: false
-    notes: Brief reveal of physical history. Surgical precision of scar mirrors her behavioral precision. She doesn''t examine it.
+    required_element_ids:
+      - C01
+    notes: "Brief reveal of physical history. 'Her' = Nadia (C01). Surgical precision of scar mirrors her behavioral precision. She doesn''t examine it."
 
   - beat_id: CABINET_INVENTORY
     content: 'She opens a cabinet. Inventories its contents the way a person inventories a kit.'
@@ -40,7 +50,10 @@ source_beats:
     narrative_role: action
     may_merge_with_next: true
     splittable: false
-    notes: Actions as character study. Inventory-like behavior is methodical and distanced.
+    required_element_ids:
+      - C01
+      - LOC001
+    notes: "Actions as character study. 'She' = Nadia (C01). Inventory-like behavior is methodical and distanced."
 
   - beat_id: CORRIDOR_TRANSITION
     content: 'INT. VALE RESIDENCE — EAST-WING CORRIDOR — CONTINUOUS. The corridor is wide. Corporate art on the walls — purchased, not chosen. Nadia walks it like a route she has timed.'
@@ -48,6 +61,8 @@ source_beats:
     narrative_role: transition
     may_merge_with_next: true
     splittable: false
+    required_element_ids:
+      - C01
     notes: Environmental transition. Corporate art (purchased, not chosen) reflects family/home emotional distance.
 
   - beat_id: BIRTA_ENTRANCE
@@ -56,7 +71,9 @@ source_beats:
     narrative_role: establish
     may_merge_with_next: true
     splittable: false
-    notes: Introduces Birta with physical authority and life history compressed into single description.
+    required_element_ids:
+      - C03
+    notes: Introduces Birta (C03) with physical authority and life history compressed into single description.
 
   - beat_id: DIALOGUE_SLEEP_ACCUSATION
     content: 'BIRTA: "You didn''t sleep again." NADIA: "I slept." BIRTA: "You slept the way you fold laundry. Very neat. Not restful." Nadia almost smiles. Not quite.'
@@ -64,6 +81,9 @@ source_beats:
     narrative_role: dialogue
     may_merge_with_next: true
     splittable: false
+    required_element_ids:
+      - C01
+      - C03
     notes: 'Three-line exchange establishing Birta''s caregiving awareness and intimacy. Laundry metaphor mirrors Nadia''s precision. Nadia''s near-smile is rare affect.'
 
   - beat_id: DIALOGUE_FORMULA_VITAMIN
@@ -72,6 +92,9 @@ source_beats:
     narrative_role: dialogue
     may_merge_with_next: true
     splittable: false
+    required_element_ids:
+      - C01
+      - C03
     notes: 'Nadia delegates child care. Birta starts to use familiar term "Your husband" then catches herself, returning to formal "Mr. Vale." Reveals relationship dynamic.'
 
   - beat_id: DIALOGUE_MR_VALE_CALL
@@ -80,6 +103,9 @@ source_beats:
     narrative_role: dialogue
     may_merge_with_next: true
     splittable: false
+    required_element_ids:
+      - C01
+      - C03
     notes: 'Factual report of Mr. Vale''s call. Absence setup. Establishes morning schedule pattern.'
 
   - beat_id: NADIA_PRIOR_KNOWLEDGE
@@ -88,6 +114,9 @@ source_beats:
     narrative_role: dialogue
     may_merge_with_next: true
     splittable: false
+    required_element_ids:
+      - C01
+      - C03
     notes: 'Nadia already knew Mr. Vale''s schedule. Not surprised. Not looking at Birta. Information control and emotional containment.'
 
   - beat_id: BIRTA_COVERED_LINENS
@@ -96,6 +125,9 @@ source_beats:
     narrative_role: dialogue
     may_merge_with_next: true
     splittable: false
+    required_element_ids:
+      - C01
+      - C03
     notes: Brief exchange closing breakfast topic. Nadia''s nod is minimal affirmation.
 
   - beat_id: NADIA_BIRTA_PASSING
@@ -104,7 +136,11 @@ source_beats:
     narrative_role: action
     may_merge_with_next: true
     splittable: false
-    notes: Physical passing and separation. Nadia pivots attention to frame. Vardova landscape becomes psychological anchor point.
+    required_element_ids:
+      - C01
+      - C03
+      - PROP003
+    notes: Physical passing and separation. Nadia (C01) and Birta (C03) are both visible. Nadia pivots attention to frame (PROP003). Vardova landscape becomes psychological anchor point.
 
   - beat_id: OFF_ANGLE_DISCOVERY
     content: 'She notices the angle. Off. By three or four degrees. She would not have been able to say why she knew the angle, but she knows.'
@@ -112,7 +148,10 @@ source_beats:
     narrative_role: pulse_check
     may_merge_with_next: true
     splittable: false
-    notes: Sensory/intuitive knowledge. She cannot explain her awareness but possesses it. Off-angle is objective evidence of disturbance.
+    required_element_ids:
+      - C01
+      - PROP003
+    notes: "Sensory/intuitive knowledge. 'She' = Nadia (C01). Off-angle frame (PROP003) is objective evidence of disturbance."
 
   - beat_id: FRAME_STRAIGHTENING
     content: 'Her fingertips touch the frame. She straightens it.'
@@ -120,7 +159,10 @@ source_beats:
     narrative_role: action
     may_merge_with_next: true
     splittable: false
-    notes: Precise corrective action. Mirrors water glass placement. Small gesture with psychological weight.
+    required_element_ids:
+      - C01
+      - PROP003
+    notes: "Precise corrective action. 'Her' = Nadia (C01). Frame = PROP003. Mirrors water glass placement."
 
   - beat_id: DUST_SHADOW_EVIDENCE
     content: 'The wall-mount''s dust-shadow is slightly larger than the frame now sitting over it. Someone moved this. Recently. And replaced it not quite right. Her fingers stay on the frame for one beat longer than the task requires. Then she lets go and walks on.'
@@ -128,7 +170,10 @@ source_beats:
     narrative_role: hold
     may_merge_with_next: true
     splittable: false
-    notes: 'Evidence of intrusion. Dust-shadow is objective proof. Extended contact with frame (longer than task) shows emotional resonance. Controlled re-engagement (lets go, walks on).'
+    required_element_ids:
+      - C01
+      - PROP003
+    notes: "Evidence of intrusion. 'Her fingers' = Nadia (C01). Frame = PROP003 (dust-shadow is objective proof). Extended contact shows emotional resonance."
 
   - beat_id: WRIST_PULSE_CHECK
     content: 'Her pace doesn''t change. Her posture is impeccable. She touches her fingertips briefly to the inside of her own wrist as she rounds the corner — pulse-check, two seconds, automatic — and continues toward Jin''s room.'
@@ -136,7 +181,9 @@ source_beats:
     narrative_role: pulse_check
     may_merge_with_next: true
     splittable: false
-    notes: 'Two-second physiological check. Automatic, not deliberate. Suggests trained self-monitoring. Contained response to frame-moving discovery.'
+    required_element_ids:
+      - C01
+    notes: "Two-second physiological check. 'She' = Nadia (C01). Automatic, not deliberate. Trained self-monitoring."
 
   - beat_id: MOVEMENT_TO_JINS_ROOM
     content: 'She rounds the corner and continues toward Jin''s room.'
@@ -144,7 +191,9 @@ source_beats:
     narrative_role: transition
     may_merge_with_next: true
     splittable: false
-    notes: Navigation toward destination. Brief transitional moment.
+    required_element_ids:
+      - C01
+    notes: "Navigation toward destination. 'She' = Nadia (C01). Brief transitional moment."
 
   - beat_id: JINS_ROOM_ESTABLISH
     content: 'INT. VALE RESIDENCE — JIN''S ROOM — CONTINUOUS. The room is warm and dim. A white-noise machine hums.'
@@ -152,7 +201,7 @@ source_beats:
     narrative_role: establish
     may_merge_with_next: true
     splittable: false
-    notes: Sensory environment shift. Warm/dim contrasts with earlier pale stone. White-noise suggests soothing, barrier to outside.
+    notes: Sensory environment shift. Warm/dim contrasts with earlier pale stone. White-noise suggests soothing, barrier to outside. No bound element for Jin's room sub-area yet.
 
   - beat_id: NADIA_JIN_OBSERVATION
     content: 'Nadia stands in the doorway. Doesn''t enter. JIN sleeps in his crib, eight months, face turned sideways, one hand open. She watches him the way she watched the cabinet. Taking inventory of what is present. What is safe. What is still where it should be. She stays there thirty seconds.'
@@ -160,7 +209,9 @@ source_beats:
     narrative_role: hold
     may_merge_with_next: true
     splittable: true
-    notes: 'Extended observation. Parallel inventory behavior (cabinet/Jin). Safety check. Thirty-second pause allows visual/performance space. Splittable if scene editing requires Jin-watching distribution.'
+    required_element_ids:
+      - C01
+    notes: "Extended observation. Nadia (C01) in doorway. Jin has no bound element ID yet. Parallel inventory behavior. Splittable if scene editing requires Jin-watching distribution."
 
   - beat_id: DOOR_CLOSING_EXIT
     content: 'Then she pulls the door almost closed and goes to get dressed.'
@@ -168,7 +219,9 @@ source_beats:
     narrative_role: action
     may_merge_with_next: false
     splittable: false
-    notes: 'Final action. Precise closure ("almost closed"). Exit to prepare. Scene boundary.'
+    required_element_ids:
+      - C01
+    notes: "Final action. 'She' = Nadia (C01). Precise closure ('almost closed'). Exit to prepare. Scene boundary."
 
 notes: >
   SC0001 source-beat plan covering full scene (Closing Price, lines 1-77). 20 beats map kitchen-to-Jin''s-room journey, character actions (water glass, cabinet, frame straightening), wrist scar/pulse checks, Birta dialogue (5 turns), frame discovery arc (angle/dust-shadow), Jin observation (30s, splittable). Dialogue content source-grounded; speaker mapping deferred to B5. No duration_seconds or Kling-bound fields. Blockers: C01/C03/LOC001/PROP003 source images unresolved (B1/B2 responsibility).

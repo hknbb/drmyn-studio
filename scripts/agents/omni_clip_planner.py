@@ -71,6 +71,7 @@ class _Shot:
     line_ids: list[str] = field(default_factory=list)
     is_dialogue: bool = False
     is_transition: bool = False
+    required_element_ids: list[str] = field(default_factory=list)
 
 
 # ---------------------------------------------------------------------------
@@ -162,6 +163,7 @@ def _resolve_shots(
         content = beat.get("content", "")
         if len(content) > 120:
             content = content[:117] + "..."
+        elem_ids: list[str] = list(beat.get("required_element_ids") or [])
         raw.append((beat, _Shot(
             beat_ids=[bid],
             duration=dur,
@@ -170,7 +172,15 @@ def _resolve_shots(
             line_ids=[ln["line_id"] for ln in lines],
             is_dialogue=(role == "dialogue"),
             is_transition=(role == "transition"),
+            required_element_ids=elem_ids,
         )))
+
+    def _union_elements(shots: list[_Shot]) -> list[str]:
+        seen: dict[str, None] = {}
+        for s in shots:
+            for eid in s.required_element_ids:
+                seen[eid] = None
+        return list(seen)
 
     result: list[_Shot] = []
     i = 0
@@ -203,6 +213,7 @@ def _resolve_shots(
                         line_ids=shot.line_ids + nxt_shot.line_ids,
                         is_dialogue=shot.is_dialogue or nxt_shot.is_dialogue,
                         is_transition=shot.is_transition,
+                        required_element_ids=_union_elements([shot, nxt_shot]),
                     )
                     j += 1
 
@@ -241,6 +252,7 @@ def _resolve_shots(
                     line_ids=merged_line_ids,
                     is_dialogue=nxt_shot.is_dialogue or any(s.is_dialogue for s in pending),
                     is_transition=nxt_shot.is_transition,
+                    required_element_ids=_union_elements(pending + [nxt_shot]),
                 ))
                 i = j + 1
 
@@ -258,6 +270,7 @@ def _resolve_shots(
                         line_ids=last.line_ids + [l for s in pending for l in s.line_ids],
                         is_dialogue=last.is_dialogue or any(s.is_dialogue for s in pending),
                         is_transition=last.is_transition,
+                        required_element_ids=_union_elements([last] + pending),
                     )
                 i = j  # j == n here
 
@@ -300,6 +313,8 @@ def _pack_clips(shots: list[_Shot], scene_id: str) -> list[dict[str, Any]]:
             }
             if s.line_ids:
                 sd["dialogue_line_ids"] = s.line_ids
+            if s.required_element_ids:
+                sd["required_element_ids"] = s.required_element_ids
             shots_out.append(sd)
 
         dlg_shot_count = sum(1 for s in buf if s.is_dialogue)
@@ -395,6 +410,14 @@ def _build_output(
         }
         if all_lines:
             manifest["dialogue_line_ids"] = all_lines
+
+        # Clip-level union of all shot required_element_ids (order-preserving, deduped)
+        seen: dict[str, None] = {}
+        for shot in shots:
+            for eid in shot.get("required_element_ids") or []:
+                seen[eid] = None
+        if seen:
+            manifest["required_element_ids"] = list(seen)
 
         manifests.append(manifest)
 
