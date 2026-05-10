@@ -7,7 +7,7 @@ cost:
   unit: unknown
   value: 0
 status: pending
-render_route: null
+render_route: element_based
 element_readiness_gate: ready
 no_binary_commit: true
 external_storage_ref: null
