@@ -11,11 +11,14 @@ required_views:
 - lighting_reference
 notes: PROP003 (tilted photo frame) is a critical visual element for this sub-area
   in SC0001.
-source_status: not_collected
-copyright_review: pending
-provenance_review: pending
-intake_ready_to_proceed: false
-canonical_assets_committed: []
+source_status: source_images_in_repo
+copyright_review: approved
+provenance_review: approved
+intake_ready_to_proceed: true
+canonical_assets_committed:
+- visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage/loc001_kitchen_passage_wide_establishing.png
+- visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage/loc001_kitchen_passage_threshold_geometry.png
+- visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage/loc001_kitchen_passage_lighting_reference.png
 storage_policy: no_binary_commits
 forbidden_actions:
 - Do not add placeholder binaries.
