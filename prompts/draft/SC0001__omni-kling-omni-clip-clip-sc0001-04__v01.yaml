@@ -7,12 +7,11 @@ target_models:
 source_refs:
   scene_card: planning/scenes/SC0001/scene_card.yaml
   scene_excerpt: planning/scenes/SC0001/scene_excerpt.md
-prompt_text: 'Create one external Kling Omni video instruction. Total duration: 10
-  seconds. Shot 1 (10s): NADIA: "Jin''s formula. There''s a new tin in the second
-  shelf, behind the vitamin drops." BIRTA: "I found it. He''s sti... Continuity mode:
-  metadata_only. Use continuity metadata only; do not claim frame inputs. Keep the
-  clip at 10 seconds, never over 15 seconds. End with a clear settled state. Do not
-  add new story facts.'
+prompt_text: 'Create one external Kling Omni video instruction. Total duration: 10 seconds. Shot 1 (10s):
+  NADIA: "Jin''s formula. There''s a new tin in the second shelf, behind the vitamin drops." BIRTA: "I
+  found it. He''s sti... Continuity mode: metadata_only. Use continuity metadata only; do not claim frame
+  inputs. Keep the clip at 10 seconds, never over 15 seconds. End with a clear settled state. Do not add
+  new story facts.'
 negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
 generation_params:
   model_guidance_mode: locked_guide

@@ -7,11 +7,10 @@ target_models:
 source_refs:
   scene_card: planning/scenes/SC0001/scene_card.yaml
   scene_excerpt: planning/scenes/SC0001/scene_excerpt.md
-prompt_text: 'Create one external Kling Omni video instruction. Total duration: 11
-  seconds. Shot 1 (6s): BIRTA (CONT''D): "Mr. Vale called from the car. He said not
-  to wait on breakfast." Shot 2 (5s): NADIA: "He won''t be back before eight." [She
-  says it without looking at Birta. She already knew.] Continuity mode: metadata_only.
-  Use continuity metadata only; do not claim frame inputs. Keep the clip at 11 seconds,
+prompt_text: 'Create one external Kling Omni video instruction. Total duration: 11 seconds. Shot 1 (6s):
+  BIRTA (CONT''D): "Mr. Vale called from the car. He said not to wait on breakfast." Shot 2 (5s): NADIA:
+  "He won''t be back before eight." [She says it without looking at Birta. She already knew.] Continuity
+  mode: metadata_only. Use continuity metadata only; do not claim frame inputs. Keep the clip at 11 seconds,
   never over 15 seconds. End with a clear settled state. Do not add new story facts.'
 negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
 generation_params:

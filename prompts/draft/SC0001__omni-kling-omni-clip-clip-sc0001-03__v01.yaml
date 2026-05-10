@@ -7,13 +7,12 @@ target_models:
 source_refs:
   scene_card: planning/scenes/SC0001/scene_card.yaml
   scene_excerpt: planning/scenes/SC0001/scene_excerpt.md
-prompt_text: 'Create one external Kling Omni video instruction. Total duration: 13
-  seconds. Shot 1 (5s): BIRTA, seventies, compact, moves toward her from the far end
-  — a tray of folded linens balanced with the authority of... Shot 2 (8s): BIRTA:
-  "You didn''t sleep again." NADIA: "I slept." BIRTA: "You slept the way you fold
-  laundry. Very neat. Not restful... Continuity mode: frame_input_eligible. Frame
-  inputs eligible but not active in this generation. Keep the clip at 13 seconds,
-  never over 15 seconds. End with a clear settled state. Do not add new story facts.'
+prompt_text: 'Create one external Kling Omni video instruction. Total duration: 13 seconds. Shot 1 (5s):
+  BIRTA, seventies, compact, moves toward her from the far end — a tray of folded linens balanced with
+  the authority of... Shot 2 (8s): BIRTA: "You didn''t sleep again." NADIA: "I slept." BIRTA: "You slept
+  the way you fold laundry. Very neat. Not restful... Continuity mode: frame_input_eligible. Frame inputs
+  eligible but not active in this generation. Keep the clip at 13 seconds, never over 15 seconds. End
+  with a clear settled state. Do not add new story facts.'
 negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
 generation_params:
   model_guidance_mode: locked_guide
