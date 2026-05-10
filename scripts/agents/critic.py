@@ -50,6 +50,13 @@ CANONICAL_ID_RE = re.compile(r"\b(C\d{2}|LOC\d{3}|PROP\d{3}|WD\d{3}|SC\d{4})\b")
 # Markers that flag unresolved content
 UNRESOLVED_RE = re.compile(r"\b(UNRESOLVED|TODO_REVIEW|TODO|EVIDENCE_THIN)\b")
 
+# Valid Kling element alias syntax: @AlphanumericOrUnderscore
+ELEMENT_ALIAS_RE = re.compile(r"^@[A-Za-z0-9_]+$")
+
+# API character limits for Kling (sourced from Magnific API reference)
+KLING_PROMPT_MAX_CHARS = 2500
+KLING_NEGATIVE_PROMPT_MAX_CHARS = 2500
+
 
 def _parse_utc_datetime(value: str) -> datetime:
     parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
@@ -123,6 +130,8 @@ class CriticAgent:
         self._check_target_models(prompt_record, hard)
         self._check_model_guidance(prompt_record, hard)
         self._check_negative_prompt_rule(prompt_record, hard)
+        self._check_element_aliases(prompt_record, hard)
+        self._check_prompt_char_limits(prompt_record, hard)
 
         # Soft checks — always after hard checks
         self._check_unresolved_markers(prompt_record, soft)
@@ -450,6 +459,64 @@ class CriticAgent:
                     "generation_params.constraint_strategy must be "
                     "'embedded_positive_constraints'"
                 )
+
+    def _check_element_aliases(self, record: dict, errors: list[str]) -> None:
+        """Validate generation_params.required_element_aliases against prompt_text.
+
+        Hard errors:
+        - required_element_aliases is not a list
+        - any alias does not match ^@[A-Za-z0-9_]+$
+        - any alias does not appear literally in prompt_text
+        """
+        params = record.get("generation_params") or {}
+        aliases = params.get("required_element_aliases")
+        if aliases is None:
+            return  # field absent — no enforcement
+
+        if not isinstance(aliases, list):
+            errors.append(
+                f"generation_params.required_element_aliases must be a list; "
+                f"got {type(aliases).__name__}"
+            )
+            return
+
+        prompt_text = str(record.get("prompt_text") or "")
+
+        for alias in aliases:
+            if not isinstance(alias, str) or not ELEMENT_ALIAS_RE.match(alias):
+                errors.append(
+                    f"Invalid element alias {alias!r}; must match ^@[A-Za-z0-9_]+$"
+                )
+                continue
+            if alias not in prompt_text:
+                errors.append(
+                    f"Element alias {alias!r} listed in required_element_aliases "
+                    "but not found in prompt_text. "
+                    "Adapter must inject the alias before the record is written."
+                )
+
+    def _check_prompt_char_limits(self, record: dict, errors: list[str]) -> None:
+        """Enforce Kling API character limits on prompt_text and negative_prompt.
+
+        Hard errors:
+        - prompt_text > 2500 characters
+        - negative_prompt > 2500 characters
+
+        Word count is not a hard limit; this check intentionally ignores it.
+        """
+        prompt_text = str(record.get("prompt_text") or "")
+        if len(prompt_text) > KLING_PROMPT_MAX_CHARS:
+            errors.append(
+                f"prompt_text is {len(prompt_text)} characters; "
+                f"Kling API hard limit is {KLING_PROMPT_MAX_CHARS} characters."
+            )
+
+        negative_prompt = str(record.get("negative_prompt") or "")
+        if negative_prompt and len(negative_prompt) > KLING_NEGATIVE_PROMPT_MAX_CHARS:
+            errors.append(
+                f"negative_prompt is {len(negative_prompt)} characters; "
+                f"Kling API hard limit is {KLING_NEGATIVE_PROMPT_MAX_CHARS} characters."
+            )
 
     # ------------------------------------------------------------------
     # Soft checks
