@@ -12,9 +12,9 @@ prompt_text: 'Create one external Kling Omni video instruction. Total duration: 
   and underused. Pale stone surfaces. A single unwashed... Shot 2 (5s): NADIA moves
   through the passage with the economy of someone who has mapped every room for exits.
   Not rushed. Not nerv... Shot 3 (5s): She fills a glass of water, drinks half, sets
-  it exactly where she found it. Continuity mode: frame_input_eligible. Frame inputs
-  eligible but not active in this generation. Keep the clip at 15 seconds, never over
-  15 seconds. End with a clear settled state. Do not add new story facts.'
+  it exactly where she found it. Continuity mode: frame_input_eligible. Keep the clip
+  at 15 seconds, never over 15 seconds. End with a clear settled state. Do not add
+  new story facts.'
 negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
 generation_params:
   model_guidance_mode: locked_guide
