@@ -1,0 +1,35 @@
+prompt_id: SC0001__omni-kling-omni-clip-clip-sc0001-05__v01
+scene_id: SC0001
+prompt_type: omni_instruction
+lifecycle_stage: draft
+target_models:
+- kling_omni
+source_refs:
+  scene_card: planning/scenes/SC0001/scene_card.yaml
+  scene_excerpt: planning/scenes/SC0001/scene_excerpt.md
+prompt_text: 'Create one external Kling Omni video instruction. Total duration: 11
+  seconds. Shot 1 (6s): BIRTA (CONT''D): "Mr. Vale called from the car. He said not
+  to wait on breakfast." Shot 2 (5s): NADIA: "He won''t be back before eight." [She
+  says it without looking at Birta. She already knew.] Continuity mode: metadata_only.
+  Use continuity metadata only; do not claim frame inputs. Keep the clip at 11 seconds,
+  never over 15 seconds. End with a clear settled state. Do not add new story facts.'
+negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
+generation_params:
+  model_guidance_mode: locked_guide
+  adapter_name: kling_omni
+  clip_id: CLIP_SC0001_05
+  total_duration_seconds: 11
+  continuity_input_mode: metadata_only
+  omni_clip_manifest_ref: planning/scenes/SC0001/manifests/CLIP_SC0001_05_manifest.yaml
+  source_scene_beat_plan_ref: planning/scenes/SC0001/scene_beat_plan.yaml
+  source_dialogue_beats_ref: planning/scenes/SC0001/dialogue_beats.yaml
+  repo_binary_committed: false
+  external_generation_required: true
+  recommended_cfg_scale: 0.5
+  recommended_ar: '16:9'
+  model_guidance_ref: docs/model_guides/kling_omni.yaml
+expected_output:
+  asset_type: clip
+  duration_seconds: 11
+status: active
+canon_lock: false
