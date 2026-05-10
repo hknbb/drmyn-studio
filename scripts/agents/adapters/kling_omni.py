@@ -27,6 +27,12 @@ from scripts.agents.model_guidance_resolver import (
 
 CANONICAL_ID_RE = re.compile(r"\b(SC\d{4}|C\d{2}|LOC\d{3}|PROP\d{3}|WD\d{3})\b")
 
+# Binding statuses that mean the element is active in Kling Element Library
+ACTIVE_BINDING_STATUSES = frozenset({"created", "voice_capable", "voice_locked"})
+
+# Pronouns that may be rewritten to a character alias when exactly one character is known
+LEADING_PRONOUN_RE = re.compile(r"^(She|He|Her|His)\b")
+
 
 def _allowed_shot_count(total_duration_seconds: int) -> int:
     if total_duration_seconds <= 5:
@@ -74,6 +80,92 @@ def _text(value: Any, fallback: str = "") -> str:
 def _sanitize_prompt_text(text: str) -> str:
     text = CANONICAL_ID_RE.sub("the referenced production element", text)
     return " ".join(text.split())
+
+
+def _load_element_aliases(scene_id: str, repo_root: Path) -> tuple[dict[str, str], set[str]]:
+    """Load active element bindings for a scene.
+
+    Returns:
+        alias_map: {element_id: kling_alias} for active bindings only.
+        char_ids: element_ids whose element_type == "character".
+    """
+    bindings_path = (
+        repo_root / "visual_dev" / "omni_sets" / scene_id / "element_bindings.yaml"
+    )
+    if not bindings_path.exists():
+        return {}, set()
+
+    import yaml as _yaml  # local import to avoid top-level duplicate
+
+    alias_map: dict[str, str] = {}
+    char_ids: set[str] = set()
+
+    try:
+        with bindings_path.open(encoding="utf-8") as fh:
+            for doc in _yaml.safe_load_all(fh):
+                if not isinstance(doc, dict):
+                    continue
+                status = doc.get("binding_status", "planned")
+                if status not in ACTIVE_BINDING_STATUSES:
+                    continue
+                elem_id = doc.get("element_id")
+                alias = doc.get("kling_alias")
+                if not elem_id or not alias:
+                    continue
+                alias_map[elem_id] = alias
+                if doc.get("element_type") == "character":
+                    char_ids.add(elem_id)
+    except Exception:
+        pass
+
+    return alias_map, char_ids
+
+
+def _rewrite_shot_action(
+    prompt_action: str,
+    shot_element_ids: list[str],
+    alias_map: dict[str, str],
+    char_ids: set[str],
+) -> tuple[str, list[str]]:
+    """Inject aliases and rewrite leading pronouns in a single shot's prompt_action.
+
+    Rules:
+    - Replace all-caps character name (e.g. NADIA → @Nadia) if element is active.
+    - If exactly one created character element and text starts with She/He/Her/His,
+      replace that leading pronoun with the character alias.
+    - If multiple character elements + ambiguous leading pronoun, emit warning (no change).
+
+    Returns:
+        (rewritten_text, warnings)
+    """
+    warnings: list[str] = []
+    text = prompt_action
+
+    # 1. Replace all-caps character names (e.g. NADIA → @Nadia)
+    for elem_id in shot_element_ids:
+        if elem_id not in alias_map or elem_id not in char_ids:
+            continue
+        alias = alias_map[elem_id]
+        char_name = alias.lstrip("@")
+        text = re.sub(rf"\b{re.escape(char_name.upper())}\b", alias, text)
+
+    # 2. Leading pronoun rewrite
+    m = LEADING_PRONOUN_RE.match(text)
+    if m:
+        active_chars = [
+            eid for eid in shot_element_ids
+            if eid in char_ids and eid in alias_map
+        ]
+        if len(active_chars) == 1:
+            alias = alias_map[active_chars[0]]
+            text = alias + text[m.end():]
+        elif len(active_chars) > 1:
+            warnings.append(
+                f"Ambiguous pronoun '{m.group(1)}' in shot with multiple active character "
+                f"elements {active_chars}; explicit shot text required — pronoun not rewritten."
+            )
+
+    return text, warnings
 
 
 class KlingOmniAdapter:
@@ -210,12 +302,45 @@ class KlingOmniAdapter:
 
         max_duration = self._max_duration_seconds()
 
-        prompt_text = self._build_prompt_text_from_manifest(
-            shots,
-            total_duration,
-            max_duration,
-            continuity_mode,
+        # Load active element aliases for this scene
+        alias_map, char_ids = _load_element_aliases(scene_id, self.repo_root)
+
+        # Collect clip-level required element IDs (union of all shot-level IDs)
+        clip_elem_ids: list[str] = list(manifest.get("required_element_ids") or [])
+        if not clip_elem_ids:
+            seen: dict[str, None] = {}
+            for shot in shots:
+                for eid in shot.get("required_element_ids") or []:
+                    seen[eid] = None
+            clip_elem_ids = list(seen)
+
+        # Build required aliases (only active bindings contribute)
+        required_aliases: list[str] = []
+        seen_aliases: dict[str, None] = {}
+        for eid in clip_elem_ids:
+            alias = alias_map.get(eid)
+            if alias and alias not in seen_aliases:
+                seen_aliases[alias] = None
+                required_aliases.append(alias)
+
+        prompt_text, alias_warnings = self._build_prompt_text_with_aliases(
+            shots=shots,
+            total_duration=total_duration,
+            max_duration=max_duration,
+            continuity_mode=continuity_mode,
+            alias_map=alias_map,
+            char_ids=char_ids,
+            required_aliases=required_aliases,
         )
+
+        # Warn about planned-only elements (in required_element_ids but not active)
+        planned_warnings: list[str] = []
+        for eid in clip_elem_ids:
+            if eid not in alias_map:
+                planned_warnings.append(
+                    f"Element {eid!r} is in required_element_ids but has no active "
+                    "Kling binding (status may be 'planned'); alias not injected."
+                )
 
         source_refs: dict[str, Any] = {
             "scene_card": _relative(scene_card_path, self.repo_root),
@@ -240,6 +365,9 @@ class KlingOmniAdapter:
             "recommended_cfg_scale": 0.5,
             "recommended_ar": "16:9",
         }
+
+        if required_aliases:
+            generation_params["required_element_aliases"] = required_aliases
 
         if kling_native_audio.get("enabled"):
             generation_params["kling_native_audio"] = {
@@ -292,10 +420,11 @@ class KlingOmniAdapter:
             clip_id=clip_id,
         )
 
+        all_warnings = alias_warnings + planned_warnings
         return KlingOmniBuildResult(
             prompt_record=record,
             run_record=run_record,
-            warnings=[],
+            warnings=all_warnings,
         )
 
     def _validate_manifest_shape(self, manifest: dict[str, Any]) -> None:
@@ -361,6 +490,65 @@ class KlingOmniAdapter:
         if not isinstance(kling_native_audio, dict):
             raise KlingOmniAdapterError("Manifest kling_native_audio must be a mapping")
 
+    def _build_prompt_text_with_aliases(
+        self,
+        shots: list[Any],
+        total_duration: int,
+        max_duration: int,
+        continuity_mode: str,
+        alias_map: dict[str, str],
+        char_ids: set[str],
+        required_aliases: list[str],
+    ) -> tuple[str, list[str]]:
+        """Build prompt text with element alias injection and pronoun rewriting.
+
+        Returns:
+            (prompt_text, warnings)
+        """
+        all_warnings: list[str] = []
+
+        if not required_aliases:
+            # No active aliases — fall back to plain text
+            return (
+                self._build_prompt_text_from_manifest(
+                    shots, total_duration, max_duration, continuity_mode
+                ),
+                [],
+            )
+
+        parts: list[str] = [
+            "Create one Kling Omni element-based video clip.",
+            f"Total duration: {total_duration} seconds.",
+            f"Active elements: {', '.join(required_aliases)}.",
+        ]
+
+        for index, shot in enumerate(shots, start=1):
+            duration = int(shot.get("duration_seconds", 0))
+            raw_action = _text(shot.get("prompt_action"), "approved action")
+            shot_elem_ids: list[str] = list(shot.get("required_element_ids") or [])
+
+            rewritten, warnings = _rewrite_shot_action(
+                raw_action, shot_elem_ids, alias_map, char_ids
+            )
+            all_warnings.extend(warnings)
+            parts.append(f"Shot {index} ({duration}s): {rewritten}")
+
+        parts.append(f"Continuity: {continuity_mode}.")
+        parts.append(
+            f"Keep clip at {total_duration} seconds. Do not add new story facts."
+        )
+
+        text = _sanitize_prompt_text(" ".join(p for p in parts if p))
+
+        # Hard limit: 2500 characters (Kling API)
+        if len(text) > 2500:
+            all_warnings.append(
+                f"prompt_text is {len(text)} characters, exceeds 2500-char API limit. "
+                "Shorten shot descriptions."
+            )
+
+        return text, all_warnings
+
     def _build_prompt_text_from_manifest(
         self,
         shots: list[Any],
@@ -368,7 +556,9 @@ class KlingOmniAdapter:
         max_duration: int,
         continuity_mode: str,
     ) -> str:
-        """Build prompt text from manifest shots (not scene_card.shot_list_omni)."""
+        """Build prompt text from manifest shots (not scene_card.shot_list_omni).
+        Legacy path used when no active element aliases are available.
+        """
         shot_lines: list[str] = []
         for index, shot in enumerate(shots, start=1):
             duration = int(shot.get("duration_seconds", 0))

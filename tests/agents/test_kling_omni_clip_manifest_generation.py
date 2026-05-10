@@ -678,3 +678,363 @@ class TestGenerateFromClipManifest:
         run_id = result.run_record["run_id"]
         assert run_id == "RUN_SC0001_KO_0002"
         assert "CLIP" not in run_id
+
+
+# ---------------------------------------------------------------------------
+# A7.4e1: Element alias injection and pronoun rewriting
+# ---------------------------------------------------------------------------
+
+
+def _create_element_bindings(
+    tmpdir: Path,
+    scene_id: str = "SC0001",
+    bindings: list[dict] | None = None,
+) -> Path:
+    """Write a multi-document element_bindings.yaml for testing."""
+    if bindings is None:
+        bindings = [
+            {
+                "schema_version": "0.x-draft",
+                "record_type": "element_binding",
+                "element_id": "C01",
+                "element_type": "character",
+                "kling_alias": "@Nadia",
+                "binding_status": "created",
+            },
+            {
+                "schema_version": "0.x-draft",
+                "record_type": "element_binding",
+                "element_id": "LOC001",
+                "element_type": "location_sub_area",
+                "kling_alias": "@ValeResidenceKitchenPassage",
+                "binding_status": "created",
+            },
+        ]
+
+    omni_set_dir = tmpdir / "visual_dev" / "omni_sets" / scene_id
+    omni_set_dir.mkdir(parents=True, exist_ok=True)
+    path = omni_set_dir / "element_bindings.yaml"
+    with open(path, "w", encoding="utf-8") as f:
+        for i, doc in enumerate(bindings):
+            if i > 0:
+                f.write("---\n")
+            yaml.dump(doc, f)
+    return path
+
+
+def _shots_with_element_ids() -> list[dict]:
+    """Manifest shots that include required_element_ids."""
+    return [
+        {
+            "shot_id": "SHOT_SC0001_01_A",
+            "duration_seconds": 5,
+            "source_beat_ids": ["ESTABLISH_KITCHEN"],
+            "required_element_ids": ["LOC001"],
+            "prompt_action": "INT. VALE RESIDENCE — KITCHEN PASSAGE. Pale stone surfaces.",
+            "duration_reason": "normal/establish 5s",
+        },
+        {
+            "shot_id": "SHOT_SC0001_01_B",
+            "duration_seconds": 5,
+            "source_beat_ids": ["NADIA_PASSAGE_MOVEMENT"],
+            "required_element_ids": ["C01", "LOC001"],
+            "prompt_action": "NADIA moves through the passage with the economy of someone who maps rooms.",
+            "duration_reason": "normal/action 5s",
+        },
+        {
+            "shot_id": "SHOT_SC0001_01_C",
+            "duration_seconds": 5,
+            "source_beat_ids": ["WATER_GLASS_ACTION"],
+            "required_element_ids": ["C01", "LOC001"],
+            "prompt_action": "She fills a glass of water, drinks half, sets it exactly where she found it.",
+            "duration_reason": "normal/action 5s",
+        },
+    ]
+
+
+class TestAliasInjection:
+    """A7.4e1: alias injection and pronoun rewriting tests."""
+
+    def test_aliases_appear_in_prompt_text(self, tmp_path):
+        """Generated prompt_text must contain @Nadia and @ValeResidenceKitchenPassage."""
+        _create_element_bindings(tmp_path)
+        manifest_path = _create_manifest(
+            tmp_path,
+            shots=_shots_with_element_ids(),
+            required_element_ids=["C01", "LOC001"],
+        )
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(str(manifest_path))
+        prompt_text = result.prompt_record["prompt_text"]
+
+        assert "@Nadia" in prompt_text, f"@Nadia missing from prompt_text: {prompt_text}"
+        assert "@ValeResidenceKitchenPassage" in prompt_text, (
+            f"@ValeResidenceKitchenPassage missing from prompt_text: {prompt_text}"
+        )
+
+    def test_required_element_aliases_in_generation_params(self, tmp_path):
+        """generation_params.required_element_aliases must list active aliases."""
+        _create_element_bindings(tmp_path)
+        manifest_path = _create_manifest(
+            tmp_path,
+            shots=_shots_with_element_ids(),
+            required_element_ids=["C01", "LOC001"],
+        )
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(str(manifest_path))
+        aliases = result.prompt_record["generation_params"].get("required_element_aliases", [])
+
+        assert "@Nadia" in aliases
+        assert "@ValeResidenceKitchenPassage" in aliases
+
+    def test_water_glass_pronoun_rewritten(self, tmp_path):
+        """WATER_GLASS_ACTION 'She fills...' must become '@Nadia fills...' with single char element."""
+        _create_element_bindings(tmp_path)
+        manifest_path = _create_manifest(
+            tmp_path,
+            shots=_shots_with_element_ids(),
+            required_element_ids=["C01", "LOC001"],
+        )
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(str(manifest_path))
+        prompt_text = result.prompt_record["prompt_text"]
+
+        assert "@Nadia fills" in prompt_text, (
+            f"'She fills' pronoun not rewritten to '@Nadia fills': {prompt_text}"
+        )
+        assert "She fills" not in prompt_text
+
+    def test_nadia_allcaps_replaced_with_alias(self, tmp_path):
+        """'NADIA' in shot text must be replaced with '@Nadia'."""
+        _create_element_bindings(tmp_path)
+        manifest_path = _create_manifest(
+            tmp_path,
+            shots=_shots_with_element_ids(),
+            required_element_ids=["C01", "LOC001"],
+        )
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(str(manifest_path))
+        prompt_text = result.prompt_record["prompt_text"]
+
+        assert "@Nadia moves" in prompt_text, (
+            f"'NADIA moves' not replaced with '@Nadia moves': {prompt_text}"
+        )
+
+    def test_planned_binding_not_injected(self, tmp_path):
+        """Element with binding_status='planned' must not appear as alias in prompt_text."""
+        bindings = [
+            {
+                "schema_version": "0.x-draft",
+                "record_type": "element_binding",
+                "element_id": "C01",
+                "element_type": "character",
+                "kling_alias": "@Nadia",
+                "binding_status": "planned",  # not active
+            },
+        ]
+        _create_element_bindings(tmp_path, bindings=bindings)
+        manifest_path = _create_manifest(
+            tmp_path,
+            shots=[
+                {
+                    "shot_id": "SHOT_SC0001_01_A",
+                    "duration_seconds": 5,
+                    "source_beat_ids": ["NADIA_PASSAGE_MOVEMENT"],
+                    "required_element_ids": ["C01"],
+                    "prompt_action": "NADIA moves through the passage.",
+                    "duration_reason": "normal/action 5s",
+                }
+            ],
+            total_duration=5,
+            required_element_ids=["C01"],
+        )
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(str(manifest_path))
+        params = result.prompt_record["generation_params"]
+
+        # No active aliases → required_element_aliases absent or empty
+        aliases = params.get("required_element_aliases", [])
+        assert "@Nadia" not in aliases
+
+    def test_planned_binding_produces_warning(self, tmp_path):
+        """Planned element in required_element_ids must produce a warning, not an error."""
+        bindings = [
+            {
+                "schema_version": "0.x-draft",
+                "record_type": "element_binding",
+                "element_id": "C01",
+                "element_type": "character",
+                "kling_alias": "@Nadia",
+                "binding_status": "planned",
+            },
+        ]
+        _create_element_bindings(tmp_path, bindings=bindings)
+        manifest_path = _create_manifest(
+            tmp_path,
+            shots=[
+                {
+                    "shot_id": "SHOT_SC0001_01_A",
+                    "duration_seconds": 5,
+                    "source_beat_ids": ["NADIA_PASSAGE_MOVEMENT"],
+                    "required_element_ids": ["C01"],
+                    "prompt_action": "Approved action.",
+                    "duration_reason": "normal/action 5s",
+                }
+            ],
+            total_duration=5,
+            required_element_ids=["C01"],
+        )
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(str(manifest_path))
+
+        # Should not raise; should produce warning about planned element
+        assert any("planned" in w.lower() or "no active" in w.lower() for w in result.warnings), (
+            f"Expected warning about planned element, got: {result.warnings}"
+        )
+
+    def test_no_element_bindings_file_backward_compatible(self, tmp_path):
+        """Absent element_bindings.yaml must produce a valid prompt without error."""
+        # No call to _create_element_bindings
+        manifest_path = _create_manifest(tmp_path)
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(str(manifest_path))
+
+        assert result.prompt_record is not None
+        assert result.warnings == []
+        prompt_text = result.prompt_record["prompt_text"]
+        assert len(prompt_text) > 10
+
+    def test_ambiguous_pronoun_with_multiple_chars_warns(self, tmp_path):
+        """Shot with multiple active character elements + leading pronoun must warn."""
+        bindings = [
+            {
+                "schema_version": "0.x-draft",
+                "record_type": "element_binding",
+                "element_id": "C01",
+                "element_type": "character",
+                "kling_alias": "@Nadia",
+                "binding_status": "created",
+            },
+            {
+                "schema_version": "0.x-draft",
+                "record_type": "element_binding",
+                "element_id": "C03",
+                "element_type": "character",
+                "kling_alias": "@Birta",
+                "binding_status": "created",
+            },
+        ]
+        _create_element_bindings(tmp_path, bindings=bindings)
+        manifest_path = _create_manifest(
+            tmp_path,
+            shots=[
+                {
+                    "shot_id": "SHOT_SC0001_01_A",
+                    "duration_seconds": 5,
+                    "source_beat_ids": ["BIRTA_ENTRANCE"],
+                    "required_element_ids": ["C01", "C03"],  # two characters
+                    "prompt_action": "She moves toward the far end of the corridor.",
+                    "duration_reason": "normal/action 5s",
+                }
+            ],
+            total_duration=5,
+            required_element_ids=["C01", "C03"],
+        )
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(str(manifest_path))
+
+        assert any("ambiguous" in w.lower() for w in result.warnings), (
+            f"Expected ambiguous pronoun warning; got: {result.warnings}"
+        )
+        # Pronoun must NOT be rewritten (too ambiguous)
+        assert "She moves" in result.prompt_record["prompt_text"]
+
+    def test_no_canonical_ids_in_prompt_text(self, tmp_path):
+        """Canonical planning IDs (C01, LOC001, etc.) must never appear in prompt_text."""
+        _create_element_bindings(tmp_path)
+        manifest_path = _create_manifest(
+            tmp_path,
+            shots=_shots_with_element_ids(),
+            required_element_ids=["C01", "LOC001"],
+        )
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(str(manifest_path))
+        prompt_text = result.prompt_record["prompt_text"]
+
+        import re
+        canonical_ids = re.findall(r"\b(C\d{2}|LOC\d{3}|PROP\d{3}|WD\d{3}|SC\d{4})\b", prompt_text)
+        assert canonical_ids == [], (
+            f"Canonical IDs found in prompt_text: {canonical_ids}\n\nFull text: {prompt_text}"
+        )
+
+    def test_prompt_text_under_2500_chars(self, tmp_path):
+        """Generated prompt_text must stay within 2500 characters."""
+        _create_element_bindings(tmp_path)
+        manifest_path = _create_manifest(
+            tmp_path,
+            shots=_shots_with_element_ids(),
+            required_element_ids=["C01", "LOC001"],
+        )
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(str(manifest_path))
+        prompt_text = result.prompt_record["prompt_text"]
+        assert len(prompt_text) <= 2500, f"prompt_text is {len(prompt_text)} chars"
+
+    def test_real_clip01_manifest_produces_aliases(self):
+        """Integration: real CLIP_SC0001_01_manifest.yaml must produce @Nadia and @ValeResidenceKitchenPassage."""
+        repo_root = Path(__file__).parent.parent.parent
+        manifest_ref = (
+            repo_root
+            / "planning"
+            / "scenes"
+            / "SC0001"
+            / "manifests"
+            / "CLIP_SC0001_01_manifest.yaml"
+        )
+        if not manifest_ref.exists():
+            pytest.skip("CLIP_SC0001_01_manifest.yaml not found in repo")
+
+        adapter = KlingOmniAdapter(repo_root)
+        result = adapter.generate_from_clip_manifest(str(manifest_ref))
+        prompt_text = result.prompt_record["prompt_text"]
+        aliases = result.prompt_record["generation_params"].get("required_element_aliases", [])
+
+        assert "@Nadia" in prompt_text, f"@Nadia missing: {prompt_text}"
+        assert "@ValeResidenceKitchenPassage" in prompt_text, (
+            f"@ValeResidenceKitchenPassage missing: {prompt_text}"
+        )
+        assert "@Nadia" in aliases
+        assert "@ValeResidenceKitchenPassage" in aliases
+        assert "@Nadia fills" in prompt_text, (
+            f"WATER_GLASS_ACTION pronoun 'She fills' not rewritten to '@Nadia fills': {prompt_text}"
+        )
