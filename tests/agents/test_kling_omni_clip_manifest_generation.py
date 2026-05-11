@@ -256,7 +256,44 @@ class TestGenerateFromClipManifest:
         result = adapter.generate_from_clip_manifest(str(manifest_path))
 
         prompt_id = result.prompt_record["prompt_id"]
-        assert prompt_id.startswith("SC0001__omni-kling-omni-clip-clip-sc0001-03__v01")
+        assert prompt_id.startswith("SC0001__omni-kling-omni-clip-clip-sc0001-03-safe__v01")
+
+    def test_variant_mode_written_to_generation_params(self, tmp_path):
+        manifest_path = _create_manifest(tmp_path)
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(
+            str(manifest_path),
+            variant_mode="creative",
+            render_pass="performance_test",
+            quality_tier="final_1080p",
+        )
+        params = result.prompt_record["generation_params"]
+        assert params["variant_mode"] == "creative"
+        assert params["render_pass"] == "performance_test"
+        assert params["quality_tier"] == "final_1080p"
+        assert params["prompt_component_model"].endswith(
+            "docs/methodology/omni_prompt_component_model.md"
+        )
+
+    def test_prompt_id_slug_includes_variant_mode(self, tmp_path):
+        manifest_path = _create_manifest(tmp_path, clip_id="CLIP_SC0001_05")
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(
+            str(manifest_path), variant_mode="aggressive"
+        )
+        assert "-aggressive__v01" in result.prompt_record["prompt_id"]
+
+    def test_invalid_variant_mode_fails(self, tmp_path):
+        manifest_path = _create_manifest(tmp_path)
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+        adapter = KlingOmniAdapter(tmp_path)
+        with pytest.raises(KlingOmniAdapterError, match="Invalid variant_mode"):
+            adapter.generate_from_clip_manifest(str(manifest_path), variant_mode="wild")
 
     def test_manifest_source_refs_includes_required_fields(self, tmp_path):
         """source_refs must include scene_card and scene_excerpt."""
@@ -306,6 +343,16 @@ class TestGenerateFromClipManifest:
         assert "Shot 2" in prompt_text
         assert "Shot 3" in prompt_text
         assert "(5s)" in prompt_text
+
+    @pytest.mark.parametrize("mode", ["safe", "creative", "aggressive"])
+    def test_variant_modes_keep_source_actions(self, tmp_path, mode):
+        manifest_path = _create_manifest(tmp_path)
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(str(manifest_path), variant_mode=mode)
+        prompt_text = result.prompt_record["prompt_text"]
+        assert "maps rooms" in prompt_text.lower()
 
     def test_manifest_expected_output_duration(self, tmp_path):
         """expected_output.duration_seconds must equal manifest total_duration_seconds."""

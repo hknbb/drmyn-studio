@@ -32,6 +32,11 @@ ACTIVE_BINDING_STATUSES = frozenset({"created", "voice_capable", "voice_locked"}
 
 # Pronouns that may be rewritten to a character alias when exactly one character is known
 LEADING_PRONOUN_RE = re.compile(r"^(She|He|Her|His)\b")
+VARIANT_MODES = frozenset({"safe", "creative", "aggressive"})
+RENDER_PASSES = frozenset(
+    {"visual_test", "performance_test", "final_candidate", "final_locked"}
+)
+QUALITY_TIERS = frozenset({"test_720p", "final_1080p"})
 
 
 def _allowed_shot_count(total_duration_seconds: int) -> int:
@@ -282,6 +287,9 @@ class KlingOmniAdapter:
         version: int = 1,
         run_counter: int = 1,
         run_at: str | None = None,
+        variant_mode: str = "safe",
+        render_pass: str = "visual_test",
+        quality_tier: str = "test_720p",
     ) -> KlingOmniBuildResult:
         """Generate prompt/run records from a single omni_clip_manifest.yaml.
 
@@ -290,6 +298,9 @@ class KlingOmniAdapter:
             version: Prompt version number (default 1)
             run_counter: Run counter for run_id (default 1)
             run_at: ISO 8601 timestamp for run execution (default now)
+            variant_mode: Prompt variant mode (safe|creative|aggressive)
+            render_pass: Render pass stage
+            quality_tier: Render quality tier
 
         Returns:
             KlingOmniBuildResult with prompt_record and run_record
@@ -297,6 +308,10 @@ class KlingOmniAdapter:
         Raises:
             KlingOmniAdapterError: If manifest is missing, invalid, or constraints violated
         """
+        variant_mode = self._validate_variant_mode(variant_mode)
+        render_pass = self._validate_render_pass(render_pass)
+        quality_tier = self._validate_quality_tier(quality_tier)
+
         manifest_path = Path(manifest_ref)
         if not manifest_path.is_absolute():
             manifest_path = self.repo_root / manifest_path
@@ -370,7 +385,9 @@ class KlingOmniAdapter:
 
         # Use clip_id slug (replace underscores with hyphens) for prompt_id
         clip_slug = clip_id.lower().replace("_", "-")
-        prompt_id = f"{scene_id}__omni-kling-omni-clip-{clip_slug}__v{version:02d}"
+        prompt_id = (
+            f"{scene_id}__omni-kling-omni-clip-{clip_slug}-{variant_mode}__v{version:02d}"
+        )
 
         generation_params: dict[str, Any] = {
             "model_guidance_mode": self.model_guidance_mode,
@@ -385,6 +402,10 @@ class KlingOmniAdapter:
             "external_generation_required": True,
             "recommended_cfg_scale": 0.5,
             "recommended_ar": "16:9",
+            "variant_mode": variant_mode,
+            "render_pass": render_pass,
+            "quality_tier": quality_tier,
+            "prompt_component_model": "docs/methodology/omni_prompt_component_model.md",
         }
 
         if required_aliases:
@@ -510,6 +531,33 @@ class KlingOmniAdapter:
         kling_native_audio = manifest.get("kling_native_audio")
         if not isinstance(kling_native_audio, dict):
             raise KlingOmniAdapterError("Manifest kling_native_audio must be a mapping")
+
+    @staticmethod
+    def _validate_variant_mode(variant_mode: str) -> str:
+        mode = str(variant_mode or "").strip().lower()
+        if mode not in VARIANT_MODES:
+            raise KlingOmniAdapterError(
+                f"Invalid variant_mode {variant_mode!r}; expected one of {sorted(VARIANT_MODES)}"
+            )
+        return mode
+
+    @staticmethod
+    def _validate_render_pass(render_pass: str) -> str:
+        value = str(render_pass or "").strip().lower()
+        if value not in RENDER_PASSES:
+            raise KlingOmniAdapterError(
+                f"Invalid render_pass {render_pass!r}; expected one of {sorted(RENDER_PASSES)}"
+            )
+        return value
+
+    @staticmethod
+    def _validate_quality_tier(quality_tier: str) -> str:
+        value = str(quality_tier or "").strip().lower()
+        if value not in QUALITY_TIERS:
+            raise KlingOmniAdapterError(
+                f"Invalid quality_tier {quality_tier!r}; expected one of {sorted(QUALITY_TIERS)}"
+            )
+        return value
 
     def _build_prompt_text_with_aliases(
         self,
