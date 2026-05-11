@@ -280,6 +280,245 @@ def _schema_issues(
     return issues
 
 
+def _load_yaml_mapping(path: Path) -> dict[str, Any] | None:
+    """Best-effort mapping loader for cross-record checks."""
+    try:
+        data = load_yaml_file(path)
+    except Exception:
+        return None
+    return data if isinstance(data, dict) else None
+
+
+def validate_prod_line_cross_references(
+    *,
+    repo_root: Path,
+    grouped_files: dict[str, list[Path]],
+) -> list[ProductionValidationIssue]:
+    """Lightweight cross-record consistency checks for PROD-LINE records."""
+    issues: list[ProductionValidationIssue] = []
+
+    # Index perspective prompt IDs from GPT Images perspective packs.
+    gpt_prompt_ids: set[str] = set()
+    for path in grouped_files.get("gpt_images_perspective_pack", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        prompts = data.get("prompts")
+        if not isinstance(prompts, list):
+            continue
+        for item in prompts:
+            if isinstance(item, dict):
+                pid = item.get("prompt_id")
+                if isinstance(pid, str) and pid:
+                    gpt_prompt_ids.add(pid)
+
+    # Index Kling element references by ID.
+    kling_element_refs: set[str] = set()
+    for path in grouped_files.get("kling_element_reference_record", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        ref_id = data.get("kling_element_reference_id")
+        if isinstance(ref_id, str) and ref_id:
+            kling_element_refs.add(ref_id)
+
+        perspectives = data.get("gpt_images_2_perspectives")
+        if isinstance(perspectives, dict):
+            for key in (
+                "front_hero",
+                "three_quarter_left",
+                "three_quarter_right",
+                "rear_or_side",
+            ):
+                ref = perspectives.get(key)
+                if isinstance(ref, str) and ref and ref not in gpt_prompt_ids:
+                    issues.append(
+                        ProductionValidationIssue(
+                            file=_relative(path, repo_root),
+                            record_type="kling_element_reference_record",
+                            field_path="gpt_images_2_perspectives",
+                            message=f"missing GPT Images 2 perspective prompt: {ref}",
+                        )
+                    )
+        # TODO(PROD-LINE): When Midjourney hero reference schema/path is introduced,
+        # enforce strict source_midjourney_reference existence checks here.
+
+    # Index dialogue/performance/voice/native-audio records.
+    dialogue_extract_ids: set[str] = set()
+    for path in grouped_files.get("dialogue_extract_record", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        rec_id = data.get("dialogue_extract_id")
+        if isinstance(rec_id, str) and rec_id:
+            dialogue_extract_ids.add(rec_id)
+
+    performance_intent_ids: set[str] = set()
+    for path in grouped_files.get("performance_intent_record", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        rec_id = data.get("performance_intent_id")
+        if isinstance(rec_id, str) and rec_id:
+            performance_intent_ids.add(rec_id)
+
+    voice_binding_by_id: dict[str, dict[str, Any]] = {}
+    for path in grouped_files.get("voice_binding_record", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        rec_id = data.get("voice_binding_id")
+        if isinstance(rec_id, str) and rec_id:
+            voice_binding_by_id[rec_id] = data
+
+    native_audio_compat_by_id: dict[str, dict[str, Any]] = {}
+    for path in grouped_files.get("native_audio_compatibility_record", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        rec_id = data.get("native_audio_compatibility_id")
+        if isinstance(rec_id, str) and rec_id:
+            native_audio_compat_by_id[rec_id] = data
+        if data.get("native_audio") is True and data.get("compatible") is False:
+            if data.get("status") != "blocked":
+                issues.append(
+                    ProductionValidationIssue(
+                        file=_relative(path, repo_root),
+                        record_type="native_audio_compatibility_record",
+                        field_path="status",
+                        message="incompatible native audio record must use blocked status",
+                    )
+                )
+
+    # Validate Kling shot prompt cross-links.
+    for path in grouped_files.get("kling_shot_prompt_record", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+
+        linked_refs = data.get("linked_element_refs")
+        if isinstance(linked_refs, list):
+            for ref_id in linked_refs:
+                if isinstance(ref_id, str) and ref_id and ref_id not in kling_element_refs:
+                    issues.append(
+                        ProductionValidationIssue(
+                            file=_relative(path, repo_root),
+                            record_type="kling_shot_prompt_record",
+                            field_path="linked_element_refs",
+                            message=f"missing linked Kling element reference: {ref_id}",
+                        )
+                    )
+
+        status = data.get("status")
+        materialized_output = data.get("materialized_output")
+        if status == "materialized" and isinstance(materialized_output, dict):
+            ext_ref = materialized_output.get("external_storage_ref")
+            platform_job_id = materialized_output.get("platform_job_id")
+            repo_binary_committed = materialized_output.get("repo_binary_committed")
+            if not isinstance(ext_ref, str) or not ext_ref.strip():
+                issues.append(
+                    ProductionValidationIssue(
+                        file=_relative(path, repo_root),
+                        record_type="kling_shot_prompt_record",
+                        field_path="materialized_output.external_storage_ref",
+                        message="materialized shot output requires external_storage_ref",
+                    )
+                )
+            if not isinstance(platform_job_id, str) or not platform_job_id.strip():
+                issues.append(
+                    ProductionValidationIssue(
+                        file=_relative(path, repo_root),
+                        record_type="kling_shot_prompt_record",
+                        field_path="materialized_output.platform_job_id",
+                        message="materialized shot output requires platform_job_id",
+                    )
+                )
+            if repo_binary_committed is not False:
+                issues.append(
+                    ProductionValidationIssue(
+                        file=_relative(path, repo_root),
+                        record_type="kling_shot_prompt_record",
+                        field_path="materialized_output.repo_binary_committed",
+                        message="materialized shot output must keep repo_binary_committed=false",
+                    )
+                )
+
+        if data.get("native_audio") is True:
+            dialogue_items = data.get("dialogue")
+            dialogue_refs: set[str] = set()
+            performance_refs: set[str] = set()
+            if isinstance(dialogue_items, list):
+                for item in dialogue_items:
+                    if isinstance(item, str):
+                        if item.startswith("DLG_"):
+                            dialogue_refs.add(item)
+                        if item.startswith("PERF_"):
+                            performance_refs.add(item)
+            missing_dialogue = sorted(ref for ref in dialogue_refs if ref not in dialogue_extract_ids)
+            missing_performance = sorted(
+                ref for ref in performance_refs if ref not in performance_intent_ids
+            )
+            if not dialogue_refs or not performance_refs or missing_dialogue or missing_performance:
+                missing_id = (
+                    (missing_dialogue + missing_performance)[0]
+                    if (missing_dialogue + missing_performance)
+                    else "DLG_/PERF_ reference"
+                )
+                issues.append(
+                    ProductionValidationIssue(
+                        file=_relative(path, repo_root),
+                        record_type="kling_shot_prompt_record",
+                        field_path="dialogue",
+                        message=(
+                            "missing dialogue extract/performance intent reference: "
+                            f"{missing_id}"
+                        ),
+                    )
+                )
+
+            voice_binding_id = data.get("voice_binding")
+            if isinstance(voice_binding_id, str) and voice_binding_id:
+                voice_record = voice_binding_by_id.get(voice_binding_id)
+                if voice_record is None:
+                    issues.append(
+                        ProductionValidationIssue(
+                            file=_relative(path, repo_root),
+                            record_type="kling_shot_prompt_record",
+                            field_path="voice_binding",
+                            message=f"missing voice binding record: {voice_binding_id}",
+                        )
+                    )
+                elif voice_record.get("binding_status") == "pending":
+                    issues.append(
+                        ProductionValidationIssue(
+                            file=_relative(path, repo_root),
+                            record_type="kling_shot_prompt_record",
+                            field_path="voice_binding",
+                            message=(
+                                "voice binding is pending and blocks dialogue shot production: "
+                                f"{voice_binding_id}"
+                            ),
+                        )
+                    )
+
+            native_audio_compat_ref = data.get("native_audio_compatibility")
+            if isinstance(native_audio_compat_ref, str) and native_audio_compat_ref:
+                if native_audio_compat_ref not in native_audio_compat_by_id:
+                    issues.append(
+                        ProductionValidationIssue(
+                            file=_relative(path, repo_root),
+                            record_type="kling_shot_prompt_record",
+                            field_path="dialogue",
+                            message=(
+                                "missing dialogue extract/performance intent reference: "
+                                f"{native_audio_compat_ref}"
+                            ),
+                        )
+                    )
+
+    return issues
+
+
 def _load_structural_record(
     *,
     path: Path,
@@ -913,7 +1152,7 @@ def run_validation(
     by_record_type = {record_type: len(files) for record_type, files in grouped_files.items()}
 
     all_issues: list[ProductionValidationIssue] = []
-    invalid_count = 0
+    invalid_files: set[str] = set()
 
     for record_type, files in grouped_files.items():
         for path in files:
@@ -1319,13 +1558,21 @@ def run_validation(
                 ]
 
             if file_issues:
-                invalid_count += 1
+                invalid_files.add(_relative(path, repo_root))
                 all_issues.extend(file_issues)
+
+    cross_record_issues = validate_prod_line_cross_references(
+        repo_root=repo_root,
+        grouped_files=grouped_files,
+    )
+    if cross_record_issues:
+        all_issues.extend(cross_record_issues)
+        invalid_files.update(issue.file for issue in cross_record_issues)
 
     report = ProductionValidationReport(
         total_files=total,
-        valid_files=total - invalid_count,
-        invalid_files=invalid_count,
+        valid_files=total - len(invalid_files),
+        invalid_files=len(invalid_files),
         by_record_type=by_record_type,
         issues=all_issues,
     )
