@@ -100,9 +100,6 @@ class MidjourneyAdapter(BaseAdapter):
         words = text.split()
         if len(words) > _HARD_LIMIT:
             text = " ".join(words[:_HARD_LIMIT])
-        elif len(words) > _SOFT_LIMIT:
-            # Keep first priority window and compact remainder
-            text = " ".join(words[:_SOFT_LIMIT])
 
         return text
 

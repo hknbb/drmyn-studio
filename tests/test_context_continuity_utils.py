@@ -245,3 +245,49 @@ def test_source_context_carries_unresolved_markers_as_warnings(tmp_path: Path) -
     warnings = "\n".join(context.unresolved_warnings)
     assert "TODO_REVIEW" in warnings
     assert "scene_excerpt" in warnings
+
+
+def test_source_context_collects_location_sub_area_reference_assets(tmp_path: Path) -> None:
+    _write_yaml(
+        tmp_path / "planning" / "scenes" / "SC0001" / "scene_card.yaml",
+        {
+            "scene_id": "SC0001",
+            "location_id": "LOC001",
+            "characters_present": [],
+            "continuity_refs": {"wardrobe": [], "props": []},
+            "excerpt_ref": "scene_excerpt.md",
+        },
+    )
+    _write_text(
+        tmp_path / "planning" / "scenes" / "SC0001" / "scene_excerpt.md",
+        "Scene excerpt.",
+    )
+    _write_yaml(
+        tmp_path / "planning" / "locations" / "LOC001.yaml",
+        {"location_id": "LOC001", "name": "Vale Residence"},
+    )
+    _write_text(tmp_path / "source" / "style_bible.md", "Style text.")
+    _write_yaml(
+        tmp_path
+        / "visual_dev"
+        / "elements"
+        / "locations"
+        / "LOC001"
+        / "sub_areas"
+        / "kitchen_passage"
+        / "element_view_plan.yaml",
+        {
+            "views": [
+                {
+                    "status": "complete",
+                    "canonical_asset_path": "visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage/canonical/kitchen_passage_front.png",
+                }
+            ]
+        },
+    )
+
+    context = SourceContextAgent(tmp_path).build("SC0001")
+    assert (
+        "visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage/canonical/kitchen_passage_front.png"
+        in context.element_reference_assets["object"]
+    )
