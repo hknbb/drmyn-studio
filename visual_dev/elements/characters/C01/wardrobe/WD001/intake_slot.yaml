@@ -11,16 +11,12 @@ required_views:
 - context_reference
 notes: Lean, upright silhouette; muted domestic neutrals; early-morning/mid-morning
   light.
-source_status: source_images_in_repo
-copyright_review: approved
-provenance_review: approved
-intake_ready_to_proceed: true
-canonical_assets_committed:
-- visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_front.png
-- visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_three_quarter.png
-- visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_back.png
-- visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_context.png
-storage_policy: git_lfs_approved_references_only
+source_status: not_collected
+copyright_review: pending
+provenance_review: pending
+intake_ready_to_proceed: false
+canonical_assets_committed: []
+storage_policy: no_binary_commits
 forbidden_actions:
 - Do not add placeholder binaries.
 - Do not mark copyright_review complete without reviewed evidence.

@@ -1038,3 +1038,92 @@ class TestAliasInjection:
         assert "@Nadia fills" in prompt_text, (
             f"WATER_GLASS_ACTION pronoun 'She fills' not rewritten to '@Nadia fills': {prompt_text}"
         )
+
+
+class TestCameraLightingMotionConsumption:
+    def test_adapter_reads_beat_full_text_when_action_truncated(self, tmp_path):
+        _create_element_bindings(tmp_path)
+        manifest_path = _create_manifest(
+            tmp_path,
+            shots=[
+                {
+                    "shot_id": "SHOT_SC0001_01_A",
+                    "duration_seconds": 5,
+                    "source_beat_ids": ["WATER_GLASS_ACTION"],
+                    "required_element_ids": ["C01"],
+                    "prompt_action": "A single unwashed...",
+                    "duration_reason": "normal/action 5s",
+                }
+            ],
+            total_duration=5,
+            required_element_ids=["C01"],
+        )
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+        beat_plan_path = tmp_path / "planning" / "scenes" / "SC0001" / "scene_beat_plan.yaml"
+        beat_plan_path.parent.mkdir(parents=True, exist_ok=True)
+        beat_plan_path.write_text(
+            yaml.dump(
+                {
+                    "record_type": "scene_beat_plan",
+                    "scene_id": "SC0001",
+                    "source_beats": [
+                        {
+                            "beat_id": "WATER_GLASS_ACTION",
+                            "content": "She fills a glass of water, drinks half, sets it exactly where she found it.",
+                        }
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(str(manifest_path))
+        assert "@Nadia fills a glass of water" in result.prompt_record["prompt_text"]
+
+    def test_camera_terms_use_dolly_not_move(self, tmp_path):
+        manifest_path = _create_manifest(
+            tmp_path,
+            shots=[
+                {
+                    "shot_id": "SHOT_SC0001_01_A",
+                    "duration_seconds": 5,
+                    "source_beat_ids": ["B1"],
+                    "prompt_action": "NADIA moves through corridor.",
+                    "duration_reason": "normal/action 5s",
+                    "camera": {"movement": "dolly_in", "framing": "medium"},
+                    "lighting": {"source": "filtered_daylight"},
+                    "motion": {"subject_intensity": 0.4, "camera_intensity": 0.3},
+                    "required_element_ids": ["C01"],
+                }
+            ],
+            total_duration=5,
+            required_element_ids=["C01"],
+        )
+        _create_element_bindings(tmp_path, bindings=[{
+            "schema_version": "0.x-draft",
+            "record_type": "element_binding",
+            "element_id": "C01",
+            "element_type": "character",
+            "kling_alias": "@Nadia",
+            "binding_status": "created",
+        }])
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+
+        adapter = KlingOmniAdapter(tmp_path)
+        prompt_text = adapter.generate_from_clip_manifest(str(manifest_path)).prompt_record["prompt_text"]
+        assert "dolly forward" in prompt_text
+        assert "move forward" not in prompt_text
+
+    def test_motion_intensity_lighting_and_end_state_present(self):
+        repo_root = Path(__file__).parent.parent.parent
+        manifest_ref = repo_root / "planning" / "scenes" / "SC0001" / "manifests" / "CLIP_SC0001_01_manifest.yaml"
+        if not manifest_ref.exists():
+            pytest.skip("SC0001 manifest not found")
+        adapter = KlingOmniAdapter(repo_root)
+        prompt_text = adapter.generate_from_clip_manifest(str(manifest_ref)).prompt_record["prompt_text"]
+        assert "motion intensity" in prompt_text
+        assert "filtered_daylight" in prompt_text
+        assert "settled end state" in prompt_text

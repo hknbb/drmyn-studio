@@ -17,7 +17,12 @@ QUEUE_OUTPUT_MD = Path("evidence/validation_reports/canon_hydration_queue.md")
 
 def load_yaml(path: Path) -> Any:
     with path.open("r", encoding="utf-8") as handle:
-        return yaml.safe_load(handle)
+        docs = list(yaml.safe_load_all(handle))
+    if not docs:
+        return None
+    if len(docs) == 1:
+        return docs[0]
+    return docs
 
 
 def read_text(path: Path) -> str:

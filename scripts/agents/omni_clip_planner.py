@@ -72,6 +72,9 @@ class _Shot:
     is_dialogue: bool = False
     is_transition: bool = False
     required_element_ids: list[str] = field(default_factory=list)
+    camera: dict[str, Any] = field(default_factory=dict)
+    lighting: dict[str, Any] = field(default_factory=dict)
+    motion: dict[str, Any] = field(default_factory=dict)
 
 
 # ---------------------------------------------------------------------------
@@ -151,6 +154,25 @@ def _resolve_shots(
        last accumulated shot, regardless of may_merge_with_next.
     4. Multiple consecutive short_inserts are accumulated and merged together.
     """
+    def _as_mapping(value: Any) -> dict[str, Any]:
+        return dict(value) if isinstance(value, dict) else {}
+
+    def _merge_motion_max(shots: list[_Shot], anchor: _Shot) -> dict[str, Any]:
+        merged: dict[str, Any] = {}
+        for key in ("subject_intensity", "camera_intensity"):
+            values: list[float] = []
+            for s in shots:
+                raw = s.motion.get(key)
+                if isinstance(raw, (int, float)):
+                    values.append(float(raw))
+            if values:
+                merged[key] = max(values)
+
+        anchor_blocking = anchor.motion.get("blocking_notes")
+        if isinstance(anchor_blocking, str) and anchor_blocking.strip():
+            merged["blocking_notes"] = anchor_blocking.strip()
+        return merged
+
     # Build raw candidates with per-beat durations
     raw: list[tuple[dict, _Shot]] = []
     for beat in beats:
@@ -173,6 +195,9 @@ def _resolve_shots(
             is_dialogue=(role == "dialogue"),
             is_transition=(role == "transition"),
             required_element_ids=elem_ids,
+            camera=_as_mapping(beat.get("camera")),
+            lighting=_as_mapping(beat.get("lighting")),
+            motion=_as_mapping(beat.get("motion")),
         )))
 
     def _union_elements(shots: list[_Shot]) -> list[str]:
@@ -214,6 +239,9 @@ def _resolve_shots(
                         is_dialogue=shot.is_dialogue or nxt_shot.is_dialogue,
                         is_transition=shot.is_transition,
                         required_element_ids=_union_elements([shot, nxt_shot]),
+                        camera=shot.camera,
+                        lighting=shot.lighting,
+                        motion=_merge_motion_max([shot, nxt_shot], shot),
                     )
                     j += 1
 
@@ -253,6 +281,9 @@ def _resolve_shots(
                     is_dialogue=nxt_shot.is_dialogue or any(s.is_dialogue for s in pending),
                     is_transition=nxt_shot.is_transition,
                     required_element_ids=_union_elements(pending + [nxt_shot]),
+                    camera=nxt_shot.camera,
+                    lighting=nxt_shot.lighting,
+                    motion=_merge_motion_max(pending + [nxt_shot], nxt_shot),
                 ))
                 i = j + 1
 
@@ -271,6 +302,9 @@ def _resolve_shots(
                         is_dialogue=last.is_dialogue or any(s.is_dialogue for s in pending),
                         is_transition=last.is_transition,
                         required_element_ids=_union_elements([last] + pending),
+                        camera=last.camera,
+                        lighting=last.lighting,
+                        motion=_merge_motion_max([last] + pending, last),
                     )
                 i = j  # j == n here
 
@@ -315,6 +349,12 @@ def _pack_clips(shots: list[_Shot], scene_id: str) -> list[dict[str, Any]]:
                 sd["dialogue_line_ids"] = s.line_ids
             if s.required_element_ids:
                 sd["required_element_ids"] = s.required_element_ids
+            if s.camera:
+                sd["camera"] = s.camera
+            if s.lighting:
+                sd["lighting"] = s.lighting
+            if s.motion:
+                sd["motion"] = s.motion
             shots_out.append(sd)
 
         dlg_shot_count = sum(1 for s in buf if s.is_dialogue)

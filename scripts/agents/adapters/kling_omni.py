@@ -60,6 +60,24 @@ def _read_yaml(path: Path) -> dict[str, Any] | None:
     return data if isinstance(data, dict) else None
 
 
+def _read_beat_plan_lookup(path: Path) -> dict[str, str]:
+    doc = _read_yaml(path)
+    if not doc:
+        return {}
+    beats = doc.get("source_beats")
+    if not isinstance(beats, list):
+        return {}
+    lookup: dict[str, str] = {}
+    for beat in beats:
+        if not isinstance(beat, dict):
+            continue
+        bid = beat.get("beat_id")
+        content = beat.get("content")
+        if isinstance(bid, str) and isinstance(content, str) and content.strip():
+            lookup[bid] = content.strip()
+    return lookup
+
+
 def _now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -296,6 +314,7 @@ class KlingOmniAdapter:
         kling_native_audio = manifest["kling_native_audio"]
         scene_beat_plan_ref = manifest["source_scene_beat_plan_ref"]
         dialogue_beats_ref = manifest["source_dialogue_beats_ref"]
+        beat_plan_lookup = _read_beat_plan_lookup(self.repo_root / scene_beat_plan_ref)
 
         scene_card_path = self.repo_root / "planning" / "scenes" / scene_id / "scene_card.yaml"
         scene_card = _read_yaml(scene_card_path)
@@ -331,6 +350,7 @@ class KlingOmniAdapter:
             alias_map=alias_map,
             char_ids=char_ids,
             required_aliases=required_aliases,
+            beat_content_lookup=beat_plan_lookup,
         )
 
         # Warn about planned-only elements (in required_element_ids but not active)
@@ -499,6 +519,7 @@ class KlingOmniAdapter:
         alias_map: dict[str, str],
         char_ids: set[str],
         required_aliases: list[str],
+        beat_content_lookup: dict[str, str] | None = None,
     ) -> tuple[str, list[str]]:
         """Build prompt text with element alias injection and pronoun rewriting.
 
@@ -511,7 +532,7 @@ class KlingOmniAdapter:
             # No active aliases — fall back to plain text
             return (
                 self._build_prompt_text_from_manifest(
-                    shots, total_duration, max_duration, continuity_mode
+                    shots, total_duration, max_duration, continuity_mode, beat_content_lookup
                 ),
                 [],
             )
@@ -525,13 +546,22 @@ class KlingOmniAdapter:
         for index, shot in enumerate(shots, start=1):
             duration = int(shot.get("duration_seconds", 0))
             raw_action = _text(shot.get("prompt_action"), "approved action")
+            source_beat_ids: list[str] = list(shot.get("source_beat_ids") or [])
+            if raw_action.endswith("...") and source_beat_ids and beat_content_lookup:
+                full = beat_content_lookup.get(source_beat_ids[0], "")
+                if full:
+                    raw_action = full
             shot_elem_ids: list[str] = list(shot.get("required_element_ids") or [])
 
             rewritten, warnings = _rewrite_shot_action(
                 raw_action, shot_elem_ids, alias_map, char_ids
             )
             all_warnings.extend(warnings)
-            parts.append(f"Shot {index} ({duration}s): {rewritten}")
+            direction = self._build_shot_direction_phrase(shot)
+            parts.append(
+                f"Shot {index} ({duration}s): {rewritten}. {direction} "
+                "Action resolves into a settled end state."
+            )
 
         parts.append(f"Continuity: {continuity_mode}.")
         parts.append(
@@ -549,12 +579,55 @@ class KlingOmniAdapter:
 
         return text, all_warnings
 
+    @staticmethod
+    def _build_shot_direction_phrase(shot: dict[str, Any]) -> str:
+        camera = shot.get("camera") if isinstance(shot.get("camera"), dict) else {}
+        lighting = shot.get("lighting") if isinstance(shot.get("lighting"), dict) else {}
+        motion = shot.get("motion") if isinstance(shot.get("motion"), dict) else {}
+
+        cam_movement = camera.get("movement")
+        movement_map = {
+            "dolly_in": "dolly forward",
+            "dolly_out": "dolly back",
+            "tracking": "tracking move",
+            "pan": "pan",
+            "tilt": "tilt",
+            "crane": "crane move",
+            "handheld": "handheld drift",
+            "whip_pan": "whip pan",
+            "rack_focus": "rack focus",
+            "static": "locked static framing",
+        }
+        movement_term = movement_map.get(cam_movement, "controlled camera movement")
+        framing = camera.get("framing")
+        framing_term = f"{framing} framing" if isinstance(framing, str) else "cinematic framing"
+
+        light_source = lighting.get("source")
+        light_quality = lighting.get("quality")
+        light_temp = lighting.get("color_temp")
+        light_terms = [t for t in [light_source, light_quality, light_temp] if isinstance(t, str)]
+        lighting_term = ", ".join(light_terms) if light_terms else "motivated lighting"
+
+        subject_i = motion.get("subject_intensity")
+        camera_i = motion.get("camera_intensity")
+        motion_parts: list[str] = []
+        if isinstance(subject_i, (int, float)):
+            motion_parts.append(f"subject motion intensity {float(subject_i):.1f}")
+        if isinstance(camera_i, (int, float)):
+            motion_parts.append(f"camera motion intensity {float(camera_i):.1f}")
+        motion_term = "; ".join(motion_parts) if motion_parts else "measured motion"
+
+        return (
+            f"Use {framing_term}, {movement_term}, {lighting_term}; {motion_term}."
+        )
+
     def _build_prompt_text_from_manifest(
         self,
         shots: list[Any],
         total_duration: int,
         max_duration: int,
         continuity_mode: str,
+        beat_content_lookup: dict[str, str] | None = None,
     ) -> str:
         """Build prompt text from manifest shots (not scene_card.shot_list_omni).
         Legacy path used when no active element aliases are available.
@@ -563,7 +636,16 @@ class KlingOmniAdapter:
         for index, shot in enumerate(shots, start=1):
             duration = int(shot.get("duration_seconds", 0))
             prompt_action = _text(shot.get("prompt_action"), "approved action")
-            shot_lines.append(f"Shot {index} ({duration}s): {prompt_action}")
+            source_beat_ids: list[str] = list(shot.get("source_beat_ids") or [])
+            if prompt_action.endswith("...") and source_beat_ids and beat_content_lookup:
+                full = beat_content_lookup.get(source_beat_ids[0], "")
+                if full:
+                    prompt_action = full
+            direction = self._build_shot_direction_phrase(shot)
+            shot_lines.append(
+                f"Shot {index} ({duration}s): {prompt_action}. {direction} "
+                "Action resolves into a settled end state."
+            )
 
         parts = [
             "Create one external Kling Omni video instruction.",

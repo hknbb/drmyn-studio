@@ -984,3 +984,62 @@ def test_adapters_produce_critic_passing_records(tmp_path: Path) -> None:
             f"{AdapterCls.__name__} generated record failed critic:\n"
             + "\n".join(result.hard_errors)
         )
+
+
+def test_critic_fails_when_kling_lighting_not_consumed(tmp_path: Path) -> None:
+    import shutil
+
+    (tmp_path / "docs" / "model_guides").mkdir(parents=True)
+    (tmp_path / "schemas").mkdir()
+    shutil.copy(REPO_ROOT / "docs" / "model_guides" / "kling_omni.yaml",
+                tmp_path / "docs" / "model_guides" / "kling_omni.yaml")
+    shutil.copy(REPO_ROOT / "schemas" / "prompt_record.schema.json",
+                tmp_path / "schemas" / "prompt_record.schema.json")
+
+    manifest_dir = tmp_path / "planning" / "scenes" / "SC0003" / "manifests"
+    manifest_dir.mkdir(parents=True, exist_ok=True)
+    manifest_path = manifest_dir / "CLIP_SC0003_01_manifest.yaml"
+    manifest_path.write_text(yaml.safe_dump({
+        "record_type": "omni_clip_manifest",
+        "shots": [{"lighting": {"source": "filtered_daylight"}}],
+    }), encoding="utf-8")
+
+    critic = CriticAgent(tmp_path)
+    record = _make_kling_omni_record(
+        prompt_text="Create one Kling Omni clip with neutral framing.",
+        required_element_aliases=None,
+    )
+    result = critic.check(record)
+    assert not result.passed
+    assert any("lighting" in e.lower() for e in result.hard_errors)
+
+
+def test_critic_warns_when_kling_high_motion_not_consumed(tmp_path: Path) -> None:
+    import shutil
+
+    (tmp_path / "docs" / "model_guides").mkdir(parents=True)
+    (tmp_path / "schemas").mkdir()
+    shutil.copy(REPO_ROOT / "docs" / "model_guides" / "kling_omni.yaml",
+                tmp_path / "docs" / "model_guides" / "kling_omni.yaml")
+    shutil.copy(REPO_ROOT / "schemas" / "prompt_record.schema.json",
+                tmp_path / "schemas" / "prompt_record.schema.json")
+
+    manifest_dir = tmp_path / "planning" / "scenes" / "SC0003" / "manifests"
+    manifest_dir.mkdir(parents=True, exist_ok=True)
+    manifest_path = manifest_dir / "CLIP_SC0003_01_manifest.yaml"
+    manifest_path.write_text(yaml.safe_dump({
+        "record_type": "omni_clip_manifest",
+        "shots": [{
+            "lighting": {"source": "filtered_daylight"},
+            "motion": {"subject_intensity": 0.9},
+        }],
+    }), encoding="utf-8")
+
+    critic = CriticAgent(tmp_path)
+    record = _make_kling_omni_record(
+        prompt_text="Shot with filtered_daylight and static composition.",
+        required_element_aliases=None,
+    )
+    result = critic.check(record)
+    assert result.passed
+    assert any("high motion" in w.lower() for w in result.soft_warnings)

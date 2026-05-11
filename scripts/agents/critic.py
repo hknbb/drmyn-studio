@@ -132,6 +132,7 @@ class CriticAgent:
         self._check_negative_prompt_rule(prompt_record, hard)
         self._check_element_aliases(prompt_record, hard)
         self._check_prompt_char_limits(prompt_record, hard)
+        self._check_kling_metadata_consumption(prompt_record, hard, soft)
 
         # Soft checks — always after hard checks
         self._check_unresolved_markers(prompt_record, soft)
@@ -259,6 +260,12 @@ class CriticAgent:
             "chatgpt_image": "chatgpt_image_best_available",
             "nano_banana": "nano_banana_best_available",
         }
+
+        # Legacy compatibility: some records carry only model_guidance_snapshot path
+        legacy_snapshot_ref = params.get("model_guidance_snapshot")
+        if legacy_snapshot_ref and not params.get("model_guidance_snapshot_ref"):
+            self._check_legacy_snapshot_mode(record, errors, str(legacy_snapshot_ref), target_model)
+            return
 
         # Check required A6.3 fields
         required_fields = [
@@ -398,6 +405,59 @@ class CriticAgent:
                 f"snapshot.{resolved_model_role} ({expected!r})"
             )
 
+    def _check_legacy_snapshot_mode(
+        self,
+        record: dict[str, Any],
+        errors: list[str],
+        snapshot_ref: str,
+        target_model: str | None,
+    ) -> None:
+        snapshot_path = self.repo_root / snapshot_ref
+        if not snapshot_path.exists():
+            errors.append(f"model_guidance_snapshot file not found: {snapshot_path}")
+            return
+        try:
+            snapshot = yaml.safe_load(snapshot_path.read_text(encoding="utf-8")) or {}
+        except Exception as exc:
+            errors.append(f"Cannot read model_guidance_snapshot {snapshot_ref!r}: {exc}")
+            return
+        if not isinstance(snapshot, dict):
+            errors.append(f"model_guidance_snapshot must be a mapping: {snapshot_path}")
+            return
+
+        # Legacy checks expected by tests/test_model_guidance_gate.py
+        if snapshot.get("model_id") and target_model and snapshot.get("model_id") != target_model:
+            errors.append(
+                f"model_id mismatch: snapshot model_id {snapshot.get('model_id')!r} != target {target_model!r}"
+            )
+
+        for i, src in enumerate(snapshot.get("sources") or []):
+            if not isinstance(src, dict):
+                continue
+            url = str(src.get("url") or "")
+            if "placeholder" in url.lower():
+                errors.append(f"sources.{i}.url contains placeholder")
+            if src.get("human_verified") is False:
+                errors.append(f"sources.{i}.human_verified must be true")
+
+        for rule in snapshot.get("extracted_rules") or []:
+            if isinstance(rule, str) and "PLACEHOLDER" in rule:
+                errors.append("PLACEHOLDER found in extracted_rules")
+
+        if snapshot.get("do_not_use_without_verification"):
+            errors.append("do_not_use_without_verification must be empty")
+
+        validity = snapshot.get("snapshot_validity") or {}
+        expires_at = validity.get("expires_at")
+        if isinstance(expires_at, str):
+            try:
+                expiry = _parse_utc_datetime(expires_at)
+                reference_time = self.reference_time or datetime.now(timezone.utc)
+                if reference_time > expiry:
+                    errors.append(f"snapshot expired at {expires_at}")
+            except ValueError:
+                errors.append(f"snapshot_validity.expires_at is not parseable: {expires_at!r}")
+
     def _check_negative_prompt_rule(self, record: dict, errors: list[str]) -> None:
         """
         Conditional negative_prompt rule derived from the model guide or snapshot capability.
@@ -517,6 +577,62 @@ class CriticAgent:
                 f"negative_prompt is {len(negative_prompt)} characters; "
                 f"Kling API hard limit is {KLING_NEGATIVE_PROMPT_MAX_CHARS} characters."
             )
+
+    def _load_manifest(self, manifest_ref: str) -> dict[str, Any] | None:
+        path = self.repo_root / manifest_ref
+        if not path.exists():
+            return None
+        try:
+            doc = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        except Exception:
+            return None
+        return doc if isinstance(doc, dict) else None
+
+    def _check_kling_metadata_consumption(
+        self,
+        record: dict[str, Any],
+        hard_errors: list[str],
+        soft_warnings: list[str],
+    ) -> None:
+        models = record.get("target_models") or []
+        if not models or models[0] != "kling_omni":
+            return
+        params = record.get("generation_params") or {}
+        manifest_ref = params.get("omni_clip_manifest_ref")
+        if not isinstance(manifest_ref, str) or not manifest_ref.strip():
+            return
+        manifest = self._load_manifest(manifest_ref)
+        if manifest is None:
+            return
+
+        shots = manifest.get("shots")
+        if not isinstance(shots, list):
+            return
+
+        prompt_text = str(record.get("prompt_text") or "").lower()
+        light_vocab = ("daylight", "practical", "artificial", "low-key", "high-key", "filtered_daylight")
+        high_motion_vocab = ("run", "rapid", "dolly", "whip", "tracking")
+
+        for shot in shots:
+            if not isinstance(shot, dict):
+                continue
+            lighting = shot.get("lighting") if isinstance(shot.get("lighting"), dict) else {}
+            motion = shot.get("motion") if isinstance(shot.get("motion"), dict) else {}
+
+            if lighting:
+                if not any(term in prompt_text for term in light_vocab):
+                    hard_errors.append(
+                        "Kling metadata consumption failed: manifest shot has lighting but prompt_text "
+                        "does not include recognized lighting vocabulary."
+                    )
+                    break
+
+            subj_i = motion.get("subject_intensity")
+            if isinstance(subj_i, (int, float)) and float(subj_i) > 0.7:
+                if not any(term in prompt_text for term in high_motion_vocab):
+                    soft_warnings.append(
+                        "Kling metadata consumption warning: high motion intensity shot lacks high-motion vocabulary."
+                    )
 
     # ------------------------------------------------------------------
     # Soft checks

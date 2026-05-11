@@ -594,6 +594,13 @@ def test_packer_unions_element_ids_on_backward_merge():
             "may_merge_with_next": True,
             "splittable": False,
             "required_element_ids": ["C01", "LOC001"],
+            "camera": {"movement": "tracking"},
+            "lighting": {"source": "filtered_daylight"},
+            "motion": {
+                "subject_intensity": 0.5,
+                "camera_intensity": 0.4,
+                "blocking_notes": "anchor beat note",
+            },
         },
         {
             "beat_id": "INSERT",
@@ -603,12 +610,22 @@ def test_packer_unions_element_ids_on_backward_merge():
             "may_merge_with_next": True,
             "splittable": False,
             "required_element_ids": ["C01"],
+            "motion": {
+                "subject_intensity": 0.7,
+                "camera_intensity": 0.2,
+                "blocking_notes": "insert note should be ignored",
+            },
         },
     ]
     dmap: dict = {}
     shots = _resolve_shots(beats, dmap)
     assert len(shots) == 1
     assert set(shots[0].required_element_ids) >= {"C01", "LOC001"}
+    assert shots[0].camera.get("movement") == "tracking"
+    assert shots[0].lighting.get("source") == "filtered_daylight"
+    assert shots[0].motion.get("subject_intensity") == 0.7
+    assert shots[0].motion.get("camera_intensity") == 0.4
+    assert shots[0].motion.get("blocking_notes") == "anchor beat note"
 
 
 def test_packer_unions_element_ids_on_forward_merge():
@@ -630,6 +647,7 @@ def test_packer_unions_element_ids_on_forward_merge():
             "may_merge_with_next": True,
             "splittable": False,
             "required_element_ids": ["PROP003"],
+            "motion": {"subject_intensity": 0.8, "camera_intensity": 0.9},
         },
         {
             "beat_id": "NEXT",
@@ -639,6 +657,13 @@ def test_packer_unions_element_ids_on_forward_merge():
             "may_merge_with_next": False,
             "splittable": False,
             "required_element_ids": ["C01", "PROP003"],
+            "camera": {"framing": "medium_close"},
+            "lighting": {"quality": "hard"},
+            "motion": {
+                "subject_intensity": 0.3,
+                "camera_intensity": 0.2,
+                "blocking_notes": "host next note",
+            },
         },
     ]
     dmap: dict = {}
@@ -648,6 +673,11 @@ def test_packer_unions_element_ids_on_forward_merge():
     merged = shots[1]
     assert "PROP003" in merged.required_element_ids
     assert "C01" in merged.required_element_ids
+    assert merged.camera.get("framing") == "medium_close"
+    assert merged.lighting.get("quality") == "hard"
+    assert merged.motion.get("subject_intensity") == 0.8
+    assert merged.motion.get("camera_intensity") == 0.9
+    assert merged.motion.get("blocking_notes") == "host next note"
 
 
 def test_beat_without_element_ids_produces_empty_list():
@@ -745,3 +775,74 @@ def test_sc0001_deterministic(repo_root):
             assert s1["shot_id"] == s2["shot_id"]
             assert s1["source_beat_ids"] == s2["source_beat_ids"]
             assert s1["duration_seconds"] == s2["duration_seconds"]
+
+
+def test_packer_propagates_camera_metadata_to_shot():
+    beats = [
+        {
+            "beat_id": "B1",
+            "content": "Camera metadata propagation",
+            "semantic_duration_hint": "normal",
+            "narrative_role": "action",
+            "may_merge_with_next": False,
+            "splittable": False,
+            "camera": {"framing": "medium", "movement": "tracking"},
+            "lighting": {"source": "filtered_daylight", "quality": "directional"},
+            "motion": {"subject_intensity": 0.4, "camera_intensity": 0.3},
+        }
+    ]
+    shots = _resolve_shots(beats, {})
+    assert shots[0].camera["movement"] == "tracking"
+    assert shots[0].lighting["source"] == "filtered_daylight"
+    assert shots[0].motion["subject_intensity"] == 0.4
+
+
+def test_packer_omits_empty_camera_field_when_no_data():
+    beats = [
+        _make_beat("B1", hint="normal", role="action", may_merge=False),
+    ]
+    shots = _resolve_shots(beats, {})
+    clips = _pack_clips(shots, "SC9999")
+    first_shot = clips[0]["shots"][0]
+    assert "camera" not in first_shot
+    assert "lighting" not in first_shot
+    assert "motion" not in first_shot
+
+
+def test_schema_accepts_optional_camera_lighting_motion_block():
+    schema = json.loads(Path("schemas/omni_clip_manifest.schema.json").read_text(encoding="utf-8"))
+    validator = jsonschema.Draft202012Validator(schema)
+    manifest = {
+        "schema_version": "0.x-draft",
+        "record_type": "omni_clip_manifest",
+        "scene_id": "SC0001",
+        "clip_id": "CLIP_SC0001_99",
+        "source_scene_beat_plan_ref": "planning/scenes/SC0001/scene_beat_plan.yaml",
+        "source_dialogue_beats_ref": "planning/scenes/SC0001/dialogue_beats.yaml",
+        "total_duration_seconds": 3,
+        "continuity_input_mode": "metadata_only",
+        "shots": [
+            {
+                "shot_id": "SHOT_SC0001_99_A",
+                "duration_seconds": 3,
+                "source_beat_ids": ["ESTABLISH_KITCHEN"],
+                "prompt_action": "Establish the corridor.",
+                "duration_reason": "normal/action 3s",
+                "camera": {"framing": "wide", "movement": "static"},
+                "lighting": {"source": "filtered_daylight", "quality": "directional"},
+                "motion": {"subject_intensity": 0.1, "camera_intensity": 0.0},
+            }
+        ],
+        "kling_native_audio": {
+            "enabled": False,
+            "provider_policy": "kling_native_only",
+            "external_tts_allowed": False,
+            "adr_vendor_allowed": False,
+        },
+        "provenance": {
+            "created_by": "test",
+            "created_at": "2026-05-08T22:00:00Z",
+        },
+    }
+    errors = list(validator.iter_errors(manifest))
+    assert not errors, "; ".join(e.message for e in errors)
