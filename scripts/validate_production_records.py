@@ -145,15 +145,24 @@ def _relative(path: Path, repo_root: Path) -> str:
 
 def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
     """Return production metadata YAML files grouped by validation target."""
-    production_batch_files = sorted(repo_root.glob(PRODUCTION_BATCH_PATTERN))
-    production_batch_set = set(production_batch_files)
-    # Keep legacy batch_job coverage but prevent double-validation of
-    # production_batch_*.yaml against the batch_job schema.
-    batch_job_files = [
-        path
-        for path in sorted(repo_root.glob(BATCH_JOB_PATTERN))
-        if path not in production_batch_set
-    ]
+    all_batch_job_files = sorted(repo_root.glob(BATCH_JOB_PATTERN))
+    production_batch_files: list[Path] = []
+    batch_job_files: list[Path] = []
+    for path in all_batch_job_files:
+        # Keep legacy batch_job coverage but prevent double-validation of
+        # production_batch records against the batch_job schema. Prefer explicit
+        # filename convention first, then fall back to record_type detection.
+        if path.match(PRODUCTION_BATCH_PATTERN):
+            production_batch_files.append(path)
+            continue
+        try:
+            data = load_yaml_file(path)
+        except Exception:
+            data = None
+        if isinstance(data, dict) and data.get("record_type") == "production_batch":
+            production_batch_files.append(path)
+        else:
+            batch_job_files.append(path)
 
     return {
         "image_selection": sorted(repo_root.glob(IMAGE_SELECTION_PATTERN)),

@@ -188,6 +188,22 @@ def test_production_batch_not_double_counted_as_batch_job(tmp_path: Path) -> Non
     assert report.invalid_files == 0
 
 
+def test_production_batch_record_type_detected_without_filename_prefix(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "evidence/batch_jobs/PB_SC0001_SEQ01_V01.yaml",
+        _valid_production_batch(),
+    )
+    grouped = collect_production_files(tmp_path)
+    assert len(grouped["production_batch"]) == 1
+    assert len(grouped["batch_job"]) == 0
+
+    report = run_validation(tmp_path)
+    assert report.by_record_type["production_batch"] == 1
+    assert report.by_record_type["batch_job"] == 0
+    assert report.invalid_files == 0
+
+
 def test_new_directories_missing_still_passes(tmp_path: Path) -> None:
     _copy_schemas(tmp_path)
     report = run_validation(tmp_path, report_json=tmp_path / "report.json")
