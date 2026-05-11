@@ -26,6 +26,7 @@ from scripts.agents.model_guidance_resolver import (
 
 
 CANONICAL_ID_RE = re.compile(r"\b(SC\d{4}|C\d{2}|LOC\d{3}|PROP\d{3}|WD\d{3})\b")
+CHARACTER_ID_RE = re.compile(r"^C\d{2}$")
 
 # Binding statuses that mean the element is active in Kling Element Library
 ACTIVE_BINDING_STATUSES = frozenset({"created", "voice_capable", "voice_locked"})
@@ -143,6 +144,30 @@ def _load_element_aliases(scene_id: str, repo_root: Path) -> tuple[dict[str, str
         pass
 
     return alias_map, char_ids
+
+
+def _load_audio_readiness(scene_id: str, repo_root: Path) -> dict[str, str]:
+    """Load native_audio_readiness by element_id from element_bindings."""
+    bindings_path = (
+        repo_root / "visual_dev" / "omni_sets" / scene_id / "element_bindings.yaml"
+    )
+    if not bindings_path.exists():
+        return {}
+    readiness: dict[str, str] = {}
+    try:
+        with bindings_path.open(encoding="utf-8") as fh:
+            for doc in yaml.safe_load_all(fh):
+                if not isinstance(doc, dict):
+                    continue
+                elem_id = doc.get("element_id")
+                if not isinstance(elem_id, str) or not elem_id:
+                    continue
+                native = doc.get("native_audio_readiness")
+                if isinstance(native, str) and native.strip():
+                    readiness[elem_id] = native.strip().lower()
+    except Exception:
+        return {}
+    return readiness
 
 
 def _rewrite_shot_action(
@@ -378,6 +403,7 @@ class KlingOmniAdapter:
                     f"Element {eid!r} is in required_element_ids but has no active "
                     "Kling binding (status may be 'planned'); alias not injected."
                 )
+        all_warnings = alias_warnings + planned_warnings
 
         source_refs: dict[str, Any] = {
             "scene_card": _relative(scene_card_path, self.repo_root),
@@ -412,11 +438,55 @@ class KlingOmniAdapter:
         if required_aliases:
             generation_params["required_element_aliases"] = required_aliases
 
-        if kling_native_audio.get("enabled"):
+        audio_enabled = bool(kling_native_audio.get("enabled"))
+        gate_status = "allowed_audio_off"
+        gate_reason = "audio_not_requested"
+        audio_passes = {"performance_test", "final_candidate", "final_locked"}
+        if render_pass == "visual_test":
+            gate_reason = "visual_test_default_audio_off"
+            if audio_enabled:
+                gate_status = "blocked"
+                gate_reason = "visual_test_requires_audio_off"
+                all_warnings.append(
+                    "Native Audio blocked: render_pass=visual_test requires audio-off."
+                )
+        elif render_pass in audio_passes and audio_enabled:
+            # Audio-enabled passes require ready speaking character bindings.
+            speaking_ids: set[str] = set()
+            for shot in shots:
+                if not isinstance(shot, dict):
+                    continue
+                for eid in shot.get("required_element_ids") or []:
+                    if isinstance(eid, str) and (
+                        eid in char_ids or bool(CHARACTER_ID_RE.match(eid))
+                    ):
+                        speaking_ids.add(eid)
+            readiness = _load_audio_readiness(scene_id, self.repo_root)
+            not_ready = [eid for eid in sorted(speaking_ids) if readiness.get(eid) != "ready"]
+            if not_ready:
+                gate_status = "blocked"
+                gate_reason = "speaker_not_ready:" + ",".join(not_ready)
+                all_warnings.append(
+                    "Native Audio blocked: speaking character bindings not ready: "
+                    + ", ".join(not_ready)
+                )
+            else:
+                gate_status = "allowed"
+                gate_reason = "speakers_ready"
+                generation_params["kling_native_audio"] = {
+                    "enabled": True,
+                    "provider_policy": kling_native_audio.get("provider_policy"),
+                }
+        elif audio_enabled:
+            gate_status = "allowed"
+            gate_reason = "audio_enabled_non_performance_pass"
             generation_params["kling_native_audio"] = {
                 "enabled": True,
                 "provider_policy": kling_native_audio.get("provider_policy"),
             }
+
+        generation_params["audio_gate_status"] = gate_status
+        generation_params["audio_gate_reason"] = gate_reason
 
         if self.model_guidance_mode == "dynamic_snapshot":
             resolved = resolve_model_guidance(
@@ -463,7 +533,6 @@ class KlingOmniAdapter:
             clip_id=clip_id,
         )
 
-        all_warnings = alias_warnings + planned_warnings
         return KlingOmniBuildResult(
             prompt_record=record,
             run_record=run_record,
