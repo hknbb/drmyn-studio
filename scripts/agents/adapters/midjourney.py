@@ -1,11 +1,10 @@
-"""
+﻿"""
 Midjourney T2I prompt adapter for Batch 4.
 
-Style: compact visual clauses, ≤60 words (updated from research: attention
-drops after 60 words, priority window is first 40). Subject leads; each
-anchor is stripped to its first clause (≤12 words). Negative prompt uses
-hyphenated compact terms for --no flag (Midjourney splits --no on spaces,
-so multi-word terms must use hyphens).
+Style: natural-language cinematic prompt with compact anchor clauses.
+Soft threshold (80 words) is warning-only; hard guard truncates at 200 words.
+Negative prompt uses hyphenated compact terms for --no flag (Midjourney
+splits --no on spaces, so multi-word terms must use hyphens).
 """
 
 from __future__ import annotations
@@ -25,7 +24,7 @@ class MidjourneyAdapter(BaseAdapter):
     """
     Generates Midjourney-style prompt records from a NeutralBrief.
 
-    Prompt style: comma-separated compact clauses, ≤60 words.
+    Prompt style: natural-language cinematic guidance with compact anchor clauses.
     Negative prompt: hyphenated compact terms for --no flag.
     Capability: supports_negative_prompt=limited (--no flag in practice).
     Model version resolved from model_guidance_snapshot at runtime, not hardcoded.
@@ -37,7 +36,7 @@ class MidjourneyAdapter(BaseAdapter):
     INTERNAL_MODEL_TARGET = "midjourney_image_best_available"
 
     # ------------------------------------------------------------------
-    # generation_params — AR recommendation (model version from snapshot)
+    # generation_params â€” AR recommendation (model version from snapshot)
     # ------------------------------------------------------------------
 
     def _extra_generation_params(self, brief: NeutralBrief) -> dict[str, Any]:
@@ -62,7 +61,7 @@ class MidjourneyAdapter(BaseAdapter):
         return params
 
     # ------------------------------------------------------------------
-    # Prompt text — natural language, soft-limited
+    # Prompt text â€” natural language, soft-limited
     # ------------------------------------------------------------------
 
     def _build_prompt_text(self, brief: NeutralBrief) -> str:
@@ -81,7 +80,7 @@ class MidjourneyAdapter(BaseAdapter):
             if state_clause:
                 parts.append(f"Continuity state: {state_clause}.")
 
-        # Visual anchor clauses — top 5
+        # Visual anchor clauses â€” top 5
         for anchor in brief.visual_anchors[:5]:
             clause = _compact(anchor.description, max_words=12)
             if clause:
@@ -104,14 +103,14 @@ class MidjourneyAdapter(BaseAdapter):
         return text
 
     # ------------------------------------------------------------------
-    # Negative prompt — hyphenated compact terms for --no, ≤20 terms
+    # Negative prompt â€” hyphenated compact terms for --no, â‰¤20 terms
     # ------------------------------------------------------------------
 
     def _build_negative_prompt(self, brief: NeutralBrief) -> str | None:
         """
         Build --no term list. Midjourney splits --no on spaces (word-by-word),
         so multi-word constraint phrases are converted to hyphenated compact
-        terms (≤4 tokens each) to avoid unintended word-level splitting.
+        terms (â‰¤4 tokens each) to avoid unintended word-level splitting.
         """
         if not brief.negative_constraints:
             return None
@@ -145,3 +144,4 @@ class MidjourneyAdapter(BaseAdapter):
                     if isinstance(seed, str) and seed.strip():
                         return seed.strip()
         return None
+

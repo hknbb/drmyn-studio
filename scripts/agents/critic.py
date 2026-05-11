@@ -610,7 +610,6 @@ class CriticAgent:
             return
 
         prompt_text = str(record.get("prompt_text") or "")
-        prompt_text_l = prompt_text.lower()
         light_vocab = ("daylight", "practical", "artificial", "low-key", "high-key", "filtered_daylight")
         high_motion_vocab = ("run", "rapid", "dolly", "whip", "tracking")
 
@@ -619,8 +618,14 @@ class CriticAgent:
                 continue
             lighting = shot.get("lighting") if isinstance(shot.get("lighting"), dict) else {}
             motion = shot.get("motion") if isinstance(shot.get("motion"), dict) else {}
-            shot_segment = self._extract_shot_segment(prompt_text, idx).lower()
-            haystack = shot_segment or prompt_text_l
+            shot_segment = self._extract_shot_segment(prompt_text, idx)
+            if not shot_segment:
+                hard_errors.append(
+                    f"Kling metadata consumption failed: could not find segment for Shot {idx} "
+                    "in prompt_text."
+                )
+                break
+            haystack = shot_segment.lower()
 
             if lighting:
                 if not any(term in haystack for term in light_vocab):
