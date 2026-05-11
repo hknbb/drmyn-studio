@@ -25,7 +25,7 @@ prompt_text: 'Create one Kling Omni element-based video clip. Total duration: 15
   Do not add new story facts.'
 negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
 generation_params:
-  model_guidance_mode: locked_guide
+  model_guidance_mode: dynamic_snapshot
   adapter_name: kling_omni
   clip_id: CLIP_SC0001_01
   total_duration_seconds: 15
@@ -46,7 +46,13 @@ generation_params:
   - '@Nadia'
   audio_gate_status: allowed_audio_off
   audio_gate_reason: visual_test_default_audio_off
-  model_guidance_ref: docs/model_guides/kling_omni.yaml
+  model_guidance_snapshot_ref: model_guidance_snapshots/kling/20260508T140000Z_kling_omni_video_best_available.yaml
+  provider: kling
+  provider_surface: api
+  resolved_model_name: Kling 3.0 Omni
+  resolved_model_role: best_for_this_task
+  guidance_observed_at: '2026-05-08T14:00:00Z'
+  guidance_expires_at: '2026-06-08T14:00:00Z'
 expected_output:
   asset_type: clip
   duration_seconds: 15
