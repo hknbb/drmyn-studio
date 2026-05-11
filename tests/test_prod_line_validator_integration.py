@@ -38,6 +38,9 @@ def _copy_schemas(repo_root: Path) -> None:
         "native_audio_compatibility_record.schema.json",
         "production_batch.schema.json",
         "model_guidance_snapshot.schema.json",
+        "perspective_qc_report.schema.json",
+        "dialogue_qc_report.schema.json",
+        "omni_qc_report.schema.json",
     ):
         (schemas_dir / name).write_text(
             (REPO_ROOT / "schemas" / name).read_text(encoding="utf-8"),
@@ -317,6 +320,135 @@ def _valid_native_audio_compatibility_record(
     }
 
 
+def _valid_perspective_qc_report() -> dict:
+    return {
+        "schema_version": "0.x-draft",
+        "record_type": "perspective_qc_report",
+        "perspective_qc_id": "PQC_C01_PERSPECTIVE_PACK_V001",
+        "status": "draft",
+        "scene_id": "SC0001",
+        "element_id": "C01",
+        "prompt_pack_id": "GPTIMG2_C01_PERSPECTIVE_PACK_V001",
+        "operator_session_ref": "OP-PROD-LINE-6-SC0001-PERSPECTIVE-REVIEW",
+        "perspective_scores": [
+            {
+                "prompt_id": "GPTIMG2_C01_P01_FRONT_V001",
+                "perspective": "front_hero",
+                "identity_preservation": None,
+                "perspective_usefulness": None,
+                "material_palette_continuity": None,
+                "production_reference_cleanliness": None,
+                "hallucination_absence": None,
+                "total_score": None,
+                "decision": "pending",
+            },
+            {
+                "prompt_id": "GPTIMG2_C01_P02_LEFT_V001",
+                "perspective": "three_quarter_left",
+                "identity_preservation": None,
+                "perspective_usefulness": None,
+                "material_palette_continuity": None,
+                "production_reference_cleanliness": None,
+                "hallucination_absence": None,
+                "total_score": None,
+                "decision": "pending",
+            },
+            {
+                "prompt_id": "GPTIMG2_C01_P03_RIGHT_V001",
+                "perspective": "three_quarter_right",
+                "identity_preservation": None,
+                "perspective_usefulness": None,
+                "material_palette_continuity": None,
+                "production_reference_cleanliness": None,
+                "hallucination_absence": None,
+                "total_score": None,
+                "decision": "pending",
+            },
+            {
+                "prompt_id": "GPTIMG2_C01_P04_REAR_V001",
+                "perspective": "rear_or_side",
+                "identity_preservation": None,
+                "perspective_usefulness": None,
+                "material_palette_continuity": None,
+                "production_reference_cleanliness": None,
+                "hallucination_absence": None,
+                "total_score": None,
+                "decision": "pending",
+            },
+        ],
+        "gate": {
+            "minimum_score": 85,
+            "all_four_required": True,
+            "can_advance_to_kling_reference": False,
+        },
+        "notes": "QC scaffold only; generated images do not exist yet.",
+    }
+
+
+def _valid_dialogue_qc_report() -> dict:
+    return {
+        "schema_version": "0.x-draft",
+        "record_type": "dialogue_qc_report",
+        "dialogue_qc_id": "DQC_SC0001_SH001_V001",
+        "status": "draft",
+        "scene_id": "SC0001",
+        "shot_id": "SH001",
+        "linked_dialogue_extract": "DLG_SC0001_V001",
+        "linked_performance_intent": "PERF_SC0001_SH001_V001",
+        "linked_voice_binding": "VOICE_C01_V001",
+        "linked_native_audio_compatibility": "NAC_SC0001_SH001_V001",
+        "operator_session_ref": "OP-PROD-LINE-6-SC0001-DIALOGUE-REVIEW",
+        "checks": {
+            "speaker_identity_correctness": "pending",
+            "line_accuracy": "pending",
+            "lip_sync_stability": "pending",
+            "performance_tone_match": "pending",
+            "unwanted_speech_or_subtitles": "pending",
+            "voice_binding_respected": "pending",
+            "language_accent_followed": "pending",
+            "unsupported_input_mode_combination": "pending",
+        },
+        "gate": {
+            "approve_candidate_threshold": 90,
+            "revise_threshold_min": 80,
+            "can_advance_to_candidate": False,
+        },
+        "notes": "QC scaffold only; no generated video/audio take exists yet.",
+    }
+
+
+def _valid_omni_qc_placeholder() -> dict:
+    return {
+        "schema_version": "0.x-draft",
+        "record_type": "omni_qc_report",
+        "scene_id": "SC0001",
+        "clip_id": "CLIP_SC0001_SH001_PILOT_V001",
+        "prompt_id": "SC0001__kling-shot-pilot__v01",
+        "variant_mode": "safe",
+        "render_pass": "performance_test",
+        "checks": {
+            "identity_consistency": "warn",
+            "location_continuity": "warn",
+            "camera_stability": "warn",
+            "motion_artifacts": "warn",
+            "hand_face_artifacts": "warn",
+            "audio_sync": "not_applicable",
+            "unwanted_speech": "not_applicable",
+            "narrative_beat": "warn",
+        },
+        "failure_risks": ["lip_sync_drift", "identity_drift", "unwanted_speech"],
+        "retry_rule": {
+            "action": "increase_constraints",
+            "note": "Placeholder QC scaffold before external Kling materialization; run actual QC after platform output exists.",
+        },
+        "selected_for_next_pass": False,
+        "provenance": {
+            "reviewed_by": "human_operator_pending",
+            "reviewed_at": "2026-05-11T00:00:00Z",
+        },
+    }
+
+
 def test_collect_production_files_includes_prod_line_types(tmp_path: Path) -> None:
     files = collect_production_files(tmp_path)
     for record_type in (
@@ -328,6 +460,8 @@ def test_collect_production_files_includes_prod_line_types(tmp_path: Path) -> No
         "voice_binding_record",
         "native_audio_compatibility_record",
         "production_batch",
+        "perspective_qc_report",
+        "dialogue_qc_report",
     ):
         assert record_type in files
         assert files[record_type] == []
@@ -663,6 +797,57 @@ def test_production_batch_does_not_require_nano_banana_when_not_listed(
     _write_yaml(
         tmp_path / "evidence/batch_jobs/production_batch_sc0001.yaml",
         batch,
+    )
+    report = run_validation(tmp_path)
+    assert report.invalid_files == 0
+
+
+def test_perspective_qc_scaffold_with_null_scores_validates(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "evidence/perspective_qc/PQC_C01_PERSPECTIVE_PACK_V001.yaml",
+        _valid_perspective_qc_report(),
+    )
+    report = run_validation(tmp_path)
+    assert report.invalid_files == 0
+    assert report.by_record_type["perspective_qc_report"] == 1
+
+
+def test_dialogue_qc_scaffold_with_pending_checks_validates(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "evidence/dialogue_qc/DQC_SC0001_SH001_V001.yaml",
+        _valid_dialogue_qc_report(),
+    )
+    report = run_validation(tmp_path)
+    assert report.invalid_files == 0
+    assert report.by_record_type["dialogue_qc_report"] == 1
+
+
+def test_omni_qc_placeholder_validates_with_selected_false(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "evidence/omni_qc/QC_SC0001_CLIP_SC0001_SH001_PILOT_V001.yaml",
+        _valid_omni_qc_placeholder(),
+    )
+    report = run_validation(tmp_path)
+    assert report.invalid_files == 0
+    assert report.by_record_type["omni_qc_report"] == 1
+
+
+def test_qc_scaffolds_do_not_require_binary_media_refs(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "evidence/perspective_qc/PQC_C01_PERSPECTIVE_PACK_V001.yaml",
+        _valid_perspective_qc_report(),
+    )
+    _write_yaml(
+        tmp_path / "evidence/dialogue_qc/DQC_SC0001_SH001_V001.yaml",
+        _valid_dialogue_qc_report(),
+    )
+    _write_yaml(
+        tmp_path / "evidence/omni_qc/QC_SC0001_CLIP_SC0001_SH001_PILOT_V001.yaml",
+        _valid_omni_qc_placeholder(),
     )
     report = run_validation(tmp_path)
     assert report.invalid_files == 0

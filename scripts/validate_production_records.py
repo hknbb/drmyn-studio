@@ -68,6 +68,8 @@ CANONICAL_ASSET_INTAKE_SLOT_PATTERN = "visual_dev/elements/**/intake_slot.yaml"
 CLEAN_START_AUDIT_PATTERN = "evidence/clean_start_audits/*.yaml"
 PRE_B8A_CLEAN_RESET_PATTERN = "evidence/pre_b8a_clean_resets/*.yaml"
 OMNI_QC_REPORT_PATTERN = "evidence/omni_qc/*.yaml"
+PERSPECTIVE_QC_REPORT_PATTERN = "evidence/perspective_qc/*.yaml"
+DIALOGUE_QC_REPORT_PATTERN = "evidence/dialogue_qc/*.yaml"
 GPT_IMAGES_PERSPECTIVE_PACK_PATTERN = (
     "visual_dev/elements/**/gpt_images_perspective_pack.yaml"
 )
@@ -205,6 +207,8 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         "clean_start_audit": sorted(repo_root.glob(CLEAN_START_AUDIT_PATTERN)),
         "pre_b8a_clean_reset": sorted(repo_root.glob(PRE_B8A_CLEAN_RESET_PATTERN)),
         "omni_qc_report": sorted(repo_root.glob(OMNI_QC_REPORT_PATTERN)),
+        "perspective_qc_report": sorted(repo_root.glob(PERSPECTIVE_QC_REPORT_PATTERN)),
+        "dialogue_qc_report": sorted(repo_root.glob(DIALOGUE_QC_REPORT_PATTERN)),
         "gpt_images_perspective_pack": sorted(
             repo_root.glob(GPT_IMAGES_PERSPECTIVE_PACK_PATTERN)
         ),
@@ -1229,6 +1233,8 @@ def run_validation(
     clean_start_audit_validator: Draft202012Validator | None = None
     pre_b8a_clean_reset_validator: Draft202012Validator | None = None
     omni_qc_report_validator: Draft202012Validator | None = None
+    perspective_qc_report_validator: Draft202012Validator | None = None
+    dialogue_qc_report_validator: Draft202012Validator | None = None
     gpt_images_perspective_pack_validator: Draft202012Validator | None = None
     kling_element_reference_validator: Draft202012Validator | None = None
     kling_shot_prompt_record_validator: Draft202012Validator | None = None
@@ -1516,6 +1522,34 @@ def run_validation(
                     repo_root=repo_root,
                     record_type=record_type,
                     validator=omni_qc_report_validator,
+                )
+            elif record_type == "perspective_qc_report":
+                if perspective_qc_report_validator is None:
+                    perspective_qc_report_schema = load_schema(
+                        repo_root / "schemas" / "perspective_qc_report.schema.json"
+                    )
+                    perspective_qc_report_validator = Draft202012Validator(
+                        perspective_qc_report_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=perspective_qc_report_validator,
+                )
+            elif record_type == "dialogue_qc_report":
+                if dialogue_qc_report_validator is None:
+                    dialogue_qc_report_schema = load_schema(
+                        repo_root / "schemas" / "dialogue_qc_report.schema.json"
+                    )
+                    dialogue_qc_report_validator = Draft202012Validator(
+                        dialogue_qc_report_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=dialogue_qc_report_validator,
                 )
             elif record_type == "gpt_images_perspective_pack":
                 if gpt_images_perspective_pack_validator is None:
