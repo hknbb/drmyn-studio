@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import sys
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import yaml
@@ -36,6 +37,7 @@ def _copy_schemas(repo_root: Path) -> None:
         "voice_binding_record.schema.json",
         "native_audio_compatibility_record.schema.json",
         "production_batch.schema.json",
+        "model_guidance_snapshot.schema.json",
     ):
         (schemas_dir / name).write_text(
             (REPO_ROOT / "schemas" / name).read_text(encoding="utf-8"),
@@ -130,6 +132,87 @@ def _valid_production_batch() -> dict:
         "retry_policy": {"max_retries_per_prompt": 2, "failure_reason_required": True},
         "cost_tracking": {"enabled": True, "estimated_budget": 25.0, "currency": "USD"},
     }
+
+
+def _write_model_guidance_snapshot(
+    repo_root: Path,
+    *,
+    target: str,
+    provider: str,
+    model_family: str,
+    provider_surface: str,
+    human_verified: bool = True,
+    expires_days: int = 7,
+) -> None:
+    observed_at = datetime(2026, 5, 11, 0, 0, tzinfo=timezone.utc)
+    expires_at = observed_at + timedelta(days=expires_days)
+    provider_dir = repo_root / "model_guidance_snapshots" / provider
+    filename = f"20260511T000000Z_{target}.yaml"
+    payload = {
+        "record_type": "model_guidance_snapshot",
+        "schema_version": "0.x-draft",
+        "snapshot_id": f"20260511T000000Z_{target}",
+        "internal_model_target": target,
+        "provider": provider,
+        "model_family": model_family,
+        "provider_surface": provider_surface,
+        "observed_at": observed_at.isoformat().replace("+00:00", "Z"),
+        "expires_at": expires_at.isoformat().replace("+00:00", "Z"),
+        "human_verified": human_verified,
+        "current_default_model": "best available",
+        "latest_available_model": "best available",
+        "best_for_this_task": "best available",
+        "feature_required_model": {"base": "best available"},
+        "version_policy": {
+            "hardcode_in_adapter": False,
+            "adapter_must_read_snapshot": True,
+            "prompt_generation_blocks_if_expired": True,
+            "prompt_generation_blocks_if_unverified": True,
+        },
+        "sources": [
+            {
+                "source_type": "official_docs",
+                "title": "repo-locked guide reference",
+                "retrieved_at": observed_at.isoformat().replace("+00:00", "Z"),
+                "url": "https://docs.midjourney.com/hc/en-us/articles/32199405667853-Version",
+            }
+        ],
+        "capabilities": {"output_type": "image"},
+        "constraints": {"notes": "test fixture"},
+        "prompting_rules": ["Use locked repo guidance only."],
+        "provenance": {
+            "created_by": "tests",
+            "created_at": observed_at.isoformat().replace("+00:00", "Z"),
+        },
+    }
+    _write_yaml(provider_dir / filename, payload)
+
+
+def _write_required_batch_snapshots(repo_root: Path) -> None:
+    _write_model_guidance_snapshot(
+        repo_root,
+        target="midjourney_image_best_available",
+        provider="midjourney",
+        model_family="image_generation",
+        provider_surface="web_ui",
+        expires_days=14,
+    )
+    _write_model_guidance_snapshot(
+        repo_root,
+        target="chatgpt_image_best_available",
+        provider="openai",
+        model_family="image_generation",
+        provider_surface="chatgpt_ui",
+        expires_days=14,
+    )
+    _write_model_guidance_snapshot(
+        repo_root,
+        target="kling_omni_video_best_available",
+        provider="kling",
+        model_family="video_generation",
+        provider_surface="web_ui",
+        expires_days=7,
+    )
 
 
 def _valid_kling_element_reference_record() -> dict:
@@ -280,6 +363,7 @@ def test_kling_shot_prompt_repo_binary_committed_false_enforced(tmp_path: Path) 
 
 def test_production_batch_not_double_counted_as_batch_job(tmp_path: Path) -> None:
     _copy_schemas(tmp_path)
+    _write_required_batch_snapshots(tmp_path)
     _write_yaml(
         tmp_path / "evidence/batch_jobs/production_batch_sc0001.yaml",
         _valid_production_batch(),
@@ -292,6 +376,7 @@ def test_production_batch_not_double_counted_as_batch_job(tmp_path: Path) -> Non
 
 def test_production_batch_record_type_detected_without_filename_prefix(tmp_path: Path) -> None:
     _copy_schemas(tmp_path)
+    _write_required_batch_snapshots(tmp_path)
     _write_yaml(
         tmp_path / "evidence/batch_jobs/PB_SC0001_SEQ01_V01.yaml",
         _valid_production_batch(),
@@ -317,6 +402,7 @@ def test_new_directories_missing_still_passes(tmp_path: Path) -> None:
 
 def test_valid_minimal_prod_line_chain_passes(tmp_path: Path) -> None:
     _copy_schemas(tmp_path)
+    _write_required_batch_snapshots(tmp_path)
     _write_yaml(
         tmp_path / "visual_dev/elements/characters/C01/gpt_images_perspective_pack.yaml",
         _valid_gpt_images_perspective_pack(),
@@ -446,3 +532,137 @@ def test_incompatible_native_audio_must_be_blocked(tmp_path: Path) -> None:
         and "must use blocked status" in i.message
         for i in report.issues
     )
+
+
+def test_production_batch_requires_model_guidance_snapshots_passes_when_fresh(
+    tmp_path: Path,
+) -> None:
+    _copy_schemas(tmp_path)
+    _write_required_batch_snapshots(tmp_path)
+    _write_yaml(
+        tmp_path / "evidence/batch_jobs/production_batch_sc0001.yaml",
+        _valid_production_batch(),
+    )
+    report = run_validation(tmp_path)
+    assert report.invalid_files == 0
+
+
+def test_production_batch_fails_when_required_snapshot_missing(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_model_guidance_snapshot(
+        tmp_path,
+        target="midjourney_image_best_available",
+        provider="midjourney",
+        model_family="image_generation",
+        provider_surface="web_ui",
+    )
+    _write_model_guidance_snapshot(
+        tmp_path,
+        target="chatgpt_image_best_available",
+        provider="openai",
+        model_family="image_generation",
+        provider_surface="chatgpt_ui",
+    )
+    _write_yaml(
+        tmp_path / "evidence/batch_jobs/production_batch_sc0001.yaml",
+        _valid_production_batch(),
+    )
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "production_batch"
+        and i.field_path == "models"
+        and "model guidance gate failed for target: kling_omni_video_best_available"
+        in i.message
+        for i in report.issues
+    )
+
+
+def test_production_batch_fails_when_required_snapshot_expired(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_model_guidance_snapshot(
+        tmp_path,
+        target="midjourney_image_best_available",
+        provider="midjourney",
+        model_family="image_generation",
+        provider_surface="web_ui",
+    )
+    _write_model_guidance_snapshot(
+        tmp_path,
+        target="chatgpt_image_best_available",
+        provider="openai",
+        model_family="image_generation",
+        provider_surface="chatgpt_ui",
+    )
+    _write_model_guidance_snapshot(
+        tmp_path,
+        target="kling_omni_video_best_available",
+        provider="kling",
+        model_family="video_generation",
+        provider_surface="web_ui",
+        expires_days=-1,
+    )
+    _write_yaml(
+        tmp_path / "evidence/batch_jobs/production_batch_sc0001.yaml",
+        _valid_production_batch(),
+    )
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "production_batch"
+        and i.field_path == "models"
+        and "model guidance gate failed for target: kling_omni_video_best_available"
+        in i.message
+        for i in report.issues
+    )
+
+
+def test_production_batch_fails_when_required_snapshot_unverified(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_model_guidance_snapshot(
+        tmp_path,
+        target="midjourney_image_best_available",
+        provider="midjourney",
+        model_family="image_generation",
+        provider_surface="web_ui",
+    )
+    _write_model_guidance_snapshot(
+        tmp_path,
+        target="chatgpt_image_best_available",
+        provider="openai",
+        model_family="image_generation",
+        provider_surface="chatgpt_ui",
+    )
+    _write_model_guidance_snapshot(
+        tmp_path,
+        target="kling_omni_video_best_available",
+        provider="kling",
+        model_family="video_generation",
+        provider_surface="web_ui",
+        human_verified=False,
+    )
+    _write_yaml(
+        tmp_path / "evidence/batch_jobs/production_batch_sc0001.yaml",
+        _valid_production_batch(),
+    )
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "production_batch"
+        and i.field_path == "models"
+        and "model guidance gate failed for target: kling_omni_video_best_available"
+        in i.message
+        for i in report.issues
+    )
+
+
+def test_production_batch_does_not_require_nano_banana_when_not_listed(
+    tmp_path: Path,
+) -> None:
+    _copy_schemas(tmp_path)
+    _write_required_batch_snapshots(tmp_path)
+    batch = _valid_production_batch()
+    batch["models"] = ["midjourney_v8_1", "gpt_images_2", "kling_omni_3"]
+    _write_yaml(
+        tmp_path / "evidence/batch_jobs/production_batch_sc0001.yaml",
+        batch,
+    )
+    report = run_validation(tmp_path)
+    assert report.invalid_files == 0

@@ -26,10 +26,12 @@ from __future__ import annotations
 
 import argparse
 import csv
+import importlib.util
 import json
 import re
 import sys
 from dataclasses import asdict, dataclass
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -103,6 +105,11 @@ PROMPT_REVIEW_REQUIRED_KEYS = {"source_prompt_id", "corrected_brief"}
 AGENT_HANDOFF_BRANCH_RE = re.compile(r"^(main$|feat/|fix/|docs/|chore/|review/)")
 AGENT_HANDOFF_HEAD_SHA_RE = re.compile(r"^[A-Fa-f0-9]{7,40}$")
 WINDOWS_ABSOLUTE_PATH_RE = re.compile(r"^[A-Za-z]:[/\\]")
+PRODUCTION_BATCH_MODEL_GUIDANCE_TARGETS: dict[str, str] = {
+    "midjourney_v8_1": "midjourney_image_best_available",
+    "gpt_images_2": "chatgpt_image_best_available",
+    "kling_omni_3": "kling_omni_video_best_available",
+}
 
 
 @dataclass
@@ -515,6 +522,91 @@ def validate_prod_line_cross_references(
                             ),
                         )
                     )
+
+    return issues
+
+
+def validate_production_batch_model_guidance_gate(
+    *,
+    repo_root: Path,
+    grouped_files: dict[str, list[Path]],
+) -> list[ProductionValidationIssue]:
+    """Require fresh model guidance snapshots for each production batch model."""
+    issues: list[ProductionValidationIssue] = []
+    batch_targets: dict[str, set[str]] = {}
+
+    for path in grouped_files.get("production_batch", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        models = data.get("models")
+        if not isinstance(models, list):
+            continue
+        required_targets = {
+            PRODUCTION_BATCH_MODEL_GUIDANCE_TARGETS[model]
+            for model in models
+            if isinstance(model, str)
+            and model in PRODUCTION_BATCH_MODEL_GUIDANCE_TARGETS
+        }
+        if required_targets:
+            batch_targets[_relative(path, repo_root)] = required_targets
+
+    if not batch_targets:
+        return issues
+
+    required_targets = sorted({t for targets in batch_targets.values() for t in targets})
+    gate_func = None
+    import_error: Exception | None = None
+    try:
+        from scripts.validators.validate_model_research_gate import (
+            validate_model_research_gate as imported_gate_func,
+        )
+        gate_func = imported_gate_func
+    except Exception as exc:
+        import_error = exc
+        module_path = repo_root / "scripts" / "validators" / "validate_model_research_gate.py"
+        try:
+            spec = importlib.util.spec_from_file_location(
+                "validate_model_research_gate_module",
+                module_path,
+            )
+            if spec and spec.loader:
+                module = importlib.util.module_from_spec(spec)
+                sys.modules[spec.name] = module
+                spec.loader.exec_module(module)
+                gate_func = getattr(module, "validate_model_research_gate", None)
+        except Exception as fallback_exc:
+            import_error = fallback_exc
+
+    if gate_func is None:
+        for file in sorted(batch_targets):
+            issues.append(
+                ProductionValidationIssue(
+                    file=file,
+                    record_type="production_batch",
+                    field_path="models",
+                    message=f"model guidance gate unavailable: {import_error}",
+                )
+            )
+        return issues
+
+    results = gate_func(
+        repo_root=repo_root,
+        required_targets=required_targets,
+        reference_time=datetime.now(timezone.utc),
+    )
+    failures = {result.target for result in results if not result.passed}
+    for file, targets in batch_targets.items():
+        for target in sorted(targets):
+            if target in failures:
+                issues.append(
+                    ProductionValidationIssue(
+                        file=file,
+                        record_type="production_batch",
+                        field_path="models",
+                        message=f"model guidance gate failed for target: {target}",
+                    )
+                )
 
     return issues
 
@@ -1568,6 +1660,14 @@ def run_validation(
     if cross_record_issues:
         all_issues.extend(cross_record_issues)
         invalid_files.update(issue.file for issue in cross_record_issues)
+
+    model_guidance_issues = validate_production_batch_model_guidance_gate(
+        repo_root=repo_root,
+        grouped_files=grouped_files,
+    )
+    if model_guidance_issues:
+        all_issues.extend(model_guidance_issues)
+        invalid_files.update(issue.file for issue in model_guidance_issues)
 
     report = ProductionValidationReport(
         total_files=total,
