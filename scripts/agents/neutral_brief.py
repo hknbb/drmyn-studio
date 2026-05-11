@@ -141,6 +141,11 @@ class NeutralBrief:
     prompt_subject_label: str = ""
     # Planning names that must not appear literally in generated prompt_text
     planning_aliases: tuple[str, ...] = ()
+    preserve_list: tuple[str, ...] = ()
+    expected_output_layout: str | None = None
+    panel_prompts: tuple[str, ...] = ()
+    character_reference_refs: tuple[str, ...] = ()
+    object_reference_refs: tuple[str, ...] = ()
 
 
 # ---------------------------------------------------------------------------
@@ -608,6 +613,17 @@ def _with_aesthetic(
     )
 
 
+def _with_reference_refs(brief: NeutralBrief, scene_context: SourceContext) -> NeutralBrief:
+    import dataclasses
+
+    assets = scene_context.element_reference_assets or {}
+    return dataclasses.replace(
+        brief,
+        character_reference_refs=tuple(assets.get("character", [])[:5]),
+        object_reference_refs=tuple(assets.get("object", [])[:6]),
+    )
+
+
 # ---------------------------------------------------------------------------
 # Agent
 # ---------------------------------------------------------------------------
@@ -656,7 +672,7 @@ class NeutralBriefAgent:
                 char_data,
                 style_rules + a_negatives,
             )
-            briefs.append(_with_aesthetic(brief, a_pack_refs, a_keywords, a_warnings))
+            briefs.append(_with_reference_refs(_with_aesthetic(brief, a_pack_refs, a_keywords, a_warnings), scene_context))
 
         # Location brief
         if scene_context.location is not None:
@@ -668,7 +684,7 @@ class NeutralBriefAgent:
                 scene_context.location,
                 style_rules + a_negatives,
             )
-            briefs.append(_with_aesthetic(brief, a_pack_refs, a_keywords, a_warnings))
+            briefs.append(_with_reference_refs(_with_aesthetic(brief, a_pack_refs, a_keywords, a_warnings), scene_context))
 
         # Prop briefs
         for prop_id, prop_data in scene_context.props.items():
@@ -683,7 +699,7 @@ class NeutralBriefAgent:
                 resolution,
                 style_rules + a_negatives,
             )
-            briefs.append(_with_aesthetic(brief, a_pack_refs, a_keywords, a_warnings))
+            briefs.append(_with_reference_refs(_with_aesthetic(brief, a_pack_refs, a_keywords, a_warnings), scene_context))
 
         # Wardrobe briefs
         for wardrobe_id, wardrobe_data in scene_context.wardrobe.items():
@@ -700,7 +716,7 @@ class NeutralBriefAgent:
                 resolution,
                 style_rules + a_negatives,
             )
-            briefs.append(_with_aesthetic(brief, a_pack_refs, a_keywords, a_warnings))
+            briefs.append(_with_reference_refs(_with_aesthetic(brief, a_pack_refs, a_keywords, a_warnings), scene_context))
 
         # Style brief (always last, always present — no aesthetic injection)
         briefs.append(

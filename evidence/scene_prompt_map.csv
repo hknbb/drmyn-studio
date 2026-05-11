@@ -1,12 +1,1 @@
 scene_id,prompt_id,prompt_type,lifecycle_stage,target_model,asset_ref,article3_flag,notes
-SC0001,SC0001__t2i-char-c01-midjourney__v01,t2i_character_element,draft,midjourney,pending_generation,,agent-generated draft; no image asset yet
-SC0001,SC0001__t2i-char-c01-chatgpt-image__v01,t2i_character_element,draft,chatgpt_image,pending_generation,,agent-generated draft; no image asset yet
-SC0001,SC0001__t2i-char-c01-nano-banana__v01,t2i_character_element,draft,nano_banana,pending_generation,,agent-generated draft; no image asset yet
-SC0001,SC0001__omni-kling-omni-clip-clip-sc0001-01__v01,omni_instruction,draft,kling_omni,pending_generation,,agent-generated draft; no video asset yet
-SC0001,SC0001__omni-kling-omni-clip-clip-sc0001-02__v01,omni_instruction,draft,kling_omni,pending_generation,,agent-generated draft; no video asset yet
-SC0001,SC0001__omni-kling-omni-clip-clip-sc0001-03__v01,omni_instruction,draft,kling_omni,pending_generation,,agent-generated draft; no video asset yet
-SC0001,SC0001__omni-kling-omni-clip-clip-sc0001-04__v01,omni_instruction,draft,kling_omni,pending_generation,,agent-generated draft; no video asset yet
-SC0001,SC0001__omni-kling-omni-clip-clip-sc0001-05__v01,omni_instruction,draft,kling_omni,pending_generation,,agent-generated draft; no video asset yet
-SC0001,SC0001__omni-kling-omni-clip-clip-sc0001-06__v01,omni_instruction,draft,kling_omni,pending_generation,,agent-generated draft; no video asset yet
-SC0001,SC0001__omni-kling-omni-clip-clip-sc0001-07__v01,omni_instruction,draft,kling_omni,pending_generation,,agent-generated draft; no video asset yet
-SC0001,SC0001__omni-kling-omni-clip-clip-sc0001-08__v01,omni_instruction,draft,kling_omni,pending_generation,,agent-generated draft; no video asset yet

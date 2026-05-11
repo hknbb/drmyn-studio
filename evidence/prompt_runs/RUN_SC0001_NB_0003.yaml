@@ -1,9 +1,0 @@
-run_id: RUN_SC0001_NB_0003
-prompt_id: SC0001__t2i-char-c01-nano-banana__v01
-model: nano_banana
-run_at: '2026-05-04T11:47:10Z'
-outputs_expected: 4
-cost:
-  unit: credits
-  value: 1
-status: pending

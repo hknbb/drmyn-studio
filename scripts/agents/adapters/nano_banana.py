@@ -40,11 +40,16 @@ class NanaBananaAdapter(BaseAdapter):
     # ------------------------------------------------------------------
 
     def _extra_generation_params(self, brief: NeutralBrief) -> dict[str, Any]:
-        return {
+        params: dict[str, Any] = {
             "constraint_strategy": "embedded_positive_constraints",
             "recommended_ar": "16:9 or 21:9",
             "max_prompt_tokens": 480,
         }
+        if brief.character_reference_refs:
+            params["character_reference_refs"] = list(brief.character_reference_refs[:5])
+        if brief.object_reference_refs:
+            params["object_reference_refs"] = list(brief.object_reference_refs[:6])
+        return params
 
     # ------------------------------------------------------------------
     # Prompt text — narrative identity-consistency framing
@@ -72,6 +77,8 @@ class NanaBananaAdapter(BaseAdapter):
         if brief.aesthetic_keywords:
             anchor = "World consistency: " + ", ".join(brief.aesthetic_keywords) + "."
             parts.append(anchor)
+
+        parts.append("Use cinematic photography vocabulary: lens choice, film stock behavior, and motivated lighting.")
 
         # Semantic negation — embed constraints as "Avoid:" clause (no separate field)
         if brief.negative_constraints:

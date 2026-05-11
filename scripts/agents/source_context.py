@@ -37,6 +37,7 @@ class SourceContext:
     unresolved_warnings: list[str] = field(default_factory=list)
     missing_records: list[str] = field(default_factory=list)
     escalate: bool = False
+    element_reference_assets: dict[str, list[str]] = field(default_factory=dict)
 
 
 def _read_yaml(path: Path) -> dict[str, Any] | None:
@@ -174,6 +175,8 @@ class SourceContextAgent:
 
         aesthetic_bible = load_aesthetic_bible(self.repo_root)
 
+        element_reference_assets = self._collect_element_reference_assets(scene_card)
+
         return SourceContext(
             scene_id=scene_id,
             scene_card=scene_card,
@@ -187,4 +190,51 @@ class SourceContextAgent:
             unresolved_warnings=warnings,
             missing_records=missing,
             escalate=escalate,
+            element_reference_assets=element_reference_assets,
         )
+
+    def _collect_element_reference_assets(self, scene_card: dict[str, Any]) -> dict[str, list[str]]:
+        refs: dict[str, list[str]] = {"character": [], "object": []}
+        continuity_refs = scene_card.get("continuity_refs") or {}
+        character_ids = list(scene_card.get("characters_present") or [])
+        location_ids = list(continuity_refs.get("locations") or [])
+        prop_ids = list(continuity_refs.get("props") or [])
+        wardrobe_ids = list(continuity_refs.get("wardrobe") or [])
+
+        ordered = [("character", character_ids), ("location", location_ids), ("prop", prop_ids), ("wardrobe", wardrobe_ids)]
+        for elem_type, ids in ordered:
+            for elem_id in sorted(str(i) for i in ids):
+                view_plan = self._view_plan_path(elem_type, elem_id)
+                if not view_plan or not view_plan.exists():
+                    continue
+                doc = _read_yaml(view_plan) or {}
+                views = doc.get("views") or []
+                for v in views:
+                    if not isinstance(v, dict):
+                        continue
+                    if v.get("status") != "complete":
+                        continue
+                    asset = v.get("canonical_asset_path")
+                    if isinstance(asset, str) and asset.strip():
+                        if elem_type == "character":
+                            refs["character"].append(asset.strip())
+                        else:
+                            refs["object"].append(asset.strip())
+        # Repo policy caps
+        refs["character"] = refs["character"][:5]
+        refs["object"] = refs["object"][:6]
+        return refs
+
+    def _view_plan_path(self, elem_type: str, elem_id: str) -> Path | None:
+        base = self.repo_root / "visual_dev" / "elements"
+        if elem_type == "character":
+            return base / "characters" / elem_id / "element_view_plan.yaml"
+        if elem_type == "prop":
+            return base / "props" / elem_id / "element_view_plan.yaml"
+        if elem_type == "wardrobe":
+            return base / "wardrobe" / elem_id / "element_view_plan.yaml"
+        if elem_type == "location":
+            # location lookup can vary; skip unless direct folder exists
+            p = base / "locations" / elem_id / "element_view_plan.yaml"
+            return p
+        return None

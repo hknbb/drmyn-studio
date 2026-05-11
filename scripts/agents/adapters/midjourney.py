@@ -16,8 +16,9 @@ from scripts.agents.adapters._base import BaseAdapter, _compact
 from scripts.agents.neutral_brief import NeutralBrief
 
 
-# Updated from web research 2026-05-04: attention drops after 60 words
-_WORD_LIMIT = 60
+_PRIORITY_WORDS = 40
+_SOFT_LIMIT = 80
+_HARD_LIMIT = 200
 
 
 class MidjourneyAdapter(BaseAdapter):
@@ -40,60 +41,68 @@ class MidjourneyAdapter(BaseAdapter):
     # ------------------------------------------------------------------
 
     def _extra_generation_params(self, brief: NeutralBrief) -> dict[str, Any]:
-        return {
+        params: dict[str, Any] = {
             "recommended_ar": "--ar 16:9",
+            "raw_mode": "--raw",
         }
+        # Capability-gated style reference: only when snapshot explicitly supports it
+        if self.model_guidance_mode == "dynamic_snapshot":
+            try:
+                resolved = self._resolve_model(self.INTERNAL_MODEL_TARGET)
+                capabilities = resolved.get("capabilities") or {}
+                if (
+                    capabilities.get("supports_style_reference") is True
+                    and brief.aesthetic_pack_refs
+                ):
+                    sref_seed = self._find_sref_seed(brief.aesthetic_pack_refs)
+                    if sref_seed:
+                        params["style_reference"] = f"--sref {sref_seed}"
+            except Exception:
+                pass
+        return params
 
     # ------------------------------------------------------------------
-    # Prompt text — compact visual clauses, ≤60 words
+    # Prompt text — natural language, soft-limited
     # ------------------------------------------------------------------
 
     def _build_prompt_text(self, brief: NeutralBrief) -> str:
         parts: list[str] = []
 
-        # Leading subject — use safe label; skip if no safe label but aliases exist (e.g. location)
+        # Subject-first natural language sentence
         if brief.element_type != "style":
             if brief.prompt_subject_label:
-                parts.append(brief.prompt_subject_label)
+                parts.append(f"Create a cinematic image of {brief.prompt_subject_label}.")
             elif brief.element_name and not brief.planning_aliases:
-                parts.append(brief.element_name)
+                parts.append(f"Create a cinematic image of {brief.element_name}.")
 
         # Continuity state as a compact clause for prop/wardrobe
         if brief.element_type in ("prop", "wardrobe") and brief.continuity_state:
             state_clause = _compact(brief.continuity_state, max_words=12)
             if state_clause:
-                parts.append(state_clause)
+                parts.append(f"Continuity state: {state_clause}.")
 
         # Visual anchor clauses — top 5
         for anchor in brief.visual_anchors[:5]:
             clause = _compact(anchor.description, max_words=12)
             if clause:
-                parts.append(clause)
+                parts.append(clause + ".")
 
         if not parts:
             return "(no visual anchors available)"
 
-        text = ", ".join(parts)
-
-        # Aesthetic tail: append pack keywords within remaining word budget
+        # Aesthetic tail as natural language
         if brief.aesthetic_keywords:
-            aesthetic_tail = ", ".join(brief.aesthetic_keywords)
-            candidate = f"{text}, {aesthetic_tail}"
-            words = candidate.split()
-            if len(words) <= _WORD_LIMIT:
-                text = candidate
-            else:
-                # Fit as many aesthetic keywords as the budget allows
-                base_words = text.split()
-                budget = _WORD_LIMIT - len(base_words) - 1  # -1 for separator comma
-                if budget > 0:
-                    tail_words = aesthetic_tail.split()[:budget]
-                    text = text + ", " + " ".join(tail_words)
+            parts.append("Visual world cues: " + ", ".join(brief.aesthetic_keywords) + ".")
 
-        # Enforce word limit
+        text = " ".join(parts)
+
+        # Soft and hard limits
         words = text.split()
-        if len(words) > _WORD_LIMIT:
-            text = " ".join(words[:_WORD_LIMIT])
+        if len(words) > _HARD_LIMIT:
+            text = " ".join(words[:_HARD_LIMIT])
+        elif len(words) > _SOFT_LIMIT:
+            # Keep first priority window and compact remainder
+            text = " ".join(words[:_SOFT_LIMIT])
 
         return text
 
@@ -118,3 +127,24 @@ class MidjourneyAdapter(BaseAdapter):
                 neg_terms.append(term)
 
         return ", ".join(neg_terms) if neg_terms else None
+
+    def _find_sref_seed(self, pack_refs: tuple[str, ...]) -> str | None:
+        import yaml
+
+        path = self.repo_root / "planning" / "aesthetic_bible.yaml"
+        if not path.exists():
+            return None
+        try:
+            doc = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        except Exception:
+            return None
+        packs = doc.get("packs")
+        if not isinstance(packs, list):
+            return None
+        for ref in pack_refs:
+            for pack in packs:
+                if isinstance(pack, dict) and pack.get("pack_id") == ref:
+                    seed = pack.get("sref_seed")
+                    if isinstance(seed, str) and seed.strip():
+                        return seed.strip()
+        return None

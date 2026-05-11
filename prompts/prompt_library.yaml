@@ -1,21 +1,3 @@
 version: 0.1.0
 description: Master prompt library index for Closing Price Phase 1.
-prompts:
-- prompt_id: SC0001__t2i-char-c01-midjourney__v01
-  scene_id: SC0001
-  prompt_type: t2i_character_element
-  lifecycle_stage: draft
-  target_models:
-  - midjourney
-- prompt_id: SC0001__t2i-char-c01-chatgpt-image__v01
-  scene_id: SC0001
-  prompt_type: t2i_character_element
-  lifecycle_stage: draft
-  target_models:
-  - chatgpt_image
-- prompt_id: SC0001__t2i-char-c01-nano-banana__v01
-  scene_id: SC0001
-  prompt_type: t2i_character_element
-  lifecycle_stage: draft
-  target_models:
-  - nano_banana
+prompts: []

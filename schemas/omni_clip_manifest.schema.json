@@ -130,6 +130,119 @@
               "maxLength": 20
             }
           },
+          "camera": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "angle": {
+                "type": "string",
+                "enum": [
+                  "eye_level",
+                  "low_angle",
+                  "high_angle",
+                  "over_shoulder",
+                  "insert",
+                  "dutch",
+                  "top_down"
+                ]
+              },
+              "framing": {
+                "type": "string",
+                "enum": [
+                  "wide",
+                  "medium_wide",
+                  "medium",
+                  "medium_close",
+                  "close",
+                  "extreme_close",
+                  "insert"
+                ]
+              },
+              "movement": {
+                "type": "string",
+                "enum": [
+                  "static",
+                  "pan",
+                  "tilt",
+                  "dolly_in",
+                  "dolly_out",
+                  "tracking",
+                  "crane",
+                  "handheld",
+                  "whip_pan",
+                  "rack_focus"
+                ]
+              },
+              "lens_bias": {
+                "type": "string",
+                "maxLength": 80
+              }
+            }
+          },
+          "lighting": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source": {
+                "type": "string",
+                "enum": [
+                  "natural_daylight",
+                  "filtered_daylight",
+                  "practical",
+                  "artificial",
+                  "mixed",
+                  "low_key",
+                  "high_key"
+                ]
+              },
+              "quality": {
+                "type": "string",
+                "enum": [
+                  "soft",
+                  "hard",
+                  "diffused",
+                  "directional"
+                ]
+              },
+              "color_temp": {
+                "type": "string",
+                "enum": [
+                  "warm",
+                  "neutral",
+                  "cool",
+                  "mixed"
+                ]
+              },
+              "intensity": {
+                "type": "string",
+                "enum": [
+                  "dim",
+                  "moderate",
+                  "bright"
+                ]
+              }
+            }
+          },
+          "motion": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "subject_intensity": {
+                "type": "number",
+                "minimum": 0.0,
+                "maximum": 1.0
+              },
+              "camera_intensity": {
+                "type": "number",
+                "minimum": 0.0,
+                "maximum": 1.0
+              },
+              "blocking_notes": {
+                "type": "string",
+                "maxLength": 300
+              }
+            }
+          },
           "visual_pacing_note": {
             "type": "string",
             "maxLength": 300,

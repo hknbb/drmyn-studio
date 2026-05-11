@@ -1,12 +1,1 @@
 run_id,scene_id,model,prompt_type,outputs_expected,cost_value,cost_unit,status
-RUN_SC0001_MJ_0001,SC0001,midjourney,t2i_character_element,4,1,credits,pending
-RUN_SC0001_CGPT_0002,SC0001,chatgpt_image,t2i_character_element,4,1,credits,pending
-RUN_SC0001_NB_0003,SC0001,nano_banana,t2i_character_element,4,1,credits,pending
-RUN_SC0001_CLIP_SC0001_01_KO_0001,SC0001,kling_omni,omni_instruction,1,0,unknown,pending
-RUN_SC0001_CLIP_SC0001_02_KO_0001,SC0001,kling_omni,omni_instruction,1,0,unknown,pending
-RUN_SC0001_CLIP_SC0001_03_KO_0001,SC0001,kling_omni,omni_instruction,1,0,unknown,pending
-RUN_SC0001_CLIP_SC0001_04_KO_0001,SC0001,kling_omni,omni_instruction,1,0,unknown,pending
-RUN_SC0001_CLIP_SC0001_05_KO_0001,SC0001,kling_omni,omni_instruction,1,0,unknown,pending
-RUN_SC0001_CLIP_SC0001_06_KO_0001,SC0001,kling_omni,omni_instruction,1,0,unknown,pending
-RUN_SC0001_CLIP_SC0001_07_KO_0001,SC0001,kling_omni,omni_instruction,1,0,unknown,pending
-RUN_SC0001_CLIP_SC0001_08_KO_0001,SC0001,kling_omni,omni_instruction,1,0,unknown,pending

@@ -12,6 +12,7 @@ from typing import Any
 
 from scripts.agents.adapters._base import BaseAdapter
 from scripts.agents.neutral_brief import NeutralBrief
+import yaml
 
 
 class ChatGPTImageAdapter(BaseAdapter):
@@ -46,37 +47,43 @@ class ChatGPTImageAdapter(BaseAdapter):
     # ------------------------------------------------------------------
 
     def _build_prompt_text(self, brief: NeutralBrief) -> str:
-        parts: list[str] = []
+        supports_multi_panel = self._supports_multi_panel()
+        scene = self._task_instruction(brief) or "Generate a reference image."
+        subject = brief.prompt_subject_label or "Subject from provided anchors"
+        details = "; ".join(
+            a.description.strip()[:300]
+            for a in brief.visual_anchors[:4]
+            if a.description.strip()
+        ) or "Use grounded visual anchors only."
+        constraints = "; ".join(brief.negative_constraints[:4]) if brief.negative_constraints else ""
+        preserve = "; ".join(brief.preserve_list[:6]) if brief.preserve_list else ""
 
-        # Task instruction
-        task = self._task_instruction(brief)
-        if task:
-            parts.append(task)
-
-        # Continuity state (full sentence)
-        if brief.continuity_state:
-            parts.append(
-                f"Current continuity state: {brief.continuity_state[:300]}"
+        if (
+            brief.expected_output_layout == "multi_panel"
+            and supports_multi_panel
+            and brief.panel_prompts
+        ):
+            panel_lines = [f"Panel {i+1}: {p}" for i, p in enumerate(brief.panel_prompts[:8])]
+            return (
+                f"{scene} "
+                f"Scene: {scene} "
+                f"Subject: {subject}. "
+                f"Details: {details}. "
+                f"Visual world: {'; '.join(brief.aesthetic_keywords) if brief.aesthetic_keywords else 'grounded production realism'}. "
+                f"Constraints: Avoid {constraints}. "
+                f"Preserve: {preserve}. "
+                + " ".join(panel_lines)
             )
 
-        # Visual anchors — full descriptions, up to 4
-        for anchor in brief.visual_anchors[:4]:
-            desc = anchor.description.strip()
-            if desc:
-                parts.append(desc[:300])
-
-        # Aesthetic world phrase — natural language, not raw comma-tail
-        if brief.aesthetic_keywords:
-            world_phrase = "Visual world: " + "; ".join(brief.aesthetic_keywords) + "."
-            parts.append(world_phrase)
-
-        # Embedded constraints (first 4 key constraints as an Avoid clause)
-        constraints = brief.negative_constraints[:4]
-        if constraints:
-            avoid_clause = "Avoid: " + "; ".join(constraints) + "."
-            parts.append(avoid_clause)
-
-        return " ".join(parts) if parts else "(no visual anchors available)"
+        return (
+            f"{scene} "
+            f"Scene: {scene} "
+            f"Subject: {subject}. "
+            f"Details: {details}. "
+            f"Visual world: {'; '.join(brief.aesthetic_keywords) if brief.aesthetic_keywords else 'grounded production realism'}. "
+            f"Constraints: Avoid {constraints}. "
+            f"Preserve: {preserve}."
+        )
 
     # ------------------------------------------------------------------
     # Negative prompt — omitted (not supported by ChatGPT Image)
@@ -110,3 +117,24 @@ class ChatGPTImageAdapter(BaseAdapter):
                 return "Generate a style reference image for this production."
             case _:
                 return f"Generate a reference image of {name}." if name else ""
+
+    def _supports_multi_panel(self) -> bool:
+        # dynamic snapshot path
+        if self.model_guidance_mode == "dynamic_snapshot":
+            try:
+                resolved = self._resolve_model(self.INTERNAL_MODEL_TARGET)
+                caps = resolved.get("capabilities") or {}
+                return bool(caps.get("supports_multi_panel") is True)
+            except Exception:
+                return False
+
+        # locked guide path
+        guide_path = self.repo_root / "docs" / "model_guides" / "chatgpt_image.yaml"
+        if not guide_path.exists():
+            return False
+        try:
+            guide = yaml.safe_load(guide_path.read_text(encoding="utf-8")) or {}
+            cap = guide.get("capability") or {}
+            return bool(cap.get("supports_multi_panel") is True)
+        except Exception:
+            return False
