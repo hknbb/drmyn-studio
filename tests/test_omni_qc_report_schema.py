@@ -25,7 +25,7 @@ def _minimal_record(**overrides):
         "record_type": "omni_qc_report",
         "scene_id": "SC0001",
         "clip_id": "CLIP_SC0001_01",
-        "prompt_id": "SC0001__omni-kling-clip-sc0001-01-safe__v01",
+        "prompt_id": "SC0001__omni-kling-omni-clip-clip-sc0001-01-safe__v01",
         "variant_mode": "safe",
         "render_pass": "visual_test",
         "checks": {
