@@ -97,6 +97,7 @@ def _text(value: Any, fallback: str = "") -> str:
 
 def _sanitize_prompt_text(text: str) -> str:
     text = CANONICAL_ID_RE.sub("the referenced production element", text)
+    text = re.sub(r"\.{2,}", ".", text)
     return " ".join(text.split())
 
 

@@ -1127,3 +1127,24 @@ class TestCameraLightingMotionConsumption:
         assert "motion intensity" in prompt_text
         assert "filtered_daylight" in prompt_text
         assert "settled end state" in prompt_text
+
+    def test_prompt_text_collapses_repeated_periods(self, tmp_path):
+        manifest_path = _create_manifest(
+            tmp_path,
+            shots=[
+                {
+                    "shot_id": "SHOT_SC0001_01_A",
+                    "duration_seconds": 5,
+                    "source_beat_ids": ["B1"],
+                    "prompt_action": "Nadia's.. Just precise.. found it..",
+                    "duration_reason": "normal/action 5s",
+                    "required_element_ids": [],
+                }
+            ],
+            total_duration=5,
+        )
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+        adapter = KlingOmniAdapter(tmp_path)
+        prompt_text = adapter.generate_from_clip_manifest(str(manifest_path)).prompt_record["prompt_text"]
+        assert ".." not in prompt_text
