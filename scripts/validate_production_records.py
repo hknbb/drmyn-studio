@@ -46,6 +46,7 @@ SHOT_LIST_OMNI_SUGGESTION_PATTERN = (
     "visual_dev/storyboards/SC*/shot_list_omni_suggestion.yaml"
 )
 BATCH_JOB_PATTERN = "evidence/batch_jobs/*.yaml"
+PRODUCTION_BATCH_PATTERN = "evidence/batch_jobs/production_batch_*.yaml"
 OPERATOR_SESSION_PATTERN = "evidence/operator_sessions/*.yaml"
 AGENT_HANDOFF_PATTERN = "evidence/agent_handoffs/*.yaml"
 LOCAL_MEDIA_INDEX_PATTERN = "evidence/local_media_indices/*.yaml"
@@ -65,6 +66,15 @@ CANONICAL_ASSET_INTAKE_SLOT_PATTERN = "visual_dev/elements/**/intake_slot.yaml"
 CLEAN_START_AUDIT_PATTERN = "evidence/clean_start_audits/*.yaml"
 PRE_B8A_CLEAN_RESET_PATTERN = "evidence/pre_b8a_clean_resets/*.yaml"
 OMNI_QC_REPORT_PATTERN = "evidence/omni_qc/*.yaml"
+GPT_IMAGES_PERSPECTIVE_PACK_PATTERN = (
+    "visual_dev/elements/**/gpt_images_perspective_pack.yaml"
+)
+KLING_ELEMENT_REFERENCE_PATTERN = "visual_dev/elements/**/kling_element_reference.yaml"
+KLING_SHOT_PROMPT_PATTERN = "visual_dev/omni_sets/SC*/kling_shot_prompt_*.yaml"
+DIALOGUE_EXTRACT_PATTERN = "planning/dialogue/DLG_*.yaml"
+PERFORMANCE_INTENT_PATTERN = "planning/dialogue/PERF_*.yaml"
+VOICE_BINDING_PATTERN = "planning/dialogue/VOICE_*.yaml"
+NATIVE_AUDIO_COMPATIBILITY_PATTERN = "evidence/native_audio_compatibility/*.yaml"
 AESTHETIC_BIBLE_PATH = "planning/aesthetic_bible.yaml"
 SCENE_CLIP_MAP_PATH = "evidence/scene_clip_map.csv"
 
@@ -135,6 +145,25 @@ def _relative(path: Path, repo_root: Path) -> str:
 
 def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
     """Return production metadata YAML files grouped by validation target."""
+    all_batch_job_files = sorted(repo_root.glob(BATCH_JOB_PATTERN))
+    production_batch_files: list[Path] = []
+    batch_job_files: list[Path] = []
+    for path in all_batch_job_files:
+        # Keep legacy batch_job coverage but prevent double-validation of
+        # production_batch records against the batch_job schema. Prefer explicit
+        # filename convention first, then fall back to record_type detection.
+        if path.match(PRODUCTION_BATCH_PATTERN):
+            production_batch_files.append(path)
+            continue
+        try:
+            data = load_yaml_file(path)
+        except Exception:
+            data = None
+        if isinstance(data, dict) and data.get("record_type") == "production_batch":
+            production_batch_files.append(path)
+        else:
+            batch_job_files.append(path)
+
     return {
         "image_selection": sorted(repo_root.glob(IMAGE_SELECTION_PATTERN)),
         "asset_clearance": sorted(repo_root.glob(ASSET_CLEARANCE_PATTERN)),
@@ -144,7 +173,8 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         "shot_list_omni_suggestion": sorted(
             repo_root.glob(SHOT_LIST_OMNI_SUGGESTION_PATTERN)
         ),
-        "batch_job": sorted(repo_root.glob(BATCH_JOB_PATTERN)),
+        "batch_job": batch_job_files,
+        "production_batch": production_batch_files,
         "operator_session": sorted(repo_root.glob(OPERATOR_SESSION_PATTERN)),
         "agent_handoff": sorted(repo_root.glob(AGENT_HANDOFF_PATTERN)),
         "local_media_index": sorted(repo_root.glob(LOCAL_MEDIA_INDEX_PATTERN)),
@@ -168,6 +198,19 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         "clean_start_audit": sorted(repo_root.glob(CLEAN_START_AUDIT_PATTERN)),
         "pre_b8a_clean_reset": sorted(repo_root.glob(PRE_B8A_CLEAN_RESET_PATTERN)),
         "omni_qc_report": sorted(repo_root.glob(OMNI_QC_REPORT_PATTERN)),
+        "gpt_images_perspective_pack": sorted(
+            repo_root.glob(GPT_IMAGES_PERSPECTIVE_PACK_PATTERN)
+        ),
+        "kling_element_reference_record": sorted(
+            repo_root.glob(KLING_ELEMENT_REFERENCE_PATTERN)
+        ),
+        "kling_shot_prompt_record": sorted(repo_root.glob(KLING_SHOT_PROMPT_PATTERN)),
+        "dialogue_extract_record": sorted(repo_root.glob(DIALOGUE_EXTRACT_PATTERN)),
+        "performance_intent_record": sorted(repo_root.glob(PERFORMANCE_INTENT_PATTERN)),
+        "voice_binding_record": sorted(repo_root.glob(VOICE_BINDING_PATTERN)),
+        "native_audio_compatibility_record": sorted(
+            repo_root.glob(NATIVE_AUDIO_COMPATIBILITY_PATTERN)
+        ),
         "aesthetic_bible": (
             [repo_root / AESTHETIC_BIBLE_PATH]
             if (repo_root / AESTHETIC_BIBLE_PATH).is_file()
@@ -855,6 +898,14 @@ def run_validation(
     clean_start_audit_validator: Draft202012Validator | None = None
     pre_b8a_clean_reset_validator: Draft202012Validator | None = None
     omni_qc_report_validator: Draft202012Validator | None = None
+    gpt_images_perspective_pack_validator: Draft202012Validator | None = None
+    kling_element_reference_validator: Draft202012Validator | None = None
+    kling_shot_prompt_record_validator: Draft202012Validator | None = None
+    dialogue_extract_record_validator: Draft202012Validator | None = None
+    performance_intent_record_validator: Draft202012Validator | None = None
+    voice_binding_record_validator: Draft202012Validator | None = None
+    native_audio_compatibility_record_validator: Draft202012Validator | None = None
+    production_batch_validator: Draft202012Validator | None = None
     aesthetic_bible_validator: Draft202012Validator | None = None
 
     grouped_files = collect_production_files(repo_root)
@@ -918,6 +969,20 @@ def run_validation(
                     repo_root=repo_root,
                     record_type=record_type,
                     validator=operator_session_validator,
+                )
+            elif record_type == "production_batch":
+                if production_batch_validator is None:
+                    production_batch_schema = load_schema(
+                        repo_root / "schemas" / "production_batch.schema.json"
+                    )
+                    production_batch_validator = Draft202012Validator(
+                        production_batch_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=production_batch_validator,
                 )
             elif record_type == "agent_handoff":
                 if agent_handoff_validator is None:
@@ -1120,6 +1185,112 @@ def run_validation(
                     repo_root=repo_root,
                     record_type=record_type,
                     validator=omni_qc_report_validator,
+                )
+            elif record_type == "gpt_images_perspective_pack":
+                if gpt_images_perspective_pack_validator is None:
+                    gpt_images_perspective_pack_schema = load_schema(
+                        repo_root
+                        / "schemas"
+                        / "gpt_images_perspective_pack.schema.json"
+                    )
+                    gpt_images_perspective_pack_validator = Draft202012Validator(
+                        gpt_images_perspective_pack_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=gpt_images_perspective_pack_validator,
+                )
+            elif record_type == "kling_element_reference_record":
+                if kling_element_reference_validator is None:
+                    kling_element_reference_schema = load_schema(
+                        repo_root
+                        / "schemas"
+                        / "kling_element_reference_record.schema.json"
+                    )
+                    kling_element_reference_validator = Draft202012Validator(
+                        kling_element_reference_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=kling_element_reference_validator,
+                )
+            elif record_type == "kling_shot_prompt_record":
+                if kling_shot_prompt_record_validator is None:
+                    kling_shot_prompt_record_schema = load_schema(
+                        repo_root / "schemas" / "kling_shot_prompt_record.schema.json"
+                    )
+                    kling_shot_prompt_record_validator = Draft202012Validator(
+                        kling_shot_prompt_record_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=kling_shot_prompt_record_validator,
+                )
+            elif record_type == "dialogue_extract_record":
+                if dialogue_extract_record_validator is None:
+                    dialogue_extract_record_schema = load_schema(
+                        repo_root / "schemas" / "dialogue_extract_record.schema.json"
+                    )
+                    dialogue_extract_record_validator = Draft202012Validator(
+                        dialogue_extract_record_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=dialogue_extract_record_validator,
+                )
+            elif record_type == "performance_intent_record":
+                if performance_intent_record_validator is None:
+                    performance_intent_record_schema = load_schema(
+                        repo_root
+                        / "schemas"
+                        / "performance_intent_record.schema.json"
+                    )
+                    performance_intent_record_validator = Draft202012Validator(
+                        performance_intent_record_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=performance_intent_record_validator,
+                )
+            elif record_type == "voice_binding_record":
+                if voice_binding_record_validator is None:
+                    voice_binding_record_schema = load_schema(
+                        repo_root / "schemas" / "voice_binding_record.schema.json"
+                    )
+                    voice_binding_record_validator = Draft202012Validator(
+                        voice_binding_record_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=voice_binding_record_validator,
+                )
+            elif record_type == "native_audio_compatibility_record":
+                if native_audio_compatibility_record_validator is None:
+                    native_audio_compatibility_record_schema = load_schema(
+                        repo_root
+                        / "schemas"
+                        / "native_audio_compatibility_record.schema.json"
+                    )
+                    native_audio_compatibility_record_validator = Draft202012Validator(
+                        native_audio_compatibility_record_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=native_audio_compatibility_record_validator,
                 )
             elif record_type == "aesthetic_bible":
                 if aesthetic_bible_validator is None:
