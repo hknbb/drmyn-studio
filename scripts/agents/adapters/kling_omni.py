@@ -26,6 +26,7 @@ from scripts.agents.model_guidance_resolver import (
 
 
 CANONICAL_ID_RE = re.compile(r"\b(SC\d{4}|C\d{2}|LOC\d{3}|PROP\d{3}|WD\d{3})\b")
+CHARACTER_ID_RE = re.compile(r"^C\d{2}$")
 
 # Binding statuses that mean the element is active in Kling Element Library
 ACTIVE_BINDING_STATUSES = frozenset({"created", "voice_capable", "voice_locked"})
@@ -456,7 +457,9 @@ class KlingOmniAdapter:
                 if not isinstance(shot, dict):
                     continue
                 for eid in shot.get("required_element_ids") or []:
-                    if isinstance(eid, str) and eid in char_ids:
+                    if isinstance(eid, str) and (
+                        eid in char_ids or bool(CHARACTER_ID_RE.match(eid))
+                    ):
                         speaking_ids.add(eid)
             readiness = _load_audio_readiness(scene_id, self.repo_root)
             not_ready = [eid for eid in sorted(speaking_ids) if readiness.get(eid) != "ready"]

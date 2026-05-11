@@ -358,6 +358,60 @@ class TestGenerateFromClipManifest:
         assert "speaker_not_ready" in params["audio_gate_reason"]
         assert "kling_native_audio" not in params
 
+    def test_performance_pass_blocks_when_speaker_binding_is_planned(self, tmp_path):
+        manifest_path = _create_manifest(
+            tmp_path,
+            shots=[{
+                "shot_id": "SHOT_SC0001_01_A",
+                "duration_seconds": 5,
+                "source_beat_ids": ["B1"],
+                "required_element_ids": ["C01"],
+                "prompt_action": "NADIA speaks briefly.",
+                "duration_reason": "test 5s",
+            }],
+            kling_native_audio={"enabled": True, "provider_policy": "kling_native_only"},
+            total_duration=5,
+        )
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+        _create_element_bindings(tmp_path, bindings=[{
+            "schema_version": "0.x-draft",
+            "record_type": "element_binding",
+            "element_id": "C01",
+            "element_type": "character",
+            "kling_alias": "@Nadia",
+            "binding_status": "planned",
+            "native_audio_readiness": "blocked",
+        }])
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(str(manifest_path), render_pass="performance_test")
+        params = result.prompt_record["generation_params"]
+        assert params["audio_gate_status"] == "blocked"
+        assert "speaker_not_ready:C01" in params["audio_gate_reason"]
+
+    def test_performance_pass_blocks_when_speaker_binding_missing(self, tmp_path):
+        manifest_path = _create_manifest(
+            tmp_path,
+            shots=[{
+                "shot_id": "SHOT_SC0001_01_A",
+                "duration_seconds": 5,
+                "source_beat_ids": ["B1"],
+                "required_element_ids": ["C01"],
+                "prompt_action": "NADIA speaks briefly.",
+                "duration_reason": "test 5s",
+            }],
+            kling_native_audio={"enabled": True, "provider_policy": "kling_native_only"},
+            total_duration=5,
+        )
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+        # No element_bindings file at all -> missing readiness must block.
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(str(manifest_path), render_pass="performance_test")
+        params = result.prompt_record["generation_params"]
+        assert params["audio_gate_status"] == "blocked"
+        assert "speaker_not_ready:C01" in params["audio_gate_reason"]
+
     def test_final_candidate_requires_ready_speaker_bindings(self, tmp_path):
         manifest_path = _create_manifest(
             tmp_path,
