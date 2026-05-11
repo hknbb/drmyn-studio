@@ -36,7 +36,7 @@ class MidjourneyAdapter(BaseAdapter):
     INTERNAL_MODEL_TARGET = "midjourney_image_best_available"
 
     # ------------------------------------------------------------------
-    # generation_params â€” AR recommendation (model version from snapshot)
+    # generation_params - AR recommendation (model version from snapshot)
     # ------------------------------------------------------------------
 
     def _extra_generation_params(self, brief: NeutralBrief) -> dict[str, Any]:
@@ -61,7 +61,7 @@ class MidjourneyAdapter(BaseAdapter):
         return params
 
     # ------------------------------------------------------------------
-    # Prompt text â€” natural language, soft-limited
+    # Prompt text - natural language, soft-limited
     # ------------------------------------------------------------------
 
     def _build_prompt_text(self, brief: NeutralBrief) -> str:
@@ -80,7 +80,7 @@ class MidjourneyAdapter(BaseAdapter):
             if state_clause:
                 parts.append(f"Continuity state: {state_clause}.")
 
-        # Visual anchor clauses â€” top 5
+        # Visual anchor clauses - top 5
         for anchor in brief.visual_anchors[:5]:
             clause = _compact(anchor.description, max_words=12)
             if clause:
@@ -103,14 +103,14 @@ class MidjourneyAdapter(BaseAdapter):
         return text
 
     # ------------------------------------------------------------------
-    # Negative prompt â€” hyphenated compact terms for --no, â‰¤20 terms
+    # Negative prompt - hyphenated compact terms for --no, <=20 terms
     # ------------------------------------------------------------------
 
     def _build_negative_prompt(self, brief: NeutralBrief) -> str | None:
         """
         Build --no term list. Midjourney splits --no on spaces (word-by-word),
         so multi-word constraint phrases are converted to hyphenated compact
-        terms (â‰¤4 tokens each) to avoid unintended word-level splitting.
+        terms (<=4 tokens each) to avoid unintended word-level splitting.
         """
         if not brief.negative_constraints:
             return None
