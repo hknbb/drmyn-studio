@@ -354,6 +354,25 @@ class TestGenerateFromClipManifest:
         prompt_text = result.prompt_record["prompt_text"]
         assert "maps rooms" in prompt_text.lower()
 
+    def test_variant_specific_prompt_phrasing(self, tmp_path):
+        manifest_path = _create_manifest(tmp_path)
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+        adapter = KlingOmniAdapter(tmp_path)
+        safe_text = adapter.generate_from_clip_manifest(
+            str(manifest_path), variant_mode="safe"
+        ).prompt_record["prompt_text"].lower()
+        creative_text = adapter.generate_from_clip_manifest(
+            str(manifest_path), variant_mode="creative"
+        ).prompt_record["prompt_text"].lower()
+        aggressive_text = adapter.generate_from_clip_manifest(
+            str(manifest_path), variant_mode="aggressive"
+        ).prompt_record["prompt_text"].lower()
+
+        assert "variant safe" in safe_text and "restrained" in safe_text
+        assert "variant creative" in creative_text and "atmospheric enrichment" in creative_text
+        assert "variant aggressive" in aggressive_text and "stronger cinematic expression" in aggressive_text
+
     def test_manifest_expected_output_duration(self, tmp_path):
         """expected_output.duration_seconds must equal manifest total_duration_seconds."""
         manifest_path = _create_manifest(tmp_path, total_duration=13)

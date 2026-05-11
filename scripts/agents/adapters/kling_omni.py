@@ -363,6 +363,7 @@ class KlingOmniAdapter:
             total_duration=total_duration,
             max_duration=max_duration,
             continuity_mode=continuity_mode,
+            variant_mode=variant_mode,
             alias_map=alias_map,
             char_ids=char_ids,
             required_aliases=required_aliases,
@@ -565,6 +566,7 @@ class KlingOmniAdapter:
         total_duration: int,
         max_duration: int,
         continuity_mode: str,
+        variant_mode: str,
         alias_map: dict[str, str],
         char_ids: set[str],
         required_aliases: list[str],
@@ -581,7 +583,12 @@ class KlingOmniAdapter:
             # No active aliases — fall back to plain text
             return (
                 self._build_prompt_text_from_manifest(
-                    shots, total_duration, max_duration, continuity_mode, beat_content_lookup
+                    shots,
+                    total_duration,
+                    max_duration,
+                    continuity_mode,
+                    variant_mode,
+                    beat_content_lookup,
                 ),
                 [],
             )
@@ -590,6 +597,7 @@ class KlingOmniAdapter:
             "Create one Kling Omni element-based video clip.",
             f"Total duration: {total_duration} seconds.",
             f"Active elements: {', '.join(required_aliases)}.",
+            self._variant_preamble(variant_mode),
         ]
 
         for index, shot in enumerate(shots, start=1):
@@ -676,6 +684,7 @@ class KlingOmniAdapter:
         total_duration: int,
         max_duration: int,
         continuity_mode: str,
+        variant_mode: str,
         beat_content_lookup: dict[str, str] | None = None,
     ) -> str:
         """Build prompt text from manifest shots (not scene_card.shot_list_omni).
@@ -699,6 +708,7 @@ class KlingOmniAdapter:
         parts = [
             "Create one external Kling Omni video instruction.",
             f"Total duration: {total_duration} seconds.",
+            self._variant_preamble(variant_mode),
         ]
 
         parts.extend(shot_lines)
@@ -717,6 +727,23 @@ class KlingOmniAdapter:
             "End with a clear settled state. Do not add new story facts."
         )
         return _sanitize_prompt_text(" ".join(part for part in parts if part))
+
+    @staticmethod
+    def _variant_preamble(variant_mode: str) -> str:
+        if variant_mode == "safe":
+            return (
+                "Variant SAFE: prioritize stable continuity, restrained camera language, "
+                "and conservative execution."
+            )
+        if variant_mode == "creative":
+            return (
+                "Variant CREATIVE: allow controlled atmospheric enrichment while keeping "
+                "all source-grounded facts unchanged."
+            )
+        return (
+            "Variant AGGRESSIVE: use stronger cinematic expression and camera energy "
+            "without adding any new story facts."
+        )
 
     def _prompt_record(
         self,
