@@ -609,30 +609,43 @@ class CriticAgent:
         if not isinstance(shots, list):
             return
 
-        prompt_text = str(record.get("prompt_text") or "").lower()
+        prompt_text = str(record.get("prompt_text") or "")
+        prompt_text_l = prompt_text.lower()
         light_vocab = ("daylight", "practical", "artificial", "low-key", "high-key", "filtered_daylight")
         high_motion_vocab = ("run", "rapid", "dolly", "whip", "tracking")
 
-        for shot in shots:
+        for idx, shot in enumerate(shots, start=1):
             if not isinstance(shot, dict):
                 continue
             lighting = shot.get("lighting") if isinstance(shot.get("lighting"), dict) else {}
             motion = shot.get("motion") if isinstance(shot.get("motion"), dict) else {}
+            shot_segment = self._extract_shot_segment(prompt_text, idx).lower()
+            haystack = shot_segment or prompt_text_l
 
             if lighting:
-                if not any(term in prompt_text for term in light_vocab):
+                if not any(term in haystack for term in light_vocab):
                     hard_errors.append(
-                        "Kling metadata consumption failed: manifest shot has lighting but prompt_text "
-                        "does not include recognized lighting vocabulary."
+                        f"Kling metadata consumption failed: manifest Shot {idx} has lighting "
+                        "but the corresponding prompt segment does not include recognized "
+                        "lighting vocabulary."
                     )
                     break
 
             subj_i = motion.get("subject_intensity")
             if isinstance(subj_i, (int, float)) and float(subj_i) > 0.7:
-                if not any(term in prompt_text for term in high_motion_vocab):
+                if not any(term in haystack for term in high_motion_vocab):
                     soft_warnings.append(
-                        "Kling metadata consumption warning: high motion intensity shot lacks high-motion vocabulary."
+                        f"Kling metadata consumption warning: Shot {idx} has high motion "
+                        "intensity but lacks high-motion vocabulary."
                     )
+
+    def _extract_shot_segment(self, prompt_text: str, shot_index: int) -> str:
+        pattern = re.compile(
+            rf"(Shot\s+{shot_index}\b.*?)(?=(?:\s+Shot\s+{shot_index + 1}\b)|\Z)",
+            re.IGNORECASE | re.DOTALL,
+        )
+        match = pattern.search(prompt_text)
+        return match.group(1) if match else ""
 
     # ------------------------------------------------------------------
     # Soft checks

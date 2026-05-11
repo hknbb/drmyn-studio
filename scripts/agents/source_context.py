@@ -198,6 +198,12 @@ class SourceContextAgent:
         continuity_refs = scene_card.get("continuity_refs") or {}
         character_ids = list(scene_card.get("characters_present") or [])
         location_ids = list(continuity_refs.get("locations") or [])
+        scene_location_id = scene_card.get("location_id")
+        if scene_location_id:
+            location_ids.append(scene_location_id)
+        # Stable de-dup while preserving order
+        seen_loc: dict[str, None] = {}
+        location_ids = [loc for loc in (str(i) for i in location_ids) if not (loc in seen_loc or seen_loc.setdefault(loc, None))]
         prop_ids = list(continuity_refs.get("props") or [])
         wardrobe_ids = list(continuity_refs.get("wardrobe") or [])
 
@@ -234,7 +240,14 @@ class SourceContextAgent:
         if elem_type == "wardrobe":
             return base / "wardrobe" / elem_id / "element_view_plan.yaml"
         if elem_type == "location":
-            # location lookup can vary; skip unless direct folder exists
             p = base / "locations" / elem_id / "element_view_plan.yaml"
+            if p.exists():
+                return p
+            # Fallback: scan sub-area view plans and return first complete one.
+            sub_root = base / "locations" / elem_id / "sub_areas"
+            if sub_root.exists():
+                for vp in sorted(sub_root.glob("*/element_view_plan.yaml")):
+                    if vp.exists():
+                        return vp
             return p
         return None

@@ -69,8 +69,14 @@ def test_word_count_soft_warning_only_not_truncation():
         VisualAnchor(description=" ".join(["precise"] * 20), source_field=f"x{i}")
         for i in range(5)
     ]
-    b = NeutralBrief(**{**_brief().__dict__, "visual_anchors": anchors})
+    b = NeutralBrief(
+        **{
+            **_brief().__dict__,
+            "visual_anchors": anchors,
+            "aesthetic_keywords": tuple(f"kw{i}" for i in range(1, 41)),
+        }
+    )
     text = adapter._build_prompt_text(b)
-    # Should not clamp to legacy 60 in the new template path
-    assert len(text.split()) > 40
+    # Soft limit is warning-only; text should not truncate at 80 words.
+    assert len(text.split()) > 80
     assert len(text.split()) <= 200
