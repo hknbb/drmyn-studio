@@ -70,6 +70,7 @@ PRE_B8A_CLEAN_RESET_PATTERN = "evidence/pre_b8a_clean_resets/*.yaml"
 OMNI_QC_REPORT_PATTERN = "evidence/omni_qc/*.yaml"
 PERSPECTIVE_QC_REPORT_PATTERN = "evidence/perspective_qc/*.yaml"
 DIALOGUE_QC_REPORT_PATTERN = "evidence/dialogue_qc/*.yaml"
+REVIEW_DECISION_PATTERN = "evidence/review_decisions/*.yaml"
 GPT_IMAGES_PERSPECTIVE_PACK_PATTERN = (
     "visual_dev/elements/**/gpt_images_perspective_pack.yaml"
 )
@@ -209,6 +210,7 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         "omni_qc_report": sorted(repo_root.glob(OMNI_QC_REPORT_PATTERN)),
         "perspective_qc_report": sorted(repo_root.glob(PERSPECTIVE_QC_REPORT_PATTERN)),
         "dialogue_qc_report": sorted(repo_root.glob(DIALOGUE_QC_REPORT_PATTERN)),
+        "review_decision_record": sorted(repo_root.glob(REVIEW_DECISION_PATTERN)),
         "gpt_images_perspective_pack": sorted(
             repo_root.glob(GPT_IMAGES_PERSPECTIVE_PACK_PATTERN)
         ),
@@ -857,6 +859,116 @@ def validate_qc_cross_record_gates(
     return issues
 
 
+def validate_review_decision_records(
+    *,
+    repo_root: Path,
+    grouped_files: dict[str, list[Path]],
+) -> list[ProductionValidationIssue]:
+    issues: list[ProductionValidationIssue] = []
+    id_field_by_record_type: dict[str, str] = {
+        "gpt_images_perspective_pack": "prompt_pack_id",
+        "kling_element_reference_record": "kling_element_reference_id",
+        "dialogue_extract_record": "dialogue_extract_id",
+        "performance_intent_record": "performance_intent_id",
+        "voice_binding_record": "voice_binding_id",
+        "native_audio_compatibility_record": "native_audio_compatibility_id",
+        "kling_shot_prompt_record": "kling_shot_prompt_id",
+        "perspective_qc_report": "perspective_qc_id",
+        "dialogue_qc_report": "dialogue_qc_id",
+        "omni_qc_report": "clip_id",
+        "production_batch": "production_batch_id",
+    }
+    operator_session_ids: set[str] = set()
+    for path in grouped_files.get("operator_session", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        session_id = data.get("session_id")
+        if isinstance(session_id, str) and session_id:
+            operator_session_ids.add(session_id)
+
+    for path in grouped_files.get("review_decision_record", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        session_ref = data.get("operator_session_ref")
+        if not isinstance(session_ref, str) or session_ref not in operator_session_ids:
+            issues.append(
+                ProductionValidationIssue(
+                    file=_relative(path, repo_root),
+                    record_type="review_decision_record",
+                    field_path="operator_session_ref",
+                    message="operator_session_ref must reference an existing operator_session record",
+                )
+            )
+        target_path = data.get("target_path")
+        invalid_path = False
+        if not isinstance(target_path, str) or not target_path.strip():
+            invalid_path = True
+        else:
+            normalized = target_path.replace("\\", "/")
+            if normalized.startswith("/") or WINDOWS_ABSOLUTE_PATH_RE.match(target_path):
+                invalid_path = True
+            if ".." in normalized.split("/"):
+                invalid_path = True
+        if invalid_path:
+            issues.append(
+                ProductionValidationIssue(
+                    file=_relative(path, repo_root),
+                    record_type="review_decision_record",
+                    field_path="target_path",
+                    message="target_path must be a safe repo-relative path",
+                )
+            )
+        elif not (repo_root / target_path).exists():
+            issues.append(
+                ProductionValidationIssue(
+                    file=_relative(path, repo_root),
+                    record_type="review_decision_record",
+                    field_path="target_path",
+                    message="target_path must exist in repository",
+                )
+            )
+        else:
+            target_record_type = data.get("target_record_type")
+            expected_id = data.get("target_record_id")
+            if isinstance(target_record_type, str) and isinstance(expected_id, str):
+                target_data = _load_yaml_mapping(repo_root / target_path)
+                if not isinstance(target_data, dict):
+                    issues.append(
+                        ProductionValidationIssue(
+                            file=_relative(path, repo_root),
+                            record_type="review_decision_record",
+                            field_path="target_path",
+                            message="target_path must point to a YAML mapping record",
+                        )
+                    )
+                else:
+                    actual_type = target_data.get("record_type")
+                    if actual_type != target_record_type:
+                        issues.append(
+                            ProductionValidationIssue(
+                                file=_relative(path, repo_root),
+                                record_type="review_decision_record",
+                                field_path="target_record_type",
+                                message="target_record_type must match record_type at target_path",
+                            )
+                        )
+                    id_field = id_field_by_record_type.get(target_record_type)
+                    if id_field:
+                        actual_id = target_data.get(id_field)
+                        if actual_id != expected_id:
+                            issues.append(
+                                ProductionValidationIssue(
+                                    file=_relative(path, repo_root),
+                                    record_type="review_decision_record",
+                                    field_path="target_record_id",
+                                    message="target_record_id must match record id at target_path",
+                                )
+                            )
+    return issues
+
+
 def _load_structural_record(
     *,
     path: Path,
@@ -1477,6 +1589,7 @@ def run_validation(
     omni_qc_report_validator: Draft202012Validator | None = None
     perspective_qc_report_validator: Draft202012Validator | None = None
     dialogue_qc_report_validator: Draft202012Validator | None = None
+    review_decision_record_validator: Draft202012Validator | None = None
     gpt_images_perspective_pack_validator: Draft202012Validator | None = None
     kling_element_reference_validator: Draft202012Validator | None = None
     kling_shot_prompt_record_validator: Draft202012Validator | None = None
@@ -1793,6 +1906,20 @@ def run_validation(
                     record_type=record_type,
                     validator=dialogue_qc_report_validator,
                 )
+            elif record_type == "review_decision_record":
+                if review_decision_record_validator is None:
+                    review_decision_record_schema = load_schema(
+                        repo_root / "schemas" / "review_decision_record.schema.json"
+                    )
+                    review_decision_record_validator = Draft202012Validator(
+                        review_decision_record_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=review_decision_record_validator,
+                )
             elif record_type == "gpt_images_perspective_pack":
                 if gpt_images_perspective_pack_validator is None:
                     gpt_images_perspective_pack_schema = load_schema(
@@ -1952,6 +2079,14 @@ def run_validation(
     if qc_readiness_issues:
         all_issues.extend(qc_readiness_issues)
         invalid_files.update(issue.file for issue in qc_readiness_issues)
+
+    review_decision_issues = validate_review_decision_records(
+        repo_root=repo_root,
+        grouped_files=grouped_files,
+    )
+    if review_decision_issues:
+        all_issues.extend(review_decision_issues)
+        invalid_files.update(issue.file for issue in review_decision_issues)
 
     report = ProductionValidationReport(
         total_files=total,
