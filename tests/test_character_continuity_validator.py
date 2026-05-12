@@ -168,3 +168,108 @@ def test_character_continuity_rejects_inherits_character_mismatch(tmp_path: Path
     )
     issues = validate_character_continuity(tmp_path)
     assert any(i.field_path == "inherits_identity_anchor" for i in issues)
+
+
+def test_character_continuity_accepts_intake_slot_as_provisional_wardrobe_registry(
+    tmp_path: Path,
+) -> None:
+    payload = _look()
+    payload["character_id"] = "C04"
+    payload["look_id"] = "C04_LOOK_OPERATIONAL_V001"
+    payload["inherits_identity_anchor"] = "C04_IDENTITY_ANCHOR_V001"
+    payload["wardrobe_refs"]["primary_wardrobe_id"] = "WD005"
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C04/look_variants/C04_LOOK_OPERATIONAL_V001.yaml",
+        payload,
+    )
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C04/wardrobe/WD005/intake_slot.yaml",
+        {
+            "schema_version": "0.x-draft",
+            "record_type": "intake_slot",
+            "slot_id": "WD005",
+            "status": "draft",
+            "provenance": {"created_by": "tests", "created_at": "2026-05-12T00:00:00Z"},
+        },
+    )
+    issues = validate_character_continuity(tmp_path)
+    assert not any(
+        i.record_type == "character_look_variant"
+        and i.field_path == "wardrobe_refs"
+        and "WD005" in i.message
+        for i in issues
+    )
+
+
+def test_character_continuity_rejects_missing_wardrobe_when_no_plan_or_intake(
+    tmp_path: Path,
+) -> None:
+    payload = _look()
+    payload["character_id"] = "C04"
+    payload["look_id"] = "C04_LOOK_OPERATIONAL_V001"
+    payload["inherits_identity_anchor"] = "C04_IDENTITY_ANCHOR_V001"
+    payload["wardrobe_refs"]["primary_wardrobe_id"] = "WD999"
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C04/look_variants/C04_LOOK_OPERATIONAL_V001.yaml",
+        payload,
+    )
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C04/wardrobe/WD005/intake_slot.yaml",
+        {
+            "schema_version": "0.x-draft",
+            "record_type": "intake_slot",
+            "slot_id": "WD005",
+            "status": "draft",
+            "provenance": {"created_by": "tests", "created_at": "2026-05-12T00:00:00Z"},
+        },
+    )
+    issues = validate_character_continuity(tmp_path)
+    assert any(
+        i.record_type == "character_look_variant"
+        and i.field_path == "wardrobe_refs"
+        and "WD999" in i.message
+        and i.severity == "error"
+        for i in issues
+    )
+
+
+def test_character_continuity_existing_element_view_plan_registry_still_passes(
+    tmp_path: Path,
+) -> None:
+    payload = _look()
+    payload["character_id"] = "C02"
+    payload["look_id"] = "C02_LOOK_CORPORATE_CONTROL_V001"
+    payload["inherits_identity_anchor"] = "C02_IDENTITY_ANCHOR_V001"
+    payload["wardrobe_refs"]["primary_wardrobe_id"] = "WD003"
+    _write_yaml(
+        tmp_path
+        / "visual_dev/elements/characters/C02/look_variants/C02_LOOK_CORPORATE_CONTROL_V001.yaml",
+        payload,
+    )
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C02/wardrobe/WD003/element_view_plan.yaml",
+        {
+            "schema_version": "0.x-draft",
+            "record_type": "element_view_plan",
+            "element_id": "WD003",
+            "element_type": "wardrobe",
+            "retrofit_status": "planned",
+            "views": [
+                {
+                    "view_id": "main_front",
+                    "view_label": "main",
+                    "generation_pattern": "anchor_t2i",
+                    "anchor_dependency": "none",
+                    "status": "not_started",
+                }
+            ],
+            "provenance": {"created_by": "tests", "created_at": "2026-05-12T00:00:00Z"},
+        },
+    )
+    issues = validate_character_continuity(tmp_path)
+    assert not any(
+        i.record_type == "character_look_variant"
+        and i.field_path == "wardrobe_refs"
+        and "WD003" in i.message
+        for i in issues
+    )
