@@ -187,6 +187,15 @@ def validate_character_continuity(repo_root: Path) -> list[CharacterContinuityIs
                     )
                 )
             look_entry = look_by_id.get(look_id) if isinstance(look_id, str) else None
+            if isinstance(look_id, str) and look_id and look_entry is None:
+                issues.append(
+                    CharacterContinuityIssue(
+                        file=path.relative_to(repo_root).as_posix(),
+                        record_type="scene_character_look_map",
+                        field_path=f"characters.{idx}.look_id",
+                        message="look_id must reference an existing character_look_variant",
+                    )
+                )
             if look_entry and isinstance(char_id, str):
                 if look_entry["data"].get("character_id") != char_id:
                     issues.append(
