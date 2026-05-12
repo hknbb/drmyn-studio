@@ -615,6 +615,248 @@ def validate_production_batch_model_guidance_gate(
     return issues
 
 
+def _is_int_score(value: Any) -> bool:
+    return isinstance(value, int) and not isinstance(value, bool)
+
+
+def validate_perspective_qc_readiness(
+    *,
+    repo_root: Path,
+    grouped_files: dict[str, list[Path]],
+) -> list[ProductionValidationIssue]:
+    issues: list[ProductionValidationIssue] = []
+    score_fields = (
+        "identity_preservation",
+        "perspective_usefulness",
+        "material_palette_continuity",
+        "production_reference_cleanliness",
+        "hallucination_absence",
+        "total_score",
+    )
+    blocked_decisions = {"pending", "fail", "revise"}
+
+    for path in grouped_files.get("perspective_qc_report", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        gate = data.get("gate")
+        if not isinstance(gate, dict) or gate.get("can_advance_to_kling_reference") is not True:
+            continue
+
+        scores = data.get("perspective_scores")
+        minimum_score = gate.get("minimum_score")
+        can_advance = True
+        if not isinstance(scores, list) or len(scores) != 4:
+            can_advance = False
+        if not _is_int_score(minimum_score):
+            can_advance = False
+
+        if can_advance:
+            for score_entry in scores:
+                if not isinstance(score_entry, dict):
+                    can_advance = False
+                    break
+                for field in score_fields:
+                    if not _is_int_score(score_entry.get(field)):
+                        can_advance = False
+                        break
+                decision = score_entry.get("decision")
+                if not isinstance(decision, str) or decision in blocked_decisions:
+                    can_advance = False
+                total_score = score_entry.get("total_score")
+                if _is_int_score(total_score) and _is_int_score(minimum_score):
+                    if total_score < minimum_score:
+                        can_advance = False
+                if not can_advance:
+                    break
+
+        if not can_advance:
+            issues.append(
+                ProductionValidationIssue(
+                    file=_relative(path, repo_root),
+                    record_type="perspective_qc_report",
+                    field_path="gate.can_advance_to_kling_reference",
+                    message="perspective QC cannot advance before all scores meet threshold",
+                )
+            )
+    return issues
+
+
+def validate_dialogue_qc_readiness(
+    *,
+    repo_root: Path,
+    grouped_files: dict[str, list[Path]],
+) -> list[ProductionValidationIssue]:
+    issues: list[ProductionValidationIssue] = []
+    blocking_checks = (
+        "speaker_identity_correctness",
+        "line_accuracy",
+        "lip_sync_stability",
+        "performance_tone_match",
+        "unwanted_speech_or_subtitles",
+        "unsupported_input_mode_combination",
+    )
+    for path in grouped_files.get("dialogue_qc_report", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        gate = data.get("gate")
+        if not isinstance(gate, dict) or gate.get("can_advance_to_candidate") is not True:
+            continue
+        checks = data.get("checks")
+        valid = isinstance(checks, dict)
+        if valid:
+            for name in blocking_checks:
+                value = checks.get(name)
+                if value in {"pending", "fail"}:
+                    valid = False
+                    break
+        if not valid:
+            issues.append(
+                ProductionValidationIssue(
+                    file=_relative(path, repo_root),
+                    record_type="dialogue_qc_report",
+                    field_path="gate.can_advance_to_candidate",
+                    message="dialogue QC cannot advance while checks are pending or failing",
+                )
+            )
+    return issues
+
+
+def validate_omni_qc_readiness(
+    *,
+    repo_root: Path,
+    grouped_files: dict[str, list[Path]],
+) -> list[ProductionValidationIssue]:
+    issues: list[ProductionValidationIssue] = []
+    for path in grouped_files.get("omni_qc_report", []):
+        data = _load_yaml_mapping(path)
+        if not data or data.get("selected_for_next_pass") is not True:
+            continue
+        checks = data.get("checks")
+        retry_rule = data.get("retry_rule")
+        provenance = data.get("provenance")
+        valid = isinstance(checks, dict) and isinstance(provenance, dict)
+        if valid:
+            if checks.get("identity_consistency") != "pass":
+                valid = False
+            if checks.get("camera_stability") != "pass":
+                valid = False
+            if checks.get("narrative_beat") != "pass":
+                valid = False
+            if checks.get("audio_sync") not in {"pass", "not_applicable"}:
+                valid = False
+            if checks.get("unwanted_speech") not in {"pass", "not_applicable"}:
+                valid = False
+            motion = checks.get("motion_artifacts")
+            hand_face = checks.get("hand_face_artifacts")
+            if motion == "warn" and not isinstance(retry_rule, dict):
+                valid = False
+            if hand_face == "warn" and not isinstance(retry_rule, dict):
+                valid = False
+            if motion not in {"pass", "warn"}:
+                valid = False
+            if hand_face not in {"pass", "warn"}:
+                valid = False
+            if provenance.get("reviewed_by") == "human_operator_pending":
+                valid = False
+        if not valid:
+            issues.append(
+                ProductionValidationIssue(
+                    file=_relative(path, repo_root),
+                    record_type="omni_qc_report",
+                    field_path="selected_for_next_pass",
+                    message="selected_for_next_pass requires completed passing Omni QC",
+                )
+            )
+    return issues
+
+
+def validate_qc_cross_record_gates(
+    *,
+    repo_root: Path,
+    grouped_files: dict[str, list[Path]],
+) -> list[ProductionValidationIssue]:
+    issues: list[ProductionValidationIssue] = []
+    issues.extend(
+        validate_perspective_qc_readiness(repo_root=repo_root, grouped_files=grouped_files)
+    )
+    issues.extend(
+        validate_dialogue_qc_readiness(repo_root=repo_root, grouped_files=grouped_files)
+    )
+    issues.extend(validate_omni_qc_readiness(repo_root=repo_root, grouped_files=grouped_files))
+
+    perspective_qc_records: list[dict[str, Any]] = []
+    for path in grouped_files.get("perspective_qc_report", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        perspective_qc_records.append(data)
+
+    dialogue_qc_by_scene_shot: dict[tuple[str, str], dict[str, Any]] = {}
+    for path in grouped_files.get("dialogue_qc_report", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        scene_id = data.get("scene_id")
+        shot_id = data.get("shot_id")
+        if isinstance(scene_id, str) and isinstance(shot_id, str):
+            dialogue_qc_by_scene_shot[(scene_id, shot_id)] = data
+
+    for path in grouped_files.get("kling_element_reference_record", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        approval_gate = data.get("approval_gate")
+        if not isinstance(approval_gate, dict):
+            continue
+        if approval_gate.get("all_perspectives_score_85_plus") is not True:
+            continue
+        element_id = data.get("element_id")
+        has_passing = False
+        for pqc in perspective_qc_records:
+            if pqc.get("element_id") != element_id:
+                continue
+            gate = pqc.get("gate")
+            if isinstance(gate, dict) and gate.get("can_advance_to_kling_reference") is True:
+                has_passing = True
+                break
+        if not has_passing:
+            issues.append(
+                ProductionValidationIssue(
+                    file=_relative(path, repo_root),
+                    record_type="kling_element_reference_record",
+                    field_path="approval_gate.all_perspectives_score_85_plus",
+                    message="all_perspectives_score_85_plus requires completed perspective QC report",
+                )
+            )
+
+    advanced_statuses = {"final_candidate", "final_locked", "materialized"}
+    for path in grouped_files.get("kling_shot_prompt_record", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        if data.get("native_audio") is not True:
+            continue
+        status = data.get("status")
+        if status not in advanced_statuses:
+            continue
+        scene_id = data.get("scene_id")
+        shot_id = data.get("shot_id")
+        dialogue_qc = dialogue_qc_by_scene_shot.get((scene_id, shot_id))
+        gate = dialogue_qc.get("gate") if isinstance(dialogue_qc, dict) else None
+        if not isinstance(gate, dict) or gate.get("can_advance_to_candidate") is not True:
+            issues.append(
+                ProductionValidationIssue(
+                    file=_relative(path, repo_root),
+                    record_type="kling_shot_prompt_record",
+                    field_path="native_audio",
+                    message="native audio shot cannot advance without completed dialogue QC",
+                )
+            )
+    return issues
+
+
 def _load_structural_record(
     *,
     path: Path,
@@ -1702,6 +1944,14 @@ def run_validation(
     if model_guidance_issues:
         all_issues.extend(model_guidance_issues)
         invalid_files.update(issue.file for issue in model_guidance_issues)
+
+    qc_readiness_issues = validate_qc_cross_record_gates(
+        repo_root=repo_root,
+        grouped_files=grouped_files,
+    )
+    if qc_readiness_issues:
+        all_issues.extend(qc_readiness_issues)
+        invalid_files.update(issue.file for issue in qc_readiness_issues)
 
     report = ProductionValidationReport(
         total_files=total,

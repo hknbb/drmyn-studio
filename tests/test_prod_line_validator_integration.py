@@ -543,7 +543,14 @@ def test_valid_minimal_prod_line_chain_passes(tmp_path: Path) -> None:
     )
     _write_yaml(
         tmp_path / "visual_dev/elements/characters/C01/kling_element_reference.yaml",
-        _valid_kling_element_reference_record(),
+        {
+            **_valid_kling_element_reference_record(),
+            "approval_gate": {
+                "all_perspectives_score_85_plus": False,
+                "operator_approved": False,
+                "operator_session_ref": "OP-SC0001-001",
+            },
+        },
     )
     _write_yaml(
         tmp_path / "visual_dev/omni_sets/SC0001/kling_shot_prompt_001.yaml",
@@ -851,3 +858,137 @@ def test_qc_scaffolds_do_not_require_binary_media_refs(tmp_path: Path) -> None:
     )
     report = run_validation(tmp_path)
     assert report.invalid_files == 0
+
+
+def test_perspective_qc_fails_if_advance_true_with_null_scores(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    payload = _valid_perspective_qc_report()
+    payload["gate"]["can_advance_to_kling_reference"] = True
+    _write_yaml(
+        tmp_path / "evidence/perspective_qc/PQC_C01_PERSPECTIVE_PACK_V001.yaml",
+        payload,
+    )
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "perspective_qc_report"
+        and i.field_path == "gate.can_advance_to_kling_reference"
+        and "perspective QC cannot advance before all scores meet threshold" in i.message
+        for i in report.issues
+    )
+
+
+def test_perspective_qc_fails_if_total_score_below_threshold(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    payload = _valid_perspective_qc_report()
+    payload["gate"]["can_advance_to_kling_reference"] = True
+    for score in payload["perspective_scores"]:
+        score["identity_preservation"] = 90
+        score["perspective_usefulness"] = 90
+        score["material_palette_continuity"] = 90
+        score["production_reference_cleanliness"] = 90
+        score["hallucination_absence"] = 90
+        score["total_score"] = 90
+        score["decision"] = "pass"
+    payload["perspective_scores"][0]["total_score"] = 84
+    _write_yaml(
+        tmp_path / "evidence/perspective_qc/PQC_C01_PERSPECTIVE_PACK_V001.yaml",
+        payload,
+    )
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "perspective_qc_report"
+        and i.field_path == "gate.can_advance_to_kling_reference"
+        and "perspective QC cannot advance before all scores meet threshold" in i.message
+        for i in report.issues
+    )
+
+
+def test_kling_element_reference_fails_without_completed_perspective_qc(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    ker = _valid_kling_element_reference_record()
+    ker["approval_gate"]["all_perspectives_score_85_plus"] = True
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C01/kling_element_reference.yaml",
+        ker,
+    )
+    _write_yaml(
+        tmp_path / "evidence/perspective_qc/PQC_C01_PERSPECTIVE_PACK_V001.yaml",
+        _valid_perspective_qc_report(),
+    )
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "kling_element_reference_record"
+        and i.field_path == "approval_gate.all_perspectives_score_85_plus"
+        and "requires completed perspective QC report" in i.message
+        for i in report.issues
+    )
+
+
+def test_dialogue_qc_fails_if_advance_true_with_pending_checks(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    payload = _valid_dialogue_qc_report()
+    payload["gate"]["can_advance_to_candidate"] = True
+    _write_yaml(
+        tmp_path / "evidence/dialogue_qc/DQC_SC0001_SH001_V001.yaml",
+        payload,
+    )
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "dialogue_qc_report"
+        and i.field_path == "gate.can_advance_to_candidate"
+        and "dialogue QC cannot advance while checks are pending or failing" in i.message
+        for i in report.issues
+    )
+
+
+def test_native_audio_shot_fails_if_advanced_without_completed_dialogue_qc(
+    tmp_path: Path,
+) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(tmp_path / "planning/dialogue/DLG_SC0001_01.yaml", _valid_dialogue_extract_record())
+    _write_yaml(tmp_path / "planning/dialogue/PERF_SC0001_01.yaml", _valid_performance_intent_record())
+    _write_yaml(
+        tmp_path / "planning/dialogue/VOICE_SC0001_C01_V01.yaml",
+        _valid_voice_binding_record(binding_status="none"),
+    )
+    _write_yaml(
+        tmp_path / "evidence/native_audio_compatibility/NAC_SC0001_01.yaml",
+        _valid_native_audio_compatibility_record(compatible=True, status="review"),
+    )
+    _write_yaml(
+        tmp_path / "evidence/dialogue_qc/DQC_SC0001_SH001_V001.yaml",
+        _valid_dialogue_qc_report(),
+    )
+    shot = _valid_kling_shot_prompt_record()
+    shot["status"] = "materialized"
+    shot["shot_id"] = "SH001"
+    shot["native_audio"] = True
+    shot["dialogue"] = ["DLG_SC0001_01", "PERF_SC0001_01"]
+    shot["speech_constraints"] = ["single speaker only"]
+    shot["native_audio_compatibility"] = "NAC_SC0001_01"
+    shot["voice_binding"] = "VOICE_SC0001_C01_V01"
+    _write_yaml(tmp_path / "visual_dev/omni_sets/SC0001/kling_shot_prompt_001.yaml", shot)
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "kling_shot_prompt_record"
+        and i.field_path == "native_audio"
+        and "native audio shot cannot advance without completed dialogue QC" in i.message
+        for i in report.issues
+    )
+
+
+def test_omni_qc_fails_if_selected_true_with_placeholder_review(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    payload = _valid_omni_qc_placeholder()
+    payload["selected_for_next_pass"] = True
+    _write_yaml(
+        tmp_path / "evidence/omni_qc/QC_SC0001_CLIP_SC0001_SH001_PILOT_V001.yaml",
+        payload,
+    )
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "omni_qc_report"
+        and i.field_path == "selected_for_next_pass"
+        and "selected_for_next_pass requires completed passing Omni QC" in i.message
+        for i in report.issues
+    )
