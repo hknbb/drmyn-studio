@@ -77,14 +77,66 @@ def build_report(*, repo_root: Path, scene_id: str) -> str:
     gate_results = validate_model_research_gate(repo_root=repo_root, required_targets=targets)
     model_gate_pass = all(r.passed for r in gate_results)
 
-    perspective_not_ready = any(
-        s.get("total_score") is None or s.get("decision") == "pending"
-        for s in p_qc.get("perspective_scores", [])
-    )
-    dialogue_not_ready = any(v == "pending" for v in d_qc.get("checks", {}).values())
-    omni_not_ready = (o_qc.get("selected_for_next_pass") is False) and (
-        o_qc.get("provenance", {}).get("reviewed_by") == "human_operator_pending"
-    )
+    p_gate = p_qc.get("gate", {}) if isinstance(p_qc.get("gate"), dict) else {}
+    p_min_score = p_gate.get("minimum_score", 0)
+    perspective_not_ready = False
+    for s in p_qc.get("perspective_scores", []):
+        if not isinstance(s, dict):
+            perspective_not_ready = True
+            break
+        total = s.get("total_score")
+        decision = s.get("decision")
+        if not isinstance(total, int):
+            perspective_not_ready = True
+            break
+        if total < p_min_score:
+            perspective_not_ready = True
+            break
+        if decision in {"pending", "revise", "fail"}:
+            perspective_not_ready = True
+            break
+
+    blocking_checks = {
+        "speaker_identity_correctness",
+        "line_accuracy",
+        "lip_sync_stability",
+        "performance_tone_match",
+        "unwanted_speech_or_subtitles",
+        "unsupported_input_mode_combination",
+    }
+    dialogue_not_ready = False
+    checks = d_qc.get("checks", {})
+    if isinstance(checks, dict):
+        for name in blocking_checks:
+            if checks.get(name) in {"pending", "fail"}:
+                dialogue_not_ready = True
+                break
+    else:
+        dialogue_not_ready = True
+
+    # Mirror readiness intent of validate_omni_qc_readiness:
+    # unselected or non-passing selected entries are not ready.
+    selected = o_qc.get("selected_for_next_pass") is True
+    o_checks = o_qc.get("checks", {}) if isinstance(o_qc.get("checks"), dict) else {}
+    o_retry = o_qc.get("retry_rule")
+    o_prov = o_qc.get("provenance", {}) if isinstance(o_qc.get("provenance"), dict) else {}
+    omni_ready = False
+    if selected:
+        motion = o_checks.get("motion_artifacts")
+        hand_face = o_checks.get("hand_face_artifacts")
+        motion_ok = motion == "pass" or (motion == "warn" and isinstance(o_retry, dict))
+        hand_face_ok = hand_face == "pass" or (hand_face == "warn" and isinstance(o_retry, dict))
+        omni_ready = (
+            o_checks.get("identity_consistency") == "pass"
+            and o_checks.get("camera_stability") == "pass"
+            and o_checks.get("narrative_beat") == "pass"
+            and o_checks.get("audio_sync") in {"pass", "not_applicable"}
+            and o_checks.get("unwanted_speech") in {"pass", "not_applicable"}
+            and motion_ok
+            and hand_face_ok
+            and o_prov.get("reviewed_by") != "human_operator_pending"
+        )
+    omni_not_ready = not omni_ready
     review_draft_only = all(r.get("status") == "draft" and r.get("applied") is False for r in rd_files)
 
     non_promotion_checks = [

@@ -4,6 +4,7 @@ import io
 from contextlib import redirect_stdout
 from pathlib import Path
 
+import scripts.reports.export_prod_line_pilot_status as pilot_status
 from scripts.reports.export_prod_line_pilot_status import build_report, main
 
 
@@ -70,3 +71,74 @@ def test_missing_required_file_fails(tmp_path: Path) -> None:
         assert False, "expected FileNotFoundError"
     except FileNotFoundError:
         pass
+
+
+def test_perspective_failed_scores_still_not_ready(monkeypatch) -> None:
+    original_load = pilot_status._load_yaml
+
+    def _patched_load(path: Path):
+        data = original_load(path)
+        if path.as_posix().endswith("evidence/perspective_qc/PQC_C01_PERSPECTIVE_PACK_V001.yaml"):
+            data["gate"] = {
+                "minimum_score": 85,
+                "all_four_required": True,
+                "can_advance_to_kling_reference": True,
+            }
+            data["perspective_scores"] = [
+                {
+                    "prompt_id": "GPTIMG2_C01_P01_FRONT_V001",
+                    "perspective": "front_hero",
+                    "identity_preservation": 90,
+                    "perspective_usefulness": 90,
+                    "material_palette_continuity": 90,
+                    "production_reference_cleanliness": 90,
+                    "hallucination_absence": 90,
+                    "total_score": 80,
+                    "decision": "revise",
+                }
+            ]
+        return data
+
+    monkeypatch.setattr(pilot_status, "_load_yaml", _patched_load)
+    report = build_report(repo_root=REPO_ROOT, scene_id="SC0001")
+    assert "perspective QC: NOT READY" in report
+
+
+def test_dialogue_failed_blocking_check_still_not_ready(monkeypatch) -> None:
+    original_load = pilot_status._load_yaml
+
+    def _patched_load(path: Path):
+        data = original_load(path)
+        if path.as_posix().endswith("evidence/dialogue_qc/DQC_SC0001_SH001_V001.yaml"):
+            checks = dict(data.get("checks", {}))
+            checks["line_accuracy"] = "fail"
+            checks["speaker_identity_correctness"] = "pass"
+            data["checks"] = checks
+            data["gate"] = {
+                "approve_candidate_threshold": 90,
+                "revise_threshold_min": 80,
+                "can_advance_to_candidate": True,
+            }
+        return data
+
+    monkeypatch.setattr(pilot_status, "_load_yaml", _patched_load)
+    report = build_report(repo_root=REPO_ROOT, scene_id="SC0001")
+    assert "dialogue QC: NOT READY" in report
+
+
+def test_omni_unselected_stays_not_ready_even_if_reviewed(monkeypatch) -> None:
+    original_load = pilot_status._load_yaml
+
+    def _patched_load(path: Path):
+        data = original_load(path)
+        if path.as_posix().endswith("evidence/omni_qc/QC_SC0001_CLIP_SC0001_SH001_PILOT_V001.yaml"):
+            data["selected_for_next_pass"] = False
+            data["provenance"] = {
+                "reviewed_by": "human_operator",
+                "reviewed_at": "2026-05-12T00:00:00Z",
+            }
+        return data
+
+    monkeypatch.setattr(pilot_status, "_load_yaml", _patched_load)
+    report = build_report(repo_root=REPO_ROOT, scene_id="SC0001")
+    assert "Omni QC: NOT READY" in report
