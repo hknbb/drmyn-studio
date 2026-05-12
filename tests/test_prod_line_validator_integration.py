@@ -1155,3 +1155,33 @@ def test_review_decision_invalid_target_path_fails_consistency(tmp_path: Path) -
         and "safe repo-relative path" in i.message
         for i in report.issues
     )
+
+
+def test_review_decision_target_record_mismatch_fails_consistency(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "evidence/operator_sessions/OP-SC0001-20260430.yaml",
+        _valid_operator_session_record(),
+    )
+    _write_yaml(
+        tmp_path / "evidence/perspective_qc/PQC_C01_PERSPECTIVE_PACK_V001.yaml",
+        _valid_perspective_qc_report(),
+    )
+    _write_yaml(
+        tmp_path / "evidence/dialogue_qc/DQC_SC0001_SH001_V001.yaml",
+        _valid_dialogue_qc_report(),
+    )
+    payload = _valid_review_decision_record()
+    payload["target_record_type"] = "perspective_qc_report"
+    payload["target_record_id"] = "PQC_C01_PERSPECTIVE_PACK_V001"
+    payload["target_path"] = "evidence/dialogue_qc/DQC_SC0001_SH001_V001.yaml"
+    _write_yaml(
+        tmp_path / "evidence/review_decisions/RD_SC0001_PERSPECTIVE_REVISE_DRAFT.yaml",
+        payload,
+    )
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "review_decision_record"
+        and i.field_path in {"target_record_type", "target_record_id"}
+        for i in report.issues
+    )

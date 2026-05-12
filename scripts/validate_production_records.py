@@ -865,6 +865,19 @@ def validate_review_decision_records(
     grouped_files: dict[str, list[Path]],
 ) -> list[ProductionValidationIssue]:
     issues: list[ProductionValidationIssue] = []
+    id_field_by_record_type: dict[str, str] = {
+        "gpt_images_perspective_pack": "prompt_pack_id",
+        "kling_element_reference_record": "kling_element_reference_id",
+        "dialogue_extract_record": "dialogue_extract_id",
+        "performance_intent_record": "performance_intent_id",
+        "voice_binding_record": "voice_binding_id",
+        "native_audio_compatibility_record": "native_audio_compatibility_id",
+        "kling_shot_prompt_record": "kling_shot_prompt_id",
+        "perspective_qc_report": "perspective_qc_id",
+        "dialogue_qc_report": "dialogue_qc_id",
+        "omni_qc_report": "clip_id",
+        "production_batch": "production_batch_id",
+    }
     operator_session_ids: set[str] = set()
     for path in grouped_files.get("operator_session", []):
         data = _load_yaml_mapping(path)
@@ -916,6 +929,43 @@ def validate_review_decision_records(
                     message="target_path must exist in repository",
                 )
             )
+        else:
+            target_record_type = data.get("target_record_type")
+            expected_id = data.get("target_record_id")
+            if isinstance(target_record_type, str) and isinstance(expected_id, str):
+                target_data = _load_yaml_mapping(repo_root / target_path)
+                if not isinstance(target_data, dict):
+                    issues.append(
+                        ProductionValidationIssue(
+                            file=_relative(path, repo_root),
+                            record_type="review_decision_record",
+                            field_path="target_path",
+                            message="target_path must point to a YAML mapping record",
+                        )
+                    )
+                else:
+                    actual_type = target_data.get("record_type")
+                    if actual_type != target_record_type:
+                        issues.append(
+                            ProductionValidationIssue(
+                                file=_relative(path, repo_root),
+                                record_type="review_decision_record",
+                                field_path="target_record_type",
+                                message="target_record_type must match record_type at target_path",
+                            )
+                        )
+                    id_field = id_field_by_record_type.get(target_record_type)
+                    if id_field:
+                        actual_id = target_data.get(id_field)
+                        if actual_id != expected_id:
+                            issues.append(
+                                ProductionValidationIssue(
+                                    file=_relative(path, repo_root),
+                                    record_type="review_decision_record",
+                                    field_path="target_record_id",
+                                    message="target_record_id must match record id at target_path",
+                                )
+                            )
     return issues
 
 
