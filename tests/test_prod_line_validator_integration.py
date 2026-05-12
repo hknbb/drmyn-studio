@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 import sys
@@ -41,6 +41,7 @@ def _copy_schemas(repo_root: Path) -> None:
         "perspective_qc_report.schema.json",
         "dialogue_qc_report.schema.json",
         "omni_qc_report.schema.json",
+        "review_decision_record.schema.json",
     ):
         (schemas_dir / name).write_text(
             (REPO_ROOT / "schemas" / name).read_text(encoding="utf-8"),
@@ -449,6 +450,42 @@ def _valid_omni_qc_placeholder() -> dict:
     }
 
 
+def _valid_review_decision_record() -> dict:
+    return {
+        "schema_version": "0.x-draft",
+        "record_type": "review_decision_record",
+        "review_decision_id": "RD_SC0001_PERSPECTIVE_REVISE_DRAFT",
+        "status": "draft",
+        "scene_id": "SC0001",
+        "target_record_type": "perspective_qc_report",
+        "target_record_id": "PQC_C01_PERSPECTIVE_PACK_V001",
+        "target_path": "evidence/perspective_qc/PQC_C01_PERSPECTIVE_PACK_V001.yaml",
+        "operator_session_ref": "OP-SC0001-20260430",
+        "decision": "revise",
+        "rationale": "QC is scaffold-only and not score-complete.",
+        "required_followup": ["Populate scores after external outputs exist."],
+        "applied": False,
+        "resulting_status": None,
+        "provenance": {
+            "created_by": "codex",
+            "created_at": "2026-05-12T00:00:00Z",
+        },
+    }
+
+
+def _valid_operator_session_record() -> dict:
+    return {
+        "session_id": "OP-SC0001-20260430",
+        "created_at": "2026-04-30T00:00:00Z",
+        "scene_id": "SC0001",
+        "current_task": "t2i_image_generation",
+        "recommended_files": ["prompts/draft/SC0001__t2i-char-c01-midjourney__v01.yaml"],
+        "recommended_steps": ["Run external T2I generation manually."],
+        "status": "planned",
+        "notes": "Metadata-only operator session.",
+    }
+
+
 def test_collect_production_files_includes_prod_line_types(tmp_path: Path) -> None:
     files = collect_production_files(tmp_path)
     for record_type in (
@@ -462,6 +499,7 @@ def test_collect_production_files_includes_prod_line_types(tmp_path: Path) -> No
         "production_batch",
         "perspective_qc_report",
         "dialogue_qc_report",
+        "review_decision_record",
     ):
         assert record_type in files
         assert files[record_type] == []
@@ -990,5 +1028,130 @@ def test_omni_qc_fails_if_selected_true_with_placeholder_review(tmp_path: Path) 
         i.record_type == "omni_qc_report"
         and i.field_path == "selected_for_next_pass"
         and "selected_for_next_pass requires completed passing Omni QC" in i.message
+        for i in report.issues
+    )
+
+
+def test_valid_review_decision_record_validates(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "evidence/operator_sessions/OP-SC0001-20260430.yaml",
+        _valid_operator_session_record(),
+    )
+    _write_yaml(
+        tmp_path / "evidence/perspective_qc/PQC_C01_PERSPECTIVE_PACK_V001.yaml",
+        _valid_perspective_qc_report(),
+    )
+    _write_yaml(
+        tmp_path / "evidence/review_decisions/RD_SC0001_PERSPECTIVE_REVISE_DRAFT.yaml",
+        _valid_review_decision_record(),
+    )
+    report = run_validation(tmp_path)
+    assert report.invalid_files == 0
+
+
+def test_review_decision_rejects_approve_or_yes(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "evidence/operator_sessions/OP-SC0001-20260430.yaml",
+        _valid_operator_session_record(),
+    )
+    _write_yaml(
+        tmp_path / "evidence/perspective_qc/PQC_C01_PERSPECTIVE_PACK_V001.yaml",
+        _valid_perspective_qc_report(),
+    )
+    payload = _valid_review_decision_record()
+    payload["decision"] = "approve"
+    _write_yaml(
+        tmp_path / "evidence/review_decisions/RD_SC0001_PERSPECTIVE_REVISE_DRAFT.yaml",
+        payload,
+    )
+    report = run_validation(tmp_path)
+    assert report.invalid_files == 1
+
+
+def test_review_decision_applied_true_fails(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "evidence/operator_sessions/OP-SC0001-20260430.yaml",
+        _valid_operator_session_record(),
+    )
+    _write_yaml(
+        tmp_path / "evidence/perspective_qc/PQC_C01_PERSPECTIVE_PACK_V001.yaml",
+        _valid_perspective_qc_report(),
+    )
+    payload = _valid_review_decision_record()
+    payload["applied"] = True
+    _write_yaml(
+        tmp_path / "evidence/review_decisions/RD_SC0001_PERSPECTIVE_REVISE_DRAFT.yaml",
+        payload,
+    )
+    report = run_validation(tmp_path)
+    assert report.invalid_files == 1
+
+
+def test_review_decision_resulting_status_non_null_fails(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "evidence/operator_sessions/OP-SC0001-20260430.yaml",
+        _valid_operator_session_record(),
+    )
+    _write_yaml(
+        tmp_path / "evidence/perspective_qc/PQC_C01_PERSPECTIVE_PACK_V001.yaml",
+        _valid_perspective_qc_report(),
+    )
+    payload = _valid_review_decision_record()
+    payload["resulting_status"] = "draft"
+    _write_yaml(
+        tmp_path / "evidence/review_decisions/RD_SC0001_PERSPECTIVE_REVISE_DRAFT.yaml",
+        payload,
+    )
+    report = run_validation(tmp_path)
+    assert report.invalid_files == 1
+
+
+def test_review_decision_missing_operator_session_ref_fails_consistency(
+    tmp_path: Path,
+) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "evidence/perspective_qc/PQC_C01_PERSPECTIVE_PACK_V001.yaml",
+        _valid_perspective_qc_report(),
+    )
+    payload = _valid_review_decision_record()
+    payload["operator_session_ref"] = "OP-MISSING-SESSION"
+    _write_yaml(
+        tmp_path / "evidence/review_decisions/RD_SC0001_PERSPECTIVE_REVISE_DRAFT.yaml",
+        payload,
+    )
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "review_decision_record"
+        and i.field_path == "operator_session_ref"
+        for i in report.issues
+    )
+
+
+def test_review_decision_invalid_target_path_fails_consistency(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "evidence/operator_sessions/OP-SC0001-20260430.yaml",
+        _valid_operator_session_record(),
+    )
+    _write_yaml(
+        tmp_path / "evidence/perspective_qc/PQC_C01_PERSPECTIVE_PACK_V001.yaml",
+        _valid_perspective_qc_report(),
+    )
+    payload = _valid_review_decision_record()
+    payload["target_path"] = "../outside.yaml"
+    _write_yaml(
+        tmp_path / "evidence/review_decisions/RD_SC0001_PERSPECTIVE_REVISE_DRAFT.yaml",
+        payload,
+    )
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "review_decision_record"
+        and i.field_path == "target_path"
+        and "safe repo-relative path" in i.message
         for i in report.issues
     )
