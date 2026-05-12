@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
 import sys
@@ -23,6 +23,7 @@ def _copy_schemas(repo_root: Path) -> None:
     schemas_dir.mkdir(parents=True, exist_ok=True)
     for name in (
         "image_selection.schema.json",
+        "local_media_index.schema.json",
         "asset_clearance.schema.json",
         "storyboard_option.schema.json",
         "shot_list_omni_suggestion.schema.json",
@@ -71,6 +72,45 @@ def _valid_gpt_images_perspective_pack() -> dict:
         "schema_version": "0.x-draft",
         "record_type": "gpt_images_perspective_pack",
         "prompt_pack_id": "SC0001_GPTPACK_01",
+        "status": "draft",
+        "source_reference_id": "MJ_REF_SC0001_C01_HERO",
+        "target_model": "gpt_images_2",
+        "target_role": "multi_perspective_element_expander",
+        "element_id": "C01",
+        "element_type": "character",
+        "shared_preservation_instruction": "Keep face topology and silhouette consistent.",
+        "prompts": prompts,
+        "qc_gate": {
+            "minimum_score": 85,
+            "all_perspectives_required": True,
+            "failed_perspective_revision_only": True,
+        },
+        "downstream_use": ["kling_omni_3_shot_prompt"],
+    }
+
+
+def _valid_gpt_images_perspective_pack_matching_qc() -> dict:
+    perspectives = [
+        ("GPTIMG2_C01_P01_FRONT_V001", "front_hero"),
+        ("GPTIMG2_C01_P02_LEFT_V001", "three_quarter_left"),
+        ("GPTIMG2_C01_P03_RIGHT_V001", "three_quarter_right"),
+        ("GPTIMG2_C01_P04_REAR_V001", "rear_or_side"),
+    ]
+    prompts = []
+    for prompt_id, perspective in perspectives:
+        prompts.append(
+            {
+                "prompt_id": prompt_id,
+                "perspective": perspective,
+                "prompt_text": f"Render {perspective} preserving identity anchors.",
+                "constraints": ["preserve facial structure", "preserve wardrobe colors"],
+                "expected_output": {"asset_type": "still", "aspect_ratio": "1:1"},
+            }
+        )
+    return {
+        "schema_version": "0.x-draft",
+        "record_type": "gpt_images_perspective_pack",
+        "prompt_pack_id": "GPTIMG2_C01_PERSPECTIVE_PACK_V001",
         "status": "draft",
         "source_reference_id": "MJ_REF_SC0001_C01_HERO",
         "target_model": "gpt_images_2",
@@ -383,6 +423,72 @@ def _valid_perspective_qc_report() -> dict:
             "can_advance_to_kling_reference": False,
         },
         "notes": "QC scaffold only; generated images do not exist yet.",
+    }
+
+
+def _valid_gptimg2_registration_image_selection() -> dict:
+    ids = [
+        "GPTIMG2_C01_P01_FRONT_V001",
+        "GPTIMG2_C01_P02_LEFT_V001",
+        "GPTIMG2_C01_P03_RIGHT_V001",
+        "GPTIMG2_C01_P04_REAR_V001",
+    ]
+    candidates = []
+    for prompt_id in ids:
+        candidates.append(
+            {
+                "asset_id": prompt_id,
+                "path": f"pending_external://{prompt_id}",
+                "external_storage_ref": f"pending_external://{prompt_id}",
+                "repo_binary_committed": False,
+                "status": "candidate",
+                "reason": "Pending external output registration.",
+                "quality_scores": {
+                    "identity_consistency": 1,
+                    "source_grounding": 1,
+                    "style_compliance": 1,
+                    "continuity": 1,
+                    "production_usability": 1,
+                },
+                "failure_reason": None,
+            }
+        )
+    return {
+        "element_id": "C01",
+        "element_type": "character",
+        "selection_round": 1,
+        "source_prompt_ids": ["SC0001__gptimg2-perspective-pack__v01"],
+        "candidate_images": candidates,
+        "canonical_images": [],
+        "round_status": "in_progress",
+        "pack_manifest_sync": "pending",
+    }
+
+
+def _valid_gptimg2_registration_local_media_index() -> dict:
+    ids = [
+        "GPTIMG2_C01_P01_FRONT_V001",
+        "GPTIMG2_C01_P02_LEFT_V001",
+        "GPTIMG2_C01_P03_RIGHT_V001",
+        "GPTIMG2_C01_P04_REAR_V001",
+    ]
+    entries = []
+    for prompt_id in ids:
+        entries.append(
+            {
+                "kind": "gpt_images_2_perspective_output",
+                "element_id_or_take_id": prompt_id,
+                "storage_backend": "local_manual",
+                "last_seen_at": "2026-05-12T00:00:00Z",
+                "repo_binary_committed": False,
+                "external_storage_ref": f"pending_external://{prompt_id}",
+            }
+        )
+    return {
+        "scene_id": "_elements",
+        "created_at": "2026-05-12T00:00:00Z",
+        "storage_policy": "external_image_only",
+        "entries": entries,
     }
 
 
@@ -1183,5 +1289,205 @@ def test_review_decision_target_record_mismatch_fails_consistency(tmp_path: Path
     assert any(
         i.record_type == "review_decision_record"
         and i.field_path in {"target_record_type", "target_record_id"}
+        for i in report.issues
+    )
+
+
+def test_gptimg2_registration_scaffold_passes_with_pending_refs(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C01/gpt_images_perspective_pack.yaml",
+        _valid_gpt_images_perspective_pack_matching_qc(),
+    )
+    _write_yaml(
+        tmp_path / "evidence/perspective_qc/PQC_C01_PERSPECTIVE_PACK_V001.yaml",
+        _valid_perspective_qc_report(),
+    )
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C01/gptimg2_perspectives/image_selection.yaml",
+        _valid_gptimg2_registration_image_selection(),
+    )
+    _write_yaml(
+        tmp_path
+        / "evidence/local_media_indices/LOCAL_MEDIA_INDEX_C01_GPTIMG2_PERSPECTIVES_V001.yaml",
+        _valid_gptimg2_registration_local_media_index(),
+    )
+    report = run_validation(tmp_path)
+    assert report.invalid_files == 0
+
+
+def test_perspective_qc_populated_fails_without_image_selection_candidate(
+    tmp_path: Path,
+) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C01/gpt_images_perspective_pack.yaml",
+        _valid_gpt_images_perspective_pack_matching_qc(),
+    )
+    _write_yaml(
+        tmp_path
+        / "evidence/local_media_indices/LOCAL_MEDIA_INDEX_C01_GPTIMG2_PERSPECTIVES_V001.yaml",
+        _valid_gptimg2_registration_local_media_index(),
+    )
+    image_selection = _valid_gptimg2_registration_image_selection()
+    image_selection["candidate_images"] = image_selection["candidate_images"][1:]
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C01/gptimg2_perspectives/image_selection.yaml",
+        image_selection,
+    )
+    payload = _valid_perspective_qc_report()
+    payload["perspective_scores"][0]["identity_preservation"] = 90
+    _write_yaml(
+        tmp_path / "evidence/perspective_qc/PQC_C01_PERSPECTIVE_PACK_V001.yaml",
+        payload,
+    )
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "perspective_qc_report"
+        and i.field_path == "perspective_scores"
+        and "cannot be populated before GPT Images 2 output registration metadata exists"
+        in i.message
+        for i in report.issues
+    )
+
+
+def test_perspective_qc_populated_fails_without_local_media_entry(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C01/gpt_images_perspective_pack.yaml",
+        _valid_gpt_images_perspective_pack_matching_qc(),
+    )
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C01/gptimg2_perspectives/image_selection.yaml",
+        _valid_gptimg2_registration_image_selection(),
+    )
+    media_index = _valid_gptimg2_registration_local_media_index()
+    media_index["entries"] = media_index["entries"][1:]
+    _write_yaml(
+        tmp_path
+        / "evidence/local_media_indices/LOCAL_MEDIA_INDEX_C01_GPTIMG2_PERSPECTIVES_V001.yaml",
+        media_index,
+    )
+    payload = _valid_perspective_qc_report()
+    payload["perspective_scores"][0]["identity_preservation"] = 90
+    _write_yaml(
+        tmp_path / "evidence/perspective_qc/PQC_C01_PERSPECTIVE_PACK_V001.yaml",
+        payload,
+    )
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "perspective_qc_report"
+        and i.field_path == "perspective_scores"
+        and "cannot be populated before GPT Images 2 output registration metadata exists"
+        in i.message
+        for i in report.issues
+    )
+
+
+def test_perspective_qc_advance_true_fails_with_pending_external_refs(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C01/gpt_images_perspective_pack.yaml",
+        _valid_gpt_images_perspective_pack_matching_qc(),
+    )
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C01/gptimg2_perspectives/image_selection.yaml",
+        _valid_gptimg2_registration_image_selection(),
+    )
+    _write_yaml(
+        tmp_path
+        / "evidence/local_media_indices/LOCAL_MEDIA_INDEX_C01_GPTIMG2_PERSPECTIVES_V001.yaml",
+        _valid_gptimg2_registration_local_media_index(),
+    )
+    payload = _valid_perspective_qc_report()
+    payload["gate"]["can_advance_to_kling_reference"] = True
+    for score in payload["perspective_scores"]:
+        score["identity_preservation"] = 90
+        score["perspective_usefulness"] = 90
+        score["material_palette_continuity"] = 90
+        score["production_reference_cleanliness"] = 90
+        score["hallucination_absence"] = 90
+        score["total_score"] = 90
+        score["decision"] = "pass"
+    _write_yaml(
+        tmp_path / "evidence/perspective_qc/PQC_C01_PERSPECTIVE_PACK_V001.yaml",
+        payload,
+    )
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "perspective_qc_report"
+        and i.field_path == "gate.can_advance_to_kling_reference"
+        and "cannot advance while GPT Images 2 external refs are pending" in i.message
+        for i in report.issues
+    )
+
+
+def test_gptimg2_image_selection_fails_if_candidate_is_canonical(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    payload = _valid_gptimg2_registration_image_selection()
+    payload["candidate_images"][0]["status"] = "canonical"
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C01/gptimg2_perspectives/image_selection.yaml",
+        payload,
+    )
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "image_selection"
+        and "must not select or canonicalize candidates" in i.message
+        for i in report.issues
+    )
+
+
+def test_gptimg2_image_selection_fails_if_canonical_images_non_empty(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    payload = _valid_gptimg2_registration_image_selection()
+    payload["canonical_images"] = ["pending_external://GPTIMG2_C01_P01_FRONT_V001"]
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C01/gptimg2_perspectives/image_selection.yaml",
+        payload,
+    )
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "image_selection"
+        and i.field_path == "canonical_images"
+        and "must not select or canonicalize candidates" in i.message
+        for i in report.issues
+    )
+
+
+def test_gptimg2_local_media_index_fails_if_repo_binary_committed_true(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    payload = _valid_gptimg2_registration_local_media_index()
+    payload["entries"][0]["repo_binary_committed"] = True
+    _write_yaml(
+        tmp_path
+        / "evidence/local_media_indices/LOCAL_MEDIA_INDEX_C01_GPTIMG2_PERSPECTIVES_V001.yaml",
+        payload,
+    )
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "local_media_index"
+        and i.field_path.endswith("repo_binary_committed")
+        for i in report.issues
+    )
+
+
+def test_gptimg2_local_media_index_fails_if_local_image_path_without_external_ref(
+    tmp_path: Path,
+) -> None:
+    _copy_schemas(tmp_path)
+    payload = _valid_gptimg2_registration_local_media_index()
+    payload["entries"][0].pop("external_storage_ref", None)
+    payload["entries"][0]["local_path"] = "visual_dev/foo.png"
+    _write_yaml(
+        tmp_path
+        / "evidence/local_media_indices/LOCAL_MEDIA_INDEX_C01_GPTIMG2_PERSPECTIVES_V001.yaml",
+        payload,
+    )
+    report = run_validation(tmp_path)
+    assert any(
+        i.record_type == "local_media_index"
+        and i.field_path.endswith("external_storage_ref")
+        and "external metadata only" in i.message
         for i in report.issues
     )
