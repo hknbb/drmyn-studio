@@ -80,6 +80,13 @@ DIALOGUE_EXTRACT_PATTERN = "planning/dialogue/DLG_*.yaml"
 PERFORMANCE_INTENT_PATTERN = "planning/dialogue/PERF_*.yaml"
 VOICE_BINDING_PATTERN = "planning/dialogue/VOICE_*.yaml"
 NATIVE_AUDIO_COMPATIBILITY_PATTERN = "evidence/native_audio_compatibility/*.yaml"
+CHARACTER_IDENTITY_ANCHOR_PATTERN = (
+    "visual_dev/elements/characters/*/character_identity_anchor.yaml"
+)
+CHARACTER_LOOK_VARIANT_PATTERN = (
+    "visual_dev/elements/characters/*/look_variants/*.yaml"
+)
+SCENE_CHARACTER_LOOK_MAP_PATTERN = "visual_dev/omni_sets/SC*/scene_character_look_map.yaml"
 AESTHETIC_BIBLE_PATH = "planning/aesthetic_bible.yaml"
 SCENE_CLIP_MAP_PATH = "evidence/scene_clip_map.csv"
 
@@ -224,6 +231,11 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         "native_audio_compatibility_record": sorted(
             repo_root.glob(NATIVE_AUDIO_COMPATIBILITY_PATTERN)
         ),
+        "character_identity_anchor": sorted(
+            repo_root.glob(CHARACTER_IDENTITY_ANCHOR_PATTERN)
+        ),
+        "character_look_variant": sorted(repo_root.glob(CHARACTER_LOOK_VARIANT_PATTERN)),
+        "scene_character_look_map": sorted(repo_root.glob(SCENE_CHARACTER_LOOK_MAP_PATTERN)),
         "aesthetic_bible": (
             [repo_root / AESTHETIC_BIBLE_PATH]
             if (repo_root / AESTHETIC_BIBLE_PATH).is_file()
@@ -1188,6 +1200,33 @@ def validate_review_decision_records(
     return issues
 
 
+def validate_character_continuity_records(
+    *,
+    repo_root: Path,
+) -> list[ProductionValidationIssue]:
+    issues: list[ProductionValidationIssue] = []
+    try:
+        from scripts.validators.validate_character_continuity import (
+            validate_character_continuity,
+        )
+    except Exception:
+        return issues
+
+    for item in validate_character_continuity(repo_root):
+        if getattr(item, "severity", "error") != "error":
+            # Soft-gate: ignore warnings as non-failing informational checks.
+            continue
+        issues.append(
+            ProductionValidationIssue(
+                file=item.file,
+                record_type=item.record_type,
+                field_path=item.field_path,
+                message=item.message,
+            )
+        )
+    return issues
+
+
 def _load_structural_record(
     *,
     path: Path,
@@ -1954,6 +1993,9 @@ def run_validation(
     performance_intent_record_validator: Draft202012Validator | None = None
     voice_binding_record_validator: Draft202012Validator | None = None
     native_audio_compatibility_record_validator: Draft202012Validator | None = None
+    character_identity_anchor_validator: Draft202012Validator | None = None
+    character_look_variant_validator: Draft202012Validator | None = None
+    scene_character_look_map_validator: Draft202012Validator | None = None
     production_batch_validator: Draft202012Validator | None = None
     aesthetic_bible_validator: Draft202012Validator | None = None
 
@@ -2384,6 +2426,48 @@ def run_validation(
                     record_type=record_type,
                     validator=native_audio_compatibility_record_validator,
                 )
+            elif record_type == "character_identity_anchor":
+                if character_identity_anchor_validator is None:
+                    character_identity_anchor_schema = load_schema(
+                        repo_root / "schemas" / "character_identity_anchor.schema.json"
+                    )
+                    character_identity_anchor_validator = Draft202012Validator(
+                        character_identity_anchor_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=character_identity_anchor_validator,
+                )
+            elif record_type == "character_look_variant":
+                if character_look_variant_validator is None:
+                    character_look_variant_schema = load_schema(
+                        repo_root / "schemas" / "character_look_variant.schema.json"
+                    )
+                    character_look_variant_validator = Draft202012Validator(
+                        character_look_variant_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=character_look_variant_validator,
+                )
+            elif record_type == "scene_character_look_map":
+                if scene_character_look_map_validator is None:
+                    scene_character_look_map_schema = load_schema(
+                        repo_root / "schemas" / "scene_character_look_map.schema.json"
+                    )
+                    scene_character_look_map_validator = Draft202012Validator(
+                        scene_character_look_map_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=scene_character_look_map_validator,
+                )
             elif record_type == "aesthetic_bible":
                 if aesthetic_bible_validator is None:
                     aesthetic_bible_schema = load_schema(
@@ -2453,6 +2537,13 @@ def run_validation(
     if review_decision_issues:
         all_issues.extend(review_decision_issues)
         invalid_files.update(issue.file for issue in review_decision_issues)
+
+    character_continuity_issues = validate_character_continuity_records(
+        repo_root=repo_root,
+    )
+    if character_continuity_issues:
+        all_issues.extend(character_continuity_issues)
+        invalid_files.update(issue.file for issue in character_continuity_issues)
 
     report = ProductionValidationReport(
         total_files=total,
