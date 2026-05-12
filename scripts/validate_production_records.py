@@ -859,6 +859,225 @@ def validate_qc_cross_record_gates(
     return issues
 
 
+def build_gptimg2_prompt_index(
+    *,
+    grouped_files: dict[str, list[Path]],
+) -> dict[str, dict[str, Any]]:
+    index: dict[str, dict[str, Any]] = {}
+    for path in grouped_files.get("gpt_images_perspective_pack", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        prompt_pack_id = data.get("prompt_pack_id")
+        element_id = data.get("element_id")
+        prompts = data.get("prompts")
+        if not isinstance(prompts, list):
+            continue
+        for prompt in prompts:
+            if not isinstance(prompt, dict):
+                continue
+            prompt_id = prompt.get("prompt_id")
+            if not isinstance(prompt_id, str) or not prompt_id:
+                continue
+            index[prompt_id] = {
+                "prompt_pack_id": prompt_pack_id,
+                "element_id": element_id,
+                "perspective": prompt.get("perspective"),
+            }
+    return index
+
+
+def build_image_selection_candidate_index(
+    *,
+    repo_root: Path,
+    grouped_files: dict[str, list[Path]],
+) -> dict[str, list[dict[str, Any]]]:
+    index: dict[str, list[dict[str, Any]]] = {}
+    for path in grouped_files.get("image_selection", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        candidates = data.get("candidate_images")
+        if not isinstance(candidates, list):
+            continue
+        rel_file = _relative(path, repo_root)
+        for candidate in candidates:
+            if not isinstance(candidate, dict):
+                continue
+            asset_id = candidate.get("asset_id")
+            if not isinstance(asset_id, str) or not asset_id:
+                continue
+            index.setdefault(asset_id, []).append(
+                {
+                    "file": rel_file,
+                    "asset_id": asset_id,
+                    "external_storage_ref": candidate.get("external_storage_ref"),
+                    "repo_binary_committed": candidate.get("repo_binary_committed"),
+                    "status": candidate.get("status"),
+                    "path": candidate.get("path"),
+                }
+            )
+    return index
+
+
+def build_local_media_index_entry_index(
+    *,
+    repo_root: Path,
+    grouped_files: dict[str, list[Path]],
+) -> dict[str, list[dict[str, Any]]]:
+    index: dict[str, list[dict[str, Any]]] = {}
+    for path in grouped_files.get("local_media_index", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        entries = data.get("entries")
+        if not isinstance(entries, list):
+            continue
+        rel_file = _relative(path, repo_root)
+        for entry in entries:
+            if not isinstance(entry, dict):
+                continue
+            entry_id = entry.get("element_id_or_take_id")
+            if not isinstance(entry_id, str) or not entry_id:
+                continue
+            index.setdefault(entry_id, []).append(
+                {
+                    "file": rel_file,
+                    "element_id_or_take_id": entry_id,
+                    "external_storage_ref": entry.get("external_storage_ref"),
+                    "repo_binary_committed": entry.get("repo_binary_committed"),
+                    "storage_backend": entry.get("storage_backend"),
+                    "kind": entry.get("kind"),
+                    "local_path": entry.get("local_path"),
+                }
+            )
+    return index
+
+
+def _has_non_pending_registration_ref(value: Any) -> bool:
+    return (
+        isinstance(value, str)
+        and bool(value.strip())
+        and not value.startswith("pending_external://")
+    )
+
+
+def _is_perspective_qc_populated(entry: dict[str, Any]) -> bool:
+    if entry.get("decision") != "pending":
+        return True
+    for field in (
+        "identity_preservation",
+        "perspective_usefulness",
+        "material_palette_continuity",
+        "production_reference_cleanliness",
+        "hallucination_absence",
+        "total_score",
+    ):
+        if entry.get(field) is not None:
+            return True
+    return False
+
+
+def validate_gptimg2_registration_gates(
+    *,
+    repo_root: Path,
+    grouped_files: dict[str, list[Path]],
+) -> list[ProductionValidationIssue]:
+    issues: list[ProductionValidationIssue] = []
+    prompt_index = build_gptimg2_prompt_index(grouped_files=grouped_files)
+    image_selection_index = build_image_selection_candidate_index(
+        repo_root=repo_root,
+        grouped_files=grouped_files,
+    )
+    local_media_index = build_local_media_index_entry_index(
+        repo_root=repo_root,
+        grouped_files=grouped_files,
+    )
+
+    for path in grouped_files.get("perspective_qc_report", []):
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        scores = data.get("perspective_scores")
+        if not isinstance(scores, list):
+            continue
+        prompt_ids: list[str] = []
+        populated = False
+        for score in scores:
+            if not isinstance(score, dict):
+                continue
+            prompt_id = score.get("prompt_id")
+            if isinstance(prompt_id, str) and prompt_id:
+                prompt_ids.append(prompt_id)
+            if _is_perspective_qc_populated(score):
+                populated = True
+
+        for prompt_id in prompt_ids:
+            if prompt_id not in prompt_index:
+                continue
+            selection_entries = image_selection_index.get(prompt_id, [])
+            media_entries = local_media_index.get(prompt_id, [])
+            has_valid_selection = any(
+                entry.get("repo_binary_committed") is False
+                and isinstance(entry.get("external_storage_ref"), str)
+                and bool(str(entry.get("external_storage_ref")).strip())
+                for entry in selection_entries
+            )
+            has_valid_media = any(
+                entry.get("repo_binary_committed") is False
+                and isinstance(entry.get("external_storage_ref"), str)
+                and bool(str(entry.get("external_storage_ref")).strip())
+                for entry in media_entries
+            )
+            if populated and (not has_valid_selection or not has_valid_media):
+                issues.append(
+                    ProductionValidationIssue(
+                        file=_relative(path, repo_root),
+                        record_type="perspective_qc_report",
+                        field_path="perspective_scores",
+                        message=(
+                            "perspective QC cannot be populated before GPT Images 2 output "
+                            f"registration metadata exists: {prompt_id}"
+                        ),
+                    )
+                )
+
+        gate = data.get("gate")
+        if not isinstance(gate, dict) or gate.get("can_advance_to_kling_reference") is not True:
+            continue
+
+        for prompt_id in prompt_ids:
+            if prompt_id not in prompt_index:
+                continue
+            selection_entries = image_selection_index.get(prompt_id, [])
+            media_entries = local_media_index.get(prompt_id, [])
+            has_ready_selection = any(
+                entry.get("repo_binary_committed") is False
+                and _has_non_pending_registration_ref(entry.get("external_storage_ref"))
+                and entry.get("status") in {"candidate", "selected"}
+                for entry in selection_entries
+            )
+            has_ready_media = any(
+                entry.get("repo_binary_committed") is False
+                and _has_non_pending_registration_ref(entry.get("external_storage_ref"))
+                for entry in media_entries
+            )
+            if not has_ready_selection or not has_ready_media:
+                issues.append(
+                    ProductionValidationIssue(
+                        file=_relative(path, repo_root),
+                        record_type="perspective_qc_report",
+                        field_path="gate.can_advance_to_kling_reference",
+                        message=(
+                            "perspective QC cannot advance while GPT Images 2 external refs "
+                            f"are pending: {prompt_id}"
+                        ),
+                    )
+                )
+
+    return issues
+
+
 def validate_review_decision_records(
     *,
     repo_root: Path,
@@ -1329,6 +1548,7 @@ def validate_video_take_consistency(
 
 
 _VIDEO_BINARY_EXTENSIONS = {".mp4", ".mov", ".mkv", ".wav"}
+_IMAGE_BINARY_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".psd", ".tiff", ".tif"}
 
 
 def _looks_like_repo_video_binary(value: object) -> bool:
@@ -1338,6 +1558,92 @@ def _looks_like_repo_video_binary(value: object) -> bool:
     if "://" in text:
         return False
     return Path(text).suffix.lower() in _VIDEO_BINARY_EXTENSIONS
+
+
+def _looks_like_repo_image_binary(value: object) -> bool:
+    if not value:
+        return False
+    text = str(value)
+    if "://" in text:
+        return False
+    return Path(text).suffix.lower() in _IMAGE_BINARY_EXTENSIONS
+
+
+def validate_image_selection_extra(
+    path: Path,
+    repo_root: Path,
+) -> list[ProductionValidationIssue]:
+    """Cross-field checks for image_selection beyond JSON Schema."""
+    record_type = "image_selection"
+    data, issues = _load_structural_record(
+        path=path,
+        repo_root=repo_root,
+        record_type=record_type,
+    )
+    if issues:
+        return issues
+
+    rel_path = _relative(path, repo_root)
+    is_gptimg2_registration = "/gptimg2_perspectives/image_selection.yaml" in rel_path
+
+    candidates = data.get("candidate_images")
+    if not isinstance(candidates, list):
+        return issues
+
+    for index, candidate in enumerate(candidates):
+        if not isinstance(candidate, dict):
+            continue
+        field_prefix = f"candidate_images.{index}"
+        if is_gptimg2_registration and candidate.get("repo_binary_committed") is not False:
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path=f"{field_prefix}.repo_binary_committed",
+                    message="repo_binary_committed must be false for every image selection candidate.",
+                )
+            )
+        if is_gptimg2_registration and candidate.get("status") == "canonical":
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path=f"{field_prefix}.status",
+                    message=(
+                        "GPT Images 2 registration checklist must not select or canonicalize candidates"
+                    ),
+                )
+            )
+
+    if is_gptimg2_registration:
+        if data.get("canonical_images") not in ([],):
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path="canonical_images",
+                    message=(
+                        "GPT Images 2 registration checklist must not select or canonicalize candidates"
+                    ),
+                )
+            )
+        if data.get("pack_manifest_sync") != "pending":
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path="pack_manifest_sync",
+                    message=(
+                        "GPT Images 2 registration checklist must not select or canonicalize candidates"
+                    ),
+                )
+            )
+
+    return issues
 
 
 def validate_selected_take_extra(
@@ -1402,6 +1708,16 @@ def validate_local_media_index_extra(
                     message="repo_binary_committed must be false for every media index entry.",
                 )
             )
+            if entry.get("kind") == "gpt_images_2_perspective_output":
+                issues.append(
+                    _structural_issue(
+                        path=path,
+                        repo_root=repo_root,
+                        record_type=record_type,
+                        field_path=f"{field_prefix}.repo_binary_committed",
+                        message="GPT Images 2 output registration must remain external metadata only",
+                    )
+                )
 
         local_path = entry.get("local_path")
         if _looks_like_repo_video_binary(local_path) and not entry.get("external_storage_ref"):
@@ -1415,6 +1731,47 @@ def validate_local_media_index_extra(
                         "Video-like local_path must also have external_storage_ref "
                         "to ensure the master copy is tracked in external storage."
                     ),
+                )
+            )
+        if (
+            entry.get("kind") == "gpt_images_2_perspective_output"
+            and _looks_like_repo_image_binary(local_path)
+            and not entry.get("external_storage_ref")
+        ):
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path=f"{field_prefix}.external_storage_ref",
+                    message="GPT Images 2 output registration must remain external metadata only",
+                )
+            )
+        if entry.get("kind") == "gpt_images_2_perspective_output":
+            if not entry.get("external_storage_ref"):
+                issues.append(
+                    _structural_issue(
+                        path=path,
+                        repo_root=repo_root,
+                        record_type=record_type,
+                        field_path=f"{field_prefix}.external_storage_ref",
+                        message="GPT Images 2 output registration must remain external metadata only",
+                    )
+                )
+
+    if any(
+        isinstance(entry, dict) and entry.get("kind") == "gpt_images_2_perspective_output"
+        for entry in entries
+    ):
+        storage_policy = data.get("storage_policy")
+        if storage_policy not in {"external_image_only", "mixed_external"}:
+            issues.append(
+                _structural_issue(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    field_path="storage_policy",
+                    message="GPT Images 2 output registration must remain external metadata only",
                 )
             )
 
@@ -1616,6 +1973,7 @@ def run_validation(
                     record_type=record_type,
                     validator=image_selection_validator,
                 )
+                file_issues.extend(validate_image_selection_extra(path, repo_root))
             elif record_type == "asset_clearance":
                 file_issues = _schema_issues(
                     path=path,
@@ -2079,6 +2437,14 @@ def run_validation(
     if qc_readiness_issues:
         all_issues.extend(qc_readiness_issues)
         invalid_files.update(issue.file for issue in qc_readiness_issues)
+
+    gptimg2_registration_issues = validate_gptimg2_registration_gates(
+        repo_root=repo_root,
+        grouped_files=grouped_files,
+    )
+    if gptimg2_registration_issues:
+        all_issues.extend(gptimg2_registration_issues)
+        invalid_files.update(issue.file for issue in gptimg2_registration_issues)
 
     review_decision_issues = validate_review_decision_records(
         repo_root=repo_root,
