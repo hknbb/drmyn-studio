@@ -43,6 +43,9 @@ def _copy_schemas(repo_root: Path) -> None:
         "dialogue_qc_report.schema.json",
         "omni_qc_report.schema.json",
         "review_decision_record.schema.json",
+        "character_identity_anchor.schema.json",
+        "character_look_variant.schema.json",
+        "scene_character_look_map.schema.json",
     ):
         (schemas_dir / name).write_text(
             (REPO_ROOT / "schemas" / name).read_text(encoding="utf-8"),
@@ -606,6 +609,9 @@ def test_collect_production_files_includes_prod_line_types(tmp_path: Path) -> No
         "perspective_qc_report",
         "dialogue_qc_report",
         "review_decision_record",
+        "character_identity_anchor",
+        "character_look_variant",
+        "scene_character_look_map",
     ):
         assert record_type in files
         assert files[record_type] == []
@@ -1491,3 +1497,103 @@ def test_gptimg2_local_media_index_fails_if_local_image_path_without_external_re
         and "external metadata only" in i.message
         for i in report.issues
     )
+
+
+def test_new_character_identity_look_records_validate(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C01/character_identity_anchor.yaml",
+        {
+            "schema_version": "0.x-draft",
+            "record_type": "character_identity_anchor",
+            "identity_anchor_id": "C01_IDENTITY_ANCHOR_V001",
+            "character_id": "C01",
+            "status": "draft",
+            "source_reference_strategy": {
+                "reference_sheet_allowed_as_identity_source": True,
+                "final_hero_lock_requires_single_clean_image": True,
+                "contact_sheet_layout_forbidden_as_lock": True,
+            },
+            "source_reference_sheet_ref": "MJ_ELEMENT_C01_HERO_LOCKED_V001",
+            "front_hero_lock_ref": {
+                "pending": True,
+                "external_ref": "pending_external://C01_FRONT_HERO_LOCK_V001",
+            },
+            "fixed_identity_anchors": ["facial topology"],
+            "mutable_appearance_allowed": ["wardrobe variation"],
+            "forbidden_drift": ["new face"],
+            "provenance": {
+                "created_by": "tests",
+                "created_at": "2026-05-12T00:00:00Z",
+            },
+        },
+    )
+    _write_yaml(
+        tmp_path
+        / "visual_dev/elements/characters/C01/look_variants/C01_LOOK_HOME_MORNING_V001.yaml",
+        {
+            "schema_version": "0.x-draft",
+            "record_type": "character_look_variant",
+            "look_id": "C01_LOOK_HOME_MORNING_V001",
+            "character_id": "C01",
+            "inherits_identity_anchor": "C01_IDENTITY_ANCHOR_V001",
+            "status": "draft",
+            "look_role": "domestic_morning",
+            "wardrobe_refs": {
+                "primary_wardrobe_id": "WD001",
+                "supplementary_wardrobe_ids": [],
+            },
+            "continuity_scope": {"start_scene": "SC0001", "end_scene": "SC0003"},
+            "change_reason": "opening continuity",
+            "provenance": {
+                "created_by": "tests",
+                "created_at": "2026-05-12T00:00:00Z",
+            },
+        },
+    )
+    _write_yaml(
+        tmp_path / "visual_dev/omni_sets/SC0001/scene_character_look_map.yaml",
+        {
+            "schema_version": "0.x-draft",
+            "record_type": "scene_character_look_map",
+            "scene_id": "SC0001",
+            "status": "draft",
+            "characters": [
+                {
+                    "character_id": "C01",
+                    "identity_anchor_id": "C01_IDENTITY_ANCHOR_V001",
+                    "look_id": "C01_LOOK_HOME_MORNING_V001",
+                    "required": True,
+                }
+            ],
+            "provenance": {
+                "created_by": "tests",
+                "created_at": "2026-05-12T00:00:00Z",
+            },
+        },
+    )
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C01/wardrobe/WD001/element_view_plan.yaml",
+        {
+            "schema_version": "0.x-draft",
+            "record_type": "element_view_plan",
+            "element_id": "WD001",
+            "element_type": "wardrobe",
+            "retrofit_status": "planned",
+            "views": [
+                {
+                    "view_id": "main_front",
+                    "view_label": "main front",
+                    "generation_pattern": "anchor_t2i",
+                    "anchor_dependency": "none",
+                    "status": "not_started",
+                }
+            ],
+            "provenance": {
+                "created_by": "tests",
+                "created_at": "2026-05-12T00:00:00Z",
+            },
+        },
+    )
+    report = run_validation(tmp_path)
+    assert report.invalid_files == 0
