@@ -46,3 +46,11 @@ Only metadata refs are stored in production records.
 Perspective QC remains null/pending until human review completes.
 No selected/canonical, approved/locked, or materialized promotion is allowed in
 identity/look continuity seed records.
+
+## Omni shot prompt alias rule
+
+- Per shot, use one active look alias per character: `@C##_LOOK_ROLE`.
+- Do not mix two look aliases of the same character in the same shot.
+- Wardrobe is baked into the character-look element; do not pass `@WD_*` wardrobe elements to Omni in parallel.
+- If a scene requires an in-shot wardrobe change, escalate to a future shot-level look map workflow. Do not solve it inside a scene-level alias hint.
+- The operator should use `scene_character_look_map -> kling_character_look_element -> kling_element_alias` as the prompt source chain.
