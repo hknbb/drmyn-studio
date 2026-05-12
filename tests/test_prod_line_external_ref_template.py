@@ -25,7 +25,7 @@ def test_external_ref_template_requires_repo_binary_false() -> None:
 def test_external_ref_checklist_warns_no_binary_commit() -> None:
     guide = (
         REPO_ROOT
-        / "docs/operator_guides/gpt_images_external_ref_replacement_checklist.md"
+        / "evidence/operator_guides/gpt_images_external_ref_replacement_checklist.md"
     ).read_text(encoding="utf-8")
     assert "Generated image binaries must stay outside this repository." in guide
     assert "Do not commit" in guide
