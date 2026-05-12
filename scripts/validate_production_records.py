@@ -1205,14 +1205,41 @@ def validate_character_continuity_records(
     repo_root: Path,
 ) -> list[ProductionValidationIssue]:
     issues: list[ProductionValidationIssue] = []
+    gate_func = None
+    import_error: Exception | None = None
     try:
         from scripts.validators.validate_character_continuity import (
             validate_character_continuity,
         )
-    except Exception:
+        gate_func = validate_character_continuity
+    except Exception as exc:
+        import_error = exc
+        module_path = repo_root / "scripts" / "validators" / "validate_character_continuity.py"
+        try:
+            spec = importlib.util.spec_from_file_location(
+                "validate_character_continuity_module",
+                module_path,
+            )
+            if spec and spec.loader:
+                module = importlib.util.module_from_spec(spec)
+                sys.modules[spec.name] = module
+                spec.loader.exec_module(module)
+                gate_func = getattr(module, "validate_character_continuity", None)
+        except Exception as fallback_exc:
+            import_error = fallback_exc
+
+    if gate_func is None:
+        issues.append(
+            ProductionValidationIssue(
+                file="scripts/validate_production_records.py",
+                record_type="character_continuity_gate",
+                field_path="validate_character_continuity import",
+                message=f"character continuity gate unavailable: {import_error}",
+            )
+        )
         return issues
 
-    for item in validate_character_continuity(repo_root):
+    for item in gate_func(repo_root):
         if getattr(item, "severity", "error") != "error":
             # Soft-gate: ignore warnings as non-failing informational checks.
             continue

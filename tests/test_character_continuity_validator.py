@@ -114,6 +114,25 @@ def test_character_continuity_rejects_missing_identity_anchor_in_scene_map(tmp_p
     assert any("identity_anchor_id" in i.field_path for i in issues)
 
 
+def test_character_continuity_rejects_dangling_look_id_in_scene_map(tmp_path: Path) -> None:
+    _write_yaml(
+        tmp_path / "visual_dev/elements/characters/C01/character_identity_anchor.yaml",
+        _anchor(),
+    )
+    payload = _scene_map()
+    payload["characters"][0]["look_id"] = "C01_LOOK_MISSING_V001"
+    _write_yaml(
+        tmp_path / "visual_dev/omni_sets/SC0001/scene_character_look_map.yaml",
+        payload,
+    )
+    issues = validate_character_continuity(tmp_path)
+    assert any(
+        i.field_path.endswith("look_id")
+        and "must reference an existing character_look_variant" in i.message
+        for i in issues
+    )
+
+
 def test_character_continuity_rejects_overlap_scope(tmp_path: Path) -> None:
     _write_yaml(
         tmp_path / "visual_dev/elements/characters/C01/look_variants/C01_LOOK_A_V001.yaml",
