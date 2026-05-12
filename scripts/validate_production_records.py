@@ -75,6 +75,9 @@ GPT_IMAGES_PERSPECTIVE_PACK_PATTERN = (
     "visual_dev/elements/**/gpt_images_perspective_pack.yaml"
 )
 KLING_ELEMENT_REFERENCE_PATTERN = "visual_dev/elements/**/kling_element_reference.yaml"
+KLING_CHARACTER_LOOK_ELEMENT_PATTERN = (
+    "visual_dev/elements/characters/*/kling_elements/*.yaml"
+)
 KLING_SHOT_PROMPT_PATTERN = "visual_dev/omni_sets/SC*/kling_shot_prompt_*.yaml"
 DIALOGUE_EXTRACT_PATTERN = "planning/dialogue/DLG_*.yaml"
 PERFORMANCE_INTENT_PATTERN = "planning/dialogue/PERF_*.yaml"
@@ -223,6 +226,9 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         ),
         "kling_element_reference_record": sorted(
             repo_root.glob(KLING_ELEMENT_REFERENCE_PATTERN)
+        ),
+        "kling_character_look_element": sorted(
+            repo_root.glob(KLING_CHARACTER_LOOK_ELEMENT_PATTERN)
         ),
         "kling_shot_prompt_record": sorted(repo_root.glob(KLING_SHOT_PROMPT_PATTERN)),
         "dialogue_extract_record": sorted(repo_root.glob(DIALOGUE_EXTRACT_PATTERN)),
@@ -1099,6 +1105,7 @@ def validate_review_decision_records(
     id_field_by_record_type: dict[str, str] = {
         "gpt_images_perspective_pack": "prompt_pack_id",
         "kling_element_reference_record": "kling_element_reference_id",
+        "kling_character_look_element": "kling_character_look_element_id",
         "dialogue_extract_record": "dialogue_extract_id",
         "performance_intent_record": "performance_intent_id",
         "voice_binding_record": "voice_binding_id",
@@ -2015,6 +2022,7 @@ def run_validation(
     review_decision_record_validator: Draft202012Validator | None = None
     gpt_images_perspective_pack_validator: Draft202012Validator | None = None
     kling_element_reference_validator: Draft202012Validator | None = None
+    kling_character_look_element_validator: Draft202012Validator | None = None
     kling_shot_prompt_record_validator: Draft202012Validator | None = None
     dialogue_extract_record_validator: Draft202012Validator | None = None
     performance_intent_record_validator: Draft202012Validator | None = None
@@ -2378,6 +2386,22 @@ def run_validation(
                     repo_root=repo_root,
                     record_type=record_type,
                     validator=kling_element_reference_validator,
+                )
+            elif record_type == "kling_character_look_element":
+                if kling_character_look_element_validator is None:
+                    kling_character_look_element_schema = load_schema(
+                        repo_root
+                        / "schemas"
+                        / "kling_character_look_element.schema.json"
+                    )
+                    kling_character_look_element_validator = Draft202012Validator(
+                        kling_character_look_element_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=kling_character_look_element_validator,
                 )
             elif record_type == "kling_shot_prompt_record":
                 if kling_shot_prompt_record_validator is None:

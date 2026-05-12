@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+import re
 from typing import Any
 
 import yaml
@@ -36,6 +37,7 @@ def _scene_num(scene_id: str) -> int | None:
 
 def validate_character_continuity(repo_root: Path) -> list[CharacterContinuityIssue]:
     issues: list[CharacterContinuityIssue] = []
+    kling_alias_re = re.compile(r"^@C\d{2}_[A-Z0-9_]+$")
 
     anchor_paths = sorted(
         repo_root.glob("visual_dev/elements/characters/*/character_identity_anchor.yaml")
@@ -44,6 +46,18 @@ def validate_character_continuity(repo_root: Path) -> list[CharacterContinuityIs
         repo_root.glob("visual_dev/elements/characters/*/look_variants/*.yaml")
     )
     map_paths = sorted(repo_root.glob("visual_dev/omni_sets/SC*/scene_character_look_map.yaml"))
+    kling_look_element_paths = sorted(
+        repo_root.glob("visual_dev/elements/characters/*/kling_elements/*.yaml")
+    )
+    wardrobe_plan_paths = list(
+        repo_root.glob("visual_dev/elements/characters/*/wardrobe/WD*/element_view_plan.yaml")
+    )
+    wardrobe_intake_paths = list(
+        repo_root.glob("visual_dev/elements/characters/*/wardrobe/WD*/intake_slot.yaml")
+    )
+    wardrobe_registry_available = len(wardrobe_plan_paths) > 0 or len(wardrobe_intake_paths) > 0
+    known_wardrobe_ids = {p.parent.name for p in wardrobe_plan_paths}
+    known_wardrobe_ids.update({p.parent.name for p in wardrobe_intake_paths})
 
     anchor_by_id: dict[str, dict[str, Any]] = {}
     for path in anchor_paths:
@@ -96,6 +110,125 @@ def validate_character_continuity(repo_root: Path) -> list[CharacterContinuityIs
                         field_path="inherits_identity_anchor",
                         message="inherits_identity_anchor must match look variant character_id",
                     )
+                )
+
+    kling_look_elements: list[dict[str, Any]] = []
+    active_kling_by_look_id: dict[str, list[dict[str, Any]]] = {}
+    active_char_look_pair: dict[tuple[str, str], list[dict[str, Any]]] = {}
+    kling_alias_seen: dict[str, dict[str, Any]] = {}
+
+    for path in kling_look_element_paths:
+        data = _load_yaml_mapping(path)
+        if not data:
+            continue
+        rel = path.relative_to(repo_root).as_posix()
+        kling_look_elements.append({"data": data, "path": path})
+
+        look_id = data.get("look_id")
+        character_id = data.get("character_id")
+        identity_anchor_id = data.get("identity_anchor_id")
+        alias = data.get("kling_element_alias")
+        status = data.get("status")
+        source_chain = data.get("source_reference_chain")
+
+        if isinstance(alias, str) and alias:
+            if not kling_alias_re.match(alias):
+                issues.append(
+                    CharacterContinuityIssue(
+                        file=rel,
+                        record_type="kling_character_look_element",
+                        field_path="kling_element_alias",
+                        message="kling_element_alias must match ^@C\\d{2}_[A-Z0-9_]+$",
+                    )
+                )
+            prev = kling_alias_seen.get(alias)
+            if prev is not None:
+                issues.append(
+                    CharacterContinuityIssue(
+                        file=rel,
+                        record_type="kling_character_look_element",
+                        field_path="kling_element_alias",
+                        message="kling_element_alias must be globally unique",
+                    )
+                )
+            else:
+                kling_alias_seen[alias] = {"path": path}
+
+        if status == "locked" and isinstance(source_chain, dict):
+            lock_ref = source_chain.get("front_hero_lock_ref")
+            if isinstance(lock_ref, str) and lock_ref.startswith("pending_external://"):
+                issues.append(
+                    CharacterContinuityIssue(
+                        file=rel,
+                        record_type="kling_character_look_element",
+                        field_path="source_reference_chain.front_hero_lock_ref",
+                        message=(
+                            "locked kling_character_look_element cannot use pending_external:// "
+                            "front_hero_lock_ref"
+                        ),
+                    )
+                )
+
+        look_entry = look_by_id.get(look_id) if isinstance(look_id, str) else None
+        if isinstance(look_id, str) and look_id and look_entry is None:
+            issues.append(
+                CharacterContinuityIssue(
+                    file=rel,
+                    record_type="kling_character_look_element",
+                    field_path="look_id",
+                    message="look_id must reference an existing character_look_variant",
+                )
+            )
+
+        if (
+            isinstance(look_id, str)
+            and isinstance(character_id, str)
+            and not look_id.startswith(f"{character_id}_LOOK_")
+        ):
+            issues.append(
+                CharacterContinuityIssue(
+                    file=rel,
+                    record_type="kling_character_look_element",
+                    field_path="character_id",
+                    message="character_id must match look_id prefix",
+                )
+            )
+
+        if look_entry and isinstance(identity_anchor_id, str):
+            expected_anchor = look_entry["data"].get("inherits_identity_anchor")
+            if expected_anchor != identity_anchor_id:
+                issues.append(
+                    CharacterContinuityIssue(
+                        file=rel,
+                        record_type="kling_character_look_element",
+                        field_path="identity_anchor_id",
+                        message="identity_anchor_id must match look_variant.inherits_identity_anchor",
+                    )
+                )
+
+        if isinstance(source_chain, dict):
+            wardrobe_ids = source_chain.get("wardrobe_ids")
+            if isinstance(wardrobe_ids, list):
+                for idx, wd in enumerate(wardrobe_ids):
+                    if isinstance(wd, str) and wd in known_wardrobe_ids:
+                        continue
+                    severity = "error" if wardrobe_registry_available else "warning"
+                    issues.append(
+                        CharacterContinuityIssue(
+                            file=rel,
+                            record_type="kling_character_look_element",
+                            field_path=f"source_reference_chain.wardrobe_ids.{idx}",
+                            message=f"wardrobe reference not found in registry: {wd}",
+                            severity=severity,
+                        )
+                    )
+
+        if status not in {"blocked", "rejected"}:
+            if isinstance(look_id, str):
+                active_kling_by_look_id.setdefault(look_id, []).append({"path": path, "data": data})
+            if isinstance(character_id, str) and isinstance(look_id, str):
+                active_char_look_pair.setdefault((character_id, look_id), []).append(
+                    {"path": path, "data": data}
                 )
 
     # HARD: look_id continuity overlap and change_reason requirement
@@ -162,6 +295,21 @@ def validate_character_continuity(repo_root: Path) -> list[CharacterContinuityIs
                             )
                         )
 
+    for (character_id, look_id), entries in active_char_look_pair.items():
+        if len(entries) > 1:
+            for entry in entries[1:]:
+                issues.append(
+                    CharacterContinuityIssue(
+                        file=entry["path"].relative_to(repo_root).as_posix(),
+                        record_type="kling_character_look_element",
+                        field_path="status",
+                        message=(
+                            "only one active kling_character_look_element is allowed per "
+                            "(character_id, look_id)"
+                        ),
+                    )
+                )
+
     # scene map checks
     for path in map_paths:
         data = _load_yaml_mapping(path)
@@ -203,22 +351,23 @@ def validate_character_continuity(repo_root: Path) -> list[CharacterContinuityIs
                             file=path.relative_to(repo_root).as_posix(),
                             record_type="scene_character_look_map",
                             field_path=f"characters.{idx}.look_id",
-                            message="look_id must match scene map character_id",
-                        )
+                        message="look_id must match scene map character_id",
                     )
+                )
+            if isinstance(look_id, str) and look_id and look_id not in active_kling_by_look_id:
+                issues.append(
+                    CharacterContinuityIssue(
+                        file=path.relative_to(repo_root).as_posix(),
+                        record_type="scene_character_look_map",
+                        field_path=f"characters.{idx}.look_id",
+                        message=(
+                            "look_id must resolve to an active kling_character_look_element alias"
+                        ),
+                    )
+                )
 
     # SOFT/HARD wardrobe existence gate
     # Accept both full wardrobe plans and provisional intake slots as registry entries.
-    wardrobe_plan_paths = list(
-        repo_root.glob("visual_dev/elements/characters/*/wardrobe/WD*/element_view_plan.yaml")
-    )
-    wardrobe_intake_paths = list(
-        repo_root.glob("visual_dev/elements/characters/*/wardrobe/WD*/intake_slot.yaml")
-    )
-    wardrobe_registry_available = len(wardrobe_plan_paths) > 0 or len(wardrobe_intake_paths) > 0
-    known_wardrobe_ids = {p.parent.name for p in wardrobe_plan_paths}
-    known_wardrobe_ids.update({p.parent.name for p in wardrobe_intake_paths})
-
     for path in look_paths:
         data = _load_yaml_mapping(path)
         if not data:

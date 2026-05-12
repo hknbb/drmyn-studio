@@ -32,6 +32,7 @@ def _copy_schemas(repo_root: Path) -> None:
         "pre_b8a_clean_reset.schema.json",
         "gpt_images_perspective_pack.schema.json",
         "kling_element_reference_record.schema.json",
+        "kling_character_look_element.schema.json",
         "kling_shot_prompt_record.schema.json",
         "dialogue_extract_record.schema.json",
         "performance_intent_record.schema.json",
@@ -600,6 +601,7 @@ def test_collect_production_files_includes_prod_line_types(tmp_path: Path) -> No
     for record_type in (
         "gpt_images_perspective_pack",
         "kling_element_reference_record",
+        "kling_character_look_element",
         "kling_shot_prompt_record",
         "dialogue_extract_record",
         "performance_intent_record",
@@ -1589,6 +1591,38 @@ def test_new_character_identity_look_records_validate(tmp_path: Path) -> None:
                     "status": "not_started",
                 }
             ],
+            "provenance": {
+                "created_by": "tests",
+                "created_at": "2026-05-12T00:00:00Z",
+            },
+        },
+    )
+    _write_yaml(
+        tmp_path
+        / "visual_dev/elements/characters/C01/kling_elements/KLING_ELEM_C01_HOME_MORNING_V001.yaml",
+        {
+            "schema_version": "0.x-draft",
+            "record_type": "kling_character_look_element",
+            "kling_character_look_element_id": "KLING_ELEM_C01_HOME_MORNING_V001",
+            "character_id": "C01",
+            "identity_anchor_id": "C01_IDENTITY_ANCHOR_V001",
+            "look_id": "C01_LOOK_HOME_MORNING_V001",
+            "kling_element_alias": "@C01_HOME_MORNING",
+            "display_name": "C01 Home Morning",
+            "status": "draft",
+            "element_role": "character_look_composite",
+            "source_reference_chain": {
+                "identity_source_ref": "MJ_ELEMENT_C01_HERO_LOCKED_V001",
+                "front_hero_lock_ref": "pending_external://C01_FRONT_HERO_LOCK_V001",
+                "perspective_pack_id": None,
+                "wardrobe_ids": ["WD001"],
+            },
+            "omni_usage_policy": {
+                "use_as_primary_character_element": True,
+                "do_not_mix_with_other_same_character_look_aliases_in_same_shot": True,
+                "wardrobe_is_baked_into_element": True,
+                "separate_wardrobe_element_optional": False,
+            },
             "provenance": {
                 "created_by": "tests",
                 "created_at": "2026-05-12T00:00:00Z",
