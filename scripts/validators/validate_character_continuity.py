@@ -208,9 +208,16 @@ def validate_character_continuity(repo_root: Path) -> list[CharacterContinuityIs
                     )
 
     # SOFT/HARD wardrobe existence gate
-    wardrobe_dirs = list(repo_root.glob("visual_dev/elements/characters/*/wardrobe/WD*/element_view_plan.yaml"))
-    wardrobe_registry_available = len(wardrobe_dirs) > 0
-    known_wardrobe_ids = {p.parent.name for p in wardrobe_dirs}
+    # Accept both full wardrobe plans and provisional intake slots as registry entries.
+    wardrobe_plan_paths = list(
+        repo_root.glob("visual_dev/elements/characters/*/wardrobe/WD*/element_view_plan.yaml")
+    )
+    wardrobe_intake_paths = list(
+        repo_root.glob("visual_dev/elements/characters/*/wardrobe/WD*/intake_slot.yaml")
+    )
+    wardrobe_registry_available = len(wardrobe_plan_paths) > 0 or len(wardrobe_intake_paths) > 0
+    known_wardrobe_ids = {p.parent.name for p in wardrobe_plan_paths}
+    known_wardrobe_ids.update({p.parent.name for p in wardrobe_intake_paths})
 
     for path in look_paths:
         data = _load_yaml_mapping(path)
