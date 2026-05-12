@@ -5,9 +5,9 @@
 - `scripts/`
 - `tests/`
 - `planning/`
+- `prompts/` (draft/review/approved/locked metadata prompt records)
 - `visual_dev/` metadata YAML records
-- `evidence/operator_guides/`
-- `evidence/reports/`
+- `evidence/` metadata records (including operator sessions, handoffs, indices, QC reports, guides, and reports)
 - `model_guidance_snapshots/`
 - `README.md`
 - `LICENSE`
@@ -24,6 +24,11 @@
 - API keys/secrets/tokens
 - private media archives and large preview batches
 - any binary production outputs
+
+## Reproducibility Note
+The include set intentionally preserves the inputs needed to reproduce the documented checkpoint validations, including:
+- `python scripts/validate_prompt_records.py --repo-root .`
+- `python scripts/validate_production_records.py --repo-root .`
 
 ## Rationale
 This snapshot is a metadata-only governance checkpoint and must remain reproducible, schema-valid, and free of media binaries and secrets.
