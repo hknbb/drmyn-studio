@@ -377,19 +377,15 @@ def validate_prod_line_cross_references(
 
         perspectives = data.get("gpt_images_2_perspectives")
         if isinstance(perspectives, dict):
-            for key in (
-                "front_hero",
-                "three_quarter_left",
-                "three_quarter_right",
-                "rear_or_side",
-            ):
-                ref = perspectives.get(key)
-                if isinstance(ref, str) and ref and ref not in gpt_prompt_ids:
+            for key, ref in perspectives.items():
+                if not isinstance(ref, str) or not ref:
+                    continue
+                if ref not in gpt_prompt_ids:
                     issues.append(
                         ProductionValidationIssue(
                             file=_relative(path, repo_root),
                             record_type="kling_element_reference_record",
-                            field_path="gpt_images_2_perspectives",
+                            field_path=f"gpt_images_2_perspectives.{key}",
                             message=f"missing GPT Images 2 perspective prompt: {ref}",
                         )
                     )
