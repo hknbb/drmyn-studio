@@ -127,7 +127,9 @@
               "side_depth",
               "detail_or_threshold",
               "usage_angle",
-              "scale_or_context"
+              "scale_or_context",
+              "left_profile_side",
+              "right_profile_side"
             ]
           },
           "prompt_text": {

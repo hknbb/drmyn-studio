@@ -9,39 +9,39 @@ element_id: C01
 element_type: character
 shared_preservation_instruction: Preserve exact identity, silhouette, wardrobe/material palette, and change only perspective.
 prompts:
-  - prompt_id: GPTIMG2_C01_P01_FRONT_V001
-    perspective: front_hero
-    prompt_text: Front hero perspective of C01; preserve identity anchors and wardrobe geometry.
-    constraints:
-      - preserve facial topology
-      - preserve muted domestic palette
-      - no costume change
-    expected_output:
-      asset_type: still
-      aspect_ratio: "1:1"
-  - prompt_id: GPTIMG2_C01_P02_LEFT_V001
-    perspective: three_quarter_left
-    prompt_text: Three-quarter left perspective of C01; preserve exact identity and silhouette.
-    constraints:
-      - preserve facial topology
-      - preserve muted domestic palette
-      - no costume change
-    expected_output:
-      asset_type: still
-      aspect_ratio: "1:1"
-  - prompt_id: GPTIMG2_C01_P03_RIGHT_V001
-    perspective: three_quarter_right
-    prompt_text: Three-quarter right perspective of C01; preserve exact identity and silhouette.
-    constraints:
-      - preserve facial topology
-      - preserve muted domestic palette
-      - no costume change
-    expected_output:
-      asset_type: still
-      aspect_ratio: "1:1"
-  - prompt_id: GPTIMG2_C01_P04_REAR_V001
+  - prompt_id: GPTIMG2_C01_P01_REAR_V001
     perspective: rear_or_side
-    prompt_text: Rear or side perspective of C01; preserve hair shape, silhouette, and wardrobe material logic.
+    prompt_text: Use the registered C01 FRONT HERO LOCK as identity anchor. Generate one single full-body rear view of C01; back of head and shoulders centered toward the camera, no facial features visible, preserve hair silhouette, back-of-neck continuity, body proportions, and wardrobe continuity.
+    constraints:
+      - preserve facial topology
+      - preserve muted domestic palette
+      - no costume change
+    expected_output:
+      asset_type: still
+      aspect_ratio: "1:1"
+  - prompt_id: GPTIMG2_C01_P02_THREE_QUARTER_LEFT_V001
+    perspective: three_quarter_left
+    prompt_text: Use the registered C01 FRONT HERO LOCK as identity anchor. Generate one single full-body three-quarter left view where C01's left shoulder is closer to the camera, right cheek is the dominant facial plane, left ear partially visible at frame edge, and right ear hidden behind the head.
+    constraints:
+      - preserve facial topology
+      - preserve muted domestic palette
+      - no costume change
+    expected_output:
+      asset_type: still
+      aspect_ratio: "1:1"
+  - prompt_id: GPTIMG2_C01_P03_RIGHT_PROFILE_V001
+    perspective: right_profile_side
+    prompt_text: Use the registered C01 FRONT HERO LOCK as identity anchor. Generate one single full-body strict 90-degree right profile; C01's right ear is closest to the camera, left ear fully hidden behind the head, and one full side facial plane is visible.
+    constraints:
+      - preserve facial topology
+      - preserve muted domestic palette
+      - no costume change
+    expected_output:
+      asset_type: still
+      aspect_ratio: "1:1"
+  - prompt_id: GPTIMG2_C01_P04_LEFT_PROFILE_V001
+    perspective: left_profile_side
+    prompt_text: Use the registered C01 FRONT HERO LOCK as identity anchor. Generate one single full-body strict 90-degree left profile; C01's left ear is closest to the camera, right ear fully hidden behind the head, and one full side facial plane is visible.
     constraints:
       - preserve silhouette continuity
       - preserve accessory continuity
