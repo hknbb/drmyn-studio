@@ -157,6 +157,36 @@ This doctrine maps prompt stages to existing metadata contracts.
   - `kling_character_look_element.source_reference_chain.wardrobe_ids` continuity expectations
 - Future schema support may add `source_identity_evidence_refs` or an `identity_evidence_set` record type in a later PR.
 
+## Element-Type Generalization (Forward-Looking)
+
+The anatomy-anchored separate-call paradigm of Stage 4 can generalize to non-character element types such as wardrobe, props, and locations.
+
+For every element type, the same production rules apply:
+
+1. Generate one perspective per GPT Images 2 call.
+2. Use landmark-anchored disambiguation instead of camera-frame directions.
+3. Use the locked hero/reference image for that element type as the identity or continuity anchor.
+4. Do not request opposing mirror-mate views in the same prompt.
+5. Do not redesign the element while changing perspective.
+
+Element-specific anchors differ by type:
+
+- Character: ear, shoulder, cheek, hair silhouette, body proportions.
+- Wardrobe: lapel, cuff, pocket, seam, label, fabric panel, closure direction.
+- Prop: handle, logo/marking, asymmetric edge, material feature, scale reference.
+- Location: doorway, window, fireplace, furniture placement, threshold, wall geometry.
+
+This repository currently implements the migrated Stage 4 perspective set only for character elements.
+
+Non-character perspective packs are deferred:
+- PROD-LINE-15A-6: wardrobe perspective pack framework
+- PROD-LINE-15A-7: prop perspective pack framework
+- PROD-LINE-15A-8: location perspective pack framework
+
+Until those follow-up PRs land, no wardrobe, prop, or location perspective pack records are created.
+
+See [non_character_perspective_generalization_notes.md](../research_notes/non_character_perspective_generalization_notes.md) for the detailed framework, candidate perspective sets per element type (subject to schema review), and web research findings.
+
 ## Field Notes
 - Identity exploration is metadata-first: the model must learn who the person is before wardrobe-specific lock prompts.
 - Stage 2 uses V7 + Omni Reference (`--oref`) because V8.1 does not support `--oref` as of 2026-05. Operator must switch to V7 in Midjourney UI for Stage 2 calls.
