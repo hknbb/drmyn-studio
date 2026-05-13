@@ -16,19 +16,33 @@ From `planning/characters/C03.yaml`:
 
 ## Seed Registry
 - Character seed: `44`
-- Midjourney V8.1 tail (all Stage 1/2/5 prompts):
+- Midjourney V8.1 tail (Stage 1 and Stage 5):
 `--v 8.1 --raw --ar 2:3 --s 100 --seed 44 --chaos 5 --no text logo watermark`
+- Midjourney V7 tail (Stage 2 only — requires Omni Reference URL from Stage 1 winner):
+`--v 7 --style raw --ar 2:3 --s 100 --seed 44 --chaos 5 --oref <STAGE1_WINNER_URL> --ow 100 --no text, logo, watermark, sheet, contact-sheet, multi-panel, collage, turnaround, character-design, grid, layout`
 
 ## Stage 1 - Identity Exploration Prompt (Midjourney)
 
 ```text
-/imagine prompt: C03 Birta cinematic identity exploration, woman in her 70s, compact work-shaped silhouette, quietly authoritative and observant practical domestic presence, muted service neutrals, practical domestic workwear logic, realistic skin texture, realistic fabric texture, no stylized nostalgia, no grandmother trope, no period drama styling, no romanticized housekeeper aesthetic, no fashion editorial exaggeration, clean character reference composition, full body with face readability --v 8.1 --raw --ar 2:3 --s 100 --seed 44 --chaos 5 --no text logo watermark
+/imagine prompt: C03 Birta cinematic identity exploration, woman in her 70s, compact work-shaped silhouette, quietly authoritative and observant practical domestic presence, muted service neutrals, practical domestic workwear logic, realistic skin texture, realistic fabric texture, no stylized nostalgia, no grandmother trope, no period drama styling, no romanticized housekeeper aesthetic, no fashion editorial exaggeration, clean single-subject production image, full body with face readability, single frame --v 8.1 --raw --ar 2:3 --s 100 --seed 44 --chaos 5 --no text logo watermark
 ```
 
-## Stage 2 - Reference Sheet Prompt (Midjourney)
+## Stage 2 - Identity Exploration 2 (Midjourney V7 + Omni Reference)
+Run after selecting the Stage 1 identity direction. Paste Stage 1 winner URL as `--oref`. Three separate `/imagine` calls.
 
+### 2A — Identity Portrait Probe
 ```text
-/imagine prompt: C03 Birta reference sheet for identity source locking, preserve selected identity exactly, same age read, same compact working silhouette, same quietly authoritative expression range, full-body cinematic reference composition, clean neutral background, high facial readability, no costume redesign, no decorative styling drift --v 8.1 --raw --ar 2:3 --s 100 --seed 44 --chaos 5 --no text logo watermark
+/imagine prompt: Birta cinematic identity portrait, single frame, head and shoulders close framing, woman in her 70s, compact work-shaped presence, quietly authoritative and observant, age and use read honestly, realistic skin texture, clean neutral backdrop, one image only, no panels, no layout splits --v 7 --style raw --ar 2:3 --s 100 --seed 44 --chaos 5 --oref <STAGE1_WINNER_URL> --ow 100 --no text, logo, watermark, sheet, contact-sheet, multi-panel, collage, turnaround, character-design, grid, layout
+```
+
+### 2B — Identity Full-Body Probe
+```text
+/imagine prompt: Birta cinematic identity full body, single frame, full-body standing pose, compact working silhouette, same face geometry as identity source, muted service neutrals, neutral grounded posture, clean neutral backdrop, one image only, no panels, no layout splits --v 7 --style raw --ar 2:3 --s 100 --seed 44 --chaos 5 --oref <STAGE1_WINNER_URL> --ow 100 --no text, logo, watermark, sheet, contact-sheet, multi-panel, collage, turnaround, character-design, grid, layout
+```
+
+### 2C — Identity Expression Band Probe
+```text
+/imagine prompt: Birta cinematic identity variant, single frame, quiet watchful assessment expression within still domestic authority range, same face geometry and compact working silhouette as identity source, realistic texture, clean neutral backdrop, one image only, no panels, no layout splits, expression variant not angle variant --v 7 --style raw --ar 2:3 --s 100 --seed 44 --chaos 5 --oref <STAGE1_WINNER_URL> --ow 100 --no text, logo, watermark, sheet, contact-sheet, multi-panel, collage, turnaround, character-design, grid, layout
 ```
 
 ## Stage 3 - GPT Images 2 FRONT HERO LOCK Prompt

@@ -17,8 +17,10 @@ From `planning/characters/C01.yaml`:
 
 ## Seed Registry
 - Character seed: `42`
-- Midjourney V8.1 tail (all Stage 1/2/5 prompts):
+- Midjourney V8.1 tail (Stage 1 and Stage 5):
 `--v 8.1 --raw --ar 2:3 --s 100 --seed 42 --chaos 5 --no text logo watermark`
+- Midjourney V7 tail (Stage 2 only — requires Omni Reference URL from Stage 1 winner):
+`--v 7 --style raw --ar 2:3 --s 100 --seed 42 --chaos 5 --oref <STAGE1_WINNER_URL> --ow 100 --no text, logo, watermark, sheet, contact-sheet, multi-panel, collage, turnaround, character-design, grid, layout`
 
 ## Stage 1 - Identity Exploration Prompt (Midjourney)
 Use this first, before any look-specific lock attempt.
@@ -27,11 +29,22 @@ Use this first, before any look-specific lock attempt.
 /imagine prompt: C01 Nadia cinematic identity exploration, woman in early to mid 30s, controlled observant presence, lean upright economical silhouette, short wavy bob, precise stillness and tactical composure, muted domestic neutrals, natural restrained makeup, realistic skin and fabric texture, no fashion editorial exaggeration, no glam retouch, no cyberpunk, full body with face readability, clean neutral backdrop --v 8.1 --raw --ar 2:3 --s 100 --seed 42 --chaos 5 --no text logo watermark
 ```
 
-## Stage 2 - Reference Sheet Prompt (Midjourney)
-Run after selecting the Stage 1 identity direction.
+## Stage 2 - Identity Exploration 2 (Midjourney V7 + Omni Reference)
+Run after selecting the Stage 1 identity direction. Paste Stage 1 winner URL as `--oref`. Three separate `/imagine` calls.
 
+### 2A — Identity Portrait Probe
 ```text
-/imagine prompt: C01 Nadia reference sheet for identity source locking, preserve selected identity exactly, same face geometry, same age read, same short wavy bob silhouette, same lean upright body proportions, controlled expression range, full-body cinematic character reference composition, clean neutral background, high facial readability, no wardrobe redesign, no decorative styling drift --v 8.1 --raw --ar 2:3 --s 100 --seed 42 --chaos 5 --no text logo watermark
+/imagine prompt: Nadia cinematic identity portrait, single frame, head and shoulders close framing, woman in early to mid 30s, controlled observant presence, short wavy bob, precise stillness, natural restrained expression, realistic skin texture, clean neutral backdrop, one image only, no panels, no layout splits --v 7 --style raw --ar 2:3 --s 100 --seed 42 --chaos 5 --oref <STAGE1_WINNER_URL> --ow 100 --no text, logo, watermark, sheet, contact-sheet, multi-panel, collage, turnaround, character-design, grid, layout
+```
+
+### 2B — Identity Full-Body Probe
+```text
+/imagine prompt: Nadia cinematic identity full body, single frame, full-body standing pose, lean upright economical silhouette, same face geometry as identity source, muted domestic neutrals, neutral grounded posture, clean neutral backdrop, one image only, no panels, no layout splits --v 7 --style raw --ar 2:3 --s 100 --seed 42 --chaos 5 --oref <STAGE1_WINNER_URL> --ow 100 --no text, logo, watermark, sheet, contact-sheet, multi-panel, collage, turnaround, character-design, grid, layout
+```
+
+### 2C — Identity Expression Band Probe
+```text
+/imagine prompt: Nadia cinematic identity variant, single frame, tired but watchful expression within controlled range, same face geometry and lean upright silhouette as identity source, realistic skin texture, clean neutral backdrop, one image only, no panels, no layout splits, expression variant not angle variant --v 7 --style raw --ar 2:3 --s 100 --seed 42 --chaos 5 --oref <STAGE1_WINNER_URL> --ow 100 --no text, logo, watermark, sheet, contact-sheet, multi-panel, collage, turnaround, character-design, grid, layout
 ```
 
 ## Stage 3 - GPT Images 2 FRONT HERO LOCK Prompt
