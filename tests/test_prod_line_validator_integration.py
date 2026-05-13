@@ -1877,3 +1877,18 @@ def test_identity_evidence_set_pending_external_allowed(tmp_path: Path) -> None:
     )
     report = run_validation(tmp_path)
     assert report.invalid_files == 0
+
+
+def test_identity_evidence_set_hosted_media_url_allowed(tmp_path: Path) -> None:
+    _copy_schemas(tmp_path)
+    _write_identity_evidence_dependencies(tmp_path)
+    payload = _valid_identity_evidence_set_record()
+    payload["evidence_slots"][0]["external_ref"] = "https://storage.example/C01.png"
+    payload["evidence_slots"][1]["external_ref"] = "https://storage.example/C01-left.jpg"
+    _write_yaml(
+        tmp_path
+        / "visual_dev/elements/characters/C01/identity_evidence_sets/C01_STAGE3_IDENTITY_EVIDENCE_SET_HOME_MORNING_V001.yaml",
+        payload,
+    )
+    report = run_validation(tmp_path)
+    assert report.invalid_files == 0

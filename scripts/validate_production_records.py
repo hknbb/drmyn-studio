@@ -2180,7 +2180,9 @@ def validate_identity_evidence_set_file(
                         message="external_ref must not be a local absolute path.",
                     )
                 )
-            if binary_ext_re.search(normalized):
+            # Hosted external URLs are allowed even when they end with media
+            # extensions; this guard only blocks repo/local-style media paths.
+            if "://" not in normalized and binary_ext_re.search(normalized):
                 issues.append(
                     _structural_issue(
                         path=path,
