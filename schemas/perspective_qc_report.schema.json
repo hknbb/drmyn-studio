@@ -51,7 +51,14 @@
           "prompt_id": {"type": "string", "minLength": 1},
           "perspective": {
             "type": "string",
-            "enum": ["front_hero", "three_quarter_left", "three_quarter_right", "rear_or_side"]
+            "enum": [
+              "front_hero",
+              "three_quarter_left",
+              "three_quarter_right",
+              "rear_or_side",
+              "right_profile_side",
+              "left_profile_side"
+            ]
           },
           "identity_preservation": {"type": ["integer", "null"], "minimum": 0, "maximum": 100},
           "perspective_usefulness": {"type": ["integer", "null"], "minimum": 0, "maximum": 100},
