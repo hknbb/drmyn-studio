@@ -9,12 +9,12 @@ evidence_slots:
   - slot_id: E01_STAGE1_WINNER
     source_stage: STAGE_1_IDENTITY_EXPLORATION
     role: primary_identity_direction
-    external_ref: https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/12b9b547a843b3eb1847026da5b96c57a54021a748a07d7b5501772a24697d2f.png
+    external_ref: external://local_manual/drmyn-studio-images/u9435212546_imagine_prompt_C01_Nadia_cinematic_identity_explo_f2ff7d52-d694-41f0-b657-bec7563f662f_0.png
     included: true
   - slot_id: E02_STAGE2A_PORTRAIT
     source_stage: STAGE_2A_IDENTITY_PORTRAIT_PROBE
     role: face_topology_anchor
-    external_ref: external://local_manual/drmyn-studio-images/u9435212546_Nadia_cinematic_identity_portrait_single_frame_he_867e0f9d-4f64-4ebf-8601-95a58ed393da_3_(1).png
+    external_ref: external://local_manual/drmyn-studio-images/u9435212546_Nadia_cinematic_identity_portrait_single_frame_he_867e0f9d-4f64-4ebf-8601-95a58ed393da_3 (1).png
     included: true
   - slot_id: E03_STAGE2B_FULL_BODY
     source_stage: STAGE_2B_IDENTITY_FULL_BODY_PROBE
