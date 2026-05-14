@@ -5,11 +5,11 @@ source_prompt_ids:
   - SC0001__gptimg2-perspective-pack__v01
 candidate_images:
   - asset_id: GPTIMG2_C01_P01_REAR_V001
-    path: pending_external://GPTIMG2_C01_P01_REAR_V001
-    external_storage_ref: pending_external://GPTIMG2_C01_P01_REAR_V001
+    path: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 22_52_09.png
+    external_storage_ref: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 22_52_09.png
     repo_binary_committed: false
     status: candidate
-    reason: Pending external GPT Images 2 rear_or_side perspective output; no binary committed.
+    reason: Registered external GPT Images 2 rear_or_side perspective output; no binary committed.
     quality_scores:
       identity_consistency: 1
       source_grounding: 1
@@ -18,11 +18,11 @@ candidate_images:
       production_usability: 1
     failure_reason: null
   - asset_id: GPTIMG2_C01_P02_THREE_QUARTER_LEFT_V001
-    path: pending_external://GPTIMG2_C01_P02_THREE_QUARTER_LEFT_V001
-    external_storage_ref: pending_external://GPTIMG2_C01_P02_THREE_QUARTER_LEFT_V001
+    path: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 22_52_14.png
+    external_storage_ref: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 22_52_14.png
     repo_binary_committed: false
     status: candidate
-    reason: Pending external GPT Images 2 three_quarter_left perspective output; no binary committed.
+    reason: Registered external GPT Images 2 three_quarter_left perspective output; no binary committed.
     quality_scores:
       identity_consistency: 1
       source_grounding: 1
@@ -31,11 +31,11 @@ candidate_images:
       production_usability: 1
     failure_reason: null
   - asset_id: GPTIMG2_C01_P03_RIGHT_PROFILE_V001
-    path: pending_external://GPTIMG2_C01_P03_RIGHT_PROFILE_V001
-    external_storage_ref: pending_external://GPTIMG2_C01_P03_RIGHT_PROFILE_V001
+    path: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 22_56_01.png
+    external_storage_ref: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 22_56_01.png
     repo_binary_committed: false
     status: candidate
-    reason: Pending external GPT Images 2 right_profile_side perspective output; no binary committed.
+    reason: Registered external GPT Images 2 right_profile_side perspective output; no binary committed.
     quality_scores:
       identity_consistency: 1
       source_grounding: 1
@@ -44,11 +44,11 @@ candidate_images:
       production_usability: 1
     failure_reason: null
   - asset_id: GPTIMG2_C01_P04_LEFT_PROFILE_V001
-    path: pending_external://GPTIMG2_C01_P04_LEFT_PROFILE_V001
-    external_storage_ref: pending_external://GPTIMG2_C01_P04_LEFT_PROFILE_V001
+    path: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 23_05_14.png
+    external_storage_ref: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 23_05_14.png
     repo_binary_committed: false
     status: candidate
-    reason: Pending external GPT Images 2 left_profile_side perspective output; no binary committed.
+    reason: Registered external GPT Images 2 left_profile_side perspective output; no binary committed.
     quality_scores:
       identity_consistency: 1
       source_grounding: 1
@@ -59,7 +59,7 @@ candidate_images:
 canonical_images: []
 round_status: in_progress
 pack_manifest_sync: pending
-review_notes: Candidate slots only. Quality scores use minimum placeholder values until real external outputs are reviewed. No candidate is selected or canonical.
+review_notes: External outputs registered. Quality scores use minimum placeholder values until human QC review. No candidate is selected or canonical.
 provenance:
   created_by: codex
   created_at: "2026-05-12T00:00:00Z"

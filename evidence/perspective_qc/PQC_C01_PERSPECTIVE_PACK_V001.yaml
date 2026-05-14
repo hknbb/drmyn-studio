@@ -47,4 +47,4 @@ gate:
   minimum_score: 85
   all_four_required: true
   can_advance_to_kling_reference: false
-notes: QC scaffold only; generated images do not exist yet.
+notes: External outputs registered; QC pending human review.
