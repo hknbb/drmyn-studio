@@ -11,11 +11,11 @@ candidate_images:
     status: candidate
     reason: Registered external GPT Images 2 rear_or_side perspective output; no binary committed.
     quality_scores:
-      identity_consistency: 1
-      source_grounding: 1
-      style_compliance: 1
-      continuity: 1
-      production_usability: 1
+      identity_consistency: 4
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
     failure_reason: null
   - asset_id: GPTIMG2_C01_P02_THREE_QUARTER_LEFT_V001
     path: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 22_52_14.png
@@ -24,11 +24,11 @@ candidate_images:
     status: candidate
     reason: Registered external GPT Images 2 three_quarter_left perspective output; no binary committed.
     quality_scores:
-      identity_consistency: 1
-      source_grounding: 1
-      style_compliance: 1
-      continuity: 1
-      production_usability: 1
+      identity_consistency: 4
+      source_grounding: 5
+      style_compliance: 4
+      continuity: 4
+      production_usability: 4
     failure_reason: null
   - asset_id: GPTIMG2_C01_P03_RIGHT_PROFILE_V001
     path: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 22_56_01.png
@@ -37,11 +37,11 @@ candidate_images:
     status: candidate
     reason: Registered external GPT Images 2 right_profile_side perspective output; no binary committed.
     quality_scores:
-      identity_consistency: 1
-      source_grounding: 1
-      style_compliance: 1
-      continuity: 1
-      production_usability: 1
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
     failure_reason: null
   - asset_id: GPTIMG2_C01_P04_LEFT_PROFILE_V001
     path: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 23_05_14.png
@@ -50,16 +50,16 @@ candidate_images:
     status: candidate
     reason: Registered external GPT Images 2 left_profile_side perspective output; no binary committed.
     quality_scores:
-      identity_consistency: 1
-      source_grounding: 1
-      style_compliance: 1
-      continuity: 1
-      production_usability: 1
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
     failure_reason: null
 canonical_images: []
 round_status: in_progress
 pack_manifest_sync: pending
-review_notes: External outputs registered. Quality scores use minimum placeholder values until human QC review. No candidate is selected or canonical.
+review_notes: C01 Stage 4 external outputs reviewed. All four candidates pass QC threshold for perspective usefulness and continuity. Candidate status is preserved; selection/canonical decision remains deferred. No lifecycle promotion or binary commit.
 provenance:
   created_by: codex
   created_at: "2026-05-12T00:00:00Z"

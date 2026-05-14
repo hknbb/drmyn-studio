@@ -9,42 +9,42 @@ operator_session_ref: OP-PROD-LINE-6-SC0001-PERSPECTIVE-REVIEW
 perspective_scores:
   - prompt_id: GPTIMG2_C01_P01_REAR_V001
     perspective: rear_or_side
-    identity_preservation: null
-    perspective_usefulness: null
-    material_palette_continuity: null
-    production_reference_cleanliness: null
-    hallucination_absence: null
-    total_score: null
-    decision: pending
+    identity_preservation: 90
+    perspective_usefulness: 93
+    material_palette_continuity: 94
+    production_reference_cleanliness: 90
+    hallucination_absence: 95
+    total_score: 92
+    decision: pass
   - prompt_id: GPTIMG2_C01_P02_THREE_QUARTER_LEFT_V001
     perspective: three_quarter_left
-    identity_preservation: null
-    perspective_usefulness: null
-    material_palette_continuity: null
-    production_reference_cleanliness: null
-    hallucination_absence: null
-    total_score: null
-    decision: pending
+    identity_preservation: 88
+    perspective_usefulness: 87
+    material_palette_continuity: 90
+    production_reference_cleanliness: 87
+    hallucination_absence: 91
+    total_score: 89
+    decision: pass
   - prompt_id: GPTIMG2_C01_P03_RIGHT_PROFILE_V001
     perspective: right_profile_side
-    identity_preservation: null
-    perspective_usefulness: null
-    material_palette_continuity: null
-    production_reference_cleanliness: null
-    hallucination_absence: null
-    total_score: null
-    decision: pending
+    identity_preservation: 94
+    perspective_usefulness: 95
+    material_palette_continuity: 93
+    production_reference_cleanliness: 90
+    hallucination_absence: 95
+    total_score: 93
+    decision: pass
   - prompt_id: GPTIMG2_C01_P04_LEFT_PROFILE_V001
     perspective: left_profile_side
-    identity_preservation: null
-    perspective_usefulness: null
-    material_palette_continuity: null
-    production_reference_cleanliness: null
-    hallucination_absence: null
-    total_score: null
-    decision: pending
+    identity_preservation: 93
+    perspective_usefulness: 95
+    material_palette_continuity: 92
+    production_reference_cleanliness: 90
+    hallucination_absence: 95
+    total_score: 93
+    decision: pass
 gate:
   minimum_score: 85
   all_four_required: true
-  can_advance_to_kling_reference: false
-notes: External outputs registered; QC pending human review.
+  can_advance_to_kling_reference: true
+notes: External C01 Stage 4 perspective outputs were reviewed from registered local-manual references. All four perspectives pass the 85+ QC gate. Selection/canonical decision remains deferred; no lifecycle promotion is applied.
