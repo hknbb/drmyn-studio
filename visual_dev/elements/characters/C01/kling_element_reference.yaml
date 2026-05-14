@@ -18,8 +18,8 @@ continuity_anchors:
   - fixed accessory logic
   - fixed muted domestic palette
 approval_gate:
-  all_perspectives_score_85_plus: false
-  operator_approved: false
-  operator_session_ref: OP_PENDING_PROD_LINE_4
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-PROD-LINE-6-SC0001-PERSPECTIVE-REVIEW
 downstream_use:
   - kling_omni_3_shot_prompt
