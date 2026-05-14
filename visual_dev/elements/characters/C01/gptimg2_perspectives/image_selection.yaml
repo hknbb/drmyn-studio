@@ -8,7 +8,7 @@ candidate_images:
     path: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 22_52_09.png
     external_storage_ref: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 22_52_09.png
     repo_binary_committed: false
-    status: candidate
+    status: selected
     reason: Registered external GPT Images 2 rear_or_side perspective output; no binary committed.
     quality_scores:
       identity_consistency: 4
@@ -21,7 +21,7 @@ candidate_images:
     path: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 22_52_14.png
     external_storage_ref: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 22_52_14.png
     repo_binary_committed: false
-    status: candidate
+    status: selected
     reason: Registered external GPT Images 2 three_quarter_left perspective output; no binary committed.
     quality_scores:
       identity_consistency: 4
@@ -34,7 +34,7 @@ candidate_images:
     path: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 22_56_01.png
     external_storage_ref: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 22_56_01.png
     repo_binary_committed: false
-    status: candidate
+    status: selected
     reason: Registered external GPT Images 2 right_profile_side perspective output; no binary committed.
     quality_scores:
       identity_consistency: 5
@@ -47,7 +47,7 @@ candidate_images:
     path: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 23_05_14.png
     external_storage_ref: external://local_manual/drmyn-studio-images/ChatGPT Image 14 May 2026 23_05_14.png
     repo_binary_committed: false
-    status: candidate
+    status: selected
     reason: Registered external GPT Images 2 left_profile_side perspective output; no binary committed.
     quality_scores:
       identity_consistency: 5
@@ -57,9 +57,9 @@ candidate_images:
       production_usability: 5
     failure_reason: null
 canonical_images: []
-round_status: in_progress
+round_status: complete
 pack_manifest_sync: pending
-review_notes: C01 Stage 4 external outputs reviewed. All four candidates pass QC threshold for perspective usefulness and continuity. Candidate status is preserved; selection/canonical decision remains deferred. No lifecycle promotion or binary commit.
+review_notes: C01 Stage 4 perspective selection gate completed by human decision. All four QC-passing external outputs are selected as the Stage 4 perspective set for downstream Kling reference readiness. No binary commit, lifecycle promotion, or materialized output registration is applied.
 provenance:
   created_by: codex
   created_at: "2026-05-12T00:00:00Z"
