@@ -1117,6 +1117,22 @@ is limited to:
 External Kling generation remains a manual platform step. Selected take locking
 and scene clip mapping remain future batches.
 
+#### Element-First Gate (SC0001 fix lineage)
+
+Kling Omni prompt synthesis now follows a strict attached-element gate:
+
+- Each shot must have a `shot_element_manifest` record under
+  `visual_dev/omni_sets/SC####/shot_element_manifests/`.
+- Every required element must resolve to a scene `element_binding` with
+  `binding_status` at least `created`.
+- Every required element must also have `pack_manifest.yaml`,
+  `gpt_images_perspective_pack.yaml`, and `kling_element_reference.yaml`
+  with `status` at least `review`.
+- When `shot_element_manifest_ref` is present in a prompt, legacy
+  `not_attached_as_kling_elements` is disallowed.
+- Prompt text must stay alias-first: use `@alias` placeholders and avoid
+  canonical ID leakage in `prompt_text`.
+
 ### Batch 8.5 Video Take Review
 
 After a human generates Kling takes externally and records the platform/storage

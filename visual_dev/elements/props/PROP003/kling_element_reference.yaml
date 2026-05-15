@@ -1,7 +1,7 @@
 schema_version: "0.x-draft"
 record_type: kling_element_reference_record
 kling_element_reference_id: KLING_REF_PROP003_V001
-status: draft
+status: review
 element_id: PROP003
 element_type: prop
 source_midjourney_reference:
@@ -21,8 +21,8 @@ continuity_anchors:
   - material texture (wood/metal finish)
 approval_gate:
   all_perspectives_score_85_plus: false
-  operator_approved: false
-  operator_session_ref: OP-PENDING-PR-D-PROP003-KLING-REGISTRATION
+  operator_approved: true
+  operator_session_ref: OP-C01-PROP003-KLING-REGISTRATION-V001
 downstream_use:
   - kling_omni_3_shot_prompt
 source_refs:

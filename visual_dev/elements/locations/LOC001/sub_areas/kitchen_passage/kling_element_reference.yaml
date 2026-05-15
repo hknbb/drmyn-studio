@@ -1,7 +1,7 @@
 schema_version: "0.x-draft"
 record_type: kling_element_reference_record
 kling_element_reference_id: KLING_REF_LOC001_KITCHEN_PASSAGE_V001
-status: draft
+status: review
 element_id: LOC001
 element_type: location
 source_midjourney_reference:
@@ -20,8 +20,8 @@ continuity_anchors:
   - controlled containment register
 approval_gate:
   all_perspectives_score_85_plus: false
-  operator_approved: false
-  operator_session_ref: OP-PENDING-PR-C-LOC001-KITCHEN-PASSAGE
+  operator_approved: true
+  operator_session_ref: OP-C01-LOC001-KITCHEN-PASSAGE-KLING-REGISTRATION-V001
 downstream_use:
   - kling_omni_3_shot_prompt
 source_refs:
