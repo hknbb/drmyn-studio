@@ -1363,3 +1363,205 @@ class TestCameraLightingMotionConsumption:
         adapter = KlingOmniAdapter(tmp_path)
         prompt_text = adapter.generate_from_clip_manifest(str(manifest_path)).prompt_record["prompt_text"]
         assert ".." not in prompt_text
+
+
+# ---------------------------------------------------------------------------
+# Element-first strict gate (Bolum 3): shot_element_manifest_ref enforcement
+# ---------------------------------------------------------------------------
+
+
+def _create_shot_element_manifest(
+    tmpdir: Path,
+    *,
+    scene_id: str = "SC0001",
+    shot_id: str = "SH001",
+    manifest_id: str = "MANIFEST_SC0001_SH001_V001",
+    required_elements: list[dict] | None = None,
+    gate_status: str = "all_elements_ready",
+) -> Path:
+    """Write a shot_element_manifest YAML for strict-gate tests."""
+    if required_elements is None:
+        required_elements = [
+            {
+                "element_id": "C01",
+                "element_type": "character",
+                "role": "primary_subject",
+                "registration_state_required": "created",
+            }
+        ]
+    manifest_dir = (
+        tmpdir / "visual_dev" / "omni_sets" / scene_id / "shot_element_manifests"
+    )
+    manifest_dir.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "schema_version": "0.x-draft",
+        "record_type": "shot_element_manifest",
+        "manifest_id": manifest_id,
+        "scene_id": scene_id,
+        "shot_id": shot_id,
+        "required_elements": required_elements,
+        "environmental_only_allowed_ids": [],
+        "gate_status": gate_status,
+    }
+    path = manifest_dir / f"{shot_id}.yaml"
+    with open(path, "w", encoding="utf-8") as f:
+        yaml.dump(payload, f)
+    return path
+
+
+class TestElementFirstStrictGate:
+    """shot_element_manifest_ref enforces element-first synthesis."""
+
+    def _setup_ready_clip(self, tmp_path: Path) -> tuple[Path, Path]:
+        _create_element_bindings(tmp_path)
+        clip_path = _create_manifest(
+            tmp_path,
+            shots=[
+                {
+                    "shot_id": "SHOT_SC0001_01_A",
+                    "duration_seconds": 5,
+                    "source_beat_ids": ["NADIA_PASSAGE_MOVEMENT"],
+                    "required_element_ids": ["C01"],
+                    "prompt_action": "She moves through the passage with precise economy.",
+                    "duration_reason": "normal/action 5s",
+                }
+            ],
+            total_duration=5,
+            required_element_ids=["C01"],
+        )
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+        shot_manifest = _create_shot_element_manifest(tmp_path)
+        return clip_path, shot_manifest
+
+    def test_ready_manifest_succeeds_and_embeds_ref(self, tmp_path):
+        clip_path, shot_manifest = self._setup_ready_clip(tmp_path)
+        adapter = KlingOmniAdapter(tmp_path)
+
+        result = adapter.generate_from_clip_manifest(
+            str(clip_path),
+            shot_element_manifest_ref=str(shot_manifest),
+        )
+
+        params = result.prompt_record["generation_params"]
+        assert (
+            params["shot_element_manifest_ref"]
+            == "visual_dev/omni_sets/SC0001/shot_element_manifests/SH001.yaml"
+        )
+        assert params["required_element_aliases"] == ["@Nadia"]
+        prompt_text = result.prompt_record["prompt_text"]
+        assert "@Nadia" in prompt_text
+        assert "C01" not in prompt_text
+        assert "LOC001" not in prompt_text
+
+    def test_blocked_manifest_raises(self, tmp_path):
+        clip_path, _ = self._setup_ready_clip(tmp_path)
+        blocked_manifest = _create_shot_element_manifest(
+            tmp_path, gate_status="blocked"
+        )
+        adapter = KlingOmniAdapter(tmp_path)
+
+        with pytest.raises(KlingOmniAdapterError, match="gate_status"):
+            adapter.generate_from_clip_manifest(
+                str(clip_path),
+                shot_element_manifest_ref=str(blocked_manifest),
+            )
+
+    def test_missing_manifest_raises(self, tmp_path):
+        clip_path, _ = self._setup_ready_clip(tmp_path)
+        adapter = KlingOmniAdapter(tmp_path)
+
+        with pytest.raises(KlingOmniAdapterError, match="Missing.*shot_element_manifest"):
+            adapter.generate_from_clip_manifest(
+                str(clip_path),
+                shot_element_manifest_ref="visual_dev/omni_sets/SC0001/shot_element_manifests/MISSING.yaml",
+            )
+
+    def test_no_active_aliases_in_strict_mode_raises(self, tmp_path):
+        # Bindings present but their element_ids do not match clip required_element_ids.
+        _create_element_bindings(
+            tmp_path,
+            bindings=[
+                {
+                    "schema_version": "0.x-draft",
+                    "record_type": "element_binding",
+                    "element_id": "C03",
+                    "element_type": "character",
+                    "kling_alias": "@Birta",
+                    "binding_status": "created",
+                }
+            ],
+        )
+        clip_path = _create_manifest(
+            tmp_path,
+            shots=[
+                {
+                    "shot_id": "SHOT_SC0001_01_A",
+                    "duration_seconds": 5,
+                    "source_beat_ids": ["NADIA_PASSAGE_MOVEMENT"],
+                    "required_element_ids": ["C01"],
+                    "prompt_action": "She moves through.",
+                    "duration_reason": "normal/action 5s",
+                }
+            ],
+            total_duration=5,
+            required_element_ids=["C01"],
+        )
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+        shot_manifest = _create_shot_element_manifest(tmp_path)
+        adapter = KlingOmniAdapter(tmp_path)
+
+        with pytest.raises(KlingOmniAdapterError, match="zero active Kling aliases"):
+            adapter.generate_from_clip_manifest(
+                str(clip_path),
+                shot_element_manifest_ref=str(shot_manifest),
+            )
+
+    def test_canonical_id_leak_in_prompt_text_raises(self, tmp_path):
+        # Force a leak by putting LOC001 literally inside the shot prompt_action.
+        # The text rewriter only substitutes character names, so LOC001 leaks through.
+        _create_element_bindings(tmp_path)
+        clip_path = _create_manifest(
+            tmp_path,
+            shots=[
+                {
+                    "shot_id": "SHOT_SC0001_01_A",
+                    "duration_seconds": 5,
+                    "source_beat_ids": ["NADIA_PASSAGE_MOVEMENT"],
+                    "required_element_ids": ["C01"],
+                    "prompt_action": "She enters LOC001 with precise economy.",
+                    "duration_reason": "normal/action 5s",
+                }
+            ],
+            total_duration=5,
+            required_element_ids=["C01"],
+        )
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+        shot_manifest = _create_shot_element_manifest(tmp_path)
+        adapter = KlingOmniAdapter(tmp_path)
+
+        with pytest.raises(KlingOmniAdapterError, match="leaks repo-canonical element ids"):
+            adapter.generate_from_clip_manifest(
+                str(clip_path),
+                shot_element_manifest_ref=str(shot_manifest),
+            )
+
+    def test_legacy_path_without_manifest_ref_still_works(self, tmp_path):
+        # Backward compat: no shot_element_manifest_ref -> legacy path, no strict gate.
+        clip_path = _create_manifest(tmp_path, total_duration=5, shots=[{
+            "shot_id": "SHOT_SC0001_01_A",
+            "duration_seconds": 5,
+            "source_beat_ids": ["B1"],
+            "prompt_action": "Pale stone corridor with filtered daylight.",
+            "duration_reason": "normal/establish 5s",
+        }])
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+        adapter = KlingOmniAdapter(tmp_path)
+
+        result = adapter.generate_from_clip_manifest(str(clip_path))
+
+        params = result.prompt_record["generation_params"]
+        assert "shot_element_manifest_ref" not in params
