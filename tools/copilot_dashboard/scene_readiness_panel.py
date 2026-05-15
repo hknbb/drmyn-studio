@@ -96,14 +96,22 @@ def element_rows(shot: ShotReadiness) -> list[dict[str, Any]]:
                 "required": element.required_state,
                 "binding": element.binding_status or "-",
                 "binding_ok": "OK" if element.binding_ok else "BLOCK",
+                "alias": element.kling_alias or "-",
+                "alias_ok": "OK" if element.alias_ok else "BLOCK",
                 "pack_manifest": "exists" if element.pack_manifest_present else "MISSING",
-                "gpt_pack": "exists" if element.gpt_pack_present else "MISSING",
+                "gpt_pack": (
+                    element.gpt_pack_status or "-"
+                    if element.gpt_pack_present
+                    else "MISSING"
+                ),
+                "gpt_pack_ok": "OK" if element.gpt_pack_ok else "BLOCK",
                 "kling_reference": (
                     element.kling_reference_status or "-"
                     if element.kling_reference_present
                     else "MISSING"
                 ),
                 "kling_reference_ok": "OK" if element.kling_reference_ok else "BLOCK",
+                "approval_gate": "OK" if element.approval_gate_ok else "BLOCK",
                 "status": "READY" if element.is_ready else "BLOCKING",
             }
         )

@@ -25,7 +25,57 @@ def _write_yaml_multi(path: Path, docs: list[dict]) -> None:
     path.write_text(yaml.safe_dump_all(docs, sort_keys=False), encoding="utf-8")
 
 
-def _kling_reference(status: str = "review") -> dict:
+def _gpt_pack(status: str = "review") -> dict:
+    return {
+        "schema_version": "0.x-draft",
+        "record_type": "gpt_images_perspective_pack",
+        "prompt_pack_id": "GPTIMG2_C01_PERSPECTIVE_PACK_V002",
+        "status": status,
+        "source_reference_id": "MJ_ELEMENT_C01_HERO_LOCKED_V002",
+        "target_model": "gpt_images_2",
+        "target_role": "multi_perspective_element_expander",
+        "element_id": "C01",
+        "element_type": "character",
+        "shared_preservation_instruction": "Preserve identity.",
+        "perspective_policy": "three_view_no_rear",
+        "prompts": [
+            {
+                "prompt_id": "GPTIMG2_C01_FRONT_REFERENCE_V002",
+                "perspective": "front_reference",
+                "prompt_text": "Front full-body studio reference.",
+                "constraints": ["single character only"],
+                "expected_output": {"asset_type": "still"},
+            },
+            {
+                "prompt_id": "GPTIMG2_C01_LEFT_REFERENCE_V002",
+                "perspective": "left_reference",
+                "prompt_text": "Left profile studio reference.",
+                "constraints": ["single character only"],
+                "expected_output": {"asset_type": "still"},
+            },
+            {
+                "prompt_id": "GPTIMG2_C01_RIGHT_REFERENCE_V002",
+                "perspective": "right_reference",
+                "prompt_text": "Right profile studio reference.",
+                "constraints": ["single character only"],
+                "expected_output": {"asset_type": "still"},
+            },
+        ],
+        "qc_gate": {
+            "minimum_score": 85,
+            "all_perspectives_required": True,
+            "failed_perspective_revision_only": True,
+        },
+        "downstream_use": ["kling_omni_3_shot_prompt"],
+    }
+
+
+def _kling_reference(
+    status: str = "review",
+    *,
+    operator_approved: bool = True,
+    all_perspectives_score_85_plus: bool = True,
+) -> dict:
     return {
         "schema_version": "0.x-draft",
         "record_type": "kling_element_reference_record",
@@ -38,22 +88,29 @@ def _kling_reference(status: str = "review") -> dict:
             "prompt_id": "MJ_PROMPT_C01_HERO_LOCKED_V001",
         },
         "gpt_images_2_perspectives": {
-            "rear_or_side": "GPTIMG2_C01_P01_REAR_V001",
-            "three_quarter_left": "GPTIMG2_C01_P02_THREE_QUARTER_LEFT_V001",
-            "right_profile_side": "GPTIMG2_C01_P03_RIGHT_PROFILE_V001",
-            "left_profile_side": "GPTIMG2_C01_P04_LEFT_PROFILE_V001",
+            "front_reference": "GPTIMG2_C01_FRONT_REFERENCE_V002",
+            "left_reference": "GPTIMG2_C01_LEFT_REFERENCE_V002",
+            "right_reference": "GPTIMG2_C01_RIGHT_REFERENCE_V002",
         },
         "continuity_anchors": ["identity"],
         "approval_gate": {
-            "all_perspectives_score_85_plus": True,
-            "operator_approved": True,
+            "all_perspectives_score_85_plus": all_perspectives_score_85_plus,
+            "operator_approved": operator_approved,
             "operator_session_ref": "OP-TEST",
         },
         "downstream_use": ["kling_omni_3_shot_prompt"],
     }
 
 
-def _scaffold_c01(repo_root: Path, *, binding_status: str, ref_status: str) -> None:
+def _scaffold_c01(
+    repo_root: Path,
+    *,
+    binding_status: str,
+    ref_status: str,
+    gpt_status: str = "review",
+    operator_approved: bool = True,
+    all_perspectives_score_85_plus: bool = True,
+) -> None:
     _write_yaml_multi(
         repo_root / "visual_dev" / "omni_sets" / "SC0001" / "element_bindings.yaml",
         [
@@ -69,8 +126,15 @@ def _scaffold_c01(repo_root: Path, *, binding_status: str, ref_status: str) -> N
     )
     element_root = repo_root / "visual_dev" / "elements" / "characters" / "C01"
     _write_yaml(element_root / "pack_manifest.yaml", {"element_id": "C01"})
-    _write_yaml(element_root / "gpt_images_perspective_pack.yaml", {"element_id": "C01"})
-    _write_yaml(element_root / "kling_element_reference.yaml", _kling_reference(ref_status))
+    _write_yaml(element_root / "gpt_images_perspective_pack.yaml", _gpt_pack(gpt_status))
+    _write_yaml(
+        element_root / "kling_element_reference.yaml",
+        _kling_reference(
+            ref_status,
+            operator_approved=operator_approved,
+            all_perspectives_score_85_plus=all_perspectives_score_85_plus,
+        ),
+    )
 
 
 def _scaffold_manifest(repo_root: Path, *, gate_status: str = "all_elements_ready") -> Path:
@@ -191,6 +255,37 @@ def test_missing_pipeline_files_are_reported(tmp_path: Path) -> None:
         "gpt_images_perspective_pack.yaml missing" in blocker
         for blocker in element.blockers
     )
+
+
+def test_draft_gpt_pack_surfaces_blocker_and_next_step(tmp_path: Path) -> None:
+    _scaffold_c01(tmp_path, binding_status="created", ref_status="review", gpt_status="draft")
+    _scaffold_manifest(tmp_path, gate_status="blocked")
+
+    report = compute_scene_readiness(repo_root=tmp_path, scene_id="SC0001")
+
+    element = report.shots[0].elements[0]
+    assert element.is_ready is False
+    assert element.gpt_pack_ok is False
+    assert any("gpt_images_perspective_pack.status is 'draft'" in blocker for blocker in element.blockers)
+
+
+def test_false_approval_gate_surfaces_blockers(tmp_path: Path) -> None:
+    _scaffold_c01(
+        tmp_path,
+        binding_status="created",
+        ref_status="review",
+        operator_approved=False,
+        all_perspectives_score_85_plus=False,
+    )
+    _scaffold_manifest(tmp_path, gate_status="blocked")
+
+    report = compute_scene_readiness(repo_root=tmp_path, scene_id="SC0001")
+
+    element = report.shots[0].elements[0]
+    assert element.is_ready is False
+    assert element.approval_gate_ok is False
+    assert any("operator_approved is not true" in blocker for blocker in element.blockers)
+    assert any("all_perspectives_score_85_plus is not true" in blocker for blocker in element.blockers)
 
 
 def test_json_render_is_parseable(tmp_path: Path) -> None:

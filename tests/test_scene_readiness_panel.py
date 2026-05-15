@@ -35,16 +35,60 @@ def _ready_kling_reference() -> dict:
             "prompt_id": "MJ_PROMPT_C01_HERO_LOCKED_V001",
         },
         "gpt_images_2_perspectives": {
-            "rear_or_side": "GPTIMG2_C01_P01_REAR_V001",
-            "three_quarter_left": "GPTIMG2_C01_P02_THREE_QUARTER_LEFT_V001",
-            "right_profile_side": "GPTIMG2_C01_P03_RIGHT_PROFILE_V001",
-            "left_profile_side": "GPTIMG2_C01_P04_LEFT_PROFILE_V001",
+            "front_reference": "GPTIMG2_C01_FRONT_REFERENCE_V002",
+            "left_reference": "GPTIMG2_C01_LEFT_REFERENCE_V002",
+            "right_reference": "GPTIMG2_C01_RIGHT_REFERENCE_V002",
         },
         "continuity_anchors": ["identity"],
         "approval_gate": {
             "all_perspectives_score_85_plus": True,
             "operator_approved": True,
             "operator_session_ref": "OP-TEST",
+        },
+        "downstream_use": ["kling_omni_3_shot_prompt"],
+    }
+
+
+def _ready_gpt_pack() -> dict:
+    return {
+        "schema_version": "0.x-draft",
+        "record_type": "gpt_images_perspective_pack",
+        "prompt_pack_id": "GPTIMG2_C01_PERSPECTIVE_PACK_V002",
+        "status": "review",
+        "source_reference_id": "MJ_ELEMENT_C01_HERO_LOCKED_V002",
+        "target_model": "gpt_images_2",
+        "target_role": "multi_perspective_element_expander",
+        "element_id": "C01",
+        "element_type": "character",
+        "shared_preservation_instruction": "Preserve identity.",
+        "perspective_policy": "three_view_no_rear",
+        "prompts": [
+            {
+                "prompt_id": "GPTIMG2_C01_FRONT_REFERENCE_V002",
+                "perspective": "front_reference",
+                "prompt_text": "Front full-body studio reference.",
+                "constraints": ["single character only"],
+                "expected_output": {"asset_type": "still"},
+            },
+            {
+                "prompt_id": "GPTIMG2_C01_LEFT_REFERENCE_V002",
+                "perspective": "left_reference",
+                "prompt_text": "Left profile studio reference.",
+                "constraints": ["single character only"],
+                "expected_output": {"asset_type": "still"},
+            },
+            {
+                "prompt_id": "GPTIMG2_C01_RIGHT_REFERENCE_V002",
+                "perspective": "right_reference",
+                "prompt_text": "Right profile studio reference.",
+                "constraints": ["single character only"],
+                "expected_output": {"asset_type": "still"},
+            },
+        ],
+        "qc_gate": {
+            "minimum_score": 85,
+            "all_perspectives_required": True,
+            "failed_perspective_revision_only": True,
         },
         "downstream_use": ["kling_omni_3_shot_prompt"],
     }
@@ -66,7 +110,7 @@ def _scaffold_ready_scene(repo_root: Path) -> None:
     )
     element_root = repo_root / "visual_dev" / "elements" / "characters" / "C01"
     _write_yaml(element_root / "pack_manifest.yaml", {"element_id": "C01"})
-    _write_yaml(element_root / "gpt_images_perspective_pack.yaml", {"element_id": "C01"})
+    _write_yaml(element_root / "gpt_images_perspective_pack.yaml", _ready_gpt_pack())
     _write_yaml(element_root / "kling_element_reference.yaml", _ready_kling_reference())
     _write_yaml(
         repo_root
@@ -111,7 +155,7 @@ def _scaffold_blocked_scene(repo_root: Path) -> None:
     )
     element_root = repo_root / "visual_dev" / "elements" / "characters" / "C01"
     _write_yaml(element_root / "pack_manifest.yaml", {"element_id": "C01"})
-    _write_yaml(element_root / "gpt_images_perspective_pack.yaml", {"element_id": "C01"})
+    _write_yaml(element_root / "gpt_images_perspective_pack.yaml", _ready_gpt_pack())
     ref = _ready_kling_reference()
     ref["status"] = "draft"
     _write_yaml(element_root / "kling_element_reference.yaml", ref)

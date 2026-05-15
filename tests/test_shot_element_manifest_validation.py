@@ -49,18 +49,70 @@ def _manifest(gate_status: str = "all_elements_ready") -> dict:
     }
 
 
-def _binding(status: str = "created") -> dict:
-    return {
+def _binding(status: str = "created", alias: str | None = "@Nadia") -> dict:
+    payload = {
         "schema_version": "0.x-draft",
         "record_type": "element_binding",
         "element_id": "C01",
         "element_type": "character",
-        "kling_alias": "@Nadia",
         "binding_status": status,
+    }
+    if alias is not None:
+        payload["kling_alias"] = alias
+    return payload
+
+
+def _gpt_pack(status: str = "review") -> dict:
+    return {
+        "schema_version": "0.x-draft",
+        "record_type": "gpt_images_perspective_pack",
+        "prompt_pack_id": "GPTIMG2_C01_PERSPECTIVE_PACK_V002",
+        "status": status,
+        "source_reference_id": "MJ_ELEMENT_C01_HERO_LOCKED_V002",
+        "target_model": "gpt_images_2",
+        "target_role": "multi_perspective_element_expander",
+        "element_id": "C01",
+        "element_type": "character",
+        "shared_preservation_instruction": "Preserve identity; change only view.",
+        "perspective_policy": "three_view_no_rear",
+        "prompts": [
+            {
+                "prompt_id": "GPTIMG2_C01_FRONT_REFERENCE_V002",
+                "perspective": "front_reference",
+                "prompt_text": "Front full-body studio reference.",
+                "constraints": ["single character only", "no shadow"],
+                "expected_output": {"asset_type": "still"},
+            },
+            {
+                "prompt_id": "GPTIMG2_C01_LEFT_REFERENCE_V002",
+                "perspective": "left_reference",
+                "prompt_text": "Left profile knees-up studio reference.",
+                "constraints": ["single character only", "no shadow"],
+                "expected_output": {"asset_type": "still"},
+            },
+            {
+                "prompt_id": "GPTIMG2_C01_RIGHT_REFERENCE_V002",
+                "perspective": "right_reference",
+                "prompt_text": "Right profile waist-up studio reference.",
+                "constraints": ["single character only", "no shadow"],
+                "expected_output": {"asset_type": "still"},
+            },
+        ],
+        "qc_gate": {
+            "minimum_score": 85,
+            "all_perspectives_required": True,
+            "failed_perspective_revision_only": True,
+        },
+        "downstream_use": ["kling_omni_3_shot_prompt"],
     }
 
 
-def _kling_reference(status: str = "review") -> dict:
+def _kling_reference(
+    status: str = "review",
+    *,
+    operator_approved: bool = True,
+    all_perspectives_score_85_plus: bool = True,
+) -> dict:
     return {
         "schema_version": "0.x-draft",
         "record_type": "kling_element_reference_record",
@@ -73,33 +125,48 @@ def _kling_reference(status: str = "review") -> dict:
             "prompt_id": "MJ_PROMPT_C01_HERO_LOCKED_V001",
         },
         "gpt_images_2_perspectives": {
-            "rear_or_side": "GPTIMG2_C01_P01_REAR_V001",
-            "three_quarter_left": "GPTIMG2_C01_P02_THREE_QUARTER_LEFT_V001",
-            "right_profile_side": "GPTIMG2_C01_P03_RIGHT_PROFILE_V001",
-            "left_profile_side": "GPTIMG2_C01_P04_LEFT_PROFILE_V001",
+            "front_reference": "GPTIMG2_C01_FRONT_REFERENCE_V002",
+            "left_reference": "GPTIMG2_C01_LEFT_REFERENCE_V002",
+            "right_reference": "GPTIMG2_C01_RIGHT_REFERENCE_V002",
         },
         "continuity_anchors": ["identity", "wardrobe"],
         "approval_gate": {
-            "all_perspectives_score_85_plus": True,
-            "operator_approved": True,
+            "all_perspectives_score_85_plus": all_perspectives_score_85_plus,
+            "operator_approved": operator_approved,
             "operator_session_ref": "OP-TEST",
         },
         "downstream_use": ["kling_omni_3_shot_prompt"],
     }
 
 
-def _write_ready_c01(repo_root: Path, *, binding_status: str = "created", ref_status: str = "review") -> Path:
+def _write_ready_c01(
+    repo_root: Path,
+    *,
+    binding_status: str = "created",
+    ref_status: str = "review",
+    gpt_status: str = "review",
+    alias: str | None = "@Nadia",
+    operator_approved: bool = True,
+    all_perspectives_score_85_plus: bool = True,
+) -> Path:
     _copy_schema(repo_root)
     manifest_path = repo_root / "visual_dev" / "omni_sets" / "SC0001" / "shot_element_manifests" / "SH001.yaml"
     _write_yaml(manifest_path, _manifest())
     _write_yaml(
         repo_root / "visual_dev" / "omni_sets" / "SC0001" / "element_bindings.yaml",
-        _binding(binding_status),
+        _binding(binding_status, alias),
     )
     element_root = repo_root / "visual_dev" / "elements" / "characters" / "C01"
     _write_yaml(element_root / "pack_manifest.yaml", {"element_id": "C01"})
-    _write_yaml(element_root / "gpt_images_perspective_pack.yaml", {"element_id": "C01"})
-    _write_yaml(element_root / "kling_element_reference.yaml", _kling_reference(ref_status))
+    _write_yaml(element_root / "gpt_images_perspective_pack.yaml", _gpt_pack(gpt_status))
+    _write_yaml(
+        element_root / "kling_element_reference.yaml",
+        _kling_reference(
+            ref_status,
+            operator_approved=operator_approved,
+            all_perspectives_score_85_plus=all_perspectives_score_85_plus,
+        ),
+    )
     return manifest_path
 
 
@@ -135,6 +202,38 @@ def test_draft_kling_reference_blocks_manifest(tmp_path: Path) -> None:
     issues = validate_shot_element_manifest_file(manifest_path, tmp_path)
 
     assert any("expected review or better" in issue.message for issue in issues)
+
+
+def test_draft_gpt_pack_blocks_manifest(tmp_path: Path) -> None:
+    manifest_path = _write_ready_c01(tmp_path, gpt_status="draft")
+
+    issues = validate_shot_element_manifest_file(manifest_path, tmp_path)
+
+    assert any("gpt_images_perspective_pack status is 'draft'" in issue.message for issue in issues)
+
+
+def test_missing_active_alias_blocks_manifest(tmp_path: Path) -> None:
+    manifest_path = _write_ready_c01(tmp_path, alias=None)
+
+    issues = validate_shot_element_manifest_file(manifest_path, tmp_path)
+
+    assert any("no active kling_alias" in issue.message for issue in issues)
+
+
+def test_operator_approval_false_blocks_manifest(tmp_path: Path) -> None:
+    manifest_path = _write_ready_c01(tmp_path, operator_approved=False)
+
+    issues = validate_shot_element_manifest_file(manifest_path, tmp_path)
+
+    assert any("operator_approved is not true" in issue.message for issue in issues)
+
+
+def test_perspective_qc_false_blocks_manifest(tmp_path: Path) -> None:
+    manifest_path = _write_ready_c01(tmp_path, all_perspectives_score_85_plus=False)
+
+    issues = validate_shot_element_manifest_file(manifest_path, tmp_path)
+
+    assert any("all_perspectives_score_85_plus is not true" in issue.message for issue in issues)
 
 
 def test_schema_rejects_planned_registration_state(tmp_path: Path) -> None:

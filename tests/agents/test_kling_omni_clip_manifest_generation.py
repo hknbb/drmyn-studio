@@ -1238,6 +1238,9 @@ class TestAliasInjection:
         )
         if not manifest_ref.exists():
             pytest.skip("CLIP_SC0001_01_manifest.yaml not found in repo")
+        bindings_path = repo_root / "visual_dev" / "omni_sets" / "SC0001" / "element_bindings.yaml"
+        if not bindings_path.exists():
+            pytest.skip("element_bindings.yaml not yet authored (clean baseline; re-created in PR-1)")
 
         adapter = KlingOmniAdapter(repo_root)
         result = adapter.generate_from_clip_manifest(str(manifest_ref))

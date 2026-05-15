@@ -696,7 +696,7 @@ def validate_perspective_qc_readiness(
         scores = data.get("perspective_scores")
         minimum_score = gate.get("minimum_score")
         can_advance = True
-        if not isinstance(scores, list) or len(scores) != 4:
+        if not isinstance(scores, list) or len(scores) not in {3, 4}:
             can_advance = False
         if not _is_int_score(minimum_score):
             can_advance = False
