@@ -16,6 +16,7 @@ shared_preservation_instruction: >
 source_refs:
   scene_card_ref: planning/scenes/SC0001/scene_card.yaml
   midjourney_prompt_ref: visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage/midjourney_prompt.yaml
+  model_guidance_snapshot_ref: model_guidance_snapshots/openai/20260511T000000Z_chatgpt_image_best_available.yaml
 prompts:
   - prompt_id: GPTIMG2_LOC001_KITCHEN_PASSAGE_P01_FRONT_HERO_V001
     perspective: front_hero
