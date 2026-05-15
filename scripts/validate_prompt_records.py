@@ -7,6 +7,147 @@ import yaml
 from jsonschema import Draft202012Validator
 
 
+def _load_yaml_mapping(path):
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = yaml.safe_load(f)
+    except Exception:
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def _load_scene_element_binding_aliases(repo_root, scene_id):
+    bindings_path = repo_root / "visual_dev" / "omni_sets" / scene_id / "element_bindings.yaml"
+    if not bindings_path.exists():
+        return set()
+
+    aliases = set()
+    try:
+        with open(bindings_path, "r", encoding="utf-8") as f:
+            for doc in yaml.safe_load_all(f):
+                if not isinstance(doc, dict):
+                    continue
+                alias = doc.get("kling_alias")
+                if isinstance(alias, str) and alias.startswith("@"):
+                    aliases.add(alias)
+    except Exception:
+        return aliases
+    return aliases
+
+
+def _load_canonical_kling_aliases(repo_root):
+    aliases = set()
+    for path in repo_root.glob("visual_dev/elements/characters/*/kling_elements/*.yaml"):
+        data = _load_yaml_mapping(path)
+        alias = data.get("kling_element_alias")
+        if isinstance(alias, str) and alias.startswith("@"):
+            aliases.add(alias)
+    return aliases
+
+
+def _string_items(value):
+    if isinstance(value, str):
+        return [value]
+    if not isinstance(value, list):
+        return []
+    return [item for item in value if isinstance(item, str)]
+
+
+def _prompt_semantic_errors(instance, repo_root):
+    if not isinstance(instance, dict):
+        return []
+
+    target_models = instance.get("target_models") or []
+    if "kling_omni" not in target_models:
+        return []
+
+    params = instance.get("generation_params") or {}
+    if not isinstance(params, dict):
+        return []
+
+    scene_id = instance.get("scene_id")
+    if not isinstance(scene_id, str) or not scene_id:
+        return []
+
+    canonical_aliases = _load_canonical_kling_aliases(repo_root)
+    platform_aliases = _load_scene_element_binding_aliases(repo_root, scene_id)
+    all_aliases = canonical_aliases | platform_aliases
+    errors = []
+
+    not_attached = set(_string_items(params.get("not_attached_as_kling_elements")))
+
+    required_aliases = _string_items(params.get("required_element_aliases"))
+    for alias in required_aliases:
+        if not alias.startswith("@"):
+            continue
+        if alias not in all_aliases:
+            errors.append(
+                f"generation_params.required_element_aliases contains unresolved alias {alias!r}; "
+                "alias must exist in scene element_bindings.yaml or a kling_character_look_element record"
+            )
+        if alias in not_attached:
+            errors.append(
+                f"generation_params.required_element_aliases contains {alias!r}, "
+                "but the same value is listed in not_attached_as_kling_elements"
+            )
+
+    attached_refs = params.get("attached_element_refs")
+    if isinstance(attached_refs, list):
+        for index, ref in enumerate(attached_refs):
+            if not isinstance(ref, dict):
+                continue
+            repo_alias = ref.get("repo_alias")
+            if isinstance(repo_alias, str) and repo_alias.startswith("@"):
+                if repo_alias not in canonical_aliases:
+                    errors.append(
+                        f"generation_params.attached_element_refs[{index}].repo_alias "
+                        f"{repo_alias!r} does not resolve to a kling_character_look_element alias"
+                    )
+                if repo_alias in not_attached:
+                    errors.append(
+                        f"generation_params.attached_element_refs[{index}].repo_alias "
+                        f"{repo_alias!r} is also listed in not_attached_as_kling_elements"
+                    )
+
+            platform_alias = ref.get("platform_alias")
+            if isinstance(platform_alias, str) and platform_alias.startswith("@"):
+                if platform_alias not in platform_aliases:
+                    errors.append(
+                        f"generation_params.attached_element_refs[{index}].platform_alias "
+                        f"{platform_alias!r} does not resolve to this scene's element_bindings.yaml"
+                    )
+                if platform_alias in not_attached:
+                    errors.append(
+                        f"generation_params.attached_element_refs[{index}].platform_alias "
+                        f"{platform_alias!r} is also listed in not_attached_as_kling_elements"
+                    )
+
+    context_aliases = _string_items(params.get("required_context_aliases"))
+    for alias in context_aliases:
+        if not alias.startswith("@"):
+            continue
+        if alias not in platform_aliases:
+            errors.append(
+                f"generation_params.required_context_aliases contains unresolved alias {alias!r}; "
+                "context aliases must resolve through this scene's element_bindings.yaml"
+            )
+        if alias in not_attached:
+            errors.append(
+                f"generation_params.required_context_aliases contains {alias!r}, "
+                "but the same value is listed in not_attached_as_kling_elements"
+            )
+
+    prop_cues = _string_items(params.get("required_prop_cue"))
+    for cue in prop_cues:
+        if cue in not_attached:
+            errors.append(
+                f"generation_params.required_prop_cue contains {cue!r}, "
+                "but the same value is listed in not_attached_as_kling_elements"
+            )
+
+    return errors
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Validate prompt records against schema.")
     parser.add_argument(
@@ -67,17 +208,20 @@ def main(args=None):
             with open(file_path, "r", encoding="utf-8") as f:
                 instance = yaml.safe_load(f)
 
-            errors = list(validator.iter_errors(instance))
-            if errors:
+            file_errors = [
+                f"{e.json_path}: {e.message}" for e in validator.iter_errors(instance)
+            ]
+            file_errors.extend(_prompt_semantic_errors(instance, repo_root))
+            if file_errors:
                 has_errors = True
                 report["files_with_errors"] += 1
-                report["errors"][str(file_path.relative_to(repo_root))] = [
-                    f"{e.json_path}: {e.message}" for e in errors
-                ]
+                report["errors"][file_path.relative_to(repo_root).as_posix()] = file_errors
         except Exception as e:
             has_errors = True
             report["files_with_errors"] += 1
-            report["errors"][str(file_path.relative_to(repo_root))] = [f"File parsing error: {str(e)}"]
+            report["errors"][file_path.relative_to(repo_root).as_posix()] = [
+                f"File parsing error: {str(e)}"
+            ]
 
     report_path.parent.mkdir(parents=True, exist_ok=True)
     with open(report_path, "w", encoding="utf-8") as f:

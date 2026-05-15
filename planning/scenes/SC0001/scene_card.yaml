@@ -62,10 +62,21 @@ canon_lock: false
 omni_set_ref: visual_dev/omni_sets/SC0001/
 element_slot_allocation:
   max_slots: 7
-  slots_used: 0
-  allocation: []
-  slots_free: 7
-  economy_notes: "Pending Stage C pilot review."
+  slots_used: 1
+  allocation:
+    - slot_id: ELEM01
+      element_ref: '@C01_HOME_MORNING'
+      element_id: C01
+      element_type: character_look
+      platform_binding_ref: visual_dev/omni_sets/SC0001/element_bindings.yaml
+      platform_binding_required: true
+      readiness: draft_reference_ready
+  slots_free: 6
+  economy_notes: >
+    C01 Home Morning is the only draft attached character-look element for the
+    current Kling test prompt. LOC001 remains text-described scene context and
+    PROP003 remains a prompt-described visual cue; neither is attached as a
+    Kling element in this draft clip.
 shot_list_omni:
   - shot_id: SC0001_OMNI01
     role: establish_coverage

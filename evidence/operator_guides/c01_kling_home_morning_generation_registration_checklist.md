@@ -9,11 +9,25 @@ Operator checklist for registering the first external Kling Omni 3 Home Morning 
 - Clip ID:
   `CLIP_SC0001_HOME_MORNING_DRAFT_01`
 - Active character element:
-  `@C01_HOME_MORNING`
+  repo canonical alias `@C01_HOME_MORNING`, resolved for the Kling Web UI through
+  `visual_dev/omni_sets/SC0001/element_bindings.yaml` as `@Nadia`
 - Continuity language:
   selected Stage 4 perspective set
 
+## Alias / Context Taxonomy
+- `@C01_HOME_MORNING` is the repo canonical audit alias for the C01 Home Morning
+  look composite. It is not necessarily the literal Kling UI element name.
+- For this draft, the operator selects the existing Kling UI character element
+  `@Nadia`, which is bound to C01 in `element_bindings.yaml`.
+- The Vale Residence kitchen passage (`LOC001`) is text-described scene context
+  for this draft. Do not treat `@ValeResidenceKitchenPassage` as an attached
+  location element unless a later reviewed prompt explicitly attaches it.
+- The tilted Vardova skyline photo frame (`PROP003`) is a required visual cue
+  described in the prompt. Do not treat it as a separately attached Kling prop
+  element in this draft.
+
 ## Registration Preconditions
+- Alias/context/cue taxonomy patch is merged before any Kling render attempt.
 - Prompt draft is merged.
 - Kling output exists externally.
 - Output filename and storage path are operator-confirmed.
