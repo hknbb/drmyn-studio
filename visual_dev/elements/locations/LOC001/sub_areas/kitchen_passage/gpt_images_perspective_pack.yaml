@@ -8,6 +8,8 @@ target_role: multi_perspective_element_expander
 element_id: LOC001
 element_type: location
 perspective_policy: three_view_no_rear
+source_refs:
+  model_guidance_snapshot_ref: docs/model_guides/chatgpt_image.yaml
 shared_preservation_instruction: Preserve exact spatial identity, pale stone corridor geometry, art photograph wall sequence on right wall, geometric window light pattern on floor, empty passage, and change only camera perspective.
 prompts:
   - prompt_id: GPTIMG2_LOC001_P01_FRONT_V001
