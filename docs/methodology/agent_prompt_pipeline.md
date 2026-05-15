@@ -189,10 +189,95 @@ Scene Clip Locking (Batch 9)
 **Ends when:** Visual direction selected; still prompt locked.
 
 ### Phase 3 — Kling Omni Prompt Pipeline
-**When:** Element packs locked + storyboard visual direction selected + `shot_list_omni` populated.
+**When:** Element packs locked + storyboard visual direction selected + `shot_list_omni` populated **AND every required element for the shot has passed the element-first gate (see section 1A).**
 **Produces:** `omni_instruction`, `video_generation`, `lipsync_shot`, `lipsync_audio`.
-**Target model:** Kling only. Passive until Phase 1 and 2 complete.
+**Target model:** Kling only. Passive until Phase 1 and 2 complete AND the per-shot `shot_element_manifest.yaml` reports `gate_status: all_elements_ready`.
 **Ends when:** `selected_take.yaml` locked + clip in `post/edit/proxies/`.
+
+---
+
+## 1A. Element-First Gate for Phase 3 (Kling Omni 3)
+
+Phase 3 prompt synthesis is gated. Kling Omni 3 prompts may reference visual elements **only through registered `@alias` values**, never through raw repo-canonical ids or raw human-language names, and never through "text-described scene context" / "prompt-described action" fallbacks. This is the contract the operator depends on: when the prompt is pasted into Kling Omni 3, the substitution layer composites the registered element images into the generated video. Anything that is only described in English text is left to Kling to hallucinate.
+
+### Required pipeline order, per element, per shot
+
+```
+Script              Scene script + shot list
+   ↓
+Element identity    Required visual elements identified (character, location,
+                    location_sub_area, prop, wardrobe, style)
+   ↓
+Midjourney          Hero render. Recorded as a midjourney_prompt.yaml in the
+                    element's directory; external generation produces a
+                    selected output recorded via external://local_manual/...
+                    in image_selection.yaml.
+   ↓
+ChatGPT Images 2    Four-perspective expansion that anchors the element's
+                    identity across angles. Recorded as
+                    gpt_images_perspective_pack.yaml with the four
+                    perspectives wired to downstream_use:
+                    [kling_omni_3_shot_prompt].
+   ↓
+Perspective QC      Each perspective scored on five axes (identity_preservation,
+                    perspective_usefulness, material_palette_continuity,
+                    production_reference_cleanliness, hallucination_absence);
+                    all four must score ≥85 and the operator must approve.
+   ↓
+Kling element       Element registered in the Kling Omni UI under its
+                    @alias. element_bindings.yaml binding_status promoted
+                    from planned → created (or higher); provenance
+                    activated_by / activated_at populated.
+   ↓
+Kling reference     kling_element_reference.yaml authored, linking the
+                    Midjourney source + four GPT Images 2 perspectives +
+                    approval_gate (operator_approved: true), status
+                    promoted draft → review.
+   ↓
+Shot manifest gate  visual_dev/omni_sets/SC####/shot_element_manifests/<SHOT_ID>.yaml
+                    lists the shot's required_elements; the
+                    validate_shot_element_manifest validator confirms
+                    every required element has binding_status in
+                    {created, voice_capable, voice_locked} AND
+                    kling_element_reference.status in {review, approved,
+                    locked, materialized}.
+   ↓
+gate_status flip    Operator promotes the manifest's declared
+                    gate_status from blocked → all_elements_ready.
+   ↓
+Prompt synthesis    KlingOmniAdapter.generate_from_clip_manifest() called
+                    with shot_element_manifest_ref. Adapter enters strict
+                    element-first mode: refuses to emit a prompt if the
+                    manifest gate is not all_elements_ready, refuses if
+                    required_element_ids resolve to zero active aliases,
+                    and refuses if any repo-canonical element id leaks
+                    into the synthesized prompt_text.
+   ↓
+Prompt validation   validate_prompt_records.py enforces the same gate
+                    against the emitted prompt YAML: prompts in
+                    prompts/draft/ that target kling_omni and carry a
+                    shot_element_manifest_ref must declare
+                    gate_status: all_elements_ready in the referenced
+                    manifest. Mismatched or blocked manifests fail.
+```
+
+The pipeline applies the same way to every element type the script requires the viewer to see: **characters, locations, location sub-areas, props, wardrobe.** A location is not exempt from Midjourney → ChatGPT Images 2 → Kling registration just because it is a setting; a prop is not exempt because it is "only a visual cue."
+
+### Element readiness is observable
+
+`python scripts/agents/operator_next_step.py --scene SC####` prints a structured report of every shot manifest under `visual_dev/omni_sets/<scene_id>/shot_element_manifests/`. For each required element it shows: element_binding.binding_status, presence of pack_manifest.yaml / gpt_images_perspective_pack.yaml / kling_element_reference.yaml, kling_element_reference.status, whether the slot is `[READY]` or `[BLOCKING]`, and a concrete ordered next-step list for each blocker. The orchestrator writes nothing; it is the canonical "what is missing" view for a scene.
+
+### `not_attached_as_kling_elements` is deprecated
+
+The earlier draft taxonomy let a Kling Omni prompt list elements under `generation_params.not_attached_as_kling_elements` to mean "this element appears in the script but we are not attaching a Kling element for it in this draft; describe it in English instead." That escape hatch is now closed:
+
+- New Kling Omni prompts that carry a `shot_element_manifest_ref` may not also carry `not_attached_as_kling_elements`; `validate_prompt_records.py` rejects the combination.
+- The shot_element_manifest's `environmental_only_allowed_ids` field is the only sanctioned route for text-described elements, and it is reserved for genuinely environmental flourishes (ambient lighting palette notes, soundscape character) that the script does not require the viewer to identify.
+- Prompts that script-require an element to be visually present (e.g. a location passage, an off-angle photo frame whose dust-shadow signals intrusion) must register that element through the full pipeline above; they may not be listed in `environmental_only_allowed_ids`.
+
+### Why this exists
+
+Kling Omni 3 is an element-composition model. Telling it "treat the Vale Residence kitchen passage as text-described scene context with pale stone corridor depth, threshold geometry, and filtered early daylight" and "include the intrusion cue as prompt-described action: a Vardova skyline photo frame hanging subtly off-angle, with visible dust-shadow mismatch" leaves Kling to invent both the kitchen and the frame from English, with no continuity to anchor them across shots. The element-first gate forces the registered element to exist before the prompt is written, so the substitution layer composes a deterministic, continuity-locked frame for every required element on every shot.
 
 ---
 
