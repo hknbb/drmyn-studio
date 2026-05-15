@@ -1,0 +1,36 @@
+schema_version: "0.x-draft"
+record_type: shot_element_manifest
+manifest_id: MANIFEST_SC0001_SH001_V001
+scene_id: SC0001
+shot_id: SH001
+required_elements:
+  - element_id: C01
+    element_type: character
+    role: primary_subject
+    registration_state_required: created
+  - element_id: LOC001
+    element_type: location_sub_area
+    role: attached_location
+    registration_state_required: created
+  - element_id: PROP003
+    element_type: prop
+    role: attached_prop
+    registration_state_required: created
+environmental_only_allowed_ids: []
+gate_status: blocked
+notes: >
+  SC0001 home-morning draft clip element manifest. Covers the combined 8s
+  draft clip CLIP_SC0001_HOME_MORNING_DRAFT_01 (formerly addressed by the
+  deprecated v01 prompt) that bundles the SC0001_OMNI01 establish, OMNI02
+  action and OMNI03 reaction coverage from scene_card.yaml.shot_list_omni.
+  gate_status is intentionally blocked at scaffold time: LOC001 and PROP003
+  kling_element_reference records are status:draft and PROP003 element
+  binding is binding_status:planned. Two follow-up promotion PRs (one each
+  for LOC001 and PROP003) record selected external Midjourney plus ChatGPT
+  Images 2 outputs, populate perspective QC scores, flip operator_approved
+  to true, promote the perspective pack and kling_element_reference to
+  review, and promote PROP003 element_binding to created. After both
+  promotions the validator will compute gate_status:all_elements_ready and
+  the Kling Omni adapter may synthesize the SC0001 home-morning v02 prompt
+  using only the @Nadia, @ValeResidenceKitchenPassage and @VardovaFrame
+  aliases.
