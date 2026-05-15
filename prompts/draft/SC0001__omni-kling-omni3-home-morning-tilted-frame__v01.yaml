@@ -7,7 +7,7 @@ target_models:
 source_refs:
   scene_card: planning/scenes/SC0001/scene_card.yaml
   scene_excerpt: planning/scenes/SC0001/scene_excerpt.md
-prompt_text: 'Create one Kling Omni draft clip focused on Nadia in early-morning domestic control mode. Active character element: @C01_HOME_MORNING. Location context: Vale Residence kitchen passage with pale stone corridor depth, threshold geometry, and filtered early daylight. Include the intrusion cue: a Vardova skyline photo frame hanging subtly off-angle, with visible dust-shadow mismatch that signals recent disturbance. Keep movement minimal and exact: Nadia notices the spatial deviation, slows, and holds a controlled watchful reaction. No Birta, no Jin, no extra characters. Preserve continuity with selected Stage 4 perspective set identity anchors. One clip only, no subtitles, no logos, no watermark, no new story facts.'
+prompt_text: 'Create one Kling Omni draft clip focused on Nadia in early-morning domestic control mode. Use the operator-selected Kling character element @Nadia, bound in repo metadata to canonical repo alias @C01_HOME_MORNING. Treat the Vale Residence kitchen passage as text-described scene context with pale stone corridor depth, threshold geometry, and filtered early daylight unless a locked location element is explicitly attached in a later pass. Include the intrusion cue as prompt-described action: a Vardova skyline photo frame hanging subtly off-angle, with visible dust-shadow mismatch that signals recent disturbance. The frame cue is not a separately attached Kling prop element in this draft. Keep movement minimal and exact: Nadia notices the spatial deviation, slows, and holds a controlled watchful reaction. No Birta, no Jin, no extra characters. Preserve continuity with selected Stage 4 perspective set identity anchors. One clip only, no subtitles, no logos, no watermark, no new story facts.'
 negative_prompt: extra-characters, subtitle-artifacts, logo, watermark, floating-objects, morphing-face, jittery-camera
 generation_params:
   model_guidance_mode: dynamic_snapshot
@@ -26,10 +26,24 @@ generation_params:
   quality_tier: test_720p
   prompt_component_model: docs/methodology/omni_prompt_component_model.md
   required_element_aliases:
+  - '@Nadia'
+  repo_canonical_aliases:
   - '@C01_HOME_MORNING'
-  required_context_aliases:
+  alias_resolution:
+    '@C01_HOME_MORNING': '@Nadia'
+  attached_element_refs:
+  - element_id: C01
+    element_type: character_look
+    repo_alias: '@C01_HOME_MORNING'
+    platform_alias: '@Nadia'
+    platform_binding_required: true
+    readiness: draft_reference_ready
+  text_context_refs:
+  - LOC001
+  visual_cue_refs:
+  - PROP003
+  not_attached_as_kling_elements:
   - '@ValeResidenceKitchenPassage'
-  required_prop_cue:
   - tilted_vardova_skyline_photo_frame
   audio_gate_status: allowed_audio_off
   audio_gate_reason: draft_prompt_only_no_materialized_output
