@@ -28,6 +28,32 @@ from scripts.agents.model_guidance_resolver import (
 CANONICAL_ID_RE = re.compile(r"\b(SC\d{4}|C\d{2}|LOC\d{3}|PROP\d{3}|WD\d{3})\b")
 CHARACTER_ID_RE = re.compile(r"^C\d{2}$")
 
+# Strict canonical-id leak guard for element-first Kling Omni 3 prompts.
+# Matches any repo-canonical element identifier (C##, LOC###, LOC###_SUBAREA,
+# PROP###, WD###, STYLE###). When the strict gate is active the synthesized
+# prompt_text must reference elements only through their @alias values; raw
+# canonical IDs must not leak into the text Kling receives.
+ELEMENT_CANONICAL_ID_LEAK_RE = re.compile(
+    r"\b(C\d{2}|LOC\d{3}(?:_[A-Z0-9_]+)?|PROP\d{3}|WD\d{3}|STYLE\d{3})\b"
+)
+MANIFEST_READY_GATE_STATUS = "all_elements_ready"
+
+
+def _assert_no_canonical_id_leak(prompt_text: str) -> None:
+    """Raise KlingOmniAdapterError if a repo-canonical element ID leaks into prompt_text.
+
+    The element-first contract requires Kling Omni 3 prompts to reference
+    elements only via their registered @alias. Canonical IDs (``C01``,
+    ``LOC001``, ``PROP003`` and so on) belong in YAML metadata fields, not
+    in the prompt text the model sees.
+    """
+    matches = sorted({m.group(0) for m in ELEMENT_CANONICAL_ID_LEAK_RE.finditer(prompt_text)})
+    if matches:
+        raise KlingOmniAdapterError(
+            "prompt_text leaks repo-canonical element ids that must appear "
+            "only as registered @aliases: " + ", ".join(matches)
+        )
+
 # Binding statuses that mean the element is active in Kling Element Library
 ACTIVE_BINDING_STATUSES = frozenset({"created", "voice_capable", "voice_locked"})
 
@@ -315,6 +341,7 @@ class KlingOmniAdapter:
         variant_mode: str = "safe",
         render_pass: str = "visual_test",
         quality_tier: str = "test_720p",
+        shot_element_manifest_ref: str | Path | None = None,
     ) -> KlingOmniBuildResult:
         """Generate prompt/run records from a single omni_clip_manifest.yaml.
 
@@ -326,6 +353,15 @@ class KlingOmniAdapter:
             variant_mode: Prompt variant mode (safe|creative|aggressive)
             render_pass: Render pass stage
             quality_tier: Render quality tier
+            shot_element_manifest_ref: Optional path to the shot_element_manifest
+                that gates this clip's element registration. When provided, the
+                adapter enters strict element-first mode: it refuses to emit a
+                prompt unless the manifest declares
+                ``gate_status: all_elements_ready``, at least one required
+                element resolves to an active Kling alias, and the synthesized
+                ``prompt_text`` does not leak any repo-canonical element ids.
+                The reference is also embedded in ``generation_params`` so
+                downstream prompt-record validation enforces the same gate.
 
         Returns:
             KlingOmniBuildResult with prompt_record and run_record
@@ -346,6 +382,27 @@ class KlingOmniAdapter:
             raise KlingOmniAdapterError(f"Missing manifest: {manifest_path}")
 
         self._validate_manifest_shape(manifest)
+
+        strict_element_first = shot_element_manifest_ref is not None
+        shot_manifest_data: dict[str, Any] | None = None
+        shot_manifest_rel: str | None = None
+        if strict_element_first:
+            shot_manifest_path = Path(shot_element_manifest_ref)
+            if not shot_manifest_path.is_absolute():
+                shot_manifest_path = self.repo_root / shot_manifest_path
+            shot_manifest_data = _read_yaml(shot_manifest_path)
+            if not isinstance(shot_manifest_data, dict):
+                raise KlingOmniAdapterError(
+                    f"Missing or unreadable shot_element_manifest: {shot_manifest_path}"
+                )
+            declared_gate = shot_manifest_data.get("gate_status")
+            if declared_gate != MANIFEST_READY_GATE_STATUS:
+                raise KlingOmniAdapterError(
+                    "shot_element_manifest gate_status is "
+                    f"{declared_gate!r}; Kling Omni 3 prompt synthesis requires "
+                    f"{MANIFEST_READY_GATE_STATUS!r}"
+                )
+            shot_manifest_rel = _relative(shot_manifest_path, self.repo_root)
 
         scene_id = manifest["scene_id"]
         clip_id = manifest["clip_id"]
@@ -383,6 +440,14 @@ class KlingOmniAdapter:
                 seen_aliases[alias] = None
                 required_aliases.append(alias)
 
+        if strict_element_first and not required_aliases:
+            raise KlingOmniAdapterError(
+                "shot_element_manifest_ref is set but the omni_clip_manifest "
+                "resolves to zero active Kling aliases; element-first synthesis "
+                "requires at least one element_binding with binding_status "
+                "'created' or better that matches the clip's required_element_ids"
+            )
+
         prompt_text, alias_warnings = self._build_prompt_text_with_aliases(
             shots=shots,
             total_duration=total_duration,
@@ -393,6 +458,7 @@ class KlingOmniAdapter:
             char_ids=char_ids,
             required_aliases=required_aliases,
             beat_content_lookup=beat_plan_lookup,
+            strict_element_first=strict_element_first,
         )
 
         # Warn about planned-only elements (in required_element_ids but not active)
@@ -437,6 +503,9 @@ class KlingOmniAdapter:
 
         if required_aliases:
             generation_params["required_element_aliases"] = required_aliases
+
+        if shot_manifest_rel is not None:
+            generation_params["shot_element_manifest_ref"] = shot_manifest_rel
 
         audio_enabled = bool(kling_native_audio.get("enabled"))
         gate_status = "allowed_audio_off"
@@ -640,8 +709,15 @@ class KlingOmniAdapter:
         char_ids: set[str],
         required_aliases: list[str],
         beat_content_lookup: dict[str, str] | None = None,
+        strict_element_first: bool = False,
     ) -> tuple[str, list[str]]:
         """Build prompt text with element alias injection and pronoun rewriting.
+
+        When ``strict_element_first`` is False (legacy callers) and there are
+        no active aliases, this falls back to plain text synthesis. When the
+        flag is True the caller has already validated that
+        ``required_aliases`` is non-empty, so the fallback path is unreachable
+        and the prompt is built with @alias injection only.
 
         Returns:
             (prompt_text, warnings)
@@ -649,7 +725,13 @@ class KlingOmniAdapter:
         all_warnings: list[str] = []
 
         if not required_aliases:
-            # No active aliases — fall back to plain text
+            if strict_element_first:
+                raise KlingOmniAdapterError(
+                    "element-first Kling Omni prompt synthesis cannot fall back "
+                    "to plain text: no active Kling aliases were resolved from "
+                    "the omni_clip_manifest's required_element_ids"
+                )
+            # No active aliases — fall back to plain text (legacy path)
             return (
                 self._build_prompt_text_from_manifest(
                     shots,
@@ -694,7 +776,13 @@ class KlingOmniAdapter:
             f"Keep clip at {total_duration} seconds. Do not add new story facts."
         )
 
-        text = _sanitize_prompt_text(" ".join(p for p in parts if p))
+        raw_joined = " ".join(p for p in parts if p)
+        if strict_element_first:
+            # Catch authoring mistakes loudly: in strict mode the sanitizer is
+            # not a silent safety net. Canonical ids must never appear in the
+            # source shot_action / beat content the operator authored.
+            _assert_no_canonical_id_leak(raw_joined)
+        text = _sanitize_prompt_text(raw_joined)
 
         # Hard limit: 2500 characters (Kling API)
         if len(text) > 2500:
