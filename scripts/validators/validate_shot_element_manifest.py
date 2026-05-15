@@ -162,8 +162,23 @@ def _binding_satisfies(actual: str | None, required: str) -> bool:
 def validate_shot_element_manifest_file(
     path: Path,
     repo_root: Path,
+    *,
+    report_causes: bool = False,
 ) -> list[ShotElementManifestIssue]:
-    """Validate one shot_element_manifest file."""
+    """Validate one shot_element_manifest file.
+
+    Element-readiness issues (planned binding, draft kling_element_reference,
+    missing pipeline files) are returned only when the manifest's declared
+    gate_status does not match the computed gate_status, OR when
+    ``report_causes`` is True. A manifest that explicitly declares
+    ``gate_status: blocked`` while the same gate is computed is consistent:
+    by default the validator surfaces no element-level issues in that case,
+    so a deliberately blocked scaffold manifest can be committed without
+    failing production-record validation. Callers that must explain why a
+    blocked manifest blocks downstream synthesis (e.g. the prompt validator)
+    pass ``report_causes=True`` to receive the cause issues even when state
+    is consistent.
+    """
     issues = _schema_issues(path, repo_root)
     data = _load_mapping(path)
     if issues or not data:
@@ -190,6 +205,8 @@ def validate_shot_element_manifest_file(
     else:
         computed_gate = "all_elements_ready"
 
+    cause_issues: list[ShotElementManifestIssue] = []
+
     for index, element in enumerate(required_elements):
         if not isinstance(element, dict):
             continue
@@ -213,7 +230,7 @@ def validate_shot_element_manifest_file(
             )
 
         if binding is None:
-            issues.append(
+            cause_issues.append(
                 ShotElementManifestIssue(
                     file=rel_file,
                     field_path=f"{prefix}.element_id",
@@ -225,7 +242,7 @@ def validate_shot_element_manifest_file(
         else:
             actual_status = binding.get("binding_status")
             if actual_status not in ACTIVE_STATUSES:
-                issues.append(
+                cause_issues.append(
                     ShotElementManifestIssue(
                         file=rel_file,
                         field_path=f"{prefix}.registration_state_required",
@@ -237,7 +254,7 @@ def validate_shot_element_manifest_file(
                 )
                 computed_gate = "blocked"
             elif not _binding_satisfies(str(actual_status), required_state):
-                issues.append(
+                cause_issues.append(
                     ShotElementManifestIssue(
                         file=rel_file,
                         field_path=f"{prefix}.registration_state_required",
@@ -259,7 +276,7 @@ def validate_shot_element_manifest_file(
             ("kling_element_reference", kling_ref),
         ):
             if not candidate.exists():
-                issues.append(
+                cause_issues.append(
                     ShotElementManifestIssue(
                         file=rel_file,
                         field_path=f"{prefix}.{field}",
@@ -272,7 +289,7 @@ def validate_shot_element_manifest_file(
         if ref_data is not None:
             status = ref_data.get("status")
             if status not in REFERENCE_READY_STATUSES:
-                issues.append(
+                cause_issues.append(
                     ShotElementManifestIssue(
                         file=rel_file,
                         field_path=f"{prefix}.kling_element_reference.status",
@@ -293,6 +310,9 @@ def validate_shot_element_manifest_file(
                 message=f"gate_status is {declared_gate!r}; computed gate_status is {computed_gate!r}.",
             )
         )
+        issues.extend(cause_issues)
+    elif report_causes:
+        issues.extend(cause_issues)
 
     return issues
 

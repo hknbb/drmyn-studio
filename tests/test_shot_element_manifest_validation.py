@@ -149,6 +149,34 @@ def test_schema_rejects_planned_registration_state(tmp_path: Path) -> None:
     assert any("not one of" in issue.message for issue in issues)
 
 
+def test_consistent_blocked_manifest_passes_silently(tmp_path: Path) -> None:
+    manifest_path = _write_ready_c01(
+        tmp_path, binding_status="planned", ref_status="draft"
+    )
+    manifest = _manifest(gate_status="blocked")
+    _write_yaml(manifest_path, manifest)
+
+    issues = validate_shot_element_manifest_file(manifest_path, tmp_path)
+
+    assert issues == []
+
+
+def test_consistent_blocked_manifest_reports_causes_when_requested(tmp_path: Path) -> None:
+    manifest_path = _write_ready_c01(
+        tmp_path, binding_status="planned", ref_status="draft"
+    )
+    manifest = _manifest(gate_status="blocked")
+    _write_yaml(manifest_path, manifest)
+
+    issues = validate_shot_element_manifest_file(
+        manifest_path, tmp_path, report_causes=True
+    )
+
+    assert any("binding_status is 'planned'" in issue.message for issue in issues)
+    assert any("expected review or better" in issue.message for issue in issues)
+    assert not any("computed gate_status" in issue.message for issue in issues)
+
+
 def test_schema_contains_no_lifecycle_keys() -> None:
     schema = json.loads(
         (REPO_ROOT / "schemas" / "shot_element_manifest.schema.json").read_text(

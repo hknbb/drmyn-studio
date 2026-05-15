@@ -91,12 +91,20 @@ def _prompt_semantic_errors(instance, repo_root):
                 f"generation_params.shot_element_manifest_ref not found: {manifest_ref}"
             )
         else:
-            manifest_issues = validate_shot_element_manifest_file(manifest_path, repo_root)
+            manifest_issues = validate_shot_element_manifest_file(
+                manifest_path, repo_root, report_causes=True
+            )
             errors.extend(
                 f"shot_element_manifest_ref {issue.field_path}: {issue.message}"
                 for issue in manifest_issues
             )
             manifest_data = _load_yaml_mapping(manifest_path)
+            declared_gate = manifest_data.get("gate_status") if manifest_data else None
+            if declared_gate != "all_elements_ready":
+                errors.append(
+                    f"shot_element_manifest_ref gate_status is {declared_gate!r}; "
+                    "Kling Omni prompt synthesis requires 'all_elements_ready'"
+                )
 
         if params.get("not_attached_as_kling_elements") is not None:
             errors.append(
