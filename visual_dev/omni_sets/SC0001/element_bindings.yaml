@@ -1,28 +1,34 @@
 schema_version: "0.x-draft"
 record_type: element_binding
 element_id: C01
+element_type: character
 kling_alias: "@Nadia"
 binding_status: created
 voice_capability: none
 native_audio_readiness: blocked
 kling_native_audio:
   enabled: false
-kling_element_reference_id: KLING_REF_C01_V001
+  provider_policy: kling_native_only
+  external_tts_allowed: false
+  adr_vendor_allowed: false
 provenance:
   created_by: operator/hknbb
-  created_at: "2026-05-15"
-  session_ref: OP-PROD-LINE-C01-THREE-VIEW-2026-05-15
+  created_at: "2026-05-15T22:00:00Z"
 ---
 schema_version: "0.x-draft"
 record_type: element_binding
 element_id: C03
+element_type: character
 kling_alias: "@Birta"
 binding_status: created
 voice_capability: none
 native_audio_readiness: blocked
 kling_native_audio:
   enabled: false
+  provider_policy: kling_native_only
+  external_tts_allowed: false
+  adr_vendor_allowed: false
+notes: Binding stub included so SC0001 dialogue/semantic validators can resolve both speakers. C03 visual element registration is deferred to a later PR.
 provenance:
   created_by: operator/hknbb
-  created_at: "2026-05-15"
-  session_ref: OP-PROD-LINE-C01-THREE-VIEW-2026-05-15
+  created_at: "2026-05-15T22:00:00Z"
