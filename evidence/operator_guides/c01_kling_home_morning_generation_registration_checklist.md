@@ -46,7 +46,9 @@ Operator checklist for registering the first external Kling Omni 3 Home Morning 
 - No video/audio/image binary commit.
 - No materialized output registration.
 - No lifecycle promotion to approved/locked/materialized.
-- No QC score population in the registration PR.
+- No final human QC verdicts or lifecycle-facing QC decisions in the registration PR.
+- If `video_takes.yaml` is written via the `review-video-takes` flow, keep schema-required
+  `quality_scores` populated as draft review metadata only (not as final approval evidence).
 - No prompt rewrite in the registration PR.
 - No canonical terminology for the selected Stage 4 perspective set.
 
