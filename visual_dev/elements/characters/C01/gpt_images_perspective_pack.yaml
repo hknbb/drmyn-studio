@@ -8,7 +8,7 @@ target_role: multi_perspective_element_expander
 element_id: C01
 element_type: character
 source_refs:
-  model_guidance_snapshot_ref: docs/model_guides/chatgpt_image.yaml
+  model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260504T113000Z_chatgpt_image.yaml
 shared_preservation_instruction: Preserve exact identity, silhouette, wardrobe/material palette, and change only perspective.
 prompts:
   - prompt_id: GPTIMG2_C01_P01_FRONT_V001
