@@ -94,6 +94,11 @@
         "midjourney_prompt_ref": {
           "type": "string",
           "minLength": 1
+        },
+        "model_guidance_snapshot_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Relative path to the model_guidance_snapshot YAML governing the model + version used for external generation of these perspective prompts. Mirrors generation_params.model_guidance_snapshot_ref on prompt_record."
         }
       }
     },
