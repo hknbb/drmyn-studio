@@ -22,13 +22,22 @@ from scripts.agents.scene_readiness import (
 class SceneReadinessSummary:
     scene_id: str
     shots_total: int
+    shots_ready: int
+    shots_blocking: int
+    shots_with_structural_issues: int
     elements_total: int
     elements_ready: int
     elements_blocking: int
 
     @property
     def is_ready(self) -> bool:
-        return self.elements_total > 0 and self.elements_blocking == 0
+        return (
+            self.shots_total > 0
+            and self.shots_blocking == 0
+            and self.shots_with_structural_issues == 0
+            and self.elements_total > 0
+            and self.elements_blocking == 0
+        )
 
 
 def list_known_scene_ids(repo_root: Path) -> list[str]:
@@ -48,6 +57,16 @@ def build_report(repo_root: Path, scene_id: str) -> SceneReadinessReport:
 
 
 def summarize_report(report: SceneReadinessReport) -> SceneReadinessSummary:
+    shots_ready = 0
+    shots_with_structural_issues = 0
+    for shot in report.shots:
+        has_structural_issues = bool(shot.structural_issues)
+        if has_structural_issues:
+            shots_with_structural_issues += 1
+        if shot.computed_gate_status == "all_elements_ready" and not has_structural_issues:
+            shots_ready += 1
+
+    shots_blocking = len(report.shots) - shots_ready
     elements_total = sum(len(shot.elements) for shot in report.shots)
     elements_ready = sum(
         1 for shot in report.shots for element in shot.elements if element.is_ready
@@ -56,6 +75,9 @@ def summarize_report(report: SceneReadinessReport) -> SceneReadinessSummary:
     return SceneReadinessSummary(
         scene_id=report.scene_id,
         shots_total=len(report.shots),
+        shots_ready=shots_ready,
+        shots_blocking=shots_blocking,
+        shots_with_structural_issues=shots_with_structural_issues,
         elements_total=elements_total,
         elements_ready=elements_ready,
         elements_blocking=elements_blocking,
@@ -141,10 +163,18 @@ def render_panel(st_module: Any, repo_root: Path) -> None:
             "Kling Omni adapter may synthesize the shot prompt(s)."
         )
     else:
+        structural_note = ""
+        if summary.shots_with_structural_issues:
+            structural_note = (
+                f" Includes {summary.shots_with_structural_issues} shot(s) with "
+                "structural manifest issues."
+            )
         st_module.error(
+            f"Readiness gate blocked: {summary.shots_blocking} of "
+            f"{summary.shots_total} shot(s) are not all_elements_ready; "
             f"{summary.elements_blocking} of {summary.elements_total} required "
-            "elements still block Kling Omni 3 prompt synthesis. See next-step "
-            "actions per shot below."
+            f"elements are blocking.{structural_note} See next-step actions per "
+            "shot below."
         )
 
     if report.notes:

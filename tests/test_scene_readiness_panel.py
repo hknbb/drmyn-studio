@@ -142,6 +142,28 @@ def _scaffold_blocked_scene(repo_root: Path) -> None:
     )
 
 
+def _scaffold_mixed_scene_with_pending_empty_shot(repo_root: Path) -> None:
+    _scaffold_ready_scene(repo_root)
+    _write_yaml(
+        repo_root
+        / "visual_dev"
+        / "omni_sets"
+        / "SC0001"
+        / "shot_element_manifests"
+        / "SH002.yaml",
+        {
+            "schema_version": "0.x-draft",
+            "record_type": "shot_element_manifest",
+            "manifest_id": "MANIFEST_SC0001_SH002_V001",
+            "scene_id": "SC0001",
+            "shot_id": "SH002",
+            "required_elements": [],
+            "environmental_only_allowed_ids": [],
+            "gate_status": "pending",
+        },
+    )
+
+
 @dataclass
 class FakeColumn:
     metric_calls: list[tuple[str, int]] = field(default_factory=list)
@@ -261,13 +283,24 @@ def test_panel_renders_blocking_scene_with_next_steps(tmp_path: Path) -> None:
     scene_readiness_panel.render_panel(fake, tmp_path)
 
     assert fake.errors, "Blocking scene must surface an error banner"
-    assert any("block Kling Omni 3 prompt synthesis" in msg for msg in fake.errors)
+    assert any("Readiness gate blocked" in msg for msg in fake.errors)
     assert fake.expanders, "Blocker expanders must be rendered"
     # Writes inside `with st.expander(): st.write(...)` land on the
     # FakeStreamlit's main writes list (mirrors Streamlit's context-scoped
     # capture; our fake does not re-route into the expander).
     assert any("**Blockers:**" in w for w in fake.writes)
     assert any("**Next steps:**" in w for w in fake.writes)
+
+
+def test_panel_does_not_mark_scene_ready_when_any_shot_gate_is_pending(tmp_path: Path) -> None:
+    _scaffold_mixed_scene_with_pending_empty_shot(tmp_path)
+    fake = FakeStreamlit()
+
+    scene_readiness_panel.render_panel(fake, tmp_path)
+
+    assert fake.successes == []
+    assert fake.errors, "Scene with pending/empty manifest shot must block readiness"
+    assert any("shot(s) are not all_elements_ready" in msg for msg in fake.errors)
 
 
 def test_list_known_scene_ids_filters_to_sc_prefix(tmp_path: Path) -> None:
