@@ -1,0 +1,95 @@
+schema_version: "0.x-draft"
+record_type: gpt_images_perspective_pack
+prompt_pack_id: GPTIMG2_LOC001_KITCHEN_PASSAGE_PERSPECTIVE_PACK_V001
+status: draft
+source_reference_id: MJ_ELEMENT_LOC001_KITCHEN_PASSAGE_HERO_LOCKED_V001
+target_model: gpt_images_2
+target_role: multi_perspective_element_expander
+element_id: LOC001
+element_type: location
+shared_preservation_instruction: >
+  Preserve the registered LOC001 kitchen passage hero lock exactly: pale stone
+  surface palette, cool-to-warm filtered directional daylight, threshold and
+  doorway geometry, art alignment intervals on walls, and the restrained
+  domestic-corporate containment register. Change only camera perspective;
+  do not alter spatial layout, palette, or lighting register.
+source_refs:
+  scene_card_ref: planning/scenes/SC0001/scene_card.yaml
+  midjourney_prompt_ref: visual_dev/elements/locations/LOC001/sub_areas/kitchen_passage/midjourney_prompt.yaml
+prompts:
+  - prompt_id: GPTIMG2_LOC001_KITCHEN_PASSAGE_P01_FRONT_HERO_V001
+    perspective: front_hero
+    prompt_text: >
+      Use the registered LOC001 kitchen passage hero lock as identity anchor.
+      Generate one front hero view straight down the corridor centerline:
+      receding thresholds aligned on the corridor axis, pale stone surfaces,
+      filtered cool-to-warm directional daylight raking from camera-left,
+      restrained art alignment on side walls, no people, no captions.
+    constraints:
+      - preserve pale stone palette
+      - preserve filtered cool-to-warm daylight register
+      - preserve threshold alignment and corridor depth
+      - no people
+      - no redesign of architectural geometry
+    expected_output:
+      asset_type: still
+      aspect_ratio: "16:9"
+  - prompt_id: GPTIMG2_LOC001_KITCHEN_PASSAGE_P02_THREE_QUARTER_LEFT_V001
+    perspective: three_quarter_left
+    prompt_text: >
+      Use the registered LOC001 kitchen passage hero lock as identity anchor.
+      Generate one three-quarter view rotated to the left of the corridor
+      centerline, exposing more left-wall surface and the leading-edge
+      threshold from an angled approach; preserve pale stone palette,
+      filtered cool-to-warm directional daylight, and art alignment intervals;
+      no people, no captions.
+    constraints:
+      - preserve pale stone palette
+      - preserve filtered cool-to-warm daylight register
+      - preserve threshold alignment continuity
+      - no people
+      - no redesign of architectural geometry
+    expected_output:
+      asset_type: still
+      aspect_ratio: "16:9"
+  - prompt_id: GPTIMG2_LOC001_KITCHEN_PASSAGE_P03_THREE_QUARTER_RIGHT_V001
+    perspective: three_quarter_right
+    prompt_text: >
+      Use the registered LOC001 kitchen passage hero lock as identity anchor.
+      Generate one three-quarter view rotated to the right of the corridor
+      centerline, exposing more right-wall surface, the off-center frame
+      position area on the right wall, and corridor recession on the left;
+      preserve pale stone palette, filtered cool-to-warm directional daylight,
+      and art alignment intervals; no people, no captions.
+    constraints:
+      - preserve pale stone palette
+      - preserve filtered cool-to-warm daylight register
+      - preserve right-wall art alignment intervals
+      - no people
+      - no redesign of architectural geometry
+    expected_output:
+      asset_type: still
+      aspect_ratio: "16:9"
+  - prompt_id: GPTIMG2_LOC001_KITCHEN_PASSAGE_P04_REAR_OR_SIDE_V001
+    perspective: rear_or_side
+    prompt_text: >
+      Use the registered LOC001 kitchen passage hero lock as identity anchor.
+      Generate one reverse-angle view looking back down the corridor from a
+      vantage past the leading-edge threshold; preserve pale stone palette,
+      filtered cool-to-warm directional daylight (now backlighting the camera
+      view), and threshold geometry continuity; no people, no captions.
+    constraints:
+      - preserve pale stone palette
+      - preserve filtered cool-to-warm daylight register (now backlit)
+      - preserve threshold geometry continuity
+      - no people
+      - no redesign of architectural geometry
+    expected_output:
+      asset_type: still
+      aspect_ratio: "16:9"
+qc_gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  failed_perspective_revision_only: true
+downstream_use:
+  - kling_omni_3_shot_prompt
