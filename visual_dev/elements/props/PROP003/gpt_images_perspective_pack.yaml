@@ -1,51 +1,92 @@
 schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
-prompt_pack_id: GPTIMG2_PROP003_PERSPECTIVE_PACK_V001
+prompt_pack_id: GPTIMG2_PROP003_KLING_PERSPECTIVE_PACK_V001
 status: draft
 source_reference_id: PROP003_FRAME_IN_SITU_COMPOSITION_V001
 target_model: gpt_images_2
 target_role: multi_perspective_element_expander
 element_id: PROP003
 element_type: prop
-shared_preservation_instruction: Preserve PROP003 identity anchors exactly (outer frame proportions, tilt behavior, asymmetric edge wear, interior skyline legibility, material texture, and scale cues) and change only perspective framing.
+shared_preservation_instruction: >
+  Preserve PROP003 (tilted Vardova skyline photo frame) identity anchors
+  exactly: outer frame proportions and edge profile, the tilted off-angle
+  hang signature, asymmetric edge wear, interior Vardova skyline legibility,
+  the dust-shadow mismatch signature behind the frame, and material texture.
+  Change only camera perspective.
+source_refs:
+  scene_card_ref: planning/scenes/SC0001/scene_card.yaml
+  element_sheet_ref: visual_dev/elements/props/PROP003/element_view_plan.yaml
 prompts:
-  - prompt_id: GPTIMG2_PROP003_P01_ORTHO_FRONT_V001
+  - prompt_id: GPTIMG2_PROP003_KLING_P01_FRONT_HERO_V001
     perspective: front_hero
-    prompt_text: Use the registered PROP003 hero/reference as strict continuity anchor. Generate one single orthographic front prop view on a neutral clean background; preserve frame proportions, edge profile, visible wear asymmetry, and interior skyline content placement.
+    prompt_text: >
+      Use the registered PROP003 hero/reference as strict continuity anchor.
+      Generate one front hero view of the framed Vardova skyline photograph
+      hanging on a pale stone corridor wall, tilted off-angle by roughly
+      three to four degrees, with the dust-shadow mismatch visible behind
+      and below the frame edge; preserve outer frame proportions, interior
+      skyline legibility, and material texture; no people, no captions.
     constraints:
-      - preserve frame outer dimensions
-      - preserve interior skyline legibility
-      - no redesign
+      - preserve frame outer dimensions and edge profile
+      - preserve interior Vardova skyline legibility
+      - preserve dust-shadow mismatch signature
+      - preserve off-angle tilt behavior
+      - no redesign of frame material or skyline content
     expected_output:
       asset_type: still
       aspect_ratio: "1:1"
-  - prompt_id: GPTIMG2_PROP003_P02_ORTHO_SIDE_V001
-    perspective: side_depth
-    prompt_text: Use the registered PROP003 hero/reference as strict continuity anchor. Generate one single orthographic side prop view; preserve frame thickness profile, edge geometry transitions, and material highlights.
+  - prompt_id: GPTIMG2_PROP003_KLING_P02_THREE_QUARTER_LEFT_V001
+    perspective: three_quarter_left
+    prompt_text: >
+      Use the registered PROP003 hero/reference as strict continuity anchor.
+      Generate one three-quarter left view of the same tilted framed
+      Vardova skyline photograph on the same wall; the frame's left edge is
+      closer to camera, revealing oblique side thickness and the off-angle
+      tilt as a foreshortened plane; preserve interior skyline legibility,
+      dust-shadow signature, edge wear; no people, no captions.
     constraints:
-      - preserve side thickness ratio
-      - preserve material behavior
-      - no redesign
+      - preserve frame outer dimensions and edge profile
+      - preserve interior Vardova skyline legibility
+      - preserve dust-shadow mismatch signature
+      - preserve off-angle tilt behavior
+      - no redesign of frame material or skyline content
     expected_output:
       asset_type: still
       aspect_ratio: "1:1"
-  - prompt_id: GPTIMG2_PROP003_P03_ORTHO_REAR_V001
+  - prompt_id: GPTIMG2_PROP003_KLING_P03_THREE_QUARTER_RIGHT_V001
+    perspective: three_quarter_right
+    prompt_text: >
+      Use the registered PROP003 hero/reference as strict continuity anchor.
+      Generate one three-quarter right view of the same tilted framed
+      Vardova skyline photograph on the same wall; the frame's right edge
+      is closer to camera, revealing oblique side thickness opposite the
+      P02 view; preserve interior skyline legibility, dust-shadow signature,
+      edge wear; no people, no captions.
+    constraints:
+      - preserve frame outer dimensions and edge profile
+      - preserve interior Vardova skyline legibility
+      - preserve dust-shadow mismatch signature
+      - preserve off-angle tilt behavior
+      - no redesign of frame material or skyline content
+    expected_output:
+      asset_type: still
+      aspect_ratio: "1:1"
+  - prompt_id: GPTIMG2_PROP003_KLING_P04_REAR_OR_SIDE_V001
     perspective: rear_or_side
-    prompt_text: Use the registered PROP003 hero/reference as strict continuity anchor. Generate one single orthographic rear prop view; preserve rear panel boundaries, mount geometry, and silhouette thickness.
+    prompt_text: >
+      Use the registered PROP003 hero/reference as strict continuity anchor.
+      Generate one side or reverse view of the same tilted framed Vardova
+      skyline photograph: the camera sits roughly orthogonal to the wall,
+      capturing the frame's full side thickness profile, mount geometry,
+      and the silhouette of the off-angle tilt; preserve material texture
+      and dust-shadow signature visible against the wall; no people, no
+      captions.
     constraints:
-      - preserve rear panel layout
-      - preserve silhouette continuity
-      - no redesign
-    expected_output:
-      asset_type: still
-      aspect_ratio: "1:1"
-  - prompt_id: GPTIMG2_PROP003_P04_TOP_ORTHOGRAPHIC_V001
-    perspective: detail_or_threshold
-    prompt_text: Use the registered PROP003 hero/reference as strict continuity anchor. Generate one single top orthographic prop view; preserve top-edge profile, corner geometry, and scale cues.
-    constraints:
-      - preserve top-edge profile
-      - preserve corner geometry
-      - no redesign
+      - preserve frame side thickness ratio and mount geometry
+      - preserve material behavior
+      - preserve dust-shadow mismatch signature on wall
+      - preserve off-angle tilt silhouette
+      - no redesign of frame material
     expected_output:
       asset_type: still
       aspect_ratio: "1:1"
@@ -54,4 +95,4 @@ qc_gate:
   all_perspectives_required: true
   failed_perspective_revision_only: true
 downstream_use:
-  - prop_continuity_reference
+  - kling_omni_3_shot_prompt
