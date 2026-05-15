@@ -1,5 +1,6 @@
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -13,6 +14,9 @@ if str(REPO_ROOT) not in sys.path:
 from scripts.validators.validate_shot_element_manifest import (
     validate_shot_element_manifest_file,
 )
+
+
+CANONICAL_ID_RE = re.compile(r"(?<!@)\b(?:C\d{2}|LOC\d{3}(?:_[A-Z0-9_]+)?|PROP\d{3}|WD\d{3})\b")
 
 
 def _load_yaml_mapping(path):
@@ -43,6 +47,22 @@ def _load_scene_element_binding_aliases(repo_root, scene_id):
     return aliases
 
 
+def _load_scene_element_binding_docs(repo_root, scene_id):
+    bindings_path = repo_root / "visual_dev" / "omni_sets" / scene_id / "element_bindings.yaml"
+    if not bindings_path.exists():
+        return []
+
+    docs = []
+    try:
+        with open(bindings_path, "r", encoding="utf-8") as f:
+            for doc in yaml.safe_load_all(f):
+                if isinstance(doc, dict):
+                    docs.append(doc)
+    except Exception:
+        return docs
+    return docs
+
+
 def _load_canonical_kling_aliases(repo_root):
     aliases = set()
     for path in repo_root.glob("visual_dev/elements/characters/*/kling_elements/*.yaml"):
@@ -61,6 +81,44 @@ def _string_items(value):
     return [item for item in value if isinstance(item, str)]
 
 
+def _camel_words(value):
+    words = re.findall(r"[A-Z]?[a-z]+|[A-Z]+(?=[A-Z]|$)|\d+", value)
+    return [word for word in words if word]
+
+
+def _raw_name_candidates_from_bindings(bindings):
+    candidates = set()
+    for binding in bindings:
+        alias = binding.get("kling_alias")
+        if isinstance(alias, str) and alias.startswith("@") and len(alias) > 1:
+            bare = alias[1:]
+            candidates.add(bare)
+            words = _camel_words(bare)
+            if words:
+                spaced = " ".join(words)
+                candidates.add(spaced)
+                candidates.add(words[0])
+                if len(words) >= 2:
+                    candidates.add(" ".join(words[:2]))
+
+        display_name = binding.get("display_name")
+        if isinstance(display_name, str) and display_name.strip():
+            candidates.add(display_name.strip())
+
+    return {candidate for candidate in candidates if len(candidate) >= 3}
+
+
+def _model_facing_text_items(instance):
+    for field_name in ("prompt_text", "negative_prompt"):
+        value = instance.get(field_name)
+        if isinstance(value, str):
+            yield field_name, value
+
+
+def _contains_unescaped_raw_name(text, raw_name):
+    return re.search(rf"(?<!@)\b{re.escape(raw_name)}\b", text) is not None
+
+
 def _prompt_semantic_errors(instance, repo_root):
     if not isinstance(instance, dict):
         return []
@@ -77,13 +135,36 @@ def _prompt_semantic_errors(instance, repo_root):
     if not isinstance(scene_id, str) or not scene_id:
         return []
 
+    is_deprecated = (
+        instance.get("lifecycle_stage") == "deprecated"
+        or instance.get("status") == "deprecated"
+    )
+    binding_docs = _load_scene_element_binding_docs(repo_root, scene_id)
     canonical_aliases = _load_canonical_kling_aliases(repo_root)
-    platform_aliases = _load_scene_element_binding_aliases(repo_root, scene_id)
+    platform_aliases = {
+        doc.get("kling_alias")
+        for doc in binding_docs
+        if isinstance(doc.get("kling_alias"), str)
+        and str(doc.get("kling_alias")).startswith("@")
+    }
     all_aliases = canonical_aliases | platform_aliases
     errors = []
 
     manifest_ref = params.get("shot_element_manifest_ref")
     manifest_data = None
+    if not is_deprecated and not (isinstance(manifest_ref, str) and manifest_ref.strip()):
+        errors.append(
+            "generation_params.shot_element_manifest_ref is required for active "
+            "Kling Omni prompts"
+        )
+
+    if not is_deprecated and params.get("not_attached_as_kling_elements") is not None:
+        errors.append(
+            "generation_params.not_attached_as_kling_elements is not allowed for "
+            "active Kling Omni prompts; use environmental_only_allowed_ids in the "
+            "manifest instead"
+        )
+
     if isinstance(manifest_ref, str) and manifest_ref.strip():
         manifest_path = repo_root / manifest_ref
         if not manifest_path.exists():
@@ -196,6 +277,25 @@ def _prompt_semantic_errors(instance, repo_root):
                         "but the shot element manifest does not list it in "
                         "environmental_only_allowed_ids"
                     )
+
+    raw_name_candidates = _raw_name_candidates_from_bindings(binding_docs)
+    for field_name, text in _model_facing_text_items(instance):
+        canonical_matches = sorted(set(CANONICAL_ID_RE.findall(text)))
+        if canonical_matches:
+            errors.append(
+                f"{field_name} leaks repo-canonical element ids: "
+                f"{', '.join(canonical_matches)}"
+            )
+        leaked_names = sorted(
+            candidate
+            for candidate in raw_name_candidates
+            if _contains_unescaped_raw_name(text, candidate)
+        )
+        if leaked_names:
+            errors.append(
+                f"{field_name} leaks raw element names instead of @alias: "
+                f"{', '.join(leaked_names)}"
+            )
 
     return errors
 

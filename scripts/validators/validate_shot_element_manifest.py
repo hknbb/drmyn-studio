@@ -21,8 +21,16 @@ from jsonschema import Draft202012Validator
 
 
 ACTIVE_STATUSES = {"created", "voice_capable", "voice_locked"}
-STATUS_ORDER = {"created": 1, "voice_capable": 2, "voice_locked": 3}
+BINDING_STATUS_ORDER = {"created": 1, "voice_capable": 2, "voice_locked": 3}
+PIPELINE_STATUS_ORDER = {
+    "draft": 0,
+    "review": 1,
+    "approved": 2,
+    "locked": 3,
+    "materialized": 4,
+}
 REFERENCE_READY_STATUSES = {"review", "approved", "locked", "materialized"}
+PIPELINE_READY_STATUSES = REFERENCE_READY_STATUSES
 FORBIDDEN_LIFECYCLE_KEYS = {"pack_status", "canon_lock", "approved", "locked"}
 LOC_SUBAREA_RE = re.compile(r"^(LOC\d{3})_([A-Z0-9_]+)$")
 
@@ -154,9 +162,24 @@ def _find_pack_manifest(root: Path) -> Path:
 
 
 def _binding_satisfies(actual: str | None, required: str) -> bool:
-    if actual not in STATUS_ORDER or required not in STATUS_ORDER:
+    if actual not in BINDING_STATUS_ORDER or required not in BINDING_STATUS_ORDER:
         return False
-    return STATUS_ORDER[actual] >= STATUS_ORDER[required]
+    return BINDING_STATUS_ORDER[actual] >= BINDING_STATUS_ORDER[required]
+
+
+def _pipeline_status_satisfies(actual: str | None, required: str = "review") -> bool:
+    if actual not in PIPELINE_STATUS_ORDER or required not in PIPELINE_STATUS_ORDER:
+        return False
+    return PIPELINE_STATUS_ORDER[actual] >= PIPELINE_STATUS_ORDER[required]
+
+
+def _active_alias(binding: dict[str, Any] | None) -> str | None:
+    if not binding:
+        return None
+    alias = binding.get("kling_alias")
+    if isinstance(alias, str) and alias.startswith("@") and len(alias) > 1:
+        return alias
+    return None
 
 
 def validate_shot_element_manifest_file(
@@ -265,6 +288,18 @@ def validate_shot_element_manifest_file(
                     )
                 )
                 computed_gate = "blocked"
+            if _active_alias(binding) is None:
+                cause_issues.append(
+                    ShotElementManifestIssue(
+                        file=rel_file,
+                        field_path=f"{prefix}.kling_alias",
+                        message=(
+                            f"{element_id} has no active kling_alias in scene "
+                            f"{scene_id} element_bindings.yaml."
+                        ),
+                    )
+                )
+                computed_gate = "blocked"
             root = _element_root_from_binding(repo_root, element_id, element_type, binding)
 
         pack_manifest = _find_pack_manifest(root)
@@ -288,7 +323,7 @@ def validate_shot_element_manifest_file(
         ref_data = _load_mapping(kling_ref)
         if ref_data is not None:
             status = ref_data.get("status")
-            if status not in REFERENCE_READY_STATUSES:
+            if not _pipeline_status_satisfies(str(status) if status is not None else None):
                 cause_issues.append(
                     ShotElementManifestIssue(
                         file=rel_file,
@@ -296,6 +331,67 @@ def validate_shot_element_manifest_file(
                         message=(
                             f"{element_id} kling_element_reference status is {status!r}; "
                             "expected review or better."
+                        ),
+                    )
+                )
+                computed_gate = "blocked"
+            approval_gate = ref_data.get("approval_gate")
+            if not isinstance(approval_gate, dict):
+                cause_issues.append(
+                    ShotElementManifestIssue(
+                        file=rel_file,
+                        field_path=f"{prefix}.kling_element_reference.approval_gate",
+                        message=(
+                            f"{element_id} kling_element_reference approval_gate is missing; "
+                            "expected operator_approved and all_perspectives_score_85_plus."
+                        ),
+                    )
+                )
+                computed_gate = "blocked"
+            else:
+                if approval_gate.get("operator_approved") is not True:
+                    cause_issues.append(
+                        ShotElementManifestIssue(
+                            file=rel_file,
+                            field_path=(
+                                f"{prefix}.kling_element_reference."
+                                "approval_gate.operator_approved"
+                            ),
+                            message=(
+                                f"{element_id} approval_gate.operator_approved is not true."
+                            ),
+                        )
+                    )
+                    computed_gate = "blocked"
+                if approval_gate.get("all_perspectives_score_85_plus") is not True:
+                    cause_issues.append(
+                        ShotElementManifestIssue(
+                            file=rel_file,
+                            field_path=(
+                                f"{prefix}.kling_element_reference."
+                                "approval_gate.all_perspectives_score_85_plus"
+                            ),
+                            message=(
+                                f"{element_id} approval_gate.all_perspectives_score_85_plus "
+                                "is not true."
+                            ),
+                        )
+                    )
+                    computed_gate = "blocked"
+
+        gpt_pack_data = _load_mapping(gpt_pack)
+        if gpt_pack_data is not None:
+            gpt_status = gpt_pack_data.get("status")
+            if not _pipeline_status_satisfies(
+                str(gpt_status) if gpt_status is not None else None
+            ):
+                cause_issues.append(
+                    ShotElementManifestIssue(
+                        file=rel_file,
+                        field_path=f"{prefix}.gpt_images_perspective_pack.status",
+                        message=(
+                            f"{element_id} gpt_images_perspective_pack status is "
+                            f"{gpt_status!r}; expected review or better."
                         ),
                     )
                 )

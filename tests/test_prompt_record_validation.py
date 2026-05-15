@@ -61,8 +61,8 @@ def get_valid_kling_prompt():
             "scene_excerpt": "planning/scenes/SC0001/scene_excerpt.md",
         },
         "prompt_text": (
-            "Use @Nadia, bound in repo metadata to canonical repo alias "
-            "@C01_HOME_MORNING."
+            "Create one Kling Omni element-based video clip with active elements: "
+            "@Nadia."
         ),
         "generation_params": {
             "required_element_aliases": ["@Nadia"],
@@ -78,7 +78,6 @@ def get_valid_kling_prompt():
                     "readiness": "draft_reference_ready",
                 }
             ],
-            "not_attached_as_kling_elements": ["@ValeResidenceKitchenPassage"],
         },
         "status": "active",
         "canon_lock": False,
@@ -183,11 +182,56 @@ def write_ready_shot_element_manifest(repo_root, *, binding_status="created", ga
 
     element_root = repo_root / "visual_dev" / "elements" / "characters" / "C01"
     element_root.mkdir(parents=True, exist_ok=True)
-    for name in ("pack_manifest.yaml", "gpt_images_perspective_pack.yaml"):
-        (element_root / name).write_text(
-            yaml.safe_dump({"element_id": "C01"}, sort_keys=False),
-            encoding="utf-8",
-        )
+    (element_root / "pack_manifest.yaml").write_text(
+        yaml.safe_dump({"element_id": "C01"}, sort_keys=False),
+        encoding="utf-8",
+    )
+    gpt_pack = {
+        "schema_version": "0.x-draft",
+        "record_type": "gpt_images_perspective_pack",
+        "prompt_pack_id": "GPTIMG2_C01_PERSPECTIVE_PACK_V002",
+        "status": "review",
+        "source_reference_id": "MJ_ELEMENT_C01_HERO_LOCKED_V002",
+        "target_model": "gpt_images_2",
+        "target_role": "multi_perspective_element_expander",
+        "element_id": "C01",
+        "element_type": "character",
+        "shared_preservation_instruction": "Preserve identity.",
+        "perspective_policy": "three_view_no_rear",
+        "prompts": [
+            {
+                "prompt_id": "GPTIMG2_C01_FRONT_REFERENCE_V002",
+                "perspective": "front_reference",
+                "prompt_text": "Front full-body studio reference.",
+                "constraints": ["single character only"],
+                "expected_output": {"asset_type": "still"},
+            },
+            {
+                "prompt_id": "GPTIMG2_C01_LEFT_REFERENCE_V002",
+                "perspective": "left_reference",
+                "prompt_text": "Left profile studio reference.",
+                "constraints": ["single character only"],
+                "expected_output": {"asset_type": "still"},
+            },
+            {
+                "prompt_id": "GPTIMG2_C01_RIGHT_REFERENCE_V002",
+                "perspective": "right_reference",
+                "prompt_text": "Right profile studio reference.",
+                "constraints": ["single character only"],
+                "expected_output": {"asset_type": "still"},
+            },
+        ],
+        "qc_gate": {
+            "minimum_score": 85,
+            "all_perspectives_required": True,
+            "failed_perspective_revision_only": True,
+        },
+        "downstream_use": ["kling_omni_3_shot_prompt"],
+    }
+    (element_root / "gpt_images_perspective_pack.yaml").write_text(
+        yaml.safe_dump(gpt_pack, sort_keys=False),
+        encoding="utf-8",
+    )
     kling_ref = {
         "schema_version": "0.x-draft",
         "record_type": "kling_element_reference_record",
@@ -200,10 +244,9 @@ def write_ready_shot_element_manifest(repo_root, *, binding_status="created", ga
             "prompt_id": "MJ_PROMPT_C01_HERO_LOCKED_V001",
         },
         "gpt_images_2_perspectives": {
-            "rear_or_side": "GPTIMG2_C01_P01_REAR_V001",
-            "three_quarter_left": "GPTIMG2_C01_P02_THREE_QUARTER_LEFT_V001",
-            "right_profile_side": "GPTIMG2_C01_P03_RIGHT_PROFILE_V001",
-            "left_profile_side": "GPTIMG2_C01_P04_LEFT_PROFILE_V001",
+            "front_reference": "GPTIMG2_C01_FRONT_REFERENCE_V002",
+            "left_reference": "GPTIMG2_C01_LEFT_REFERENCE_V002",
+            "right_reference": "GPTIMG2_C01_RIGHT_REFERENCE_V002",
         },
         "continuity_anchors": ["identity", "wardrobe"],
         "approval_gate": {
@@ -263,13 +306,15 @@ def test_lifecycle_stage_production_fails(mock_repo):
     assert validate_prompt_records.main(DummyArgs(mock_repo, mock_repo / "report.json")) == 1
 
 
-def test_kling_required_platform_alias_resolves_through_element_bindings(mock_repo, capsys):
+def test_active_kling_prompt_without_manifest_ref_fails(mock_repo):
     write_kling_character_look_element(mock_repo)
     write_element_bindings(mock_repo)
     write_prompt(mock_repo, "draft", "kling_prompt.yaml", get_valid_kling_prompt())
 
-    assert validate_prompt_records.main(DummyArgs(mock_repo, mock_repo / "report.json")) == 0
-    assert "1 files validated successfully" in capsys.readouterr().out
+    assert validate_prompt_records.main(DummyArgs(mock_repo, mock_repo / "report.json")) == 1
+    report = json.loads((mock_repo / "report.json").read_text())
+    errors = report["errors"]["prompts/draft/kling_prompt.yaml"]
+    assert any("shot_element_manifest_ref is required" in error for error in errors)
 
 
 def test_kling_unresolved_required_alias_fails(mock_repo):
@@ -289,6 +334,9 @@ def test_kling_required_alias_conflicting_with_not_attached_fails(mock_repo):
     write_kling_character_look_element(mock_repo)
     write_element_bindings(mock_repo)
     payload = get_valid_kling_prompt()
+    payload["generation_params"]["not_attached_as_kling_elements"] = [
+        "@ValeResidenceKitchenPassage"
+    ]
     payload["generation_params"]["required_element_aliases"] = [
         "@Nadia",
         "@ValeResidenceKitchenPassage",
@@ -303,7 +351,9 @@ def test_kling_required_alias_conflicting_with_not_attached_fails(mock_repo):
 
 def test_kling_attached_repo_alias_must_resolve_to_character_look_record(mock_repo):
     write_element_bindings(mock_repo)
+    manifest_ref = write_ready_shot_element_manifest(mock_repo)
     payload = get_valid_kling_prompt()
+    payload["generation_params"]["shot_element_manifest_ref"] = manifest_ref
     write_prompt(mock_repo, "draft", "kling_prompt.yaml", payload)
 
     assert validate_prompt_records.main(DummyArgs(mock_repo, mock_repo / "report.json")) == 1
@@ -317,7 +367,6 @@ def test_kling_prompt_with_ready_shot_manifest_passes(mock_repo, capsys):
     manifest_ref = write_ready_shot_element_manifest(mock_repo)
     payload = get_valid_kling_prompt()
     payload["generation_params"]["shot_element_manifest_ref"] = manifest_ref
-    payload["generation_params"].pop("not_attached_as_kling_elements")
     write_prompt(mock_repo, "draft", "kling_prompt.yaml", payload)
 
     assert validate_prompt_records.main(DummyArgs(mock_repo, mock_repo / "report.json")) == 0
@@ -348,7 +397,6 @@ def test_kling_prompt_with_planned_binding_manifest_fails(mock_repo):
     )
     payload = get_valid_kling_prompt()
     payload["generation_params"]["shot_element_manifest_ref"] = manifest_ref
-    payload["generation_params"].pop("not_attached_as_kling_elements")
     write_prompt(mock_repo, "draft", "kling_prompt.yaml", payload)
 
     assert validate_prompt_records.main(DummyArgs(mock_repo, mock_repo / "report.json")) == 1
@@ -369,3 +417,31 @@ def test_kling_prompt_manifest_rejects_not_attached_escape_hatch(mock_repo):
     report = json.loads((mock_repo / "report.json").read_text())
     errors = report["errors"]["prompts/draft/kling_prompt.yaml"]
     assert any("not_attached_as_kling_elements is not allowed" in error for error in errors)
+
+
+def test_kling_prompt_raw_name_leak_fails(mock_repo):
+    write_kling_character_look_element(mock_repo)
+    manifest_ref = write_ready_shot_element_manifest(mock_repo)
+    payload = get_valid_kling_prompt()
+    payload["generation_params"]["shot_element_manifest_ref"] = manifest_ref
+    payload["prompt_text"] = "Create a shot where Nadia enters."
+    write_prompt(mock_repo, "draft", "kling_prompt.yaml", payload)
+
+    assert validate_prompt_records.main(DummyArgs(mock_repo, mock_repo / "report.json")) == 1
+    report = json.loads((mock_repo / "report.json").read_text())
+    errors = report["errors"]["prompts/draft/kling_prompt.yaml"]
+    assert any("raw element names" in error and "Nadia" in error for error in errors)
+
+
+def test_kling_prompt_canonical_id_leak_fails(mock_repo):
+    write_kling_character_look_element(mock_repo)
+    manifest_ref = write_ready_shot_element_manifest(mock_repo)
+    payload = get_valid_kling_prompt()
+    payload["generation_params"]["shot_element_manifest_ref"] = manifest_ref
+    payload["prompt_text"] = "Create a shot with @Nadia and C01."
+    write_prompt(mock_repo, "draft", "kling_prompt.yaml", payload)
+
+    assert validate_prompt_records.main(DummyArgs(mock_repo, mock_repo / "report.json")) == 1
+    report = json.loads((mock_repo / "report.json").read_text())
+    errors = report["errors"]["prompts/draft/kling_prompt.yaml"]
+    assert any("repo-canonical element ids" in error and "C01" in error for error in errors)

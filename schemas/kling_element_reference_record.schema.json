@@ -83,6 +83,28 @@
         {
           "additionalProperties": false,
           "required": [
+            "front_reference",
+            "left_reference",
+            "right_reference"
+          ],
+          "properties": {
+            "front_reference": {
+              "type": "string",
+              "minLength": 1
+            },
+            "left_reference": {
+              "type": "string",
+              "minLength": 1
+            },
+            "right_reference": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "additionalProperties": false,
+          "required": [
             "front_hero",
             "three_quarter_left",
             "three_quarter_right",
