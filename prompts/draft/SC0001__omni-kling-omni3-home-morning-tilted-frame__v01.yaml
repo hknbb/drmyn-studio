@@ -1,7 +1,7 @@
 prompt_id: SC0001__omni-kling-omni3-home-morning-tilted-frame__v01
 scene_id: SC0001
 prompt_type: omni_instruction
-lifecycle_stage: draft
+lifecycle_stage: deprecated
 target_models:
 - kling_omni
 source_refs:
@@ -54,8 +54,21 @@ generation_params:
   resolved_model_role: best_for_this_task
   guidance_observed_at: '2026-05-08T14:00:00Z'
   guidance_expires_at: '2026-06-08T14:00:00Z'
+  superseded_reason: >-
+    Element registration incomplete at the time this draft was authored. LOC001
+    Vale Residence kitchen passage has no sub-area gpt_images_perspective_pack
+    and no kling_element_reference.yaml; PROP003 Vardova skyline photo frame
+    binding_status is still 'planned' and has no kling_element_reference.yaml.
+    The repo workflow now requires every required element for a shot to pass
+    the full Midjourney -> GPT Images 2 perspective pack -> Kling element
+    registration pipeline before prompt synthesis. This draft will be
+    superseded by SC0001__omni-kling-omni3-home-morning-tilted-frame__v02 once
+    LOC001 and PROP003 backfill PRs (PR-C, PR-D) and the SC0001 SH001 shot
+    element manifest (PR-E) are merged. Do not send this prompt to Kling Omni
+    3.
+  superseded_by_planned: SC0001__omni-kling-omni3-home-morning-tilted-frame__v02
 expected_output:
   asset_type: clip
   duration_seconds: 8
-status: active
+status: deprecated
 canon_lock: false
