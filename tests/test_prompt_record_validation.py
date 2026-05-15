@@ -142,6 +142,83 @@ def write_element_bindings(repo_root):
         yaml.safe_dump_all(docs, f, sort_keys=False)
 
 
+def write_ready_shot_element_manifest(repo_root, *, binding_status="created", gate_status="all_elements_ready"):
+    schema_src = REPO_ROOT / "schemas" / "shot_element_manifest.schema.json"
+    (repo_root / "schemas" / "shot_element_manifest.schema.json").write_text(
+        schema_src.read_text(encoding="utf-8"), encoding="utf-8"
+    )
+    manifest_path = (
+        repo_root
+        / "visual_dev"
+        / "omni_sets"
+        / "SC0001"
+        / "shot_element_manifests"
+        / "SH001.yaml"
+    )
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
+    manifest = {
+        "schema_version": "0.x-draft",
+        "record_type": "shot_element_manifest",
+        "manifest_id": "MANIFEST_SC0001_SH001_V001",
+        "scene_id": "SC0001",
+        "shot_id": "SH001",
+        "required_elements": [
+            {
+                "element_id": "C01",
+                "element_type": "character",
+                "role": "primary_subject",
+                "registration_state_required": "created",
+            }
+        ],
+        "environmental_only_allowed_ids": [],
+        "gate_status": gate_status,
+    }
+    manifest_path.write_text(yaml.safe_dump(manifest, sort_keys=False), encoding="utf-8")
+
+    write_element_bindings(repo_root)
+    bindings_path = repo_root / "visual_dev" / "omni_sets" / "SC0001" / "element_bindings.yaml"
+    docs = list(yaml.safe_load_all(bindings_path.read_text(encoding="utf-8")))
+    docs[0]["binding_status"] = binding_status
+    bindings_path.write_text(yaml.safe_dump_all(docs, sort_keys=False), encoding="utf-8")
+
+    element_root = repo_root / "visual_dev" / "elements" / "characters" / "C01"
+    element_root.mkdir(parents=True, exist_ok=True)
+    for name in ("pack_manifest.yaml", "gpt_images_perspective_pack.yaml"):
+        (element_root / name).write_text(
+            yaml.safe_dump({"element_id": "C01"}, sort_keys=False),
+            encoding="utf-8",
+        )
+    kling_ref = {
+        "schema_version": "0.x-draft",
+        "record_type": "kling_element_reference_record",
+        "kling_element_reference_id": "KLING_REF_C01_V001",
+        "status": "review",
+        "element_id": "C01",
+        "element_type": "character",
+        "source_midjourney_reference": {
+            "reference_id": "MJ_ELEMENT_C01_HERO_LOCKED_V001",
+            "prompt_id": "MJ_PROMPT_C01_HERO_LOCKED_V001",
+        },
+        "gpt_images_2_perspectives": {
+            "rear_or_side": "GPTIMG2_C01_P01_REAR_V001",
+            "three_quarter_left": "GPTIMG2_C01_P02_THREE_QUARTER_LEFT_V001",
+            "right_profile_side": "GPTIMG2_C01_P03_RIGHT_PROFILE_V001",
+            "left_profile_side": "GPTIMG2_C01_P04_LEFT_PROFILE_V001",
+        },
+        "continuity_anchors": ["identity", "wardrobe"],
+        "approval_gate": {
+            "all_perspectives_score_85_plus": True,
+            "operator_approved": True,
+            "operator_session_ref": "OP-TEST",
+        },
+        "downstream_use": ["kling_omni_3_shot_prompt"],
+    }
+    (element_root / "kling_element_reference.yaml").write_text(
+        yaml.safe_dump(kling_ref, sort_keys=False), encoding="utf-8"
+    )
+    return "visual_dev/omni_sets/SC0001/shot_element_manifests/SH001.yaml"
+
+
 class DummyArgs:
     def __init__(self, repo_root, report_json):
         self.repo_root = repo_root
@@ -233,3 +310,62 @@ def test_kling_attached_repo_alias_must_resolve_to_character_look_record(mock_re
     report = json.loads((mock_repo / "report.json").read_text())
     errors = report["errors"]["prompts/draft/kling_prompt.yaml"]
     assert any("repo_alias" in error and "@C01_HOME_MORNING" in error for error in errors)
+
+
+def test_kling_prompt_with_ready_shot_manifest_passes(mock_repo, capsys):
+    write_kling_character_look_element(mock_repo)
+    manifest_ref = write_ready_shot_element_manifest(mock_repo)
+    payload = get_valid_kling_prompt()
+    payload["generation_params"]["shot_element_manifest_ref"] = manifest_ref
+    payload["generation_params"].pop("not_attached_as_kling_elements")
+    write_prompt(mock_repo, "draft", "kling_prompt.yaml", payload)
+
+    assert validate_prompt_records.main(DummyArgs(mock_repo, mock_repo / "report.json")) == 0
+    assert "1 files validated successfully" in capsys.readouterr().out
+
+
+def test_kling_prompt_manifest_ref_missing_fails(mock_repo):
+    write_kling_character_look_element(mock_repo)
+    write_element_bindings(mock_repo)
+    payload = get_valid_kling_prompt()
+    payload["generation_params"]["shot_element_manifest_ref"] = (
+        "visual_dev/omni_sets/SC0001/shot_element_manifests/MISSING.yaml"
+    )
+    write_prompt(mock_repo, "draft", "kling_prompt.yaml", payload)
+
+    assert validate_prompt_records.main(DummyArgs(mock_repo, mock_repo / "report.json")) == 1
+    report = json.loads((mock_repo / "report.json").read_text())
+    errors = report["errors"]["prompts/draft/kling_prompt.yaml"]
+    assert any("shot_element_manifest_ref not found" in error for error in errors)
+
+
+def test_kling_prompt_with_planned_binding_manifest_fails(mock_repo):
+    write_kling_character_look_element(mock_repo)
+    manifest_ref = write_ready_shot_element_manifest(
+        mock_repo,
+        binding_status="planned",
+        gate_status="blocked",
+    )
+    payload = get_valid_kling_prompt()
+    payload["generation_params"]["shot_element_manifest_ref"] = manifest_ref
+    payload["generation_params"].pop("not_attached_as_kling_elements")
+    write_prompt(mock_repo, "draft", "kling_prompt.yaml", payload)
+
+    assert validate_prompt_records.main(DummyArgs(mock_repo, mock_repo / "report.json")) == 1
+    report = json.loads((mock_repo / "report.json").read_text())
+    errors = report["errors"]["prompts/draft/kling_prompt.yaml"]
+    assert any("binding_status is 'planned'" in error for error in errors)
+
+
+def test_kling_prompt_manifest_rejects_not_attached_escape_hatch(mock_repo):
+    write_kling_character_look_element(mock_repo)
+    manifest_ref = write_ready_shot_element_manifest(mock_repo)
+    payload = get_valid_kling_prompt()
+    payload["generation_params"]["shot_element_manifest_ref"] = manifest_ref
+    payload["generation_params"]["not_attached_as_kling_elements"] = ["@ValeResidenceKitchenPassage"]
+    write_prompt(mock_repo, "draft", "kling_prompt.yaml", payload)
+
+    assert validate_prompt_records.main(DummyArgs(mock_repo, mock_repo / "report.json")) == 1
+    report = json.loads((mock_repo / "report.json").read_text())
+    errors = report["errors"]["prompts/draft/kling_prompt.yaml"]
+    assert any("not_attached_as_kling_elements is not allowed" in error for error in errors)

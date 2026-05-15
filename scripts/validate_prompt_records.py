@@ -6,6 +6,14 @@ from pathlib import Path
 import yaml
 from jsonschema import Draft202012Validator
 
+REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from scripts.validators.validate_shot_element_manifest import (
+    validate_shot_element_manifest_file,
+)
+
 
 def _load_yaml_mapping(path):
     try:
@@ -73,6 +81,29 @@ def _prompt_semantic_errors(instance, repo_root):
     platform_aliases = _load_scene_element_binding_aliases(repo_root, scene_id)
     all_aliases = canonical_aliases | platform_aliases
     errors = []
+
+    manifest_ref = params.get("shot_element_manifest_ref")
+    manifest_data = None
+    if isinstance(manifest_ref, str) and manifest_ref.strip():
+        manifest_path = repo_root / manifest_ref
+        if not manifest_path.exists():
+            errors.append(
+                f"generation_params.shot_element_manifest_ref not found: {manifest_ref}"
+            )
+        else:
+            manifest_issues = validate_shot_element_manifest_file(manifest_path, repo_root)
+            errors.extend(
+                f"shot_element_manifest_ref {issue.field_path}: {issue.message}"
+                for issue in manifest_issues
+            )
+            manifest_data = _load_yaml_mapping(manifest_path)
+
+        if params.get("not_attached_as_kling_elements") is not None:
+            errors.append(
+                "generation_params.not_attached_as_kling_elements is not allowed when "
+                "shot_element_manifest_ref is present; use environmental_only_allowed_ids "
+                "in the manifest instead"
+            )
 
     not_attached = set(_string_items(params.get("not_attached_as_kling_elements")))
 
@@ -144,6 +175,19 @@ def _prompt_semantic_errors(instance, repo_root):
                 f"generation_params.required_prop_cue contains {cue!r}, "
                 "but the same value is listed in not_attached_as_kling_elements"
             )
+
+    if manifest_data:
+        environmental_allowed = set(
+            _string_items(manifest_data.get("environmental_only_allowed_ids"))
+        )
+        for field_name in ("text_context_refs", "visual_cue_refs"):
+            for item in _string_items(params.get(field_name)):
+                if item not in environmental_allowed:
+                    errors.append(
+                        f"generation_params.{field_name} contains {item!r}, "
+                        "but the shot element manifest does not list it in "
+                        "environmental_only_allowed_ids"
+                    )
 
     return errors
 
