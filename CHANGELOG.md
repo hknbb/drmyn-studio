@@ -1,5 +1,31 @@
 # Changelog
 
+## element-reference-policy-v2 (2026-05-16)
+
+### Summary
+- PR-REF-0: defines Element Reference Generation Policy v2 (doctrine + additive schema + operator prompt templates).
+- Forward-only policy. Existing records (C01, LOC001, PROP003) are grandfathered, not migrated.
+- This entry is the v2 cutoff: records authored after it must use `perspective_policy: three_view_scale_angle_v2`.
+
+### Changed
+- Added doctrine `docs/methodology/element_reference_generation_policy.md` (two-stage character chain, non-character routing, scale-angle three-view, full-body-not-a-gate, grandfather rule).
+- Added operator guide `docs/operator_guides/element_reference_prompting_v2.md` and prompt templates under `templates/element_reference_prompts/` (5 stage templates, each citing the active model guide + snapshot).
+- `schemas/gpt_images_perspective_pack.schema.json`: added `three_view_scale_angle_v2` to `perspective_policy` enum and a new `prompts` `oneOf` branch (`front_reference`, `three_quarter_medium_reference`, `three_quarter_close_reference`). Legacy enum values and branches retained for grandfathered records.
+- Added `tests/test_gpt_images_perspective_pack_schema.py`.
+- Added `element_reference_policy_v2` policy notes to `docs/model_guides/midjourney.yaml` and `docs/model_guides/chatgpt_image.yaml`.
+
+### Validation Evidence
+- `python scripts/validate_production_records.py --repo-root .` -> 98 files scanned, 98 valid, 0 invalid.
+- `python -m pytest -q` -> 1416 passed.
+
+### Policy Confirmation
+- No binary outputs committed.
+- No lifecycle promotion. No production record mutation — schema changes are strictly additive.
+- Existing C01/LOC001/PROP003 records unchanged (grandfathered).
+
+### Next Step
+- PR-REF-1: add the `character_reference_chain` schema.
+
 ## v0.15.3-non-character-perspective-pack-framework (2026-05-13)
 
 ### Summary
