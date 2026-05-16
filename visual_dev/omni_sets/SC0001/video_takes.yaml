@@ -1,0 +1,27 @@
+scene_id: SC0001
+prompt_id: SC0001__omni-kling-omni3-home-morning-tilted-frame__v02
+takes:
+  - take_id: SC0001_TAKE001
+    platform_asset_ref: kling_20260516_VIDEO___Element1_3885_0
+    external_storage_ref: >-
+      external://local_manual/drmyn-studio-images/kling_20260516_VIDEO___Element1_3885_0.mp4
+    local_proxy_ref: null
+    repo_binary_committed: false
+    storage_status: stored_external
+    status: candidate
+    reason: >-
+      First Kling Omni draft take for SC0001 SH001. Prompt v02 alias-only;
+      elements attached: @Nadia, @ValeResidenceKitchenPassage, @VardovaFrame.
+      Generated 2026-05-16. Pending human QC review; scores are pre-QC
+      placeholders.
+    quality_scores:
+      identity_consistency: 3
+      source_grounding: 3
+      style_compliance: 3
+      continuity: 3
+      production_usability: 3
+    failure_reason: null
+selected_take: null
+round_status: in_progress
+needs_prompt_revision: false
+storage_policy: external_video_only
