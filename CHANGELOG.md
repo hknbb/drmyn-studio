@@ -1,5 +1,27 @@
 # Changelog
 
+## element-reference-policy-v2-c0205-migration (2026-05-16)
+
+### Summary
+- PR-REF-5: migrates the draft characters C02, C03, C04, C05 to Element Reference Generation Policy v2.
+- First proof of policy v2 on real character records. Grandfathered records (C01, LOC001, PROP003) untouched.
+
+### Changed
+- Rewrote `gpt_images_perspective_pack.yaml` for C02/C03/C04/C05 to `perspective_policy: three_view_scale_angle_v2`: three scale-angle views (`front_reference`, `three_quarter_medium_reference`, `three_quarter_close_reference`), no left/right directional prompts, `full_body_visible: false`, prompt text free of canonical IDs.
+- Added `reference_chain.yaml` for C02/C03/C04/C05 recording the two-stage Midjourney chain (V8.1 narrative identity -> V7 `--oref` refinement) and the ChatGPT Images 2 handoff.
+- `source_reference_id` now points at the chain handoff (`pending_external://MJ_OMNI_REF_C0x_V001`); stage outputs remain `pending_external` until real generation.
+
+### Validation Evidence
+- `python -m pytest -q` -> 1441 passed.
+- `python scripts/validate_production_records.py --repo-root .` -> 98 files scanned, 98 valid, 0 invalid.
+
+### Policy Confirmation
+- No binary outputs committed. No lifecycle promotion — all records remain `status: draft`.
+- Grandfathered C01/LOC001/PROP003 records unchanged.
+
+### Next Step
+- Operator generates real C03 Birta images per the prompt templates, then promotes the chain and perspective pack from draft -> review.
+
 ## element-reference-policy-v2 (2026-05-16)
 
 ### Summary
