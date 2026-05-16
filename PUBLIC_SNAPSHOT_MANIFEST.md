@@ -87,7 +87,7 @@ All 58 schemas in `schemas/`, including:
 | Raw image files (JPG, PNG, WEBP) | Binary media; stored externally, referenced by metadata only |
 | Video files (MP4, MOV) | Binary media; stored externally, referenced by metadata only |
 | Audio files (WAV, MP3, AAC) | Binary media; stored externally, referenced by metadata only |
-| Real external reference URLs | All character and element records use `pending_external://` placeholders at this checkpoint — no real image/video service URLs committed |
+| Real external reference URLs | C02–C05 and most records use `pending_external://` placeholders. **Exception:** `visual_dev/elements/characters/C01/identity_evidence_sets/C01_STAGE3_IDENTITY_EVIDENCE_SET_HOME_MORNING_V001.yaml` slot E01 contains a live `https://cdn.midjourney.com/...` URL. This file must be excluded or the URL redacted before syncing to the public repo — see `PUBLIC_SANITIZATION_CHECKLIST.md`. |
 | API keys or credentials | Never committed; all auth is human-gated |
 | Personal data | Only ORCID identifiers and affiliations that are already publicly registered |
 | Unpublished screenplay content | Scene excerpts are research scaffolds only; full screenplay not committed |

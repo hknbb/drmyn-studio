@@ -20,7 +20,13 @@ This checklist must be reviewed and confirmed by the operator before publishing 
 
 ## External Reference URLs
 
-- [ ] All character and element reference records use `pending_external://` placeholders — no real image hosting URLs, CDN links, or storage service URLs are committed to the repository.
+- [ ] **C02, C03, C04, C05** character records: all `source_reference_id` fields use `pending_external://` placeholders — confirmed, no live URLs.
+- [ ] **C01 identity evidence set** (`visual_dev/elements/characters/C01/identity_evidence_sets/C01_STAGE3_IDENTITY_EVIDENCE_SET_HOME_MORNING_V001.yaml`): slot `E01_STAGE1_WINNER` contains a live `https://cdn.midjourney.com/...` URL. Before syncing to `drmyn-studio-public`, this file **must** either:
+  - (a) be excluded from the public sync entirely, OR
+  - (b) have the CDN URL replaced with `pending_external://C01_E01_STAGE1_WINNER` before pushing.
+  - [ ] Confirm action taken: ___________________________
+- [ ] `external://local_manual/...` refs in C01 evidence slots E02–E04 reference private local storage paths (not live URLs) — acceptable as-is or can be excluded with the file above.
+- [ ] No other real image hosting URLs, CDN links, or storage service URLs are committed. (Verified: only one `https://` external_ref exists in the repo — the C01 CDN URL above.)
 - [ ] No external API response payloads or image generation service outputs are committed.
 
 ## Screenplay and Story Content
