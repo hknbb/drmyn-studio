@@ -79,6 +79,10 @@
       ],
       "description": "Newly authored element-first records after PR-0 use three_view_no_rear: front_reference, left_reference, right_reference. legacy_four_view exists only for historical records that remain outside the clean SC0001 baseline."
     },
+    "full_body_visible": {
+      "type": "boolean",
+      "description": "Optional metadata. Indicates whether the character first reference shows full body / head-to-toe. Under Element Reference Generation Policy v2 this is NOT a QC pass/fail gate — character references are judged on identity readability, not coverage."
+    },
     "shared_preservation_instruction": {
       "type": "string",
       "minLength": 1
