@@ -28,12 +28,13 @@ takes:
     local_proxy_ref: null
     repo_binary_committed: false
     storage_status: stored_external
-    status: candidate
+    status: selected
     reason: >-
       Second Kling Omni draft take for SC0001 SH001. Same prompt v02 alias-only;
       elements attached: @Nadia, @ValeResidenceKitchenPassage, @VardovaFrame.
-      Generated 2026-05-16. QC round 1 complete: 88 range, outperforms TAKE001
-      on continuity and production_usability. Review: VR_SC0001_TAKE002_R001.
+      Generated 2026-05-16. QC round 1: 4/4/4/5/5 (88 range), outperforms
+      TAKE001 on continuity and production_usability. Selected by operator.
+      Review: VR_SC0001_TAKE002_R001.
     quality_scores:
       identity_consistency: 4
       source_grounding: 4
@@ -41,7 +42,7 @@ takes:
       continuity: 5
       production_usability: 5
     failure_reason: null
-selected_take: null
-round_status: in_progress
+selected_take: SC0001_TAKE002
+round_status: complete
 needs_prompt_revision: false
 storage_policy: external_video_only
