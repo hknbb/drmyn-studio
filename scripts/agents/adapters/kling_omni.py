@@ -189,14 +189,21 @@ def _build_audio_plan_component(
                 shot_dlg_ids.add(did)
 
     # Filter to lines belonging to this clip; exclude implied lines.
-    clip_lines = [
-        line for line in dialogue_lines
-        if (
-            line.get("target_beat_id") in shot_beat_ids
-            or line.get("line_id") in shot_dlg_ids
-        )
-        and line.get("line_type") != "implied"
-    ]
+    # Prefer explicit dialogue_line_ids when present — beat overlap is a fallback
+    # only for clips that carry no explicit line-level scoping. This prevents split
+    # dialogue beats from pulling in lines assigned to a different clip in the same beat.
+    if shot_dlg_ids:
+        clip_lines = [
+            line for line in dialogue_lines
+            if line.get("line_id") in shot_dlg_ids
+            and line.get("line_type") != "implied"
+        ]
+    else:
+        clip_lines = [
+            line for line in dialogue_lines
+            if line.get("target_beat_id") in shot_beat_ids
+            and line.get("line_type") != "implied"
+        ]
 
     if not clip_lines:
         return ""

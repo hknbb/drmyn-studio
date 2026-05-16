@@ -1926,3 +1926,72 @@ class TestAudioPlanComponent:
 
         assert "I slept" in prompt_text
         assert "unspoken acknowledgement" not in prompt_text
+
+    def test_explicit_line_ids_scope_overrides_beat_overlap(self, tmp_path):
+        """When dialogue_line_ids is explicit, only those lines are rendered —
+        other lines in the same beat that belong to a different clip are excluded."""
+        # Both DL001 and DL002 share BEAT_DIALOGUE, but this clip only lists DL001.
+        _create_dialogue_beats(tmp_path, dialogue_lines=[
+            {
+                "line_id": "DL001",
+                "target_beat_id": "BEAT_DIALOGUE",
+                "speaker_element_id": "C01",
+                "speaker_kling_alias": "@Nadia",
+                "line_text": "I slept.",
+                "line_type": "spoken",
+                "delivery_note": "controlled",
+                "dialogue_required": True,
+            },
+            {
+                "line_id": "DL002",
+                "target_beat_id": "BEAT_DIALOGUE",
+                "speaker_element_id": "C03",
+                "speaker_kling_alias": "@Birta",
+                "line_text": "You slept the way you fold laundry.",
+                "line_type": "spoken",
+                "delivery_note": "warm",
+                "dialogue_required": True,
+            },
+        ])
+        # This clip only owns DL001; DL002 is assigned to a different clip.
+        shots = [
+            {
+                "shot_id": "SHOT_SC0001_DIAL_A",
+                "duration_seconds": 5,
+                "source_beat_ids": ["BEAT_DIALOGUE"],
+                "required_element_ids": ["C01"],
+                "dialogue_line_ids": ["DL001"],
+                "prompt_action": 'NADIA: "I slept."',
+                "duration_reason": "dialogue 5s",
+            }
+        ]
+        manifest_path = _create_manifest(tmp_path, shots=shots, total_duration=5)
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+        _create_element_bindings(tmp_path, bindings=[
+            {
+                "schema_version": "0.x-draft",
+                "record_type": "element_binding",
+                "element_id": "C01",
+                "element_type": "character",
+                "kling_alias": "@Nadia",
+                "binding_status": "created",
+                "native_audio_readiness": "ready",
+            },
+            {
+                "schema_version": "0.x-draft",
+                "record_type": "element_binding",
+                "element_id": "C03",
+                "element_type": "character",
+                "kling_alias": "@Birta",
+                "binding_status": "created",
+                "native_audio_readiness": "ready",
+            },
+        ])
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(str(manifest_path))
+        prompt_text = result.prompt_record["prompt_text"]
+
+        # Only DL001 must appear; DL002 belongs to another clip.
+        assert "I slept" in prompt_text
+        assert "fold laundry" not in prompt_text
