@@ -80,6 +80,10 @@
       ],
       "description": "Records authored before the element-reference-policy-v2 CHANGELOG entry use legacy_four_view or three_view_no_rear (legacy directional: front_reference, left_reference, right_reference). Newly authored records use three_view_scale_angle_v2: front_reference, three_quarter_medium_reference, three_quarter_close_reference. legacy_four_view and three_view_no_rear remain only for grandfathered historical records outside the v2 baseline."
     },
+    "full_body_visible": {
+      "type": "boolean",
+      "description": "Optional metadata. Indicates whether the character first reference shows full body / head-to-toe. Under Element Reference Generation Policy v2 this is NOT a QC pass/fail gate — character references are judged on identity readability, not coverage."
+    },
     "shared_preservation_instruction": {
       "type": "string",
       "minLength": 1
