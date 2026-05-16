@@ -12,14 +12,14 @@ takes:
     reason: >-
       First Kling Omni draft take for SC0001 SH001. Prompt v02 alias-only;
       elements attached: @Nadia, @ValeResidenceKitchenPassage, @VardovaFrame.
-      Generated 2026-05-16. Pending human QC review; scores are pre-QC
-      placeholders.
+      Generated 2026-05-16. QC round 1 complete: usable 80-89 range, second
+      generation pass advised. Review: VR_SC0001_TAKE001_R001.
     quality_scores:
-      identity_consistency: 3
-      source_grounding: 3
-      style_compliance: 3
-      continuity: 3
-      production_usability: 3
+      identity_consistency: 4
+      source_grounding: 4
+      style_compliance: 4
+      continuity: 4
+      production_usability: 4
     failure_reason: null
 selected_take: null
 round_status: in_progress
