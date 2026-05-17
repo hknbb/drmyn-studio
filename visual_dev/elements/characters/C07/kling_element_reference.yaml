@@ -1,0 +1,25 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KLING_REF_C07_V001
+status: review
+element_id: C07
+element_type: character
+source_midjourney_reference:
+  reference_id: MJ_OMNI_REF_C07_V001
+  prompt_id: MJ_PROMPT_C07_OREF_V001
+gpt_images_2_perspectives:
+  front_reference: GPTIMG2_C07_P01_FRONT_V001
+  three_quarter_medium_reference: GPTIMG2_C07_P02_TQM_V001
+  three_quarter_close_reference: GPTIMG2_C07_P03_TQC_V001
+continuity_anchors:
+  - fixed short pulled-back practical hair with natural professional maintenance and subtle fatigue legible
+  - fixed mid 30s to mid 40s lean angular face geometry with alert eye contact heritage unspecified
+  - fixed upright slightly forward-leaning dynamic but contained silhouette
+  - fixed dark utility jacket over dark fitted top with dark trousers civilian senior journalist newsroom-and-field practical professional
+  - fixed forward-moving institutional intelligence register with hard-nosed professional skepticism worn as armor no glamor no anchor styling
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-PROD-LINE-C07-THREE-VIEW-2026-05-17
+downstream_use:
+  - kling_omni_3_shot_prompt
