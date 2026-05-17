@@ -1,0 +1,25 @@
+scene_id: _elements
+created_at: "2026-05-17T00:00:00Z"
+storage_policy: external_image_only
+entries:
+  - kind: gpt_images_2_perspective_output
+    element_id_or_take_id: GPTIMG2_HERALD_HALO_P01_FRONT_V001
+    storage_backend: local_manual
+    last_seen_at: "2026-05-17T16:38:57Z"
+    repo_binary_committed: false
+    external_storage_ref: external://local_manual/drmyn-studio-images/HERALD_HALO/Stage 3/ChatGPT Image 17 May 2026 16_38_57.png
+    notes: Three-view front_reference output for HERALD_HALO; no image binary is stored in repo.
+  - kind: gpt_images_2_perspective_output
+    element_id_or_take_id: GPTIMG2_HERALD_HALO_P02_TQM_V001
+    storage_backend: local_manual
+    last_seen_at: "2026-05-17T16:52:44Z"
+    repo_binary_committed: false
+    external_storage_ref: external://local_manual/drmyn-studio-images/HERALD_HALO/Stage 3/ChatGPT Image 17 May 2026 16_52_44.png
+    notes: Three-view three_quarter_medium_reference output for HERALD_HALO; no image binary is stored in repo.
+  - kind: gpt_images_2_perspective_output
+    element_id_or_take_id: GPTIMG2_HERALD_HALO_P03_TQC_V001
+    storage_backend: local_manual
+    last_seen_at: "2026-05-17T16:51:21Z"
+    repo_binary_committed: false
+    external_storage_ref: external://local_manual/drmyn-studio-images/HERALD_HALO/Stage 3/ChatGPT Image 17 May 2026 16_51_21.png
+    notes: Three-view three_quarter_close_reference output for HERALD_HALO; no image binary is stored in repo.

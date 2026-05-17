@@ -1,0 +1,77 @@
+schema_version: "0.x-draft"
+record_type: perspective_qc_report
+perspective_qc_id: PERSPQC_HERALD_HALO_THREE_VIEW_V001
+status: review
+scene_id: SC0018
+element_id: HERALD_HALO_V001
+prompt_pack_id: GPTIMG2_HERALD_HALO_PERSPECTIVE_PACK_V001
+operator_session_ref: OP-PROD-LINE-HERALD-HALO-THREE-VIEW-2026-05-17
+perspective_scores:
+  - prompt_id: GPTIMG2_HERALD_HALO_P01_FRONT_V001
+    perspective: front_reference
+    identity_preservation: 94
+    perspective_usefulness: 93
+    material_palette_continuity: 93
+    production_reference_cleanliness: 95
+    hallucination_absence: 95
+    character_description_strength: 92
+    identity_readability: 94
+    silhouette_readability: 93
+    wardrobe_world_fit: 93
+    expression_performance_readability: 90
+    view_distinction: 92
+    no_directional_confusion: 95
+    total_score: 93
+    decision: pass
+  - prompt_id: GPTIMG2_HERALD_HALO_P02_TQM_V001
+    perspective: three_quarter_medium_reference
+    identity_preservation: 94
+    perspective_usefulness: 92
+    material_palette_continuity: 92
+    production_reference_cleanliness: 93
+    hallucination_absence: 94
+    character_description_strength: 91
+    identity_readability: 94
+    silhouette_readability: 92
+    wardrobe_world_fit: 92
+    expression_performance_readability: 90
+    view_distinction: 91
+    scale_distinction: 89
+    no_directional_confusion: 93
+    total_score: 92
+    decision: pass
+  - prompt_id: GPTIMG2_HERALD_HALO_P03_TQC_V001
+    perspective: three_quarter_close_reference
+    identity_preservation: 93
+    perspective_usefulness: 90
+    material_palette_continuity: 87
+    production_reference_cleanliness: 91
+    hallucination_absence: 93
+    character_description_strength: 90
+    identity_readability: 93
+    silhouette_readability: 74
+    wardrobe_world_fit: 88
+    expression_performance_readability: 88
+    view_distinction: 90
+    scale_distinction: 89
+    no_directional_confusion: 92
+    total_score: 90
+    decision: pass
+gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  can_advance_to_kling_reference: true
+notes: >
+  HERALD_HALO Stage 3 three-view scale-angle pack QC. All three perspectives
+  clear the 85 minimum. First reference was a Midjourney output uploaded as
+  the strict identity source for the GPT Images 2 pack. Chassis silhouette,
+  sensor array head geometry, matte muted neutral palette (beige + grey +
+  low-contrast charcoal seams), upright human-scale stance, and utility-grade
+  joint articulation preserved across all three views. No humanoid face, no
+  chrome, no glossy luxury finish, no glowing seams, no LED light strip, no
+  hologram halo, no weapon, no holster, no color bars, no reference frame
+  number, no cute-robot drift across all three outputs. TQC shows a faint
+  bronze-warm accent on front panels (minor palette continuity dip to 87,
+  not a disqualifier — still above gate). Close framing reduces silhouette
+  readability as expected. Cleared for Kling element reference registration
+  under element_type "other".

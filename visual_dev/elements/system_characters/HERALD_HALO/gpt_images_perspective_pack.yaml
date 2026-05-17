@@ -2,7 +2,7 @@ schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
 prompt_pack_id: GPTIMG2_HERALD_HALO_PERSPECTIVE_PACK_V001
 status: draft
-source_reference_id: pending_external://HERALD_HALO_GPTIMG2_FIRST_REFERENCE_V001
+source_reference_id: external://local_manual/drmyn-studio-images/HERALD_HALO/u9435212546_Production_reference_image_of_a_near_future_servi_7f350c3b-c265-446a-9fb8-87d7fbbc410a_0.png
 target_model: gpt_images_2
 target_role: multi_perspective_element_expander
 element_id: HERALD_HALO_V001
