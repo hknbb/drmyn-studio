@@ -1,0 +1,52 @@
+element_id: HERALD_HALO_V001
+element_type: other
+selection_round: 1
+source_prompt_ids:
+  - SC0018__gptimg2-perspective-pack-herald-halo__v01
+candidate_images:
+  - asset_id: GPTIMG2_HERALD_HALO_P01_FRONT_V001
+    path: external://local_manual/drmyn-studio-images/HERALD_HALO/Stage 3/ChatGPT Image 17 May 2026 16_38_57.png
+    external_storage_ref: external://local_manual/drmyn-studio-images/HERALD_HALO/Stage 3/ChatGPT Image 17 May 2026 16_38_57.png
+    repo_binary_committed: false
+    status: selected
+    reason: Three-view front_reference output registered from 2026-05-17 HERALD_HALO Stage 3 session.
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+    failure_reason: null
+  - asset_id: GPTIMG2_HERALD_HALO_P02_TQM_V001
+    path: external://local_manual/drmyn-studio-images/HERALD_HALO/Stage 3/ChatGPT Image 17 May 2026 16_52_44.png
+    external_storage_ref: external://local_manual/drmyn-studio-images/HERALD_HALO/Stage 3/ChatGPT Image 17 May 2026 16_52_44.png
+    repo_binary_committed: false
+    status: selected
+    reason: Three-view three_quarter_medium_reference output registered from 2026-05-17 HERALD_HALO Stage 3 session.
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+    failure_reason: null
+  - asset_id: GPTIMG2_HERALD_HALO_P03_TQC_V001
+    path: external://local_manual/drmyn-studio-images/HERALD_HALO/Stage 3/ChatGPT Image 17 May 2026 16_51_21.png
+    external_storage_ref: external://local_manual/drmyn-studio-images/HERALD_HALO/Stage 3/ChatGPT Image 17 May 2026 16_51_21.png
+    repo_binary_committed: false
+    status: selected
+    reason: Three-view three_quarter_close_reference output registered from 2026-05-17 HERALD_HALO Stage 3 session.
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 4
+      continuity: 5
+      production_usability: 4
+    failure_reason: null
+canonical_images: []
+round_status: complete
+pack_manifest_sync: pending
+review_notes: HERALD_HALO Stage 3 three-view perspective selection completed by human decision. All three QC-passing external outputs are selected as the Stage 3 v2 perspective set for downstream Kling reference readiness. First reference was a Midjourney output (matte beige/grey composite, sensor array head, no humanoid face, no chrome) uploaded as the strict identity source for the GPT Images 2 three-view pack. Chassis silhouette, sensor array geometry, matte muted neutral palette, and utility joint articulation preserved across all three views. TQC shows a faint bronze-warm accent on front panels (minor palette drift, not a disqualifier). No humanoid face, no chrome, no glossy luxury finish, no glowing seams, no weapon, no color bars, no cute-robot styling across all three views. No binary commit, lifecycle promotion, or materialized output registration is applied.
+provenance:
+  created_by: hknbb
+  created_at: "2026-05-17T00:00:00Z"
