@@ -19,7 +19,7 @@ stage_3:
   role: protected_subject_infant_reference_expander
   prompt_template_ref: templates/element_reference_prompts/protected_subject_infant_gptimg2_first_reference.md
   model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260504T113000Z_chatgpt_image.yaml
-  first_reference_output_ref: pending_external://C08_JIN_GPTIMG2_FIRST_REFERENCE_V001
+  first_reference_output_ref: external://local_manual/drmyn-studio-images/Jin/u9435212546_Production_reference_image_of_an_ordinary_human_i_bc788270-b14b-4e96-bca1-076b189aa755_2.png
   perspective_pack_id: GPTIMG2_C08_PERSPECTIVE_PACK_V001
   care_context_required: true
   qc_focus:
@@ -33,7 +33,7 @@ stage_3:
     - care_context_visible_or_implied
 handoff:
   to_model: kling_omni_3
-  source_reference_id: pending_external://C08_JIN_GPTIMG2_FIRST_REFERENCE_V001
+  source_reference_id: external://local_manual/drmyn-studio-images/Jin/u9435212546_Production_reference_image_of_an_ordinary_human_i_bc788270-b14b-4e96-bca1-076b189aa755_2.png
   notes: >
     Stage 3 GPT Images 2 first-reference output becomes the identity source
     for the three-view scale-angle protected-subject pack. Pack outputs in
@@ -42,16 +42,24 @@ handoff:
     identity-neutral support hand) is required in all reference frames; new
     adult characters must NOT be invented inside reference frames.
 notes: >
-  Phase 6 / PR-JIN-1 scaffold per revised_character_batch_to_golden_scene_plan.md.
+  Phase 6 / PR-JIN-2 per revised_character_batch_to_golden_scene_plan.md.
   C08 Jin is treated as a protected-subject infant visual element (not a
-  standard performance character). identity_pipeline is
-  gpt_images_2_direct_protected_subject (additive convention; YAML data only,
-  no JSON schema registered for character_reference_chain — same pattern as
-  HALO system_character_reference_chain). PROP-JIN-BRACELET (hospital
-  bracelet, PL09) is a separate prop element and is NOT baked into base
-  infant identity here; tracked as a deferred associated_prop in
-  planning/characters/C08.yaml. Stage outputs remain pending_external until
-  PR-JIN-2 generates and selects real images per the prompt template.
+  standard performance character). identity_pipeline
+  gpt_images_2_direct_protected_subject; MJ Stage 1/2 explicitly skipped.
+  First reference winner registered 2026-05-17 (Aday 8 of 8). Produced via
+  Midjourney as text-only first reference (not GPT Images 2 — same
+  convention as HERALD_HALO); the MJ output is uploaded to ChatGPT Image
+  as the strict identity source for the Stage 3 GPT Images 2 perspective
+  pack. Selected winner: ordinary infant approximately 8 months old, brown
+  eyes, dark hair, neutral skin tone (heritage unspecified per do_not_invent
+  guidance — not stylized toward any specific ethnic identity), sitting
+  safely supported on soft pale infant blanket, calm neutral expression,
+  simple cream onesie with blue blanket detail, clean studio neutral
+  background, no themed costume, no idealization glow, no medical
+  instrumentation, no extra people. Other 7 candidates eliminated for
+  light-eye + light-hair European stylization that would conflict with
+  the heritage-unspecified do_not_invent constraint. PROP-JIN-BRACELET
+  (hospital bracelet PL09) NOT baked into base identity; remains deferred.
 provenance:
   created_by: hknbb
   created_at: "2026-05-17T00:00:00Z"
