@@ -5,9 +5,9 @@ status: draft
 characters:
   - character_id: C01
     identity_anchor_id: C01_IDENTITY_ANCHOR_V001
-    look_id: C01_LOOK_HOME_MORNING_V001
+    look_id: C01_LOOK_NADIA_CANON_V2_V001
     required: true
-    continuity_note: opening sequence uses home morning look continuity
+    continuity_note: opening sequence uses clean v2 NADIA_CANON look (PR-C01-V2-BIND migration, supersedes v1 C01_LOOK_HOME_MORNING_V001 for SC0001 golden production; v1 records preserved)
   - character_id: C03
     identity_anchor_id: C03_IDENTITY_ANCHOR_V001
     look_id: C03_LOOK_DOMESTIC_STAFF_V001
