@@ -1,0 +1,25 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KLING_REF_C05_V001
+status: review
+element_id: C05
+element_type: character
+source_midjourney_reference:
+  reference_id: MJ_OMNI_REF_C05_V001
+  prompt_id: MJ_PROMPT_C05_OREF_V001
+gpt_images_2_perspectives:
+  front_reference: GPTIMG2_C05_P01_FRONT_V001
+  three_quarter_medium_reference: GPTIMG2_C05_P02_TQM_V001
+  three_quarter_close_reference: GPTIMG2_C05_P03_TQC_V001
+continuity_anchors:
+  - fixed short grounded real dark hair
+  - fixed late 30s to early 40s East Asian face geometry
+  - fixed plain operational private dark jacket with hooded undergarment silhouette
+  - fixed muted dark neutral palette with practical restrained construction
+  - fixed controlled watchful slightly held-back body presence
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-PROD-LINE-C05-THREE-VIEW-2026-05-17
+downstream_use:
+  - kling_omni_3_shot_prompt

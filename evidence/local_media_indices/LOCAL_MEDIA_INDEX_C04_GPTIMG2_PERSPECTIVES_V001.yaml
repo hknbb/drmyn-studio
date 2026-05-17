@@ -1,0 +1,25 @@
+scene_id: _elements
+created_at: "2026-05-17T00:00:00Z"
+storage_policy: external_image_only
+entries:
+  - kind: gpt_images_2_perspective_output
+    element_id_or_take_id: GPTIMG2_C04_P01_FRONT_V001
+    storage_backend: local_manual
+    last_seen_at: "2026-05-17T01:05:16Z"
+    repo_binary_committed: false
+    external_storage_ref: external://local_manual/drmyn-studio-images/ChatGPT Image 17 May 2026 01_05_16.png
+    notes: Three-view front_reference output for C04 (regenerated pass after wardrobe drift); no image binary is stored in repo.
+  - kind: gpt_images_2_perspective_output
+    element_id_or_take_id: GPTIMG2_C04_P02_TQM_V001
+    storage_backend: local_manual
+    last_seen_at: "2026-05-17T01:04:50Z"
+    repo_binary_committed: false
+    external_storage_ref: external://local_manual/drmyn-studio-images/ChatGPT Image 17 May 2026 01_04_50.png
+    notes: Three-view three_quarter_medium_reference output for C04; no image binary is stored in repo.
+  - kind: gpt_images_2_perspective_output
+    element_id_or_take_id: GPTIMG2_C04_P03_TQC_V001
+    storage_backend: local_manual
+    last_seen_at: "2026-05-17T01:09:24Z"
+    repo_binary_committed: false
+    external_storage_ref: external://local_manual/drmyn-studio-images/ChatGPT Image 17 May 2026 01_09_24.png
+    notes: Three-view three_quarter_close_reference output for C04; no image binary is stored in repo.

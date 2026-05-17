@@ -1,0 +1,73 @@
+schema_version: "0.x-draft"
+record_type: perspective_qc_report
+perspective_qc_id: PERSPQC_C04_THREE_VIEW_V001
+status: review
+scene_id: SC0002
+element_id: C04
+prompt_pack_id: GPTIMG2_C04_PERSPECTIVE_PACK_V001
+operator_session_ref: OP-PROD-LINE-C04-THREE-VIEW-2026-05-17
+perspective_scores:
+  - prompt_id: GPTIMG2_C04_P01_FRONT_V001
+    perspective: front_reference
+    identity_preservation: 94
+    perspective_usefulness: 93
+    material_palette_continuity: 92
+    production_reference_cleanliness: 94
+    hallucination_absence: 95
+    character_description_strength: 92
+    identity_readability: 94
+    silhouette_readability: 91
+    wardrobe_world_fit: 90
+    expression_performance_readability: 92
+    view_distinction: 91
+    no_directional_confusion: 95
+    total_score: 93
+    decision: pass
+  - prompt_id: GPTIMG2_C04_P02_TQM_V001
+    perspective: three_quarter_medium_reference
+    identity_preservation: 93
+    perspective_usefulness: 92
+    material_palette_continuity: 92
+    production_reference_cleanliness: 93
+    hallucination_absence: 94
+    character_description_strength: 91
+    identity_readability: 93
+    silhouette_readability: 91
+    wardrobe_world_fit: 90
+    expression_performance_readability: 91
+    view_distinction: 90
+    scale_distinction: 89
+    no_directional_confusion: 93
+    total_score: 92
+    decision: pass
+  - prompt_id: GPTIMG2_C04_P03_TQC_V001
+    perspective: three_quarter_close_reference
+    identity_preservation: 94
+    perspective_usefulness: 90
+    material_palette_continuity: 91
+    production_reference_cleanliness: 92
+    hallucination_absence: 94
+    character_description_strength: 91
+    identity_readability: 94
+    silhouette_readability: 75
+    wardrobe_world_fit: 89
+    expression_performance_readability: 92
+    view_distinction: 90
+    scale_distinction: 89
+    no_directional_confusion: 93
+    total_score: 91
+    decision: pass
+gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  can_advance_to_kling_reference: true
+notes: >
+  C04 Dimitri Stage 3 three-view scale-angle pack QC. First pass produced
+  wardrobe drift (turtleneck instead of suit + collared shirt + tie); operator
+  regenerated with explicit collared dress shirt and necktie spec. All three
+  perspectives in the registered set clear the 85 minimum. Identity locked from
+  Stage 1 retained (Option C path); wardrobe-world reads as disciplined
+  operational executive tailoring across all three views. Lean instrument
+  silhouette and controlled precise hard-edged register held. Close framing
+  reduces silhouette readability as expected (not a disqualifier). Cleared
+  for Kling element reference registration.

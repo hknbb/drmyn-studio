@@ -2,7 +2,7 @@ schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
 prompt_pack_id: GPTIMG2_C03_PERSPECTIVE_PACK_V001
 status: draft
-source_reference_id: pending_external://MJ_OMNI_REF_C03_V001
+source_reference_id: external://local_manual/drmyn-studio-images/u9435212546_Birta_70s_grey_hair_pulled_back_plainly_deeply_li_85c70fc1-5f12-47b5-858a-d458d856ead5_1.png
 target_model: gpt_images_2
 target_role: multi_perspective_element_expander
 element_id: C03
