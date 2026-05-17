@@ -1,0 +1,42 @@
+session_id: OP-PROD-LINE-C01-NADIA-CANON-V2-THREE-VIEW-2026-05-17
+created_at: "2026-05-17T15:30:00Z"
+scene_id: SC0001
+current_task: Review and approve C01 Nadia v2 (canon V2) three-view perspective pack and register Kling reference.
+recommended_files:
+  - visual_dev/elements/characters/C01/look_variants/C01_NADIA_CANON_V2/reference_chain.yaml
+  - visual_dev/elements/characters/C01/look_variants/C01_NADIA_CANON_V2/gpt_images_perspective_pack.yaml
+  - visual_dev/elements/characters/C01/look_variants/C01_NADIA_CANON_V2/gptimg2_perspectives/image_selection.yaml
+  - evidence/perspective_qc/PQC_C01_NADIA_CANON_V2_PERSPECTIVE_PACK_V001.yaml
+  - evidence/local_media_indices/LOCAL_MEDIA_INDEX_C01_NADIA_CANON_V2_GPTIMG2_PERSPECTIVES_V001.yaml
+  - visual_dev/elements/characters/C01/look_variants/C01_NADIA_CANON_V2/kling_element_reference.yaml
+recommended_steps:
+  - Confirm Stage 1 MJ V8.1 narrative identity revise pass winner preserves Nadia contained tactical register, early-to-mid 30s, dark eyes, plain matte black fitted top, no fashion-editorial drift.
+  - Confirm Stage 2 oref attempts (Option C path) — tactical-fashion editorial drift forced operator decision to retain Stage 1 as Stage 2 reference.
+  - Confirm Stage 3 GPT Images 2 three-view outputs preserve identity + wardrobe + no makeup-glamor + no jewelry across all views.
+  - Verify v1 C01 chain and SC0001 / TAKE002 chain remain UNTOUCHED.
+  - Verify all three perspective total_scores clear 85+ gate.
+  - Approve gate.can_advance_to_kling_reference and approval_gate.operator_approved.
+status: complete
+notes: >
+  Human operator reviewed C01 v2 rebuild under isolated
+  look_variants/C01_NADIA_CANON_V2/ path (v1 chain DOKUNULMADI). Stage 1
+  MJ V8.1 first pass exhibited fashion-editorial drift (DQ logo + chest rig
+  + tactical bag + makeup glamor); regenerated with tightened prompt
+  (--stylize 50, expanded --no list covering brand-logo, tactical-bag,
+  chest-rig, harness, makeup-glamor, dq-logo, etc.). Selected winner Aday 4
+  of 6 (seed 5678879): clean studio, plain black fitted top, contained
+  tactical register, dark eyes, no accessory drift, medic-exact battle-worn
+  calm read. Stage 2 MJ V7 oref attempted at ow 800 and ow 450 with
+  aggressive --no list; all candidates reverted to heavy tactical-fashion
+  editorial (leather chest rig, harness, corset bodice, red lip, light eyes,
+  watermark). Operator decision: Option C path, retain Stage 1 winner as
+  Stage 2 reference (same pattern as C04 and C05). Stage 3 GPT Images 2
+  three-view pack produced clean continuity: plain matte black fitted top
+  across all views (short-sleeve front, long-sleeve TQ — acceptable variation
+  within "plain matte dark fitted top" continuity_anchor); identity, dark
+  eyes, bare-skin natural complexion, hair pulled back, no jewelry, no
+  makeup glamor, no tactical accessory, no logo, no watermark across all
+  three outputs. QC scores P01 FRONT 93 / P02 TQM 91 / P03 TQC 91, all clear
+  the 85+ gate. KLING_REF_C01_NADIA_CANON_V2_V001 approved. @Nadia alias
+  migration to v2 is a separate later PR; v1 aliases (@C01_HOME_MORNING,
+  @C01_NIGHT_TIRED) remain bound to v1 chain.
