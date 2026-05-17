@@ -2,7 +2,7 @@ schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
 prompt_pack_id: GPTIMG2_C01_NADIA_CANON_V2_PERSPECTIVE_PACK_V001
 status: draft
-source_reference_id: pending_external://MJ_OMNI_REF_C01_NADIA_CANON_V2_V001
+source_reference_id: external://local_manual/drmyn-studio-images/Nadia/u9435212546_Nadia_early_to_mid_30s_controlled_observant_physi_899f7fd5-e48f-4897-abcd-da987e09209d_3 (1).png
 target_model: gpt_images_2
 target_role: multi_perspective_element_expander
 element_id: C01
