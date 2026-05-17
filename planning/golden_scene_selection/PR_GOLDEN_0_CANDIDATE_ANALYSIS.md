@@ -1,10 +1,12 @@
 # PR-GOLDEN-0 — Golden Scene Candidate Analysis & Selection
 
 **Phase:** 8 (Golden Scene Selection)
-**Status:** Selected
-**Decision:** **SC0001 — Vale Residence Morning Inventory** is selected as the golden reference scene for full end-to-end Kling Omni 3 production (Phase 9 / PR-GOLDEN-1..7).
+**Status:** Amended — selection revised
+**Current decision:** **SC0089 — Northern Transit Corridor (outer district perimeter pursuit)** is the golden reference scene for full end-to-end Kling Omni 3 production (Phase 9 / PR-GOLDEN-1..7). See **§ 9. Revision 2026-05-18** below for the revision record.
+**Previous decision (superseded):** SC0001 — Vale Residence Morning Inventory (selected 2026-05-17, superseded 2026-05-18).
 **Plan reference:** `revised_character_batch_to_golden_scene_plan.md` § Phase 8.
-**Date:** 2026-05-17.
+**Original analysis date:** 2026-05-17.
+**Amendment date:** 2026-05-18.
 
 ---
 
@@ -71,7 +73,7 @@ SC0110  C Roman confrontation (corridor combat) 3      0       3 (C02)      0   
 
 ## 4. Per-Scene Detail
 
-### A) SC0001 — Vale Residence Morning Inventory **[SELECTED]**
+### A) SC0001 — Vale Residence Morning Inventory **[PREVIOUSLY SELECTED — SUPERSEDED 2026-05-18, see § 9]**
 
 - **Files:** `scene_card.yaml`, `scene_excerpt.md`, `dialogue_beats.yaml`, `omni_clip_plan.yaml`, `scene_beat_plan.yaml`, `prompt_brief.md`, `review_notes.md`, `manifests/CLIP_SC0001_01-08_manifest.yaml`, `visual_dev/omni_sets/SC0001/element_set.yaml`, `element_bindings.yaml`, `scene_character_look_map.yaml`, `shot_element_manifests/SH001.yaml`, `video_takes.yaml`, `selected_take.yaml`
 - **Synopsis:** Nadia performs a precise morning domestic routine in her expensive, underused home. Inventory routine reads as a threat-map. Brief exchange with Birta about Jin's care and Roman's early departure. Discovers a family photo frame has been moved — the surveillance intrusion cue. Checks on Jin. Establishes Nadia's contained, hypervigilant baseline.
@@ -180,5 +182,116 @@ This PR is docs-only and adds no production records, schemas, or validator chang
 ```bash
 python scripts/validate_production_records.py --repo-root .   # → 144 / 144 valid (unchanged)
 python -m pytest -q                                            # → 1441 passed (unchanged)
+python scripts/check_referential_integrity.py …               # → 0 errors (unchanged)
+```
+
+---
+
+## 9. Revision 2026-05-18 — Selection changed from SC0001 to SC0089
+
+**Status of this section:** **AUTHORITATIVE.** This revision supersedes §§ 5–6 above. The original §§ 1–8 are preserved verbatim as audit trail for the SC0001 selection rationale; they are not re-applied to current planning.
+
+### 9.1 Selection deltas
+
+```text
+previous_selection: SC0001
+  status: previously_selected_superseded
+  reason: lower system/action coverage compared with SC0089
+  preserved_as: audit_trail (§§ 1–8 above unchanged)
+
+new_selection: SC0089
+  selection_type: golden_reference_scene
+  status: selected
+```
+
+### 9.2 Revision reason
+
+```text
+- stronger action density
+- multi-character roster relevance (C01 + C06 + C04 V.O.)
+- better golden-scene stress test (kinetic infiltration + sound design)
+- C01 + C06 visual readiness on main (KLING_REF_C01_NADIA_CANON_V2_V001, KLING_REF_C06_V001)
+- C04 V.O. can remain non-visual / suppressed (radio voice only, no on-camera frame)
+- wardrobe delta can be handled through prompt-level continuity (no new asset required)
+- better camera/coverage potential before climax (7 natural shots vs SC0001's 8 dialogue-anchored clips)
+- dialogue-suppression rule (native_audio_readiness != ready) does not break SC0089 because dialogue load is minimal (Dimitri radio V.O. + minimal exchange + breath/action)
+```
+
+### 9.3 SC0089 — Northern Transit Corridor (selected)
+
+- **Files:** `planning/scenes/SC0089/scene_card.yaml`, `scene_excerpt.md`, `prompt_brief.md`, `review_notes.md`.
+- **Phase:** SEQ18 / PH_CRUCIBLE (pre-climax peak action).
+- **Synopsis:** Nadia and Zara move through a lit-pool outer-perimeter transit corridor under Dimitri's coordinated multi-vector hunt. They detect a second team via wall-vibration acoustics, scale the drainage embankment, take down an advance operative, Zara is hit by a suppressed round from an unanticipated third vector, they drag-walk fifty meters to the drainage cut and disappear into the maintenance conduit. Dimitri's radio closes the scene: "All elements converge."
+- **Required elements (on-camera):** C01 Nadia v2 ✓, C06 Zara v2 ✓.
+- **Required elements (off-camera):** C04 Dimitri V.O. only (no visual frame; radio voice only — visual production not required).
+- **Required elements (silhouette/nameless):** advance hunter operative (single takedown shot, low-light silhouette, no identity establishment — handled via prompt-level "anonymous tactical operative" instruction, no character record needed).
+- **Locations:** outer perimeter transit corridor (night, lit-pool intervals), drainage embankment, drainage cut conduit. No v2 location records currently; will use prompt-level scene construction grounded in scene_excerpt geometry — same grandfathered-location pattern PR-GOLDEN-0 originally accepted for LOC001.
+- **Wardrobe:** **No new asset, no new look_variant.** Canonical KLING_REF_C01_NADIA_CANON_V2_V001 and KLING_REF_C06_V001 already encode field-operational continuity (dark fitted top, muted neutral palette for Nadia; hunter-pool tactical-adjacent layered top for Zara). Outdoor / night / cold-perimeter delta handled as prompt-level micro-continuity instruction only:
+  ```text
+  outer perimeter night layer over canonical dark fitted top;
+  matte dark utility jacket; no decorative hardware;
+  no redesign; preserve canonical identity and silhouette.
+  ```
+  If Kling generation fails to hold the jacket continuity or QC reports "wardrobe delta too large", a lightweight look_variant scaffold will be opened as a separate follow-up PR (not in PR-GOLDEN-1 scope).
+- **Dialogue:** Minimal. Dimitri radio V.O. ("Northern corridor, confirm contact." / "Accelerate." / "Northern embankment. All elements converge.") + brief Nadia↔Zara whisper exchanges. `native_audio_readiness` still gates spoken-word rendering; SC0089 remains coherent under suppression because the dramatic motor is movement, sound design (suppressed round, vibration-through-seam, distant radio chatter), and breath — not spoken negotiation.
+- **Coverage (7 shots, natural):**
+  1. Corridor longshot establishing — lit-pool / dark interval rhythm
+  2. Light-pool transit (two figures, controlled pace, low thermal signature read)
+  3. Wall-vibration detection beat — Nadia's fingers on repair seam
+  4. Embankment scale + takedown insert
+  5. Zara wound reveal — hand returning dark from below jacket
+  6. Drag-walk fifty meters to drainage cut
+  7. Drainage cover pull + entry into conduit (cliffhanger close)
+- **Narrative weight:** Pre-climax peak. Multi-vector Dimitri hunt confirms Roman's deployment escalation; first physical injury to an ally character; transactional Nadia↔Zara dynamic crosses into mutual-stakes territory; sets up VELTAIN infiltration sequence (SC0093 onward).
+- **Production readiness:**
+  - All required visible characters on main (C01 v2, C06 v2)
+  - Dimitri (C04 v2) merged — only V.O. usage, no visual production
+  - HERALD_HALO not required (this scene predates direct Halo presence in this corridor)
+  - Locations grandfathered-equivalent (treated under same operational pattern as LOC001 in original §§ 5–6)
+  - Wardrobe handled prompt-level (no asset PR)
+  - Shot manifests: all 7 will be new files in PR-GOLDEN-2 (no SH001 exists for SC0089 yet)
+
+### 9.4 Scoring matrix — SC0089 row added
+
+```text
+Scene  Category                                Nadia  Action  Other-char  Dialogue  Coverage  Readiness  Total
+=====  ======================================  =====  ======  ==========  ========  ========  =========  =====
+SC0089  Crucible pursuit (selected)             3      3       3 (C06+C04) 2*        3         3          17
+SC0001  A Vale Residence (superseded)           3      0       2 (C03)     3         3         3          14
+```
+
+`*` Dialogue scored 2 (not 3) because suppressed-native-audio rendering does not damage the scene — minimal spoken load is a *strength* under the current gate, not a deficit. "Herald pressure" column from § 3 is reframed as "Action" for SC0089 because the dramatic register is kinetic, not broadcast-system pressure; the criteria spirit is "what is the scene stress-testing" and SC0089 stress-tests action choreography + sound design + multi-character coordination, where SC0001 stress-tested domestic continuity + insert/detail discipline.
+
+### 9.5 Hand-off to PR-GOLDEN-1 (SC0089)
+
+PR-GOLDEN-1 will produce:
+```text
+schemas/golden_reference_plan.schema.json                     [new]
+scripts/validate_production_records.py                        [register golden_reference_plan record type]
+planning/scenes/SC0089/golden_reference_plan.yaml             [new, populated for SC0089]
+```
+
+The SC0089 `golden_reference_plan.yaml` will encode the §9.3 contents in structured form, including the wardrobe `prompt_level_continuity_policy` directive verbatim.
+
+### 9.6 What this amendment does NOT do
+
+```text
+- does NOT create golden_reference_plan.yaml (PR-GOLDEN-1)
+- does NOT add the golden_reference_plan schema (PR-GOLDEN-1)
+- does NOT modify the validator (PR-GOLDEN-1)
+- does NOT open shot element manifests (PR-GOLDEN-2)
+- does NOT generate Kling prompts (PR-GOLDEN-3)
+- does NOT register video takes or QC reviews (PR-GOLDEN-4..5)
+- does NOT touch C01 v2 or C06 visual records (no asset change)
+- does NOT promote @Nadia alias, LOC001/PROP003 v2, or open any wardrobe look_variant
+```
+
+### 9.7 Validation guarantee (amendment)
+
+Still docs-only. No production records, schemas, validator, or YAML data files touched.
+
+```bash
+python scripts/validate_production_records.py --repo-root .   # → unchanged record count, all valid
+python -m pytest -q                                            # → unchanged pass count
 python scripts/check_referential_integrity.py …               # → 0 errors (unchanged)
 ```
