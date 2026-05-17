@@ -20,7 +20,7 @@ def _write_yaml(path: Path, payload: dict) -> None:
 def test_scene_to_kling_alias_resolves_sc0001_repo_data() -> None:
     rows = resolve_scene_aliases(Path.cwd(), "SC0001")
     by_char = {row.character_id: row.kling_element_alias for row in rows}
-    assert by_char["C01"] == "@C01_HOME_MORNING"
+    assert by_char["C01"] == "@C01_NADIA_CANON_V2"
     assert by_char["C03"] == "@C03_DOMESTIC_STAFF"
 
 

@@ -1,0 +1,35 @@
+schema_version: "0.x-draft"
+record_type: kling_character_look_element
+kling_character_look_element_id: KLING_ELEM_C01_NADIA_CANON_V2_V001
+character_id: C01
+identity_anchor_id: C01_IDENTITY_ANCHOR_V001
+look_id: C01_LOOK_NADIA_CANON_V2_V001
+kling_element_alias: '@C01_NADIA_CANON_V2'
+display_name: C01 Nadia Canonical V2
+status: review
+element_role: character_look_composite
+source_reference_chain:
+  identity_source_ref: MJ_OMNI_REF_C01_NADIA_CANON_V2_V001
+  front_hero_lock_ref: external://local_manual/drmyn-studio-images/Nadia/stage 2/ChatGPT Image 17 May 2026 15_19_50.png
+  perspective_pack_id: GPTIMG2_C01_NADIA_CANON_V2_PERSPECTIVE_PACK_V001
+  wardrobe_ids:
+    - WD001
+omni_usage_policy:
+  use_as_primary_character_element: true
+  do_not_mix_with_other_same_character_look_aliases_in_same_shot: true
+  wardrobe_is_baked_into_element: true
+  separate_wardrobe_element_optional: false
+notes: >
+  v2 canonical Nadia kling character-look element bound to KLING_REF_C01_NADIA_CANON_V2_V001
+  (look_variants/C01_NADIA_CANON_V2/kling_element_reference.yaml). Front hero lock
+  is the GPTIMG2_C01_NADIA_CANON_V2_P01_FRONT_V001 selected output from the v2
+  three-view perspective pack. Wardrobe baked at WD001 (domestic morning) because
+  the v2 reference's plain matte dark fitted top serves as the v2 rendering of the
+  same domestic-morning silhouette used by the v1 HOME_MORNING binding. Resolver
+  alias @C01_NADIA_CANON_V2 distinct from v1 @C01_HOME_MORNING; the two coexist
+  per A-path binding migration (PR-C01-V2-BIND mini-PR). PR-GOLDEN-3 will use
+  @C01_NADIA_CANON_V2 for the golden SC0001 Kling Omni prompts via the
+  scene_character_look_map binding.
+provenance:
+  created_by: hknbb
+  created_at: "2026-05-18T00:00:00Z"
