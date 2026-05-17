@@ -91,8 +91,9 @@ class CanonHydrationReviewInfraTests(unittest.TestCase):
 
         queue_payload = json.loads(queue_json.read_text(encoding="utf-8"))
         self.assertEqual(5, len(queue_payload["queue"]["A"]))
-        # Deterministic count updated after PROD-LINE-14D added WD005/WD006 planning wardrobe records.
-        self.assertEqual(20, len(queue_payload["queue"]["B"]))
+        # Deterministic count updated after PROD-LINE-14D added WD005/WD006 planning wardrobe records,
+        # then incremented when PR-ZARA-1 added planning/characters/C06.yaml (Zara Okonkwo intake).
+        self.assertEqual(21, len(queue_payload["queue"]["B"]))
         self.assertEqual(5, len(queue_payload["queue"]["C"]))
         self.assertEqual(115, len(queue_payload["queue"]["D"]))
         self.assertTrue((packet_root / "SC0001.md").exists())

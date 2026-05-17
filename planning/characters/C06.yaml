@@ -1,0 +1,84 @@
+character_id: C06
+display_name: "Zara Okonkwo"
+cue_name: "ZARA"
+role: ALLY
+source_truth_reference:
+  source_character_id: C04
+  source_name: "ZARA OKONKWO"
+  source_files:
+    - source/story_blueprint.md
+    - source/character_dossier.md
+  planning_layer_note: "Compact Phase 2 planning ID C06 maps to source-truth world character C04. The compact C04 slot is occupied by Dimitri Koss (source-truth C06); source IDs are not mirrored to compact IDs when collisions exist. See docs/character_visual_priority_roadmap.md."
+canonical_name: "ZARA OKONKWO"
+aliases: []
+role_label: "Primary ally (conditional; transactional before genuine)"
+story_function: "Secondary arc and parallel transformation to Nadia; the operational ally who provides resources and reach Nadia's own network cannot. Her alignment is explicit and transactional before becoming genuine through mutual recognition and shared cost."
+arc_baseline:
+  wound: "Roman's network holds her daughter Lena through a debt-trap — a fabricated legal liability she can work against indefinitely without ever reducing. She entered the hunter pool because the bounties offered the only income stream that could theoretically reach the debt's floor; she has been telling herself this is pragmatic strategy rather than capitulation."
+  mask: "Mercenary hardness — the pragmatist who takes this work because it is work. Functional enough in the hunter pool; does not fool Nadia for long and does not fool herself."
+  want: "Lena's freedom from Roman's leverage."
+  need: "Act from her own moral judgment rather than the logic of debt and coercion — stop treating the debt as the frame and start treating her own agency as the frame."
+  initial_arc_phase: MASK
+want: "Secure Lena's freedom from Roman's leverage."
+need: "Stop letting the debt define the frame; act from agency instead of coercion logic."
+wound: "Years of surviving inside Roman's system by performing the exact moral compromise it requires."
+mask: "Mercenary hardness; the work-is-work pragmatist register that suppresses both maternal protectiveness and moral intelligence."
+voice_fingerprint:
+  lexicon:
+    - "direct operational economy-of-motion"
+    - "no metaphor"
+    - "no hedging in professional register"
+    - "warmer rhythms and compressed idioms with West African-English inflection when the mask slips"
+  rhythm: "Clipped, front-loaded. Minimum scaffolding. States conclusions before evidence; expects others to keep up. Long pauses before answers she has not decided to give; when she has decided, the sentence arrives whole."
+  default_tactic: "Parallel transaction — states her terms before acting and expects the same clarity in return. Protection and respect at once."
+  status_signals:
+    - "Physical economy — never moves more than the situation requires."
+    - "Occupies specific points in a room rather than filling it; in tight spaces reads as absolute confidence, in large spaces as contained power."
+  verbal_tic: "When she has made a decision she does not like, she exhales once audibly through her nose — a small controlled pressure release, not quite a sigh."
+voice_register: "Direct operational professional register in the field; warmer West African-English rhythm only when the mask slips."
+voice_rhythm: "Clipped, front-loaded, minimum scaffolding; arrives whole when arrives."
+default_tactic: "Parallel transaction — explicit terms before action."
+status_signal:
+  - "Trained physical stillness"
+  - "Occupies specific points, does not fill rooms"
+verbal_tic: "Single audible exhale through the nose when accepting a cost."
+stress_tell: "Hands become very still while eyes move rapidly — the inverse of typical stress pattern; a sign of the training that made her useful to Roman's network."
+concealment_tell: "Suddenly task-oriented — picks up a practical problem and solves it with unnecessary precision; organizes, arranges, checks equipment. The busyness is the tell."
+vulnerability_tell: "Quieter, not louder. Sentences fragment — starts constructions and leaves them open in a way that does not invite completion. Waiting to be understood without having to finish."
+visual_profile:
+  age_range: "mid 30s to early 40s"
+  screen_presence: "Contained operational power; authority from physical economy and decision precision, not display. Stillness reads as confidence, not caution."
+  costume_logic: "Hunter-pool operational tactical-adjacent civilian wardrobe — practical, mobile, dark, nothing decorative; reads as someone who has worked for hire for a long time. Civilian construction, not state-military."
+  silhouette: "Lean to athletic, upright but never tall-for-show; trained to occupy specific points in a room rather than fill it."
+  color_bias: "Dark operational neutrals — black, slate, deep brown, muted olive. No bright color, no flash, no luxury accent."
+  hair_makeup_notes: "Natural maintenance over presentation; West African heritage visible in skin tone, hair texture, face geometry. Hair pulled back or short and practical. No glamor makeup. Tiredness and competence allowed to show — do not soften."
+  evidence_note: "operator_inferred from dossier voice_fingerprint and behavioral tells. Dossier and blueprint do not state visual_profile fields directly; age_range, silhouette, costume_logic, color_bias, hair_makeup_notes drafted from operational professional + hunter-pool context + West African heritage cues in voice. EVIDENCE_THIN on specific wardrobe items — defer to scene-specific look_variants when scene context arrives."
+visual_age_range: "mid 30s to early 40s"
+silhouette_notes: "Contained, economical, professionally still; moves only when she has decided to move."
+costume_logic: "Operational hunter-pool tactical-adjacent civilian wardrobe; no fashion-forward styling, no luxury accessory, no formal military uniform."
+color_bias: "Dark operational neutrals; no flash."
+associated_props: []
+associated_locations: []
+relationship_keys:
+  - "Nadia (C01): conditional alliance — transactional explicit before genuine; mutual recognition across the gap of their circumstances; not rescue, not conversion."
+  - "Lena (source C39): leverage relationship; the structural engine of her arc; motherhood is internal and never performed."
+  - "Roman's network (C02): the system she has been surviving inside by performing the moral compromise it requires."
+known_scene_anchors: []
+do_not_invent_notes:
+  - "Do not style as a glamorous bounty hunter or fashion-forward action figure; she is a working professional, not an aesthetic."
+  - "Do not over-design West African heritage into costume cliché (no traditional dress, no flag colors, no jewelry shorthand)."
+  - "Do not soften her into visible maternal warmth; her motherhood is internal and never performed."
+  - "Do not equip her with a signature weapon as identity prop (no specific gun, no holster used as branding)."
+  - "Do not erase her competence or make her read as amateur, even when wardrobe is utilitarian."
+  - "Do not dress her in a formal military uniform; her look should read civilian hunter-pool / operational utility, not state military."
+unresolved_questions:
+  - "TODO_REVIEW: visual_profile age_range / silhouette / costume_logic / color_bias / hair_makeup_notes are operator_inferred from dossier voice and behavior cues. Dossier and blueprint do not state visual_profile directly. Confirm or amend before locking Stage 1 MJ V8.1 winner."
+  - "EVIDENCE_THIN: specific wardrobe garment breakdown for first-appearance scene; scene_anchors not yet established. Defer to scene-specific look_variants when scene context arrives."
+  - "UNRESOLVED: known_scene_anchors and associated_locations require dossier deep read or scene_card / scene_excerpt cross-check before population."
+continuity_refs:
+  wardrobe_ids: []
+  prop_ids: []
+  key_scene_ids: []
+status: review
+review_status: pending
+canon_lock: false
