@@ -1,0 +1,87 @@
+character_id: C07
+display_name: "Sera (Seraphina Mast)"
+cue_name: "SERA"
+role: ALLY
+source_truth_reference:
+  source_character_id: C07
+  source_name: "SERA (SERAPHINA MAST)"
+  source_files:
+    - source/story_blueprint.md
+    - source/character_dossier.md
+  planning_layer_note: "Compact Phase 2 planning ID C07 aligns coincidentally with source-truth C07 — no collision, the compact C07 slot was previously unassigned. Per docs/character_visual_priority_roadmap.md."
+canonical_name: "SERA (SERAPHINA MAST)"
+aliases:
+  - "Seraphina Mast"
+role_label: "Secondary Supporting / Ambiguous Media Ally"
+story_function: "Film's external intelligence vector and conduit between Nadia's internal fight and the world outside the game. Receives what Nadia cannot broadcast through Roman's system and publishes through channels Roman cannot suppress. Ally with her own institutional constraints — a senior editor (Morvan, C44) applies pressure to kill the story — her arc tracks whether those constraints will cost Nadia the window she needs."
+arc_baseline:
+  wound: "A previous source was burned after Sera's story was pulled at institutional pressure. She blamed herself for not moving faster, not protecting the source better. Wound produces over-correction: she now verifies past the point of comfort before publishing, which can cost the people who need her to move fast."
+  mask: "Hard-nosed professional skepticism as armor. Performs distrust as a virtue when it is actually protection against the guilt of failing another source."
+  want: "The story and the institutional vindication that comes with it."
+  need: "Act as a protector rather than a recorder — understand that her relationship to the source is not just editorial but human."
+  initial_arc_phase: MASK
+want: "The story and the institutional vindication it represents."
+need: "Act as a protector rather than a recorder."
+wound: "Lost a previous source to institutional pressure after a story got pulled; she blamed herself for not moving faster to protect them."
+mask: "Hard-nosed professional skepticism as armor; performed distrust covering the guilt of failing another source."
+voice_fingerprint:
+  lexicon:
+    - "media-investigative register"
+    - "sourcing, verification, documentation chains"
+    - "evidentiary terms even when talking about feelings"
+  rhythm: "Fast and overlapping; processes aloud, starts sentences before finishing thinking them, launches into the next before the previous one fully lands. Forward-moving energy."
+  default_tactic: "Skepticism performance — pushes back on everything first to establish proof before committing. With Nadia, friction becomes basis of respect."
+  status_signals:
+    - "Claims authority through implied informational superiority."
+    - "Suggests she already knows more than she does — asymmetry that gets sources to fill the gaps."
+  verbal_tic: "Ends questions with 'Right?' when actually uncertain. Verbal tic reveals what the performance conceals."
+voice_register: "Media-investigative professional in default mode; childlike simple questions when vulnerable."
+voice_rhythm: "Fast, overlapping, forward-moving."
+default_tactic: "Skepticism performance — verification-first."
+status_signal:
+  - "Implied informational superiority"
+  - "Note-taking as physical reassurance"
+verbal_tic: "'Right?' ending uncertain questions."
+stress_tell: "Starts writing notes even when there is nothing yet to write. The act of recording is her physical reassurance."
+concealment_tell: "Doubles down on professional language — the more frightened she is, the more editorial her tone becomes."
+vulnerability_tell: "Falls quiet and starts asking very simple, almost childlike questions. The architecture falls away."
+visual_profile:
+  age_range: "mid 30s to mid 40s"
+  screen_presence: "Forward-moving institutional intelligence; energy reads as fast-processing journalist, alert eye contact, slightly leaned-in physical engagement. Hard-nosed professional skepticism as worn armor — performed distrust covering self-doubt."
+  costume_logic: "Senior investigative journalist practical professional wear — smart-casual newsroom and field hybrid, dark neutral palette, layered functional construction (jacket over fitted top, dark trousers or simple skirt), nothing fashion-forward, nothing TV-anchor-coded. Reads as someone who has been working long hours and dresses to be taken seriously without performing femininity or glamor."
+  silhouette: "Upright, slightly forward-leaning, dynamic but contained — body language of someone always partially mid-question."
+  color_bias: "Dark professional neutrals — black, charcoal, navy, deep brown. Occasional muted shirt accent. No bright color, no fashion accent, no glamor finish."
+  hair_makeup_notes: "Natural professional maintenance, often pulled back or short and practical; can show fatigue (long-hours journalist read). Subtle natural-light makeup or none. No anchor-studio glamor, no contour. Glasses optional and scene-dependent — not a base identity prop."
+  heritage: "unspecified / not visually asserted — do not stylize toward any specific ethnic identity from the legal name Seraphina Mast; visual identity built from professional posture, intellectual alertness, and institutional fighter register, not heritage cues."
+  evidence_note: "visual_profile is largely operator_inferred because dossier and blueprint do not state visual_profile fields directly. Inference grounded in dossier voice_fingerprint (forward-moving energy, media-investigative register), behavioral_tells (note-taking, doubling down on professional language), and institutional context (senior journalist with editor C44 Morvan above her). Heritage intentionally unspecified per the same discipline applied to C08 Jin."
+visual_age_range: "mid 30s to mid 40s"
+silhouette_notes: "Upright, slightly forward-leaning, dynamic but contained."
+costume_logic: "Senior investigative journalist newsroom-and-field practical professional wear; no anchor styling, no glamor."
+color_bias: "Dark professional neutrals; no flash."
+associated_props: []
+associated_locations: []
+relationship_keys:
+  - "Nadia (C01): alliance through shared interest; journalist-source dynamic with genuine stakes; friction becomes respect."
+  - "Morvan (source C44, compact ID TBD): senior editor applying institutional pressure to kill the story; structural constraint engine of Sera's arc."
+known_scene_anchors: []
+do_not_invent_notes:
+  - "Do not style as a glamorous TV news anchor (no anchor-studio makeup, no anchor-desk lighting, no broadcast-set context)."
+  - "Do not style as paparazzi-cliche or 'girl reporter' archetype with theatrical accessories."
+  - "Do not style as noir-detective-trope with trenchcoat, fedora, or stylized smoking imagery."
+  - "Do not over-perform femininity in costume; no fashion-spread, no glamor cosmetics, no styling that fights the working-journalist register."
+  - "Do not bake notebook, recorder, or press-credential lanyard into base identity; those are scene-context props, not base identity (defer to PROP-* records if needed)."
+  - "Do not assume specific ethnic features from the legal name Seraphina Mast; keep heritage neutral and not visually asserted."
+  - "Do not depict Sera mid-publication or mid-print as base identity — those are scene-specific moments, not base identity register."
+  - "Do not style as 'cool' tech-journalist trope (no oversized headphones, no laptop as identity accessory, no startup-office wardrobe)."
+  - "Do not make glasses, notebook, recorder, phone, laptop, or press badge mandatory identity anchors; they may appear only as scene-specific props if required."
+unresolved_questions:
+  - "TODO_REVIEW: visual_profile is operator_inferred from dossier voice_fingerprint, behavioral_tells, and institutional context. Dossier does not state visual_profile fields. Confirm or amend before locking Stage 1 MJ V8.1 winner."
+  - "EVIDENCE_THIN: specific wardrobe garment breakdown for first-appearance scene; defer to scene-specific look_variants when scene context arrives."
+  - "UNRESOLVED: known_scene_anchors and associated_locations require cross-check against scene records once dossier deep-read or scene_card harvest is performed."
+continuity_refs:
+  wardrobe_ids: []
+  prop_ids: []
+  key_scene_ids: []
+status: review
+review_status: pending
+canon_lock: false
