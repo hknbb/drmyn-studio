@@ -8,7 +8,7 @@ stage_1:
   role: narrative_identity_reference
   prompt_template_ref: templates/element_reference_prompts/character_mj_v8_narrative_identity.md
   model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260507T140000Z_midjourney.yaml
-  output_ref: pending_external://C05_NARRATIVE_IDENTITY_V001
+  output_ref: external://local_manual/drmyn-studio-images/u9435212546_Marcus_East_Asian_heritage_late_30s_to_early_40s__8477f71b-fbe0-4939-9420-1b006b657900_3.png
   qc_focus:
     - character_description_strength
     - face_geometry_clarity
@@ -22,8 +22,8 @@ stage_2:
   role: omni_reference_identity_refinement
   prompt_template_ref: templates/element_reference_prompts/character_mj_v7_oref_refinement.md
   model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260507T140000Z_midjourney.yaml
-  input_ref: pending_external://C05_NARRATIVE_IDENTITY_V001
-  output_ref: pending_external://MJ_OMNI_REF_C05_V001
+  input_ref: external://local_manual/drmyn-studio-images/u9435212546_Marcus_East_Asian_heritage_late_30s_to_early_40s__8477f71b-fbe0-4939-9420-1b006b657900_3.png
+  output_ref: external://local_manual/drmyn-studio-images/u9435212546_Marcus_East_Asian_heritage_late_30s_to_early_40s__8477f71b-fbe0-4939-9420-1b006b657900_3.png
   uses_oref: true
   qc_focus:
     - identity_consistency
@@ -31,8 +31,8 @@ stage_2:
     - no_redesign
 handoff:
   to_model: gpt_images_2
-  source_reference_id: pending_external://MJ_OMNI_REF_C05_V001
-notes: Draft v2 reference chain scaffold. Stage outputs remain pending_external until the operator generates and selects real images per the prompt templates.
+  source_reference_id: external://local_manual/drmyn-studio-images/u9435212546_Marcus_East_Asian_heritage_late_30s_to_early_40s__8477f71b-fbe0-4939-9420-1b006b657900_3.png
+notes: Stage 1 winner registered 2026-05-17 from MJ V8.1 narrative identity pack (seed 2598789). Wardrobe operational private muted dark hoodie, watchful held-back register held; East Asian heritage anchor net. Stage 2 V7 oref refinement attempted but all candidates exhibited urban fashion-editorial drift plus watermarks; operator decision is to retain Stage 1 winner as the Stage 2 reference (oref refinement skipped, Option C path). Identity source for Stage 3 GPT Images 2 pack is the Stage 1 winner directly.
 provenance:
   created_by: hknbb
   created_at: "2026-05-16T00:00:00Z"

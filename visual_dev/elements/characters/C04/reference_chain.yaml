@@ -8,7 +8,7 @@ stage_1:
   role: narrative_identity_reference
   prompt_template_ref: templates/element_reference_prompts/character_mj_v8_narrative_identity.md
   model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260507T140000Z_midjourney.yaml
-  output_ref: pending_external://C04_NARRATIVE_IDENTITY_V001
+  output_ref: external://local_manual/drmyn-studio-images/u9435212546_Dimitri_40s_controlled_precise_hard-edged_operati_c57ccc79-0866-46f8-a0f7-fce45232a4e0_0.png
   qc_focus:
     - character_description_strength
     - face_geometry_clarity
@@ -22,8 +22,8 @@ stage_2:
   role: omni_reference_identity_refinement
   prompt_template_ref: templates/element_reference_prompts/character_mj_v7_oref_refinement.md
   model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260507T140000Z_midjourney.yaml
-  input_ref: pending_external://C04_NARRATIVE_IDENTITY_V001
-  output_ref: pending_external://MJ_OMNI_REF_C04_V001
+  input_ref: external://local_manual/drmyn-studio-images/u9435212546_Dimitri_40s_controlled_precise_hard-edged_operati_c57ccc79-0866-46f8-a0f7-fce45232a4e0_0.png
+  output_ref: external://local_manual/drmyn-studio-images/u9435212546_Dimitri_40s_controlled_precise_hard-edged_operati_c57ccc79-0866-46f8-a0f7-fce45232a4e0_0.png
   uses_oref: true
   qc_focus:
     - identity_consistency
@@ -31,8 +31,8 @@ stage_2:
     - no_redesign
 handoff:
   to_model: gpt_images_2
-  source_reference_id: pending_external://MJ_OMNI_REF_C04_V001
-notes: Draft v2 reference chain scaffold. Stage outputs remain pending_external until the operator generates and selects real images per the prompt templates.
+  source_reference_id: external://local_manual/drmyn-studio-images/u9435212546_Dimitri_40s_controlled_precise_hard-edged_operati_c57ccc79-0866-46f8-a0f7-fce45232a4e0_0.png
+notes: Stage 1 winner registered 2026-05-17 from MJ V8.1 narrative identity pack (seed 1242). Stage 2 V7 oref refinement attempted 2026-05-17 (seed 125442, ow 800); three candidates all carried watermark, tie-clip drift, or turtleneck drift while preserving identity. Operator decision (Option C) retained Stage 1 winner as the locked identity reference; Stage 2 output_ref mirrors Stage 1 output_ref. Identity reads operational executive tailoring sade siyah suit, lean instrument silhouette, controlled precise hard-edged register, distinct from C02 Roman patrician sovereign read. Ready for Stage 3 GPT Images 2 three-view scale-angle pack.
 provenance:
   created_by: hknbb
   created_at: "2026-05-16T00:00:00Z"

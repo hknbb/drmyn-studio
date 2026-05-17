@@ -2,7 +2,7 @@ schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
 prompt_pack_id: GPTIMG2_C05_PERSPECTIVE_PACK_V001
 status: draft
-source_reference_id: pending_external://MJ_OMNI_REF_C05_V001
+source_reference_id: external://local_manual/drmyn-studio-images/u9435212546_Marcus_East_Asian_heritage_late_30s_to_early_40s__8477f71b-fbe0-4939-9420-1b006b657900_3.png
 target_model: gpt_images_2
 target_role: multi_perspective_element_expander
 element_id: C05

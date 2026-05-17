@@ -1,0 +1,25 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KLING_REF_C03_V001
+status: review
+element_id: C03
+element_type: character
+source_midjourney_reference:
+  reference_id: MJ_OMNI_REF_C03_V001
+  prompt_id: MJ_PROMPT_C03_OREF_V001
+gpt_images_2_perspectives:
+  front_reference: GPTIMG2_C03_P01_FRONT_V001
+  three_quarter_medium_reference: GPTIMG2_C03_P02_TQM_V001
+  three_quarter_close_reference: GPTIMG2_C03_P03_TQC_V001
+continuity_anchors:
+  - fixed grey hair pulled back plainly
+  - fixed deeply lined 70s face geometry
+  - fixed practical service workwear silhouette
+  - fixed muted neutral service palette
+  - fixed compact work-shaped build
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-PROD-LINE-C03-THREE-VIEW-2026-05-16
+downstream_use:
+  - kling_omni_3_shot_prompt
