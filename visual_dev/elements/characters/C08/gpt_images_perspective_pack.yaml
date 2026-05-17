@@ -1,0 +1,60 @@
+schema_version: "0.x-draft"
+record_type: gpt_images_perspective_pack
+prompt_pack_id: GPTIMG2_C08_PERSPECTIVE_PACK_V001
+status: draft
+source_reference_id: pending_external://C08_JIN_GPTIMG2_FIRST_REFERENCE_V001
+target_model: gpt_images_2
+target_role: multi_perspective_element_expander
+element_id: C08
+element_type: character
+perspective_policy: three_view_scale_angle_v2
+full_body_visible: false
+source_refs:
+  model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260504T113000Z_chatgpt_image.yaml
+shared_preservation_instruction: Preserve ordinary infant identity, age read approximately eight months, simple practical infant clothing, muted soft domestic neutral palette, and safe-support care context across all views. Change only camera angle and framing scale. Never depict unsafe handling, unsupported posing, distress, injury, restraint, or themed costume.
+prompts:
+  - prompt_id: GPTIMG2_C08_P01_FRONT_V001
+    perspective: front_reference
+    prompt_text: Use the uploaded protected-subject infant reference as the strict identity source. Generate one front-facing production reference image of the same infant, approximately eight months old, sitting safely supported on a neutral soft surface, calm or neutral expression, front view, full identity read. Preserve face geometry, ordinary infant skin tone and texture, sparse soft natural hair, simple practical infant clothing in muted soft domestic neutrals. Change only camera angle and framing scale. No left/right or profile instruction. Care context required (safe support surface, soft infant blanket, or identity-neutral off-frame support hand acceptable; do not introduce a new adult character). No distress, no crying, no medical instrumentation, no hospital bracelet shown, no unsafe handling, no unsupported posing, no crib-risk imagery, no restraint, no injury. No props beyond care surface or blanket, no furniture beyond support surface, no extra people, no text, no watermark, no logo, no brand mark, no themed costume, no military-style outfit, no glow lighting, no soft-focus saintly halo, no idealization effects. Aspect ratio 2:3.
+    constraints:
+      - preserve ordinary infant identity
+      - safe support context required
+      - no distress or unsafe handling
+      - no themed or narrative-coded wardrobe
+      - no idealization or glow stylization
+      - change only camera angle and framing scale
+    expected_output:
+      asset_type: still
+      aspect_ratio: "2:3"
+  - prompt_id: GPTIMG2_C08_P02_TQM_V001
+    perspective: three_quarter_medium_reference
+    prompt_text: Use the uploaded protected-subject infant reference as the strict identity source. Generate one three-quarter-angle production reference image of the same infant at medium framing, approximately eight months old, sitting safely supported, calm or neutral expression. Preserve face geometry, ordinary infant skin tone and texture, sparse soft natural hair, simple practical infant clothing in muted soft domestic neutrals. Change only camera angle and framing scale. No left/right or profile instruction. Care context required (safe support surface, soft infant blanket, or identity-neutral off-frame support hand acceptable; do not introduce a new adult character). No distress, no crying, no medical instrumentation, no hospital bracelet shown, no unsafe handling, no unsupported posing, no crib-risk imagery, no restraint, no injury. No props beyond care surface or blanket, no furniture beyond support surface, no extra people, no text, no watermark, no logo, no brand mark, no themed costume, no military-style outfit, no glow lighting, no soft-focus saintly halo, no idealization effects. Aspect ratio 2:3.
+    constraints:
+      - preserve ordinary infant identity
+      - safe support context required
+      - no distress or unsafe handling
+      - no themed or narrative-coded wardrobe
+      - no idealization or glow stylization
+      - change only camera angle and framing scale
+    expected_output:
+      asset_type: still
+      aspect_ratio: "2:3"
+  - prompt_id: GPTIMG2_C08_P03_TQC_V001
+    perspective: three_quarter_close_reference
+    prompt_text: Use the uploaded protected-subject infant reference as the strict identity source. Generate one three-quarter-angle production reference image of the same infant at closer framing, approximately eight months old, calm or neutral expression. Preserve face geometry, ordinary infant skin tone and texture, sparse soft natural hair, simple practical infant clothing in muted soft domestic neutrals. Change only camera angle and framing scale. No left/right or profile instruction. Care context required (safe support surface, soft infant blanket, or identity-neutral off-frame support hand acceptable; do not introduce a new adult character). No distress, no crying, no medical instrumentation, no hospital bracelet shown, no unsafe handling, no unsupported posing, no crib-risk imagery, no restraint, no injury. No props beyond care surface or blanket, no furniture beyond support surface, no extra people, no text, no watermark, no logo, no brand mark, no themed costume, no military-style outfit, no glow lighting, no soft-focus saintly halo, no idealization effects. Aspect ratio 2:3.
+    constraints:
+      - preserve ordinary infant identity
+      - safe support context required
+      - no distress or unsafe handling
+      - no themed or narrative-coded wardrobe
+      - no idealization or glow stylization
+      - change only camera angle and framing scale
+    expected_output:
+      asset_type: still
+      aspect_ratio: "2:3"
+qc_gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  failed_perspective_revision_only: true
+downstream_use:
+  - kling_omni_3_shot_prompt
