@@ -1,0 +1,50 @@
+schema_version: "0.x-draft"
+record_type: system_character_reference_chain
+system_character_element_id: HERALD_HALO_V001
+status: draft
+identity_pipeline: gpt_images_2_direct
+stage_1_skipped:
+  reason: >
+    The HALO UNIT has no human-face identity to lock via Midjourney V8.1
+    narrative identity reference. Midjourney narrative identity pipeline
+    (character_mj_v8_narrative_identity / character_mj_v7_oref_refinement)
+    is not appropriate for a service-robot body. Stage 1 and Stage 2 are
+    intentionally skipped; the GPT Images 2 perspective pack runs directly
+    from a text-only first reference call.
+stage_3:
+  model: gpt_images_2
+  role: multi_perspective_system_element_expander
+  prompt_template_ref: templates/element_reference_prompts/system_character_gptimg2_first_reference.md
+  model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260504T113000Z_chatgpt_image.yaml
+  first_reference_output_ref: pending_external://HERALD_HALO_GPTIMG2_FIRST_REFERENCE_V001
+  perspective_pack_id: GPTIMG2_HERALD_HALO_PERSPECTIVE_PACK_V001
+  qc_focus:
+    - silhouette_legibility
+    - sensor_array_readability
+    - material_palette_continuity
+    - production_reference_cleanliness
+    - hallucination_absence
+    - no_cute_robot_drift
+    - no_humanoid_face_drift
+    - no_chrome_glossy_drift
+handoff:
+  to_model: kling_omni_3
+  source_reference_id: pending_external://HERALD_HALO_GPTIMG2_FIRST_REFERENCE_V001
+  notes: >
+    Stage 3 GPT Images 2 first-reference output becomes the identity source
+    for the three-view scale-angle perspective pack. The pack outputs in turn
+    bind to the kling_element_reference under element_type "other" (the
+    existing kling_element_reference_record schema element_type enum already
+    accepts "other"; no additive schema change required for downstream Kling
+    registration).
+notes: >
+  Phase 3 scaffold per revised_character_batch_to_golden_scene_plan.md
+  (PR-HALO-1). Stage outputs remain pending_external until PR-HALO-2 generates
+  and selects real images per the prompt template. This reference_chain.yaml
+  is YAML data only (no JSON schema registered for system_character_reference_chain
+  — same convention as the existing character_reference_chain). Validator
+  registration is scoped to identity_plan.yaml (system_character_element)
+  to keep the additive schema surface minimal.
+provenance:
+  created_by: hknbb
+  created_at: "2026-05-17T00:00:00Z"
