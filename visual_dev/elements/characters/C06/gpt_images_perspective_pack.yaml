@@ -2,7 +2,7 @@ schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
 prompt_pack_id: GPTIMG2_C06_PERSPECTIVE_PACK_V001
 status: draft
-source_reference_id: pending_external://MJ_OMNI_REF_C06_V001
+source_reference_id: external://local_manual/drmyn-studio-images/Zara/Stage 2/u9435212546_Use_the_uploaded_character_reference_as_the_stric_a2081705-468d-495c-a856-b38f7e2d5980_3.png
 target_model: gpt_images_2
 target_role: multi_perspective_element_expander
 element_id: C06
