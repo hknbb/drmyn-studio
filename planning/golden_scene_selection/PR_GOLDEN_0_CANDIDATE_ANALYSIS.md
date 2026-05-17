@@ -361,7 +361,7 @@ off-camera / inferred:
 
 ### 10.4 Shot coverage for golden SC0001 (illustrative, finalized in PR-GOLDEN-2)
 
-SH001 already exists as a selected-take shot manifest. The golden expansion will add additional coverage (SH002–SH007 candidates, exact count and intents finalized in PR-GOLDEN-2):
+SH001 already exists as a selected-take shot manifest. The golden expansion will add the remaining seven coverage shots (SH002–SH008) to match the existing 8-clip `omni_clip_plan.yaml` (CLIP_SC0001_01–08) and the SH001–SH008 readiness gate preserved in § 6. Exact intents are finalized in PR-GOLDEN-2:
 
 ```text
 SH001 (existing)   selected corridor / frame deviation coverage
@@ -370,7 +370,8 @@ SH003              formula / vitamin dialogue beat
 SH004              tilted Vardova frame insert / detail
 SH005              Nadia reaction close / threat-map hold
 SH006              Birta exit / breakfast line coverage
-SH007              final corridor hold / surveillance geometry close
+SH007              Jin nursery off-screen check / movement transition
+SH008              final corridor hold / surveillance geometry close
 ```
 
 The above is **illustrative coverage**, not a binding shot list. PR-GOLDEN-2 will produce the binding shot_element_manifests and may add, remove, or reorder shots based on alias readiness, dialogue suppression rule application, and SC0001's existing `omni_clip_plan.yaml` (which already references three Omni coverages: SC0001_OMNI01 establish_coverage, SC0001_OMNI02 action_or_deviation_coverage, SC0001_OMNI03 reaction_or_hold_coverage).
@@ -393,7 +394,7 @@ SC0089 still scores higher on the §9.4 weighted matrix, but the revert is drive
 1. PR-GOLDEN-0 amendment Revision 2  (this PR)         — revert selection to SC0001
 2. PR-C01-V2-BIND mini-PR             — migrate SC0001 SH001 + omni / element bindings to C01 v2 (alias remap, no asset changes)
 3. PR-GOLDEN-1                        — golden_reference_plan schema + SC0001 record + validator registration
-4. PR-GOLDEN-2                        — SC0001 full shot element manifests (SH002–SH007 new; SH001 kept)
+4. PR-GOLDEN-2                        — SC0001 full shot element manifests (SH002–SH008 new; SH001 kept) to match the 8-clip omni_clip_plan and the SH001–SH008 readiness gate in §6
 5. PR-GOLDEN-3                        — SC0001 alias-only Kling Omni prompt records
 6. PR-GOLDEN-4                        — Kling take metadata per shot per take
 7. PR-GOLDEN-5                        — video_review QC per take
