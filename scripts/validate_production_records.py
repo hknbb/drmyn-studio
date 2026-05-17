@@ -104,6 +104,9 @@ IDENTITY_EVIDENCE_SET_PATTERN = (
     "visual_dev/elements/characters/*/identity_evidence_sets/*.yaml"
 )
 SCENE_CHARACTER_LOOK_MAP_PATTERN = "visual_dev/omni_sets/SC*/scene_character_look_map.yaml"
+SYSTEM_CHARACTER_ELEMENT_PATTERN = (
+    "visual_dev/elements/system_characters/*/identity_plan.yaml"
+)
 AESTHETIC_BIBLE_PATH = "planning/aesthetic_bible.yaml"
 SCENE_CLIP_MAP_PATH = "evidence/scene_clip_map.csv"
 
@@ -276,6 +279,9 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         "character_look_variant": sorted(repo_root.glob(CHARACTER_LOOK_VARIANT_PATTERN)),
         "identity_evidence_set": sorted(repo_root.glob(IDENTITY_EVIDENCE_SET_PATTERN)),
         "scene_character_look_map": sorted(repo_root.glob(SCENE_CHARACTER_LOOK_MAP_PATTERN)),
+        "system_character_element": sorted(
+            repo_root.glob(SYSTEM_CHARACTER_ELEMENT_PATTERN)
+        ),
         "aesthetic_bible": (
             [repo_root / AESTHETIC_BIBLE_PATH]
             if (repo_root / AESTHETIC_BIBLE_PATH).is_file()
@@ -2324,6 +2330,7 @@ def run_validation(
     character_look_variant_validator: Draft202012Validator | None = None
     identity_evidence_set_validator: Draft202012Validator | None = None
     scene_character_look_map_validator: Draft202012Validator | None = None
+    system_character_element_validator: Draft202012Validator | None = None
     production_batch_validator: Draft202012Validator | None = None
     aesthetic_bible_validator: Draft202012Validator | None = None
 
@@ -2657,6 +2664,20 @@ def run_validation(
                     repo_root=repo_root,
                     record_type=record_type,
                     validator=review_decision_record_validator,
+                )
+            elif record_type == "system_character_element":
+                if system_character_element_validator is None:
+                    system_character_element_schema = load_schema(
+                        repo_root / "schemas" / "system_character_element.schema.json"
+                    )
+                    system_character_element_validator = Draft202012Validator(
+                        system_character_element_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=system_character_element_validator,
                 )
             elif record_type == "gpt_images_perspective_pack":
                 if gpt_images_perspective_pack_validator is None:
