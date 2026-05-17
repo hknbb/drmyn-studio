@@ -1,0 +1,93 @@
+character_id: C08
+display_name: "Jin Vale"
+cue_name: "JIN"
+role: PROTECTED_SUBJECT
+source_truth_reference:
+  source_character_id: C12
+  source_name: "JIN VALE"
+  source_files:
+    - source/story_blueprint.md
+    - source/character_dossier.md
+  planning_layer_note: "Compact Phase 2 planning ID C08 maps to source-truth world character C12. Compact C07 is reserved for Sera (Phase 7). Per docs/character_visual_priority_roadmap.md."
+canonical_name: "JIN VALE"
+aliases: []
+role_label: "Protected subject / emotional objective"
+story_function: "The film's moral center of gravity. Not a narrative agent. Presence registers first as a real infant with physical needs, then as story function. His safety is the emotional reality check against which every scene of Nadia's suffering is measured."
+arc_baseline:
+  wound: "Not applicable (infant; protected subject)."
+  mask: "Not applicable."
+  want: "Not applicable in narrative agency terms."
+  need: "Not applicable in narrative agency terms."
+  initial_arc_phase: NOT_APPLICABLE
+want: "Not applicable; Jin represents the cost of everything Nadia does and the reason it has to be worth it."
+need: "Not applicable in narrative agency terms."
+wound: "Not applicable."
+mask: "Not applicable."
+voice_fingerprint:
+  lexicon:
+    - "pre-verbal"
+  rhythm: "Pre-verbal. Presence communicated through physical detail and carer behavior rather than dialogue."
+  default_tactic: "Not applicable."
+  status_signals:
+    - "Responds to Nadia's voice"
+    - "Reaches for her when she is present"
+  verbal_tic: "Pre-verbal; warmth and ordinary infant need are the film's emotional reality check."
+voice_register: "Pre-verbal."
+voice_rhythm: "Not applicable."
+default_tactic: "Not applicable."
+status_signal:
+  - "Responsive to known carer voice"
+verbal_tic: "Pre-verbal."
+stress_tell: "Ordinary infant distress patterns (kept off-screen per protected-subject ethics; not exploited for content)."
+concealment_tell: "Not applicable."
+vulnerability_tell: "Ordinary infant need (warmth, hunger, fatigue) registered through scene-context, not performance."
+visual_profile:
+  age_range: "approximately 8 months old (infant)"
+  screen_presence: "Ordinary infant specificity — physical reality of a real baby with real needs, not a symbolic prop or plot device. Presence registers first as a person, then as story function."
+  costume_logic: "Simple practical infant clothes — soft cotton, age-appropriate construction, domestic wear. No costuming as device, no themed clothing, no narrative-coded outfits."
+  silhouette: "Standard 8-month-old infant proportions — sitting baby supported, no precocious posing, no theatrical action stance."
+  color_bias: "Muted soft domestic neutrals — cream, pale grey, soft white, muted blue. No bright styling, no themed color palette, no flag colors."
+  hair_makeup_notes: "Natural infant hair (sparse, soft), no makeup, no styling. Allow ordinary infant skin tone and texture; no glamor lighting, no glow effects, no idealization."
+  heritage: "unspecified / not visually asserted — do not infer ethnic or physical features from Vale family parents; visual identity built from age, care context, ordinary infant reality, and warmth only."
+  evidence_note: "visual_profile is largely operator_inferred because dossier and blueprint do not state visual_profile fields directly for Jin. Inference is grounded in protected-subject ethics and the dossier Scene-Use Constraint ('treat as a real infant with the physical logistics, the weight, the needs, and the warmth that entails'). Do NOT treat as canon; defer to scene-specific look_variants when scene context arrives. heritage is intentionally unspecified — Vale family parent inference would be operator overreach and is forbidden per do_not_invent_notes."
+visual_age_range: "approximately 8 months old (infant)"
+silhouette_notes: "Sitting infant supported; no action posing."
+costume_logic: "Simple practical infant domestic wear; no narrative-coded outfit."
+color_bias: "Muted soft domestic neutrals."
+associated_props: []
+associated_locations: []
+relationship_keys:
+  - "Nadia (C01): primary carer; mother; emotional reality check anchor."
+  - "Roman (C02): biological father; antagonist who later takes Jin into custody (narrative driver for Nadia's arc)."
+known_scene_anchors:
+  - SC0003
+  - SC0034
+  - SC0057
+  - SC0109
+  - SC0120
+do_not_invent_notes:
+  - "Do not pose Jin in action, heroic, or dramatic stances; he is a real infant, not a symbol."
+  - "Do not exploit distress (crying, pain, fear shown as content); his vulnerability is not entertainment."
+  - "Do not stylize him with idealized glow lighting, soft-focus saintly halo, or 'magical baby' effects."
+  - "Do not dress him in narrative-coded or themed outfits (no military-style, no branded, no 'captive prop' wardrobe)."
+  - "Do not depict Jin alone in dangerous frames implying abandonment — care context required."
+  - "Do not assume specific ethnic features beyond Vale family parents inference; keep heritage neutral and not visually asserted."
+  - "Do not bake the hospital bracelet (PL09 medical bracelet tracker) into base infant identity; that is a separate prop element (PROP-JIN-BRACELET, deferred)."
+  - "Do not generate unsafe infant handling, unsupported posing, crib-risk imagery, medical distress, injury, or restraint imagery."
+unresolved_questions:
+  - "TODO_REVIEW: visual_profile is operator_inferred from dossier Scene-Use Constraint + Phase 6 protected-subject ethics; dossier does not state visual_profile fields. Confirm before locking Stage 1 reference."
+  - "EVIDENCE_THIN: specific wardrobe color and garment choice for first-appearance scene; defer to scene-specific look_variants when scene context arrives."
+  - "UNRESOLVED: PROP-JIN-BRACELET element record not yet created; tracked here as associated_prop placeholder until PROP intake PR."
+  - "UNRESOLVED: care-context carer figure handling in reference frames — operator_inferred guidance is 'off-frame or identity-neutral support hand/blanket; do not invent a new adult character'. Confirm during Stage 3 generation."
+continuity_refs:
+  wardrobe_ids: []
+  prop_ids: []
+  key_scene_ids:
+    - SC0003
+    - SC0034
+    - SC0057
+    - SC0109
+    - SC0120
+status: review
+review_status: pending
+canon_lock: false
