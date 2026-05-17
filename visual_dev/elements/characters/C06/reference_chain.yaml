@@ -8,7 +8,7 @@ stage_1:
   role: narrative_identity_reference
   prompt_template_ref: templates/element_reference_prompts/character_mj_v8_narrative_identity.md
   model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260507T140000Z_midjourney.yaml
-  output_ref: pending_external://C06_NARRATIVE_IDENTITY_V001
+  output_ref: external://local_manual/drmyn-studio-images/Zara/u9435212546_Zara_West_African_heritage_mid_30s_to_early_40s_c_b2b071c0-7595-4776-94c2-acc67bd85efe_1.png
   qc_focus:
     - character_description_strength
     - face_geometry_clarity
@@ -22,8 +22,8 @@ stage_2:
   role: omni_reference_identity_refinement
   prompt_template_ref: templates/element_reference_prompts/character_mj_v7_oref_refinement.md
   model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260507T140000Z_midjourney.yaml
-  input_ref: pending_external://C06_NARRATIVE_IDENTITY_V001
-  output_ref: pending_external://MJ_OMNI_REF_C06_V001
+  input_ref: external://local_manual/drmyn-studio-images/Zara/u9435212546_Zara_West_African_heritage_mid_30s_to_early_40s_c_b2b071c0-7595-4776-94c2-acc67bd85efe_1.png
+  output_ref: external://local_manual/drmyn-studio-images/Zara/Stage 2/u9435212546_Use_the_uploaded_character_reference_as_the_stric_a2081705-468d-495c-a856-b38f7e2d5980_3.png
   uses_oref: true
   qc_focus:
     - identity_consistency
@@ -31,14 +31,24 @@ stage_2:
     - no_redesign
 handoff:
   to_model: gpt_images_2
-  source_reference_id: pending_external://MJ_OMNI_REF_C06_V001
+  source_reference_id: external://local_manual/drmyn-studio-images/Zara/Stage 2/u9435212546_Use_the_uploaded_character_reference_as_the_stric_a2081705-468d-495c-a856-b38f7e2d5980_3.png
 notes: >
-  Draft v2 reference chain scaffold for C06 Zara Okonkwo (source-truth C04).
-  Stage outputs remain pending_external until PR-ZARA-2 generates and selects
-  real images per the prompt templates. visual_profile in planning/characters/C06.yaml
-  is operator_inferred per feedback_source_hierarchy memory; review before
-  locking Stage 1 winner. Per revised_character_batch_to_golden_scene_plan.md
-  Phase 4 / PR-ZARA-1.
+  Stage 1 winner registered 2026-05-17 from MJ V8.1 narrative identity pack
+  (seed 1242, --stylize 50, expanded --no list covering West African costume
+  cliche + military uniform + signature weapon + glamor). Selected winner:
+  Aday 5 of 6 — technical functional layered top with structured neck wrap
+  reading as civilian hunter-pool operational utility (not military);
+  contained operational power + trained stillness + working professional
+  decision-precision; West African heritage net; clean studio neutral
+  background. Stage 2 V7 oref refinement winner registered 2026-05-17
+  (ow 800, seed 1243352). Selected Stage 2 winner: Aday 3 of 4 — technical
+  functional layered top with structured neck wrap, hands-in-pocket trained
+  stillness, identity preserved from Stage 1, clean studio neutral. Other
+  Stage 2 candidates eliminated for Under Armour brand-logo + outdoor
+  running drift, ear-cuff + heavy contour makeup drift, and vinyl glossy
+  jacket + gold chain luxury drift. Ready for Stage 3 GPT Images 2
+  three-view scale-angle pack. Per revised_character_batch_to_golden_scene_plan.md
+  Phase 4 / PR-ZARA-2.
 provenance:
   created_by: hknbb
   created_at: "2026-05-17T00:00:00Z"
