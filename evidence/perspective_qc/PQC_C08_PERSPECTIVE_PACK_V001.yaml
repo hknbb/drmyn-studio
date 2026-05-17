@@ -1,0 +1,79 @@
+schema_version: "0.x-draft"
+record_type: perspective_qc_report
+perspective_qc_id: PERSPQC_C08_THREE_VIEW_V001
+status: review
+scene_id: SC0003
+element_id: C08
+prompt_pack_id: GPTIMG2_C08_PERSPECTIVE_PACK_V001
+operator_session_ref: OP-PROD-LINE-C08-THREE-VIEW-2026-05-17
+perspective_scores:
+  - prompt_id: GPTIMG2_C08_P01_FRONT_V001
+    perspective: front_reference
+    identity_preservation: 94
+    perspective_usefulness: 93
+    material_palette_continuity: 93
+    production_reference_cleanliness: 95
+    hallucination_absence: 95
+    character_description_strength: 92
+    identity_readability: 94
+    silhouette_readability: 93
+    wardrobe_world_fit: 93
+    expression_performance_readability: 91
+    view_distinction: 92
+    no_directional_confusion: 95
+    total_score: 93
+    decision: pass
+  - prompt_id: GPTIMG2_C08_P02_TQM_V001
+    perspective: three_quarter_medium_reference
+    identity_preservation: 93
+    perspective_usefulness: 92
+    material_palette_continuity: 91
+    production_reference_cleanliness: 93
+    hallucination_absence: 94
+    character_description_strength: 91
+    identity_readability: 93
+    silhouette_readability: 92
+    wardrobe_world_fit: 91
+    expression_performance_readability: 91
+    view_distinction: 91
+    scale_distinction: 89
+    no_directional_confusion: 93
+    total_score: 92
+    decision: pass
+  - prompt_id: GPTIMG2_C08_P03_TQC_V001
+    perspective: three_quarter_close_reference
+    identity_preservation: 94
+    perspective_usefulness: 90
+    material_palette_continuity: 92
+    production_reference_cleanliness: 92
+    hallucination_absence: 94
+    character_description_strength: 91
+    identity_readability: 94
+    silhouette_readability: 76
+    wardrobe_world_fit: 92
+    expression_performance_readability: 91
+    view_distinction: 90
+    scale_distinction: 89
+    no_directional_confusion: 93
+    total_score: 91
+    decision: pass
+gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  can_advance_to_kling_reference: true
+notes: >
+  C08 Jin Vale Stage 3 three-view scale-angle pack QC under protected-subject
+  infant ethics. All three perspectives clear the 85 minimum. Identity locked
+  from the Midjourney first-reference winner uploaded as the strict identity
+  source for the GPT Images 2 pack. Ordinary infant approximately 8 months
+  old, sitting safely supported on soft pale infant blanket, calm neutral
+  expression, simple cream onesie, heritage neutral (brown eyes, dark hair,
+  neutral skin tone — not stylized toward any specific ethnic identity).
+  Care context maintained across all three views (safe support surface, soft
+  infant blanket). No distress, no crying, no medical instrumentation, no
+  hospital bracelet shown, no unsafe handling, no unsupported posing, no
+  crib-risk imagery, no themed costume, no military-style outfit, no glow
+  lighting, no soft-focus saintly halo, no idealization, no extra people,
+  no new adult character invented in frame. Close framing reduces silhouette
+  readability as expected (not a disqualifier). Cleared for Kling element
+  reference registration.
