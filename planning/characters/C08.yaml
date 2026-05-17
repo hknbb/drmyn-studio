@@ -54,8 +54,7 @@ visual_age_range: "approximately 8 months old (infant)"
 silhouette_notes: "Sitting infant supported; no action posing."
 costume_logic: "Simple practical infant domestic wear; no narrative-coded outfit."
 color_bias: "Muted soft domestic neutrals."
-associated_props:
-  - PROP-JIN-BRACELET-DEFERRED
+associated_props: []
 associated_locations: []
 relationship_keys:
   - "Nadia (C01): primary carer; mother; emotional reality check anchor."
@@ -82,8 +81,7 @@ unresolved_questions:
   - "UNRESOLVED: care-context carer figure handling in reference frames — operator_inferred guidance is 'off-frame or identity-neutral support hand/blanket; do not invent a new adult character'. Confirm during Stage 3 generation."
 continuity_refs:
   wardrobe_ids: []
-  prop_ids:
-    - PROP-JIN-BRACELET-DEFERRED
+  prop_ids: []
   key_scene_ids:
     - SC0003
     - SC0034
