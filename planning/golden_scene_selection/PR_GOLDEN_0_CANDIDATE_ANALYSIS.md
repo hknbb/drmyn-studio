@@ -1,12 +1,15 @@
 # PR-GOLDEN-0 — Golden Scene Candidate Analysis & Selection
 
 **Phase:** 8 (Golden Scene Selection)
-**Status:** Amended — selection revised
-**Current decision:** **SC0089 — Northern Transit Corridor (outer district perimeter pursuit)** is the golden reference scene for full end-to-end Kling Omni 3 production (Phase 9 / PR-GOLDEN-1..7). See **§ 9. Revision 2026-05-18** below for the revision record.
-**Previous decision (superseded):** SC0001 — Vale Residence Morning Inventory (selected 2026-05-17, superseded 2026-05-18).
+**Status:** Amended twice — selection returned to original choice
+**Current decision (AUTHORITATIVE):** **SC0001 — Vale Residence Morning Inventory** is the golden reference scene for full end-to-end Kling Omni 3 production (Phase 9 / PR-GOLDEN-1..7). See **§ 10. Revision 2 — 2026-05-18** below for the revert record.
+**Selection history:**
+- 2026-05-17: SC0001 selected (original analysis, §§ 1–8)
+- 2026-05-18 (earlier): SC0089 selected (Revision 1, § 9 — now superseded)
+- 2026-05-18 (later): SC0001 reselected (Revision 2, § 10 — current)
 **Plan reference:** `revised_character_batch_to_golden_scene_plan.md` § Phase 8.
 **Original analysis date:** 2026-05-17.
-**Amendment date:** 2026-05-18.
+**Most recent amendment date:** 2026-05-18 (Revision 2).
 
 ---
 
@@ -73,7 +76,7 @@ SC0110  C Roman confrontation (corridor combat) 3      0       3 (C02)      0   
 
 ## 4. Per-Scene Detail
 
-### A) SC0001 — Vale Residence Morning Inventory **[PREVIOUSLY SELECTED — SUPERSEDED 2026-05-18, see § 9]**
+### A) SC0001 — Vale Residence Morning Inventory **[CURRENT SELECTION — reselected 2026-05-18, see § 10]**
 
 - **Files:** `scene_card.yaml`, `scene_excerpt.md`, `dialogue_beats.yaml`, `omni_clip_plan.yaml`, `scene_beat_plan.yaml`, `prompt_brief.md`, `review_notes.md`, `manifests/CLIP_SC0001_01-08_manifest.yaml`, `visual_dev/omni_sets/SC0001/element_set.yaml`, `element_bindings.yaml`, `scene_character_look_map.yaml`, `shot_element_manifests/SH001.yaml`, `video_takes.yaml`, `selected_take.yaml`
 - **Synopsis:** Nadia performs a precise morning domestic routine in her expensive, underused home. Inventory routine reads as a threat-map. Brief exchange with Birta about Jin's care and Roman's early departure. Discovers a family photo frame has been moved — the surveillance intrusion cue. Checks on Jin. Establishes Nadia's contained, hypervigilant baseline.
@@ -187,9 +190,9 @@ python scripts/check_referential_integrity.py …               # → 0 errors (
 
 ---
 
-## 9. Revision 2026-05-18 — Selection changed from SC0001 to SC0089
+## 9. Revision 1 — 2026-05-18 — Selection changed from SC0001 to SC0089 [SUPERSEDED by § 10]
 
-**Status of this section:** **AUTHORITATIVE.** This revision supersedes §§ 5–6 above. The original §§ 1–8 are preserved verbatim as audit trail for the SC0001 selection rationale; they are not re-applied to current planning.
+**Status of this section:** **SUPERSEDED by § 10 (Revision 2).** Preserved verbatim as audit trail of the brief SC0089 selection window. Do not apply any directives from this section; use § 10 instead.
 
 ### 9.1 Selection deltas
 
@@ -289,6 +292,132 @@ The SC0089 `golden_reference_plan.yaml` will encode the §9.3 contents in struct
 ### 9.7 Validation guarantee (amendment)
 
 Still docs-only. No production records, schemas, validator, or YAML data files touched.
+
+```bash
+python scripts/validate_production_records.py --repo-root .   # → unchanged record count, all valid
+python -m pytest -q                                            # → unchanged pass count
+python scripts/check_referential_integrity.py …               # → 0 errors (unchanged)
+```
+
+---
+
+## 10. Revision 2 — 2026-05-18 — Selection returned from SC0089 to SC0001
+
+**Status of this section:** **AUTHORITATIVE.** This revision supersedes both § 9 (Revision 1) and §§ 5–6 (original decision section's forward-looking framing). The original §§ 1–8 are re-applied for current planning under the deltas listed in § 10.3 below. § 9 is preserved as audit trail of the brief SC0089 selection window only.
+
+### 10.1 Selection deltas
+
+```text
+current_selection: SC0001
+  selection_type: golden_reference_scene
+  status: selected
+  reselected_from: SC0089 (Revision 1, § 9)
+  alignment_with_original_decision: yes — restores §§ 5–6 selection rationale verbatim
+
+previous_selection (Revision 1): SC0089
+  status: superseded_returned
+  reason_for_revert: repo readiness, dialogue/audio suppression infrastructure already proven on SC0001, lower production risk
+  preserved_as: audit_trail (§ 9 above unchanged)
+
+later_high_action_candidate: SC0089
+  status: high_action_candidate_not_selected
+  use: future golden-scene-2 or action-stress-test pilot once SC0001 golden pipeline lands
+  preserved_as: § 9 entire body remains valid as candidate analysis if reactivated
+```
+
+### 10.2 Revert reason (operator-confirmed)
+
+```text
+- SC0001 already has strongest repo readiness on main
+- C01 / C03 / LOC001 / PROP003 production pipeline records exist
+- SC0001 already has a selected SH001 take registered (selected_take.yaml)
+- dialogue suppression / native-audio infrastructure was proven on SC0001
+- better pilot / golden-scene methodology demonstration target
+- lower production risk before expanding to action-heavy SC0089
+- C01 v2 (KLING_REF_C01_NADIA_CANON_V2_V001) merged on main this session;
+  no further C01 v2 rebuild PR required before golden production
+- SC0089 retained as later high-action candidate, not deprioritized as a future target
+```
+
+### 10.3 SC0001 — current selection (restored from §§ 5–6)
+
+The original SC0001 selection rationale and per-scene detail in §§ 4.A and 5 are re-applied. The full content remains valid as written; the only structural change is **binding modernization** for the golden production:
+
+```text
+character bindings:
+  C01  →  KLING_REF_C01_NADIA_CANON_V2_V001        (v2, this session)
+  C03  →  KLING_REF_C03_V001                       (v2, already on main)
+location bindings:
+  LOC001  →  v1 grandfathered (unchanged)
+prop bindings:
+  PROP003  →  v1 grandfathered (unchanged)
+off-camera / inferred:
+  C08 (Jin)  →  no on-camera frame; off-screen crib presence only
+```
+
+**C01 v2 binding migration policy:** SH001 currently binds to the C01 v1 chain (HOME_MORNING look_variant era). The golden production will use C01 v2 (NADIA_CANON_V2). Migration handled in a small dedicated mini-PR **before** PR-GOLDEN-1 lands the `golden_reference_plan.yaml` — to keep the binding chain clean and avoid the golden plan record carrying a forward reference to an unmigrated alias. The mini-PR scope is binding fields only (no asset changes, no v1 record deletions — additive alias remap only).
+
+**Wardrobe / look policy:** No new wardrobe asset and no new character look_variant required for SC0001. Canonical C01 v2 + C03 v2 references already encode the domestic-morning continuity. If Kling generation drifts from kitchen-passage staging or domestic palette during PR-GOLDEN-3, a lightweight micro-continuity prompt directive will be added at the shot-prompt level (same Seçenek A pattern as § 9.3 reserved for SC0089, but with domestic-morning anchors instead of outer-perimeter-night anchors).
+
+### 10.4 Shot coverage for golden SC0001 (illustrative, finalized in PR-GOLDEN-2)
+
+SH001 already exists as a selected-take shot manifest. The golden expansion will add the remaining seven coverage shots (SH002–SH008) to match the existing 8-clip `omni_clip_plan.yaml` (CLIP_SC0001_01–08) and the SH001–SH008 readiness gate preserved in § 6. Exact intents are finalized in PR-GOLDEN-2:
+
+```text
+SH001 (existing)   selected corridor / frame deviation coverage
+SH002              Birta / Nadia dialogue entry coverage
+SH003              formula / vitamin dialogue beat
+SH004              tilted Vardova frame insert / detail
+SH005              Nadia reaction close / threat-map hold
+SH006              Birta exit / breakfast line coverage
+SH007              Jin nursery off-screen check / movement transition
+SH008              final corridor hold / surveillance geometry close
+```
+
+The above is **illustrative coverage**, not a binding shot list. PR-GOLDEN-2 will produce the binding shot_element_manifests and may add, remove, or reorder shots based on alias readiness, dialogue suppression rule application, and SC0001's existing `omni_clip_plan.yaml` (which already references three Omni coverages: SC0001_OMNI01 establish_coverage, SC0001_OMNI02 action_or_deviation_coverage, SC0001_OMNI03 reaction_or_hold_coverage).
+
+### 10.5 Scoring matrix — final position
+
+```text
+Scene  Category                                Nadia  Action/  Other-char  Dialogue  Coverage  Readiness  Total
+                                                       Herald
+=====  ======================================  =====  ======   ==========  ========  ========  =========  =====
+SC0001  A Vale Residence (CURRENT SELECTION)    3      0        2 (C03)     3         3         3          14
+SC0089  Crucible pursuit (high-action candidate) 3     3        3 (C06+C04) 2*        3         3          17
+```
+
+SC0089 still scores higher on the §9.4 weighted matrix, but the revert is driven by **production-readiness risk minimization** rather than scoring. The golden scene methodology lands first on the lower-risk SC0001 pilot; SC0089 (or another action-heavy candidate) can follow as a v0.18.x or v0.19.x golden-scene-2 once the SC0001 pipeline has shipped and the methodology is proven.
+
+### 10.6 Revised execution order
+
+```text
+1. PR-GOLDEN-0 amendment Revision 2  (this PR)         — revert selection to SC0001
+2. PR-C01-V2-BIND mini-PR             — migrate SC0001 SH001 + omni / element bindings to C01 v2 (alias remap, no asset changes)
+3. PR-GOLDEN-1                        — golden_reference_plan schema + SC0001 record + validator registration
+4. PR-GOLDEN-2                        — SC0001 full shot element manifests (SH002–SH008 new; SH001 kept) to match the 8-clip omni_clip_plan and the SH001–SH008 readiness gate in §6
+5. PR-GOLDEN-3                        — SC0001 alias-only Kling Omni prompt records
+6. PR-GOLDEN-4                        — Kling take metadata per shot per take
+7. PR-GOLDEN-5                        — video_review QC per take
+8. PR-GOLDEN-6                        — selected_take updates
+9. PR-GOLDEN-7                        — scene_clip_map append + golden_scene_assembly + operator session
+10. tag v0.18.0-golden-reference-scene
+```
+
+C01 clean v2 scaffold / visual registration steps from the user's recap are **already done on main** this session (KLING_REF_C01_NADIA_CANON_V2_V001 merged with operator-approved Stage 3 three-view pack). They do not need to be re-opened as PR-C01-1 / PR-C01-2. Only the binding migration (step 2 above) remains before PR-GOLDEN-1.
+
+### 10.7 What this amendment does NOT do
+
+```text
+- does NOT touch any production record, schema, or validator
+- does NOT migrate the C01 v2 binding (deferred to PR-C01-V2-BIND mini-PR)
+- does NOT create golden_reference_plan.yaml (PR-GOLDEN-1)
+- does NOT modify SH001 or any visual_dev/omni_sets/SC0001/ file
+- does NOT delete or weaken § 9 (Revision 1 SC0089 analysis remains intact as future candidate analysis)
+```
+
+### 10.8 Validation guarantee (Revision 2)
+
+Still docs-only. Only `planning/golden_scene_selection/PR_GOLDEN_0_CANDIDATE_ANALYSIS.md` modified.
 
 ```bash
 python scripts/validate_production_records.py --repo-root .   # → unchanged record count, all valid
