@@ -1,0 +1,76 @@
+schema_version: "0.x-draft"
+record_type: perspective_qc_report
+perspective_qc_id: PERSPQC_C01_NADIA_CANON_V2_THREE_VIEW_V001
+status: review
+scene_id: SC0001
+element_id: C01
+prompt_pack_id: GPTIMG2_C01_NADIA_CANON_V2_PERSPECTIVE_PACK_V001
+operator_session_ref: OP-PROD-LINE-C01-NADIA-CANON-V2-THREE-VIEW-2026-05-17
+perspective_scores:
+  - prompt_id: GPTIMG2_C01_NADIA_CANON_V2_P01_FRONT_V001
+    perspective: front_reference
+    identity_preservation: 94
+    perspective_usefulness: 93
+    material_palette_continuity: 92
+    production_reference_cleanliness: 95
+    hallucination_absence: 96
+    character_description_strength: 92
+    identity_readability: 94
+    silhouette_readability: 91
+    wardrobe_world_fit: 93
+    expression_performance_readability: 92
+    view_distinction: 91
+    no_directional_confusion: 95
+    total_score: 93
+    decision: pass
+  - prompt_id: GPTIMG2_C01_NADIA_CANON_V2_P02_TQM_V001
+    perspective: three_quarter_medium_reference
+    identity_preservation: 93
+    perspective_usefulness: 92
+    material_palette_continuity: 89
+    production_reference_cleanliness: 92
+    hallucination_absence: 94
+    character_description_strength: 91
+    identity_readability: 93
+    silhouette_readability: 91
+    wardrobe_world_fit: 90
+    expression_performance_readability: 91
+    view_distinction: 90
+    scale_distinction: 88
+    no_directional_confusion: 93
+    total_score: 91
+    decision: pass
+  - prompt_id: GPTIMG2_C01_NADIA_CANON_V2_P03_TQC_V001
+    perspective: three_quarter_close_reference
+    identity_preservation: 95
+    perspective_usefulness: 90
+    material_palette_continuity: 89
+    production_reference_cleanliness: 92
+    hallucination_absence: 94
+    character_description_strength: 91
+    identity_readability: 95
+    silhouette_readability: 75
+    wardrobe_world_fit: 89
+    expression_performance_readability: 92
+    view_distinction: 90
+    scale_distinction: 89
+    no_directional_confusion: 93
+    total_score: 91
+    decision: pass
+gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  can_advance_to_kling_reference: true
+notes: >
+  C01 Nadia v2 Stage 3 three-view scale-angle pack QC under the isolated
+  look_variants/C01_NADIA_CANON_V2/ path. All three perspectives clear the
+  85 minimum. Identity source for this pack was the Stage 1 winner directly
+  (Option C path, Stage 2 V7 oref refinement skipped due to persistent
+  tactical-fashion editorial drift even with aggressive --no list and reduced
+  --ow). Wardrobe reads as plain matte black fitted top with internal continuity
+  across all three views (short-sleeve front, long-sleeve TQ — acceptable
+  variation within "plain matte dark fitted top" continuity_anchor). Contained
+  tactical register, dark eyes, bare-skin natural complexion, hair pulled back,
+  no decorative softness, no jewelry, no makeup glamor, no logo or watermark
+  across all three views. v1 C01 chain remains untouched. Cleared for v2
+  Kling element reference registration.
