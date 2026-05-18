@@ -2,9 +2,7 @@ element_id: LOC001
 element_type: location
 selection_round: 2
 source_prompt_ids:
-  - GPTIMG2_LOC001_P01_ENTRY_V002
-  - GPTIMG2_LOC001_P02_REVERSE_V002
-  - GPTIMG2_LOC001_P03_DETAIL_V002
+  - SC0001__gptimg2-loc001-perspective-pack-v002__v01
 candidate_images:
   - asset_id: GPTIMG2_LOC001_P01_ENTRY_V002_A001
     path: external://local_manual/drmyn-studio-images/Kitchen Passage/stage 2/ChatGPT Image 18 May 2026 17_12_21.png
