@@ -153,6 +153,13 @@ shot_coverage:
     dialogue_present: true
     manifest_status: pending
 
+  - shot_id: SH010
+    intent: "Birta response + self-correction catch 'Your husband —' (SH003 split-B)"
+    camera_role: character_coverage
+    framing_notes: Medium two-shot or single on Birta; domestic surface in frame; line trails off
+    dialogue_present: true
+    manifest_status: pending
+
 qc_policy:
   minimum_score: 80
   all_shots_required: true

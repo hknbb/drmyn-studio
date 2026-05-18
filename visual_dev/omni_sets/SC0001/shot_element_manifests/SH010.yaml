@@ -1,0 +1,25 @@
+schema_version: "0.x-draft"
+record_type: shot_element_manifest
+manifest_id: MANIFEST_SC0001_SH010_V001
+scene_id: SC0001
+shot_id: SH010
+required_elements:
+  - element_id: C01
+    element_type: character
+    role: primary_subject
+    registration_state_required: created
+  - element_id: C03
+    element_type: character
+    role: primary_subject
+    registration_state_required: created
+  - element_id: LOC001
+    element_type: location_sub_area
+    role: attached_location
+    registration_state_required: created
+environmental_only_allowed_ids: []
+gate_status: all_elements_ready
+notes: >
+  SH003 split-B: Birta response and self-correction catch. Continuation
+  of SH003 (Nadia formula line). C01 @C01_NADIA_CANON_V2, C03
+  @C03_DOMESTIC_STAFF, LOC001 @ValeResidenceKitchenPassage all at
+  binding_status voice_capable with operator-approved references.
