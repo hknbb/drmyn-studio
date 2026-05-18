@@ -1,0 +1,21 @@
+schema_version: "0.x-draft"
+record_type: shot_element_manifest
+manifest_id: MANIFEST_SC0001_SH004_V001
+scene_id: SC0001
+shot_id: SH004
+required_elements:
+  - element_id: PROP003
+    element_type: prop
+    role: attached_prop
+    registration_state_required: created
+  - element_id: LOC001
+    element_type: location_sub_area
+    role: attached_location
+    registration_state_required: created
+environmental_only_allowed_ids: []
+gate_status: all_elements_ready
+notes: >
+  Vardova Frame close insert. No characters in frame; PROP003 @VardovaFrame is
+  the sole subject. Off-angle tilt and corridor geometry visible. LOC001
+  @ValeResidenceKitchenPassage provides location continuity. Both elements at
+  binding_status created with operator-approved external references.

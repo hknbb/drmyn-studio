@@ -1,0 +1,25 @@
+schema_version: "0.x-draft"
+record_type: shot_element_manifest
+manifest_id: MANIFEST_SC0001_SH003_V001
+scene_id: SC0001
+shot_id: SH003
+required_elements:
+  - element_id: C01
+    element_type: character
+    role: primary_subject
+    registration_state_required: created
+  - element_id: C03
+    element_type: character
+    role: primary_subject
+    registration_state_required: created
+  - element_id: LOC001
+    element_type: location_sub_area
+    role: attached_location
+    registration_state_required: created
+environmental_only_allowed_ids: []
+gate_status: all_elements_ready
+notes: >
+  Formula / vitamin dialogue beat. Medium two-shot or over-shoulder framing;
+  domestic counter or table in frame. Dialogue suppressed per
+  native_audio_readiness blocked. Both characters at registration_state created
+  with operator-approved kling references.
