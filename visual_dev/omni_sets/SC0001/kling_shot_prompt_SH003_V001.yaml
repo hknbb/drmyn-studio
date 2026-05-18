@@ -1,0 +1,40 @@
+schema_version: "0.x-draft"
+record_type: kling_shot_prompt_record
+kling_shot_prompt_id: KSP_SC0001_SH003_V001
+status: draft
+scene_id: SC0001
+shot_id: SH003
+linked_element_refs:
+  - KLING_REF_C01_NADIA_CANON_V2_V001
+  - KLING_REF_C03_V001
+  - KLING_REF_LOC001_KITCHEN_PASSAGE_V001
+duration_seconds: 5
+aspect_ratio: "16:9"
+variant_mode: safe
+render_pass: visual_test
+quality_tier: test_720p
+native_audio: false
+camera_plan:
+  framing: medium two-shot or over-shoulder, domestic surface in foreground
+  movement: static or minimal drift, intimate register
+  lens_feel: close, warm domestic light, no surveillance pressure
+action_timeline:
+  - >-
+    @Birta near a counter or table surface in @ValeResidenceKitchenPassage;
+    @Nadia facing or half-turned, contained posture.
+  - >-
+    A beat of proximity. Neither figure moves decisively. The exchange
+    reads as routine from the outside. Camera holds.
+constraints:
+  - No dialogue rendered; native_audio_readiness blocked for both speakers
+  - Preserve @Nadia canonical identity; plain matte dark fitted top
+  - Preserve @Birta domestic staff wardrobe continuity; no redesign
+  - No canonical IDs, no full character names in prompt execution
+source_refs:
+  manifest_ref: visual_dev/omni_sets/SC0001/shot_element_manifests/SH003.yaml
+  scene_card_ref: planning/scenes/SC0001/scene_card.yaml
+materialized_output:
+  platform: kling
+  external_storage_ref: pending://not_generated
+  platform_job_id: pending
+  repo_binary_committed: false
