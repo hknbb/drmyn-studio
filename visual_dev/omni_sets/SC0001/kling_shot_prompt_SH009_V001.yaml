@@ -1,0 +1,51 @@
+schema_version: "0.x-draft"
+record_type: kling_shot_prompt_record
+kling_shot_prompt_id: KSP_SC0001_SH009_V001
+status: draft
+scene_id: SC0001
+shot_id: SH009
+linked_element_refs:
+  - KLING_REF_C01_NADIA_CANON_V2_V001
+  - KLING_REF_C03_V001
+  - KLING_REF_LOC001_KITCHEN_PASSAGE_V001
+duration_seconds: 5
+aspect_ratio: "16:9"
+variant_mode: safe
+render_pass: visual_test
+quality_tier: test_720p
+native_audio: true
+camera_plan:
+  framing: loose two-shot; @Nadia foreground or equal; @Birta moving toward exit
+  movement: follows @Birta's exit; settles on @Nadia alone
+  lens_feel: warm domestic close; rhythm of departure
+action_timeline:
+  - >-
+    @Nadia (flat, no inflection, not looking at @Birta): "He won't be back
+    before eight."
+  - >-
+    @Birta (warm caretaking close): "I'll leave something covered."
+    @Birta exits the frame. Camera settles on @Nadia alone.
+  - Camera holds on @Nadia in @ValeResidenceKitchenPassage. Shot ends.
+constraints:
+  - Preserve @Nadia canonical identity; plain matte dark fitted top
+  - Preserve @Birta domestic staff wardrobe through exit
+  - No canonical IDs, no full character names in prompt execution
+  - Kling native audio only; no external TTS; no ADR vendor
+dialogue:
+  - DLG_SC0001_SH006_V001
+  - PERF_SC0001_SH006_C01_V001
+  - PERF_SC0001_SH009_C03_V001
+speech_constraints:
+  - "@Nadia delivery: flat declarative, no look toward @Birta, no inflection"
+  - "@Birta COVERED delivery: warm caretaking, brief, final"
+  - No external TTS; Kling native voice only
+native_audio_compatibility: NAC_SC0001_SH009_V001
+voice_binding: VOICE_C01_V001
+source_refs:
+  manifest_ref: visual_dev/omni_sets/SC0001/shot_element_manifests/SH009.yaml
+  scene_card_ref: planning/scenes/SC0001/scene_card.yaml
+materialized_output:
+  platform: kling
+  external_storage_ref: pending://not_generated
+  platform_job_id: pending
+  repo_binary_committed: false
