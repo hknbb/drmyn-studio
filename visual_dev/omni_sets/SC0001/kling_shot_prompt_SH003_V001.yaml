@@ -13,7 +13,7 @@ aspect_ratio: "16:9"
 variant_mode: safe
 render_pass: visual_test
 quality_tier: test_720p
-native_audio: false
+native_audio: true
 camera_plan:
   framing: medium two-shot or over-shoulder, domestic surface in foreground
   movement: static or minimal drift, intimate register
@@ -23,13 +23,29 @@ action_timeline:
     @Birta near a counter or table surface in @ValeResidenceKitchenPassage;
     @Nadia facing or half-turned, contained posture.
   - >-
-    A beat of proximity. Neither figure moves decisively. The exchange
-    reads as routine from the outside. Camera holds.
+    @Nadia (controlled, practical voice): "Jin's formula. There's a new tin
+    in the second shelf, behind the vitamin drops."
+  - >-
+    @Birta (warm, domestic voice, slight hesitation mid-sentence):
+    "I found it. He's still down. Your husband —"
+  - Camera holds. The exchange reads as routine from the outside.
 constraints:
-  - No dialogue rendered; native_audio_readiness blocked for both speakers
   - Preserve @Nadia canonical identity; plain matte dark fitted top
   - Preserve @Birta domestic staff wardrobe continuity; no redesign
   - No canonical IDs, no full character names in prompt execution
+  - Kling native audio only; no external TTS; no ADR vendor
+dialogue:
+  - DLG_SC0001_SH003_V001
+  - PERF_SC0001_SH003_C01_V001
+  - PERF_SC0001_SH003_C03_V001
+speech_constraints:
+  - "@Nadia delivery: controlled, practical, minimal affect; rapid logistics"
+  - >-
+    @Birta delivery: warm domestic register; self-correction catch on
+    'Your husband'; line trails off before completion
+  - No external TTS; Kling native voice only
+native_audio_compatibility: NAC_SC0001_SH003_V001
+voice_binding: VOICE_C01_V001
 source_refs:
   manifest_ref: visual_dev/omni_sets/SC0001/shot_element_manifests/SH003.yaml
   scene_card_ref: planning/scenes/SC0001/scene_card.yaml
