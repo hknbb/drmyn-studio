@@ -1,0 +1,19 @@
+schema_version: "0.x-draft"
+record_type: performance_intent_record
+performance_intent_id: PERF_SC0001_SH003_C01_V001
+status: draft
+scene_id: SC0001
+shot_id: SH003
+speaker: C01
+spoken_line: "Jin's formula. There's a new tin in the second shelf, behind the vitamin drops."
+language: English
+delivery:
+  volume: low
+  pace: measured
+  tone: practical_delegating
+  emotional_state: controlled precision
+subtext: >
+  Rapid logistics handover. Nadia maintains information control by specifying
+  exact location. No warmth, no invitation for commentary.
+face_direction: toward Birta or domestic surface, not camera
+mouth_behavior: natural speech, minimal affect

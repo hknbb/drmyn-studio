@@ -1,0 +1,22 @@
+schema_version: "0.x-draft"
+record_type: dialogue_extract_record
+dialogue_extract_id: DLG_SC0001_SH006_V001
+status: draft
+scene_id: SC0001
+source_screenplay_span:
+  start_line: 60
+  end_line: 77
+speakers:
+  - character_id: C03
+    display_name: Birta
+raw_lines:
+  - speaker: C03
+    text: "Mr. Vale called from the car. He said not to wait on breakfast."
+  - speaker: C03
+    text: "I'll leave something covered."
+dialogue_function: domestic caretaking close / Roman absence relay
+emotional_subtext: >
+  Birta relays Roman's pre-planned departure. The breakfast offer is
+  caretaking finality; Nadia's nod closes the exchange.
+target_language: English
+language_support_status: officially_supported
