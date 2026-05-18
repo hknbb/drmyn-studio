@@ -1,0 +1,39 @@
+schema_version: "0.x-draft"
+record_type: kling_shot_prompt_record
+kling_shot_prompt_id: KSP_SC0001_SH007_V001
+status: draft
+scene_id: SC0001
+shot_id: SH007
+linked_element_refs:
+  - KLING_REF_C01_NADIA_CANON_V2_V001
+  - KLING_REF_LOC001_KITCHEN_PASSAGE_V001
+duration_seconds: 5
+aspect_ratio: "16:9"
+variant_mode: safe
+render_pass: visual_test
+quality_tier: test_720p
+native_audio: false
+camera_plan:
+  framing: corridor wide, directional, figure moving away from camera
+  movement: static or slow pull back as @Nadia moves into depth
+  lens_feel: corridor geometry, depth, direction implied
+action_timeline:
+  - >-
+    @Nadia moves through @ValeResidenceKitchenPassage toward the far end
+    of the corridor — the direction of the nursery. Controlled pace.
+    Economy of movement.
+  - >-
+    She reaches the threshold or corridor turn. The camera holds on the
+    corridor she has left. The shot ends on the empty corridor.
+constraints:
+  - No other character in frame for this shot
+  - Preserve @Nadia canonical silhouette and movement economy
+  - No canonical IDs, no full character names in prompt execution
+source_refs:
+  manifest_ref: visual_dev/omni_sets/SC0001/shot_element_manifests/SH007.yaml
+  scene_card_ref: planning/scenes/SC0001/scene_card.yaml
+materialized_output:
+  platform: kling
+  external_storage_ref: pending://not_generated
+  platform_job_id: pending
+  repo_binary_committed: false
