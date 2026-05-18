@@ -146,6 +146,13 @@ shot_coverage:
     dialogue_present: false
     manifest_status: pending
 
+  - shot_id: SH009
+    intent: "Nadia prior-knowledge reveal + Birta covered-food offer + camera settle (SH006 split-B)"
+    camera_role: character_coverage
+    framing_notes: Loose two-shot; Nadia flat delivery not looking at Birta; Birta exits; camera settles on Nadia alone
+    dialogue_present: true
+    manifest_status: pending
+
 qc_policy:
   minimum_score: 80
   all_shots_required: true

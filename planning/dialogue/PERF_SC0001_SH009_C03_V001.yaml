@@ -1,0 +1,19 @@
+schema_version: "0.x-draft"
+record_type: performance_intent_record
+performance_intent_id: PERF_SC0001_SH009_C03_V001
+status: draft
+scene_id: SC0001
+shot_id: SH009
+speaker: C03
+spoken_line: "I'll leave something covered."
+language: English
+delivery:
+  volume: low
+  pace: steady
+  tone: warm_caretaking_final
+  emotional_state: domestic care offer, brief and closing
+subtext: >
+  Birta's caretaking finality. The offer is accepted by Nadia's nod.
+  The exchange closes on the breakfast topic. No further discussion invited.
+face_direction: toward Nadia or kitchen area, transitional
+mouth_behavior: natural speech; brief; no hesitation
