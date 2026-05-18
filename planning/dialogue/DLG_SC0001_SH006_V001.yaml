@@ -9,14 +9,19 @@ source_screenplay_span:
 speakers:
   - character_id: C03
     display_name: Birta
+  - character_id: C01
+    display_name: Nadia
 raw_lines:
   - speaker: C03
     text: "Mr. Vale called from the car. He said not to wait on breakfast."
+  - speaker: C01
+    text: "He won't be back before eight."
   - speaker: C03
     text: "I'll leave something covered."
-dialogue_function: domestic caretaking close / Roman absence relay
+dialogue_function: domestic caretaking close / Roman absence relay / Nadia prior knowledge reveal
 emotional_subtext: >
-  Birta relays Roman's pre-planned departure. The breakfast offer is
-  caretaking finality; Nadia's nod closes the exchange.
+  Birta relays Roman's pre-planned departure. Nadia confirms she already knew
+  without looking at Birta — flat, no inflection, already-known information.
+  Birta's covered-food offer is caretaking finality; the exchange closes.
 target_language: English
 language_support_status: officially_supported

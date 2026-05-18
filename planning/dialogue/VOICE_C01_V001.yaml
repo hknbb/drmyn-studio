@@ -7,7 +7,7 @@ binding_status: prebound
 binding_method: prompt_described
 visual_reference_pack: KLING_REF_C01_NADIA_CANON_V2_V001
 language: English
-operator_approved: true
+operator_approved: false
 asset_clearance_ref: ASSET_CLEARANCE_C01_KLING_NATIVE
 audio_source:
   type: kling_native

@@ -1,0 +1,20 @@
+schema_version: "0.x-draft"
+record_type: performance_intent_record
+performance_intent_id: PERF_SC0001_SH006_C01_V001
+status: draft
+scene_id: SC0001
+shot_id: SH006
+speaker: C01
+spoken_line: "He won't be back before eight."
+language: English
+delivery:
+  volume: low
+  pace: flat
+  tone: declarative_no_inflection
+  emotional_state: already_known information delivered without invitation
+subtext: >
+  Nadia confirms Roman's schedule without looking at Birta. The flat
+  delivery signals prior knowledge and information control. The statement
+  does not invite follow-up.
+face_direction: not toward Birta; corridor or mid-distance
+mouth_behavior: natural speech; no emphasis; no pause before or after
