@@ -107,6 +107,7 @@ SCENE_CHARACTER_LOOK_MAP_PATTERN = "visual_dev/omni_sets/SC*/scene_character_loo
 SYSTEM_CHARACTER_ELEMENT_PATTERN = (
     "visual_dev/elements/system_characters/*/identity_plan.yaml"
 )
+GOLDEN_REFERENCE_PLAN_PATTERN = "planning/scenes/SC*/golden_reference_plan.yaml"
 AESTHETIC_BIBLE_PATH = "planning/aesthetic_bible.yaml"
 SCENE_CLIP_MAP_PATH = "evidence/scene_clip_map.csv"
 
@@ -281,6 +282,9 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         "scene_character_look_map": sorted(repo_root.glob(SCENE_CHARACTER_LOOK_MAP_PATTERN)),
         "system_character_element": sorted(
             repo_root.glob(SYSTEM_CHARACTER_ELEMENT_PATTERN)
+        ),
+        "golden_reference_plan": sorted(
+            repo_root.glob(GOLDEN_REFERENCE_PLAN_PATTERN)
         ),
         "aesthetic_bible": (
             [repo_root / AESTHETIC_BIBLE_PATH]
@@ -2331,6 +2335,7 @@ def run_validation(
     identity_evidence_set_validator: Draft202012Validator | None = None
     scene_character_look_map_validator: Draft202012Validator | None = None
     system_character_element_validator: Draft202012Validator | None = None
+    golden_reference_plan_validator: Draft202012Validator | None = None
     production_batch_validator: Draft202012Validator | None = None
     aesthetic_bible_validator: Draft202012Validator | None = None
 
@@ -2678,6 +2683,20 @@ def run_validation(
                     repo_root=repo_root,
                     record_type=record_type,
                     validator=system_character_element_validator,
+                )
+            elif record_type == "golden_reference_plan":
+                if golden_reference_plan_validator is None:
+                    golden_reference_plan_schema = load_schema(
+                        repo_root / "schemas" / "golden_reference_plan.schema.json"
+                    )
+                    golden_reference_plan_validator = Draft202012Validator(
+                        golden_reference_plan_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=golden_reference_plan_validator,
                 )
             elif record_type == "gpt_images_perspective_pack":
                 if gpt_images_perspective_pack_validator is None:

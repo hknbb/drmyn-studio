@@ -1,0 +1,170 @@
+schema_version: "0.x-draft"
+record_type: golden_reference_plan
+golden_reference_plan_id: GOLDEN_PLAN_SC0001_V001
+scene_id: SC0001
+status: draft
+selected_scene_reason:
+  - Strongest repo readiness of all candidates — scene card, 8-clip omni_clip_plan, SH001 selected take, dialogue_beats, and audio-suppression infrastructure already on main
+  - C01 v2 canonical reference (KLING_REF_C01_NADIA_CANON_V2_V001) and C03 domestic staff reference both production-ready; binding migration to v2 completed in PR-C01-V2-BIND
+  - LOC001 Vale Residence kitchen passage and PROP003 Vardova Frame already registered with kling_element bindings and selected external references
+  - Dialogue suppression and native-audio gate proven on SC0001 in prior Kling production runs; new SH002-SH008 extend the same suppressed-audio discipline
+  - Lowest production risk for the golden-scene pilot — infrastructure depth means any QC failure isolates to generation quality not record setup
+  - "Best demonstration of full pipeline: Nadia domestic morning / system pressure subtext / Vardova Frame surveillance geometry from frame one"
+
+required_elements:
+  - element_id: C01
+    element_type: character
+    role: protagonist / primary subject
+    on_camera_status: on_camera
+    kling_reference_id: KLING_REF_C01_NADIA_CANON_V2_V001
+    notes: Clean v2 canonical reference; alias @C01_NADIA_CANON_V2 via KLING_ELEM_C01_NADIA_CANON_V2_V001
+
+  - element_id: C03
+    element_type: character
+    role: domestic supporting / scene co-presence
+    on_camera_status: on_camera
+    kling_reference_id: KLING_REF_C03_V001
+    notes: Birta; domestic staff look via @C03_DOMESTIC_STAFF; dialogue speaker (suppressed)
+
+  - element_id: LOC001
+    element_type: location_sub_area
+    role: primary location — Vale Residence kitchen passage
+    on_camera_status: on_camera
+    kling_reference_id: KLING_REF_LOC001_V001
+    notes: Morning sub-area; alias @ValeResidenceKitchenPassage; v1 grandfathered per golden plan
+
+  - element_id: PROP003
+    element_type: prop
+    role: surveillance geometry insert / scene motif
+    on_camera_status: on_camera
+    kling_reference_id: KLING_REF_PROP003_V001
+    notes: Vardova Frame tilted off-angle; alias @VardovaFrame; v1 grandfathered per golden plan
+
+character_look_requirements:
+  - element_id: C01
+    kling_reference_id: KLING_REF_C01_NADIA_CANON_V2_V001
+    kling_element_alias: "@C01_NADIA_CANON_V2"
+    prompt_level_continuity_policy:
+      - Preserve canonical identity from KLING_REF_C01_NADIA_CANON_V2_V001
+      - Dark hair pulled back simple natural restraint
+      - Early to mid 30s lean face geometry dark eyes
+      - Plain matte dark fitted top no decorative softness
+      - Muted neutral palette no tactical accessory
+      - Domestic morning context — no field or operational layering for SC0001
+
+  - element_id: C03
+    kling_reference_id: KLING_REF_C03_V001
+    kling_element_alias: "@C03_DOMESTIC_STAFF"
+    prompt_level_continuity_policy:
+      - Preserve canonical identity from KLING_REF_C03_V001
+      - Domestic staff wardrobe continuity WD004
+      - No redesign no glamor no character drift
+
+wardrobe_continuity_policy:
+  policy_type: prompt_level_continuity
+  directive_text: >
+    No new wardrobe asset required. No new character look_variant required for SC0001.
+    Use canonical C01 Nadia v2 reference (KLING_REF_C01_NADIA_CANON_V2_V001) and
+    C03 Birta domestic staff reference (KLING_REF_C03_V001). Domestic morning
+    continuity handled as prompt-level styling only.
+    Instruction: plain matte dark fitted top no decorative softness muted neutral
+    palette domestic morning context no tactical accessory no field layering preserve
+    canonical identity and silhouette no redesign.
+  escalation_trigger: >
+    Escalate to asset_lookvariant (separate look_variant scaffold PR) only if Kling
+    generation produces wardrobe delta that causes QC failure (minimum_score < 80)
+    across two consecutive takes, or if the QC reviewer flags wardrobe inconsistency
+    as a blocker that cannot be resolved with prompt-level instruction alone.
+
+dialogue_native_audio_needs:
+  readiness_state: suppressed
+  rendering_rule: >
+    All dialogue lines are suppressed from Kling prompt text. native_audio_readiness
+    is blocked for both C01 and C03 (element_bindings.yaml). No lip-sync generation
+    authorised in PR-GOLDEN-3. Dialogue line IDs (if referenced in shot element
+    manifests) are carried as metadata only; they do not appear in prompt_text.
+    When native_audio_readiness is promoted to ready by a separate voice-pipeline
+    PR, a follow-up Kling re-generation with dialogue can be authorised.
+  dialogue_sources:
+    - C01 Nadia — domestic morning lines (SC0001 dialogue_beats)
+    - C03 Birta — formula / vitamin / breakfast adjacency lines (SC0001 dialogue_beats)
+
+shot_coverage:
+  - shot_id: SH001
+    intent: selected existing take — corridor frame deviation coverage (Nadia alone, Vardova Frame tilted in background)
+    camera_role: establishing
+    framing_notes: East-wing corridor medium-wide; Vardova Frame visible off-angle; Nadia moving through frame; morning light pass
+    dialogue_present: false
+    manifest_status: complete
+
+  - shot_id: SH002
+    intent: Birta / Nadia scene entry — kitchen passage two-presence establishing
+    camera_role: establishing
+    framing_notes: Kitchen passage wider frame; both characters visible in relation; domestic geometry legible
+    dialogue_present: true
+    manifest_status: pending
+
+  - shot_id: SH003
+    intent: formula / vitamin dialogue beat — Birta foreground Nadia background or reverse
+    camera_role: character_coverage
+    framing_notes: Medium two-shot or over-shoulder; domestic table / counter in frame; suppressed dialogue context
+    dialogue_present: true
+    manifest_status: pending
+
+  - shot_id: SH004
+    intent: Vardova Frame tilted insert / detail
+    camera_role: insert
+    framing_notes: Close insert on Vardova Frame in corridor; off-angle tilt legible as motif; no characters in frame
+    dialogue_present: false
+    manifest_status: pending
+
+  - shot_id: SH005
+    intent: Nadia reaction close — threat-map / system-awareness internal hold
+    camera_role: reaction
+    framing_notes: Medium close single on Nadia; expression performance read; domestic background soft
+    dialogue_present: false
+    manifest_status: pending
+
+  - shot_id: SH006
+    intent: Birta exit / breakfast adjacency line coverage
+    camera_role: character_coverage
+    framing_notes: Single or loose two-shot; Birta transitional movement; Nadia stationary or micro-movement
+    dialogue_present: true
+    manifest_status: pending
+
+  - shot_id: SH007
+    intent: Jin nursery off-screen check — movement transition
+    camera_role: movement
+    framing_notes: Corridor or threshold; Nadia moving toward nursery end; no Jin on camera; directional hold
+    dialogue_present: false
+    manifest_status: pending
+
+  - shot_id: SH008
+    intent: final corridor hold — surveillance geometry close / scene end frame
+    camera_role: final_hold
+    framing_notes: East-wing corridor; Nadia exits or is at far end; Vardova Frame in foreground geometry; system-presence subtext
+    dialogue_present: false
+    manifest_status: pending
+
+qc_policy:
+  minimum_score: 80
+  all_shots_required: true
+
+external_generation_policy:
+  target_model: kling_omni_3
+  no_binary_commits: true
+  external_storage_only: true
+
+notes: >
+  SC0001 is the authoritative golden reference scene per PR-GOLDEN-0 § 10
+  (Revision 2, 2026-05-18). SH001 selected take already on main
+  (visual_dev/omni_sets/SC0001/selected_take.yaml). PR-GOLDEN-2 opens
+  SH002-SH008 shot element manifests. PR-GOLDEN-3 generates alias-only Kling
+  Omni prompts; no dialogue rendered until native_audio_readiness promoted.
+  qc_policy minimum_score 80 (below the 85 character reference threshold)
+  because video generation QC encompasses full scene factors not reducible
+  to reference-image fidelity alone. All shots required before milestone tag.
+
+provenance:
+  created_by: hknbb
+  created_at: "2026-05-18T00:00:00Z"
