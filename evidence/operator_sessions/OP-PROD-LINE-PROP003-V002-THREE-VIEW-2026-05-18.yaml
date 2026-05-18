@@ -1,0 +1,22 @@
+session_id: OP-PROD-LINE-PROP003-V002-THREE-VIEW-2026-05-18
+created_at: "2026-05-18T17:16:00Z"
+scene_id: SC0001
+current_task: PROP003 Vardova Frame V002 reference refresh — hero + three-view pack + kling ref registered.
+recommended_files:
+  - visual_dev/elements/props/PROP003/gpt_images_perspective_pack_V002.yaml
+  - visual_dev/elements/props/PROP003/gptimg2_perspectives/image_selection_V002.yaml
+  - visual_dev/elements/props/PROP003/kling_element_reference_V002.yaml
+recommended_steps:
+  - Confirm hero reference (16_53_56) preserves frame tilt, dark frame material, glass reflection, dust shadow, skyline photograph, pale stone wall.
+  - Confirm P01 straight-on preserves full prop identity lock.
+  - Confirm P02 45-degree angle preserves depth and forward-lean tilt reading.
+  - Confirm P03 close insert preserves glass surface, dust shadow, and frame texture.
+  - Approve kling_element_reference_V002 and update shot prompt linked_element_refs.
+status: complete
+notes: >
+  Hero reference selected: ChatGPT Image 18 May 2026 16_53_56.png (from
+  Vardova Frame folder). Text-to-image GPT Images 2. Perspective policy
+  three_view_prop_angle_v2: front_reference (17_16_35), angle_reference
+  (17_16_39), close_reference (17_16_43). All three views operator-approved.
+  V001 chain preserved untouched. Shot prompts SH004 and SH008 updated
+  to reference KLING_REF_PROP003_VARDOVA_FRAME_V002.
