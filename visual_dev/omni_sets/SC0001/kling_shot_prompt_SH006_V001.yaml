@@ -13,24 +13,40 @@ aspect_ratio: "16:9"
 variant_mode: safe
 render_pass: visual_test
 quality_tier: test_720p
-native_audio: false
+native_audio: true
 camera_plan:
   framing: single on @Birta or loose two-shot, transitional framing
   movement: follows @Birta's exit direction; settles on @Nadia
   lens_feel: observational, domestic rhythm, no surveillance pressure
 action_timeline:
   - >-
-    @Birta moves through @ValeResidenceKitchenPassage toward an exit or
-    threshold; @Nadia remains near the corridor, stationary or with
-    minimal micro-movement.
+    @Birta moves through @ValeResidenceKitchenPassage toward exit.
+    @Nadia remains near the corridor, stationary.
   - >-
-    @Birta exits the frame. @Nadia is left alone in the shot.
-    Camera holds briefly on the empty side of the frame.
+    @Birta (factual, slight formality shift): "Mr. Vale called from the car.
+    He said not to wait on breakfast."
+  - >-
+    @Nadia (flat, no inflection, not looking at @Birta): "He won't be back
+    before eight."
+  - >-
+    @Birta (warm caretaking close): "I'll leave something covered."
+    @Birta exits frame. Camera settles on @Nadia alone.
 constraints:
-  - No dialogue rendered; native_audio_readiness blocked for both speakers
   - Preserve @Birta domestic staff wardrobe continuity through exit
   - Preserve @Nadia canonical identity; no wardrobe drift
   - No canonical IDs, no full character names in prompt execution
+  - Kling native audio only; no external TTS; no ADR vendor
+dialogue:
+  - DLG_SC0001_SH006_V001
+  - PERF_SC0001_SH006_C03_V001
+  - PERF_SC0001_SH006_C01_V001
+speech_constraints:
+  - "@Birta MR_VALE delivery: factual, measured, explicit formality ('Mr. Vale')"
+  - "@Nadia delivery: flat declarative, no look toward @Birta, no inflection"
+  - "@Birta COVERED delivery: warm caretaking, brief, final"
+  - No external TTS; Kling native voice only
+native_audio_compatibility: NAC_SC0001_SH006_V001
+voice_binding: VOICE_C03_V001
 source_refs:
   manifest_ref: visual_dev/omni_sets/SC0001/shot_element_manifests/SH006.yaml
   scene_card_ref: planning/scenes/SC0001/scene_card.yaml
