@@ -83,9 +83,9 @@ PERSPECTIVE_QC_REPORT_PATTERN = "evidence/perspective_qc/*.yaml"
 DIALOGUE_QC_REPORT_PATTERN = "evidence/dialogue_qc/*.yaml"
 REVIEW_DECISION_PATTERN = "evidence/review_decisions/*.yaml"
 GPT_IMAGES_PERSPECTIVE_PACK_PATTERN = (
-    "visual_dev/elements/**/gpt_images_perspective_pack.yaml"
+    "visual_dev/elements/**/gpt_images_perspective_pack*.yaml"
 )
-KLING_ELEMENT_REFERENCE_PATTERN = "visual_dev/elements/**/kling_element_reference.yaml"
+KLING_ELEMENT_REFERENCE_PATTERN = "visual_dev/elements/**/kling_element_reference*.yaml"
 KLING_CHARACTER_LOOK_ELEMENT_PATTERN = (
     "visual_dev/elements/characters/*/kling_elements/*.yaml"
 )

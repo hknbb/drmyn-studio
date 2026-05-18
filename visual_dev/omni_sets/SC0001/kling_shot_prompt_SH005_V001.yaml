@@ -6,7 +6,7 @@ scene_id: SC0001
 shot_id: SH005
 linked_element_refs:
   - KLING_REF_C01_NADIA_CANON_V2_V001
-  - KLING_REF_LOC001_KITCHEN_PASSAGE_V001
+  - KLING_REF_LOC001_KITCHEN_PASSAGE_V002
 duration_seconds: 5
 aspect_ratio: "16:9"
 variant_mode: safe

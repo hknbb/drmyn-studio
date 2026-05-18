@@ -5,8 +5,8 @@ status: draft
 scene_id: SC0001
 shot_id: SH004
 linked_element_refs:
-  - KLING_REF_PROP003_VARDOVA_FRAME_V001
-  - KLING_REF_LOC001_KITCHEN_PASSAGE_V001
+  - KLING_REF_PROP003_VARDOVA_FRAME_V002
+  - KLING_REF_LOC001_KITCHEN_PASSAGE_V002
 duration_seconds: 4
 aspect_ratio: "16:9"
 variant_mode: safe

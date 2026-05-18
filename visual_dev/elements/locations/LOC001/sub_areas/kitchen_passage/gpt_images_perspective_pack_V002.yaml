@@ -1,0 +1,88 @@
+schema_version: "0.x-draft"
+record_type: gpt_images_perspective_pack
+prompt_pack_id: GPTIMG2_LOC001_PERSPECTIVE_PACK_V002
+status: review
+source_reference_id: external://local_manual/drmyn-studio-images/Kitchen Passage/ChatGPT Image 18 May 2026 16_55_01.png
+target_model: gpt_images_2
+target_role: multi_perspective_element_expander
+element_id: LOC001
+element_type: location
+perspective_policy: three_view_no_rear
+full_body_visible: false
+source_refs:
+  model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260504T113000Z_chatgpt_image.yaml
+shared_preservation_instruction: >
+  Preserve exact spatial identity, pale travertine/limestone stone walls
+  and floor, tall narrow window placement and geometric diagonal shadow bars
+  on floor, framed photograph sequence on right wall, folded white linen on
+  left ledge, corridor depth and ceiling geometry. Change only camera
+  position and angle.
+prompts:
+  - prompt_id: GPTIMG2_LOC001_P01_ENTRY_V002
+    perspective: front_reference
+    prompt_text: >
+      Use the uploaded corridor reference as the strict location identity
+      source. Generate a single interior architectural still of the same pale
+      stone corridor. Camera at corridor entry end, wide establishing view
+      looking straight inward along the full corridor length. Preserve: pale
+      stone walls and floor, tall narrow windows on left with geometric
+      diagonal shadow bars on floor, framed photograph sequence on right wall,
+      folded white linen on left ledge near entry, corridor depth ending at
+      door. Early morning cool filtered light. Empty of people. No text, no
+      watermark, no logo. 16:9.
+    constraints:
+      - preserve pale stone palette and texture
+      - preserve window position and shadow geometry
+      - preserve art-wall photograph sequence on right
+      - preserve linen ledge on left
+      - preserve corridor depth ending at door
+      - no people
+    expected_output:
+      asset_type: still
+      aspect_ratio: "16:9"
+  - prompt_id: GPTIMG2_LOC001_P02_REVERSE_V002
+    perspective: left_reference
+    prompt_text: >
+      Use the uploaded corridor reference as the strict location identity
+      source. Generate a single interior architectural still of the same pale
+      stone corridor. Camera positioned mid-corridor, looking back toward the
+      corridor entry end. Preserve: same pale stone walls and floor, ceiling
+      geometry, window placement now on the right side from this angle,
+      photograph frames on the left wall from reverse view, corridor entry
+      visible as pale threshold at far end. Early morning cool filtered light,
+      same muted beige-stone palette. Empty of people. No text, no watermark,
+      no logo. 16:9.
+    constraints:
+      - preserve pale stone palette and texture
+      - preserve corridor geometry from reverse angle
+      - preserve photograph frames on left wall from this POV
+      - corridor entry threshold visible at far end
+      - no people
+    expected_output:
+      asset_type: still
+      aspect_ratio: "16:9"
+  - prompt_id: GPTIMG2_LOC001_P03_DETAIL_V002
+    perspective: right_reference
+    prompt_text: >
+      Use the uploaded corridor reference as the strict location identity
+      source. Generate a single interior architectural still focused on the
+      wall-floor junction and light detail of the same pale stone corridor.
+      Camera at mid-corridor height, angled slightly downward — emphasis on
+      the sharp geometric shadow bars cast diagonally across the pale stone
+      floor by the tall narrow windows. Stone floor texture and wall texture
+      visible at close range. Lower portion of right-wall photograph frames
+      visible at frame edge. Same cool morning light quality. Empty of people.
+      No text, no watermark, no logo. 16:9.
+    constraints:
+      - preserve pale stone floor and wall texture
+      - preserve diagonal shadow bar geometry
+      - no people
+    expected_output:
+      asset_type: still
+      aspect_ratio: "16:9"
+qc_gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  failed_perspective_revision_only: true
+downstream_use:
+  - kling_omni_3_shot_prompt
