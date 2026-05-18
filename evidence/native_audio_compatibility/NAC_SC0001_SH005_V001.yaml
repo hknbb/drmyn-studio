@@ -1,0 +1,15 @@
+schema_version: "0.x-draft"
+record_type: native_audio_compatibility_record
+native_audio_compatibility_id: NAC_SC0001_SH005_V001
+status: draft
+scene_id: SC0001
+shot_id: SH005
+native_audio: true
+uses_video_input: false
+uses_image_or_element_refs: true
+compatible: true
+checked_against_snapshot: 20260516T000000Z_kling_omni_video_best_available
+notes: >
+  Ambient audio shot. Nadia reaction close; no spoken dialogue. Kling
+  native audio generates domestic interior ambience (breathing register,
+  corridor quiet). No dialogue speakers.

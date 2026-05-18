@@ -3,11 +3,11 @@ record_type: element_binding
 element_id: C01
 element_type: character
 kling_alias: "@Nadia"
-binding_status: created
-voice_capability: none
-native_audio_readiness: blocked
+binding_status: voice_capable
+voice_capability: library_provided
+native_audio_readiness: ready
 kling_native_audio:
-  enabled: false
+  enabled: true
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
@@ -20,11 +20,11 @@ record_type: element_binding
 element_id: C03
 element_type: character
 kling_alias: "@Birta"
-binding_status: created
-voice_capability: none
-native_audio_readiness: blocked
+binding_status: voice_capable
+voice_capability: library_provided
+native_audio_readiness: ready
 kling_native_audio:
-  enabled: false
+  enabled: true
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false

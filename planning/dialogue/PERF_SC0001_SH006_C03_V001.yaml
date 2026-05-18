@@ -1,0 +1,20 @@
+schema_version: "0.x-draft"
+record_type: performance_intent_record
+performance_intent_id: PERF_SC0001_SH006_C03_V001
+status: draft
+scene_id: SC0001
+shot_id: SH006
+speaker: C03
+spoken_line: "Mr. Vale called from the car. He said not to wait on breakfast."
+language: English
+delivery:
+  volume: low
+  pace: steady
+  tone: factual_report_slight_formality
+  emotional_state: neutral domestic relay
+subtext: >
+  Birta uses "Mr. Vale" explicitly — a formality shift that acknowledges
+  the household's power structure. The report is clean: Roman left early,
+  pre-planned, no breakfast needed.
+face_direction: toward Nadia, transitional movement context
+mouth_behavior: natural speech, measured, no hesitation

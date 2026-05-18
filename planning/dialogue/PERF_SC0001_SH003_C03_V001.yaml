@@ -1,0 +1,20 @@
+schema_version: "0.x-draft"
+record_type: performance_intent_record
+performance_intent_id: PERF_SC0001_SH003_C03_V001
+status: draft
+scene_id: SC0001
+shot_id: SH003
+speaker: C03
+spoken_line: "I found it. He's still down. Your husband —"
+language: English
+delivery:
+  volume: low
+  pace: measured
+  tone: warm_domestic_intimate
+  emotional_state: routine ease with a self-correction catch
+subtext: >
+  Birta starts to use familiar domestic shorthand ("Your husband") then
+  catches herself and trails off. The slip reveals the household's internal
+  intimacy register.
+face_direction: toward Nadia or kitchen surface
+mouth_behavior: natural speech; slight hesitation at the self-correction

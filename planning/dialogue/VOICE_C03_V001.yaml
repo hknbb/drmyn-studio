@@ -1,17 +1,17 @@
 schema_version: "0.x-draft"
 record_type: voice_binding_record
-voice_binding_id: VOICE_C01_V001
+voice_binding_id: VOICE_C03_V001
 status: draft
-character_id: C01
+character_id: C03
 binding_status: prebound
 binding_method: prompt_described
-visual_reference_pack: KLING_REF_C01_NADIA_CANON_V2_V001
+visual_reference_pack: KLING_REF_C03_V001
 language: English
 operator_approved: false
-asset_clearance_ref: ASSET_CLEARANCE_C01_KLING_NATIVE
+asset_clearance_ref: ASSET_CLEARANCE_C03_KLING_NATIVE
 audio_source:
   type: kling_native
   duration_seconds: 0
   background_noise: low_domestic_kitchen
-  speech_speed: controlled
-  emotion_style: restrained_precise_contained
+  speech_speed: measured
+  emotion_style: warm_observational_intimate

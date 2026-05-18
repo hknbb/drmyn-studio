@@ -10,7 +10,7 @@ dialogue_lines:
     speaker_kling_alias: "@Birta"
     line_text: "You didn't sleep again."
     line_type: spoken
-    native_audio_readiness: blocked
+    native_audio_readiness: ready
     dialogue_required: true
     delivery_note: "Observational, not accusatory. Birta's intimate knowledge of Nadia's patterns."
     subtext_note: "Caregiving awareness masked as simple comment; detecting Nadia's controlled behavior."
@@ -21,7 +21,7 @@ dialogue_lines:
     speaker_kling_alias: "@Nadia"
     line_text: "I slept."
     line_type: spoken
-    native_audio_readiness: blocked
+    native_audio_readiness: ready
     dialogue_required: true
     delivery_note: "Brief, controlled. Minimal affect."
     subtext_note: "Deflection; information control. Nadia does not invite further discussion."
@@ -32,7 +32,7 @@ dialogue_lines:
     speaker_kling_alias: "@Birta"
     line_text: "You slept the way you fold laundry. Very neat. Not restful."
     line_type: spoken
-    native_audio_readiness: blocked
+    native_audio_readiness: ready
     dialogue_required: true
     delivery_note: "Warm, knowing. The laundry metaphor is affectionate, not critical."
     subtext_note: "Birta sees through precision to exhaustion. The metaphor mirrors Nadia's character-defining exactness."
@@ -43,7 +43,7 @@ dialogue_lines:
     speaker_kling_alias: "@Nadia"
     line_text: "Jin's formula. There's a new tin in the second shelf, behind the vitamin drops."
     line_type: spoken
-    native_audio_readiness: blocked
+    native_audio_readiness: ready
     dialogue_required: true
     delivery_note: "Rapid delegation of child-care logistics. Precise locations, practical tone."
     subtext_note: "Nadia manages environment and information flow. Delegating to Birta while maintaining control of details."
@@ -54,7 +54,7 @@ dialogue_lines:
     speaker_kling_alias: "@Birta"
     line_text: "I found it. He's still down. Your husband —"
     line_type: interrupted
-    native_audio_readiness: blocked
+    native_audio_readiness: ready
     dialogue_required: true
     delivery_note: "Checks herself mid-sentence. Catches the familiar 'Your husband' and corrects to formality."
     subtext_note: "Momentary slip into intimacy reveals Birta's internal relationship to the household. The self-correction signals power dynamic awareness."
@@ -65,7 +65,7 @@ dialogue_lines:
     speaker_kling_alias: "@Birta"
     line_text: "Mr. Vale called from the car. He said not to wait on breakfast."
     line_type: spoken
-    native_audio_readiness: blocked
+    native_audio_readiness: ready
     dialogue_required: true
     delivery_note: "Factual report delivered with slight formality shift (using 'Mr. Vale' explicitly)."
     subtext_note: "Relaying Mr. Vale's absence. The call suggests pre-planned departure, consistent with Nadia's prior knowledge."
@@ -76,7 +76,7 @@ dialogue_lines:
     speaker_kling_alias: "@Nadia"
     line_text: "He won't be back before eight."
     line_type: spoken
-    native_audio_readiness: blocked
+    native_audio_readiness: ready
     dialogue_required: true
     delivery_note: "Flat statement delivered without looking at Birta. No inflection. Already-known information."
     subtext_note: "Nadia's prior knowledge of Mr. Vale's schedule signals information control and embedded awareness of household rhythms."
@@ -87,7 +87,7 @@ dialogue_lines:
     speaker_kling_alias: "@Birta"
     line_text: "I'll leave something covered."
     line_type: spoken
-    native_audio_readiness: blocked
+    native_audio_readiness: ready
     dialogue_required: true
     delivery_note: "Domestic care offer, brief and practical."
     subtext_note: "Birta's caretaking finality. The offer is accepted by Nadia's nod; exchange closes breakfast topic."
@@ -100,7 +100,7 @@ ambient_sound_prompt: |
   descriptor for Kling-native composition; no TTS, no ADR vendor claims.
 
 kling_native_audio:
-  enabled: false
+  enabled: true
   provider_policy: "kling_native_only"
   external_tts_allowed: false
   adr_vendor_allowed: false
