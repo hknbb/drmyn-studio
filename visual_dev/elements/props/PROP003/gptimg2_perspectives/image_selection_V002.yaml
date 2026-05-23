@@ -2,9 +2,7 @@ element_id: PROP003
 element_type: prop
 selection_round: 2
 source_prompt_ids:
-  - GPTIMG2_PROP003_P01_FRONT_V002
-  - GPTIMG2_PROP003_P02_ANGLE_V002
-  - GPTIMG2_PROP003_P03_CLOSE_V002
+  - SC0001__gptimg2-prop003-perspective-pack-v002__v01
 candidate_images:
   - asset_id: GPTIMG2_PROP003_P01_FRONT_V002_A001
     path: external://local_manual/drmyn-studio-images/Vardova Frame/Stage 2/ChatGPT Image 18 May 2026 17_16_35.png
