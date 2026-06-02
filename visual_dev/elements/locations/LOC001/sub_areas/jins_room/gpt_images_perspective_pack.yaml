@@ -1,0 +1,53 @@
+schema_version: "0.x-draft"
+record_type: gpt_images_perspective_pack
+prompt_pack_id: GPTIMG2_LOC001_JINS_ROOM_PERSPECTIVE_PACK_V001
+status: review
+source_reference_id: CHATGPTIMG_ELEMENT_LOC001_JINS_ROOM_EVENING_HERO_V001
+target_model: gpt_images_2
+target_role: multi_perspective_element_expander
+element_id: LOC001
+element_type: location
+perspective_policy: three_view_no_rear
+source_refs:
+  model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260504T113000Z_chatgpt_image.yaml
+shared_preservation_instruction: Preserve exact spatial identity of Jin's nursery — small carefully-made room, slatted crib, low chair beside the crib, low shelf of an infant's things, single doorway, soft warm contained evening light, muted cream and pale-blue domestic neutrals — and change only camera perspective.
+prompts:
+  - prompt_id: GPTIMG2_LOC001_JINS_ROOM_P01_FRONT_V001
+    perspective: front_reference
+    prompt_text: Using the uploaded reference image as the location identity source, generate a SINGLE architectural interior still of the same small nursery. Wide establishing view from the doorway looking in, full room visible. A slatted wooden crib against one wall, a low chair beside it, a low shelf holding an infant's things, soft textiles. The room is small and made carefully. Soft warm contained evening light from a low practical lamp, gentle falloff into shadow, muted cream and pale-blue domestic neutrals. Empty of people, no clutter. Photorealistic, cinematic still, clean architectural photography. No text, no watermark, no logo.
+    constraints:
+      - preserve nursery geometry (crib, chair, shelf, doorway)
+      - preserve soft warm evening light quality
+      - preserve muted cream and pale-blue palette
+      - no people
+    expected_output:
+      asset_type: still
+      aspect_ratio: "16:9"
+  - prompt_id: GPTIMG2_LOC001_JINS_ROOM_P02_LEFT_V001
+    perspective: left_reference
+    prompt_text: Using the uploaded reference image as the location identity source, generate a SINGLE architectural interior still of the same small nursery. Camera turned toward the single doorway and the threshold into the room, seen from inside. Warm interior in the foreground, cooler dim hallway beyond the open door. Emphasis on the entry sightline a standing figure at the door would command. Same crib and chair partially in frame, same soft warm lamp light, muted cream and pale-blue neutrals. Empty of people. Photorealistic, cinematic still, clean architectural photography. No text, no watermark, no logo.
+    constraints:
+      - preserve doorway and threshold geometry
+      - preserve warm-interior vs cool-hallway contrast
+      - preserve palette and light quality
+      - no people
+    expected_output:
+      asset_type: still
+      aspect_ratio: "16:9"
+  - prompt_id: GPTIMG2_LOC001_JINS_ROOM_P03_RIGHT_V001
+    perspective: right_reference
+    prompt_text: Using the uploaded reference image as the location identity source, generate a SINGLE architectural interior still of the same small nursery. Camera close on the intimate pocket — the crib and the low chair beside it, the shelf of infant things just in frame. Soft warm practical lamp light pooled on the crib, gentle shadow, muted cream and pale-blue domestic neutrals, deliberate carefully-made texture. Empty of people, crib empty. Photorealistic, cinematic still, clean architectural photography. No text, no watermark, no logo.
+    constraints:
+      - preserve crib and chair detail
+      - preserve soft warm pooled lamp light
+      - preserve carefully-made intimate texture
+      - no people
+    expected_output:
+      asset_type: still
+      aspect_ratio: "16:9"
+qc_gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  failed_perspective_revision_only: true
+downstream_use:
+  - kling_omni_3_shot_prompt

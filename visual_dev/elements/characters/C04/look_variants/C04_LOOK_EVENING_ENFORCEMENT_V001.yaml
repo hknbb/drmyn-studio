@@ -1,0 +1,29 @@
+schema_version: "0.x-draft"
+record_type: character_look_variant
+look_id: C04_LOOK_EVENING_ENFORCEMENT_V001
+character_id: C04
+inherits_identity_anchor: C04_IDENTITY_ANCHOR_V001
+status: review
+look_role: evening custody-enforcement visit
+wardrobe_refs:
+  primary_wardrobe_id: WD005
+  supplementary_wardrobe_ids: []
+appearance_state:
+  fatigue_level: nominal
+  damage_level: none
+  hair_state_within_anchor: same short polished dark hair within identity anchor
+continuity_scope:
+  start_scene: SC0014
+  end_scene: SC0014
+change_reason: >
+  SC0014 is an evening custody-removal visit. The operational base (WD005 dark suit + tie)
+  is carried under a dark overcoat with the palette shifted darker for night — a colder,
+  more formal enforcement register than the corporate-daylight @C04_OPERATIONAL look.
+  Identity anchor (40s lean hard-edged face, controlled precise register) preserved.
+notes: >
+  Evening enforcement look variant for C04 Dimitri, scoped to SC0014. Expanded from a
+  Stage-1 hero generated against the canonical C04 identity reference. Overcoat is a
+  scene-specific layer over WD005; no separate wardrobe record created for the coat.
+provenance:
+  created_by: hknbb
+  created_at: "2026-06-02T00:00:00Z"

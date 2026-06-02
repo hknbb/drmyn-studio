@@ -1,0 +1,32 @@
+scene_id: _elements
+created_at: "2026-06-02T00:00:00Z"
+storage_policy: external_image_only
+entries:
+  - kind: gpt_images_2_perspective_output
+    element_id_or_take_id: CHATGPTIMG_ELEMENT_C04_EVENING_ENFORCEMENT_HERO_V001
+    storage_backend: local_manual
+    last_seen_at: "2026-06-02T20:24:50Z"
+    repo_binary_committed: false
+    external_storage_ref: "external://local_manual/drmyn-studio-images/Dimitri/C04_LOOK_EVENING_ENFORCEMENT_V001/ChatGPT Image 2 Haz 2026 20_24_50.png"
+    notes: Locked Stage-1 hero for C04 evening-enforcement look (from canonical C04 identity). No image binary stored in repo.
+  - kind: gpt_images_2_perspective_output
+    element_id_or_take_id: GPTIMG2_C04_EVENING_ENFORCEMENT_P01_FRONT_V001
+    storage_backend: local_manual
+    last_seen_at: "2026-06-02T20:51:58Z"
+    repo_binary_committed: false
+    external_storage_ref: "external://local_manual/drmyn-studio-images/Dimitri/C04_LOOK_EVENING_ENFORCEMENT_V001/stage 3/ChatGPT Image 2 Haz 2026 20_51_58.png"
+    notes: Stage-3 front_reference. No image binary stored in repo.
+  - kind: gpt_images_2_perspective_output
+    element_id_or_take_id: GPTIMG2_C04_EVENING_ENFORCEMENT_P02_TQM_V001
+    storage_backend: local_manual
+    last_seen_at: "2026-06-02T20:54:32Z"
+    repo_binary_committed: false
+    external_storage_ref: "external://local_manual/drmyn-studio-images/Dimitri/C04_LOOK_EVENING_ENFORCEMENT_V001/stage 3/ChatGPT Image 2 Haz 2026 20_54_32.png"
+    notes: Stage-3 three_quarter_medium_reference. No image binary stored in repo.
+  - kind: gpt_images_2_perspective_output
+    element_id_or_take_id: GPTIMG2_C04_EVENING_ENFORCEMENT_P03_TQC_V001
+    storage_backend: local_manual
+    last_seen_at: "2026-06-02T20:55:55Z"
+    repo_binary_committed: false
+    external_storage_ref: "external://local_manual/drmyn-studio-images/Dimitri/C04_LOOK_EVENING_ENFORCEMENT_V001/stage 3/ChatGPT Image 2 Haz 2026 20_55_55.png"
+    notes: Stage-3 three_quarter_close_reference. No image binary stored in repo.

@@ -1,0 +1,26 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KLING_REF_LOC001_JINS_ROOM_V001
+status: review
+element_id: LOC001
+element_type: location
+source_midjourney_reference:
+  reference_id: CHATGPTIMG_ELEMENT_LOC001_JINS_ROOM_EVENING_HERO_V001
+  prompt_id: CHATGPTIMG_ELEMENT_LOC001_JINS_ROOM_EVENING_HERO_V001
+gpt_images_2_perspectives:
+  front_reference: GPTIMG2_LOC001_JINS_ROOM_P01_FRONT_V001
+  left_reference: GPTIMG2_LOC001_JINS_ROOM_P02_LEFT_V001
+  right_reference: GPTIMG2_LOC001_JINS_ROOM_P03_RIGHT_V001
+continuity_anchors:
+  - fixed small carefully-made nursery with slatted wooden crib against one wall
+  - fixed low nursing/rocking chair beside the crib with a single warm practical table lamp
+  - fixed low shelf of an infant's things with soft baskets and folded textiles
+  - fixed framed picture and hanging mobile near the crib
+  - fixed single doorway opening to a cooler dim hallway
+  - fixed soft warm contained evening light, muted cream and pale-blue domestic neutrals
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-PROD-LINE-LOC001-JINS-ROOM-THREE-VIEW-2026-06-02
+downstream_use:
+  - kling_omni_3_shot_prompt

@@ -1,0 +1,46 @@
+prop_id: PROP007
+name: "Jin's infant bracelet"
+narrative_function: "The single object Nadia's hand reaches for as Jin is carried away; the compressed physical token of the child and of the loss. In SC0014 her fingers find it for exactly one beat before her hand is empty."
+visual_description: "A small pale blue infant band worn on Jin's wrist, with a clasp and a small piece of type bearing his name. Soft, plain, domestic — an everyday infant identification band, not jewellery and not a medical device."
+category: PERSONAL_OBJECT
+canonical_name: "Jin's infant bracelet"
+aliases:
+  - "the bracelet"
+  - "the pale blue band"
+prop_type: "infant identification band"
+ownership_or_association: "Worn by Jin (C08); emotionally held by Nadia (C01)."
+physical_description_grounded: >
+  Source-stated in SC0014: "the pale blue band, the clasp, the small type of his
+  name." A soft pale blue wrist band with a clasp and small lettering of Jin's
+  name. Nothing further is source-stated about material, brand, or construction.
+continuity_importance: "High"
+recurring_scene_ids:
+  - SC0014
+related_characters:
+  - C01
+  - C08
+related_locations:
+  - LOC001
+handling_notes:
+  - "Source states only: pale blue band, clasp, small type of his name. Do not add brand, hospital logo, barcode, or medical-tracker styling."
+  - "This is NOT the PL09 medical bracelet tracker referenced in Jin's record; keep the two distinct. PROP007 is the plain pale-blue named infant band described in SC0014."
+  - "Do not bake the bracelet into Jin's base infant identity (C08); it is a separate attached prop element."
+  - "The defining beat is tactile and brief — the band registers as a small soft domestic object found by a reaching hand, not as a hero product shot with dramatic lighting."
+visual_stability_notes:
+  - "Pale blue is the defining color; the clasp and the small name type are the identifying details."
+  - "Scale reads as infant-wrist small; soft, slightly worn, domestic."
+future_hero_prop_candidate: false
+continuity_state:
+  initial_state: "On Jin's wrist as Nadia holds him at the start of SC0014."
+  state_changes:
+    - scene_id: SC0014
+      new_state: "Brushed by Nadia's fingers for one beat as Jin is lifted away; then out of reach. Nadia's hand left open and empty."
+owner_character_id: C08
+scene_refs:
+  - SC0014
+unresolved_questions:
+  - "EVIDENCE_THIN: material and construction beyond 'pale blue band, clasp, small type of his name' are not source-stated; keep plain and domestic, do not invent specifics."
+  - "TODO_REVIEW: confirm whether the bracelet recurs in later Jin scenes (SC0034/SC0057/SC0109/SC0120) before treating as multi-scene continuity prop."
+status: review
+review_status: pending
+canon_lock: false

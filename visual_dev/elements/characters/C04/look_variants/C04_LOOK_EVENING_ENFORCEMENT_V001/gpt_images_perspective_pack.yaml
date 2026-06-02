@@ -1,0 +1,53 @@
+schema_version: "0.x-draft"
+record_type: gpt_images_perspective_pack
+prompt_pack_id: GPTIMG2_C04_EVENING_ENFORCEMENT_PERSPECTIVE_PACK_V001
+status: review
+source_reference_id: CHATGPTIMG_ELEMENT_C04_EVENING_ENFORCEMENT_HERO_V001
+target_model: gpt_images_2
+target_role: multi_perspective_element_expander
+element_id: C04
+element_type: character
+perspective_policy: three_view_scale_angle_v2
+source_refs:
+  model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260504T113000Z_chatgpt_image.yaml
+shared_preservation_instruction: Preserve C04 Dimitri identity (40s lean hard-edged instrument face, short polished dark hair with light greying, controlled precise register) and the evening enforcement wardrobe (dark overcoat over dark suit and dark tie, muted night palette); change only camera framing and scale.
+prompts:
+  - prompt_id: GPTIMG2_C04_EVENING_ENFORCEMENT_P01_FRONT_V001
+    perspective: front_reference
+    prompt_text: Using the uploaded reference image as the identity source, render the same man, identity preserved. Straight-on front, head and shoulders to upper chest. Dark overcoat over dark suit and dark tie, muted night palette. Cool dim even light, plain neutral background. Controlled courteous unhurried expression. Photorealistic cinematic character reference. No text, no watermark, no logo.
+    constraints:
+      - preserve C04 face geometry and hair
+      - preserve dark evening enforcement wardrobe
+      - no aggression in expression
+      - plain neutral background
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+  - prompt_id: GPTIMG2_C04_EVENING_ENFORCEMENT_P02_TQM_V001
+    perspective: three_quarter_medium_reference
+    prompt_text: Using the uploaded reference image as the identity source, render the same man, identity preserved. Three-quarter angle, medium framing (waist-up). Same dark overcoat, dark suit, dark tie, muted night palette. Cool dim light, plain neutral background. Lean instrument silhouette readable. Photorealistic cinematic character reference. No text, no watermark, no logo.
+    constraints:
+      - preserve C04 identity
+      - preserve dark evening enforcement wardrobe
+      - lean instrument silhouette
+      - plain neutral background
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+  - prompt_id: GPTIMG2_C04_EVENING_ENFORCEMENT_P03_TQC_V001
+    perspective: three_quarter_close_reference
+    prompt_text: Using the uploaded reference image as the identity source, render the same man, identity preserved. Three-quarter close framing (head and shoulders). Same dark evening enforcement wardrobe, muted night palette. Cool dim light, plain neutral background. Hard-edged controlled register, no aggression. Photorealistic cinematic character reference. No text, no watermark, no logo.
+    constraints:
+      - preserve C04 face geometry
+      - preserve dark evening wardrobe
+      - controlled register
+      - plain neutral background
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+qc_gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  failed_perspective_revision_only: true
+downstream_use:
+  - kling_omni_3_shot_prompt

@@ -1,0 +1,20 @@
+session_id: OP-PROD-LINE-PROP007-THREE-VIEW-2026-06-02
+created_at: "2026-06-02T16:30:00Z"
+scene_id: SC0014
+current_task: "PROP007 Jin's bracelet: hero locked, 3-view pack + kling reference registered for SC0014 SH005."
+recommended_files:
+  - visual_dev/elements/props/PROP007/gpt_images_perspective_pack.yaml
+  - visual_dev/elements/props/PROP007/gptimg2_perspectives/image_selection.yaml
+  - visual_dev/elements/props/PROP007/kling_element_reference.yaml
+recommended_steps:
+  - Confirm hero reference (15_01_26) preserves pale blue band, clasp, soft "Jin" label, no brand/medical styling.
+  - Confirm P01 front preserves the name legibility as a gentle detail.
+  - Confirm P02 left and P03 right preserve clasp and band identity from three-quarter angles.
+  - Approve kling_element_reference and bind @PROP007_JIN_BRACELET in SC0014 element_bindings.yaml (shot SH005).
+status: complete
+notes: >
+  Fresh prop build for SC0014 (Jin's bracelet, SH005 insert). Stage-1 hero selected by
+  operator: "ChatGPT Image 2 Haz 2026 15_01_26.png". Three-view GPT Images 2 set expanded
+  from the locked hero: front (16_16_57), left (16_18_19), right (16_25_55). All three
+  operator-approved 2026-06-02 (explicit "lock the element" instruction). Kept distinct
+  from Jin's PL09 medical bracelet tracker. No binaries committed; external/local refs only.

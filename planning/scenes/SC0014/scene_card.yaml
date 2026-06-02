@@ -1,36 +1,45 @@
 scene_id: SC0014
 sequence_id: SEQ03
 phase_id: PH_EQUILIBRIUM
-title: JIN'S NURSERY — VALE RESIDENCE
-purpose: Placeholder scaffold seeded from the retrieval map; replace with canonical scene purpose.
-dramatic_function: TBD dramatic function derived during scene-card enrichment.
+title: "Jin's Nursery — The Taking"
+purpose: "Stage the forced custody removal of Jin from Nadia: the contained, carefully-made nursery becomes the site where Nadia's domestic world is taken from her by procedure rather than violence, and her resistance is shown to be total and insufficient."
+dramatic_function: "Loss-of-equilibrium beat: the protected center of Nadia's life (Jin) is removed under polite, professional enforcement. Value shifts from contained safety to dispossession; the room and the empty crib become the measure of the cost."
 location_id: LOC001
-location_text_raw: JIN'S NURSERY — VALE RESIDENCE
+location_text_raw: "JIN'S NURSERY — VALE RESIDENCE"
 time_of_day: EVENING
 time_of_day_text_raw: EVENING
-weather: TBD
+weather: "Interior; exterior weather not source-stated."
 characters_present:
-- C01
+  - C01
+  - C04
+  - C08
 characters_explicit_dialogue:
-- DIMITRI
+  - DIMITRI
 characters_explicit_mentions:
-- NADIA
-- DIMITRI
+  - NADIA
+  - DIMITRI
+  - JIN
 primary_pov_character: C01
 continuity_refs:
   wardrobe: []
   props: []
   prior_scenes:
-  - SC0013
+    - SC0013
   next_expected_links:
-  - SC0015
-  time_continuity_note: TBD continuity note.
+    - SC0015
+  time_continuity_note: >
+    Evening interior at the Vale residence. The pale blue infant bracelet (clasp,
+    small type of Jin's name) is a load-bearing continuity object in this scene but
+    is not yet a tracked PROP record (Jin's record defers it as PROP-JIN-BRACELET);
+    register a prop element before this object carries continuity weight downstream.
 visual_targets:
-  palette: TBD visual palette
-  lens_bias: TBD lens bias
-  framing_bias: TBD framing bias
-  movement_bias: TBD movement bias
-  lighting_bias: TBD lighting bias
+  palette: "Warm contained nursery neutrals — soft light, cream and muted blue, the deliberate warmth of a room 'made carefully'; cooler, flatter tone as the men enter."
+  lens_bias: "Restrained intimate coverage held close to Nadia and the child; tight enough to register the bracelet beat and the resistance of her arms without spectacle."
+  framing_bias: "The crib and chair as the protected center; the doorway and the three standing men as the intruding geometry; the empty crib as the closing frame."
+  movement_bias: "Minimal and exact — Nadia's single step back, the practiced advance of the first man, the lift; camera holds rather than chases."
+  lighting_bias: "Low warm practicals and soft evening fill; warmth stays contained and is not relit when the men arrive."
+  aesthetic_pack_refs:
+    - VALE_DOMESTIC_RESTRAINT
 promptability_score: 3
 excerpt_ref: scene_excerpt.md
 screen_excerpt_ref: scene_excerpt.md
@@ -45,20 +54,59 @@ boundary_start_kind: slug
 boundary_end_kind: slug
 mapping_confidence: high
 notes_grounding:
-- Hydrated from retrieval map and scene_excerpt.md only.
-- Title derived from opening slugline location.
-- Opening slugline provided grounded location/time extraction.
-- Numbered Fountain marker present for this scene.
-status: scaffolded
+  - "Enriched from scene_excerpt.md (source lines 1071-1134); no story facts added beyond the excerpt."
+  - "characters_present lists tracked compact records physically in the scene: C01 (Nadia), C04 (Dimitri Koss), C08 (Jin Vale). C08 is now a tracked compact character record (was untracked at SC0001 authoring)."
+  - "The two unnamed men accompanying Dimitri have no character records and are treated as anonymous enforcer figures, not compact character IDs."
+  - "PROTECTED SUBJECT: SC0014 is an infant-removal scene. Jin (C08) carries hard protected-subject constraints (no unsafe handling, no restraint imagery, no distress exploitation). Shot design must imply the taking through Nadia's POV and adult performance, keep all infant handling safe/supported, and keep infant distress off-frame. Flag for explicit human review before any generation."
+  - "The pale blue bracelet is a deferred prop (PROP-JIN-BRACELET) per Jin's record; not yet a tracked PROP."
+  - "Title refined from the slug-derived location to a grounded scene label; confirm during human review."
+status: review
 review_status: needs_human_review
 canon_lock: false
 omni_set_ref: visual_dev/omni_sets/SC0014/
 element_slot_allocation:
   max_slots: 7
-  slots_used: 0
-  allocation: []
-  slots_free: 7
-  economy_notes: "Pending Stage C pilot review."
+  slots_used: 1
+  slots_planned: 4
+  allocation:
+    - slot_id: ELEM01
+      element_ref: '@C01_NADIA_CANON_V2'
+      element_id: C01
+      element_type: character_look
+      platform_binding_ref: visual_dev/omni_sets/SC0014/element_bindings.yaml
+      platform_binding_required: true
+      readiness: draft_reference_ready
+  planned_allocation:
+    - slot_id: ELEM02
+      element_ref: '@C04_OPERATIONAL'
+      element_id: C04
+      element_type: character_look
+      platform_binding_ref: visual_dev/omni_sets/SC0014/element_bindings.yaml
+      platform_binding_required: true
+      readiness: alias_draft_pending_promotion
+    - slot_id: ELEM03
+      element_ref: 'C08'
+      element_id: C08
+      element_type: character_look
+      platform_binding_ref: visual_dev/omni_sets/SC0014/element_bindings.yaml
+      platform_binding_required: true
+      readiness: pending_kling_element_alias
+      blocking_note: "C08 has KLING_REF_C08_V001 but no kling_elements composite alias; alias-only prompts blocked until created."
+    - slot_id: ELEM04
+      element_id: LOC001_JINS_ROOM
+      element_type: location_sub_area
+      platform_binding_ref: visual_dev/omni_sets/SC0014/element_bindings.yaml
+      platform_binding_required: true
+      readiness: pending_sub_area_build
+      blocking_note: "LOC001/sub_areas/jins_room is intake-slot only (source_status not_collected); no perspective pack or kling_element_reference yet."
+  slots_free: 2
+  economy_notes: >
+    Four element slots planned: C01 Nadia (ready v2 reference), C04 Dimitri
+    (operational alias, draft), C08 Jin (reference exists, composite alias missing),
+    and the Jin's-nursery sub-area of LOC001 (not yet built). Two anonymous enforcer
+    figures are prompt-described, not allocated as elements. Promptability is held at
+    3 because protected-subject infant handling materially constrains clean shot
+    synthesis. See golden_reference_plan.yaml for the full production gate.
 shot_list_omni: []
 lipsync_plan:
   sync_bearing_shots: []

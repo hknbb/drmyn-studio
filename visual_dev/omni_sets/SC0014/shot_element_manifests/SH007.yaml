@@ -1,0 +1,21 @@
+schema_version: "0.x-draft"
+record_type: shot_element_manifest
+manifest_id: MANIFEST_SC0014_SH007_V001
+scene_id: SC0014
+shot_id: SH007
+required_elements:
+  - element_id: C01
+    element_type: character
+    role: primary_subject
+    registration_state_required: created
+  - element_id: LOC001
+    element_type: location_sub_area
+    role: attached_location
+    registration_state_required: created
+environmental_only_allowed_ids: []
+gate_status: all_elements_ready
+notes: >
+  Final hold — the operatives leave; Nadia (@C01_NADIA_CANON_V2) stands alone; the crib
+  is empty; the hand that held the bracelet is open at her side; she does not move toward
+  the door, "already somewhere else." The closing image of dispossession. No infant in
+  frame. In @LOC001_JINS_ROOM.

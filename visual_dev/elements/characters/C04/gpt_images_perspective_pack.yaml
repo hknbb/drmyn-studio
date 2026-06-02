@@ -1,7 +1,7 @@
 schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
 prompt_pack_id: GPTIMG2_C04_PERSPECTIVE_PACK_V001
-status: draft
+status: review
 source_reference_id: external://local_manual/drmyn-studio-images/u9435212546_Dimitri_40s_controlled_precise_hard-edged_operati_c57ccc79-0866-46f8-a0f7-fce45232a4e0_0.png
 target_model: gpt_images_2
 target_role: multi_perspective_element_expander

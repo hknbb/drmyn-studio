@@ -1,0 +1,58 @@
+schema_version: 0.x-draft
+record_type: element_view_plan
+element_id: LOC001
+element_type: location
+element_subtype: jins_room
+element_context: >
+  Vale Residence — Jin's Nursery — EVENING. Required for SC0014 (the forced custody
+  removal of Jin). A small room "made carefully" — soft warm light, a crib, a chair
+  beside it, a shelf of an eight-month-old's things, a single doorway. Distinct from
+  the kitchen_passage sub-area: this is an intimate warm domestic pocket, not a
+  surveillance-geometry corridor. Source images not yet collected.
+retrofit_status: current
+anchor_view: null
+views:
+  - view_id: wide_establishing
+    view_label: Wide establishing (nursery geometry, crib + chair + shelf)
+    generation_pattern: independent_t2i
+    anchor_dependency: none
+    model_adapter_target: chatgpt_image_best_available
+    status: planned
+    generation_notes: >
+      Wide interior of the small nursery. Crib, chair beside it, low shelf of infant
+      things. Soft contained warm evening light from a practical lamp; cooler dim
+      beyond the doorway. The room reads as deliberately, lovingly made. No people.
+  - view_id: threshold_or_route_geometry
+    view_label: Doorway / threshold geometry (the entry the men use)
+    generation_pattern: independent_t2i
+    anchor_dependency: none
+    model_adapter_target: chatgpt_image_best_available
+    status: planned
+    generation_notes: >
+      The single doorway into the nursery, seen from inside the room. Establishes the
+      entry point and the sightline a standing figure at the door would command.
+      Warm interior vs. cooler hallway beyond. No people.
+  - view_id: lighting_reference
+    view_label: Lighting reference (soft contained evening warmth)
+    generation_pattern: independent_t2i
+    anchor_dependency: none
+    model_adapter_target: chatgpt_image_best_available
+    status: planned
+    generation_notes: >
+      Light-quality study: low warm practical lamp, soft falloff, muted cream and
+      pale-blue domestic neutrals, gentle shadow. Establishes the contained warmth
+      that the scene's dispossession is measured against. No people.
+open_blockers:
+  - "Hero establishing image not yet generated; all three views are planned, not collected."
+notes: >
+  Fresh build for SC0014 (not a historical retrofit). Location views use
+  independent_t2i (no persistent identity anchor); anchor_view is null. The
+  gpt_images_perspective_pack in this folder carries the three-view expansion
+  prompts for GPT Images 2. Per no_binary_commits policy, no binaries are committed;
+  canonical asset paths are reference identifiers only and will be filled in after
+  the operator generates and selects images.
+provenance:
+  created_by: hknbb
+  created_at: "2026-06-02T00:00:00Z"
+evidence_refs:
+  - visual_dev/elements/locations/LOC001/sub_areas/jins_room/intake_slot.yaml

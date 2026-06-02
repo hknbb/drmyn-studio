@@ -1,0 +1,36 @@
+schema_version: "0.x-draft"
+record_type: character_identity_anchor
+identity_anchor_id: C08_IDENTITY_ANCHOR_V001
+character_id: C08
+status: review
+source_reference_strategy:
+  reference_sheet_allowed_as_identity_source: true
+  final_hero_lock_requires_single_clean_image: true
+  contact_sheet_layout_forbidden_as_lock: true
+source_reference_sheet_ref: "external://local_manual/drmyn-studio-images/Jin/jin_first_reference"
+front_hero_lock_ref:
+  pending: false
+  external_ref: GPTIMG2_C08_P01_FRONT_V001
+fixed_identity_anchors:
+  - ordinary infant approximately eight months old with sparse soft natural dark hair
+  - neutral infant skin tone with brown eyes, heritage unspecified and not visually asserted
+  - calm ordinary infant presence, real-baby specificity rather than symbolic prop
+mutable_appearance_allowed:
+  - wardrobe (simple practical infant clothing)
+  - seated or supported posture within safe handling
+  - soft domestic lighting and palette per scene
+forbidden_drift:
+  - idealized glow, soft-focus saintly halo, or "magical baby" effects
+  - themed or narrative-coded outfits
+  - action, heroic, or dramatic posing
+  - exploited distress (crying, pain, fear rendered as content)
+  - assumed specific ethnic features beyond neutral heritage
+notes: >
+  Identity anchor for C08 Jin Vale (protected subject). Derived from planning/characters/C08.yaml
+  visual_profile and protected-subject ethics. Front hero lock is the operator-approved
+  canonical front reference GPTIMG2_C08_P01_FRONT_V001. Scene look variants (e.g.
+  C08_LOOK_NURSERY_EVENING_V001) inherit this anchor and may vary only wardrobe, posture,
+  and lighting within safe-handling and protected-subject constraints.
+provenance:
+  created_by: hknbb
+  created_at: "2026-06-02T00:00:00Z"

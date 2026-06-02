@@ -1,0 +1,30 @@
+schema_version: "0.x-draft"
+record_type: shot_element_manifest
+manifest_id: MANIFEST_SC0014_SH004_V001
+scene_id: SC0014
+shot_id: SH004
+required_elements:
+  - element_id: C01
+    element_type: character
+    role: primary_subject
+    registration_state_required: created
+  - element_id: C08
+    element_type: character
+    role: primary_subject
+    registration_state_required: created
+  - element_id: C10
+    element_type: character
+    role: primary_subject
+    registration_state_required: created
+  - element_id: LOC001
+    element_type: location_sub_area
+    role: attached_location
+    registration_state_required: created
+environmental_only_allowed_ids: []
+gate_status: all_elements_ready
+notes: >
+  The taking — first operative (@C10_ENFORCER) advances, the child (@C08_NURSERY_EVENING)
+  is lifted free. HARD PROTECTED SUBJECT GATE: stage the separation through Nadia's
+  (@C01_NADIA_CANON_V2) resistance and adult performance; the lift is framed off the
+  infant or safe-supported; NO restraint imagery on the child, NO exploited distress.
+  In @LOC001_JINS_ROOM.

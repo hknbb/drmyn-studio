@@ -1,0 +1,25 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KLING_REF_C10_V001
+status: review
+element_id: C10
+element_type: character
+source_midjourney_reference:
+  reference_id: MJ_C10_ENFORCER_HERO_V001
+  prompt_id: MJ_PROMPT_C10_ENFORCER_V001
+gpt_images_2_perspectives:
+  front_reference: GPTIMG2_C10_P01_FRONT_V001
+  three_quarter_medium_reference: GPTIMG2_C10_P02_TQM_V001
+  three_quarter_close_reference: GPTIMG2_C10_P03_TQC_V001
+continuity_anchors:
+  - fixed mid-30s to 40s adult with unremarkable build and professionally anonymous bearing
+  - fixed plain dark functional jacket with no insignia, logo, or badge
+  - fixed neutral practiced expression, controlled economical movement
+  - fixed cool night palette, no tactical or military styling
+  - fixed non-individuated face read, anonymous process not a hero character
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-PROD-LINE-C10-ENFORCER-THREE-VIEW-2026-06-02
+downstream_use:
+  - kling_omni_3_shot_prompt

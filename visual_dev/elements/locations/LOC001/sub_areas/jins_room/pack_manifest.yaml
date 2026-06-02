@@ -1,0 +1,21 @@
+element_id: LOC001
+element_type: location_sub_area
+sub_area: jins_room
+canonical_name: Vale Residence — Jin's Nursery
+planning_record: planning/locations/LOC001.yaml
+pack_status: metadata_only
+image_seeding_blocked: false
+image_seeding_note: >
+  Stage 1 hero locked 2026-06-02: "ChatGPT Image 2 Haz 2026 14_42_32.png"
+  (CHATGPTIMG_ELEMENT_LOC001_JINS_ROOM_EVENING_HERO_V001) registered as the location
+  identity anchor in gptimg2_perspectives/image_selection.yaml (selection_round 1).
+  NEXT (Stage 2): expand the three-view set from the locked hero per
+  gpt_images_perspective_pack.yaml, register as selection_round 2, then perspective_qc
+  + kling_element_reference + @LOC001_JINS_ROOM alias and bind in
+  visual_dev/omni_sets/SC0014/element_bindings.yaml. No binaries committed.
+pilot_scene_usage:
+  - scene: SC0014
+    context: evening, small carefully-made nursery, crib + chair + shelf, soft warm contained light; site of the forced custody removal
+provenance:
+  created_by: operator/hknbb
+  created_at: "2026-06-02T00:00:00Z"

@@ -1,0 +1,17 @@
+wardrobe_id: WD008
+name: "Jin infant evening onesie"
+character_id: C08
+category: INFANT_DOMESTIC
+description: >
+  Simple soft sleep-adjacent infant onesie in muted pale-blue and cream domestic
+  neutrals. Plain practical infant wear, age-appropriate construction, no themed or
+  narrative-coded styling. Worn by Jin in the SC0014 evening nursery scene.
+palette: "muted pale-blue and cream domestic neutrals"
+scene_refs:
+  - SC0014
+handling_notes:
+  - "No themed, branded, military-style, or 'captive prop' wardrobe; plain domestic infant wear only."
+  - "Do not bake Jin's bracelet (PROP007) into the onesie; the bracelet is a separate prop element."
+status: review
+review_status: pending
+canon_lock: false

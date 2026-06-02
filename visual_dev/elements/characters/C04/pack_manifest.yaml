@@ -1,0 +1,19 @@
+element_id: C04
+element_type: character
+canonical_name: Dimitri Koss
+planning_record: planning/characters/C04.yaml
+pack_status: metadata_only
+image_seeding_blocked: false
+image_seeding_note: >
+  C04 Dimitri canonical identity registered (three-view perspective set, KLING_REF_C04_V001,
+  operator-approved) with daytime @C04_OPERATIONAL alias. Evening scene look variant
+  C04_LOOK_EVENING_ENFORCEMENT_V001 registered for SC0014 with its own three-view set,
+  KLING_REF_C04_EVENING_ENFORCEMENT_V001, and @C04_EVENING_ENFORCEMENT alias. No binaries committed.
+pilot_scene_usage:
+  - scene: SC0002
+    context: operational executive presence (canonical @C04_OPERATIONAL)
+  - scene: SC0014
+    context: evening custody-enforcement visit (@C04_EVENING_ENFORCEMENT)
+provenance:
+  created_by: operator/hknbb
+  created_at: "2026-06-02T00:00:00Z"

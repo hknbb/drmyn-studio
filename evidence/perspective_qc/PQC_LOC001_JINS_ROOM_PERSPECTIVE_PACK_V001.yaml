@@ -1,0 +1,48 @@
+schema_version: "0.x-draft"
+record_type: perspective_qc_report
+perspective_qc_id: PQC_LOC001_JINS_ROOM_PERSPECTIVE_PACK_V001
+status: approved
+scene_id: SC0014
+element_id: LOC001
+prompt_pack_id: GPTIMG2_LOC001_JINS_ROOM_PERSPECTIVE_PACK_V001
+operator_session_ref: OP-PROD-LINE-LOC001-JINS-ROOM-THREE-VIEW-2026-06-02
+perspective_scores:
+  - prompt_id: GPTIMG2_LOC001_JINS_ROOM_P01_FRONT_V001
+    perspective: front_reference
+    identity_preservation: 95
+    perspective_usefulness: 94
+    material_palette_continuity: 95
+    production_reference_cleanliness: 95
+    hallucination_absence: 95
+    total_score: 95
+    decision: pass
+  - prompt_id: GPTIMG2_LOC001_JINS_ROOM_P02_LEFT_V001
+    perspective: left_reference
+    identity_preservation: 94
+    perspective_usefulness: 95
+    material_palette_continuity: 94
+    production_reference_cleanliness: 94
+    hallucination_absence: 95
+    total_score: 94
+    decision: pass
+  - prompt_id: GPTIMG2_LOC001_JINS_ROOM_P03_RIGHT_V001
+    perspective: right_reference
+    identity_preservation: 94
+    perspective_usefulness: 92
+    material_palette_continuity: 95
+    production_reference_cleanliness: 94
+    hallucination_absence: 95
+    total_score: 94
+    decision: pass
+gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  can_advance_to_kling_reference: true
+notes: >
+  Jin's nursery three-view perspective QC. Outputs expanded from locked Stage-1 hero
+  (14_42_32) and reviewed 2026-06-02. Identity — small carefully-made nursery, slatted
+  crib, chair + practical lamp, shelf with baskets/infant things, framed picture, mobile,
+  soft warm contained evening light, muted cream and pale-blue palette — held cleanly
+  across front (16_00_40), left/threshold (15_50_38), and right/lighting (16_13_20).
+  Empty of people in all three. No hallucinated architecture or palette drift. All three
+  clear the 85 minimum. Operator-approved for Kling element reference registration.

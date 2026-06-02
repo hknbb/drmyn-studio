@@ -1,0 +1,29 @@
+schema_version: 0.x-draft
+record_type: kling_character_look_element
+kling_character_look_element_id: KLING_ELEM_C08_NURSERY_EVENING_V001
+character_id: C08
+identity_anchor_id: C08_IDENTITY_ANCHOR_V001
+look_id: C08_LOOK_NURSERY_EVENING_V001
+kling_element_alias: '@C08_NURSERY_EVENING'
+display_name: C08 Jin Nursery Evening
+status: review
+element_role: character_look_composite
+source_reference_chain:
+  identity_source_ref: CHATGPTIMG_ELEMENT_C08_NURSERY_EVENING_HERO_V001
+  front_hero_lock_ref: "external://local_manual/drmyn-studio-images/Jin/C08_LOOK_NURSERY_EVENING_V001/ChatGPT Image 2 Haz 2026 20_12_18.png"
+  perspective_pack_id: GPTIMG2_C08_NURSERY_EVENING_PERSPECTIVE_PACK_V001
+  wardrobe_ids:
+    - WD008
+omni_usage_policy:
+  use_as_primary_character_element: true
+  do_not_mix_with_other_same_character_look_aliases_in_same_shot: true
+  wardrobe_is_baked_into_element: true
+  separate_wardrobe_element_optional: false
+notes: >
+  Evening nursery infant look composite for C08 Jin Vale (SC0014, protected subject).
+  Soft pale-blue onesie (WD008), identity anchor preserved, safe handling only. Alias
+  @C08_NURSERY_EVENING. Bracelet (PROP007) is a separate prop element, not baked here.
+  Bound for SC0014 via element_bindings.yaml.
+provenance:
+  created_by: hknbb
+  created_at: "2026-06-02T00:00:00Z"

@@ -1,0 +1,53 @@
+schema_version: "0.x-draft"
+record_type: gpt_images_perspective_pack
+prompt_pack_id: GPTIMG2_PROP007_PERSPECTIVE_PACK_V001
+status: review
+source_reference_id: CHATGPTIMG_ELEMENT_PROP007_JIN_BRACELET_HERO_V001
+target_model: gpt_images_2
+target_role: multi_perspective_element_expander
+element_id: PROP007
+element_type: prop
+perspective_policy: three_view_no_rear
+source_refs:
+  model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260504T113000Z_chatgpt_image.yaml
+shared_preservation_instruction: Preserve exact prop identity — a small pale blue infant wrist band with a clasp and the small soft type of the name, plain and domestic, infant-wrist scale — and change only camera perspective. Never add brand, hospital logo, barcode, or medical-tracker styling.
+prompts:
+  - prompt_id: GPTIMG2_PROP007_P01_FRONT_V001
+    perspective: front_reference
+    prompt_text: Using the uploaded reference image as the prop identity source, generate a SINGLE production still of the same small pale blue infant bracelet. Straight-on close view, band gently curved, the small clasp visible, a small soft piece of type bearing a name readable as a gentle detail (not a graphic logo). Plain soft neutral background, soft even light, muted pale-blue palette. No people, no hands, no additional objects. Photorealistic, cinematic still, clean product-reference photography. No text overlay, no watermark, no logo.
+    constraints:
+      - preserve pale blue band and clasp
+      - preserve small soft name type (not a logo)
+      - keep plain and domestic, no medical or brand styling
+      - no people
+    expected_output:
+      asset_type: still
+      aspect_ratio: "1:1"
+  - prompt_id: GPTIMG2_PROP007_P02_LEFT_V001
+    perspective: left_reference
+    prompt_text: Using the uploaded reference image as the prop identity source, generate a SINGLE production still of the same small pale blue infant bracelet. Camera positioned to the left, three-quarter angle showing the band's curve, clasp depth, and material thickness. Same pale-blue palette, soft even light, plain neutral background. No people, no hands, no additional objects. Photorealistic, cinematic still, clean product-reference photography. No text overlay, no watermark, no logo.
+    constraints:
+      - preserve pale blue band and clasp
+      - preserve band curve and material thickness
+      - keep plain and domestic, no medical or brand styling
+      - no people
+    expected_output:
+      asset_type: still
+      aspect_ratio: "1:1"
+  - prompt_id: GPTIMG2_PROP007_P03_RIGHT_V001
+    perspective: right_reference
+    prompt_text: Using the uploaded reference image as the prop identity source, generate a SINGLE production still of the same small pale blue infant bracelet. Camera positioned to the right, three-quarter angle, clasp and band edge visible from the opposite side, identity preserved. Same pale-blue palette, soft even light, plain neutral background. No people, no hands, no additional objects. Photorealistic, cinematic still, clean product-reference photography. No text overlay, no watermark, no logo.
+    constraints:
+      - preserve pale blue band and clasp
+      - preserve band edge and material from opposite side
+      - keep plain and domestic, no medical or brand styling
+      - no people
+    expected_output:
+      asset_type: still
+      aspect_ratio: "1:1"
+qc_gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  failed_perspective_revision_only: true
+downstream_use:
+  - kling_omni_3_shot_prompt

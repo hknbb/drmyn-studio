@@ -1,0 +1,47 @@
+schema_version: "0.x-draft"
+record_type: perspective_qc_report
+perspective_qc_id: PQC_PROP007_PERSPECTIVE_PACK_V001
+status: approved
+scene_id: SC0014
+element_id: PROP007
+prompt_pack_id: GPTIMG2_PROP007_PERSPECTIVE_PACK_V001
+operator_session_ref: OP-PROD-LINE-PROP007-THREE-VIEW-2026-06-02
+perspective_scores:
+  - prompt_id: GPTIMG2_PROP007_P01_FRONT_V001
+    perspective: front_reference
+    identity_preservation: 96
+    perspective_usefulness: 95
+    material_palette_continuity: 95
+    production_reference_cleanliness: 95
+    hallucination_absence: 95
+    total_score: 95
+    decision: pass
+  - prompt_id: GPTIMG2_PROP007_P02_LEFT_V001
+    perspective: left_reference
+    identity_preservation: 95
+    perspective_usefulness: 93
+    material_palette_continuity: 95
+    production_reference_cleanliness: 94
+    hallucination_absence: 95
+    total_score: 94
+    decision: pass
+  - prompt_id: GPTIMG2_PROP007_P03_RIGHT_V001
+    perspective: right_reference
+    identity_preservation: 95
+    perspective_usefulness: 93
+    material_palette_continuity: 95
+    production_reference_cleanliness: 94
+    hallucination_absence: 95
+    total_score: 94
+    decision: pass
+gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  can_advance_to_kling_reference: true
+notes: >
+  PROP007 Jin's bracelet three-view perspective QC. Outputs expanded from locked Stage-1
+  hero (15_01_26) and reviewed 2026-06-02. Identity — pale blue infant band, plain clasp,
+  soft "Jin" name label (gentle detail, not a printed logo), plain neutral background,
+  no brand or medical styling — held cleanly across front (16_16_57), left (16_18_19),
+  and right (16_25_55). No hallucinated branding or hardware. All three clear the 85
+  minimum. Operator-approved for Kling element reference registration.
