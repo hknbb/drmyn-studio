@@ -8,16 +8,21 @@ element_context: >
   removal of Jin). A small room "made carefully" — soft warm light, a crib, a chair
   beside it, a shelf of an eight-month-old's things, a single doorway. Distinct from
   the kitchen_passage sub-area: this is an intimate warm domestic pocket, not a
-  surveillance-geometry corridor. Source images not yet collected.
-retrofit_status: current
+  surveillance-geometry corridor.
+retrofit_status: historical
 anchor_view: null
+original_locked_at: "2026-06-02T00:00:00Z"
+original_method_summary: >
+  Independent T2I via GPT Images 2. Stage-1 hero (14_42_32) locked as the location
+  identity anchor, then a three-view set (front/threshold/lighting) expanded from it;
+  selected, QC'd, and locked 2026-06-02 (KLING_REF_LOC001_JINS_ROOM_V001).
 views:
   - view_id: wide_establishing
     view_label: Wide establishing (nursery geometry, crib + chair + shelf)
     generation_pattern: independent_t2i
     anchor_dependency: none
     model_adapter_target: chatgpt_image_best_available
-    status: planned
+    status: complete
     generation_notes: >
       Wide interior of the small nursery. Crib, chair beside it, low shelf of infant
       things. Soft contained warm evening light from a practical lamp; cooler dim
@@ -27,7 +32,7 @@ views:
     generation_pattern: independent_t2i
     anchor_dependency: none
     model_adapter_target: chatgpt_image_best_available
-    status: planned
+    status: complete
     generation_notes: >
       The single doorway into the nursery, seen from inside the room. Establishes the
       entry point and the sightline a standing figure at the door would command.
@@ -37,16 +42,16 @@ views:
     generation_pattern: independent_t2i
     anchor_dependency: none
     model_adapter_target: chatgpt_image_best_available
-    status: planned
+    status: complete
     generation_notes: >
       Light-quality study: low warm practical lamp, soft falloff, muted cream and
       pale-blue domestic neutrals, gentle shadow. Establishes the contained warmth
       that the scene's dispossession is measured against. No people.
-open_blockers:
-  - "Hero establishing image not yet generated; all three views are planned, not collected."
+open_blockers: []
 notes: >
-  Fresh build for SC0014 (not a historical retrofit). Location views use
-  independent_t2i (no persistent identity anchor); anchor_view is null. The
+  Fresh build for SC0014; location views generated via independent_t2i (no persistent
+  identity anchor; retrofit_status historical permits independent_t2i for all views);
+  anchor_view is null. Hero locked 14_42_32; three-view set registered. The
   gpt_images_perspective_pack in this folder carries the three-view expansion
   prompts for GPT Images 2. Per no_binary_commits policy, no binaries are committed;
   canonical asset paths are reference identifiers only and will be filled in after

@@ -5,16 +5,20 @@ element_type: prop
 element_context: >
   Jin's infant bracelet (SC0014) — a small pale blue wrist band with a clasp and the
   small type of his name. The object Nadia's hand reaches for as the child is carried
-  away. Fresh build; source images not yet collected.
-retrofit_status: current
+  away.
+retrofit_status: historical
 anchor_view: null
+original_locked_at: "2026-06-02T00:00:00Z"
+original_method_summary: >
+  Independent T2I via GPT Images 2. Stage-1 hero (15_01_26) locked, then a three-view
+  set expanded from it; selected, QC'd, and locked 2026-06-02 (KLING_REF_PROP007_V001).
 views:
   - view_id: front_detail
     view_label: Front detail (band, clasp, name type legible)
     generation_pattern: independent_t2i
     anchor_dependency: none
     model_adapter_target: chatgpt_image_best_available
-    status: planned
+    status: complete
     generation_notes: >
       Close product-reference still of the pale blue infant band laid flat or gently
       curved, clasp visible, the small lettering of the name readable as a soft
@@ -24,13 +28,12 @@ views:
     generation_pattern: independent_t2i
     anchor_dependency: none
     model_adapter_target: chatgpt_image_best_available
-    status: planned
+    status: complete
     generation_notes: >
       The band on a small infant wrist in soft warm domestic light, gentle and safe,
       care context only. Establishes scale and how it sits. No distress, no full face
       required; the wrist and band are the subject. Protected-subject handling per C08.
-open_blockers:
-  - "Source images not yet generated; both views planned, not collected."
+open_blockers: []
 notes: >
   PROP007 uses a two-view component set (front detail + worn context) rather than a
   full multi-angle identity set, consistent with small personal-object props. No
