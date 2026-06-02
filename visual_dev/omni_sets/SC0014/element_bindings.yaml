@@ -2,7 +2,7 @@ schema_version: "0.x-draft"
 record_type: element_binding
 element_id: C01
 element_type: character
-kling_alias: "@C01_NADIA_CANON_V2"
+kling_alias: "@C01_HOME_EVENING"
 binding_status: created
 voice_capability: none
 native_audio_readiness: not_required
@@ -12,8 +12,9 @@ kling_native_audio:
   external_tts_allowed: false
   adr_vendor_allowed: false
 notes: >
-  C01 Nadia in SC0014 reuses the canonical v2 identity element @C01_NADIA_CANON_V2
-  (operator-approved). Nadia is silent in this scene; evening-domestic wardrobe/lighting
+  C01 Nadia in SC0014 uses the dedicated home-evening scene look @C01_HOME_EVENING
+  (C01_LOOK_HOME_EVENING_V001, WD010), built from the canonical Nadia identity.
+  Nadia is silent in this scene; evening-domestic wardrobe/lighting
   applied at prompt level per golden_reference_plan wardrobe_continuity_policy. No new
   look variant.
 provenance:

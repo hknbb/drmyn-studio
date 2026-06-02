@@ -1,0 +1,65 @@
+element_id: C01
+element_type: character
+selection_round: 1
+source_prompt_ids:
+  - SC0014__gptimg2-perspective-pack-c01-home-evening__v01
+candidate_images:
+  - asset_id: GPTIMG2_C01_HOME_EVENING_P01_FRONT_V001
+    path: "external://local_manual/drmyn-studio-images/Nadia/C01_LOOK_HOME_EVENING_V001/stage 3/ChatGPT Image 2 Haz 2026 22_40_08.png"
+    external_storage_ref: "external://local_manual/drmyn-studio-images/Nadia/C01_LOOK_HOME_EVENING_V001/stage 3/ChatGPT Image 2 Haz 2026 22_40_08.png"
+    repo_binary_committed: false
+    status: selected
+    reason: >
+      front_reference. Straight-on, soft grey-blue domestic evening knit, warm lamplight,
+      contained tender-tense expression. Identity preserved from canonical Nadia (lean
+      face, dark eyes, hair pulled back).
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+    failure_reason: null
+  - asset_id: GPTIMG2_C01_HOME_EVENING_P02_TQM_V001
+    path: "external://local_manual/drmyn-studio-images/Nadia/C01_LOOK_HOME_EVENING_V001/stage 3/ChatGPT Image 2 Haz 2026 22_42_08.png"
+    external_storage_ref: "external://local_manual/drmyn-studio-images/Nadia/C01_LOOK_HOME_EVENING_V001/stage 3/ChatGPT Image 2 Haz 2026 22_42_08.png"
+    repo_binary_committed: false
+    status: selected
+    reason: >
+      three_quarter_medium_reference. Waist-up three-quarter, same grey domestic knit,
+      lean economical silhouette readable. Identity consistent with front.
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+    failure_reason: null
+  - asset_id: GPTIMG2_C01_HOME_EVENING_P03_TQC_V001
+    path: "external://local_manual/drmyn-studio-images/Nadia/C01_LOOK_HOME_EVENING_V001/stage 3/ChatGPT Image 2 Haz 2026 22_47_45.png"
+    external_storage_ref: "external://local_manual/drmyn-studio-images/Nadia/C01_LOOK_HOME_EVENING_V001/stage 3/ChatGPT Image 2 Haz 2026 22_47_45.png"
+    repo_binary_committed: false
+    status: selected
+    reason: >
+      three_quarter_close_reference. Head-and-shoulders three-quarter, contained
+      tenderness with held interior tension. Identity consistent across the set.
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+    failure_reason: null
+canonical_images: []
+round_status: complete
+pack_manifest_sync: pending
+review_notes: >
+  C01 Nadia home-evening look three-view set, expanded from locked Stage-1 hero
+  CHATGPTIMG_ELEMENT_C01_HOME_EVENING_HERO_V001 (ChatGPT Image 22_33_39, generated
+  against the canonical Nadia identity reference). Stage-3 GPT Images 2 outputs 2026-06-02:
+  front (22_40_08), three-quarter-medium (22_42_08), three-quarter-close (22_47_45).
+  Identity and soft grey domestic evening wardrobe (WD010) held across all three.
+  Operator-approved (lock instruction 2026-06-02). No binary commit applied.
+provenance:
+  created_by: hknbb
+  created_at: "2026-06-02T00:00:00Z"

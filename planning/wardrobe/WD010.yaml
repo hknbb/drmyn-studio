@@ -1,0 +1,18 @@
+wardrobe_id: WD010
+name: "Nadia home-evening domestic top"
+character_id: C01
+category: DOMESTIC_EVENING
+description: >
+  Soft muted domestic evening top or fine knit in warm low-saturation neutrals
+  (soft grey-blue or warm taupe), gentle and lived-in, unstyled. Worn by Nadia in
+  the SC0014 evening nursery scene — distinct from the operational/canonical plain
+  dark top; reads as quiet domestic evening at home with her infant.
+palette: "warm low-saturation domestic neutrals (soft grey-blue / warm taupe)"
+scene_refs:
+  - SC0014
+handling_notes:
+  - "No tactical, operational, or field coding; no decorative fashion-editorial styling."
+  - "Soft and lived-in; preserve the canonical Nadia identity (face, hair restraint, build)."
+status: review
+review_status: pending
+canon_lock: false
