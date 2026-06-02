@@ -1,0 +1,39 @@
+schema_version: "0.x-draft"
+record_type: kling_shot_prompt_record
+kling_shot_prompt_id: KSP_SC0014_SH007_V001
+status: draft
+scene_id: SC0014
+shot_id: SH007
+linked_element_refs:
+  - KLING_REF_C01_HOME_EVENING_V001
+  - KLING_REF_LOC001_JINS_ROOM_V001
+duration_seconds: 6
+aspect_ratio: "16:9"
+variant_mode: safe
+render_pass: visual_test
+quality_tier: test_720p
+native_audio: false
+camera_plan:
+  framing: the empty crib and @C01_HOME_EVENING standing alone; her open hand at her side
+  movement: static hold; duration carries the meaning
+  lens_feel: soft warm lamplight going hollow; muted cream and pale-blue
+action_timeline:
+  - >-
+    The operatives are gone. @C01_HOME_EVENING stands alone in @LOC001_JINS_ROOM.
+    The crib is empty. The hand that held the bracelet is open at her side.
+  - >-
+    She does not move toward the door. She is already somewhere else. Hold on the
+    empty crib and on her — interiorised, not collapsed. The closing image of dispossession.
+constraints:
+  - Use only @aliases; no canonical IDs, no full character names in prompt execution
+  - Preserve @C01_HOME_EVENING identity; contained, not theatrical grief
+  - No infant in frame; the empty crib carries the loss
+  - No dialogue
+source_refs:
+  manifest_ref: visual_dev/omni_sets/SC0014/shot_element_manifests/SH007.yaml
+  scene_card_ref: planning/scenes/SC0014/scene_card.yaml
+materialized_output:
+  platform: kling
+  external_storage_ref: pending://not_generated
+  platform_job_id: pending
+  repo_binary_committed: false

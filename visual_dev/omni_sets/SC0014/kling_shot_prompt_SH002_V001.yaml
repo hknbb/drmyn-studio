@@ -1,0 +1,45 @@
+schema_version: "0.x-draft"
+record_type: kling_shot_prompt_record
+kling_shot_prompt_id: KSP_SC0014_SH002_V001
+status: draft
+scene_id: SC0014
+shot_id: SH002
+linked_element_refs:
+  - KLING_REF_C01_HOME_EVENING_V001
+  - KLING_REF_C04_EVENING_ENFORCEMENT_V001
+  - KLING_REF_C08_NURSERY_EVENING_V001
+  - KLING_REF_C10_V001
+  - KLING_REF_LOC001_JINS_ROOM_V001
+duration_seconds: 6
+aspect_ratio: "16:9"
+variant_mode: safe
+render_pass: visual_test
+quality_tier: test_720p
+native_audio: false
+camera_plan:
+  framing: the doorway and the three standing men as intruding geometry against the contained room; Nadia and child held in the foreground
+  movement: static; the stillness is the threat
+  lens_feel: soft warm interior cooled by the open door; even, unhurried
+action_timeline:
+  - >-
+    The door of @LOC001_JINS_ROOM opens. @C04_EVENING_ENFORCEMENT enters, unhurried
+    and courteous. Behind him, @C10_ENFORCER and a second matching anonymous operative
+    in identical plain dark clothing stand just inside the door.
+  - >-
+    @C01_HOME_EVENING does not look up at first, still holding @C08_NURSERY_EVENING;
+    then she looks up. @C04_EVENING_ENFORCEMENT speaks briefly (no audio; performance only).
+  - Camera holds on the cornered geometry. Safe, supported handling of the child.
+constraints:
+  - Use only @aliases; no canonical IDs, no full character names in prompt execution
+  - Attach @C10_ENFORCER once; render the second operative as a matching anonymous figure in prompt_text
+  - Preserve identities and wardrobes; @C04_EVENING_ENFORCEMENT courteous, no aggression
+  - "PROTECTED SUBJECT: @C08_NURSERY_EVENING held safe and supported; no distress"
+  - Dialogue suppressed (no spoken audio); Dimitri's lines carried as metadata only (DLG_SC0014_V001)
+source_refs:
+  manifest_ref: visual_dev/omni_sets/SC0014/shot_element_manifests/SH002.yaml
+  scene_card_ref: planning/scenes/SC0014/scene_card.yaml
+materialized_output:
+  platform: kling
+  external_storage_ref: pending://not_generated
+  platform_job_id: pending
+  repo_binary_committed: false
