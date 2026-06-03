@@ -448,30 +448,11 @@ class KlingOmniAdapter:
         if blocking:
             raise KlingOmniAdapterError("; ".join(blocking))
 
-        storyboard_options_path = (
-            self.repo_root / "visual_dev" / "storyboards" / scene_id / "storyboard_options.yaml"
-        )
-        storyboard_options = _read_yaml(storyboard_options_path)
-        if storyboard_options is not None and not storyboard_options.get("selected_option"):
-            raise KlingOmniAdapterError(
-                f"{scene_id} blocked: storyboard_options.yaml has no selected_option."
-            )
-
-        suggestion_path = (
-            self.repo_root
-            / "visual_dev"
-            / "storyboards"
-            / scene_id
-            / "shot_list_omni_suggestion.yaml"
-        )
-
         prompt_record = self._prompt_record(
             scene_id=scene_id,
             scene_card=scene_card,
             shot_list=shot_list,
             scene_card_path=scene_card_path,
-            storyboard_options_path=storyboard_options_path,
-            suggestion_path=suggestion_path,
             omni_set_ref=omni_set_ref,
             version=version,
         )
@@ -1176,8 +1157,6 @@ class KlingOmniAdapter:
         scene_card: dict[str, Any],
         shot_list: list[Any],
         scene_card_path: Path,
-        storyboard_options_path: Path,
-        suggestion_path: Path,
         omni_set_ref: str,
         version: int,
     ) -> dict[str, Any]:
@@ -1195,14 +1174,6 @@ class KlingOmniAdapter:
             "scene_excerpt": f"planning/scenes/{scene_id}/{scene_card.get('excerpt_ref') or 'scene_excerpt.md'}",
             "omni_set_ref": omni_set_ref,
         }
-        if storyboard_options_path.exists():
-            source_refs["storyboard_options"] = _relative(
-                storyboard_options_path, self.repo_root
-            )
-        if suggestion_path.exists():
-            source_refs["shot_list_omni_suggestion"] = _relative(
-                suggestion_path, self.repo_root
-            )
 
         generation_params: dict[str, Any] = {
             "model_guidance_mode": self.model_guidance_mode,

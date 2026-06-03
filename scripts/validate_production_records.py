@@ -58,10 +58,6 @@ IMAGE_SELECTION_PATTERN = "visual_dev/elements/**/image_selection.yaml"
 PACK_SUGGESTION_PATTERN = "visual_dev/elements/**/pack_manifest_update_suggestion.yaml"
 ASSET_CLEARANCE_PATTERN = "evidence/asset_clearance/*.yaml"
 PROMPT_REVIEW_BRIEF_PATTERN = "evidence/prompt_reviews/*_brief.yaml"
-STORYBOARD_OPTIONS_PATTERN = "visual_dev/storyboards/SC*/storyboard_options.yaml"
-SHOT_LIST_OMNI_SUGGESTION_PATTERN = (
-    "visual_dev/storyboards/SC*/shot_list_omni_suggestion.yaml"
-)
 SHOT_ELEMENT_MANIFEST_PATTERN = (
     "visual_dev/omni_sets/SC*/shot_element_manifests/*.yaml"
 )
@@ -236,10 +232,6 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         "asset_clearance": sorted(repo_root.glob(ASSET_CLEARANCE_PATTERN)),
         "pack_manifest_update_suggestion": sorted(repo_root.glob(PACK_SUGGESTION_PATTERN)),
         "prompt_review_brief": sorted(repo_root.glob(PROMPT_REVIEW_BRIEF_PATTERN)),
-        "storyboard_options": sorted(repo_root.glob(STORYBOARD_OPTIONS_PATTERN)),
-        "shot_list_omni_suggestion": sorted(
-            repo_root.glob(SHOT_LIST_OMNI_SUGGESTION_PATTERN)
-        ),
         "shot_element_manifest": sorted(repo_root.glob(SHOT_ELEMENT_MANIFEST_PATTERN)),
         "batch_job": batch_job_files,
         "production_batch": production_batch_files,
@@ -2305,20 +2297,10 @@ def run_validation(
     """Run production metadata validation."""
     image_selection_schema = load_schema(repo_root / "schemas" / "image_selection.schema.json")
     asset_clearance_schema = load_schema(repo_root / "schemas" / "asset_clearance.schema.json")
-    storyboard_options_schema = load_schema(
-        repo_root / "schemas" / "storyboard_option.schema.json"
-    )
     batch_job_schema = load_schema(repo_root / "schemas" / "batch_job.schema.json")
     image_selection_validator = Draft202012Validator(image_selection_schema)
     asset_clearance_validator = Draft202012Validator(asset_clearance_schema)
-    storyboard_options_validator = Draft202012Validator(storyboard_options_schema)
-    shot_list_omni_suggestion_schema = load_schema(
-        repo_root / "schemas" / "shot_list_omni_suggestion.schema.json"
-    )
     batch_job_validator = Draft202012Validator(batch_job_schema)
-    shot_list_omni_suggestion_validator = Draft202012Validator(
-        shot_list_omni_suggestion_schema
-    )
     operator_session_validator: Draft202012Validator | None = None
     agent_handoff_validator: Draft202012Validator | None = None
     local_media_index_validator: Draft202012Validator | None = None
@@ -2384,20 +2366,6 @@ def run_validation(
                 file_issues = validate_pack_suggestion_file(path, repo_root)
             elif record_type == "prompt_review_brief":
                 file_issues = validate_prompt_review_brief_file(path, repo_root)
-            elif record_type == "storyboard_options":
-                file_issues = _schema_issues(
-                    path=path,
-                    repo_root=repo_root,
-                    record_type=record_type,
-                    validator=storyboard_options_validator,
-                )
-            elif record_type == "shot_list_omni_suggestion":
-                file_issues = _schema_issues(
-                    path=path,
-                    repo_root=repo_root,
-                    record_type=record_type,
-                    validator=shot_list_omni_suggestion_validator,
-                )
             elif record_type == "shot_element_manifest":
                 file_issues = [
                     ProductionValidationIssue(

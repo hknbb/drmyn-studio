@@ -5,10 +5,6 @@ ready_for_kling_prompt_generation: false
 scene_card_ref: planning/scenes/SC0001/scene_card.yaml
 omni_set_ref: visual_dev/omni_sets/SC0001/
 element_set_ref: visual_dev/omni_sets/SC0001/element_set.yaml
-storyboard_gate:
-  storyboard_options_ref: visual_dev/storyboards/SC0001/storyboard_options.yaml
-  selected_option: SC0001_SB03
-  ready: true
 shot_list_gate:
   ready: true
   shot_count: 3

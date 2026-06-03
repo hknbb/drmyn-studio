@@ -91,8 +91,9 @@ adapter) when the model changes.
 
 ## Status / open items
 
-- Prompt generation is canonical via `generate_from_clip_manifest`. The legacy storyboard →
-  `shot_list_omni` → `generate()` path is **pending a decouple/removal decision** (large blast
-  radius: 33 files / 255 refs) — do not build new scenes on it.
+- Prompt generation is canonical via `generate_from_clip_manifest`. The legacy **storyboard layer
+  has been removed** (schemas, agents, pipeline/graph modes, gate/operator/status hooks). The
+  `KlingOmniAdapter.generate()` method is retained as the shared adapter contract but no longer reads
+  any storyboard records. Build new scenes on the clip-manifest path only.
 - Scene teardown + rebuild of SC0001/SC0014 under this system is a separate, operator-gated step
   (irreversible deletes; requires operator-produced media + real QC scores).
