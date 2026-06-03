@@ -1,8 +1,15 @@
 # DRMYN Studio — Metadata-Only AI-Assisted Movie Development and Production Workflow
 
-[![DOI](https://zenodo.org/badge/1227492409.svg)](https://doi.org/10.5281/zenodo.19987410)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20241807.svg)](https://doi.org/10.5281/zenodo.20241807)
 
 This repository contains the canonical source records, planning metadata, prompt-governance, validation, and reproducibility infrastructure for **DRMYN Studio**, demonstrated through the *Closing Price* AI-assisted film project.
+
+> **v0.18.0 — Scene Continuity System (Kling 3.0 Omni / O3).** This release adds a deterministic
+> beat→clip packer, an inter-clip continuity ledger (camera/action/screen-direction hand-off), an
+> anti-clone figure roster (one distinct on-screen figure per `@alias`), a four-view scale-angle
+> character reference policy with full-body look sheets, a local-only media archive, and a single
+> canonical clip-manifest prompt path. See
+> [`docs/methodology/scene_continuity_system.md`](docs/methodology/scene_continuity_system.md).
 
 ## Scope
 
@@ -37,14 +44,35 @@ This repository is **not** a runtime output repository. Generated image, video, 
 
 | Directory | Purpose |
 |-----------|---------|
-| `source/` | Canonical human-authored source files |
-| `planning/` | Scene cards, character sheets, location sheets, continuity records |
+| `source/` | Canonical human-authored source files (screenplay) |
+| `planning/` | Scene cards, beat plans, dialogue beats, continuity ledgers, character/location/prop/wardrobe sheets |
 | `prompts/` | Prompt lifecycle and library |
-| `schemas/` | JSON Schemas for machine validation |
-| `scripts/` | Validation and artifact scripts |
-| `evidence/` | Maps, logs, and reports for publication and supplements |
+| `schemas/` | JSON Schemas for machine validation (draft 2020-12) |
+| `scripts/` | Validation, packer, archive, and pipeline scripts (`scripts/validators/` holds per-record semantic validators) |
+| `visual_dev/` | Element reference records and per-scene Omni sets (metadata only; no committed binaries) |
+| `model_guidance_snapshots/` | Per-model capability/prompt-rule snapshots the engine reads (version-agnostic) |
+| `evidence/` | QC reports, operator sessions, local media indices, maps, and validation reports |
+| `archive/` | **Local-only** (git-ignored) externally-produced image/video binaries filed by `scripts/archive_media.py` |
 | `.github/` | GitHub-native governance and CI files |
 | `docs/` | Human-readable workflow, methodology, and policy documentation |
+
+### Scene Continuity System (v0.18.0)
+
+The canonical Kling Omni (O3) pipeline:
+
+```
+screenplay → scene_beat_plan → dialogue_beats → omni_clip_planner
+  → omni_clip_plan + clip manifests (CLIP = one ≤15s / ≤6-shot Omni job; shots[] = intra-clip)
+  → scene_continuity_ledger (inter-clip camera/action/screen-direction hand-off)
+  → figures[] roster (anti-clone: one figure → one @alias)
+  → KlingOmniAdapter.generate_from_clip_manifest() → O3 multi-shot prompt
+  → external Kling generation → video_takes → selected_take
+```
+
+Character references use the `four_view_scale_angle_v3` policy (full-body front, three-quarter waist,
+close portrait front, profile) plus a `character_look_sheet` (full-body build + head-to-toe wardrobe).
+Locations require a wide cinematic master with actor-blocking space. Semantic validators live in
+`scripts/validators/` (continuity ledger, figure roster, status consistency, clip manifest, location framing).
 
 ## Zone 1 / Phase 1 scope
 
