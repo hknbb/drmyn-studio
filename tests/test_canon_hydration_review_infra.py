@@ -38,7 +38,9 @@ class CanonHydrationReviewInfraTests(unittest.TestCase):
             shutil.rmtree(self.temp_dir)
 
         for name in ["source", "planning", "visual_dev", "prompts", "docs", "schemas"]:
-            shutil.copytree(REPO_ROOT / name, self.temp_dir / name)
+            src = REPO_ROOT / name
+            if src.exists():
+                shutil.copytree(src, self.temp_dir / name)
         (self.temp_dir / "evidence" / "validation_reports").mkdir(parents=True, exist_ok=True)
         (self.temp_dir / "evidence" / "article3").mkdir(parents=True, exist_ok=True)
 
