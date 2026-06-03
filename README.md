@@ -1,6 +1,6 @@
 # DRMYN Studio — Metadata-Only AI-Assisted Movie Development and Production Workflow
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20241807.svg)](https://doi.org/10.5281/zenodo.20241807)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20534124.svg)](https://doi.org/10.5281/zenodo.20534124)
 [![GitHub release](https://img.shields.io/github/v/release/hknbb/drmynstudio-public)](https://github.com/hknbb/drmynstudio-public/releases/tag/v0.18.0)
 
 This repository contains the canonical source records, planning metadata, prompt-governance, validation, and reproducibility infrastructure for **DRMYN Studio**, demonstrated through the *Closing Price* AI-assisted film project.
