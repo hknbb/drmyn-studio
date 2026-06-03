@@ -79,4 +79,10 @@ visual_dev/elements/**/candidates_*/
 
 # B8A canonical asset intake staging — local drop zone; files moved to elements/** via auto-placer
 visual_dev/intake_staging/
+
+# ── Local media archive (scripts/archive_media.py) ────────────────────────────
+# Externally-produced image/video binaries filed into a standardized local tree by
+# archive_media.py. LOCAL-ONLY: never pushed to the remote (repo would bloat). The
+# committed record is the metadata-only local_media_index under evidence/.
+archive/
 # ──────────────────────────────────────────────────────────────────────────────

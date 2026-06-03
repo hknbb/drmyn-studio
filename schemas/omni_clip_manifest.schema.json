@@ -52,8 +52,8 @@
     },
     "total_duration_seconds": {
       "type": "integer",
-      "enum": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-      "description": "Total duration of all shots in this clip. Must be >= 3, <= 15. Semantic validator enforces sum(shots[].duration_seconds) == total_duration_seconds."
+      "enum": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      "description": "Total duration of all shots in this clip. Must be 2..15. Semantic validator enforces sum(shots[].duration_seconds) == total_duration_seconds and shot count <= 6."
     },
     "continuity_input_mode": {
       "type": "string",
@@ -84,8 +84,8 @@
           },
           "duration_seconds": {
             "type": "integer",
-            "enum": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-            "description": "Duration of this shot in seconds. Must be 3..15 (integer-only, no decimals). Kling production policy: minimum 3s for stable cinematic readability."
+            "enum": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "description": "Duration of this shot in seconds. 2..15 (integer-only). Kling Omni multi-shot permits short 2s cutaways; single-shot clips should still prefer >=3s for stable cinematic readability."
           },
           "source_beat_ids": {
             "type": "array",
@@ -128,6 +128,22 @@
               "pattern": "^[A-Z][A-Z0-9]*\\d+$",
               "minLength": 2,
               "maxLength": 20
+            }
+          },
+          "figures": {
+            "type": "array",
+            "description": "Distinct on-screen figures present in this shot. Each figure gets its own Kling @alias so two physically distinct figures sharing a base character identity are never collapsed into one (anti-clone). Operator-authored.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["figure_id", "base_element_id", "kling_alias", "role"],
+              "properties": {
+                "figure_id": { "type": "string", "pattern": "^FIG_[A-Z0-9_]+$" },
+                "base_element_id": { "type": "string", "pattern": "^C\\d{2}$" },
+                "kling_alias": { "type": "string", "pattern": "^@[A-Z0-9_]+$" },
+                "role": { "type": "string", "minLength": 1, "maxLength": 160 },
+                "distinguishing_detail": { "type": "string", "maxLength": 200 }
+              }
             }
           },
           "camera": {

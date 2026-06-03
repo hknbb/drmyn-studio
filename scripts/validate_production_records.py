@@ -45,6 +45,13 @@ if str(REPO_ROOT) not in sys.path:
 from scripts.validators.validate_shot_element_manifest import (
     validate_shot_element_manifest_file,
 )
+from scripts.validators.validate_scene_continuity_ledger import (
+    validate_scene_continuity_ledger_file,
+)
+from scripts.validators.validate_scene_status_consistency import (
+    validate_scene_status_consistency_for_scene,
+)
+from scripts.validators.validate_figure_roster import validate_scene_figures
 
 
 IMAGE_SELECTION_PATTERN = "visual_dev/elements/**/image_selection.yaml"
@@ -100,6 +107,9 @@ CHARACTER_IDENTITY_ANCHOR_PATTERN = (
 CHARACTER_LOOK_VARIANT_PATTERN = (
     "visual_dev/elements/characters/*/look_variants/*.yaml"
 )
+CHARACTER_LOOK_SHEET_PATTERN = (
+    "visual_dev/elements/characters/*/look_sheets/*.yaml"
+)
 IDENTITY_EVIDENCE_SET_PATTERN = (
     "visual_dev/elements/characters/*/identity_evidence_sets/*.yaml"
 )
@@ -108,6 +118,7 @@ SYSTEM_CHARACTER_ELEMENT_PATTERN = (
     "visual_dev/elements/system_characters/*/identity_plan.yaml"
 )
 GOLDEN_REFERENCE_PLAN_PATTERN = "planning/scenes/SC*/golden_reference_plan.yaml"
+SCENE_CONTINUITY_LEDGER_PATTERN = "planning/scenes/SC*/scene_continuity_ledger.yaml"
 AESTHETIC_BIBLE_PATH = "planning/aesthetic_bible.yaml"
 SCENE_CLIP_MAP_PATH = "evidence/scene_clip_map.csv"
 
@@ -278,6 +289,7 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
             repo_root.glob(CHARACTER_IDENTITY_ANCHOR_PATTERN)
         ),
         "character_look_variant": sorted(repo_root.glob(CHARACTER_LOOK_VARIANT_PATTERN)),
+        "character_look_sheet": sorted(repo_root.glob(CHARACTER_LOOK_SHEET_PATTERN)),
         "identity_evidence_set": sorted(repo_root.glob(IDENTITY_EVIDENCE_SET_PATTERN)),
         "scene_character_look_map": sorted(repo_root.glob(SCENE_CHARACTER_LOOK_MAP_PATTERN)),
         "system_character_element": sorted(
@@ -285,6 +297,9 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         ),
         "golden_reference_plan": sorted(
             repo_root.glob(GOLDEN_REFERENCE_PLAN_PATTERN)
+        ),
+        "scene_continuity_ledger": sorted(
+            repo_root.glob(SCENE_CONTINUITY_LEDGER_PATTERN)
         ),
         "aesthetic_bible": (
             [repo_root / AESTHETIC_BIBLE_PATH]
@@ -2332,10 +2347,12 @@ def run_validation(
     native_audio_compatibility_record_validator: Draft202012Validator | None = None
     character_identity_anchor_validator: Draft202012Validator | None = None
     character_look_variant_validator: Draft202012Validator | None = None
+    character_look_sheet_validator: Draft202012Validator | None = None
     identity_evidence_set_validator: Draft202012Validator | None = None
     scene_character_look_map_validator: Draft202012Validator | None = None
     system_character_element_validator: Draft202012Validator | None = None
     golden_reference_plan_validator: Draft202012Validator | None = None
+    scene_continuity_ledger_validator: Draft202012Validator | None = None
     production_batch_validator: Draft202012Validator | None = None
     aesthetic_bible_validator: Draft202012Validator | None = None
 
@@ -2848,6 +2865,20 @@ def run_validation(
                     record_type=record_type,
                     validator=character_look_variant_validator,
                 )
+            elif record_type == "character_look_sheet":
+                if character_look_sheet_validator is None:
+                    character_look_sheet_schema = load_schema(
+                        repo_root / "schemas" / "character_look_sheet.schema.json"
+                    )
+                    character_look_sheet_validator = Draft202012Validator(
+                        character_look_sheet_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=character_look_sheet_validator,
+                )
             elif record_type == "identity_evidence_set":
                 if identity_evidence_set_validator is None:
                     identity_evidence_set_schema = load_schema(
@@ -2878,6 +2909,29 @@ def run_validation(
                     repo_root=repo_root,
                     record_type=record_type,
                     validator=scene_character_look_map_validator,
+                )
+            elif record_type == "scene_continuity_ledger":
+                if scene_continuity_ledger_validator is None:
+                    scene_continuity_ledger_schema = load_schema(
+                        repo_root / "schemas" / "scene_continuity_ledger.schema.json"
+                    )
+                    scene_continuity_ledger_validator = Draft202012Validator(
+                        scene_continuity_ledger_schema
+                    )
+                file_issues = _schema_issues(
+                    path=path,
+                    repo_root=repo_root,
+                    record_type=record_type,
+                    validator=scene_continuity_ledger_validator,
+                )
+                file_issues.extend(
+                    ProductionValidationIssue(
+                        file=_relative(path, repo_root),
+                        record_type=record_type,
+                        field_path="clip_chain",
+                        message=str(err),
+                    )
+                    for err in validate_scene_continuity_ledger_file(path, repo_root)
                 )
             elif record_type == "aesthetic_bible":
                 if aesthetic_bible_validator is None:
@@ -2932,6 +2986,39 @@ def run_validation(
     if qc_readiness_issues:
         all_issues.extend(qc_readiness_issues)
         invalid_files.update(issue.file for issue in qc_readiness_issues)
+
+    # Per-scene cross-record gates: status consistency + figure roster (anti-clone).
+    scene_ids: set[str] = set()
+    for path in grouped_files.get("shot_element_manifest", []):
+        for part in path.parts:
+            if re.fullmatch(r"SC\d{4}", part):
+                scene_ids.add(part)
+                break
+    for scene_id in sorted(scene_ids):
+        bindings_file = _relative(
+            repo_root / "visual_dev" / "omni_sets" / scene_id / "element_bindings.yaml",
+            repo_root,
+        )
+        for err in validate_scene_status_consistency_for_scene(repo_root, scene_id):
+            all_issues.append(
+                ProductionValidationIssue(
+                    file=bindings_file,
+                    record_type="scene_status_consistency",
+                    field_path="gate_status",
+                    message=str(err),
+                )
+            )
+            invalid_files.add(bindings_file)
+        for err in validate_scene_figures(repo_root, scene_id):
+            all_issues.append(
+                ProductionValidationIssue(
+                    file=bindings_file,
+                    record_type="figure_roster",
+                    field_path="figures",
+                    message=str(err),
+                )
+            )
+            invalid_files.add(bindings_file)
 
     gptimg2_registration_issues = validate_gptimg2_registration_gates(
         repo_root=repo_root,

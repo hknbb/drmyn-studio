@@ -6,7 +6,7 @@ provider: openai
 model_family: image_generation
 provider_surface: chatgpt_ui
 observed_at: "2026-05-08T13:00:00Z"
-expires_at: "2026-06-08T13:00:00Z"
+expires_at: "2026-07-03T00:00:00Z"
 human_verified: true
 current_default_model: "gpt-image-2"
 latest_available_model: "gpt-image-2"

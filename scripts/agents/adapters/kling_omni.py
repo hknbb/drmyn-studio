@@ -299,6 +299,35 @@ def _load_element_aliases(scene_id: str, repo_root: Path) -> tuple[dict[str, str
     return alias_map, char_ids
 
 
+def _load_continuity_states(
+    scene_id: str, clip_id: str, repo_root: Path
+) -> tuple[dict[str, Any] | None, dict[str, Any] | None]:
+    """Load this clip's entry/exit state from the scene_continuity_ledger, if present.
+
+    Returns (entry_state, exit_state); either may be None when no ledger exists or
+    the clip is not chained. Inter-clip continuity must reach the prompt, not just
+    sit in a record.
+    """
+    ledger_path = (
+        repo_root / "planning" / "scenes" / scene_id / "scene_continuity_ledger.yaml"
+    )
+    if not ledger_path.exists():
+        return None, None
+    import yaml as _yaml
+
+    try:
+        with ledger_path.open(encoding="utf-8") as fh:
+            data = _yaml.safe_load(fh)
+    except Exception:
+        return None, None
+    if not isinstance(data, dict):
+        return None, None
+    for entry in data.get("clip_chain") or []:
+        if isinstance(entry, dict) and entry.get("clip_id") == clip_id:
+            return entry.get("entry_state"), entry.get("exit_state")
+    return None, None
+
+
 def _load_audio_readiness(scene_id: str, repo_root: Path) -> dict[str, str]:
     """Load native_audio_readiness by element_id from element_bindings."""
     bindings_path = (
@@ -549,6 +578,12 @@ class KlingOmniAdapter:
         # Load active element aliases for this scene
         alias_map, char_ids = _load_element_aliases(scene_id, self.repo_root)
 
+        # Inter-clip continuity: pull this clip's entry/exit world state from the
+        # scene_continuity_ledger so the hand-off reaches the prompt text.
+        continuity_entry, continuity_exit = _load_continuity_states(
+            scene_id, clip_id, self.repo_root
+        )
+
         # Load dialogue beats lines and readiness map unconditionally so both the
         # audio_plan component and the existing audio gate block share one load.
         dialogue_beats_lines_data = (
@@ -576,6 +611,21 @@ class KlingOmniAdapter:
                 seen_aliases[alias] = None
                 required_aliases.append(alias)
 
+        # Figure-level aliases (anti-clone): a single base character (e.g. C10) may
+        # appear as two distinct on-screen figures, each with its own @alias
+        # (@C10_HOLDER, @C10_CARRIER). The element_id->alias map collapses these, so
+        # attach figure aliases directly from the manifest shots[].figures[].
+        for shot in shots:
+            if not isinstance(shot, dict):
+                continue
+            for fig in shot.get("figures") or []:
+                if not isinstance(fig, dict):
+                    continue
+                fig_alias = fig.get("kling_alias")
+                if fig_alias and fig_alias not in seen_aliases:
+                    seen_aliases[fig_alias] = None
+                    required_aliases.append(fig_alias)
+
         if strict_element_first and not required_aliases:
             raise KlingOmniAdapterError(
                 "shot_element_manifest_ref is set but the omni_clip_manifest "
@@ -597,6 +647,8 @@ class KlingOmniAdapter:
             strict_element_first=strict_element_first,
             dialogue_beats_lines=dialogue_beats_lines_data or None,
             readiness_map=readiness_map_data,
+            continuity_entry=continuity_entry,
+            continuity_exit=continuity_exit,
         )
 
         # Warn about planned-only elements (in required_element_ids but not active)
@@ -849,6 +901,8 @@ class KlingOmniAdapter:
         strict_element_first: bool = False,
         dialogue_beats_lines: list[dict[str, Any]] | None = None,
         readiness_map: dict[str, str] | None = None,
+        continuity_entry: dict[str, Any] | None = None,
+        continuity_exit: dict[str, Any] | None = None,
     ) -> tuple[str, list[str]]:
         """Build prompt text with element alias injection and pronoun rewriting.
 
@@ -887,8 +941,17 @@ class KlingOmniAdapter:
             "Create one Kling Omni element-based video clip.",
             f"Total duration: {total_duration} seconds.",
             f"Active elements: {', '.join(required_aliases)}.",
+            "Describe action and camera over time; identity, wardrobe, and look are "
+            "carried by the attached @elements, not re-described.",
             self._variant_preamble(variant_mode),
         ]
+
+        figure_line = self._build_figure_roster_line(shots)
+        if figure_line:
+            parts.append(figure_line)
+
+        if continuity_entry:
+            parts.append(self._continuity_phrase("Continue from previous clip", continuity_entry))
 
         for index, shot in enumerate(shots, start=1):
             duration = int(shot.get("duration_seconds", 0))
@@ -923,6 +986,9 @@ class KlingOmniAdapter:
             if audio_part:
                 parts.append(audio_part)
 
+        if continuity_exit:
+            parts.append(self._continuity_phrase("End state for next clip", continuity_exit))
+
         parts.append(f"Continuity: {continuity_mode}.")
         parts.append(
             f"Keep clip at {total_duration} seconds. Do not add new story facts."
@@ -944,6 +1010,55 @@ class KlingOmniAdapter:
             )
 
         return text, all_warnings
+
+    @staticmethod
+    def _build_figure_roster_line(shots: list[Any]) -> str:
+        """Anti-clone roster line: enumerate the exact distinct figures and forbid extras.
+
+        First mention of each figure carries its distinguishing_detail so the model
+        keeps physically distinct figures apart (Kling Element guide pattern).
+        """
+        ordered: list[str] = []
+        details: dict[str, str] = {}
+        for shot in shots:
+            if not isinstance(shot, dict):
+                continue
+            for fig in shot.get("figures") or []:
+                if not isinstance(fig, dict):
+                    continue
+                alias = fig.get("kling_alias")
+                if not isinstance(alias, str) or not alias:
+                    continue
+                if alias not in ordered:
+                    ordered.append(alias)
+                    detail = fig.get("distinguishing_detail")
+                    if isinstance(detail, str) and detail.strip():
+                        details[alias] = detail.strip()
+        if not ordered:
+            return ""
+        labelled = [f"{a} ({details[a]})" if a in details else a for a in ordered]
+        return (
+            f"Figures: exactly {len(ordered)} distinct figure(s) — {', '.join(labelled)}. "
+            "No additional, extra, or duplicated people; do not clone or multiply any figure."
+        )
+
+    @staticmethod
+    def _continuity_phrase(label: str, state: dict[str, Any]) -> str:
+        """Render a scene_continuity_ledger entry/exit state into a prompt clause."""
+        bits: list[str] = []
+        summary = state.get("summary")
+        if isinstance(summary, str) and summary.strip():
+            bits.append(summary.strip())
+        cam = state.get("camera_state") if isinstance(state.get("camera_state"), dict) else {}
+        shot_size = cam.get("shot_size")
+        if isinstance(shot_size, str):
+            bits.append(f"camera {shot_size}")
+        direction = state.get("screen_direction")
+        if isinstance(direction, str) and direction != "neutral":
+            bits.append(f"screen direction {direction.replace('_', ' ')}")
+        if not bits:
+            return ""
+        return f"{label}: " + "; ".join(bits) + "."
 
     @staticmethod
     def _build_shot_direction_phrase(shot: dict[str, Any]) -> str:

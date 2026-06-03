@@ -91,6 +91,22 @@
               "maxLength": 20
             }
           },
+          "figures": {
+            "type": "array",
+            "description": "Distinct on-screen figures present in this beat. Each figure carries its own Kling @alias so multiple figures sharing a base character identity are never collapsed (anti-clone). Propagated to omni_clip_manifest shots by the packer; operator-authored.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["figure_id", "base_element_id", "kling_alias", "role"],
+              "properties": {
+                "figure_id": { "type": "string", "pattern": "^FIG_[A-Z0-9_]+$" },
+                "base_element_id": { "type": "string", "pattern": "^C\\d{2}$" },
+                "kling_alias": { "type": "string", "pattern": "^@[A-Z0-9_]+$" },
+                "role": { "type": "string", "minLength": 1, "maxLength": 160 },
+                "distinguishing_detail": { "type": "string", "maxLength": 200 }
+              }
+            }
+          },
           "camera": {
             "type": "object",
             "additionalProperties": false,

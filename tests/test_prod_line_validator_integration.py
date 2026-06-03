@@ -193,7 +193,9 @@ def _write_model_guidance_snapshot(
     human_verified: bool = True,
     expires_days: int = 7,
 ) -> None:
-    observed_at = datetime(2026, 5, 11, 0, 0, tzinfo=timezone.utc)
+    # Anchor to "now" so default snapshots are always fresh and the expires_days=-1
+    # case is always expired, regardless of the wall-clock date the suite runs on.
+    observed_at = datetime.now(timezone.utc)
     expires_at = observed_at + timedelta(days=expires_days)
     provider_dir = repo_root / "model_guidance_snapshots" / provider
     filename = f"20260511T000000Z_{target}.yaml"
