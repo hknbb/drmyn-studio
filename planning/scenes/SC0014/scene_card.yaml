@@ -22,7 +22,8 @@ characters_explicit_mentions:
 primary_pov_character: C01
 continuity_refs:
   wardrobe: []
-  props: []
+  props:
+    - PROP001
   prior_scenes:
     - SC0013
   next_expected_links:

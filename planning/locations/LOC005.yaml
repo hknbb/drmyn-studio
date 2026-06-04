@@ -1,0 +1,34 @@
+location_id: LOC005
+name: "Northern Transit Corridor — Outer District Perimeter"
+category: INDUSTRIAL
+recurring: false
+geography:
+  city: "Outer districts (perimeter)"
+  country: "UNRESOLVED — fictional state context not named in source"
+  interior_exterior: EXT
+visual_profile:
+  palette: "Night greys and black; pools of cold overhead light separated by deep darkness; industrial concrete."
+  architecture_logic: "A long corridor running between a sealed cargo-processing facility (east) and a continuous concrete drainage embankment (west); overhead lights at ~200m intervals; a drainage cut at the junction is the only western cover."
+  camera_behavior: "Long corridor depth; the light-pool/darkness/light-pool rhythm carries the tension; measured tracking and held wides over sprint coverage."
+  lighting_logic: "Low-key practical pools at fixed intervals, deep shadow between; cool, no warmth."
+  sound_texture: "Distant comms pings, footsteps, the absence of ambient grid hum; night quiet under threat."
+  spatial_motifs:
+    - "pools of light and darkness"
+    - "corridor depth toward a junction"
+    - "embankment / drainage cut"
+continuity_constraints:
+  persistent_objects: []
+  entry_exit_logic: "Movement north along the corridor toward the junction; western escape via the embankment climb and the drainage cut into the maintenance infrastructure."
+  time_of_day_constraints: "Night only (source: PRE/NIGHT)."
+  weather_sensitivity: "Exterior; cold night air; weather not source-stated."
+  damage_state_logic: "Industrial wear baseline; no scene-driven damage to the location itself."
+scene_refs:
+  - SC0089
+aesthetic_pack_refs:
+  - OUTER_DISTRICT_NIGHT
+status: review
+review_status: pending
+canon_lock: false
+provenance:
+  created_by: "claude_code (M5 FAZ B)"
+  created_at: "2026-06-04T00:00:00Z"

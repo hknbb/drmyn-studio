@@ -4,7 +4,7 @@ phase_id: PH_CONFRONTATION
 title: MERIN — QUAY DISTRICT, UNIT 14-B
 purpose: "In a converted quay freight bay, Otto (already waiting) hands Nadia an unmarked industrial handset from a locked case, telling her Marcus said she would come and would know the code. Nadia enters the code (7-3-1-1-4) and plays Marcus's recorded message, which begins to deliver his complete dossier on Roman — network structure, financial infrastructure, broadcast system, the names — via an encrypted partition. The dead informant's evidence reaches her through his contact; the moment that arms her plan with actionable intelligence and transforms grief into the engine of the confrontation to come."
 dramatic_function: "The turn that arms Nadia's plan: the dead informant's evidence reaches her through his contact in a handoff that merges grief, inheritance, and the beginning of her assault on Roman's broadcast infrastructure. A quiet two-hander of operational precision and intimate loss."
-location_id: LOC001
+location_id: LOC006
 location_text_raw: MERIN — QUAY DISTRICT, UNIT 14-B
 time_of_day: MORNING
 time_of_day_text_raw: MORNING
@@ -24,7 +24,8 @@ characters_explicit_mentions:
 primary_pov_character: C01
 continuity_refs:
   wardrobe: []
-  props: []
+  props:
+  - PROP008
   prior_scenes:
   - SC0046
   next_expected_links:

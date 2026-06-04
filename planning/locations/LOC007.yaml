@@ -1,0 +1,34 @@
+location_id: LOC007
+name: "Veltain Compound — Antechamber Corridor"
+category: INSTITUTION
+recurring: false
+geography:
+  city: "Veltain (compound)"
+  country: "UNRESOLVED — fictional state context not named in source"
+  interior_exterior: INT
+visual_profile:
+  palette: "Cold institutional neutrals; harsh low light; bare concrete and server-core surfaces; no warmth."
+  architecture_logic: "A narrow antechamber corridor outside the server core; minimal surfaces, a known floor seam, a retreat door frame; geometry that closes the longer the fight runs."
+  camera_behavior: "Tight, claustrophobic coverage that reads bodies and leverage; the closing corridor geometry, the floor seam, backs-to-walls; handheld only where contact demands."
+  lighting_logic: "Low-key, hard, cool, dim; institutional with no relit warmth."
+  sound_texture: "Breath, impact, the hum of the server core; otherwise stripped and quiet."
+  spatial_motifs:
+    - "narrow closing corridor"
+    - "floor seam / server-core door"
+    - "harsh institutional light"
+continuity_constraints:
+  persistent_objects: []
+  entry_exit_logic: "Continuous from the prior compound corridors (SC0110); the fight ends with Roman down and Nadia moving on toward Jin in the building."
+  time_of_day_constraints: "Continuous (interior; no explicit time of day)."
+  weather_sensitivity: "None (interior compound)."
+  damage_state_logic: "No structural damage; the corridor stays bare and hard; combat marks are on the bodies, not the set."
+scene_refs:
+  - SC0111
+aesthetic_pack_refs:
+  - VELTAIN_COMPOUND_HARSH
+status: review
+review_status: pending
+canon_lock: false
+provenance:
+  created_by: "claude_code (M5 FAZ B)"
+  created_at: "2026-06-04T00:00:00Z"

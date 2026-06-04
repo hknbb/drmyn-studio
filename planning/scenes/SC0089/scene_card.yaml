@@ -4,7 +4,7 @@ phase_id: PH_CRUCIBLE
 title: NORTHERN TRANSIT CORRIDOR — OUTER DISTRICT PERIMETER
 purpose: "Nadia and Zara move at measured intervals through a night transit corridor lined with overhead light pools separated by darkness. Nadia reads a comms-ping spacing that reveals two hunter teams, not one. She confirms the broadcast decoy she planted continues to feed a false position into the ORACLE PRIME grid on its 12-minute cycle. The pair advances toward the junction at a controlled pace, managing threat vectors and timing against the decoy's passive burst cycle window."
 dramatic_function: "Kinetic infiltration under dual threat: tactical read and evasion in real time. Tension of measured movement, Nadia's ability to extract information from minimal signals (comms-ping spacing, seam vibration), the still-running decoy as a load-bearing continuity anchor, and the calculation of a narrowing coverage gap that conditions their survival margin."
-location_id: LOC001
+location_id: LOC005
 location_text_raw: NORTHERN TRANSIT CORRIDOR — OUTER DISTRICT PERIMETER
 time_of_day: NIGHT
 time_of_day_text_raw: NIGHT
