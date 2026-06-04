@@ -1,0 +1,32 @@
+schema_version: "0.x-draft"
+record_type: character_look_sheet
+look_sheet_id: LOOKSHEET_C01_COMPOUND_BATTLEWORN_V001
+character_id: C01
+look_id: C01_LOOK_COMPOUND_BATTLEWORN_V001
+scene_refs:
+  - SC0111
+physical:
+  build: "Lean, upright, economical; trained-to-conserve-movement posture (former military medic)."
+  height: "Average; reads contained and exact rather than tall."
+  hair: "Dark, disordered by exertion, loosened from restraint, stuck with sweat; no longer disciplined, now survival-focused."
+  skin_tone: "Natural, no glamor finish; gray under institutional harsh low corridor light; sweat and dirt visible."
+  physical_features: "Early-to-mid-30s; alert watchful eyes; exact face geometry; vigilance sharpened to survival. Exhaustion legible in jaw and shoulders; left-side deficit favored in stance and breath. No decorative styling."
+wardrobe:
+  primary_wardrobe_id: WD011
+  garment_top: "Dark technical top, close-fitting for movement; black or slate deep charcoal, now grimed/bloodied from contact and sweat; operational civilian cut, not military; designed for climbing and crouch work; now compromised, torn, soiled."
+  garment_bottom: "Dark durable trousers in black or slate; operational cut; now dirt-marked, sweat-darkened, torn at left thigh/hip (where left-side injury is favored); practical and movement-easy; no flash or accent detail."
+  footwear: "Dark practical operational boots; low-profile, sound-disciplined, built for sustained movement and field work; now scuffed, dust-caked from contact with corridor floor; still functional."
+  outerwear: "Low-profile dark jacket, close-fitting; black or deep charcoal; minimal silhouette; now compromised, torn at left shoulder/side, sweat-soaked; no longer protective, now liability."
+  accessories: []
+palette: "Dark operational neutrals (black, slate, deep charcoal) now grimed and bloodied; harsh institutional cool light (cold color temperature, low-key, hard); reads as survival cost, not style; exhaustion and injury visible in light/color choices."
+status: draft
+notes: >
+  Full head-to-toe look definition for Nadia's SC0111 climactic battle-worn look so the
+  four_view scale views do not crop or invent garments. Battle-worn register with restrained
+  realistic injury (dirt, sweat, blood, left-side favoritism); no gore. Identity locked by
+  C01_IDENTITY_ANCHOR_V001. Distinct from SC0014 domestic warmth, SC0089 field-operational
+  readiness, and SC0047 transit state. Harsh institutional corridor light (cold, low-key,
+  hard) replaces operational night or domestic warmth.
+provenance:
+  created_by: "claude_code (M5 FAZ B — haiku)"
+  created_at: "2026-06-04T00:00:00Z"

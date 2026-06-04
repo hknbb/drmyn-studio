@@ -1,0 +1,27 @@
+schema_version: "0.x-draft"
+record_type: character_look_variant
+look_id: C01_LOOK_FIELD_NIGHT_V001
+character_id: C01
+inherits_identity_anchor: C01_IDENTITY_ANCHOR_V001
+status: draft
+look_role: "Night field-operational — Nadia moving through the dark transit corridor (SC0089)"
+wardrobe_refs:
+  primary_wardrobe_id: WD011
+  supplementary_wardrobe_ids: []
+appearance_state:
+  fatigue_level: tired
+  damage_level: none
+  hair_state_within_anchor: "Pulled back tight, low restraint; disciplined, movement-ready, held for dark-operational work."
+continuity_scope:
+  start_scene: SC0089
+  end_scene: SC0089
+change_reason: "Shift from domestic to dark field-operational gear for the night approach and infiltration; the look Nadia carries through the transit corridor under threat."
+notes: >
+  Look 2 of 4 for Nadia. Wardrobe WD011 (dark operational civilian layers: close-fitting
+  technical top, durable trousers, low-profile jacket, operational neutrals). Identity
+  carried by C01_IDENTITY_ANCHOR_V001; wardrobe and operational readiness (tiredness,
+  hair restraint) distinguish this from domestic SC0014 look. No damage yet. Stage-3
+  four-view pack: perspective_packs/PPACK_C01_FIELD_NIGHT_V001.yaml.
+provenance:
+  created_by: "claude_code (M5 FAZ B — haiku)"
+  created_at: "2026-06-04T00:00:00Z"

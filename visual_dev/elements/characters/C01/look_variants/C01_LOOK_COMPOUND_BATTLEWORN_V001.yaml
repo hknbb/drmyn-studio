@@ -1,0 +1,29 @@
+schema_version: "0.x-draft"
+record_type: character_look_variant
+look_id: C01_LOOK_COMPOUND_BATTLEWORN_V001
+character_id: C01
+inherits_identity_anchor: C01_IDENTITY_ANCHOR_V001
+status: draft
+look_role: "Compound battle-worn — Nadia in the close-quarters fight with Roman in the Veltain antechamber (SC0111)"
+wardrobe_refs:
+  primary_wardrobe_id: WD011
+  supplementary_wardrobe_ids: []
+appearance_state:
+  fatigue_level: exhausted
+  damage_level: injured
+  hair_state_within_anchor: "Disordered by exertion, loosened from restraint, stuck with sweat; no longer disciplined, now survival-focused."
+continuity_scope:
+  start_scene: SC0111
+  end_scene: SC0111
+change_reason: "The SC0089 field-operational wardrobe (WD011) now battle-worn after the infiltration and assault — dirt, sweat, disorder, signs of injury (favoring the left side); same garments, degraded state. The SC0111 climax finds Nadia exhausted, injured, cornered by Roman's spatial knowledge, pivoting to approach via bilateral carotid-sinus hold. Wardrobe continuity carries from SC0089 onward."
+notes: >
+  Look 4 of 4 for Nadia. Wardrobe WD011 (dark operational civilian layers, now battle-worn:
+  technical top grimed/bloodied, durable trousers dirt-marked, jacket compromised, boots
+  still functional). Identity carried by C01_IDENTITY_ANCHOR_V001; wardrobe state,
+  fatigue, hair disorder, and injury (restrained, realistic: dirt, sweat, favoring left
+  side, minor blood) distinguish this from SC0089 field-night look. SC0111 harsh low
+  corridor light, cool institutional palette. Stage-3 four-view pack:
+  perspective_packs/PPACK_C01_COMPOUND_BATTLEWORN_V001.yaml.
+provenance:
+  created_by: "claude_code (M5 FAZ B — haiku)"
+  created_at: "2026-06-04T00:00:00Z"
