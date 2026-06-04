@@ -1,0 +1,393 @@
+schema_version: "0.x-draft"
+record_type: scene_beat_plan
+scene_id: SC0111
+notes: >
+  "VELTAIN COMPOUND — ANTECHAMBER CORRIDOR" (source lines 8993-9049). Beats derived
+  only from scene_excerpt.md; no story facts added. Silent action (Format A). Two
+  characters: C01 Nadia Vale (@C01_NADIA), C02 Roman Vale (@C02_ROMAN). The scene
+  traces Nadia's adjustments to her left-side injury, Roman's spatial advantage via
+  floor-seam knowledge, the tightening geometry, Nadia's shift from retreat to
+  approach, bilateral carotid-sinus hold application, vasovagal response, her
+  recovery and stand, Roman on the floor unresolved, and her movement on the final
+  line "Jin is in the building." Pacing: contained, precise, exhaustion-marked.
+  Lighting: low-key, cool, institutional. Camera: tight, handheld only where contact
+  demands; framing reads leverage and geometry closing.
+source_beats:
+  - beat_id: ESTABLISH_ADJUSTMENT
+    content: >
+      Nadia is adjusted to her left-side deficit from the sternum injury. Roman watches
+      how she has adjusted to it — her left arm leverage compromised, her movement
+      compensating. He is reading her in real time.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: true
+    narrative_role: establish
+    required_element_ids: [C01, C02]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Adjusted to left-side deficit; breathing cost; compensating for injury."
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: "@C02_ROMAN"
+        role: "Watching, reading her adjustment, learning her compensation pattern."
+    camera: { angle: eye_level, framing: medium_wide, movement: static, lens_bias: "the two of them in the corridor space; reading bodies" }
+    lighting: { source: low_key, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.15, camera_intensity: 0.0, blocking_notes: "Nadia's breathing visible; left arm held closer to body; Roman's stance predatory but still." }
+    notes: "Establish the injury and the imbalance Roman will exploit."
+
+  - beat_id: THIRD_APPROACH_LOWER
+    content: >
+      Roman comes in lower on the third approach — below the sternum contact she
+      landed in SC0104, inside the deflection range her left arm can produce with
+      compromised leverage. He is learning her compensation.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01, C02]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Defending the new approach angle; left arm limited, right arm primary."
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: "@C02_ROMAN"
+        role: "Third approach, coming lower; exploiting the sternum-injury deficit."
+    camera: { angle: eye_level, framing: medium_close, movement: handheld, lens_bias: "contact level; reading the lower line Roman has chosen" }
+    lighting: { source: low_key, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.6, camera_intensity: 0.3, blocking_notes: "Contact exchange; Nadia's left arm cannot cover the approach line as effectively." }
+    notes: "Roman's tactical choice: attack the injury. Nadia defending but compromised."
+
+  - beat_id: FLOOR_SEAM_USE
+    content: >
+      Roman uses the floor seam. Nadia knows it is there — he told her in SC0102 when
+      he mapped the corridor. What she does not have is the exact position in this low
+      light. He does. He drives her back toward it on a line that ends at the seam,
+      not the shortest path.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01, C02]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Being driven back; aware of the seam in principle but not position; caught in the geometry."
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: "@C02_ROMAN"
+        role: "Using the floor seam as a tactical constraint; map knowledge as advantage."
+    camera: { angle: eye_level, framing: medium, movement: tracking, lens_bias: "the floor line; Nadia being pushed toward the seam" }
+    lighting: { source: low_key, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.7, camera_intensity: 0.4, blocking_notes: "Nadia retreating; Roman advancing with purpose; the floor seam as a geometric weapon." }
+    notes: "Roman's map-knowledge converts to tactical advantage. Nadia is being herded."
+
+  - beat_id: CATCH_STAGGER
+    content: >
+      She catches it on the outer edge of her right foot. Not a fall. A stagger.
+      A quarter-second of weight displacement she cannot use. He uses the quarter-second.
+    semantic_duration_hint: short_insert
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: pulse_check
+    required_element_ids: [C01, C02]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Catches the seam on her right foot; staggered; momentarily off-balance."
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: "@C02_ROMAN"
+        role: "Seizing the quarter-second window; pressing immediately."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "the foot catching the seam; the moment of imbalance" }
+    lighting: { source: low_key, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.5, camera_intensity: 0.0 }
+    notes: "The seam works. Nadia's weight distribution breaks; Roman capitalizes immediately."
+
+  - beat_id: MANAGED_TO_DOOR_FRAME
+    content: >
+      The door frame of his retreat catches her right shoulder. Not thrown —
+      she is managed into it, the geometry doing the work. He is not wasting energy
+      on force. He is spending effort on precision. Her back is to the server core door.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01, C02]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Managed into the door frame; back now against server-core door; cornered."
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: "@C02_ROMAN"
+        role: "Using precision, not force; the geometry as the weapon; controlling Nadia's position."
+    camera: { angle: eye_level, framing: medium, movement: handheld, lens_bias: "her back hitting the frame; the corridor walls closing" }
+    lighting: { source: low_key, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.6, camera_intensity: 0.3, blocking_notes: "Contact with the frame; Nadia's back now pinned by geometry; Roman controlling space." }
+    notes: "Roman's spatial advantage is complete. He has used the corridor to box her."
+
+  - beat_id: BREATHING_COST
+    content: >
+      Her left arm is not reliably functional — the rib injury has shortened every
+      movement arc on that side, and he has methodically narrowed what the right arm
+      can reach. The breathing cost is now operating-expense rather than overhead:
+      every inhale is a decision with a price. He is running out the clock on her margins.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: true
+    narrative_role: hold
+    required_element_ids: [C01, C02]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Breathing heavily; left arm functionally limited; margins eroding with each breath."
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: "@C02_ROMAN"
+        role: "Not hitting; running out her clock; waiting for her margins to collapse."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "her chest, her breathing, the cost in her body" }
+    lighting: { source: low_key, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.3, camera_intensity: 0.0, blocking_notes: "Visible breathing; Nadia's body language showing fatigue; Roman waiting; no new contact." }
+    notes: "Roman's strategy: attrition. He has set up the geometry so she burns through her physical reserves."
+
+  - beat_id: GEOMETRY_CLOSED
+    content: >
+      She has no room to establish a counter-line. The geometry is closed.
+      She knows about carotid sinus pressure: bilateral sustained pressure at the
+      baroreceptor concentration point triggers vasovagal reflex — the autonomic
+      nervous system cannot override it. She learned this as a medic in the context
+      of what not to do. She has been aware since the fight began that it was the one
+      move available from maximum proximity with minimum arm clearance.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: pulse_check
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Recognizing the only option: bilateral carotid-sinus knowledge; the one move that closes distance and works from no clearance."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "her face; recognition; decision" }
+    lighting: { source: low_key, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0, blocking_notes: "Nadia still; her mind working; decision point." }
+    notes: "Internal beat: Nadia's knowledge meeting desperation. She stops running. She chooses her only viable move."
+
+  - beat_id: DISTANCE_CLOSED_FOUR_EXCHANGES
+    content: >
+      She stopped running from maximum proximity four exchanges ago. She closes distance.
+      He does not expect it. She has been managing space, extending range. The shift
+      from retreat to approach takes a half-second he has not allocated.
+    semantic_duration_hint: short_insert
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01, C02]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Suddenly approaching; shift from retreat to attack; closing distance."
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: "@C02_ROMAN"
+        role: "Not expecting approach; caught in the moment of vulnerability."
+    camera: { angle: eye_level, framing: medium_close, movement: handheld, lens_bias: "the sudden change; Nadia moving in" }
+    lighting: { source: low_key, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.8, camera_intensity: 0.4, blocking_notes: "Nadia's sudden forward movement; Roman's brief look of surprise; distance collapsing." }
+    notes: "The turning point: Nadia pivots from victim of geometry to actor. Roman was not watching for this."
+
+  - beat_id: BOTH_THUMBS_BIFURCATION
+    content: >
+      Both thumbs, at the bifurcation. She knows the location with the precision
+      she knows every anatomical landmark she was trained to find fast in field conditions,
+      on strangers, in the dark. His neck. He tries to pull back. The distance is already closed.
+    semantic_duration_hint: short_insert
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01, C02]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Both thumbs at the bifurcation; carotid sinus hold; executed with precision."
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: "@C02_ROMAN"
+        role: "Trying to pull back; distance already closed; trapped in the hold."
+    camera: { angle: insert, framing: extreme_close, movement: static, lens_bias: "macro on hands and neck; the bifurcation point; both thumbs in contact" }
+    lighting: { source: low_key, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.7, camera_intensity: 0.0, blocking_notes: "Contact to neck; Roman's hands trying to find purchase; Nadia's arms steady." }
+    notes: "The critical technical moment: precision medical knowledge applied as a weapon. Baroreceptor targeting."
+
+  - beat_id: APPLY_SUSTAINED_BOTH_SIDES
+    content: >
+      She applies. Sustained. Both sides. The pressure is specific and deliberate —
+      not a choke, not a strike: a bilateral hold targeting the baroreceptor reflex,
+      maintained with whatever her arms have left.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: hold
+    required_element_ids: [C01, C02]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Applying sustained bilateral pressure at baroreceptor points; precise hold; spent arms."
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: "@C02_ROMAN"
+        role: "Hands on her arms; body not yet understanding the reflex being triggered."
+    camera: { angle: eye_level, framing: close, movement: static, lens_bias: "tight on the hold; both their bodies; strain and precision" }
+    lighting: { source: low_key, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.4, camera_intensity: 0.0, blocking_notes: "Sustained muscle tension; both of them locked; Roman's body struggling against the reflex." }
+    notes: "Medical knowledge + will. This is the sustained hold; what comes next is his body's autonomic response."
+
+  - beat_id: FOUR_SECONDS_STANDING
+    content: >
+      Four seconds. He is still standing, his hands trying to find purchase,
+      his body not yet understanding what is being asked of it.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: hold
+    required_element_ids: [C01, C02]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Maintaining the hold; at four seconds."
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: "@C02_ROMAN"
+        role: "Still standing; hands grasping; reflex not yet dominant."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "the hold sustained; his face showing dawning effect" }
+    lighting: { source: low_key, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.3, camera_intensity: 0.0, blocking_notes: "Both bodies locked; beginning of Roman's physical response visible." }
+    notes: "The hold is working. The baroreceptor reflex is beginning its work."
+
+  - beat_id: SIX_SECONDS_UNDERSTANDS
+    content: >
+      Six seconds. His body understands.
+    semantic_duration_hint: short_insert
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: pulse_check
+    required_element_ids: [C01, C02]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Maintaining the hold; at six seconds."
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: "@C02_ROMAN"
+        role: "Moment where body response becomes visible and undeniable."
+    camera: { angle: eye_level, framing: close, movement: static, lens_bias: "his face; body response beginning; shift in status" }
+    lighting: { source: low_key, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.5, camera_intensity: 0.0 }
+    notes: "Turn of the hold. The autonomic response is now dominant."
+
+  - beat_id: SEVEN_SECONDS_COLLAPSE
+    content: >
+      Seven.
+      He goes down the way vasovagal response takes a person — not a fall, not a
+      collapse, a controlled exit of the legs from load-bearing status. She goes with
+      him, one knee on the corridor floor, because she does not have the margin to
+      release cleanly and step back. She releases.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01, C02]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Seven seconds; releasing as Roman collapses; going to one knee; exhausted but on guard."
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: "@C02_ROMAN"
+        role: "Vasovagal response; controlled descent; legs losing load-bearing; down."
+    camera: { angle: eye_level, framing: medium, movement: handheld, lens_bias: "both of them going down; Nadia with him; the corridor floor" }
+    lighting: { source: low_key, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.7, camera_intensity: 0.3, blocking_notes: "Coordinated descent; Nadia controlled with him; floor contact; release as he goes down." }
+    notes: "Vasovagal collapse is not dramatic — it is controlled and physical. Both of them on the floor; she releases."
+
+  - beat_id: RISE_COUNT_OF_THREE
+    content: >
+      She tries to stand. Her left side is settled into a specific, narrow, consuming
+      pain — not acute anymore, categorical. She gets to one knee. She gives herself
+      the count of three. At three she stands.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Rising from one knee; left-side pain categorical; counting down three; standing."
+    camera: { angle: eye_level, framing: medium_close, movement: handheld, lens_bias: "her effort; the pain; one knee to standing" }
+    lighting: { source: low_key, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.6, camera_intensity: 0.2, blocking_notes: "Nadia's difficulty getting up; pain visible; deliberate three-count; rise to standing." }
+    notes: "Her body is taxed. The rise is deliberate, not easy. She is still fighting the injury."
+
+  - beat_id: ROMAN_ON_FLOOR_UNRESOLVED
+    content: >
+      Roman is on the corridor floor. Breathing — she can see the chest moving from
+      here, the way she has been trained to see it from a distance in low light without
+      equipment. He is not confirmed as to what comes next. The film does not resolve
+      this here.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: true
+    narrative_role: hold
+    required_element_ids: [C01, C02]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Standing; assessing Roman; breathing; not staying to confirm."
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: "@C02_ROMAN"
+        role: "On the floor; breathing; unresolved; unconfirmed."
+    camera: { angle: eye_level, framing: medium_wide, movement: static, lens_bias: "both of them in the space; her standing, him on the floor; distance between" }
+    lighting: { source: low_key, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.1, camera_intensity: 0.0, blocking_notes: "Minimal movement; Nadia's breath; Roman's chest rising; the unresolved question." }
+    notes: "She is not staying to finish or confirm. The narrative does not resolve his state. She moves on because—"
+
+  - beat_id: JIN_IN_BUILDING
+    content: >
+      She is not standing here long enough for resolution. Jin is in the building.
+      She is standing. She moves.
+    semantic_duration_hint: short_insert
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: transition
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Realization; Jin is in the building; the priority shifts; she moves."
+    camera: { angle: eye_level, framing: medium, movement: static, lens_bias: "her face; the shift; then her body moving toward the door" }
+    lighting: { source: low_key, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.4, camera_intensity: 0.0, blocking_notes: "The moment the priority becomes clear; movement toward the exit." }
+    notes: "Final line: 'Jin is in the building.' Nadia's focus is no longer on Roman. She moves."
+
+provenance:
+  created_by: "claude_code (M5 FAZ A — haiku)"
+  created_at: "2026-06-04T00:00:00Z"

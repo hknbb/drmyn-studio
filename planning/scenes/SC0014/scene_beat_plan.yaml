@@ -1,0 +1,320 @@
+schema_version: "0.x-draft"
+record_type: scene_beat_plan
+scene_id: SC0014
+notes: >
+  "Jin's Nursery — The Taking" (source lines 1071-1134). Beats derived only from
+  scene_excerpt.md; no story facts added. PROTECTED SUBJECT: Jin (C08) is an infant.
+  All infant handling must read as safe and supported; infant distress stays
+  off-frame; the taking is carried by Nadia's POV and adult performance, not by
+  exploiting the child. Two anonymous enforcers share base C10 but are two DISTINCT
+  figures (anti-clone): @C10_CARRIER lifts/carries Jin (the "first man"),
+  @C10_HOLDER restrains Nadia (the "second man"). Pacing: contained, exact,
+  unhurried; the room's warmth is never relit when the men arrive. Dialogue is
+  Dimitri-only and is treated as metadata; default delivery is Format A
+  (suppressed) given the protected subject until voice is provisioned.
+source_beats:
+  - beat_id: ESTABLISH_NURSERY
+    content: >
+      A small nursery, made carefully — soft warm light, a crib, a shelf of an
+      eight-month-old's things. The deliberate warmth of a room that means
+      something. No people foregrounded yet; the room as the protected center.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: true
+    narrative_role: establish
+    required_element_ids: [LOC001]
+    camera: { angle: eye_level, framing: wide, movement: static, lens_bias: "wide-ish, gentle" }
+    lighting: { source: practical, quality: soft, color_temp: warm, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.1, blocking_notes: "Hold on the room; crib and chair as the center of frame." }
+    notes: "Establish contained domestic warmth so the loss has something to measure against."
+
+  - beat_id: NADIA_HOLDING_JIN
+    content: >
+      Nadia sits in the chair by the crib holding Jin, who is awake. She is not
+      rocking, not singing — just holding him, the way you hold something you are
+      about to lose and cannot say so.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: hold
+    required_element_ids: [C01, C08, LOC001]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Mother holding her infant in the nursery chair; still, contained dread."
+      - figure_id: FIG_JIN
+        base_element_id: C08
+        kling_alias: "@C08_JIN"
+        role: "Eight-month-old held safely against Nadia; calm, supported."
+        distinguishing_detail: "Infant; pale blue name bracelet on wrist."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "intimate, close to mother and child" }
+    lighting: { source: practical, quality: soft, color_temp: warm, intensity: dim }
+    motion: { subject_intensity: 0.1, camera_intensity: 0.05, blocking_notes: "Infant fully supported in arms; safe handling throughout." }
+    notes: "PROTECTED SUBJECT — safe, supported infant handling; the dread is in Nadia, not in the child."
+
+  - beat_id: DOOR_OPENS
+    content: The nursery door opens.
+    semantic_duration_hint: short_insert
+    may_merge_with_next: true
+    splittable: false
+    narrative_role: transition
+    required_element_ids: [LOC001]
+    camera: { angle: eye_level, framing: medium, movement: static, lens_bias: "toward the doorway" }
+    lighting: { source: practical, quality: soft, color_temp: warm, intensity: dim }
+    motion: { subject_intensity: 0.2, camera_intensity: 0.0 }
+
+  - beat_id: DIMITRI_AND_MEN_ENTER
+    content: >
+      Dimitri enters. Two men behind him. They stop and stand just inside the door
+      — the intruding geometry against the room's warmth.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C04, LOC001]
+    figures:
+      - figure_id: FIG_DIMITRI
+        base_element_id: C04
+        kling_alias: "@C04_DIMITRI"
+        role: "Lead enforcer; speaks; stands in the middle, in control without volume."
+      - figure_id: FIG_ENF_CARRIER
+        base_element_id: C10
+        kling_alias: "@C10_CARRIER"
+        role: "First man; will lift and carry the child."
+        distinguishing_detail: "Stands nearer Nadia's side; the one who steps forward first."
+      - figure_id: FIG_ENF_HOLDER
+        base_element_id: C10
+        kling_alias: "@C10_HOLDER"
+        role: "Second man; will restrain Nadia by both arms."
+        distinguishing_detail: "Stays back by the door until the child is taken."
+    camera: { angle: eye_level, framing: medium_wide, movement: static, lens_bias: "doorway with three standing figures" }
+    lighting: { source: practical, quality: soft, color_temp: neutral, intensity: dim }
+    motion: { subject_intensity: 0.3, camera_intensity: 0.0, blocking_notes: "Three men in a stable line inside the door; no warmth relit." }
+    notes: "Two enforcers are DISTINCT figures sharing base C10 — separate aliases, no cloning."
+
+  - beat_id: DIMITRI_MRS_VALE
+    content: 'Dimitri: "Mrs. Vale." Nadia does not look up.'
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C04, C01]
+    camera: { angle: over_shoulder, framing: medium_close, movement: static, lens_bias: "favor Dimitri, Nadia foreground not looking up" }
+    lighting: { source: practical, quality: soft, color_temp: neutral, intensity: dim }
+    motion: { subject_intensity: 0.1, camera_intensity: 0.0 }
+
+  - beat_id: DIMITRI_ITS_TIME
+    content: 'Dimitri: "It''s time." She looks up now.'
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C04, C01]
+    camera: { angle: eye_level, framing: close, movement: static, lens_bias: "Nadia lifting her eyes" }
+    lighting: { source: practical, quality: soft, color_temp: neutral, intensity: dim }
+    motion: { subject_intensity: 0.15, camera_intensity: 0.0, blocking_notes: "The look up is the turn of the beat." }
+
+  - beat_id: NADIA_STANDS_STEPS_BACK
+    content: >
+      She stands, still holding Jin. She takes one step back — not toward anything,
+      just back. The instinct of something that knows it is cornered.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01, C08]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Stands holding Jin, steps back; cornered instinct."
+      - figure_id: FIG_JIN
+        base_element_id: C08
+        kling_alias: "@C08_JIN"
+        role: "Held safely against her as she moves."
+        distinguishing_detail: "Infant; pale blue name bracelet."
+    camera: { angle: eye_level, framing: medium, movement: tracking, lens_bias: "follow the single step back" }
+    lighting: { source: practical, quality: soft, color_temp: neutral, intensity: dim }
+    motion: { subject_intensity: 0.35, camera_intensity: 0.2, blocking_notes: "Infant fully supported through the movement." }
+    notes: "Screen direction: Nadia retreats; the men advance — keep the axis consistent for the ledger."
+
+  - beat_id: DIMITRI_DONT_MAKE_HARDER
+    content: 'Dimitri: "Please don''t make this harder." She says nothing.'
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C04, C01]
+    camera: { angle: eye_level, framing: medium, movement: static, lens_bias: "Dimitri central, Nadia silent" }
+    lighting: { source: practical, quality: soft, color_temp: neutral, intensity: dim }
+    motion: { subject_intensity: 0.1, camera_intensity: 0.0 }
+
+  - beat_id: FIRST_MAN_ADVANCES
+    content: >
+      The first man moves toward her. She turns her body to shield the child. She is
+      not slow and not weak and it does not matter — he is practiced and larger, the
+      second man is at the door, Dimitri in the middle. She keeps her arms around Jin.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: true
+    narrative_role: action
+    required_element_ids: [C01, C08]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Turns her body to shield Jin; total but insufficient resistance."
+      - figure_id: FIG_JIN
+        base_element_id: C08
+        kling_alias: "@C08_JIN"
+        role: "Shielded against her body."
+        distinguishing_detail: "Infant; pale blue name bracelet."
+      - figure_id: FIG_ENF_CARRIER
+        base_element_id: C10
+        kling_alias: "@C10_CARRIER"
+        role: "First man advancing to take the child; practiced, larger."
+        distinguishing_detail: "The one who steps forward and reaches for Jin."
+    camera: { angle: eye_level, framing: medium, movement: handheld, lens_bias: "slight unease, still restrained" }
+    lighting: { source: practical, quality: soft, color_temp: neutral, intensity: dim }
+    motion: { subject_intensity: 0.5, camera_intensity: 0.3, blocking_notes: "Resistance is in Nadia's torso and arms; child stays supported." }
+
+  - beat_id: MAN_LIFTS_JIN
+    content: >
+      The man reaches for the child with both hands — careful, firm. She holds. He
+      lifts. Her arms resist with everything a person can give, and it is not enough.
+      Jin is lifted free.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01, C08]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Arms resisting to the last; the loss made physical."
+      - figure_id: FIG_JIN
+        base_element_id: C08
+        kling_alias: "@C08_JIN"
+        role: "Lifted free, fully and safely supported in adult hands at all times."
+        distinguishing_detail: "Infant; pale blue name bracelet."
+      - figure_id: FIG_ENF_CARRIER
+        base_element_id: C10
+        kling_alias: "@C10_CARRIER"
+        role: "Lifts the child with two careful, firm hands."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "the lift, held; favor Nadia's resisting arms" }
+    lighting: { source: practical, quality: soft, color_temp: neutral, intensity: dim }
+    motion: { subject_intensity: 0.6, camera_intensity: 0.1, blocking_notes: "CRITICAL: infant fully supported at all times; no unsafe hold, no distress exploitation; emphasis on Nadia's arms, not the child's face." }
+    notes: "PROTECTED SUBJECT hard constraint beat — human review required before generation."
+
+  - beat_id: BRACELET_BEAT
+    content: >
+      Her hand reaches after him. Her fingers find the bracelet — the pale blue band,
+      the clasp, the small type of his name — for exactly one beat. Then the man steps
+      back and her hand is empty.
+    semantic_duration_hint: short_insert
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: insert
+    required_element_ids: [C01]
+    camera: { angle: insert, framing: extreme_close, movement: static, lens_bias: "macro on fingers + pale blue bracelet" }
+    lighting: { source: practical, quality: soft, color_temp: warm, intensity: dim }
+    motion: { subject_intensity: 0.3, camera_intensity: 0.0, blocking_notes: "The bracelet (pale blue band, clasp, name) is the load-bearing prop; one-beat contact then empty hand." }
+    notes: "The whole loss compresses into this insert. Bracelet to be registered as a prop element before downstream continuity."
+
+  - beat_id: SECOND_MAN_RESTRAINS
+    content: >
+      The second man holds her by both arms. Not roughly. Just completely.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Held by both arms; contained completely, not violently."
+      - figure_id: FIG_ENF_HOLDER
+        base_element_id: C10
+        kling_alias: "@C10_HOLDER"
+        role: "Second man restraining Nadia by both arms; total, unhurried control."
+        distinguishing_detail: "Different man from the carrier; comes from the door side."
+    camera: { angle: eye_level, framing: medium, movement: static, lens_bias: "the complete, gentle restraint" }
+    lighting: { source: practical, quality: soft, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.3, camera_intensity: 0.0 }
+
+  - beat_id: JIN_CARRIED_OUT
+    content: >
+      She watches Jin carried to the door. Jin makes a small sound — not fear, just
+      sound; too young to know what is happening, which is its own unbearable thing.
+      The door closes.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: hold
+    required_element_ids: [C01, C08]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Watches her child carried out; held in place."
+      - figure_id: FIG_JIN
+        base_element_id: C08
+        kling_alias: "@C08_JIN"
+        role: "Carried safely toward the door; small sound, no distress exploitation."
+        distinguishing_detail: "Infant; pale blue name bracelet."
+      - figure_id: FIG_ENF_CARRIER
+        base_element_id: C10
+        kling_alias: "@C10_CARRIER"
+        role: "Carries the child out and through the door."
+    camera: { angle: eye_level, framing: medium_wide, movement: static, lens_bias: "Nadia restrained foreground, child receding to door" }
+    lighting: { source: practical, quality: soft, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.3, camera_intensity: 0.0, blocking_notes: "Infant fully supported; the unbearable note is the ordinariness of the small sound, kept gentle and off the child's face." }
+    notes: "PROTECTED SUBJECT — keep infant calm/supported; emphasis on Nadia."
+
+  - beat_id: RELEASE_AND_EXIT
+    content: >
+      The second man releases her. He steps back. He nods once — professional
+      courtesy — and leaves.
+    semantic_duration_hint: normal
+    may_merge_with_next: true
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Released; left standing in the room."
+      - figure_id: FIG_ENF_HOLDER
+        base_element_id: C10
+        kling_alias: "@C10_HOLDER"
+        role: "Releases Nadia, nods once, exits — procedure, not cruelty."
+    camera: { angle: eye_level, framing: medium, movement: static, lens_bias: "the cold courtesy of the nod and exit" }
+    lighting: { source: practical, quality: soft, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.25, camera_intensity: 0.0 }
+
+  - beat_id: EMPTY_CRIB_CLOSE
+    content: >
+      Nadia stands in the room. The crib is empty. Her hand — the one that held the
+      bracelet — is open at her side. She does not move toward the door. She is
+      already somewhere else.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: true
+    narrative_role: hold
+    required_element_ids: [C01, LOC001]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Alone with the empty crib; open hand; already somewhere else."
+    camera: { angle: eye_level, framing: wide, movement: dolly_out, lens_bias: "the room reclaiming its quiet, crib empty" }
+    lighting: { source: practical, quality: soft, color_temp: warm, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.2, blocking_notes: "The empty crib is the closing measure of the cost; warmth returns but means nothing now." }
+    notes: "Closing image rhymes with ESTABLISH_NURSERY — same room, emptied."
+provenance:
+  created_by: "claude_code (M5 FAZ A)"
+  created_at: "2026-06-04T00:00:00Z"

@@ -2,15 +2,16 @@ scene_id: SC0047
 sequence_id: SEQ10
 phase_id: PH_CONFRONTATION
 title: MERIN — QUAY DISTRICT, UNIT 14-B
-purpose: Placeholder scaffold seeded from the retrieval map; replace with canonical scene purpose.
-dramatic_function: TBD dramatic function derived during scene-card enrichment.
+purpose: "In a converted quay freight bay, Otto (already waiting) hands Nadia an unmarked industrial handset from a locked case, telling her Marcus said she would come and would know the code. Nadia enters the code (7-3-1-1-4) and plays Marcus's recorded message, which begins to deliver his complete dossier on Roman — network structure, financial infrastructure, broadcast system, the names — via an encrypted partition. The dead informant's evidence reaches her through his contact; the moment that arms her plan with actionable intelligence and transforms grief into the engine of the confrontation to come."
+dramatic_function: "The turn that arms Nadia's plan: the dead informant's evidence reaches her through his contact in a handoff that merges grief, inheritance, and the beginning of her assault on Roman's broadcast infrastructure. A quiet two-hander of operational precision and intimate loss."
 location_id: LOC001
 location_text_raw: MERIN — QUAY DISTRICT, UNIT 14-B
 time_of_day: MORNING
 time_of_day_text_raw: MORNING
-weather: TBD
+weather: "Quay-side morning; salt and diesel air; the atmosphere of a converted freight bay opening onto grey water."
 characters_present:
 - C01
+- C09
 characters_explicit_dialogue:
 - OTTO
 - MARCUS
@@ -19,6 +20,7 @@ characters_explicit_mentions:
 - OTTO
 - NADIA
 - MARCUS
+- ROMAN
 primary_pov_character: C01
 continuity_refs:
   wardrobe: []
@@ -27,13 +29,15 @@ continuity_refs:
   - SC0046
   next_expected_links:
   - SC0048
-  time_continuity_note: TBD continuity note.
+  time_continuity_note: "The unmarked industrial handset + its encrypted dossier partition is a critical load-bearing prop introduced here; register it as a tracked PROP record before it carries continuity weight downstream (deferred, like the SC0014 bracelet). Marcus (C05) is deceased and present only as a recorded V.O. His dossier on Roman will drive all downstream confrontation scenes. The partition opens with the date-reversed code and contains the broadcast architecture file that Nadia will reference in SC0048+."
 visual_targets:
-  palette: TBD visual palette
-  lens_bias: TBD lens bias
-  framing_bias: TBD framing bias
-  movement_bias: TBD movement bias
-  lighting_bias: TBD lighting bias
+  palette: "Maritime morning palette — cool grey water through the high window, salt-weathered concrete, cold industrial surfaces softened by early daylight; the grey and white of industrial life, the cream and rust of a space converted from freight to refuge."
+  lens_bias: "Quiet two-hander coverage; the room reads as a converted freight bay — intimate but not claustrophobic; the high window and grey water are the breathing room."
+  framing_bias: "The folding table with the handset between them is the center; Otto turned to the high window and grey water (profile, giving her privacy); Nadia with the phone in her hand, the code entry, the first message play; spatial composition favors the table and the distance Otto creates."
+  movement_bias: "Still and minimal; weighted stillness. Otto's single movement to the window (an act of giving privacy). Nadia's fingers on the handset. Later in the scene, the read — her attention moving through the partition documentation; the quality of light shifting as time passes."
+  lighting_bias: "Soft, cool morning daylight from the single high window, filtered by salt-air haze and concrete; no hard shadows; the practicals (camp stove, if lit) do not compete; as time passes in the read section, the light quality subtly shifts toward later morning; always cool, always maritime."
+  aesthetic_pack_refs:
+  - MERIN_QUAY_MORNING
 promptability_score: 3
 excerpt_ref: scene_excerpt.md
 screen_excerpt_ref: scene_excerpt.md
@@ -48,11 +52,13 @@ boundary_start_kind: slug
 boundary_end_kind: slug
 mapping_confidence: high
 notes_grounding:
-- Hydrated from retrieval map and scene_excerpt.md only.
-- Title derived from opening slugline location.
-- Opening slugline provided grounded location/time extraction.
-- Numbered Fountain marker present for this scene.
-status: scaffolded
+- "Enriched from scene_excerpt.md (source lines 3768-3861); no story facts added beyond the excerpt."
+- "characters_present lists C01 (Nadia Vale) and C09 (Otto). C05 (Marcus Chen) is DECEASED and present ONLY as a recorded V.O., NOT in characters_present."
+- "The unmarked industrial handset is a deferred load-bearing prop (PROP047) introduced here; it carries continuity downstream and must be registered as an element before downstream scenes reference it."
+- "Otto's operational appearance (age ambiguous, all of it at once) is drawn from the excerpt; no characterization added beyond the text."
+- "Marcus's recording and the encrypted partition containing the Roman dossier (network, finance, broadcast system, names) are the scene's structural payload; the broadcast architecture file is the specific technical target that will enable Nadia's assault."
+- "Time passes in the read section (six minutes); the light through the high window visibly shifts from early morning toward late morning (quay beginning to move)."
+status: review
 review_status: needs_human_review
 canon_lock: false
 omni_set_ref: visual_dev/omni_sets/SC0047/

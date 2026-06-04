@@ -1,0 +1,45 @@
+character_id: C09
+display_name: "Otto"
+cue_name: "OTTO"
+role: SUPPORTING
+arc_baseline:
+  wound: >
+    A lifetime in operational work has cost him almost everyone he trusted; what
+    remains is a code of quiet reliability — he keeps what he is asked to keep and
+    delivers it without being asked twice.
+  mask: >
+    Flat, unsentimental functionality. He does not offer his hand, does not
+    perform warmth, does not explain himself; the withholding is itself a form of
+    care he will not name.
+  want: "To discharge the last task Marcus left him — hand Nadia the phone and the code."
+  need: "To let the handoff stand as the act of loyalty it is, without softening or apology."
+  initial_arc_phase: INTEGRATION
+voice_fingerprint:
+  lexicon:
+    - "terse operational economy"
+    - "no small talk, no reassurance"
+    - "states only what the task requires"
+  rhythm: "Short, finished sentences. Says a thing once. Long silences he does not fill."
+  default_tactic: "Deliver the fact, then withdraw — turns away, gives space, lets the other person do the hard part alone."
+  status_signals:
+    - "Stillness of someone who has waited in many rooms."
+    - "Turns his back to the window rather than watch what is private."
+  verbal_tic: "Attributes everything to the absent Marcus: 'He said you'd come.'"
+visual_profile:
+  age_range: "sixty to seventy; the age operational lifers reach all at once"
+  screen_presence: "Worn, unhurried authority; a man who has made many temporary spaces functional and expects nothing from them."
+  costume_logic: "Plain working clothes for a cold quay — heavy jacket, layered utilitarian fabrics; nothing new, nothing decorative."
+  silhouette: "Solid, settled, economical; does not move more than the moment needs."
+  color_bias: "Salt-faded neutrals — grey, oilcloth dark, weathered canvas; the palette of a working waterfront."
+  hair_makeup_notes: "Weathered skin, grey, close-kept hair; the wear of decades at the water shown, not softened."
+continuity_refs:
+  wardrobe_ids: []
+  prop_ids: []
+  key_scene_ids:
+    - SC0047
+status: review
+review_status: pending
+canon_lock: false
+provenance:
+  created_by: "claude_code (M5 FAZ A)"
+  created_at: "2026-06-04T00:00:00Z"
