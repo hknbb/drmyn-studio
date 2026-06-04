@@ -1,0 +1,20 @@
+wardrobe_id: WD012
+name: "Nadia transit anonymous layers"
+character_id: C01
+category: TRANSIT_ANONYMOUS
+description: >
+  Plain, anonymous traveling clothes chosen to disappear in transit and on a working
+  waterfront — unremarkable jacket over a muted layer, durable trousers, practical
+  footwear. Nothing that draws a second look or a camera's attention. Worn by Nadia
+  at the Merin quay handoff (SC0047). Distinct from the domestic SC0014 look and the
+  dark field-operational SC0089/SC0111 look; reads as a person passing through.
+palette: "muted travel neutrals (faded grey, oat, weathered navy); deliberately forgettable"
+scene_refs:
+  - SC0047
+handling_notes:
+  - "Anonymity is the function — no logos, no distinctive silhouette, nothing memorable to a witness."
+  - "Cold quay-morning appropriate; layered for grey maritime air."
+  - "Preserve canonical Nadia identity (face, hair restraint, lean upright build)."
+status: review
+review_status: pending
+canon_lock: false

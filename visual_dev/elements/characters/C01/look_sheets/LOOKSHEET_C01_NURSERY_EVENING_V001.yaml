@@ -1,0 +1,29 @@
+schema_version: "0.x-draft"
+record_type: character_look_sheet
+look_sheet_id: LOOKSHEET_C01_NURSERY_EVENING_V001
+character_id: C01
+look_id: C01_LOOK_NURSERY_EVENING_V001
+scene_refs:
+  - SC0014
+physical:
+  build: "Lean, upright, economical; trained-to-conserve-movement posture (former military medic)."
+  height: "Average; reads contained and exact rather than tall."
+  hair: "Dark, natural restraint; softly down or loosely back for domestic evening."
+  skin_tone: "Natural, no glamor finish; warm under domestic practicals."
+  physical_features: "Early-to-mid-30s; alert watchful eyes; exact face geometry; vigilance legible beneath calm. No decorative styling."
+wardrobe:
+  primary_wardrobe_id: WD010
+  garment_top: "Soft muted domestic evening top / fine knit in warm low-saturation neutral (soft grey-blue or warm taupe); gentle, lived-in, unstyled."
+  garment_bottom: "Simple soft home trousers in a quiet matching neutral; comfortable, movement-easy."
+  footwear: "Barefoot or soft house socks; domestic, indoor."
+  outerwear: "None — indoors at home in the evening."
+  accessories: []
+palette: "Warm low-saturation domestic neutrals (soft grey-blue / warm taupe); warmth from environment, not styling."
+status: draft
+notes: >
+  Full head-to-toe look definition for Nadia's SC0014 nursery look so the four_view
+  scale views do not crop or invent garments. Domestic-evening register only; no
+  tactical/operational coding. Identity locked by C01_IDENTITY_ANCHOR_V001.
+provenance:
+  created_by: "claude_code (M5 FAZ B)"
+  created_at: "2026-06-04T00:00:00Z"
