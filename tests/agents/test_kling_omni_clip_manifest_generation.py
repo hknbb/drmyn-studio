@@ -246,6 +246,23 @@ class TestGenerateFromClipManifest:
         assert result.run_record is not None
         assert result.warnings == []
 
+    def test_manifest_empty_dialogue_ref_no_dialogue_scene(self, tmp_path):
+        """A no-dialogue scene carries an empty source_dialogue_beats_ref and still builds.
+
+        Empty (present-but-blank) ref means 'this scene has no dialogue' (e.g. a silent
+        fight). The shape validator must accept it rather than forcing every scene to
+        author a dialogue_beats file.
+        """
+        manifest_path = _create_manifest(tmp_path, source_dialogue_beats_ref="")
+        _create_scene_card(tmp_path)
+        _create_scene_excerpt(tmp_path)
+
+        adapter = KlingOmniAdapter(tmp_path)
+        result = adapter.generate_from_clip_manifest(str(manifest_path))
+
+        assert result.prompt_record is not None
+        assert result.prompt_record["prompt_text"]
+
     def test_manifest_prompt_id_includes_clip_id(self, tmp_path):
         """Prompt ID should include clip_id in a deterministic way."""
         manifest_path = _create_manifest(tmp_path, clip_id="CLIP_SC0001_03")

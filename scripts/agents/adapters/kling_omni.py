@@ -834,7 +834,11 @@ class KlingOmniAdapter:
             raise KlingOmniAdapterError("Manifest missing or invalid source_scene_beat_plan_ref")
 
         dialogue_beats = manifest.get("source_dialogue_beats_ref")
-        if not dialogue_beats or not isinstance(dialogue_beats, str):
+        # Empty string is valid: it marks a no-dialogue scene (e.g. a silent fight).
+        # The omni_clip_manifest semantic validator and the dialogue loaders already
+        # treat an empty ref as "no dialogue" (guarded by `if ref:`); the adapter must
+        # accept it too rather than forcing every scene to carry a dialogue_beats file.
+        if dialogue_beats is None or not isinstance(dialogue_beats, str):
             raise KlingOmniAdapterError("Manifest missing or invalid source_dialogue_beats_ref")
 
         kling_native_audio = manifest.get("kling_native_audio")
