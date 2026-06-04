@@ -1,0 +1,28 @@
+prompt_id: SC0014__t2i-prop-prop001-bracelet-first-ref-chatgpt__v01
+scene_id: SC0014
+prompt_type: t2i_prop_element
+lifecycle_stage: draft
+target_models:
+- chatgpt_image
+source_refs:
+  scene_card: planning/scenes/SC0014/scene_card.yaml
+  scene_excerpt: "The pale blue infant medical bracelet (PROP001): a pale blue band with a clasp and Jin's name printed in small type; the load-bearing object of the SC0014 taking."
+  prop_refs:
+  - PROP001
+  aesthetic_refs:
+  - VALE_DOMESTIC_RESTRAINT
+prompt_text: >-
+  Clean product-style reference of an infant medical bracelet: a thin pale blue band
+  with a small clasp and a name printed in small type on a printed ID strip. Ordinary,
+  medically plausible, not tech-futuristic. Soft even light, neutral clean background,
+  sharp detail on the band, clasp, and printed strip. No hands, no people; no text
+  beyond the bracelet's own printed strip; no watermark.
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/chatgpt_image.yaml
+  adapter_name: chatgpt_image
+  stage: "1_of_2_non_character_first_reference"
+  perspective_pack_ref: visual_dev/elements/props/PROP001/perspective_packs/PPACK_PROP001_BRACELET_V001.yaml
+  recommended_aspect_ratio: "1:1"

@@ -1,0 +1,28 @@
+prompt_id: SC0047__t2i-prop-prop008-handset-first-ref-chatgpt__v01
+scene_id: SC0047
+prompt_type: t2i_prop_element
+lifecycle_stage: draft
+target_models:
+- chatgpt_image
+source_refs:
+  scene_card: planning/scenes/SC0047/scene_card.yaml
+  scene_excerpt: "Marcus's unmarked handset (PROP008): a plain industrial-grade handset with no manufacturer markings, kept in a small locked case; ordinary hardened field hardware, not tech-futuristic."
+  prop_refs:
+  - PROP008
+  aesthetic_refs:
+  - MERIN_QUAY_MORNING
+prompt_text: >-
+  Clean product-style reference of a plain, rugged, industrial-grade handset with no
+  manufacturer markings or logos: utilitarian hardened field hardware, matte casing,
+  physical buttons, an unlit screen — ordinary, not tech-futuristic, no glowing UI.
+  Soft even light, neutral clean background, sharp detail. No hands, no people; no
+  text on the device; no watermark.
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/chatgpt_image.yaml
+  adapter_name: chatgpt_image
+  stage: "1_of_2_non_character_first_reference"
+  perspective_pack_ref: visual_dev/elements/props/PROP008/perspective_packs/PPACK_PROP008_HANDSET_V001.yaml
+  recommended_aspect_ratio: "1:1"

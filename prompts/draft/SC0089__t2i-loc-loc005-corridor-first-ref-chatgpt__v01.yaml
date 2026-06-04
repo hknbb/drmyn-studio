@@ -1,0 +1,29 @@
+prompt_id: SC0089__t2i-loc-loc005-corridor-first-ref-chatgpt__v01
+scene_id: SC0089
+prompt_type: t2i_location_element
+lifecycle_stage: draft
+target_models:
+- chatgpt_image
+source_refs:
+  scene_card: planning/scenes/SC0089/scene_card.yaml
+  scene_excerpt: "Northern transit corridor (LOC005): EXT night between a sealed cargo-processing facility (east) and a concrete drainage embankment (west); overhead lights at ~200m intervals make pools of light and darkness; a drainage cut at the junction."
+  location_refs:
+  - LOC005
+  aesthetic_refs:
+  - OUTER_DISTRICT_NIGHT
+prompt_text: >-
+  Wide establishing night exterior of a long industrial transit corridor: overhead
+  lights at intervals making pools of cold light separated by deep darkness, a sealed
+  cargo-processing facility wall on one side and a long concrete drainage embankment
+  on the other, a drainage cut at the far junction. Deep foreground-to-background,
+  ~24mm lens feel, generous floor and negative space for actor blocking. Night greys,
+  industrial concrete, no warmth; no people in this plate; no text, no watermark.
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/chatgpt_image.yaml
+  adapter_name: chatgpt_image
+  stage: "1_of_2_non_character_first_reference"
+  perspective_pack_ref: visual_dev/elements/locations/LOC005/perspective_packs/PPACK_LOC005_CORRIDOR_NIGHT_V001.yaml
+  recommended_aspect_ratio: "16:9"

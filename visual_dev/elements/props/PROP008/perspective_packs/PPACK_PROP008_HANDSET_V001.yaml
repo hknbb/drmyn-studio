@@ -1,0 +1,66 @@
+schema_version: "0.x-draft"
+record_type: gpt_images_perspective_pack
+prompt_pack_id: PPACK_PROP008_HANDSET_V001
+status: draft
+source_reference_id: "CHATGPTIMG_ELEMENT_PROP008_HANDSET (PENDING — generate the first reference via SC0047__t2i-prop-prop008-handset-first-ref-chatgpt__v01 before this scale-angle pack)"
+target_model: chatgpt_images_2
+target_role: multi_perspective_element_expander
+element_id: PROP008
+element_type: prop
+perspective_policy: three_view_scale_angle_v2
+shared_preservation_instruction: >
+  Preserve the unmarked handset from the first reference exactly — same plain rugged
+  casing, physical buttons, unlit screen, no logos, ordinary and not tech-futuristic.
+  Change only camera scale and angle. Neutral clean background, no hands or people;
+  restrained realism; no redesign; no text on the device; no watermark.
+source_refs:
+  scene_card_ref: planning/scenes/SC0047/scene_card.yaml
+  element_sheet_ref: planning/props/PROP008.yaml
+  model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260504T113000Z_chatgpt_image.yaml
+prompts:
+  - prompt_id: PPACK_PROP008_HANDSET_V001__front_reference
+    perspective: front_reference
+    prompt_text: >
+      Front reference of the unmarked handset laid flat, full face visible — casing,
+      physical buttons, unlit screen. Soft even light, neutral clean background.
+      Preserve the object exactly; ordinary not futuristic; no people, no watermark.
+    constraints:
+      - "Whole device, face-on; no logos."
+      - "Neutral background; no hands."
+      - "Ordinary hardened hardware, not futuristic."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "1:1"
+  - prompt_id: PPACK_PROP008_HANDSET_V001__three_quarter_medium
+    perspective: three_quarter_medium_reference
+    prompt_text: >
+      Three-quarter medium view of the same handset at an angle, showing thickness,
+      side buttons, and rugged casing depth. Same object, same finish. Soft even light,
+      neutral background. Preserve exactly; no people, no watermark.
+    constraints:
+      - "Three-quarter angle, medium scale; show thickness/buttons."
+      - "Identical object/finish to the front reference."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "1:1"
+  - prompt_id: PPACK_PROP008_HANDSET_V001__three_quarter_close
+    perspective: three_quarter_close_reference
+    prompt_text: >
+      Three-quarter close macro of the unlit screen and keypad detail and the matte
+      casing texture. Same handset, sharp texture. Soft even light, neutral background.
+      Preserve exactly; no glowing UI; no people, no watermark.
+    constraints:
+      - "Three-quarter angle, close macro on screen/keypad."
+      - "Identical object to the other views; screen unlit."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "1:1"
+qc_gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  failed_perspective_revision_only: true
+downstream_use:
+  - "kling_element_reference_record for PROP008 handset (SC0047)"
+  - "SC0047 omni clip generation (handset prop attach)"

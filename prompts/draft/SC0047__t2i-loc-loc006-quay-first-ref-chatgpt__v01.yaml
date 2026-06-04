@@ -1,0 +1,28 @@
+prompt_id: SC0047__t2i-loc-loc006-quay-first-ref-chatgpt__v01
+scene_id: SC0047
+prompt_type: t2i_location_element
+lifecycle_stage: draft
+target_models:
+- chatgpt_image
+source_refs:
+  scene_card: planning/scenes/SC0047/scene_card.yaml
+  scene_excerpt: "Merin quay Unit 14-B (LOC006): a converted freight bay — low concrete ceiling, one high window facing the quay with grey water beyond, crates against a wall, a folding table, an unused camp stove; cold maritime morning, salt-and-diesel air."
+  location_refs:
+  - LOC006
+  aesthetic_refs:
+  - MERIN_QUAY_MORNING
+prompt_text: >-
+  Wide establishing interior of a converted freight bay on a working quay: low
+  concrete ceiling, one high window with cold grey water beyond, crates against a
+  wall, a plain folding table, an unused camp stove. Cold maritime morning daylight,
+  salt-and-diesel atmosphere. Deep foreground-to-background, ~24mm lens feel, generous
+  floor and negative space for actor blocking. No people in this plate; no text, no watermark.
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/chatgpt_image.yaml
+  adapter_name: chatgpt_image
+  stage: "1_of_2_non_character_first_reference"
+  perspective_pack_ref: visual_dev/elements/locations/LOC006/perspective_packs/PPACK_LOC006_QUAY_MORNING_V001.yaml
+  recommended_aspect_ratio: "16:9"
