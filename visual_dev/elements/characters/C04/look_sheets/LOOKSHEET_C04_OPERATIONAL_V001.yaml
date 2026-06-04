@@ -1,0 +1,29 @@
+schema_version: "0.x-draft"
+record_type: character_look_sheet
+look_sheet_id: LOOKSHEET_C04_OPERATIONAL_V001
+character_id: C04
+look_id: C04_LOOK_OPERATIONAL_V001
+scene_refs:
+  - SC0014
+physical:
+  build: "Lean instrument silhouette, sharpened by ledger, jacket, and contained posture; precision-trained movement."
+  height: "Average; reads exact and controlled rather than imposing."
+  hair: "Dark, neat and professional; no decorative styling, precise grooming."
+  skin_tone: "Natural, professional polish finish; no glamor."
+  physical_features: "Early 40s; exact face geometry; alert controlled eyes; hard-edged screen presence without overt theatricality. Hierarchy-aware and operationally efficient."
+wardrobe:
+  primary_wardrobe_id: WD005
+  garment_top: "Dark operational-executive jacket or tailored structured shirt in dark corporate neutral; precise tailoring, functional device handling, minimal visible softness."
+  garment_bottom: "Dark operational trousers in a matching disciplined neutral; functional, movement-ready, structured fit."
+  footwear: "Dark professional footwear — leather shoes, polished, operational-practical; not decorative."
+  outerwear: "None — indoors at the Vale residence in the evening."
+  accessories: []
+palette: "Dark corporate neutrals with functional contrast; disciplined, operationally coded, restrained."
+status: draft
+notes: >
+  Full head-to-toe look definition for Dimitri's SC0014 operational-command look so the
+  four_view scale views do not crop or invent garments. Operational-executive register
+  only; no fashion-editorial or charismatic styling. Identity locked by C04_IDENTITY_ANCHOR_V001.
+provenance:
+  created_by: "claude_code (M5 FAZ B — haiku)"
+  created_at: "2026-06-04T00:00:00Z"

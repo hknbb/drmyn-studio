@@ -1,0 +1,33 @@
+schema_version: "0.x-draft"
+record_type: character_look_sheet
+look_sheet_id: LOOKSHEET_C10_ENFORCER_V001
+character_id: C10
+look_id: C10_LOOK_ENFORCER_V001
+scene_refs:
+  - SC0014
+physical:
+  build: "Generic competent adult; practiced economical movement; unremarkable silhouette (medium-to-standard frame, no distinctive build trait)."
+  height: "Average adult height; reads neutral and functional rather than imposing."
+  hair: "Short, plain, dark or neutral tone; no styling, no distinguishing features."
+  skin_tone: "Neutral, no distinctive marking; natural finish, no glamor."
+  physical_features: "Mid-30s to 40s; nondescript face geometry; alert but not heroic; professional neutral expression. No scars, tattoos, or individualizing features; anonymous presence is deliberate."
+wardrobe:
+  primary_wardrobe_id: WD009
+  garment_top: "Dark functional jacket or enforcer-style overshirt in flat black or dark charcoal; no insignia, no logo, no tactical coding; plain and purposeful."
+  garment_bottom: "Dark functional trousers in black or dark grey; practical, movement-easy, no decorative stitching or branding."
+  footwear: "Dark plain shoes (dark leather or functional work shoe); practical, quiet, no branding."
+  outerwear: "None — dark functional top serves as the outer layer."
+  accessories: []
+palette: "Flat dark functional neutrals (black, charcoal, dark grey); no accent color, no insignia, no badge; reads as procedural muscle, not individual."
+status: draft
+notes: >
+  Full head-to-toe look definition for the anonymous C10 enforcer operative in SC0014
+  so the four_view_scale_angle_v3 perspective prompts do not crop or invent garments.
+  WD009 dark functional attire defines the appearance: plain, interchangeable, procedural.
+  The two C10 figures (@C10_CARRIER and @C10_HOLDER) share this look sheet and identity
+  anchor; they are rendered as distinct but anonymous men, distinguished at the
+  scene_beat_plan figure level, not by appearance variation. Identity locked by
+  C10_IDENTITY_ANCHOR_V001.
+provenance:
+  created_by: "claude_code (M5 FAZ B)"
+  created_at: "2026-06-04T00:00:00Z"

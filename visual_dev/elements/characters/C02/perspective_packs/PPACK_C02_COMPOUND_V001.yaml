@@ -1,0 +1,108 @@
+schema_version: "0.x-draft"
+record_type: gpt_images_perspective_pack
+prompt_pack_id: PPACK_C02_COMPOUND_V001
+status: draft
+source_reference_id: "C02_IDENTITY_ANCHOR_V001 front_hero_lock (PENDING — generate after Stage 1 MJ V8.1 + Stage 2 V7 --oref lock exists)"
+target_model: chatgpt_images_2
+target_role: multi_perspective_element_expander
+element_id: C02
+element_type: character
+perspective_policy: four_view_scale_angle_v3
+full_body_visible: true
+shared_preservation_instruction: >
+  Preserve the locked Roman identity exactly across all four views — same face geometry,
+  age (late 40s to 50s), tall centered silhouette, composed groomed appearance, no decorative
+  styling. Same SC0111 compound control wardrobe state (WD003: dark tailored structured
+  suiting, controlled whites, muted restraint, immaculate baseline) in every view. Composed
+  fatigue visible consistently (effortful stillness, tired composure, precision-maintained
+  appearance); no damage, no disorder. Change only camera scale and angle, never the person
+  or the garments. Restrained realism; no redesign, no stylization, no fashion-editorial;
+  neutral clean background; no text, no watermark.
+source_refs:
+  scene_card_ref: planning/scenes/SC0111/scene_card.yaml
+  element_sheet_ref: visual_dev/elements/characters/C02/look_sheets/LOOKSHEET_C02_COMPOUND_V001.yaml
+  model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260504T113000Z_chatgpt_image.yaml
+prompts:
+  - prompt_id: PPACK_C02_COMPOUND_V001__full_body_front
+    perspective: full_body_front
+    prompt_text: >
+      Full-body front view, head to feet in frame, of the locked reference man in his
+      composed compound control state before the fight. Tall centered silhouette, dark
+      tailored structured suiting (immaculate black or deep charcoal jacket and trousers,
+      controlled white shirt), groomed short hair, precise composed gaze, patrician calm.
+      Effortful stillness legible; composed fatigue, no damage. Standing centered and
+      room-owning, institutional gravity. Harsh institutional low corridor light, cool
+      color temperature. Neutral clean background. Preserve identity, wardrobe state, and
+      composed presence exactly; restrained realism, no redesign, no text, no watermark.
+    constraints:
+      - "Head-to-toe, no cropping of feet or head."
+      - "Same identity + WD003 immaculate wardrobe state as the locked reference."
+      - "Tall centered silhouette, composed fatigue (effortful stillness, tired composure)."
+      - "Neutral background; no scene set dressing."
+      - "Restrained realistic composed state; no damage, no disorder, no stylization."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "2:3"
+  - prompt_id: PPACK_C02_COMPOUND_V001__three_quarter_waist
+    perspective: three_quarter_waist
+    prompt_text: >
+      Three-quarter angle, waist-up framing, of the same locked reference man in the
+      identical compound control wardrobe. Body turned ~30-45 degrees, head toward camera,
+      composed institutional authority legible. Groomed short hair, precise composed gaze.
+      Dark tailored suiting (jacket/vest and structured shirt) immaculate and exact.
+      Centered gravity and effortful stillness visible in shoulders and posture. Harsh
+      institutional corridor light, cool color temperature. Neutral clean background.
+      Preserve identity, garments, and composed presence exactly; restrained realism, no
+      redesign, no text, no watermark.
+    constraints:
+      - "Waist-up scale; three-quarter body angle."
+      - "Identity + wardrobe immaculate state identical to full_body_front."
+      - "Composed fatigue and institutional authority consistent across perspectives."
+      - "Neutral background."
+      - "Restrained realistic composed state; no damage."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+  - prompt_id: PPACK_C02_COMPOUND_V001__close_portrait_front
+    perspective: close_portrait_front
+    prompt_text: >
+      Close front portrait, chest-up, of the same locked reference man — full frontal
+      face for identity lock. Groomed short hair, precise composed gaze, exact face
+      geometry. Patrician calm and cold institutional authority legible. Structured dark
+      suiting (tailored shirt and jacket visible). Composed fatigue visible as effortful
+      stillness; precision-maintained appearance. Harsh institutional corridor light, cool
+      color temperature. Neutral clean background. Preserve identity exactly; restrained
+      realism, no redesign, no text, no watermark.
+    constraints:
+      - "Chest/shoulders/head; fully frontal face."
+      - "Maximum face-geometry fidelity to the locked reference."
+      - "Composed fatigue and institutional authority clearly visible; effortful stillness."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+  - prompt_id: PPACK_C02_COMPOUND_V001__profile_full
+    perspective: profile_full
+    prompt_text: >
+      Side profile view of the same locked reference man in the identical compound control
+      wardrobe, for a 3D identity wrap. Clean lateral profile, groomed short hair visible,
+      composed institutional authority and alert posture legible in neck and shoulders.
+      Dark tailored structured suiting (jacket and trousers) immaculate and exactly fitted.
+      Effortful stillness and composed fatigue visible in profile. Harsh institutional
+      corridor light, cool color temperature. Neutral clean background. Preserve identity
+      and garments exactly; restrained realism, no redesign, no text, no watermark.
+    constraints:
+      - "True side profile (90 degrees)."
+      - "Identity + wardrobe immaculate state identical to the other three views."
+      - "Composed fatigue and institutional gravity clearly visible in profile."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+qc_gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  failed_perspective_revision_only: true
+downstream_use:
+  - "kling_element_reference_record for C02 compound control look (SC0111)"
+  - "SC0111 omni clip generation (Roman element attach)"

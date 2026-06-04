@@ -1,0 +1,37 @@
+schema_version: "0.x-draft"
+record_type: character_identity_anchor
+identity_anchor_id: C09_IDENTITY_ANCHOR_V001
+character_id: C09
+status: draft
+source_reference_strategy:
+  reference_sheet_allowed_as_identity_source: false
+  final_hero_lock_requires_single_clean_image: true
+  contact_sheet_layout_forbidden_as_lock: true
+source_reference_sheet_ref: prompts/draft/SC0047__t2i-char-c09-identity-mj-v8__v01.yaml
+front_hero_lock_ref:
+  pending: true
+  external_ref: "pending — Stage 1 Midjourney V8.1 narrative identity output not yet generated; lock after Stage 2 V7 --oref refinement."
+fixed_identity_anchors:
+  - "Man, sixty to seventy; the age operational lifers reach all at once; face geometry and identity must stay constant across all scene looks."
+  - "Solid, settled, economical build; does not move more than the moment needs; worn unhurried authority."
+  - "Plain working-waterfront presence; a man who has made many temporary spaces functional and expects nothing from them."
+  - "Weathered skin, grey close-kept hair, salt-faded neutral palette; the wear of decades at the water shown, not softened."
+mutable_appearance_allowed:
+  - "Wardrobe per scene look (working quay attire only in current canon: WD014 heavy jacket, layered utilitarian fabrics)."
+  - "Hair state within the anchor (grey, close-kept, no styling variation planned)."
+  - "Fatigue level and damage (nominal expected for SC0047 handoff scene; no injury or exhaustion registered)."
+  - "Environmental lighting register (morning quay maritime light, cool grey water through high window)."
+forbidden_drift:
+  - "Do not soften into grandfatherly warmth; he is specific, functional, operationally exact."
+  - "Do not style as sympathetic elder or narrative anchor; he is flat, unsentimental, withholding."
+  - "Do not alter face geometry, age read (60-70), or body type between looks."
+  - "Do not erase the silent-reliability baseline; his presence is defined by what he does not say."
+notes: >
+  Canonical identity anchor for Otto (C09), authored fresh under Production System v2
+  after the clean-slate teardown. One identity, one scene look (SC0047 quay handoff).
+  Character chain: Stage 1 MJ V8.1 narrative identity → Stage 2 MJ V7 --oref lock
+  → Stage 3 ChatGPT Images 2 four_view_scale_angle_v3. front_hero_lock_ref stays
+  pending until the operator generates and a real lock image is selected (no fabricated lock).
+provenance:
+  created_by: "claude_code (Haiku 4.5)"
+  created_at: "2026-06-04T00:00:00Z"

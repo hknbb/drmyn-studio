@@ -1,0 +1,19 @@
+wardrobe_id: WD014
+name: "Otto quay working attire"
+character_id: C09
+category: WORKING_WATERFRONT
+description: >
+  Plain working clothes for a cold quay — a heavy weathered jacket over layered
+  utilitarian fabrics, durable trousers, worn boots; nothing new, nothing decorative.
+  The wardrobe of an operational lifer who has waited in many cold rooms. Worn by Otto
+  at the Merin quay handoff (SC0047).
+palette: "salt-faded neutrals (grey, oilcloth dark, weathered canvas)"
+scene_refs:
+  - SC0047
+handling_notes:
+  - "Weathered and functional; decades of waterfront wear shown, not softened."
+  - "No decorative or branded elements; reads as anonymous working dock labor."
+  - "Preserve canonical Otto identity (sixty-to-seventy, worn unhurried authority)."
+status: review
+review_status: pending
+canon_lock: false

@@ -1,0 +1,30 @@
+schema_version: "0.x-draft"
+record_type: character_look_variant
+look_id: C02_LOOK_COMPOUND_V001
+character_id: C02
+inherits_identity_anchor: C02_IDENTITY_ANCHOR_V001
+status: draft
+look_role: "Compound control — Roman in the Veltain antechamber fight (SC0111)"
+wardrobe_refs:
+  primary_wardrobe_id: WD003
+  supplementary_wardrobe_ids: []
+appearance_state:
+  fatigue_level: tired
+  damage_level: none
+  hair_state_within_anchor: "<short>"
+continuity_scope:
+  start_scene: SC0111
+  end_scene: SC0111
+change_reason: "Roman enters SC0111 in control, using his knowledge of the corridor geometry to corner Nadia. The WD003 tailored control suiting is immaculate and composed at the start of the encounter — he believes he is the architect who has priced every outcome. Over the fight he is taken down. This look captures the composed baseline before physical compromise; the base reference is immaculate (damage none). In-scene disorder is a shot-level detail in the production, not an anchor for the reference look."
+notes: >
+  Look 1 of 1 for Roman in SC0111. Wardrobe WD003 (dark tailored control suit: structured suiting,
+  controlled whites, muted luxury restraint). Identity carried by C02_IDENTITY_ANCHOR_V001; wardrobe
+  state immaculate and composed, fatigue showing as effortful stillness but not disorder, no
+  damage. SC0111 harsh low corridor light, cool institutional palette. Stage-3 four-view pack:
+  perspective_packs/PPACK_C02_COMPOUND_V001.yaml. Roman begins as the architect in control,
+  then is taken down — the reference look documents his composed architectural state (no damage,
+  no disorder), not the endpoint. In-scene choreography details (disordered tailoring, injury signs)
+  are shot-level decisions, not identity anchors.
+provenance:
+  created_by: "claude_code (M5 FAZ B — haiku)"
+  created_at: "2026-06-04T00:00:00Z"

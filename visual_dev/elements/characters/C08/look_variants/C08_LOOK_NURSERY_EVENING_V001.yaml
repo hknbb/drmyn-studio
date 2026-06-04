@@ -1,0 +1,25 @@
+schema_version: "0.x-draft"
+record_type: character_look_variant
+look_id: C08_LOOK_NURSERY_EVENING_V001
+character_id: C08
+inherits_identity_anchor: C08_IDENTITY_ANCHOR_V001
+status: draft
+look_role: "Nursery evening — infant Jin held safely in the nursery (SC0014); PROTECTED SUBJECT"
+wardrobe_refs:
+  primary_wardrobe_id: WD008
+  supplementary_wardrobe_ids: []
+appearance_state:
+  fatigue_level: nominal
+  damage_level: none
+  hair_state_within_anchor: "Soft fine infant hair; calm, settled."
+continuity_scope:
+  start_scene: SC0014
+  end_scene: SC0014
+change_reason: "Single protected-subject look: the infant in the SC0014 nursery, calm and supported; the pale blue name bracelet is the load-bearing scene prop."
+notes: >
+  PROTECTED SUBJECT. Hard gate — no generation until explicit human review/approval.
+  Infant always safe and supported; distress kept off-frame in any downstream shot.
+  Wardrobe WD008 (infant evening onesie). Identity locked by C08_IDENTITY_ANCHOR_V001.
+provenance:
+  created_by: "claude_code (M5 FAZ B)"
+  created_at: "2026-06-04T00:00:00Z"

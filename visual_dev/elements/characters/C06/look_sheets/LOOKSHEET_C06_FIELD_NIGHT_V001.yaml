@@ -1,0 +1,33 @@
+schema_version: "0.x-draft"
+record_type: character_look_sheet
+look_sheet_id: LOOKSHEET_C06_FIELD_NIGHT_V001
+character_id: C06
+look_id: C06_LOOK_FIELD_NIGHT_V001
+scene_refs:
+  - SC0089
+physical:
+  build: "Lean to athletic, upright; trained to occupy specific points in a room rather than fill it. Physical economy reads as contained operational power."
+  height: "Average; presence from decision precision and stillness, not stature."
+  hair: "Dark, pulled back short and practical or tied back tight; disciplined restraint for movement and operational readiness. West African heritage visible in texture and tone."
+  skin_tone: "Natural, West African heritage; no glamor finish; neutral and competent under night operational lighting."
+  physical_features: "Mid 30s to early 40s; alert observant eyes; exact face geometry; vigilance and competence legible beneath operational discipline. No decorative styling. Trained physical stillness legible in resting state."
+wardrobe:
+  primary_wardrobe_id: WD013
+  garment_top: "Dark technical top or close-fitting operational layer, black or slate deep charcoal; civilian construction, not military; built for climbing, crouch work, and sustained fieldwork."
+  garment_bottom: "Dark durable operational trousers in black or slate; practical and movement-easy cut; no flash or accent detail."
+  footwear: "Dark practical operational boots or field-grade footwear; low-profile, sound-disciplined, built for sustained movement and infiltration work."
+  outerwear: "Optional close-fitting dark jacket or tactical-adjacent civilian layer in black or deep charcoal; minimal silhouette; built for operational fieldwork, not statement."
+  accessories: []
+palette: "Dark operational neutrals (black, slate, deep charcoal, muted olive); no bright color, no flash, no luxury accent; reads as night-ready, civilian-operational, professional-grade."
+status: draft
+notes: >
+  Full head-to-toe look definition for Zara's SC0089 field-night operational look so
+  the four_view scale views do not crop or invent garments. Field-operational register
+  only; no domestic warmth or maternal softness coding. Identity locked by
+  C06_IDENTITY_ANCHOR_V001 (mid 30s to early 40s, lean-athletic, West African heritage,
+  trained physical economy). Distinct from any future domestic or other-context looks.
+  Base reference state is clean (damage_level none); high-side torso wound is applied
+  as in-scene shot detail later in SC0089.
+provenance:
+  created_by: "claude_code (haiku)"
+  created_at: "2026-06-04T00:00:00Z"

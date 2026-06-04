@@ -1,0 +1,43 @@
+schema_version: "0.x-draft"
+record_type: character_identity_anchor
+identity_anchor_id: C10_IDENTITY_ANCHOR_V001
+character_id: C10
+status: draft
+source_reference_strategy:
+  reference_sheet_allowed_as_identity_source: false
+  final_hero_lock_requires_single_clean_image: true
+  contact_sheet_layout_forbidden_as_lock: true
+source_reference_sheet_ref: prompts/draft/SC0014__t2i-char-c10-identity-mj-v8__v01.yaml
+front_hero_lock_ref:
+  pending: true
+  external_ref: "pending — Stage 1 Midjourney V8.1 narrative identity output not yet generated; lock after Stage 2 V7 --oref refinement."
+fixed_identity_anchors:
+  - "Adult man, mid-30s to 40s; unremarkable face geometry and features (no distinctive marking or hero presence); face incidental, not individualized."
+  - "Generic competent adult build; practical economical movement; unhurried, professionally calm presence."
+  - "Deliberately anonymous and interchangeable; both C10 figures (@C10_CARRIER, @C10_HOLDER) share this identity anchor and differ only at figure-level distinguishing_detail."
+  - "No signature styling, no decorative finish, no hero-scale charisma; reads as procedural functionary, not protagonist."
+mutable_appearance_allowed:
+  - "Wardrobe per operational context (dark functional enforcement attire WD009; no insignia, no logo, no individuating gear)."
+  - "Hair state within the anchor (short, plain, practical; no styling)."
+  - "Fatigue level and damage consistent with procedural enforcement context (clean operational baseline)."
+  - "Lighting and environmental register (interior practicals, contained domestic setting per SC0014)."
+forbidden_drift:
+  - "Do not give distinctive face geometry, scars, tattoos, or any individualizing features; anonymity is the point."
+  - "Do not style as tactical commando, military, or heroic; plain functional civilian-security baseline only."
+  - "Do not assign personality, attitude, or emotional register; professional neutral, procedural courtesy only."
+  - "Do not introduce signature gear, weapons, or decorative elements; dark plain functional clothing (WD009) only."
+  - "Do not clone the second enforcer (@C10_HOLDER) from the first (@C10_CARRIER); they are distinct figures who share the identity anchor but are rendered as two separate people."
+notes: >
+  Canonical identity anchor for the anonymous enforcement operatives (C10 generic base).
+  Two distinct instances of C10 appear in SC0014 (@C10_CARRIER lifts the child,
+  @C10_HOLDER restrains Nadia). Both share this single identity anchor; the figures are
+  distinguished at the scene_beat_plan figure level via distinguishing_detail, not by
+  rewriting the identity. The two men are procedural, interchangeable functionaries —
+  their anonymity and indistinguishability is the character design intention. Character
+  chain: Stage 1 MJ V8.1 narrative identity → Stage 2 MJ V7 --oref lock → Stage 3
+  ChatGPT Images 2 four_view_scale_angle_v3 perspective pack. front_hero_lock_ref
+  stays pending until the operator generates and a real lock image is selected (no
+  fabricated lock).
+provenance:
+  created_by: "claude_code (M5 FAZ B)"
+  created_at: "2026-06-04T00:00:00Z"

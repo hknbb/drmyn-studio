@@ -1,0 +1,30 @@
+schema_version: "0.x-draft"
+record_type: character_look_sheet
+look_sheet_id: LOOKSHEET_C09_QUAY_V001
+character_id: C09
+look_id: C09_LOOK_QUAY_V001
+scene_refs:
+  - SC0047
+physical:
+  build: "Solid, settled, economical; does not move more than the moment needs."
+  height: "Average to solid frame; reads grounded and steady rather than tall."
+  hair: "Grey, close-kept; weathered appearance of decades at the water, no styling."
+  skin_tone: "Weathered, salt-air worn; cool under maritime morning light; no glamor finish."
+  physical_features: "Sixty to seventy; the age operational lifers reach all at once. Flat unsentimental presence; weathered skin shows the wear, not softened. Eyes carry the stillness of someone who has waited in many rooms."
+wardrobe:
+  primary_wardrobe_id: WD014
+  garment_top: "Layered utilitarian fabrics in salt-faded neutrals (grey, oilcloth dark); worn layers under a heavy weathered jacket; no logos, no decorative elements."
+  garment_bottom: "Durable work trousers in weathered neutral tones (grey, faded canvas); practical, movement-easy, appropriate to working waterfront; decades of wear shown."
+  footwear: "Worn boots suitable for cold quay morning, waterfront work; functional, non-descript, weathered."
+  outerwear: "Heavy weathered jacket over layered utilitarian fabrics; salt-faded canvas or oilcloth in neutral tones; decades of waterfront wear visible, no softening."
+  accessories: []
+palette: "Salt-faded neutrals (grey, oilcloth dark, weathered canvas); maritime morning cool register; the palette of a working waterfront."
+status: draft
+notes: >
+  Full head-to-toe look definition for Otto's SC0047 quay-morning working look so the
+  four_view_scale views do not crop or invent garments. Plain working-waterfront
+  register only; no tactical coding. Identity locked by C09_IDENTITY_ANCHOR_V001.
+  Cold maritime air appropriate, reads as an operational lifer in his functional space.
+provenance:
+  created_by: "claude_code (Haiku 4.5)"
+  created_at: "2026-06-04T00:00:00Z"

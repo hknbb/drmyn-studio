@@ -1,0 +1,83 @@
+schema_version: "0.x-draft"
+record_type: gpt_images_perspective_pack
+prompt_pack_id: PPACK_C08_NURSERY_EVENING_V001
+status: draft
+source_reference_id: "C08_IDENTITY_ANCHOR_V001 front_hero_lock (PENDING — PROTECTED SUBJECT; no generation until explicit human review/approval per SC0014 scene_card)"
+target_model: chatgpt_images_2
+target_role: multi_perspective_element_expander
+element_id: C08
+element_type: character
+perspective_policy: four_view_scale_angle_v3
+full_body_visible: true
+shared_preservation_instruction: >
+  PROTECTED SUBJECT (infant Jin). Hard gate — do not generate until explicit human
+  review/approval. In every view the baby is calm, content, safe, and fully supported;
+  never distressed, never in peril, never unsupported. Preserve the locked infant
+  identity and the SC0014 onesie (WD008) with the pale blue name bracelet across all
+  views; change only camera scale and angle. Gentle even light, neutral clean
+  background; restrained realism; no redesign, no distress, no text, no watermark.
+source_refs:
+  scene_card_ref: planning/scenes/SC0014/scene_card.yaml
+  element_sheet_ref: visual_dev/elements/characters/C08/look_sheets/LOOKSHEET_C08_NURSERY_EVENING_V001.yaml
+  model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260504T113000Z_chatgpt_image.yaml
+prompts:
+  - prompt_id: PPACK_C08_NURSERY_EVENING_V001__full_body_front
+    perspective: full_body_front
+    prompt_text: >
+      Full-body front view of the calm, content, safely supported infant in the soft
+      domestic onesie with the pale blue name bracelet. Gentle even light, neutral
+      clean background. Safe and peaceful; preserve identity and wardrobe exactly;
+      no distress, no redesign, no text, no watermark.
+    constraints:
+      - "PROTECTED SUBJECT: calm, safe, supported; no distress, no peril."
+      - "Whole infant in frame; pale blue bracelet present."
+      - "Neutral background; gentle light."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "2:3"
+  - prompt_id: PPACK_C08_NURSERY_EVENING_V001__three_quarter_waist
+    perspective: three_quarter_waist
+    prompt_text: >
+      Three-quarter angle, closer framing of the same safely supported infant in the
+      identical onesie. Calm and content. Gentle even light, neutral clean background.
+      Preserve identity and wardrobe; no distress, no redesign, no text, no watermark.
+    constraints:
+      - "PROTECTED SUBJECT: calm, safe, supported."
+      - "Identity + wardrobe identical to full_body_front."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+  - prompt_id: PPACK_C08_NURSERY_EVENING_V001__close_portrait_front
+    perspective: close_portrait_front
+    prompt_text: >
+      Close front portrait of the same calm, content infant — peaceful expression, soft
+      fine hair, for identity reference. Gentle even light, neutral clean background.
+      Preserve identity exactly; no distress, no redesign, no text, no watermark.
+    constraints:
+      - "PROTECTED SUBJECT: calm, peaceful expression only."
+      - "Face-geometry fidelity to the locked reference."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+  - prompt_id: PPACK_C08_NURSERY_EVENING_V001__profile_full
+    perspective: profile_full
+    prompt_text: >
+      Side profile view of the same safely supported, calm infant in the identical
+      onesie, for a 3D identity wrap. Gentle even light, neutral clean background.
+      Preserve identity and wardrobe; no distress, no redesign, no text, no watermark.
+    constraints:
+      - "PROTECTED SUBJECT: calm, safe, supported."
+      - "Identity + wardrobe identical to the other views."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+qc_gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  failed_perspective_revision_only: true
+downstream_use:
+  - "kling_element_reference_record for C08 infant nursery look (SC0014) — PROTECTED, post human approval only"
+  - "SC0014 omni clip generation (Jin element attach; protected-subject hard gate)"

@@ -1,0 +1,39 @@
+prompt_id: SC0014__t2i-char-c04-identity-mj-v8__v01
+scene_id: SC0014
+prompt_type: t2i_character_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0014/scene_card.yaml
+  scene_excerpt: "Canonical identity reference (Stage 1 of 3) for Dimitri Koss in operational command presence during the nursery removal; identity-only, not a final production view."
+  character_refs:
+  - C04
+  aesthetic_refs:
+  - VALE_DOMESTIC_RESTRAINT
+prompt_text: >-
+  Dimitri, early 40s, lean instrument silhouette sharpened by contained posture and
+  precision. Dark corporate neutrals, minimal softness. Controlled exact face geometry,
+  hard-edged screen presence, hierarchy-aware. Procedural threat in economical movement,
+  no glamor. Cinematic production character reference, neutral clean background, identity
+  readability, restrained realism, no redesign, no fashion spread, no text, no watermark
+  --v 8.1 --style raw --ar 2:3 --seed 104014
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  identity_anchor_ref: visual_dev/elements/characters/C04/identity_anchor.yaml
+  stage: "1_of_3_narrative_identity"
+  aesthetic_keywords_injected:
+  - lean instrument silhouette
+  - dark corporate neutrals, no glamor
+  - controlled exact presence, hard-edged
+  - procedural threat, economical movement
+  - identity over coverage
+  planning_name_filter:
+    forbidden:
+    - Dimitri Koss
+  recommended_model_version: --v 8.1
+  recommended_style: --style raw

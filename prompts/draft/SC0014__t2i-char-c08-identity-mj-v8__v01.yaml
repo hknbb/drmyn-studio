@@ -1,0 +1,33 @@
+prompt_id: SC0014__t2i-char-c08-identity-mj-v8__v01
+scene_id: SC0014
+prompt_type: t2i_character_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0014/scene_card.yaml
+  scene_excerpt: "PROTECTED SUBJECT identity reference (Stage 1) for the infant Jin; calm, safe, supported; human review required before any generation."
+  character_refs:
+  - C08
+  wardrobe_refs:
+  - WD008
+  aesthetic_refs:
+  - VALE_DOMESTIC_RESTRAINT
+prompt_text: >-
+  A calm, peaceful infant about eight months old, awake and content, in a soft
+  domestic evening onesie in warm muted neutrals, a pale blue name bracelet on one
+  wrist. Gentle even light, neutral clean background. Safe, supported, ordinary.
+  Cinematic production character reference, identity readability, restrained realism,
+  no redesign, no distress, no text, no watermark --v 8.1 --style raw --ar 2:3 --seed 114008
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  identity_anchor_ref: visual_dev/elements/characters/C08/identity_anchor.yaml
+  stage: "1_of_3_narrative_identity"
+  protected_subject: true
+  protected_subject_gate: "HARD GATE — no external generation until explicit human review/approval per SC0014 scene_card. Keep infant calm, safe, supported; no distress; distress off-frame downstream."
+  recommended_model_version: --v 8.1
+  recommended_style: --style raw
