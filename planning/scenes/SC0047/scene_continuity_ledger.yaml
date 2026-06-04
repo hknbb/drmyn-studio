@@ -1,0 +1,186 @@
+schema_version: "0.x-draft"
+record_type: scene_continuity_ledger
+scene_continuity_ledger_id: SCL_SC0047_V001
+scene_id: SC0047
+source_omni_clip_plan_ref: planning/scenes/SC0047/omni_clip_plan.yaml
+notes: >
+  Inter-clip continuity for SC0047 (9 clips). A quiet two-hander in the converted
+  freight bay; camera holds, so screen_direction stays neutral throughout (no
+  180-degree flips). Nadia holds screen center at the table; Otto holds screen right
+  (and turns to the high window, still screen right) to give her privacy; Marcus is a
+  recorded V.O. (offscreen). The handset on the table is the load-bearing prop.
+  exit_state(N) is authored to match entry_state(N+1).
+clip_chain:
+  - clip_id: CLIP_SC0047_01
+    order: 1
+    entry_state:
+      summary: "Converted freight bay, cold quay morning; high window with grey water; Otto already waiting, screen right."
+      key_positions:
+        - { subject: Otto, screen_position: right }
+      camera_state: { shot_size: wide, angle: eye_level, movement: static, subject_screen_position: right }
+      screen_direction: neutral
+    exit_state:
+      summary: "Otto stands by the table, screen right; the bay is established; Nadia has arrived, screen center."
+      key_positions:
+        - { subject: Nadia, screen_position: center }
+        - { subject: Otto, screen_position: right }
+      camera_state: { shot_size: medium_wide, angle: eye_level, movement: static, subject_screen_position: center }
+      screen_direction: neutral
+    frame_continuity: { from_clip_id: CLIP_SC0047_01, to_clip_id: CLIP_SC0047_02, continuity_input_mode: frame_input_eligible }
+  - clip_id: CLIP_SC0047_02
+    order: 2
+    entry_state:
+      summary: "Otto (right) speaks and produces the unmarked handset from the locked case, setting it on the table; Nadia center."
+      key_positions:
+        - { subject: Nadia, screen_position: center }
+        - { subject: Otto, screen_position: right }
+      props_state:
+        - { prop: handset, state: "produced from locked case, set on the table between them" }
+      camera_state: { shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center }
+      screen_direction: neutral
+    exit_state:
+      summary: "The handset sits on the table (center); Otto has said she'll know the code; Nadia center, Otto right."
+      key_positions:
+        - { subject: Nadia, screen_position: center }
+        - { subject: Otto, screen_position: right }
+      props_state:
+        - { prop: handset, state: "on the table, unactivated" }
+      camera_state: { shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center }
+      screen_direction: neutral
+    frame_continuity: { from_clip_id: CLIP_SC0047_02, to_clip_id: CLIP_SC0047_03, continuity_input_mode: metadata_only }
+  - clip_id: CLIP_SC0047_03
+    order: 3
+    entry_state:
+      summary: "Otto moves to the far end and turns his back to the high window (right), giving Nadia privacy; Nadia at the table, center."
+      key_positions:
+        - { subject: Nadia, screen_position: center }
+        - { subject: Otto, screen_position: right }
+      props_state:
+        - { prop: handset, state: "on the table" }
+      camera_state: { shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center }
+      screen_direction: neutral
+    exit_state:
+      summary: "Nadia enters the code 7-3-1-1-4; the handset activates with a single audio file; Otto at the window, right."
+      key_positions:
+        - { subject: Nadia, screen_position: center }
+        - { subject: Otto, screen_position: right }
+      props_state:
+        - { prop: handset, state: "activated; single unlabeled audio file ready" }
+      camera_state: { shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center }
+      screen_direction: neutral
+    frame_continuity: { from_clip_id: CLIP_SC0047_03, to_clip_id: CLIP_SC0047_04, continuity_input_mode: frame_input_eligible }
+  - clip_id: CLIP_SC0047_04
+    order: 4
+    entry_state:
+      summary: "A beat of wind ambient, then Marcus's recorded voice begins (offscreen); Nadia listens, center; Otto at window, right."
+      key_positions:
+        - { subject: Nadia, screen_position: center }
+        - { subject: Otto, screen_position: right }
+      camera_state: { shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center }
+      screen_direction: neutral
+      offscreen: [Marcus]
+    exit_state:
+      summary: "Marcus's opening message lands; Nadia does not stop it; she holds center, listening."
+      key_positions:
+        - { subject: Nadia, screen_position: center }
+        - { subject: Otto, screen_position: right }
+      camera_state: { shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center }
+      screen_direction: neutral
+      offscreen: [Marcus]
+    frame_continuity: { from_clip_id: CLIP_SC0047_04, to_clip_id: CLIP_SC0047_05, continuity_input_mode: metadata_only }
+  - clip_id: CLIP_SC0047_05
+    order: 5
+    entry_state:
+      summary: "Marcus (V.O.) details the encrypted partition and the Roman dossier; Nadia listens, center."
+      key_positions:
+        - { subject: Nadia, screen_position: center }
+        - { subject: Otto, screen_position: right }
+      camera_state: { shot_size: close, angle: eye_level, movement: static, subject_screen_position: center }
+      screen_direction: neutral
+      offscreen: [Marcus]
+    exit_state:
+      summary: "The dossier is named; Nadia absorbs it, center, still."
+      key_positions:
+        - { subject: Nadia, screen_position: center }
+        - { subject: Otto, screen_position: right }
+      camera_state: { shot_size: close, angle: eye_level, movement: static, subject_screen_position: center }
+      screen_direction: neutral
+      offscreen: [Marcus]
+    frame_continuity: { from_clip_id: CLIP_SC0047_05, to_clip_id: CLIP_SC0047_06, continuity_input_mode: metadata_only }
+  - clip_id: CLIP_SC0047_06
+    order: 6
+    entry_state:
+      summary: "Marcus (V.O.) names the broadcast architecture file and the maintenance access layer; Nadia listens, center."
+      key_positions:
+        - { subject: Nadia, screen_position: center }
+        - { subject: Otto, screen_position: right }
+      camera_state: { shot_size: close, angle: eye_level, movement: static, subject_screen_position: center }
+      screen_direction: neutral
+      offscreen: [Marcus]
+    exit_state:
+      summary: "The target is specified; Nadia holds center as the briefing nears its end."
+      key_positions:
+        - { subject: Nadia, screen_position: center }
+        - { subject: Otto, screen_position: right }
+      camera_state: { shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center }
+      screen_direction: neutral
+      offscreen: [Marcus]
+    frame_continuity: { from_clip_id: CLIP_SC0047_06, to_clip_id: CLIP_SC0047_07, continuity_input_mode: metadata_only }
+  - clip_id: CLIP_SC0047_07
+    order: 7
+    entry_state:
+      summary: "Marcus's last words ('Karev.' / 'Take Jin home.'); the recording ends and the ambient cuts to silence; Nadia center, Otto unmoved at the window, right."
+      key_positions:
+        - { subject: Nadia, screen_position: center }
+        - { subject: Otto, screen_position: right }
+      camera_state: { shot_size: close, angle: eye_level, movement: static, subject_screen_position: center }
+      screen_direction: neutral
+      offscreen: [Marcus]
+    exit_state:
+      summary: "Silence holds; Nadia catalogs it, center; Otto still at the window, right."
+      key_positions:
+        - { subject: Nadia, screen_position: center }
+        - { subject: Otto, screen_position: right }
+      camera_state: { shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center }
+      screen_direction: neutral
+    frame_continuity: { from_clip_id: CLIP_SC0047_07, to_clip_id: CLIP_SC0047_08, continuity_input_mode: frame_input_eligible }
+  - clip_id: CLIP_SC0047_08
+    order: 8
+    entry_state:
+      summary: "Nadia opens the encrypted partition and begins to work the dossier; center, the handset in hand."
+      key_positions:
+        - { subject: Nadia, screen_position: center }
+        - { subject: Otto, screen_position: right }
+      props_state:
+        - { prop: handset, state: "partition open; dossier accessible" }
+      camera_state: { shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center }
+      screen_direction: neutral
+    exit_state:
+      summary: "Nadia has the dossier; she settles into the work, center."
+      key_positions:
+        - { subject: Nadia, screen_position: center }
+        - { subject: Otto, screen_position: right }
+      props_state:
+        - { prop: handset, state: "partition open; dossier accessible" }
+      camera_state: { shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center }
+      screen_direction: neutral
+    frame_continuity: { from_clip_id: CLIP_SC0047_08, to_clip_id: CLIP_SC0047_09, continuity_input_mode: frame_input_eligible }
+  - clip_id: CLIP_SC0047_09
+    order: 9
+    entry_state:
+      summary: "Otto (right): 'There's a train east at fourteen hundred.' Nadia (center): 'I need the room until then.'"
+      key_positions:
+        - { subject: Nadia, screen_position: center }
+        - { subject: Otto, screen_position: right }
+      camera_state: { shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center }
+      screen_direction: neutral
+    exit_state:
+      summary: "Otto: 'He was a careful man.' Nadia: 'Yes.' She returns to the documentation; Otto holds the room with her, right."
+      key_positions:
+        - { subject: Nadia, screen_position: center }
+        - { subject: Otto, screen_position: right }
+      camera_state: { shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center }
+      screen_direction: neutral
+provenance:
+  created_by: "claude_code (M5 FAZ C)"
+  created_at: "2026-06-04T00:00:00Z"

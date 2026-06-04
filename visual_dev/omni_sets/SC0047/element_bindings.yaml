@@ -1,0 +1,74 @@
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: C01
+element_type: character
+kling_alias: "@C01_NADIA"
+binding_status: planned
+voice_capability: none
+native_audio_readiness: blocked
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+speaker_mapping:
+  - speaker_element_id: C01
+    speaker_kling_alias: "@C01_NADIA"
+    dialogue_required: true
+    native_audio_readiness: blocked
+notes: "Nadia. Two short lines in SC0047 ('I need the room until then.' / 'Yes.'). Voice not provisioned."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
+---
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: C09
+element_type: character
+kling_alias: "@C09_OTTO"
+binding_status: planned
+voice_capability: none
+native_audio_readiness: blocked
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+speaker_mapping:
+  - speaker_element_id: C09
+    speaker_kling_alias: "@C09_OTTO"
+    dialogue_required: true
+    native_audio_readiness: blocked
+notes: "Otto. On-screen speaker at the quay handoff."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
+---
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: C05
+element_type: character
+kling_alias: "@C05_MARCUS"
+binding_status: planned
+voice_capability: none
+native_audio_readiness: blocked
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+speaker_mapping:
+  - speaker_element_id: C05
+    speaker_kling_alias: "@C05_MARCUS"
+    dialogue_required: true
+    native_audio_readiness: blocked
+notes: "Marcus. Deceased; present only as a recorded V.O. on the handset (offscreen). No visual element; voice is a diegetic recording, not provisioned as a Kling-native voice asset."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
+---
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: LOC006
+element_type: location
+kling_alias: "@LOC006_QUAY"
+binding_status: planned
+voice_capability: none
+native_audio_readiness: not_required
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+notes: "Merin quay Unit 14-B (converted freight bay). Planned alias."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
+---
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: PROP008
+element_type: prop
+kling_alias: "@PROP008_HANDSET"
+binding_status: planned
+voice_capability: none
+native_audio_readiness: not_required
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+notes: "Marcus's unmarked handset / dossier. Load-bearing prop; planned alias."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
