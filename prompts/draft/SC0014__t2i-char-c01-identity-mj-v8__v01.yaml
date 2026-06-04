@@ -12,15 +12,15 @@ source_refs:
   aesthetic_refs:
   - VALE_DOMESTIC_RESTRAINT
 prompt_text: >-
-  Nadia, a warm, intelligent woman in her early-to-mid thirties; slim and healthy
-  with relaxed, open posture; dark hair worn soft and slightly undone. A lived-in,
-  naturally beautiful face carrying a former field medic's steady compassion, a
-  mother's tenderness, and a partner's warmth. Calm, open expression with gentle
-  attentive eyes and the trace of a soft smile; present, approachable, emotionally
-  expressive, quietly strong — never severe, cold, guarded, or arms-crossed.
-  Naturalistic cinematic character portrait, soft warm natural light, neutral
-  background, restrained realism, no high-fashion glamour, no hard model stare,
-  no text, no watermark --v 8.1 --style raw --ar 2:3 --seed 114014
+  Nadia, a warm and kind woman in her early-to-mid thirties; dark hair worn soft and
+  loosely up with a few loose strands; naturally beautiful, healthy, glowing skin. A
+  genuine, gentle smile and soft kind eyes that crinkle warmly — open, affectionate,
+  approachable, full of life: a loving mother, a devoted partner, a caring nurse's
+  warmth. Relaxed and happy, bathed in soft golden natural light, warm inviting tone,
+  wearing a soft cream knit top. Naturalistic cinematic portrait, restrained realism,
+  no high-fashion glamour, no cold or moody lighting, no serious or guarded
+  expression, no black clothing, no text, no watermark
+  --v 8.1 --ar 2:3 --seed 114014
 status: active
 canon_lock: false
 generation_params:
@@ -30,20 +30,22 @@ generation_params:
   identity_anchor_ref: visual_dev/elements/characters/C01/identity_anchor.yaml
   stage: "1_of_3_narrative_identity"
   revision_note: >
-    Revised after operator review of the first MJ batch (drmyn-studio-images/NADIA2):
-    the previous wording ('economical posture / conserve movement / alert watchful /
-    contained vigilance / no glamor') rendered her hard, cold, severe and
-    high-fashion-editorial (arms-crossed, guarded stare). Rewritten to lead with
-    warmth and humanity across her full range — field medic's compassion, mother's
-    tenderness, partner/lover warmth, an actor's expressiveness — while keeping the
-    same person (early-to-mid 30s, dark hair, naturally beautiful, quietly strong).
+    Second warmth pass. The first rewrite (v.b warm) still came back too cold/serious
+    in batch NADIA 3 — moody low-key light, black high-neck wardrobe, neutral-serious
+    faces (only one frame warm). Stronger fix: (1) dropped `--style raw` (the biggest
+    severity lever — raw pushes hard realism); (2) lead with a GENUINE gentle smile +
+    soft kind eyes that crinkle; (3) soft golden natural light + warm cream knit top
+    instead of neutral/black + moody; (4) explicit negatives 'no cold or moody
+    lighting / no serious or guarded expression / no black clothing'. Identity
+    unchanged (early-to-mid 30s, dark hair, naturally beautiful). Earlier cold version
+    preserved in git history.
   aesthetic_keywords_injected:
-  - warm intelligent human, approachable
-  - medic compassion + mother tenderness + partner warmth
-  - calm open expression, gentle eyes, soft smile
-  - soft warm natural light, not editorial, not cold
+  - genuine gentle smile, soft kind eyes crinkling
+  - loving mother + devoted partner + caring nurse warmth
+  - soft golden natural light, warm cream knit, happy/relaxed
+  - NOT cold, NOT moody, NOT serious/guarded, NOT black clothing, NOT editorial
   planning_name_filter:
     forbidden:
     - Nadia Vale
   recommended_model_version: --v 8.1
-  recommended_style: --style raw
+  recommended_style: "(none — --style raw removed; raw rendered her too hard/cold for this character)"
