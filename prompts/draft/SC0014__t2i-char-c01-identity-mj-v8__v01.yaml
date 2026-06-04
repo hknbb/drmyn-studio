@@ -12,13 +12,15 @@ source_refs:
   aesthetic_refs:
   - VALE_DOMESTIC_RESTRAINT
 prompt_text: >-
-  Nadia, early to mid thirties, lean and upright with the economical posture of
-  someone trained to conserve movement. Dark hair in natural restraint, alert
-  watchful eyes, exact face geometry, no glamor. Practical muted-neutral clothing.
-  Contained composure with active vigilance underneath. Cinematic production
-  character reference, neutral clean background, identity readability, restrained
-  realism, no redesign, no fashion spread, no text, no watermark
-  --v 8.1 --style raw --ar 2:3 --seed 114014
+  Nadia, a warm, intelligent woman in her early-to-mid thirties; slim and healthy
+  with relaxed, open posture; dark hair worn soft and slightly undone. A lived-in,
+  naturally beautiful face carrying a former field medic's steady compassion, a
+  mother's tenderness, and a partner's warmth. Calm, open expression with gentle
+  attentive eyes and the trace of a soft smile; present, approachable, emotionally
+  expressive, quietly strong — never severe, cold, guarded, or arms-crossed.
+  Naturalistic cinematic character portrait, soft warm natural light, neutral
+  background, restrained realism, no high-fashion glamour, no hard model stare,
+  no text, no watermark --v 8.1 --style raw --ar 2:3 --seed 114014
 status: active
 canon_lock: false
 generation_params:
@@ -27,11 +29,19 @@ generation_params:
   adapter_name: midjourney
   identity_anchor_ref: visual_dev/elements/characters/C01/identity_anchor.yaml
   stage: "1_of_3_narrative_identity"
+  revision_note: >
+    Revised after operator review of the first MJ batch (drmyn-studio-images/NADIA2):
+    the previous wording ('economical posture / conserve movement / alert watchful /
+    contained vigilance / no glamor') rendered her hard, cold, severe and
+    high-fashion-editorial (arms-crossed, guarded stare). Rewritten to lead with
+    warmth and humanity across her full range — field medic's compassion, mother's
+    tenderness, partner/lover warmth, an actor's expressiveness — while keeping the
+    same person (early-to-mid 30s, dark hair, naturally beautiful, quietly strong).
   aesthetic_keywords_injected:
-  - lean upright economical posture
-  - natural restraint, no glamor
-  - contained composure, active vigilance
-  - identity over coverage
+  - warm intelligent human, approachable
+  - medic compassion + mother tenderness + partner warmth
+  - calm open expression, gentle eyes, soft smile
+  - soft warm natural light, not editorial, not cold
   planning_name_filter:
     forbidden:
     - Nadia Vale

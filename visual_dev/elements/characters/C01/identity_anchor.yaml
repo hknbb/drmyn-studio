@@ -13,16 +13,17 @@ front_hero_lock_ref:
   external_ref: "pending — Stage 1 Midjourney V8.1 narrative identity output not yet generated; lock after Stage 2 V7 --oref refinement."
 fixed_identity_anchors:
   - "Woman, early to mid 30s; face geometry and identity must stay constant across all four scene looks."
-  - "Lean, upright, economical build; trained-to-conserve-movement posture (former military medic)."
-  - "Controlled, observant screen presence; contained until pressure reveals how active the containment is."
-  - "Natural-restraint hair and skin; no glamor finish; fatigue and vigilance legible."
+  - "Slim, healthy, capable build with relaxed natural posture (a former field medic — fit, not gaunt or severe)."
+  - "Warm, intelligent, emotionally present screen presence; calm openness with quiet strength underneath."
+  - "Naturally beautiful, lived-in face; soft, slightly-undone dark hair; not glamorous, not severe."
+  - "Human and sympathetic across her range — a field medic's steady compassion, a mother's tenderness, a partner's warmth, an actor's expressiveness."
 mutable_appearance_allowed:
   - "Wardrobe per scene look (domestic homewear / night operational / transit traveling / compound battle-worn)."
   - "Hair state within the anchor (tied back, loosened, disordered by exertion)."
   - "Fatigue level and damage (clean → tired → exhausted; none → dirt → injured) as the night progresses."
   - "Environmental lighting register (warm domestic, night practicals, grey maritime morning, harsh corridor)."
 forbidden_drift:
-  - "Do not soften into generalized maternal warmth; she is specific, observant, physically exact."
+  - "Do not render her cold, severe, guarded, hard-staring, arms-crossed, or high-fashion-editorial; her warmth is specific and intelligent (medic / mother / partner), not a generic soft stereotype."
   - "Do not style as fashion-forward, glamorous, or action-invulnerable."
   - "Do not alter face geometry, age read, or body type between looks."
   - "Do not erase the pulse-check habit / medic-survivor baseline in performance framing."
