@@ -59,7 +59,7 @@ notes_grounding:
   - "characters_present lists tracked compact records physically in the scene: C01 (Nadia), C04 (Dimitri Koss), C08 (Jin Vale). C08 is now a tracked compact character record (was untracked at SC0001 authoring)."
   - "The two unnamed men accompanying Dimitri have no character records and are treated as anonymous enforcer figures, not compact character IDs."
   - "PROTECTED SUBJECT: SC0014 is an infant-removal scene. Jin (C08) carries hard protected-subject constraints (no unsafe handling, no restraint imagery, no distress exploitation). Shot design must imply the taking through Nadia's POV and adult performance, keep all infant handling safe/supported, and keep infant distress off-frame. Flag for explicit human review before any generation."
-  - "The pale blue bracelet is a deferred prop (PROP-JIN-BRACELET) per Jin's record; not yet a tracked PROP."
+  - "The pale blue bracelet is tracked as PROP001 (Jin's medical bracelet, pale blue band) and referenced in continuity_refs.props; its element pack is PPACK_PROP001_BRACELET_V001."
   - "Title refined from the slug-derived location to a grounded scene label; confirm during human review."
 status: review
 review_status: needs_human_review
@@ -67,47 +67,78 @@ canon_lock: false
 omni_set_ref: visual_dev/omni_sets/SC0014/
 element_slot_allocation:
   max_slots: 7
-  slots_used: 1
-  slots_planned: 4
+  slots_used: 6
+  slots_free: 1
+  policy_note: >
+    Refreshed for the M5 clean-slate rebuild (Production System v2). All slots are
+    authored end-to-end at the prompt/metadata layer (identity_anchor / look chain /
+    four_view perspective pack for characters; first-ref + scale-angle pack for
+    location and prop) with element_bindings at binding_status: planned. Readiness
+    advances to 'created' only after the operator generates the real images and a
+    real perspective_qc (>=85) clears — no fabricated readiness.
   allocation:
     - slot_id: ELEM01
-      element_ref: '@C01_NADIA_CANON_V2'
       element_id: C01
+      element_ref: '@C01_NADIA'
       element_type: character_look
+      look_id: C01_LOOK_NURSERY_EVENING_V001
+      perspective_pack_ref: visual_dev/elements/characters/C01/perspective_packs/PPACK_C01_NURSERY_EVENING_V001.yaml
       platform_binding_ref: visual_dev/omni_sets/SC0014/element_bindings.yaml
       platform_binding_required: true
-      readiness: draft_reference_ready
-  planned_allocation:
+      readiness: prompts_ready_pending_external_generation
     - slot_id: ELEM02
-      element_ref: '@C04_OPERATIONAL'
       element_id: C04
+      element_ref: '@C04_DIMITRI'
       element_type: character_look
+      look_id: C04_LOOK_OPERATIONAL_V001
+      perspective_pack_ref: visual_dev/elements/characters/C04/perspective_packs/PPACK_C04_OPERATIONAL_V001.yaml
       platform_binding_ref: visual_dev/omni_sets/SC0014/element_bindings.yaml
       platform_binding_required: true
-      readiness: alias_draft_pending_promotion
+      readiness: prompts_ready_pending_external_generation
     - slot_id: ELEM03
-      element_ref: 'C08'
       element_id: C08
+      element_ref: '@C08_JIN'
       element_type: character_look
+      look_id: C08_LOOK_NURSERY_EVENING_V001
+      perspective_pack_ref: visual_dev/elements/characters/C08/perspective_packs/PPACK_C08_NURSERY_EVENING_V001.yaml
       platform_binding_ref: visual_dev/omni_sets/SC0014/element_bindings.yaml
       platform_binding_required: true
-      readiness: pending_kling_element_alias
-      blocking_note: "C08 has KLING_REF_C08_V001 but no kling_elements composite alias; alias-only prompts blocked until created."
+      readiness: pending_human_approval_protected_subject
+      blocking_note: "PROTECTED SUBJECT (infant Jin). Hard gate: no external generation until explicit human review/approval."
     - slot_id: ELEM04
-      element_id: LOC001_JINS_ROOM
-      element_type: location_sub_area
+      element_id: C10
+      element_ref: ['@C10_CARRIER', '@C10_HOLDER']
+      element_type: character_look
+      look_id: C10_LOOK_ENFORCER_V001
+      perspective_pack_ref: visual_dev/elements/characters/C10/perspective_packs/PPACK_C10_ENFORCER_V001.yaml
       platform_binding_ref: visual_dev/omni_sets/SC0014/element_bindings.yaml
       platform_binding_required: true
-      readiness: pending_sub_area_build
-      blocking_note: "LOC001/sub_areas/jins_room is intake-slot only (source_status not_collected); no perspective pack or kling_element_reference yet."
-  slots_free: 2
+      readiness: prompts_ready_pending_external_generation
+      figure_note: "Two distinct on-screen figures share base C10 (anti-clone): @C10_CARRIER (lifts/carries Jin), @C10_HOLDER (restrains Nadia)."
+    - slot_id: ELEM05
+      element_id: LOC001
+      element_ref: '@LOC001_NURSERY'
+      element_type: location
+      perspective_pack_ref: visual_dev/elements/locations/LOC001/perspective_packs/PPACK_LOC001_NURSERY_EVENING_V001.yaml
+      platform_binding_ref: visual_dev/omni_sets/SC0014/element_bindings.yaml
+      platform_binding_required: true
+      readiness: prompts_ready_pending_external_generation
+    - slot_id: ELEM06
+      element_id: PROP001
+      element_ref: '@PROP001_BRACELET'
+      element_type: prop
+      perspective_pack_ref: visual_dev/elements/props/PROP001/perspective_packs/PPACK_PROP001_BRACELET_V001.yaml
+      platform_binding_ref: visual_dev/omni_sets/SC0014/element_bindings.yaml
+      platform_binding_required: true
+      readiness: prompts_ready_pending_external_generation
   economy_notes: >
-    Four element slots planned: C01 Nadia (ready v2 reference), C04 Dimitri
-    (operational alias, draft), C08 Jin (reference exists, composite alias missing),
-    and the Jin's-nursery sub-area of LOC001 (not yet built). Two anonymous enforcer
-    figures are prompt-described, not allocated as elements. Promptability is held at
-    3 because protected-subject infant handling materially constrains clean shot
-    synthesis. See golden_reference_plan.yaml for the full production gate.
+    Six element slots authored for SC0014: C01 Nadia, C04 Dimitri, C08 Jin (protected),
+    the two C10 enforcer figures (one look, two aliases), the LOC001 nursery, and the
+    PROP001 pale-blue bracelet. Every slot has its prompt drafts + perspective pack
+    authored; bindings are planned and advance to 'created' after real generation +
+    QC. Promptability held at 3 because protected-subject infant handling materially
+    constrains clean shot synthesis; SC0014 cannot generate until the C08 human-review
+    gate clears. Clip plan + manifests + continuity ledger: planning/scenes/SC0014/.
 shot_list_omni: []
 lipsync_plan:
   sync_bearing_shots: []
