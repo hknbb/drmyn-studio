@@ -1,0 +1,39 @@
+schema_version: "0.x-draft"
+record_type: character_identity_anchor
+identity_anchor_id: C01_IDENTITY_ANCHOR_V001
+character_id: C01
+status: draft
+source_reference_strategy:
+  reference_sheet_allowed_as_identity_source: false
+  final_hero_lock_requires_single_clean_image: true
+  contact_sheet_layout_forbidden_as_lock: true
+source_reference_sheet_ref: prompts/draft/SC0014__t2i-char-c01-identity-mj-v8__v01.yaml
+front_hero_lock_ref:
+  pending: true
+  external_ref: "pending — Stage 1 Midjourney V8.1 narrative identity output not yet generated; lock after Stage 2 V7 --oref refinement."
+fixed_identity_anchors:
+  - "Woman, early to mid 30s; face geometry and identity must stay constant across all four scene looks."
+  - "Lean, upright, economical build; trained-to-conserve-movement posture (former military medic)."
+  - "Controlled, observant screen presence; contained until pressure reveals how active the containment is."
+  - "Natural-restraint hair and skin; no glamor finish; fatigue and vigilance legible."
+mutable_appearance_allowed:
+  - "Wardrobe per scene look (domestic homewear / night operational / transit traveling / compound battle-worn)."
+  - "Hair state within the anchor (tied back, loosened, disordered by exertion)."
+  - "Fatigue level and damage (clean → tired → exhausted; none → dirt → injured) as the night progresses."
+  - "Environmental lighting register (warm domestic, night practicals, grey maritime morning, harsh corridor)."
+forbidden_drift:
+  - "Do not soften into generalized maternal warmth; she is specific, observant, physically exact."
+  - "Do not style as fashion-forward, glamorous, or action-invulnerable."
+  - "Do not alter face geometry, age read, or body type between looks."
+  - "Do not erase the pulse-check habit / medic-survivor baseline in performance framing."
+notes: >
+  Canonical identity anchor for Nadia Vale (C01), authored fresh under Production
+  System v2 after the clean-slate teardown (no surviving pre-teardown element
+  records). One identity, four scene looks (SC0014 home, SC0089 night-operational,
+  SC0047 transit, SC0111 compound battle-worn). Character chain: Stage 1 MJ V8.1
+  narrative identity → Stage 2 MJ V7 --oref lock → Stage 3 ChatGPT Images 2
+  four_view_scale_angle_v3 per look. front_hero_lock_ref stays pending until the
+  operator generates and a real lock image is selected (no fabricated lock).
+provenance:
+  created_by: "claude_code (M5 FAZ B)"
+  created_at: "2026-06-04T00:00:00Z"

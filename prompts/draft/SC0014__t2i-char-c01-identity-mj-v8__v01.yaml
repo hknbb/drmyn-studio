@@ -1,0 +1,39 @@
+prompt_id: SC0014__t2i-char-c01-identity-mj-v8__v01
+scene_id: SC0014
+prompt_type: t2i_character_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0014/scene_card.yaml
+  scene_excerpt: "Canonical identity reference (Stage 1 of 3) for the protagonist Nadia across all four target scenes; identity-only, not a final production view."
+  character_refs:
+  - C01
+  aesthetic_refs:
+  - VALE_DOMESTIC_RESTRAINT
+prompt_text: >-
+  Nadia, early to mid thirties, lean and upright with the economical posture of
+  someone trained to conserve movement. Dark hair in natural restraint, alert
+  watchful eyes, exact face geometry, no glamor. Practical muted-neutral clothing.
+  Contained composure with active vigilance underneath. Cinematic production
+  character reference, neutral clean background, identity readability, restrained
+  realism, no redesign, no fashion spread, no text, no watermark
+  --v 8.1 --style raw --ar 2:3 --seed 114014
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  identity_anchor_ref: visual_dev/elements/characters/C01/identity_anchor.yaml
+  stage: "1_of_3_narrative_identity"
+  aesthetic_keywords_injected:
+  - lean upright economical posture
+  - natural restraint, no glamor
+  - contained composure, active vigilance
+  - identity over coverage
+  planning_name_filter:
+    forbidden:
+    - Nadia Vale
+  recommended_model_version: --v 8.1
+  recommended_style: --style raw
