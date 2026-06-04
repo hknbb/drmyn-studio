@@ -11,8 +11,7 @@ shots:
   duration_seconds: 10
   source_beat_ids:
   - NARRATION_GEOMETRY_CHANGED
-  prompt_action: Which means the main force is behind them. Which means the geometry
-    has changed. They are not moving toward a gap. Th...
+  prompt_action: Which means the main force is behind them. Which means the geometry has changed. They are not moving toward a gap. Th...
   duration_reason: long_hold/pulse_check 10s
   required_element_ids:
   - C01

@@ -11,8 +11,7 @@ shots:
   duration_seconds: 5
   source_beat_ids:
   - MAN_LIFTS_JIN
-  prompt_action: The man reaches for the child with both hands — careful, firm. She
-    holds. He lifts. Her arms resist with everything a...
+  prompt_action: The man reaches for the child with both hands — careful, firm. She holds. He lifts. Her arms resist with everything a...
   duration_reason: normal/action 5s
   required_element_ids:
   - C01
@@ -30,8 +29,22 @@ shots:
   motion:
     subject_intensity: 0.6
     camera_intensity: 0.1
-    blocking_notes: 'CRITICAL: infant fully supported at all times; no unsafe hold,
-      no distress exploitation; emphasis on Nadia''s arms, not the child''s face.'
+    blocking_notes: 'CRITICAL: infant fully supported at all times; no unsafe hold, no distress exploitation; emphasis on Nadia''s arms, not the child''s face.'
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_JIN
+    base_element_id: C08
+    kling_alias: '@C08_JIN'
+    role: Jin, the infant (protected subject)
+    distinguishing_detail: Infant; pale blue name bracelet on wrist.
+  - figure_id: FIG_ENF_CARRIER
+    base_element_id: C10
+    kling_alias: '@C10_CARRIER'
+    role: first enforcer, carries the child
+    distinguishing_detail: Stands nearer Nadia's side; the one who steps forward first.
 - shot_id: SHOT_SC0014_05_B
   duration_seconds: 7
   source_beat_ids:
@@ -56,6 +69,16 @@ shots:
   motion:
     subject_intensity: 0.3
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_ENF_HOLDER
+    base_element_id: C10
+    kling_alias: '@C10_HOLDER'
+    role: second enforcer, restrains Nadia
+    distinguishing_detail: Stays back by the door until the child is taken.
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

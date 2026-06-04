@@ -11,8 +11,7 @@ shots:
   duration_seconds: 11
   source_beat_ids:
   - NADIA_HOLDING_JIN
-  prompt_action: Nadia sits in the chair by the crib holding Jin, who is awake. She
-    is not rocking, not singing — just holding him, th...
+  prompt_action: Nadia sits in the chair by the crib holding Jin, who is awake. She is not rocking, not singing — just holding him, th...
   duration_reason: long_hold/hold 11s
   required_element_ids:
   - C01
@@ -32,6 +31,16 @@ shots:
     subject_intensity: 0.1
     camera_intensity: 0.05
     blocking_notes: Infant fully supported in arms; safe handling throughout.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_JIN
+    base_element_id: C08
+    kling_alias: '@C08_JIN'
+    role: Jin, the infant (protected subject)
+    distinguishing_detail: Infant; pale blue name bracelet on wrist.
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

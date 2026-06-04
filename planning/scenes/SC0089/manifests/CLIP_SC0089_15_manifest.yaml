@@ -11,8 +11,7 @@ shots:
   duration_seconds: 11
   source_beat_ids:
   - NADIA_LOOKS_AHEAD_TIMING
-  prompt_action: Nadia looks at the drainage cut. She looks at the timing. She looks
-    at the embankment's repair seam and the shadow of...
+  prompt_action: Nadia looks at the drainage cut. She looks at the timing. She looks at the embankment's repair seam and the shadow of...
   duration_reason: long_hold/hold 11s
   required_element_ids:
   - C01
@@ -30,6 +29,11 @@ shots:
     subject_intensity: 0.15
     camera_intensity: 0.1
     blocking_notes: Nearly still; gaze and micro-expressions carry the tactical recomputation.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 - shot_id: SHOT_SC0089_15_B
   duration_seconds: 3
   source_beat_ids:
@@ -53,6 +57,11 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

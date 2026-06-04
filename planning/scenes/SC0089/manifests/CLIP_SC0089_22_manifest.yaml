@@ -12,10 +12,8 @@ shots:
   source_beat_ids:
   - NADIA_THEN_WE_MOVE_NOW
   - NADIA_SHOULDER_SUPPORT
-  prompt_action: She gets her shoulder under Zara's arm without asking. Zara does
-    not resist this and does not lean into it more than ...
-  duration_reason: NADIA_THEN_WE_MOVE_NOW (short_insert merged fwd); normal/action
-    5s
+  prompt_action: She gets her shoulder under Zara's arm without asking. Zara does not resist this and does not lean into it more than ...
+  duration_reason: NADIA_THEN_WE_MOVE_NOW (short_insert merged fwd); normal/action 5s
   dialogue_line_ids:
   - DLG_NADIA_MOVE_NOW
   required_element_ids:
@@ -34,17 +32,23 @@ shots:
   motion:
     subject_intensity: 0.5
     camera_intensity: 0.2
-    blocking_notes: Zara does not resist but also does not lean more than geometry
-      requires. Their movement is balanced, not crutch-and-patient.
+    blocking_notes: Zara does not resist but also does not lean more than geometry requires. Their movement is balanced, not crutch-and-patient.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
 - shot_id: SHOT_SC0089_22_B
   duration_seconds: 7
   source_beat_ids:
   - FIFTY_METERS_PRESSURE
   - DRAINAGE_CUT_DESCRIPTION
-  prompt_action: The drainage cut opens at the base of the embankment — a meter-wide
-    conduit, three decades of concrete grime, running...
-  duration_reason: FIFTY_METERS_PRESSURE (short_insert merged fwd); normal/establish
-    5s
+  prompt_action: The drainage cut opens at the base of the embankment — a meter-wide conduit, three decades of concrete grime, running...
+  duration_reason: FIFTY_METERS_PRESSURE (short_insert merged fwd); normal/establish 5s
   required_element_ids:
   - LOC001
   camera:
@@ -60,8 +64,7 @@ shots:
   motion:
     subject_intensity: 0.0
     camera_intensity: 0.0
-    blocking_notes: 'Establish the physical constraint: low ceiling, narrow, old infrastructure.
-      Zara injured will have difficulty.'
+    blocking_notes: 'Establish the physical constraint: low ceiling, narrow, old infrastructure. Zara injured will have difficulty.'
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

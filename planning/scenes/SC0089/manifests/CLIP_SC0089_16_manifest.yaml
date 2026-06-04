@@ -12,8 +12,7 @@ shots:
   source_beat_ids:
   - ZARA_THERE_ARE
   - NADIA_COUNTERS
-  prompt_action: 'NADIA: ''One. Maybe two. The main force is three minutes south.
-    The cut is a hundred meters. We go through.'' She is no...'
+  prompt_action: 'NADIA: ''One. Maybe two. The main force is three minutes south. The cut is a hundred meters. We go through.'' She is no...'
   duration_reason: ZARA_THERE_ARE (short_insert merged fwd); normal/dialogue 8s
   dialogue_line_ids:
   - DLG_ZARA_THERE_ARE
@@ -34,6 +33,15 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

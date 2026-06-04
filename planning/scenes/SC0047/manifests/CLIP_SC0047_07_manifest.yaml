@@ -11,8 +11,7 @@ shots:
   duration_seconds: 3
   source_beat_ids:
   - MARCUS_FINAL_WORDS
-  prompt_action: 'Marcus (V.O., CONT''D): "Karev." One word. Her maiden name. His
-    private anchor for her. Then: "Take Jin home." The mes...'
+  prompt_action: 'Marcus (V.O., CONT''D): "Karev." One word. Her maiden name. His private anchor for her. Then: "Take Jin home." The mes...'
   duration_reason: long_hold/dialogue 3s
   dialogue_line_ids:
   - DLG_MARCUS_KAREV
@@ -34,12 +33,21 @@ shots:
   motion:
     subject_intensity: 0.0
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_OTTO
+    base_element_id: C09
+    kling_alias: '@C09_OTTO'
+    role: Otto, the quay contact
+    distinguishing_detail: Does not offer his hand; stands ready but does not greet.
 - shot_id: SHOT_SC0047_07_B
   duration_seconds: 11
   source_beat_ids:
   - NADIA_CATALOGS_SILENCE
-  prompt_action: Nadia looks at the phone in her hand. She does not put it down. She
-    catalogs — this is what she does when she needs t...
+  prompt_action: Nadia looks at the phone in her hand. She does not put it down. She catalogs — this is what she does when she needs t...
   duration_reason: long_hold/hold 11s
   required_element_ids:
   - C01
@@ -57,8 +65,12 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.0
-    blocking_notes: Nadia holds the phone in her hand; does not put it down; processes
-      in silence.
+    blocking_notes: Nadia holds the phone in her hand; does not put it down; processes in silence.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

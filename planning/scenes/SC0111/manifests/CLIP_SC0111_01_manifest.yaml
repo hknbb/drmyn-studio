@@ -30,6 +30,15 @@ shots:
     subject_intensity: 0.15
     camera_intensity: 0.0
     blocking_notes: Nadia's breathing visible; left arm held closer to body; Roman's stance predatory but still.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_ROMAN
+    base_element_id: C02
+    kling_alias: '@C02_ROMAN'
+    role: Roman, the antagonist
 - shot_id: SHOT_SC0111_01_B
   duration_seconds: 5
   source_beat_ids:
@@ -53,6 +62,15 @@ shots:
     subject_intensity: 0.6
     camera_intensity: 0.3
     blocking_notes: Contact exchange; Nadia's left arm cannot cover the approach line as effectively.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_ROMAN
+    base_element_id: C02
+    kling_alias: '@C02_ROMAN'
+    role: Roman, the antagonist
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

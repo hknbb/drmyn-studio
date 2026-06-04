@@ -30,6 +30,11 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
 - shot_id: SHOT_SC0089_13_B
   duration_seconds: 3
   source_beat_ids:
@@ -53,6 +58,11 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 - shot_id: SHOT_SC0089_13_C
   duration_seconds: 3
   source_beat_ids:
@@ -76,6 +86,11 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

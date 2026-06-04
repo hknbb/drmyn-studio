@@ -11,8 +11,7 @@ shots:
   duration_seconds: 10
   source_beat_ids:
   - ESTABLISH_CORRIDOR_AND_LIGHTS
-  prompt_action: The corridor runs between a sealed cargo facility (east) and drainage
-    embankment (west). Overhead lights at 200m inte...
+  prompt_action: The corridor runs between a sealed cargo facility (east) and drainage embankment (west). Overhead lights at 200m inte...
   duration_reason: long_hold/establish 10s
   required_element_ids:
   - LOC001
@@ -34,8 +33,7 @@ shots:
   duration_seconds: 5
   source_beat_ids:
   - NADIA_ZARA_MOVING
-  prompt_action: Nadia is moving through the dark between the second and third lights.
-    Zara is eight meters behind her, same pace, sam...
+  prompt_action: Nadia is moving through the dark between the second and third lights. Zara is eight meters behind her, same pace, sam...
   duration_reason: normal/action 5s
   required_element_ids:
   - C01
@@ -53,8 +51,16 @@ shots:
   motion:
     subject_intensity: 0.2
     camera_intensity: 0.2
-    blocking_notes: Controlled, economical movement. Both figures at interval from
-      wall. No sprints. Pace is 'normal to wide-angle lens' per excerpt.
+    blocking_notes: Controlled, economical movement. Both figures at interval from wall. No sprints. Pace is 'normal to wide-angle lens' per excerpt.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

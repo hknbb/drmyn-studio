@@ -74,3 +74,27 @@ native_audio_readiness: not_required
 kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
 notes: "Pale blue infant bracelet. Load-bearing insert in SC0014; planned alias."
 provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
+---
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: C10
+element_type: character
+kling_alias: "@C10_CARRIER"
+binding_status: planned
+voice_capability: none
+native_audio_readiness: not_required
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+notes: "Figure binding: the first enforcer (carrier) who lifts and carries Jin. Distinct on-screen figure from @C10_HOLDER (anti-clone); shares base element C10."
+provenance: { created_by: "claude_code (M5 FAZ D)", created_at: "2026-06-04T00:00:00Z" }
+---
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: C10
+element_type: character
+kling_alias: "@C10_HOLDER"
+binding_status: planned
+voice_capability: none
+native_audio_readiness: not_required
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+notes: "Figure binding: the second enforcer (holder) who restrains Nadia. Distinct on-screen figure from @C10_CARRIER (anti-clone); shares base element C10."
+provenance: { created_by: "claude_code (M5 FAZ D)", created_at: "2026-06-04T00:00:00Z" }

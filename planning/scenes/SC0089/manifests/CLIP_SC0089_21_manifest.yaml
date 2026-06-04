@@ -11,8 +11,7 @@ shots:
   duration_seconds: 11
   source_beat_ids:
   - NADIA_WOUND_ASSESSMENT
-  prompt_action: A suppressed round. From the north junction — an element they hadn't
-    placed, a third vector, the part of Dimitri's de...
+  prompt_action: A suppressed round. From the north junction — an element they hadn't placed, a third vector, the part of Dimitri's de...
   duration_reason: long_hold/hold 11s
   required_element_ids:
   - C01
@@ -30,14 +29,21 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.0
-    blocking_notes: Nadia's assessment is silent. The internal read (hand location,
-      breathing quality, wound severity) is not vocalised but is complete.
+    blocking_notes: Nadia's assessment is silent. The internal read (hand location, breathing quality, wound severity) is not vocalised but is complete.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
 - shot_id: SHOT_SC0089_21_B
   duration_seconds: 3
   source_beat_ids:
   - NADIA_CAN_YOU_MOVE
-  prompt_action: 'NADIA (still very low): ''Can you move.'' ZARA: ''Yes.'' She says
-    it the way she states everything — flat, declarative, n...'
+  prompt_action: 'NADIA (still very low): ''Can you move.'' ZARA: ''Yes.'' She says it the way she states everything — flat, declarative, n...'
   duration_reason: normal/dialogue 3s
   dialogue_line_ids:
   - DLG_NADIA_CAN_MOVE
@@ -58,6 +64,15 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

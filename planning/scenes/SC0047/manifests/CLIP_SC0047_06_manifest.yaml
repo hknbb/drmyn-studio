@@ -11,8 +11,7 @@ shots:
   duration_seconds: 13
   source_beat_ids:
   - MARCUS_BROADCAST_ARCHITECTURE
-  prompt_action: 'Marcus (V.O., CONT''D): "In the package — look for the broadcast
-    architecture file. There''s a maintenance access layer...'
+  prompt_action: 'Marcus (V.O., CONT''D): "In the package — look for the broadcast architecture file. There''s a maintenance access layer...'
   duration_reason: long_hold/dialogue 13s
   dialogue_line_ids:
   - DLG_MARCUS_BROADCAST

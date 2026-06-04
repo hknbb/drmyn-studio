@@ -11,8 +11,7 @@ shots:
   duration_seconds: 9
   source_beat_ids:
   - NADIA_GAP_HOLDS_SIX_MINUTES
-  prompt_action: 'NADIA: ''The coverage gap holds for six minutes after the junction.
-    If we''re past the drainage cut when the burst cycl...'
+  prompt_action: 'NADIA: ''The coverage gap holds for six minutes after the junction. If we''re past the drainage cut when the burst cycl...'
   duration_reason: normal/dialogue 9s
   dialogue_line_ids:
   - DLG_NADIA_GAP_SIX
@@ -31,6 +30,11 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 - shot_id: SHOT_SC0089_08_B
   duration_seconds: 3
   source_beat_ids:
@@ -54,12 +58,16 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
 - shot_id: SHOT_SC0089_08_C
   duration_seconds: 3
   source_beat_ids:
   - NADIA_WE_ARE
-  prompt_action: 'NADIA: ''We are.'' (Not a question. A declaration of intent and
-    commitment.)'
+  prompt_action: 'NADIA: ''We are.'' (Not a question. A declaration of intent and commitment.)'
   duration_reason: normal/dialogue 3s
   dialogue_line_ids:
   - DLG_NADIA_WE_ARE
@@ -78,6 +86,11 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

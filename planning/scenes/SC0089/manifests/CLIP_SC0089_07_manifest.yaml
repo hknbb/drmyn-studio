@@ -11,8 +11,7 @@ shots:
   duration_seconds: 11
   source_beat_ids:
   - NADIA_COVERAGE_GAP_CALCULATION
-  prompt_action: She looks at the drainage embankment. Runs the geometry. The gap
-    in the deployment documents — the coverage gap Zara'...
+  prompt_action: She looks at the drainage embankment. Runs the geometry. The gap in the deployment documents — the coverage gap Zara'...
   duration_reason: long_hold/hold 11s
   required_element_ids:
   - C01
@@ -30,6 +29,11 @@ shots:
     subject_intensity: 0.1
     camera_intensity: 0.0
     blocking_notes: Nearly still; internal calculation visible via gaze and micro-expressions.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

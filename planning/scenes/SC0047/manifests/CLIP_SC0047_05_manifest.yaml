@@ -11,8 +11,7 @@ shots:
   duration_seconds: 15
   source_beat_ids:
   - MARCUS_ENCRYPTED_PARTITION
-  prompt_action: 'Marcus (V.O., CONT''D): "The phone has an encrypted partition —
-    secondary code is the date we met, reversed. In the pa...'
+  prompt_action: 'Marcus (V.O., CONT''D): "The phone has an encrypted partition — secondary code is the date we met, reversed. In the pa...'
   duration_reason: long_hold/dialogue 15s
   dialogue_line_ids:
   - DLG_MARCUS_PARTITION

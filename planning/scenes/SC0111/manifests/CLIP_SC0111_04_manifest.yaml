@@ -29,6 +29,11 @@ shots:
     subject_intensity: 0.05
     camera_intensity: 0.0
     blocking_notes: Nadia still; her mind working; decision point.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

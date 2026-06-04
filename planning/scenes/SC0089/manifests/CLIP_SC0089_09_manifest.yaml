@@ -11,8 +11,7 @@ shots:
   duration_seconds: 5
   source_beat_ids:
   - NADIA_MOVES_THIRD_LIGHT
-  prompt_action: She moves into the third light pool. No sprint — controlled pace,
-    economy of motion, the kind of movement that reads ...
+  prompt_action: She moves into the third light pool. No sprint — controlled pace, economy of motion, the kind of movement that reads ...
   duration_reason: normal/action 5s
   required_element_ids:
   - C01
@@ -29,8 +28,12 @@ shots:
   motion:
     subject_intensity: 0.25
     camera_intensity: 0.15
-    blocking_notes: Controlled, not rushed. Wide-angle perspective shows the movement
-      as 'normal.' No thermal spike.
+    blocking_notes: Controlled, not rushed. Wide-angle perspective shows the movement as 'normal.' No thermal spike.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 - shot_id: SHOT_SC0089_09_B
   duration_seconds: 7
   source_beat_ids:
@@ -54,8 +57,16 @@ shots:
   motion:
     subject_intensity: 0.3
     camera_intensity: 0.25
-    blocking_notes: Track both figures at 8m separation through pools and darkness.
-      Rhythm of light-shadow-light drives pacing.
+    blocking_notes: Track both figures at 8m separation through pools and darkness. Rhythm of light-shadow-light drives pacing.
+  figures:
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

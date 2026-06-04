@@ -31,12 +31,16 @@ shots:
     subject_intensity: 0.05
     camera_intensity: 0.0
     blocking_notes: Silent beat between statement and understanding; Zara processes.
+  figures:
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
 - shot_id: SHOT_SC0089_05_B
   duration_seconds: 3
   source_beat_ids:
   - NADIA_STILL_RUNNING
-  prompt_action: 'NADIA: ''It''s still running.'' She confirms: the passive 12-minute
-    burst cycle, the false position signal feeding into ...'
+  prompt_action: 'NADIA: ''It''s still running.'' She confirms: the passive 12-minute burst cycle, the false position signal feeding into ...'
   duration_reason: normal/dialogue 3s
   dialogue_line_ids:
   - DLG_NADIA_STILL_RUNNING
@@ -55,12 +59,16 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 - shot_id: SHOT_SC0089_05_C
   duration_seconds: 6
   source_beat_ids:
   - ZARA_PROCESSES_DECOY
-  prompt_action: Zara processes this. The passive burst cycle — twelve minutes, eastern
-    approach junction node 7, a false position sig...
+  prompt_action: Zara processes this. The passive burst cycle — twelve minutes, eastern approach junction node 7, a false position sig...
   duration_reason: normal/hold 6s
   required_element_ids:
   - C06
@@ -77,8 +85,12 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.0
-    blocking_notes: Zara held silent; the mental calculation is visible via her composure
-      and focus.
+    blocking_notes: Zara held silent; the mental calculation is visible via her composure and focus.
+  figures:
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
 - shot_id: SHOT_SC0089_05_D
   duration_seconds: 3
   source_beat_ids:
@@ -102,6 +114,11 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

@@ -33,6 +33,11 @@ shots:
     subject_intensity: 0.1
     camera_intensity: 0.0
     blocking_notes: Low-volume delivery; still at edge of light pool.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 - shot_id: SHOT_SC0089_04_B
   duration_seconds: 3
   source_beat_ids:
@@ -57,12 +62,16 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
 - shot_id: SHOT_SC0089_04_C
   duration_seconds: 7
   source_beat_ids:
   - NADIA_COMMS_PING_SPACING
-  prompt_action: 'NADIA: ''The spacing on the comms ping. One source, two different
-    delay intervals. Eastern approach and here.'' She is ...'
+  prompt_action: 'NADIA: ''The spacing on the comms ping. One source, two different delay intervals. Eastern approach and here.'' She is ...'
   duration_reason: normal/dialogue 7s
   dialogue_line_ids:
   - DLG_NADIA_PING
@@ -81,6 +90,11 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

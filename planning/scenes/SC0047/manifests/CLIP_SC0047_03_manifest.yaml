@@ -11,8 +11,7 @@ shots:
   duration_seconds: 5
   source_beat_ids:
   - OTTO_MOVES_TO_WINDOW
-  prompt_action: Otto moves to the far end of the room. He turns his back. He looks
-    out the high window at the grey water. This is the...
+  prompt_action: Otto moves to the far end of the room. He turns his back. He looks out the high window at the grey water. This is the...
   duration_reason: normal/action 5s
   required_element_ids:
   - C09
@@ -21,8 +20,7 @@ shots:
     angle: eye_level
     framing: medium_wide
     movement: tracking
-    lens_bias: Otto's movement to the window; the high window and grey water framed
-      behind him
+    lens_bias: Otto's movement to the window; the high window and grey water framed behind him
   lighting:
     source: filtered_daylight
     quality: soft
@@ -31,14 +29,18 @@ shots:
   motion:
     subject_intensity: 0.4
     camera_intensity: 0.2
-    blocking_notes: Otto walks to the far end; turns to face the window; settles into
-      profile against the high window and quay.
+    blocking_notes: Otto walks to the far end; turns to face the window; settles into profile against the high window and quay.
+  figures:
+  - figure_id: FIG_OTTO
+    base_element_id: C09
+    kling_alias: '@C09_OTTO'
+    role: Otto, the quay contact
+    distinguishing_detail: Does not offer his hand; stands ready but does not greet.
 - shot_id: SHOT_SC0047_03_B
   duration_seconds: 5
   source_beat_ids:
   - NADIA_ENTERS_CODE
-  prompt_action: 'Nadia enters the access code: 7-3-1-1-4. The phone activates. A
-    single audio file. No label. She presses play. The co...'
+  prompt_action: 'Nadia enters the access code: 7-3-1-1-4. The phone activates. A single audio file. No label. She presses play. The co...'
   duration_reason: normal/action 5s
   required_element_ids:
   - C01
@@ -56,8 +58,12 @@ shots:
   motion:
     subject_intensity: 0.2
     camera_intensity: 0.2
-    blocking_notes: Nadia's fingers on the handset; deliberate, controlled motion;
-      the device activates silently.
+    blocking_notes: Nadia's fingers on the handset; deliberate, controlled motion; the device activates silently.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

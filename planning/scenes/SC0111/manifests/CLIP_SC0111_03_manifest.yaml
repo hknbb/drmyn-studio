@@ -30,6 +30,15 @@ shots:
     subject_intensity: 0.3
     camera_intensity: 0.0
     blocking_notes: Visible breathing; Nadia's body language showing fatigue; Roman waiting; no new contact.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_ROMAN
+    base_element_id: C02
+    kling_alias: '@C02_ROMAN'
+    role: Roman, the antagonist
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

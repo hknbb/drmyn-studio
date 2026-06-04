@@ -12,8 +12,7 @@ shots:
   source_beat_ids:
   - NADIA_SIGNALS_UP
   - ZARA_COMES_OVER
-  prompt_action: Zara comes over the top. She lands correctly — weight distributed,
-    controlled — and then something is wrong. She goes...
+  prompt_action: Zara comes over the top. She lands correctly — weight distributed, controlled — and then something is wrong. She goes...
   duration_reason: NADIA_SIGNALS_UP (short_insert merged fwd); normal/action 5s
   required_element_ids:
   - C01
@@ -31,14 +30,21 @@ shots:
   motion:
     subject_intensity: 0.6
     camera_intensity: 0.3
-    blocking_notes: Practiced landing disrupted by injury. The moment of realization
-      visible in the kneeling posture.
+    blocking_notes: Practiced landing disrupted by injury. The moment of realization visible in the kneeling posture.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
 - shot_id: SHOT_SC0089_19_B
   duration_seconds: 5
   source_beat_ids:
   - NADIA_AT_SIDE_FOUR_SECONDS
-  prompt_action: 'Nadia is at her side in the four seconds before the calculation
-    catches up to the movement. NADIA (very low): ''Where.''
+  prompt_action: 'Nadia is at her side in the four seconds before the calculation catches up to the movement. NADIA (very low): ''Where.''
 
     '
   duration_reason: normal/action 5s
@@ -58,8 +64,16 @@ shots:
   motion:
     subject_intensity: 0.5
     camera_intensity: 0.2
-    blocking_notes: Nadia's response is reflexive and immediate. 'Where' is tactical
-      assessment, not emotional.
+    blocking_notes: Nadia's response is reflexive and immediate. 'Where' is tactical assessment, not emotional.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

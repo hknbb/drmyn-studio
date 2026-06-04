@@ -11,8 +11,7 @@ shots:
   duration_seconds: 11
   source_beat_ids:
   - JIN_CARRIED_OUT
-  prompt_action: She watches Jin carried to the door. Jin makes a small sound — not
-    fear, just sound; too young to know what is happen...
+  prompt_action: She watches Jin carried to the door. Jin makes a small sound — not fear, just sound; too young to know what is happen...
   duration_reason: long_hold/hold 11s
   required_element_ids:
   - C01
@@ -30,8 +29,22 @@ shots:
   motion:
     subject_intensity: 0.3
     camera_intensity: 0.0
-    blocking_notes: Infant fully supported; the unbearable note is the ordinariness
-      of the small sound, kept gentle and off the child's face.
+    blocking_notes: Infant fully supported; the unbearable note is the ordinariness of the small sound, kept gentle and off the child's face.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_JIN
+    base_element_id: C08
+    kling_alias: '@C08_JIN'
+    role: Jin, the infant (protected subject)
+    distinguishing_detail: Infant; pale blue name bracelet on wrist.
+  - figure_id: FIG_ENF_CARRIER
+    base_element_id: C10
+    kling_alias: '@C10_CARRIER'
+    role: first enforcer, carries the child
+    distinguishing_detail: Stands nearer Nadia's side; the one who steps forward first.
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

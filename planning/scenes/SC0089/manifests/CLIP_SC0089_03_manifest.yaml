@@ -11,8 +11,7 @@ shots:
   duration_seconds: 11
   source_beat_ids:
   - NADIA_COUNTS_LIGHTS_GEOMETRY
-  prompt_action: She counts the lights ahead. Four more before the junction. One hundred
-    sixty meters, approximately. The embankment r...
+  prompt_action: She counts the lights ahead. Four more before the junction. One hundred sixty meters, approximately. The embankment r...
   duration_reason: long_hold/hold 11s
   required_element_ids:
   - C01
@@ -29,8 +28,12 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.1
-    blocking_notes: Nearly still; eye-movement and slight head-turns to scan geometry.
-      Then look back toward Zara.
+    blocking_notes: Nearly still; eye-movement and slight head-turns to scan geometry. Then look back toward Zara.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

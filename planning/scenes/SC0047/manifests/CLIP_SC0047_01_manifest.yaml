@@ -11,8 +11,7 @@ shots:
   duration_seconds: 10
   source_beat_ids:
   - ESTABLISH_FREIGHT_BAY
-  prompt_action: 'The converted freight bay: low concrete ceiling, one high window
-    facing the quay, light that smells like salt and die...'
+  prompt_action: 'The converted freight bay: low concrete ceiling, one high window facing the quay, light that smells like salt and die...'
   duration_reason: long_hold/establish 10s
   required_element_ids:
   - LOC001
@@ -29,14 +28,12 @@ shots:
   motion:
     subject_intensity: 0.0
     camera_intensity: 0.1
-    blocking_notes: Hold on the room; establish the high window and the quay light
-      as the breathing space.
+    blocking_notes: Hold on the room; establish the high window and the quay light as the breathing space.
 - shot_id: SHOT_SC0047_01_B
   duration_seconds: 5
   source_beat_ids:
   - OTTO_WAITING
-  prompt_action: Otto is already there when Nadia arrives. He is sixty, or seventy,
-    or the particular age that people who have spent t...
+  prompt_action: Otto is already there when Nadia arrives. He is sixty, or seventy, or the particular age that people who have spent t...
   duration_reason: normal/establish 5s
   required_element_ids:
   - C09
@@ -53,6 +50,12 @@ shots:
   motion:
     subject_intensity: 0.1
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_OTTO
+    base_element_id: C09
+    kling_alias: '@C09_OTTO'
+    role: Otto, the quay contact
+    distinguishing_detail: Does not offer his hand; stands ready but does not greet.
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

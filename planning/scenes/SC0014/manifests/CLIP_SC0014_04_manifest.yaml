@@ -11,8 +11,7 @@ shots:
   duration_seconds: 5
   source_beat_ids:
   - NADIA_STANDS_STEPS_BACK
-  prompt_action: She stands, still holding Jin. She takes one step back — not toward
-    anything, just back. The instinct of something th...
+  prompt_action: She stands, still holding Jin. She takes one step back — not toward anything, just back. The instinct of something th...
   duration_reason: normal/action 5s
   required_element_ids:
   - C01
@@ -31,6 +30,16 @@ shots:
     subject_intensity: 0.35
     camera_intensity: 0.2
     blocking_notes: Infant fully supported through the movement.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_JIN
+    base_element_id: C08
+    kling_alias: '@C08_JIN'
+    role: Jin, the infant (protected subject)
+    distinguishing_detail: Infant; pale blue name bracelet on wrist.
 - shot_id: SHOT_SC0014_04_B
   duration_seconds: 3
   source_beat_ids:
@@ -59,8 +68,7 @@ shots:
   duration_seconds: 5
   source_beat_ids:
   - FIRST_MAN_ADVANCES
-  prompt_action: The first man moves toward her. She turns her body to shield the
-    child. She is not slow and not weak and it does not ...
+  prompt_action: The first man moves toward her. She turns her body to shield the child. She is not slow and not weak and it does not ...
   duration_reason: normal/action 5s
   required_element_ids:
   - C01
@@ -79,6 +87,21 @@ shots:
     subject_intensity: 0.5
     camera_intensity: 0.3
     blocking_notes: Resistance is in Nadia's torso and arms; child stays supported.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_JIN
+    base_element_id: C08
+    kling_alias: '@C08_JIN'
+    role: Jin, the infant (protected subject)
+    distinguishing_detail: Infant; pale blue name bracelet on wrist.
+  - figure_id: FIG_ENF_CARRIER
+    base_element_id: C10
+    kling_alias: '@C10_CARRIER'
+    role: first enforcer, carries the child
+    distinguishing_detail: Stands nearer Nadia's side; the one who steps forward first.
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

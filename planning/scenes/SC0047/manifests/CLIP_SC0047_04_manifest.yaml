@@ -12,8 +12,7 @@ shots:
   source_beat_ids:
   - AMBIENT_WIND
   - MARCUS_OPENING_MESSAGE
-  prompt_action: 'Marcus (V.O., recorded): "If you''re hearing this, then things went
-    the way I was afraid they''d go. I''m sorry. I wante...'
+  prompt_action: 'Marcus (V.O., recorded): "If you''re hearing this, then things went the way I was afraid they''d go. I''m sorry. I wante...'
   duration_reason: AMBIENT_WIND (short_insert merged fwd); long_hold/dialogue 8s
   dialogue_line_ids:
   - DLG_MARCUS_OPENING
@@ -33,8 +32,7 @@ shots:
   motion:
     subject_intensity: 0.1
     camera_intensity: 0.0
-    blocking_notes: Nadia is still, listening; her face carries the weight of hearing
-      the dead.
+    blocking_notes: Nadia is still, listening; her face carries the weight of hearing the dead.
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

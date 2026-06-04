@@ -11,8 +11,7 @@ shots:
   duration_seconds: 10
   source_beat_ids:
   - ESTABLISH_NURSERY
-  prompt_action: A small nursery, made carefully — soft warm light, a crib, a shelf
-    of an eight-month-old's things. The deliberate war...
+  prompt_action: A small nursery, made carefully — soft warm light, a crib, a shelf of an eight-month-old's things. The deliberate war...
   duration_reason: long_hold/establish 10s
   required_element_ids:
   - LOC001

@@ -11,8 +11,7 @@ shots:
   duration_seconds: 7
   source_beat_ids:
   - ZARA_REPORTS_WOUND
-  prompt_action: 'ZARA: ''Left side. High. Something from the north junction — I didn''t
-    —'' She stops. Breathes. Her hand is at her side ...'
+  prompt_action: 'ZARA: ''Left side. High. Something from the north junction — I didn''t —'' She stops. Breathes. Her hand is at her side ...'
   duration_reason: normal/dialogue 7s
   dialogue_line_ids:
   - DLG_ZARA_WOUND1
@@ -32,8 +31,12 @@ shots:
   motion:
     subject_intensity: 0.25
     camera_intensity: 0.1
-    blocking_notes: Zara is controlled but clearly injured. The 'didn't hear it' is
-      the signature of a suppressed round.
+    blocking_notes: Zara is controlled but clearly injured. The 'didn't hear it' is the signature of a suppressed round.
+  figures:
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

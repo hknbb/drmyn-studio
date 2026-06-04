@@ -21,8 +21,7 @@ shots:
     angle: eye_level
     framing: medium_close
     movement: static
-    lens_bias: macro/insert on Nadia's fingers on the seam; detail of texture and
-      contact
+    lens_bias: macro/insert on Nadia's fingers on the seam; detail of texture and contact
   lighting:
     source: practical
     quality: hard
@@ -32,6 +31,11 @@ shots:
     subject_intensity: 0.15
     camera_intensity: 0.0
     blocking_notes: Nadia's hand against seam; stillness of tactical listening.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 - shot_id: SHOT_SC0089_11_B
   duration_seconds: 3
   source_beat_ids:
@@ -55,6 +59,11 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

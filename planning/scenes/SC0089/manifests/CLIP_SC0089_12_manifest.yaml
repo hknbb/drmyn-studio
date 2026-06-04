@@ -12,8 +12,7 @@ shots:
   source_beat_ids:
   - ZARA_HOW
   - NADIA_EXPLAINS_SEAM
-  prompt_action: 'NADIA: ''The seam. It''s absorbing vibration it shouldn''t. Someone''s
-    weight on the other side.'' She is explaining the r...'
+  prompt_action: 'NADIA: ''The seam. It''s absorbing vibration it shouldn''t. Someone''s weight on the other side.'' She is explaining the r...'
   duration_reason: ZARA_HOW (short_insert merged fwd); normal/dialogue 6s
   dialogue_line_ids:
   - DLG_ZARA_HOW_CUT
@@ -34,12 +33,20 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 - shot_id: SHOT_SC0089_12_B
   duration_seconds: 6
   source_beat_ids:
   - ZARA_LOOKS_NORTH
-  prompt_action: A moment. Zara looks north at the junction. One hundred meters. The
-    drainage cut is visible as a shadow against the e...
+  prompt_action: A moment. Zara looks north at the junction. One hundred meters. The drainage cut is visible as a shadow against the e...
   duration_reason: normal/hold 6s
   required_element_ids:
   - C06
@@ -47,8 +54,7 @@ shots:
     angle: eye_level
     framing: medium_close
     movement: static
-    lens_bias: Zara looking toward junction; drainage cut as dark line at embankment
-      base
+    lens_bias: Zara looking toward junction; drainage cut as dark line at embankment base
   lighting:
     source: practical
     quality: hard
@@ -57,8 +63,12 @@ shots:
   motion:
     subject_intensity: 0.1
     camera_intensity: 0.0
-    blocking_notes: Zara's gaze tracking the distance and the cut. The calculation
-      is visible via attention and stillness.
+    blocking_notes: Zara's gaze tracking the distance and the cut. The calculation is visible via attention and stillness.
+  figures:
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

@@ -11,8 +11,7 @@ shots:
   duration_seconds: 11
   source_beat_ids:
   - EMPTY_CRIB_CLOSE
-  prompt_action: Nadia stands in the room. The crib is empty. Her hand — the one that
-    held the bracelet — is open at her side. She doe...
+  prompt_action: Nadia stands in the room. The crib is empty. Her hand — the one that held the bracelet — is open at her side. She doe...
   duration_reason: long_hold/hold 11s
   required_element_ids:
   - C01
@@ -30,8 +29,12 @@ shots:
   motion:
     subject_intensity: 0.05
     camera_intensity: 0.2
-    blocking_notes: The empty crib is the closing measure of the cost; warmth returns
-      but means nothing now.
+    blocking_notes: The empty crib is the closing measure of the cost; warmth returns but means nothing now.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

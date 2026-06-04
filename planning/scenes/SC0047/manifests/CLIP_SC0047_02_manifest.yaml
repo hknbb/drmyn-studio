@@ -11,8 +11,7 @@ shots:
   duration_seconds: 3
   source_beat_ids:
   - OTTO_HE_SAID_YOUD_COME
-  prompt_action: 'Otto: ''He said you''d come.'' His line establishes that Marcus
-    planned this inheritance.'
+  prompt_action: 'Otto: ''He said you''d come.'' His line establishes that Marcus planned this inheritance.'
   duration_reason: normal/dialogue 3s
   dialogue_line_ids:
   - DLG_OTTO_YOUD_COME
@@ -32,12 +31,17 @@ shots:
   motion:
     subject_intensity: 0.1
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_OTTO
+    base_element_id: C09
+    kling_alias: '@C09_OTTO'
+    role: Otto, the quay contact
+    distinguishing_detail: Does not offer his hand; stands ready but does not greet.
 - shot_id: SHOT_SC0047_02_B
   duration_seconds: 5
   source_beat_ids:
   - OTTO_PRODUCES_HANDSET
-  prompt_action: Otto produces the phone from a locked case beneath the table. A handset
-    — industrial-grade, no manufacturer markings....
+  prompt_action: Otto produces the phone from a locked case beneath the table. A handset — industrial-grade, no manufacturer markings....
   duration_reason: normal/action 5s
   required_element_ids:
   - C09
@@ -55,16 +59,20 @@ shots:
   motion:
     subject_intensity: 0.3
     camera_intensity: 0.0
-    blocking_notes: Deliberate, practiced movement; the case is unlocked beneath the
-      table; the handset is placed on the table between them.
+    blocking_notes: Deliberate, practiced movement; the case is unlocked beneath the table; the handset is placed on the table between them.
+  figures:
+  - figure_id: FIG_OTTO
+    base_element_id: C09
+    kling_alias: '@C09_OTTO'
+    role: Otto, the quay contact
+    distinguishing_detail: Does not offer his hand; stands ready but does not greet.
 - shot_id: SHOT_SC0047_02_C
   duration_seconds: 5
   source_beat_ids:
   - OTTO_HANDSET_INSERT
   - OTTO_HE_SAID_YOUD_KNOW
   prompt_action: 'Otto (CONT''D): ''He said you''d know the code.'' She does.'
-  duration_reason: OTTO_HANDSET_INSERT (short_insert merged fwd); normal/dialogue
-    3s
+  duration_reason: OTTO_HANDSET_INSERT (short_insert merged fwd); normal/dialogue 3s
   dialogue_line_ids:
   - DLG_OTTO_YOUD_KNOW
   required_element_ids:
@@ -84,6 +92,12 @@ shots:
   motion:
     subject_intensity: 0.1
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_OTTO
+    base_element_id: C09
+    kling_alias: '@C09_OTTO'
+    role: Otto, the quay contact
+    distinguishing_detail: Does not offer his hand; stands ready but does not greet.
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

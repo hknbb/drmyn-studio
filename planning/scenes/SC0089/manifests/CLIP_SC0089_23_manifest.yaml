@@ -12,8 +12,7 @@ shots:
   source_beat_ids:
   - REACH_CUT
   - DIMITRI_COMMS_FOUND_OPERATIVE
-  prompt_action: Behind them, south of the embankment — comms frequency activity.
-    Multiple pings. The main element has found the advan...
+  prompt_action: Behind them, south of the embankment — comms frequency activity. Multiple pings. The main element has found the advan...
   duration_reason: REACH_CUT (short_insert merged fwd); normal/pulse_check 5s
   required_element_ids:
   - C01
@@ -31,14 +30,12 @@ shots:
   motion:
     subject_intensity: 0.4
     camera_intensity: 0.2
-    blocking_notes: Figures slowing/pausing at cut. Comms activity registers as immediate
-      threat.
+    blocking_notes: Figures slowing/pausing at cut. Comms activity registers as immediate threat.
 - shot_id: SHOT_SC0089_23_B
   duration_seconds: 5
   source_beat_ids:
   - NADIA_PULLS_COVER
-  prompt_action: 'Nadia pulls the drainage cover. It is heavy and it is old and it
-    moves. They go in.
+  prompt_action: 'Nadia pulls the drainage cover. It is heavy and it is old and it moves. They go in.
 
     '
   duration_reason: normal/action 5s
@@ -49,8 +46,7 @@ shots:
     angle: low_angle
     framing: medium
     movement: handheld
-    lens_bias: the heavy cover being pulled; entrance to the conduit; both figures
-      entering
+    lens_bias: the heavy cover being pulled; entrance to the conduit; both figures entering
   lighting:
     source: practical
     quality: diffused
@@ -59,8 +55,16 @@ shots:
   motion:
     subject_intensity: 0.6
     camera_intensity: 0.2
-    blocking_notes: Nadia exerts force against the old, heavy cover. Both figures
-      move into the opening. The cover is pulled shut behind them (implicit).
+    blocking_notes: Nadia exerts force against the old, heavy cover. Both figures move into the opening. The cover is pulled shut behind them (implicit).
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

@@ -11,8 +11,7 @@ shots:
   duration_seconds: 5
   source_beat_ids:
   - RELEASE_AND_EXIT
-  prompt_action: 'The second man releases her. He steps back. He nods once — professional
-    courtesy — and leaves.
+  prompt_action: 'The second man releases her. He steps back. He nods once — professional courtesy — and leaves.
 
     '
   duration_reason: normal/action 5s
@@ -31,6 +30,16 @@ shots:
   motion:
     subject_intensity: 0.25
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_ENF_HOLDER
+    base_element_id: C10
+    kling_alias: '@C10_HOLDER'
+    role: second enforcer, restrains Nadia
+    distinguishing_detail: Stays back by the door until the child is taken.
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

@@ -13,10 +13,8 @@ shots:
   - NADIA_OVER
   - THEY_MOVE
   - NADIA_EMBANKMENT_CLIMB
-  prompt_action: The embankment is three meters high. A drainage pipe bracket at two
-    meters provides the step. Nadia reaches the top i...
-  duration_reason: NADIA_OVER (short_insert merged fwd); THEY_MOVE (short_insert merged
-    fwd); normal/action 5s
+  prompt_action: The embankment is three meters high. A drainage pipe bracket at two meters provides the step. Nadia reaches the top i...
+  duration_reason: NADIA_OVER (short_insert merged fwd); THEY_MOVE (short_insert merged fwd); normal/action 5s
   dialogue_line_ids:
   - DLG_NADIA_OVER
   required_element_ids:
@@ -35,14 +33,17 @@ shots:
   motion:
     subject_intensity: 0.7
     camera_intensity: 0.4
-    blocking_notes: Fast, practiced climb. Flat position reads as trained tactical
-      entry. POV insert on operative below, unaware.
+    blocking_notes: Fast, practiced climb. Flat position reads as trained tactical entry. POV insert on operative below, unaware.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 - shot_id: SHOT_SC0089_18_B
   duration_seconds: 5
   source_beat_ids:
   - NADIA_DROPS
-  prompt_action: Nadia drops. The operative goes down quickly. Not dead — she needs
-    the corridor behind her quiet, not sounding an ala...
+  prompt_action: Nadia drops. The operative goes down quickly. Not dead — she needs the corridor behind her quiet, not sounding an ala...
   duration_reason: normal/action 5s
   required_element_ids:
   - C01
@@ -59,8 +60,12 @@ shots:
   motion:
     subject_intensity: 0.8
     camera_intensity: 0.3
-    blocking_notes: Fast, practiced takedown. Emphasis is on control and speed. No
-      excess. The operative is neutralized, not made a statement.
+    blocking_notes: Fast, practiced takedown. Emphasis is on control and speed. No excess. The operative is neutralized, not made a statement.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

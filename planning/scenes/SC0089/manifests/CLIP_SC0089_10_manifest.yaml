@@ -11,8 +11,7 @@ shots:
   duration_seconds: 5
   source_beat_ids:
   - DIMITRI_V_O_CONFIRM
-  prompt_action: Somewhere south of them — a frequency ping. Brief. Military economy.
-    DIMITRI's voice on the command channel, stripped...
+  prompt_action: Somewhere south of them — a frequency ping. Brief. Military economy. DIMITRI's voice on the command channel, stripped...
   duration_reason: normal/pulse_check 5s
   required_element_ids:
   - C01
@@ -30,14 +29,12 @@ shots:
   motion:
     subject_intensity: 0.25
     camera_intensity: 0.2
-    blocking_notes: Figures continue movement. Radio pings register as off-screen
-      threat.
+    blocking_notes: Figures continue movement. Radio pings register as off-screen threat.
 - shot_id: SHOT_SC0089_10_B
   duration_seconds: 3
   source_beat_ids:
   - DIMITRI_ACCELERATE
-  prompt_action: 'DIMITRI (V.O., on radio, closer now): ''Accelerate. He was ahead
-    of us once.'' The ''he'' — wrong pronoun, wrong person. ...'
+  prompt_action: 'DIMITRI (V.O., on radio, closer now): ''Accelerate. He was ahead of us once.'' The ''he'' — wrong pronoun, wrong person. ...'
   duration_reason: normal/dialogue 3s
   dialogue_line_ids:
   - DLG_DIMITRI_ACCELERATE
@@ -56,14 +53,17 @@ shots:
   motion:
     subject_intensity: 0.25
     camera_intensity: 0.15
-    blocking_notes: Nadia continues movement at same pace. The misgendering registers
-      internally; posture does not change.
+    blocking_notes: Nadia continues movement at same pace. The misgendering registers internally; posture does not change.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
 - shot_id: SHOT_SC0089_10_C
   duration_seconds: 5
   source_beat_ids:
   - REACH_FIFTH_LIGHT
-  prompt_action: They reach the fifth light. One hundred meters to the junction. The
-    concrete drainage embankment curves west here, fo...
+  prompt_action: They reach the fifth light. One hundred meters to the junction. The concrete drainage embankment curves west here, fo...
   duration_reason: normal/establish 5s
   required_element_ids:
   - C01
@@ -81,8 +81,16 @@ shots:
   motion:
     subject_intensity: 0.1
     camera_intensity: 0.0
-    blocking_notes: Both figures stop/slow in light pool. Detail of embankment repair
-      seam becomes tactilely relevant.
+    blocking_notes: Both figures stop/slow in light pool. Detail of embankment repair seam becomes tactilely relevant.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_ZARA
+    base_element_id: C06
+    kling_alias: '@C06_ZARA'
+    role: Zara, operative ally
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only

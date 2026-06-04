@@ -30,6 +30,15 @@ shots:
     subject_intensity: 0.3
     camera_intensity: 0.0
     blocking_notes: Both bodies locked; beginning of Roman's physical response visible.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_ROMAN
+    base_element_id: C02
+    kling_alias: '@C02_ROMAN'
+    role: Roman, the antagonist
 - shot_id: SHOT_SC0111_06_B
   duration_seconds: 7
   source_beat_ids:
@@ -54,6 +63,15 @@ shots:
     subject_intensity: 0.7
     camera_intensity: 0.3
     blocking_notes: Coordinated descent; Nadia controlled with him; floor contact; release as he goes down.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+  - figure_id: FIG_ROMAN
+    base_element_id: C02
+    kling_alias: '@C02_ROMAN'
+    role: Roman, the antagonist
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
