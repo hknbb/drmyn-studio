@@ -12,16 +12,18 @@ source_refs:
   aesthetic_refs:
   - VALE_DOMESTIC_RESTRAINT
 prompt_text: >-
-  Nadia, a warm, kind, deeply empathetic woman in her early-to-mid thirties. Soft
-  rounded face shape, gently rounded jawline, full soft cheeks, smooth gentle
-  features, warm large almond eyes, soft full lips, small soft nose, light natural
-  freckles; dark hair loosely up with soft loose strands. A genuine Duchenne smile
-  with the eyes crinkling in real warmth — tender, loving, gentle, approachable
-  girl-next-door, a caring nurse, a loving mother, a devoted partner. Soft diffused
-  warm window light, gentle and flattering, warm cream knit. Natural, relatable and
-  sympathetic; not a fashion model, not angular, no sharp cheekbones, not gaunt, not
-  cold, no harsh shadows, no glamour, no text, no watermark
-  --v 8.1 --ar 2:3 --seed 22
+  Natural relaxed portrait of a warm, kind, gentle woman in her early-to-mid
+  thirties. Soft rounded face shape, gently rounded jawline, full soft cheeks,
+  smooth gentle features, warm large almond eyes, soft full lips, small soft nose,
+  light natural freckles; dark hair loosely up with soft loose strands. Calm,
+  composed, naturally warm resting expression — soft and approachable, eyes warm
+  and present, lips relaxed and closed (no smile, not grinning); the warmth comes
+  from her soft features and gentle gaze, not from an expression. Soft diffused
+  warm window light, gentle and flattering, warm cream knit. Candid, relatable and
+  sympathetic; a plain natural headshot, not a fashion model, not angular, no sharp
+  cheekbones, not gaunt, not cold, not stern, no harsh shadows, no glamour, no text,
+  no watermark
+  --v 8.1 --ar 2:3 --seed 47
 status: active
 canon_lock: false
 generation_params:
@@ -31,20 +33,23 @@ generation_params:
   identity_anchor_ref: visual_dev/elements/characters/C01/identity_anchor.yaml
   stage: "1_of_3_narrative_identity"
   revision_note: >
-    Third pass — architecture change. Operator: smiles/warm tones did NOT help because
-    the FACE STRUCTURE itself was too sharp/angular (MJ's default 'model' face), and a
-    smile cannot soften hard bone geometry. Per Midjourney face research, you must
-    describe the face structure explicitly. Redesigned to lead with soft facial
-    geometry (soft rounded face, rounded jawline, full soft cheeks, gentle features,
-    warm large almond eyes, soft full lips, small soft nose, light freckles), a
-    Duchenne smile (eyes + mouth for genuine empathy), soft wrapping window light, and
-    explicit anti-sharp negatives (not angular / no sharp cheekbones / not gaunt /
-    'not a fashion model'). New seed (22) to escape the moody/sharp local optimum.
-    Sources: openart.ai facial-expression guide, aiarty portrait + character guides.
+    Fourth pass — drop the smile, keep the soft structure. Operator: the Duchenne-smile
+    version still read as 'too much smiling'; wants a normal/natural portrait. The
+    sympathy lever stays the FACE STRUCTURE (soft rounded face, rounded jaw, full
+    cheeks, gentle features, large warm almond eyes, soft full lips, small soft nose,
+    freckles) — proven over the earlier passes — but the expression is now a calm,
+    composed, naturally-warm RESTING face: relaxed closed lips (no smile, not grinning),
+    warm present eyes, gentle gaze. Warmth comes from soft features + soft light, not
+    from an expression. Added 'plain natural headshot' + 'not stern' so neutral does not
+    drift back to cold/severe. New seed (47) to leave the smiling local optimum.
+    Prior pass context: smiles/warm tones alone do NOT soften sharp bone geometry —
+    you must describe the structure explicitly (Midjourney face research:
+    openart.ai facial-expression guide, aiarty portrait + character guides).
   aesthetic_keywords_injected:
   - SOFT FACE STRUCTURE — rounded face/jaw, full cheeks, gentle features, soft full lips
   - warm large almond eyes, light natural freckles, relatable
-  - Duchenne smile (eyes crinkle) = genuine empathy, not just a mouth-smile
+  - calm natural RESTING expression — relaxed closed lips, no smile/not grinning, warm gaze
+  - plain natural headshot; warmth from features+light not expression; not stern/not cold
   - soft diffused wrapping window light; anti-sharp negatives (not angular/gaunt/model)
   planning_name_filter:
     forbidden:
