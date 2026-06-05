@@ -15,7 +15,8 @@ fixed_identity_anchors:
   - "Woman, early to mid 30s; face geometry and identity must stay constant across all four scene looks."
   - "Slim, healthy, capable build with relaxed natural posture (a former field medic — fit, not gaunt or severe)."
   - "Warm, intelligent, emotionally present screen presence; calm openness with quiet strength underneath."
-  - "Naturally beautiful, lived-in face; soft, slightly-undone dark hair; not glamorous, not severe."
+  - "SOFT facial structure (the sympathy lever): softly rounded face shape, gently rounded jawline, full soft cheeks, smooth gentle features, warm large almond eyes, soft full lips, small soft nose, light natural freckles. NOT angular, NOT sharp cheekbones, NOT gaunt, NOT a high-fashion model face."
+  - "Naturally beautiful, relatable, lived-in face; soft, slightly-undone dark hair; not glamorous, not severe."
   - "Human and sympathetic across her range — a field medic's steady compassion, a mother's tenderness, a partner's warmth, an actor's expressiveness."
 mutable_appearance_allowed:
   - "Wardrobe per scene look (domestic homewear / night operational / transit traveling / compound battle-worn)."

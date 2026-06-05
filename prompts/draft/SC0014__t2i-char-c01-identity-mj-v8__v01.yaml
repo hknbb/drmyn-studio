@@ -12,15 +12,16 @@ source_refs:
   aesthetic_refs:
   - VALE_DOMESTIC_RESTRAINT
 prompt_text: >-
-  Nadia, a warm and kind woman in her early-to-mid thirties; dark hair worn soft and
-  loosely up with a few loose strands; naturally beautiful, healthy, glowing skin. A
-  genuine, gentle smile and soft kind eyes that crinkle warmly — open, affectionate,
-  approachable, full of life: a loving mother, a devoted partner, a caring nurse's
-  warmth. Relaxed and happy, bathed in soft golden natural light, warm inviting tone,
-  wearing a soft cream knit top. Naturalistic cinematic portrait, restrained realism,
-  no high-fashion glamour, no cold or moody lighting, no serious or guarded
-  expression, no black clothing, no text, no watermark
-  --v 8.1 --ar 2:3 --seed 114014
+  Nadia, a warm, kind, deeply empathetic woman in her early-to-mid thirties. Soft
+  rounded face shape, gently rounded jawline, full soft cheeks, smooth gentle
+  features, warm large almond eyes, soft full lips, small soft nose, light natural
+  freckles; dark hair loosely up with soft loose strands. A genuine Duchenne smile
+  with the eyes crinkling in real warmth — tender, loving, gentle, approachable
+  girl-next-door, a caring nurse, a loving mother, a devoted partner. Soft diffused
+  warm window light, gentle and flattering, warm cream knit. Natural, relatable and
+  sympathetic; not a fashion model, not angular, no sharp cheekbones, not gaunt, not
+  cold, no harsh shadows, no glamour, no text, no watermark
+  --v 8.1 --ar 2:3 --seed 22
 status: active
 canon_lock: false
 generation_params:
@@ -30,20 +31,21 @@ generation_params:
   identity_anchor_ref: visual_dev/elements/characters/C01/identity_anchor.yaml
   stage: "1_of_3_narrative_identity"
   revision_note: >
-    Second warmth pass. The first rewrite (v.b warm) still came back too cold/serious
-    in batch NADIA 3 — moody low-key light, black high-neck wardrobe, neutral-serious
-    faces (only one frame warm). Stronger fix: (1) dropped `--style raw` (the biggest
-    severity lever — raw pushes hard realism); (2) lead with a GENUINE gentle smile +
-    soft kind eyes that crinkle; (3) soft golden natural light + warm cream knit top
-    instead of neutral/black + moody; (4) explicit negatives 'no cold or moody
-    lighting / no serious or guarded expression / no black clothing'. Identity
-    unchanged (early-to-mid 30s, dark hair, naturally beautiful). Earlier cold version
-    preserved in git history.
+    Third pass — architecture change. Operator: smiles/warm tones did NOT help because
+    the FACE STRUCTURE itself was too sharp/angular (MJ's default 'model' face), and a
+    smile cannot soften hard bone geometry. Per Midjourney face research, you must
+    describe the face structure explicitly. Redesigned to lead with soft facial
+    geometry (soft rounded face, rounded jawline, full soft cheeks, gentle features,
+    warm large almond eyes, soft full lips, small soft nose, light freckles), a
+    Duchenne smile (eyes + mouth for genuine empathy), soft wrapping window light, and
+    explicit anti-sharp negatives (not angular / no sharp cheekbones / not gaunt /
+    'not a fashion model'). New seed (22) to escape the moody/sharp local optimum.
+    Sources: openart.ai facial-expression guide, aiarty portrait + character guides.
   aesthetic_keywords_injected:
-  - genuine gentle smile, soft kind eyes crinkling
-  - loving mother + devoted partner + caring nurse warmth
-  - soft golden natural light, warm cream knit, happy/relaxed
-  - NOT cold, NOT moody, NOT serious/guarded, NOT black clothing, NOT editorial
+  - SOFT FACE STRUCTURE — rounded face/jaw, full cheeks, gentle features, soft full lips
+  - warm large almond eyes, light natural freckles, relatable
+  - Duchenne smile (eyes crinkle) = genuine empathy, not just a mouth-smile
+  - soft diffused wrapping window light; anti-sharp negatives (not angular/gaunt/model)
   planning_name_filter:
     forbidden:
     - Nadia Vale
