@@ -2,7 +2,7 @@ schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
 prompt_pack_id: PPACK_C01_FIELD_NIGHT_V001
 status: draft
-source_reference_id: "C01_IDENTITY_ANCHOR_V001 front_hero_lock (PENDING — generate after Stage 1 MJ V8.1 + Stage 2 V7 --oref lock exists)"
+source_reference_id: "DUAL SEED. PRIMARY (geometry/pose/light/expression) = MJ_C01_OREFLOCK_V001 Stage-2 --oref lock (archive/nexuszero/_elements/C01/stage2/images/u9435212546_Same_woman_identical_face_-_early-to-mid_thirties_213e614e-8328-4a65-a5c8-30d4d983130f_2.png; sha256 11f6710e87285c24df07677d84e27478437f63da49cccd403f1673ea47dd573a). SECONDARY (skin tone, warmth, hair detail only) = MJ_C01_HERO_V001 Stage-1 hero (archive/nexuszero/_elements/C01/stage1/images/u9435212546_Natural_relaxed_portrait_of_a_warm_kind_gentle_wo_3aa0e83b-7f2d-44c5-9668-948f15f791a6_3.png; sha256 4d2ccc4f5a73a71f13c4fe75b53b14060621eb08b5a79e4563640dc4312d59eb). Take pose/framing/neutral light from PRIMARY; take only skin tone + warmth + hair texture from SECONDARY."
 target_model: chatgpt_images_2
 target_role: multi_perspective_element_expander
 element_id: C01
@@ -10,13 +10,21 @@ element_type: character
 perspective_policy: four_view_scale_angle_v3
 full_body_visible: true
 shared_preservation_instruction: >
-  Preserve the locked Nadia identity exactly across all four views — same face geometry,
-  age (early-to-mid 30s), lean upright build, dark hair pulled back tight, no glamor.
-  Same SC0089 field-operational wardrobe (WD011: dark technical top, durable dark
-  trousers, low-profile dark jacket, dark operational boots) in every view. Change only
-  camera scale and angle, never the person or the garments. Restrained realism; no
-  redesign, no stylization, no fashion-editorial; neutral clean background; no text, no
-  watermark.
+  Use the two references: take pose, framing and neutral light from the PRIMARY
+  (Stage-2 lock); take only skin tone, warmth and hair texture from the SECONDARY
+  (Stage-1 hero). Do not copy the Stage-1 light/angle/background.
+  Preserve the locked Nadia identity exactly across all four views — same warm,
+  soft-structured face from the seed: soft rounded face shape, gently rounded jawline,
+  full soft cheeks, gentle features, warm large almond eyes, soft full lips, small soft
+  nose, light natural freckles; early-to-mid 30s; slim healthy build; dark hair pulled
+  back for the field. Her warmth and face geometry stay constant; the night-operational
+  register shows ONLY in the wardrobe and a calm, focused, quietly determined expression
+  — human under pressure, not a cold operative. Same SC0089 field-operational wardrobe
+  (WD011: dark technical top, durable dark trousers, low-profile dark jacket, dark
+  operational boots) in every view. Change only camera scale and angle, never the person
+  or the garments. Natural restrained realism; not angular, no sharp cheekbones, not
+  gaunt, not cold, not stern, no glamour, no redesign, no stylization, no
+  fashion-editorial; neutral clean background; no text, no watermark.
 source_refs:
   scene_card_ref: planning/scenes/SC0089/scene_card.yaml
   element_sheet_ref: visual_dev/elements/characters/C01/look_sheets/LOOKSHEET_C01_FIELD_NIGHT_V001.yaml
@@ -42,7 +50,7 @@ prompts:
     prompt_text: >
       Three-quarter angle, waist-up framing, of the same locked reference woman in the
       identical dark field-operational wardrobe. Body turned ~30-45 degrees, head toward
-      camera, alert and watchful. Even neutral lighting, neutral clean background.
+      camera, calm and focused. Even neutral lighting, neutral clean background.
       Preserve identity and garments exactly; restrained realism, no redesign, no text,
       no watermark.
     constraints:
@@ -56,10 +64,12 @@ prompts:
     perspective: close_portrait_front
     prompt_text: >
       Close front portrait, chest-up, of the same locked reference woman — full frontal
-      face for identity lock. Dark hair pulled back tight, alert watchful eyes, exact
-      face geometry, no glamor, operational discipline legible. Even neutral lighting,
-      neutral clean background. Preserve identity exactly; restrained realism, no
-      redesign, no text, no watermark.
+      face for identity lock. Soft rounded face, full soft cheeks, warm large almond
+      eyes, soft full lips, light freckles; dark hair pulled back for the field; calm,
+      focused, quietly determined expression — human resolve, not cold vigilance. Exact
+      face geometry from the seed. Even neutral lighting, neutral clean background.
+      Preserve identity exactly; not angular, no sharp cheekbones, not cold, not stern,
+      no glamour, no redesign, no text, no watermark.
     constraints:
       - "Chest/shoulders/head; fully frontal face."
       - "Maximum face-geometry fidelity to the locked reference."
@@ -72,8 +82,8 @@ prompts:
     prompt_text: >
       Side profile view of the same locked reference woman in the identical dark
       field-operational wardrobe, for a 3D identity wrap. Clean lateral profile, even
-      neutral lighting, neutral clean background. Hair pulled back tight, discipline and
-      alert posture legible. Preserve identity and garments exactly; restrained realism,
+      neutral lighting, neutral clean background. Hair pulled back for the field, calm
+      grounded posture legible. Preserve identity and garments exactly; restrained realism,
       no redesign, no text, no watermark.
     constraints:
       - "True side profile (90 degrees)."

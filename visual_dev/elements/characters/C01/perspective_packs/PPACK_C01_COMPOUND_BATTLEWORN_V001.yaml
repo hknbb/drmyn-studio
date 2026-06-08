@@ -2,7 +2,7 @@ schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
 prompt_pack_id: PPACK_C01_COMPOUND_BATTLEWORN_V001
 status: draft
-source_reference_id: "C01_IDENTITY_ANCHOR_V001 front_hero_lock (PENDING — generate after Stage 1 MJ V8.1 + Stage 2 V7 --oref lock exists)"
+source_reference_id: "DUAL SEED. PRIMARY (geometry/pose/light/expression) = MJ_C01_OREFLOCK_V001 Stage-2 --oref lock (archive/nexuszero/_elements/C01/stage2/images/u9435212546_Same_woman_identical_face_-_early-to-mid_thirties_213e614e-8328-4a65-a5c8-30d4d983130f_2.png; sha256 11f6710e87285c24df07677d84e27478437f63da49cccd403f1673ea47dd573a). SECONDARY (skin tone, warmth, hair detail only) = MJ_C01_HERO_V001 Stage-1 hero (archive/nexuszero/_elements/C01/stage1/images/u9435212546_Natural_relaxed_portrait_of_a_warm_kind_gentle_wo_3aa0e83b-7f2d-44c5-9668-948f15f791a6_3.png; sha256 4d2ccc4f5a73a71f13c4fe75b53b14060621eb08b5a79e4563640dc4312d59eb). Take pose/framing from PRIMARY and only skin tone + warmth + hair texture from SECONDARY; apply the battle-worn state (dirt/sweat/minor blood) on top of this preserved identity."
 target_model: chatgpt_images_2
 target_role: multi_perspective_element_expander
 element_id: C01
@@ -10,9 +10,18 @@ element_type: character
 perspective_policy: four_view_scale_angle_v3
 full_body_visible: true
 shared_preservation_instruction: >
-  Preserve the locked Nadia identity exactly across all four views — same face geometry,
-  age (early-to-mid 30s), lean upright build, dark hair now disordered/loosened/sweat-stuck,
-  no glamor. Same SC0111 battle-worn wardrobe state (WD011: dark technical top now
+  Use the two references: take pose and framing from the PRIMARY (Stage-2 lock) and only
+  skin tone, warmth and hair texture from the SECONDARY (Stage-1 hero); do not copy the
+  Stage-1 light/angle/background. Apply the battle-worn state on top of this preserved
+  identity.
+  Preserve the locked Nadia identity exactly across all four views — same warm,
+  soft-structured face from the seed: soft rounded face shape, gently rounded jawline,
+  full soft cheeks, gentle features, warm large almond eyes, soft full lips, small soft
+  nose, light natural freckles; early-to-mid 30s; slim healthy build; dark hair now
+  disordered/loosened/sweat-stuck. Even battered she is unmistakably herself — the soft
+  face geometry stays constant and her humanity reads through the exhaustion (hurt and
+  spent but resolute, not a hardened action figure). Same SC0111 battle-worn wardrobe
+  state (WD011: dark technical top now
   grimed/bloodied, durable dark trousers now dirt-marked/torn at left thigh, low-profile
   dark jacket now compromised/torn at left shoulder, dark operational boots now scuffed)
   in every view. Restrained realistic injury visible consistently (dirt, sweat, favoring
@@ -68,11 +77,14 @@ prompts:
     perspective: close_portrait_front
     prompt_text: >
       Close front portrait, chest-up, of the same locked reference woman — full frontal
-      face for identity lock. Dark hair disordered, loosened, stuck with sweat; alert
-      watchful eyes sharpened to survival; exact face geometry; exhaustion and intensity
-      legible in jaw and eyes. Visible sweat, some dirt on face and neck. Harsh
-      institutional corridor light, cool color temperature. Neutral clean background.
-      Preserve identity exactly; restrained realism, no redesign, no text, no watermark.
+      face for identity lock. Soft rounded face, full soft cheeks, warm large almond
+      eyes, soft full lips, light freckles (the soft face geometry stays constant); dark
+      hair disordered, loosened, stuck with sweat; exhausted, hurting and spent but
+      resolute — human resolve legible, not cold survival-hardness. Exact face geometry
+      from the seed. Visible sweat, some dirt on face and neck. Harsh institutional
+      corridor light, cool color temperature. Neutral clean background. Preserve identity
+      exactly; not angular, no sharp cheekbones, no glamour, no gore, no redesign, no
+      text, no watermark.
     constraints:
       - "Chest/shoulders/head; fully frontal face."
       - "Maximum face-geometry fidelity to the locked reference."
