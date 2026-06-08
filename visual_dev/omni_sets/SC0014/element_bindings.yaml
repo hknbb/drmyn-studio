@@ -3,11 +3,13 @@ record_type: element_binding
 element_id: C01
 element_type: character
 kling_alias: "@C01_NADIA"
-binding_status: planned
+binding_status: created
+platform_asset_ref: visual_dev/elements/characters/C01/kling_element_reference_C01_nursery_evening.yaml
+platform_asset_ref_note: "KER_C01_NURSERY_EVENING_V001 — four-view Kling element reference (QC>=85)."
 voice_capability: none
 native_audio_readiness: not_required
 kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
-notes: "Nadia. Silent in SC0014. Planned alias; binding becomes 'created' after the hero lock + reference exist."
+notes: "Nadia. Silent in SC0014. Promoted to 'created': Stage-1 hero (MJ_C01_HERO_V001) + Stage-2 --oref lock (MJ_C01_OREFLOCK_V001) + Stage-3 four-view QC>=85 (PQC_C01_NURSERY_EVENING_V001) + reference KER_C01_NURSERY_EVENING_V001."
 provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
 ---
 schema_version: "0.x-draft"

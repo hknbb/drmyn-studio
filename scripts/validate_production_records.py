@@ -88,6 +88,12 @@ REVIEW_DECISION_PATTERN = "evidence/review_decisions/*.yaml"
 GPT_IMAGES_PERSPECTIVE_PACK_PATTERN = (
     "visual_dev/elements/**/gpt_images_perspective_pack*.yaml"
 )
+# Real packs in this repo live under per-element ``perspective_packs/`` dirs and are
+# named ``PPACK_*.yaml`` rather than ``gpt_images_perspective_pack*.yaml``. Discover
+# both so the cross-reference index (kling_element_reference / perspective_qc) sees them.
+GPT_IMAGES_PERSPECTIVE_PACK_DIR_PATTERN = (
+    "visual_dev/elements/**/perspective_packs/*.yaml"
+)
 KLING_ELEMENT_REFERENCE_PATTERN = "visual_dev/elements/**/kling_element_reference*.yaml"
 KLING_CHARACTER_LOOK_ELEMENT_PATTERN = (
     "visual_dev/elements/characters/*/kling_elements/*.yaml"
@@ -262,7 +268,8 @@ def collect_production_files(repo_root: Path) -> dict[str, list[Path]]:
         "dialogue_qc_report": sorted(repo_root.glob(DIALOGUE_QC_REPORT_PATTERN)),
         "review_decision_record": sorted(repo_root.glob(REVIEW_DECISION_PATTERN)),
         "gpt_images_perspective_pack": sorted(
-            repo_root.glob(GPT_IMAGES_PERSPECTIVE_PACK_PATTERN)
+            set(repo_root.glob(GPT_IMAGES_PERSPECTIVE_PACK_PATTERN))
+            | set(repo_root.glob(GPT_IMAGES_PERSPECTIVE_PACK_DIR_PATTERN))
         ),
         "kling_element_reference_record": sorted(
             repo_root.glob(KLING_ELEMENT_REFERENCE_PATTERN)

@@ -97,10 +97,13 @@ class CanonHydrationReviewInfraTests(unittest.TestCase):
         # then incremented when PR-ZARA-1 added planning/characters/C06.yaml (Zara Okonkwo intake),
         # then again when PR-JIN-1 added planning/characters/C08.yaml (Jin Vale protected-subject intake),
         # then again when PR-SERA-1 added planning/characters/C07.yaml (Sera / Seraphina Mast intake),
-        # then again when M5 FAZ A added planning/characters/C09.yaml (Otto intake for SC0047).
-        # Bumped 23 -> 26 -> 27 to match the current planning intake set (count grows as new
-        # character/wardrobe planning records are added; deterministic for fixed inputs).
-        self.assertEqual(27, len(queue_payload["queue"]["B"]))
+        # then again when M5 FAZ A added planning/characters/C09.yaml (Otto intake for SC0047),
+        # then again when the M5 four-scene rebuild (SC0014/0047/0089/0111) added its planning
+        # intake records (C10 enforcer + per-scene wardrobe/location/prop planning records).
+        # Bumped 23 -> 26 -> 27 -> 36 to match the current planning intake set (count grows as
+        # new character/wardrobe/location/prop planning records are added; deterministic for
+        # fixed inputs).
+        self.assertEqual(36, len(queue_payload["queue"]["B"]))
         self.assertEqual(5, len(queue_payload["queue"]["C"]))
         self.assertEqual(115, len(queue_payload["queue"]["D"]))
         self.assertTrue((packet_root / "SC0001.md").exists())
