@@ -52,10 +52,62 @@ candidate_images:
       style_compliance: 5
       continuity: 5
       production_usability: 4
+  - asset_id: PPACK_C01_FIELD_NIGHT_V001__close_portrait_front
+    path: "archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_18.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_18.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 field-night four-view close_portrait_front; frontal identity lock in dark operational wardrobe, calm focused expression. QC 93."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+  - asset_id: PPACK_C01_FIELD_NIGHT_V001__three_quarter_waist
+    path: "archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_23.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_23.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 field-night four-view three_quarter_waist; ~30-45 deg, hooded dark jacket, identity consistent. QC 92."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+  - asset_id: PPACK_C01_FIELD_NIGHT_V001__full_body_front
+    path: "archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_28.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_28.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 field-night four-view full_body_front; head-to-toe operational wardrobe (jacket + trousers + boots). Face small at full scale. QC 88."
+    quality_scores:
+      identity_consistency: 4
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 4
+  - asset_id: PPACK_C01_FIELD_NIGHT_V001__profile_full
+    path: "archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_48_54.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_48_54.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 field-night four-view profile_full; clean 90 deg profile, soft jaw, identity consistent. QC 91."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 4
 canonical_images:
   - PPACK_C01_NURSERY_EVENING_V001__close_portrait_front
   - PPACK_C01_NURSERY_EVENING_V001__three_quarter_waist
   - PPACK_C01_NURSERY_EVENING_V001__profile_full
   - PPACK_C01_NURSERY_EVENING_V001__full_body_front
+  - PPACK_C01_FIELD_NIGHT_V001__close_portrait_front
+  - PPACK_C01_FIELD_NIGHT_V001__three_quarter_waist
+  - PPACK_C01_FIELD_NIGHT_V001__full_body_front
+  - PPACK_C01_FIELD_NIGHT_V001__profile_full
 round_status: complete
 pack_manifest_sync: applied
