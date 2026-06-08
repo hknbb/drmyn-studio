@@ -22,7 +22,7 @@ prompt_text: >-
   natural reference headshot — consistent identity, not a fashion model, not
   angular, no sharp cheekbones, not gaunt, not cold, not stern, no harsh shadows,
   no glamour, no text, no watermark
-  --v 7 --ar 2:3 --oref REPLACE_WITH_HERO_IMAGE_URL --ow 250
+  --v 7 --ar 2:3 --oref https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/7e3f6290ae9095a80787fbba69e0258a523fb73e6a09cce23fbed87cde99a77b_384_N.png --ow 250
 status: active
 canon_lock: false
 generation_params:
@@ -33,6 +33,7 @@ generation_params:
   stage: "2_of_3_oref_identity_lock"
   oref_source_hero_id: MJ_C01_HERO_V001
   oref_source_external_ref: "archive/nexuszero/_elements/C01/stage1/images/u9435212546_Natural_relaxed_portrait_of_a_warm_kind_gentle_wo_3aa0e83b-7f2d-44c5-9668-948f15f791a6_3.png"
+  oref_source_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/7e3f6290ae9095a80787fbba69e0258a523fb73e6a09cce23fbed87cde99a77b_384_N.png"
   oref_usage_note: >
     --oref needs an image URL, not a local path. In Midjourney, upload / drag the
     approved Stage-1 hero (MJ_C01_HERO_V001) into the prompt bar, copy its image URL,
