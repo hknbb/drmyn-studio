@@ -15,3 +15,16 @@ entries:
     from N1 batch; soft-structure / calm-natural prompt v01 (seed 47 line). Selected
     over 17 candidates on facial anatomy (oval, full cheeks, rounded jaw, large almond
     eyes) + role fit.
+- kind: mj_v7_oref_identity_lock
+  element_id_or_take_id: MJ_C01_OREFLOCK_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-08T16:07:13Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C01/stage2/images/u9435212546_Same_woman_identical_face_-_early-to-mid_thirties_213e614e-8328-4a65-a5c8-30d4d983130f_2.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C01/stage2/images/u9435212546_Same_woman_identical_face_-_early-to-mid_thirties_213e614e-8328-4a65-a5c8-30d4d983130f_2.png
+  sha256: 11f6710e87285c24df07677d84e27478437f63da49cccd403f1673ea47dd573a
+  size_bytes: 1628074
+  notes: Stage-2 MJ V7 --oref identity lock (ow 250), seeded from MJ_C01_HERO_V001.
+    Operator-approved (2026-06-08) from N2 batch; cleanest canonical reference (straight-to-camera,
+    even frontal light, plain bg, crew cream knit, calm near-neutral). Seeds Stage-3
+    four-view.

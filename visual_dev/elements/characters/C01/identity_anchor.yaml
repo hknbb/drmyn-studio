@@ -2,7 +2,7 @@ schema_version: "0.x-draft"
 record_type: character_identity_anchor
 identity_anchor_id: C01_IDENTITY_ANCHOR_V001
 character_id: C01
-status: hero_locked_stage1
+status: identity_locked_stage2
 source_reference_strategy:
   reference_sheet_allowed_as_identity_source: false
   final_hero_lock_requires_single_clean_image: true
@@ -19,6 +19,18 @@ front_hero_lock_ref:
   approved_at: "2026-06-08T00:00:00Z"
   selection_basis: "Operator-approved single clean image from MJ v8.1 N1 batch; chosen over 17 candidates on facial anatomy (soft oval, full cheeks, rounded jaw, large warm almond eyes, soft full lips) + role fit (medic/mother/partner warmth with adult gravitas)."
   next_external_step: "Stage 2 — MJ V7 --oref refinement seeded from this locked hero, then Stage 3 ChatGPT Images 2 four_view_scale_angle_v3 per look."
+stage2_identity_lock_ref:
+  locked: true
+  selected_lock_id: MJ_C01_OREFLOCK_V001
+  prompt_ref: prompts/draft/SC0014__t2i-char-c01-oref-lock-mj-v7__v01.yaml
+  media_index_ref: evidence/local_media_indices/LOCAL_MEDIA_INDEX__elements_ARCHIVE_V001.yaml
+  external_ref: "archive/nexuszero/_elements/C01/stage2/images/u9435212546_Same_woman_identical_face_-_early-to-mid_thirties_213e614e-8328-4a65-a5c8-30d4d983130f_2.png"
+  sha256: "11f6710e87285c24df07677d84e27478437f63da49cccd403f1673ea47dd573a"
+  oref_source_hero_id: MJ_C01_HERO_V001
+  approved_by: operator
+  approved_at: "2026-06-08T00:00:00Z"
+  selection_basis: "Operator-approved from N2 --oref batch; cleanest canonical reference (straight-to-camera, even frontal light, plain neutral bg, crew cream knit, calm near-neutral). Identity consistency with Stage-1 hero confirmed across the whole batch."
+  next_external_step: "Stage 3 — ChatGPT Images 2 four_view_scale_angle_v3 per scene look, seeded from this lock; then real perspective_qc (>=85) -> kling_element_reference -> binding 'created'."
 fixed_identity_anchors:
   - "Woman, early to mid 30s; face geometry and identity must stay constant across all four scene looks."
   - "Slim, healthy, capable build with relaxed natural posture (a former field medic — fit, not gaunt or severe)."
