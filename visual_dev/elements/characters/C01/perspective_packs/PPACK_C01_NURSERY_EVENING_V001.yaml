@@ -2,7 +2,7 @@ schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
 prompt_pack_id: PPACK_C01_NURSERY_EVENING_V001
 status: draft
-source_reference_id: "MJ_C01_OREFLOCK_V001 — Stage-2 MJ V7 --oref identity lock (archive/nexuszero/_elements/C01/stage2/images/u9435212546_Same_woman_identical_face_-_early-to-mid_thirties_213e614e-8328-4a65-a5c8-30d4d983130f_2.png; sha256 11f6710e87285c24df07677d84e27478437f63da49cccd403f1673ea47dd573a). Seed this single clean reference into ChatGPT Images 2."
+source_reference_id: "DUAL SEED. PRIMARY (geometry/pose/lighting/expression) = MJ_C01_OREFLOCK_V001, Stage-2 --oref lock (archive/nexuszero/_elements/C01/stage2/images/u9435212546_Same_woman_identical_face_-_early-to-mid_thirties_213e614e-8328-4a65-a5c8-30d4d983130f_2.png; sha256 11f6710e87285c24df07677d84e27478437f63da49cccd403f1673ea47dd573a). SECONDARY (skin tone, warmth, hair detail only) = MJ_C01_HERO_V001, Stage-1 hero (archive/nexuszero/_elements/C01/stage1/images/u9435212546_Natural_relaxed_portrait_of_a_warm_kind_gentle_wo_3aa0e83b-7f2d-44c5-9668-948f15f791a6_3.png; sha256 4d2ccc4f5a73a71f13c4fe75b53b14060621eb08b5a79e4563640dc4312d59eb). Take pose/framing/neutral light from PRIMARY; take only skin tone + warmth + hair texture from SECONDARY."
 target_model: chatgpt_images_2
 target_role: multi_perspective_element_expander
 element_id: C01
@@ -10,6 +10,10 @@ element_type: character
 perspective_policy: four_view_scale_angle_v3
 full_body_visible: true
 shared_preservation_instruction: >
+  Use TWO references: take pose, framing, neutral even lighting and the calm
+  expression from the PRIMARY reference (Stage-2 lock); take only skin tone, warmth
+  and hair texture from the SECONDARY reference (Stage-1 hero). Do not copy the
+  Stage-1 directional window light, angle, or background.
   Preserve the locked Nadia identity exactly across all four views — same warm,
   soft-structured face from the seed reference: soft rounded face shape, gently
   rounded jawline, full soft cheeks, gentle features, warm large almond eyes, soft
