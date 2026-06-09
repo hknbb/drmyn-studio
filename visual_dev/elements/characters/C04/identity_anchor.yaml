@@ -13,16 +13,18 @@ front_hero_lock_ref:
   external_ref: "pending — Stage 1 Midjourney V8.1 narrative identity output not yet generated; lock after Stage 2 V7 --oref refinement."
 fixed_identity_anchors:
   - "Man, early 40s; face geometry and identity must stay constant across all operational looks."
-  - "Lean instrument silhouette, sharpened by ledger, jacket, and contained posture; precision-trained movement."
-  - "Controlled, precise, hard-edged screen presence without overt theatricality; hierarchy-aware and operationally efficient."
-  - "Professional polish in hair and grooming; no glamor finish; procedural threat legible in economical movement."
+  - "A real, three-dimensional human with an inner life and a lived-in face — controlled and intelligent, NOT a hard-edged caricature or cartoon villain."
+  - "Lean, contained build; precision-trained, economical movement; calm self-possessed bearing."
+  - "Quiet controlled authority and procedural command — steady observant eyes, even resting expression; unsettling through calm certainty rather than scowling or glaring."
+  - "Neat professional grooming; dark corporate neutrals worn with precision; no glamour finish, not a fashion model."
 mutable_appearance_allowed:
   - "Wardrobe per operational context (office-facing operational executive / field-command variant)."
   - "Hair state within the anchor (neat, precise, contained)."
   - "Fatigue level and damage (clean → minimal fatigue; none → operational exertion register) as circumstance demands."
   - "Environmental lighting register (office practicals, field tactical, command-center harsh)."
 forbidden_drift:
-  - "Do not soften into straightforward ally-in-waiting; his threat is procedural, not sympathetic."
+  - "Do not soften into a straightforward ally-in-waiting or a warm/sympathetic-soft read; his threat is procedural, not sympathetic. (Humanized does NOT mean warm — he is a believable man, not a friend.)"
+  - "Do not render as a hard-edged caricature, scowling heavy, or cartoon villain; the menace is calm and exact, not theatrical."
   - "Do not style as charismatic, invulnerable, or fashion-forward; read as instrument-level efficiency."
   - "Do not alter face geometry, age read, or lean silhouette between looks."
   - "Do not erase the precision-to-threat-sharpening baseline in performance framing."

@@ -12,12 +12,17 @@ source_refs:
   aesthetic_refs:
   - VALE_DOMESTIC_RESTRAINT
 prompt_text: >-
-  Dimitri, early 40s, lean instrument silhouette sharpened by contained posture and
-  precision. Dark corporate neutrals, minimal softness. Controlled exact face geometry,
-  hard-edged screen presence, hierarchy-aware. Procedural threat in economical movement,
-  no glamor. Cinematic production character reference, neutral clean background, identity
-  readability, restrained realism, no redesign, no fashion spread, no text, no watermark
-  --v 8.1 --style raw --ar 2:3 --seed 104014
+  Dimitri, a composed, intelligent man in his early 40s. A real, lived-in human face —
+  calm and self-possessed, steady observant eyes, an even natural resting expression,
+  quiet controlled authority; naturally serious but not a caricature. Neat professional
+  grooming, dark corporate neutrals worn with precision, lean contained build. His
+  presence reads as quiet certainty and procedural command — three-dimensional and
+  believable, an intelligent operator who is unsettling because he is calm and exact,
+  not because he scowls or glares. Soft even light, neutral clean background. Cinematic
+  production character reference, identity readability, natural restrained realism; not
+  glamorous, not a fashion model, no cartoon menace, no harsh caricature, no text, no
+  watermark
+  --v 8.1 --ar 2:3 --seed 414
 status: active
 canon_lock: false
 generation_params:
@@ -26,14 +31,20 @@ generation_params:
   adapter_name: midjourney
   identity_anchor_ref: visual_dev/elements/characters/C04/identity_anchor.yaml
   stage: "1_of_3_narrative_identity"
+  revision_note: >
+    Humanizing pass (controlled-but-human, per the character direction). Kept Dimitri's
+    controlled, precise, procedural-command register but redesigned away from the
+    hard-edged 'instrument / cartoon menace' caricature toward a real, three-dimensional
+    man with a lived-in face, steady eyes and an even resting expression — unsettling
+    through calm certainty, not scowling. Removed --style raw (pushed severity), new seed.
+    He is deliberately NOT warm/sympathetic-soft like Nadia; threat stays procedural.
   aesthetic_keywords_injected:
-  - lean instrument silhouette
-  - dark corporate neutrals, no glamor
-  - controlled exact presence, hard-edged
-  - procedural threat, economical movement
-  - identity over coverage
+  - real lived-in human face, three-dimensional (not a caricature villain)
+  - calm self-possessed, steady observant eyes, even resting expression
+  - quiet controlled authority / procedural command (unsettling via calm, not scowls)
+  - dark corporate neutrals, lean contained build; not glamorous, no cartoon menace
   planning_name_filter:
     forbidden:
     - Dimitri Koss
   recommended_model_version: --v 8.1
-  recommended_style: --style raw
+  recommended_style: "(none — --style raw removed; raw pushed a hard caricature)"
