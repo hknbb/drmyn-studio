@@ -21,7 +21,7 @@ prompt_text: >-
   certainty, not scowling or glaring. Consistent identity; natural restrained realism;
   not glamorous, not a fashion model, no cartoon menace, no harsh caricature, no text,
   no watermark
-  --v 7 --ar 2:3 --oref REPLACE_WITH_HERO_IMAGE_URL --ow 250
+  --v 7 --ar 2:3 --oref https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/06d91a5f4bb93793b79c0dde6542d4d8a0f3a85c7fd8c502bf4bb82b20c054e1_384_N.png --ow 250
 status: active
 canon_lock: false
 generation_params:
@@ -32,6 +32,7 @@ generation_params:
   stage: "2_of_3_oref_identity_lock"
   oref_source_hero_id: MJ_C04_HERO_V001
   oref_source_external_ref: "archive/nexuszero/_elements/C04/stage1/images/dim1_4.png"
+  oref_source_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/06d91a5f4bb93793b79c0dde6542d4d8a0f3a85c7fd8c502bf4bb82b20c054e1_384_N.png"
   oref_usage_note: >
     --oref needs an image URL, not a local path. Upload the approved Stage-1 hero
     (MJ_C04_HERO_V001) to Midjourney, copy its image URL, and paste it after --oref
