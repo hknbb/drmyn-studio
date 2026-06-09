@@ -1,0 +1,52 @@
+scene_id: SC0111
+created_at: '2026-06-09T12:14:24Z'
+storage_policy: external_image_only
+entries:
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C01_COMPOUND_BATTLEWORN_V001__close_portrait_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T12:14:24Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026
+    15_10_55.png
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0111/C01/stage3/images/ChatGPT
+    Image 9 Haz 2026 15_10_55.png
+  sha256: 471b79b620776209331248b5377f106b6f8352b7dd7dab983f10e1317f360dec
+  size_bytes: 2176751
+  notes: Stage-3 battle-worn four-view close_portrait_front. Dual-ref seeded.
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C01_COMPOUND_BATTLEWORN_V001__three_quarter_waist
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T12:14:26Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026
+    15_10_52.png
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0111/C01/stage3/images/ChatGPT
+    Image 9 Haz 2026 15_10_52.png
+  sha256: 053d0e192d02ce072a56fd7aabab9cec38f8cf668c2e87806ba4b72c0a8f9130
+  size_bytes: 2079161
+  notes: Stage-3 battle-worn four-view three_quarter_waist.
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C01_COMPOUND_BATTLEWORN_V001__profile_full
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T12:14:29Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026
+    15_10_58.png
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0111/C01/stage3/images/ChatGPT
+    Image 9 Haz 2026 15_10_58.png
+  sha256: 64714963ac37cb60951a46646b658added7f1bf850d9b337b41f12cc387ce728
+  size_bytes: 2082402
+  notes: Stage-3 battle-worn four-view profile_full.
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C01_COMPOUND_BATTLEWORN_V001__full_body_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T12:14:29Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026
+    15_10_47.png
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0111/C01/stage3/images/ChatGPT
+    Image 9 Haz 2026 15_10_47.png
+  sha256: d7d56b5f117aeebf833b272bde7e16d23fe0130d6dc9d5be5d592e738d901fd1
+  size_bytes: 2209495
+  notes: Stage-3 battle-worn four-view full_body_front.
