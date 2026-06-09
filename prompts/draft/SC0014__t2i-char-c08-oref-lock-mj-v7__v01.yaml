@@ -1,0 +1,51 @@
+prompt_id: SC0014__t2i-char-c08-oref-lock-mj-v7__v01
+scene_id: SC0014
+prompt_type: t2i_character_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0014/scene_card.yaml
+  scene_excerpt: "PROTECTED SUBJECT Stage 2 of 3 — MJ V7 --oref identity lock for the infant Jin (C08), seeded from the operator-approved Stage-1 hero (MJ_C08_HERO_V001). Clean, identity-consistent canonical reference; safe/supported only; not the taking action."
+  character_refs:
+  - C08
+  wardrobe_refs:
+  - WD008
+  aesthetic_refs:
+  - VALE_DOMESTIC_RESTRAINT
+prompt_text: >-
+  Same baby, identical face — a warm, soft, peaceful infant about eight months old.
+  Soft round face, full chubby cheeks, big gentle warm eyes, tiny soft features, fine
+  wispy hair, soft healthy skin. Clean canonical character reference: calm and content,
+  gently awake, looking toward camera; held safe and fully supported in gentle adult
+  arms, ordinary and serene. Cosy soft domestic-evening onesie in warm muted neutrals,
+  a pale blue name bracelet on one wrist. Soft diffused warm light, plain neutral
+  background. Tender, sweet, natural soft realism — consistent identity; no distress,
+  no crying, no fear, safe supported handling only; no redesign, no glamour, no text,
+  no watermark
+  --v 7 --ar 2:3 --oref https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/449595521eebf1cabc392a1cb727479746274d5bf4057dff69eecb10d06b5c15_384_N.png --ow 250
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  identity_anchor_ref: visual_dev/elements/characters/C08/identity_anchor.yaml
+  stage: "2_of_3_oref_identity_lock"
+  protected_subject: true
+  protected_subject_gate: "Operator-authorized 2026-06-09. Safe/supported-only constraints REMAIN binding: infant calm, safe, fully supported; no distress/crying/fear/peril; no restraint or unsafe handling; no emotional exploitation; this is a neutral identity reference, NOT the taking action; distress stays off-frame in any downstream shot."
+  oref_source_hero_id: MJ_C08_HERO_V001
+  oref_source_external_ref: "archive/nexuszero/_elements/C08/stage1/images/MJ_C08_HERO_V001.png"
+  oref_source_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/449595521eebf1cabc392a1cb727479746274d5bf4057dff69eecb10d06b5c15_384_N.png"
+  oref_usage_note: >
+    --oref needs an image URL (already wired). --ow 250 is a strong identity lock while
+    the text steers a clean, calm, safe-supported canonical reference. Raise --ow toward
+    400-600 if the face drifts; lower toward 100-150 if it looks stiff. Keep every output
+    safe and supported — no distress, no restraint, no taking action.
+  revision_note: >
+    Stage 2 identity-lock pass for the protected-subject infant. Reuses the warm soft
+    Stage-1 language, built as a clean canonical reference (looking to camera, soft even
+    light, plain background, safe supported hold) to seed Stage 3 ChatGPT four-view.
+    Identity carried by --oref from the approved hero.
+  recommended_model_version: --v 7
+  recommended_style: "(none — identity from --oref, warmth/softness from the text)"

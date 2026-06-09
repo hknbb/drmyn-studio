@@ -28,3 +28,16 @@ entries:
     Operator-approved (2026-06-08) from N2 batch; cleanest canonical reference (straight-to-camera,
     even frontal light, plain bg, crew cream knit, calm near-neutral). Seeds Stage-3
     four-view.
+- kind: mj_v81_narrative_identity_hero
+  element_id_or_take_id: MJ_C08_HERO_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T13:20:34Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C08/stage1/images/MJ_C08_HERO_V001.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C08/stage1/images/MJ_C08_HERO_V001.png
+  sha256: 37a196ad892672affca7a21ad87f6321d1218701076efb2477226ac5a8a0f532
+  size_bytes: 346602
+  notes: Stage-1 MJ v8.1 narrative-identity hero for protected-subject infant Jin
+    (selection aa47c521). Operator-authorized + approved 2026-06-09 from J1 batch;
+    cleanest frontal identity, calm, safe/supported, pale-blue bracelet. Fetched from
+    operator's MJ upload URL (384px variant). Safe/supported-only constraints binding.

@@ -2,16 +2,24 @@ schema_version: "0.x-draft"
 record_type: character_identity_anchor
 identity_anchor_id: C08_IDENTITY_ANCHOR_V001
 character_id: C08
-status: draft
+status: hero_locked_stage1
 source_reference_strategy:
   reference_sheet_allowed_as_identity_source: false
   final_hero_lock_requires_single_clean_image: true
   contact_sheet_layout_forbidden_as_lock: true
 source_reference_sheet_ref: prompts/draft/SC0014__t2i-char-c08-identity-mj-v8__v01.yaml
 front_hero_lock_ref:
-  pending: true
-  protected_subject_gate: "Operator explicitly authorized Stage-1 identity generation on 2026-06-09; safe/supported-only constraints remain binding. Lock stays pending until a real clean image is generated and approved."
-  external_ref: "pending — operator-authorized; awaiting real Stage-1 image."
+  pending: false
+  stage1_narrative_identity_locked: true
+  protected_subject_gate: "Operator explicitly authorized Stage-1 identity generation on 2026-06-09; safe/supported-only constraints remain binding through every downstream stage."
+  selected_hero_id: MJ_C08_HERO_V001
+  media_index_ref: evidence/local_media_indices/LOCAL_MEDIA_INDEX__elements_ARCHIVE_V001.yaml
+  external_ref: "archive/nexuszero/_elements/C08/stage1/images/MJ_C08_HERO_V001.png"
+  sha256: "37a196ad892672affca7a21ad87f6321d1218701076efb2477226ac5a8a0f532"
+  approved_by: operator
+  approved_at: "2026-06-09T00:00:00Z"
+  selection_basis: "Operator-approved single clean image from MJ v8.1 J1 batch (aa47c521); cleanest frontal identity readability, calm, safe and fully supported, pale-blue bracelet present."
+  next_external_step: "Stage 2 — MJ V7 --oref refinement seeded from this hero (safe/supported framing), then Stage 3 ChatGPT four_view_scale_angle_v3."
 fixed_identity_anchors:
   - "Infant, approximately eight months old; the specific child Jin in the SC0014 nursery scene."
   - "Warm, soft, tender baby: soft round face, full chubby cheeks, big gentle warm eyes, tiny soft features, fine wispy hair, soft healthy skin — sweet and relatable, never clinical."
