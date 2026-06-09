@@ -1,0 +1,19 @@
+session_id: OP-2026-06-09-C01-transit-fourview
+created_at: "2026-06-09T11:00:00Z"
+scene_id: SC0047
+current_task: "C01 Nadia transit four-view QC + Kling element reference promotion"
+recommended_files:
+  - visual_dev/elements/characters/C01/perspective_packs/PPACK_C01_TRANSIT_V001.yaml
+  - evidence/perspective_qc/PQC_C01_TRANSIT_V001.yaml
+  - visual_dev/elements/characters/C01/kling_element_reference_C01_transit.yaml
+  - visual_dev/omni_sets/SC0047/element_bindings.yaml
+recommended_steps:
+  - "Operator generated the Stage-3 transit four-view in ChatGPT Images 2 with dual references (Stage-2 lock primary + Stage-1 hero secondary)."
+  - "Operator reviewed the four views; all read as the locked Nadia identity in WD012 anonymous wardrobe with neutral backgrounds and a calm warm expression."
+  - "Assistant scored the four perspectives (all >=85) and recorded the perspective_qc_report."
+  - "Promote SC0047 C01 binding to 'created' and author the transit kling_element_reference_record."
+status: complete
+notes: >
+  Real images, real review. Same locked Nadia identity (MJ_C01_OREFLOCK_V001) carried
+  into the SC0047 transit look. No fabricated readiness. SC0047 native-audio / Marcus
+  V.O. provisioning is tracked separately and is unaffected by this visual binding.

@@ -3,7 +3,9 @@ record_type: element_binding
 element_id: C01
 element_type: character
 kling_alias: "@C01_NADIA"
-binding_status: planned
+binding_status: created
+platform_asset_ref: visual_dev/elements/characters/C01/kling_element_reference_C01_transit.yaml
+platform_asset_ref_note: "KER_C01_TRANSIT_V001 — transit four-view Kling element reference (QC>=85)."
 voice_capability: none
 native_audio_readiness: blocked
 kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
@@ -12,7 +14,7 @@ speaker_mapping:
     speaker_kling_alias: "@C01_NADIA"
     dialogue_required: true
     native_audio_readiness: blocked
-notes: "Nadia. Two short lines in SC0047 ('I need the room until then.' / 'Yes.'). Voice not provisioned."
+notes: "Nadia. Two short lines in SC0047 ('I need the room until then.' / 'Yes.'). Visual binding promoted to 'created' (KER_C01_TRANSIT_V001, QC>=85). Voice still not provisioned -> dialogue suppressed (Format A) until a Kling-native voice exists."
 provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
 ---
 schema_version: "0.x-draft"
