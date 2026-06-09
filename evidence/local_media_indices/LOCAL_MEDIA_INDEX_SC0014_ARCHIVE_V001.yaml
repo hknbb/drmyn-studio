@@ -51,3 +51,45 @@ entries:
   sha256: 6c9b5dfc05ab048dad37ca9c17456c180e3af260c6e548c0b27c34f89ea7d21a
   size_bytes: 2157777
   notes: 'Stage-3 four-view: full_body_front.'
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C08_NURSERY_EVENING_V001__close_portrait_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T14:30:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0014/C08/stage3/images/jin3_2.png
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C08/stage3/images/jin3_2.png
+  sha256: dfef4ecfd9f5be1c18d190a11d5fc5e1d95d45f54f19354cc4ee23d21f64510d
+  size_bytes: 2175747
+  notes: PROTECTED SUBJECT. Stage-3 four-view close_portrait_front; calm, safe/supported.
+    Dual-ref seeded.
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C08_NURSERY_EVENING_V001__three_quarter_waist
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T14:30:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0014/C08/stage3/images/jin3_3.png
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C08/stage3/images/jin3_3.png
+  sha256: 799bcbf89f5ad73e2313169b9f7e6056f3ac650da1c4c700a73413a16fe86247
+  size_bytes: 2229962
+  notes: PROTECTED SUBJECT. Stage-3 four-view three_quarter_waist; calm, safe/supported.
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C08_NURSERY_EVENING_V001__profile_full
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T14:30:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0014/C08/stage3/images/jin3_1.png
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C08/stage3/images/jin3_1.png
+  sha256: caa462d08413f346461b9e4da0981bd16cb5b0584794484d72752ae52a47e0f8
+  size_bytes: 2223289
+  notes: PROTECTED SUBJECT. Stage-3 four-view profile_full; calm, safe/supported.
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C08_NURSERY_EVENING_V001__full_body_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T14:30:01Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0014/C08/stage3/images/jin3_4.png
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C08/stage3/images/jin3_4.png
+  sha256: 6ac368801ff46a726291a74bd74d2345a9da09d798c5ee71f08ce1499f4848c4
+  size_bytes: 2183739
+  notes: PROTECTED SUBJECT. Stage-3 four-view full_body_front; whole infant safely
+    supported.

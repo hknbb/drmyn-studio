@@ -1,0 +1,68 @@
+schema_version: "0.x-draft"
+record_type: perspective_qc_report
+perspective_qc_id: PQC_C08_NURSERY_EVENING_V001
+status: approved
+scene_id: SC0014
+element_id: C08
+prompt_pack_id: PPACK_C08_NURSERY_EVENING_V001
+operator_session_ref: OP-2026-06-09-C08-nursery-fourview
+perspective_scores:
+  - prompt_id: PPACK_C08_NURSERY_EVENING_V001__close_portrait_front
+    perspective: close_portrait_front
+    identity_preservation: 94
+    perspective_usefulness: 93
+    material_palette_continuity: 92
+    production_reference_cleanliness: 93
+    hallucination_absence: 94
+    character_description_strength: 93
+    identity_readability: 94
+    expression_performance_readability: 93
+    total_score: 93
+    decision: pass
+  - prompt_id: PPACK_C08_NURSERY_EVENING_V001__three_quarter_waist
+    perspective: three_quarter_waist
+    identity_preservation: 92
+    perspective_usefulness: 93
+    material_palette_continuity: 92
+    production_reference_cleanliness: 92
+    hallucination_absence: 92
+    silhouette_readability: 92
+    wardrobe_world_fit: 92
+    view_distinction: 93
+    total_score: 92
+    decision: pass
+  - prompt_id: PPACK_C08_NURSERY_EVENING_V001__profile_full
+    perspective: profile_full
+    identity_preservation: 91
+    perspective_usefulness: 92
+    material_palette_continuity: 91
+    production_reference_cleanliness: 92
+    hallucination_absence: 92
+    no_directional_confusion: 94
+    total_score: 91
+    decision: pass
+  - prompt_id: PPACK_C08_NURSERY_EVENING_V001__full_body_front
+    perspective: full_body_front
+    identity_preservation: 87
+    perspective_usefulness: 90
+    material_palette_continuity: 91
+    production_reference_cleanliness: 88
+    hallucination_absence: 90
+    silhouette_readability: 91
+    scale_distinction: 92
+    total_score: 88
+    decision: pass
+gate:
+  minimum_score: 85
+  all_four_required: true
+  all_perspectives_required: true
+  can_advance_to_kling_reference: true
+notes: >
+  PROTECTED SUBJECT. Real review of the operator-authorized + operator-approved Stage-3
+  four_view_scale_angle_v3 set for the infant Jin (archived, git-ignored). Every view shows
+  the baby calm, content, safe and FULLY SUPPORTED (held in adult arms / seated on lap),
+  no distress, pale-blue bracelet present, warm-neutral onesie, neutral backgrounds; all
+  read as the locked Jin identity. All perspectives >=85; full_body_front lowest (88) due
+  to small face at full scale. Dual-reference seeded (Stage-2 lock primary + Stage-1 hero
+  secondary). Safe/supported-only constraints remain binding downstream; SC0014 omni
+  generation must still keep the taking off the infant (adult performance + Nadia POV).
