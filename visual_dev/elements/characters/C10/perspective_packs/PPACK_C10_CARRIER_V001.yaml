@@ -1,0 +1,87 @@
+schema_version: "0.x-draft"
+record_type: gpt_images_perspective_pack
+prompt_pack_id: PPACK_C10_CARRIER_V001
+status: draft
+source_reference_id: "DUAL SEED for @C10_CARRIER. PRIMARY (geometry/pose/light) = MJ_C10_CARRIER_OREFLOCK_V001 Stage-2 lock (archive/nexuszero/_elements/C10/stage2/images/car_5.png; sha256 8ea76c35bdb33fa5071f880af0156b594f30f8674659e54ce1905b7fbec136c8). SECONDARY (skin tone/hair texture) = MJ_C10_CARRIER_HERO_V001 Stage-1 hero (archive/nexuszero/_elements/C10/stage1/images/ch_1.png; sha256 9e7306e4a47ef164562822fd06e0d14804cf7b8412df05981c6671a54009e6aa)."
+target_model: chatgpt_images_2
+target_role: multi_perspective_element_expander
+element_id: C10
+element_type: character
+perspective_policy: four_view_scale_angle_v3
+full_body_visible: true
+shared_preservation_instruction: >
+  Use the two references: pose/framing/light from the PRIMARY (Stage-2 lock), skin tone
+  and hair texture only from the SECONDARY (Stage-1 hero). This is the @C10_CARRIER figure
+  — an anonymous adult enforcement operative, heavier/stockier build, buzzed very-short
+  hair, goatee. Keep him visibly DISTINCT from the leaner @C10_HOLDER figure (anti-clone).
+  Plain dark functional clothing (WD009, no insignia, no tactical rig); professional
+  neutral demeanor; interchangeable procedural functionary, not a hero. Change only camera
+  scale and angle. Neutral clean background; restrained realism; no redesign, no glamour,
+  no insignia, no text, no watermark.
+source_refs:
+  scene_card_ref: planning/scenes/SC0014/scene_card.yaml
+  element_sheet_ref: visual_dev/elements/characters/C10/look_sheets/LOOKSHEET_C10_ENFORCER_V001.yaml
+  model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260504T113000Z_chatgpt_image.yaml
+prompts:
+  - prompt_id: PPACK_C10_CARRIER_V001__full_body_front
+    perspective: full_body_front
+    prompt_text: >
+      Full-body front view, head to feet in frame, of the @C10_CARRIER operative
+      (heavier/stockier, buzzed hair, goatee) in plain dark functional clothing. Standing
+      neutral, even soft light, neutral clean background. Preserve identity and wardrobe;
+      no insignia, no redesign, no text, no watermark.
+    constraints:
+      - "Head-to-toe; heavier/stockier build, buzzed hair."
+      - "Plain dark functional clothing (WD009); no tactical rig, no insignia."
+      - "Neutral background; visibly distinct from @C10_HOLDER."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "2:3"
+  - prompt_id: PPACK_C10_CARRIER_V001__three_quarter_waist
+    perspective: three_quarter_waist
+    prompt_text: >
+      Three-quarter angle, waist-up framing, of the same @C10_CARRIER operative. Body
+      turned ~30-45 degrees, head toward camera, neutral demeanor. Even soft light,
+      neutral clean background. Preserve identity and garments; no insignia, no redesign,
+      no text, no watermark.
+    constraints:
+      - "Waist-up; three-quarter angle; stockier build, buzzed hair."
+      - "Identity + wardrobe identical to full_body_front."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+  - prompt_id: PPACK_C10_CARRIER_V001__close_portrait_front
+    perspective: close_portrait_front
+    prompt_text: >
+      Close front portrait, chest-up, of the same @C10_CARRIER operative — full frontal
+      face for identity lock. Buzzed very-short hair, goatee, unremarkable face geometry,
+      neutral procedural demeanor. Even soft light, neutral clean background. Preserve
+      identity exactly; no insignia, no redesign, no text, no watermark.
+    constraints:
+      - "Chest/shoulders/head; fully frontal face."
+      - "Buzzed hair + goatee; distinct from @C10_HOLDER."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+  - prompt_id: PPACK_C10_CARRIER_V001__profile_full
+    perspective: profile_full
+    prompt_text: >
+      Side profile view of the same @C10_CARRIER operative in the identical wardrobe, for
+      a 3D identity wrap. Clean lateral profile, even soft light, neutral clean background.
+      Preserve identity and garments; no insignia, no redesign, no text, no watermark.
+    constraints:
+      - "True side profile (90 degrees); stockier build, buzzed hair."
+      - "Identity + wardrobe identical to the other three views."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+qc_gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  failed_perspective_revision_only: true
+downstream_use:
+  - "kling_element_reference_record for @C10_CARRIER figure (SC0014)"
+  - "SC0014 omni clip generation (@C10_CARRIER attach)"

@@ -2,7 +2,7 @@ schema_version: "0.x-draft"
 record_type: character_identity_anchor
 identity_anchor_id: C10_IDENTITY_ANCHOR_V001
 character_id: C10
-status: hero_locked_stage1
+status: identity_locked_stage2
 source_reference_strategy:
   reference_sheet_allowed_as_identity_source: false
   final_hero_lock_requires_single_clean_image: true
@@ -30,6 +30,26 @@ figure_hero_locks:
     distinguishing_detail: "Leaner build, darker fuller short hair + short beard. Restrains Nadia."
     approved_by: operator
     approved_at: "2026-06-09T00:00:00Z"
+figure_stage2_locks:
+  - figure_alias: "@C10_CARRIER"
+    locked: true
+    selected_lock_id: MJ_C10_CARRIER_OREFLOCK_V001
+    prompt_ref: prompts/draft/SC0014__t2i-char-c10-carrier-oref-lock-mj-v7__v01.yaml
+    external_ref: "archive/nexuszero/_elements/C10/stage2/images/car_5.png"
+    sha256: "8ea76c35bdb33fa5071f880af0156b594f30f8674659e54ce1905b7fbec136c8"
+    distinguishing_detail: "Heavier/stockier build, buzzed very-short hair, goatee."
+    approved_by: operator
+    approved_at: "2026-06-09T00:00:00Z"
+  - figure_alias: "@C10_HOLDER"
+    locked: true
+    selected_lock_id: MJ_C10_HOLDER_OREFLOCK_V001
+    prompt_ref: prompts/draft/SC0014__t2i-char-c10-holder-oref-lock-mj-v7__v01.yaml
+    external_ref: "archive/nexuszero/_elements/C10/stage2/images/hol_4.png"
+    sha256: "d9a071ac04bd78d4da3d614cd18f92ed847f2563687ab130145dcdfbd182d095"
+    distinguishing_detail: "Fuller short hair + fuller short beard, leaner read; chosen as the most distinct from CARRIER (anti-clone)."
+    approved_by: operator
+    approved_at: "2026-06-09T00:00:00Z"
+    note: "The two C10 Stage-2 batches came out as similar anonymous operatives (on-design: 'deliberately interchangeable'); this pair is the most visually distinct available. Anti-clone is reinforced at O3 by distinguishing_detail + positioning/action."
 fixed_identity_anchors:
   - "Adult man, mid-30s to 40s; unremarkable face geometry and features (no distinctive marking or hero presence); face incidental, not individualized."
   - "Generic competent adult build; practical economical movement; unhurried, professionally calm presence."

@@ -104,3 +104,26 @@ entries:
   notes: Stage-1 hero for @C10_HOLDER (3f56fca9_3). Operator-approved 2026-06-09.
     Leaner build, darker fuller hair + beard, plain dark functional clothing (WD009),
     anonymous operative. Distinct from @C10_CARRIER (anti-clone).
+- kind: mj_v7_oref_identity_lock
+  element_id_or_take_id: MJ_C10_CARRIER_OREFLOCK_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T20:41:07Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C10/stage2/images/car_5.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage2/images/car_5.png
+  sha256: 8ea76c35bdb33fa5071f880af0156b594f30f8674659e54ce1905b7fbec136c8
+  size_bytes: 1257048
+  notes: Stage-2 --oref lock for @C10_CARRIER (57ebf8cf_0). Heavier/stockier, buzzed
+    hair, goatee; clean frontal. Operator-approved 2026-06-09.
+- kind: mj_v7_oref_identity_lock
+  element_id_or_take_id: MJ_C10_HOLDER_OREFLOCK_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T20:41:07Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C10/stage2/images/hol_4.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage2/images/hol_4.png
+  sha256: d9a071ac04bd78d4da3d614cd18f92ed847f2563687ab130145dcdfbd182d095
+  size_bytes: 1761628
+  notes: Stage-2 --oref lock for @C10_HOLDER (43a9d605_1). Fuller short hair + fuller
+    beard, leaner read; chosen as the most distinct from CARRIER (anti-clone). Operator-approved
+    2026-06-09.
