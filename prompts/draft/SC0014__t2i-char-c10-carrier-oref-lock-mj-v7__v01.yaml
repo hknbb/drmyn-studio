@@ -19,7 +19,7 @@ prompt_text: >-
   head-and-shoulders, even soft frontal light, plain neutral background. Interchangeable
   procedural functionary, not a hero; no personality or styling. Consistent identity;
   restrained realism; no redesign, no glamour, no insignia, no text, no watermark
-  --v 7 --ar 2:3 --oref REPLACE_WITH_CARRIER_HERO_URL --ow 250
+  --v 7 --ar 2:3 --oref https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/8818fa16d9a4751f0243b72d851bd28ef8c6673ce11a16d1137efc836d492f42_384_N.png --ow 250
 status: active
 canon_lock: false
 generation_params:
@@ -31,6 +31,7 @@ generation_params:
   figure_alias: "@C10_CARRIER"
   oref_source_hero_id: MJ_C10_CARRIER_HERO_V001
   oref_source_external_ref: "archive/nexuszero/_elements/C10/stage1/images/ch_1.png"
+  oref_source_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/8818fa16d9a4751f0243b72d851bd28ef8c6673ce11a16d1137efc836d492f42_384_N.png"
   oref_usage_note: >
     Upload the approved CARRIER Stage-1 hero (MJ_C10_CARRIER_HERO_V001) to Midjourney,
     copy its image URL, paste after --oref (replacing REPLACE_WITH_CARRIER_HERO_URL).
