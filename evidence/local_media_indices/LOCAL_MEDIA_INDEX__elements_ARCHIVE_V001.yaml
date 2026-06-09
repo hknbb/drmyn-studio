@@ -54,3 +54,16 @@ entries:
     89ce3688_1, ow 250), seeded from MJ_C08_HERO_V001. Operator-approved 2026-06-09
     from J2 batch; calm, safe/supported, sweet chubby identity, bracelet present.
     Safe/supported-only constraints binding.
+- kind: mj_v81_narrative_identity_hero
+  element_id_or_take_id: MJ_C04_HERO_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T16:12:29Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C04/stage1/images/dim1_4.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C04/stage1/images/dim1_4.png
+  sha256: 38cff8999d045893dce9dc4181b14c9481b47c2d90f1322412dc67b51b4f6a4c
+  size_bytes: 7136890
+  notes: Stage-1 MJ v8.1 narrative-identity hero for Dimitri Koss (selection b24e0bce_1).
+    Operator-approved 2026-06-09 from D1 batch; most believable three-dimensional
+    controlled-but-human read (mature, intelligent, quiet authority), dark corporate
+    neutrals, neutral bg.

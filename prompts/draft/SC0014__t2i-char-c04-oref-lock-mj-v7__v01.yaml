@@ -1,0 +1,49 @@
+prompt_id: SC0014__t2i-char-c04-oref-lock-mj-v7__v01
+scene_id: SC0014
+prompt_type: t2i_character_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0014/scene_card.yaml
+  scene_excerpt: "Stage 2 of 3 — MJ V7 --oref identity lock for Dimitri Koss (C04), seeded from the operator-approved Stage-1 hero (MJ_C04_HERO_V001). Clean canonical reference; not a final production view."
+  character_refs:
+  - C04
+  aesthetic_refs:
+  - VALE_DOMESTIC_RESTRAINT
+prompt_text: >-
+  Same man, identical face — Dimitri, a composed, intelligent man in his early 40s. A
+  real, lived-in human face: calm and self-possessed, steady observant eyes, an even
+  natural resting expression, quiet controlled authority. Clean canonical character
+  reference: looking straight to camera, neat professional grooming, dark corporate
+  neutrals, lean contained build; head-and-shoulders, even soft frontal light, plain
+  neutral background. Three-dimensional and believable — unsettling through calm
+  certainty, not scowling or glaring. Consistent identity; natural restrained realism;
+  not glamorous, not a fashion model, no cartoon menace, no harsh caricature, no text,
+  no watermark
+  --v 7 --ar 2:3 --oref REPLACE_WITH_HERO_IMAGE_URL --ow 250
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  identity_anchor_ref: visual_dev/elements/characters/C04/identity_anchor.yaml
+  stage: "2_of_3_oref_identity_lock"
+  oref_source_hero_id: MJ_C04_HERO_V001
+  oref_source_external_ref: "archive/nexuszero/_elements/C04/stage1/images/dim1_4.png"
+  oref_usage_note: >
+    --oref needs an image URL, not a local path. Upload the approved Stage-1 hero
+    (MJ_C04_HERO_V001) to Midjourney, copy its image URL, and paste it after --oref
+    (replacing REPLACE_WITH_HERO_IMAGE_URL). --ow 250 is a strong identity lock; raise
+    toward 400-600 if the face drifts, lower toward 100-150 if stiff.
+  revision_note: >
+    Stage 2 identity-lock pass. Reuses the humanized controlled-but-human Stage-1
+    language, built as a clean canonical reference (straight-to-camera, even light, plain
+    bg) to seed Stage 3 ChatGPT four-view. Identity carried by --oref from the approved
+    hero; he stays a believable man (not warm/sympathetic-soft, not a caricature).
+  planning_name_filter:
+    forbidden:
+    - Dimitri Koss
+  recommended_model_version: --v 7
+  recommended_style: "(none — identity from --oref, character from the text)"
