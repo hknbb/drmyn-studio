@@ -67,3 +67,16 @@ entries:
     Operator-approved 2026-06-09 from D1 batch; most believable three-dimensional
     controlled-but-human read (mature, intelligent, quiet authority), dark corporate
     neutrals, neutral bg.
+- kind: mj_v7_oref_identity_lock
+  element_id_or_take_id: MJ_C04_OREFLOCK_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T16:46:57Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C04/stage2/images/dim2_5.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C04/stage2/images/dim2_5.png
+  sha256: 326d02c8b700b33dc168e542deb9fbf9ec6f20e3783c5c61621fabaa10cccf32
+  size_bytes: 1786564
+  notes: Stage-2 MJ V7 --oref identity lock for Dimitri (selection c254c586_0, ow
+    250), seeded from MJ_C04_HERO_V001. Operator-approved 2026-06-09 from D2 batch;
+    clean near-frontal canonical, calm controlled resting expression, dark corporate
+    neutrals.

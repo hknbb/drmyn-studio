@@ -2,7 +2,7 @@ schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
 prompt_pack_id: PPACK_C04_OPERATIONAL_V001
 status: draft
-source_reference_id: "C04_IDENTITY_ANCHOR_V001 front_hero_lock (PENDING — generate after Stage 1 MJ V8.1 + Stage 2 V7 --oref lock exists)"
+source_reference_id: "DUAL SEED. PRIMARY (geometry/pose/light/expression) = MJ_C04_OREFLOCK_V001 Stage-2 --oref lock (archive/nexuszero/_elements/C04/stage2/images/dim2_5.png; sha256 326d02c8b700b33dc168e542deb9fbf9ec6f20e3783c5c61621fabaa10cccf32). SECONDARY (skin tone, warmth, hair detail only) = MJ_C04_HERO_V001 Stage-1 hero (archive/nexuszero/_elements/C04/stage1/images/dim1_4.png; sha256 38cff8999d045893dce9dc4181b14c9481b47c2d90f1322412dc67b51b4f6a4c). Take pose/framing/light from PRIMARY; take only skin tone + warmth + hair texture from SECONDARY."
 target_model: chatgpt_images_2
 target_role: multi_perspective_element_expander
 element_id: C04
@@ -10,11 +10,17 @@ element_type: character
 perspective_policy: four_view_scale_angle_v3
 full_body_visible: true
 shared_preservation_instruction: >
-  Preserve the locked Dimitri identity exactly across all four views — same face geometry,
-  age (early 40s), lean instrument silhouette, dark neat hair, no glamor. Same SC0014
+  Use the two references: take pose, framing and light from the PRIMARY (Stage-2 lock);
+  take only skin tone, warmth and hair texture from the SECONDARY (Stage-1 hero).
+  Preserve the locked Dimitri identity exactly across all four views — same real,
+  three-dimensional lived-in human face (early 40s), lean contained build, dark neat hair,
+  calm self-possessed bearing with steady observant eyes and an even resting expression.
+  He reads as quiet controlled authority — unsettling through calm certainty, NOT a
+  hard-edged caricature or cartoon villain, and NOT warm/sympathetic-soft. Same SC0014
   operational-command wardrobe (WD005: dark operational-executive jacket or tailored shirt,
   dark operational trousers, polished dark footwear) in every view. Change only camera
-  scale and angle, never the person or the garments. Restrained realism; no redesign,
+  scale and angle, never the person or the garments. Natural restrained realism; no
+  caricature, not glamorous, not a fashion model; no redesign,
   no stylization, no fashion-editorial; neutral clean background; no text, no watermark.
 source_refs:
   scene_card_ref: planning/scenes/SC0014/scene_card.yaml
@@ -54,9 +60,10 @@ prompts:
     perspective: close_portrait_front
     prompt_text: >
       Close front portrait, chest-up, of the same locked reference man — full frontal
-      face for identity lock. Dark neat hair in professional precision, alert controlled
-      eyes, exact face geometry, hard-edged presence without theatricality. Even soft
-      light, neutral clean background. Preserve identity exactly; restrained realism,
+      face for identity lock. Dark neat hair in professional precision, steady observant
+      eyes, even calm resting expression, exact face geometry; quiet controlled authority
+      (calm certainty, not a scowl or caricature). Even soft light, neutral clean
+      background. Preserve identity exactly; not glamorous, no cartoon menace; restrained realism,
       no redesign, no text, no watermark.
     constraints:
       - "Chest/shoulders/head; fully frontal face."

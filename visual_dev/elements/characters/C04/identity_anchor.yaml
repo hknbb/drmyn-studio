@@ -2,7 +2,7 @@ schema_version: "0.x-draft"
 record_type: character_identity_anchor
 identity_anchor_id: C04_IDENTITY_ANCHOR_V001
 character_id: C04
-status: hero_locked_stage1
+status: identity_locked_stage2
 source_reference_strategy:
   reference_sheet_allowed_as_identity_source: false
   final_hero_lock_requires_single_clean_image: true
@@ -19,6 +19,18 @@ front_hero_lock_ref:
   approved_at: "2026-06-09T00:00:00Z"
   selection_basis: "Operator-approved single clean image from MJ v8.1 D1 batch (b24e0bce_1); most believable, three-dimensional controlled-but-human read — mature, intelligent, quiet authority, even resting expression."
   next_external_step: "Stage 2 — MJ V7 --oref refinement seeded from this hero, then Stage 3 ChatGPT four_view_scale_angle_v3."
+stage2_identity_lock_ref:
+  locked: true
+  selected_lock_id: MJ_C04_OREFLOCK_V001
+  prompt_ref: prompts/draft/SC0014__t2i-char-c04-oref-lock-mj-v7__v01.yaml
+  media_index_ref: evidence/local_media_indices/LOCAL_MEDIA_INDEX__elements_ARCHIVE_V001.yaml
+  external_ref: "archive/nexuszero/_elements/C04/stage2/images/dim2_5.png"
+  sha256: "326d02c8b700b33dc168e542deb9fbf9ec6f20e3783c5c61621fabaa10cccf32"
+  oref_source_hero_id: MJ_C04_HERO_V001
+  approved_by: operator
+  approved_at: "2026-06-09T00:00:00Z"
+  selection_basis: "Operator-approved from D2 --oref batch (c254c586_0); clean near-frontal canonical, calm controlled resting expression. Identity consistency with Stage-1 hero confirmed across the batch."
+  next_external_step: "Stage 3 — ChatGPT Images 2 four_view_scale_angle_v3, DUAL-seeded (Stage-2 lock primary + Stage-1 hero secondary); then real perspective_qc (>=85) -> kling_element_reference -> binding 'created'."
 fixed_identity_anchors:
   - "Man, early 40s; face geometry and identity must stay constant across all operational looks."
   - "A real, three-dimensional human with an inner life and a lived-in face — controlled and intelligent, NOT a hard-edged caricature or cartoon villain."
