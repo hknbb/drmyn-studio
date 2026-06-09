@@ -14,11 +14,15 @@ source_refs:
   aesthetic_refs:
   - VALE_DOMESTIC_RESTRAINT
 prompt_text: >-
-  A calm, peaceful infant about eight months old, awake and content, in a soft
-  domestic evening onesie in warm muted neutrals, a pale blue name bracelet on one
-  wrist. Gentle even light, neutral clean background. Safe, supported, ordinary.
-  Cinematic production character reference, identity readability, restrained realism,
-  no redesign, no distress, no text, no watermark --v 8.1 --style raw --ar 2:3 --seed 114008
+  A warm, soft, peaceful baby about eight months old, calm and content, gently awake.
+  Soft round face, full chubby cheeks, big gentle warm eyes, tiny soft features, fine
+  wispy hair, soft healthy skin. Dressed in a cosy soft domestic-evening onesie in warm
+  muted neutrals, a pale blue name bracelet on one wrist. Held safe and fully supported,
+  ordinary and serene. Soft diffused warm light, gentle and flattering, neutral clean
+  background. Tender, sweet, relatable cinematic character reference; identity
+  readability; natural soft realism; no distress, no crying, no fear, safe supported
+  handling only; no redesign, no glamour, no text, no watermark
+  --v 8.1 --ar 2:3 --seed 822
 status: active
 canon_lock: false
 generation_params:
@@ -28,6 +32,13 @@ generation_params:
   identity_anchor_ref: visual_dev/elements/characters/C08/identity_anchor.yaml
   stage: "1_of_3_narrative_identity"
   protected_subject: true
-  protected_subject_gate: "HARD GATE — no external generation until explicit human review/approval per SC0014 scene_card. Keep infant calm, safe, supported; no distress; distress off-frame downstream."
+  protected_subject_gate: "HARD GATE — operator explicitly authorized Stage-1 identity generation on 2026-06-09 (satisfies the human-review requirement). Constraints REMAIN binding: infant calm, safe, fully supported; no distress/crying/fear/peril; no restraint or unsafe handling; no emotional exploitation; the taking is carried by adult performance + Nadia's POV, never by the infant; infant distress stays off-frame in any downstream shot."
+  revision_note: >
+    Warmth/soft pass (consistent with the warmth principle): redesigned to lead with a
+    warm, soft, tender baby — soft round face, full cheeks, big gentle eyes, wispy hair,
+    soft skin — under soft diffused warm light, so the reference reads sweet, relatable
+    and human, not a clinical/raw infant. Removed --style raw (pushed hard realism); new
+    seed (822). All protected-subject safety language retained (safe/supported only, no
+    distress). This is a neutral, calm identity reference ONLY, not the taking action.
   recommended_model_version: --v 8.1
-  recommended_style: --style raw
+  recommended_style: "(none — --style raw removed; raw rendered the infant too hard/clinical)"

@@ -10,9 +10,11 @@ source_reference_strategy:
 source_reference_sheet_ref: prompts/draft/SC0014__t2i-char-c08-identity-mj-v8__v01.yaml
 front_hero_lock_ref:
   pending: true
-  external_ref: "pending — PROTECTED SUBJECT: no generation until explicit human review/approval per SC0014 scene_card hard gate."
+  protected_subject_gate: "Operator explicitly authorized Stage-1 identity generation on 2026-06-09; safe/supported-only constraints remain binding. Lock stays pending until a real clean image is generated and approved."
+  external_ref: "pending — operator-authorized; awaiting real Stage-1 image."
 fixed_identity_anchors:
   - "Infant, approximately eight months old; the specific child Jin in the SC0014 nursery scene."
+  - "Warm, soft, tender baby: soft round face, full chubby cheeks, big gentle warm eyes, tiny soft features, fine wispy hair, soft healthy skin — sweet and relatable, never clinical."
   - "Calm, safe, fully supported at all times; identity read as an ordinary, peaceful baby."
 mutable_appearance_allowed:
   - "Held position / supported pose within safe handling."
