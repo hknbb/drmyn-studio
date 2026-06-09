@@ -93,3 +93,43 @@ entries:
   size_bytes: 2183739
   notes: PROTECTED SUBJECT. Stage-3 four-view full_body_front; whole infant safely
     supported.
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C04_OPERATIONAL_V001__close_portrait_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T17:31:35Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0014/C04/stage3/images/dim3_2.png
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C04/stage3/images/dim3_2.png
+  sha256: 8d4d04c59f1e7d2f7031d9ea553f71140a24ec68ca000a4d7b61da34a54805cf
+  size_bytes: 2277068
+  notes: Stage-3 four-view close_portrait_front. Dual-ref seeded.
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C04_OPERATIONAL_V001__three_quarter_waist
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T17:31:36Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0014/C04/stage3/images/dim3_3.png
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C04/stage3/images/dim3_3.png
+  sha256: 054d2da778a0a6a5c419896c61298f42294dee85b4a522096da3b030643d11ad
+  size_bytes: 1911146
+  notes: Stage-3 four-view three_quarter_waist.
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C04_OPERATIONAL_V001__profile_full
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T17:31:36Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0014/C04/stage3/images/dim3_1.png
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C04/stage3/images/dim3_1.png
+  sha256: f020685dcc2477a083f6c80f606d9d300b11ba440f220a5d890e433a4fa6c627
+  size_bytes: 2060534
+  notes: Stage-3 four-view profile_full.
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C04_OPERATIONAL_V001__full_body_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T17:31:36Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0014/C04/stage3/images/dim3_4.png
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C04/stage3/images/dim3_4.png
+  sha256: 94ce23a9c69d8d0fc64a363917bd63e8d37ba78a29466d4aebd191285aef6868
+  size_bytes: 1951894
+  notes: Stage-3 four-view full_body_front.
