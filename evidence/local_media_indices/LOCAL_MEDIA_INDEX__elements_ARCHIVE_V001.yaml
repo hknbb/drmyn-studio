@@ -80,3 +80,27 @@ entries:
     250), seeded from MJ_C04_HERO_V001. Operator-approved 2026-06-09 from D2 batch;
     clean near-frontal canonical, calm controlled resting expression, dark corporate
     neutrals.
+- kind: mj_v81_narrative_identity_hero
+  element_id_or_take_id: MJ_C10_CARRIER_HERO_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T19:09:33Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C10/stage1/images/ch_1.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage1/images/ch_1.png
+  sha256: 9e7306e4a47ef164562822fd06e0d14804cf7b8412df05981c6671a54009e6aa
+  size_bytes: 6929205
+  notes: Stage-1 hero for @C10_CARRIER (33ddd2dd_0). Operator-approved 2026-06-09.
+    Heavier/stockier build, buzzed short hair, plain dark functional clothing (WD009),
+    anonymous operative. Distinct from @C10_HOLDER (anti-clone).
+- kind: mj_v81_narrative_identity_hero
+  element_id_or_take_id: MJ_C10_HOLDER_HERO_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T19:09:33Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C10/stage1/images/ch_2.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage1/images/ch_2.png
+  sha256: 0958a093389360d9b23a4d865cb409bce081f4fa57c99ecb10925c4d52c12590
+  size_bytes: 6742950
+  notes: Stage-1 hero for @C10_HOLDER (3f56fca9_3). Operator-approved 2026-06-09.
+    Leaner build, darker fuller hair + beard, plain dark functional clothing (WD009),
+    anonymous operative. Distinct from @C10_CARRIER (anti-clone).

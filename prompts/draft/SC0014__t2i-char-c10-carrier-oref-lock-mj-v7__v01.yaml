@@ -1,0 +1,40 @@
+prompt_id: SC0014__t2i-char-c10-carrier-oref-lock-mj-v7__v01
+scene_id: SC0014
+prompt_type: t2i_character_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0014/scene_card.yaml
+  scene_excerpt: "Stage 2 of 3 — MJ V7 --oref identity lock for the @C10_CARRIER enforcer figure, seeded from MJ_C10_CARRIER_HERO_V001. Anonymous functionary; distinct from @C10_HOLDER (anti-clone)."
+  character_refs:
+  - C10
+  aesthetic_refs:
+  - VALE_DOMESTIC_RESTRAINT
+prompt_text: >-
+  Same man, identical face — an anonymous adult enforcement operative, mid-30s to 40s,
+  unremarkable face geometry, heavier stockier build, buzzed very-short hair, light
+  stubble. Clean canonical character reference: looking straight to camera, plain dark
+  functional clothing (no insignia, no tactical rig), professional neutral demeanor;
+  head-and-shoulders, even soft frontal light, plain neutral background. Interchangeable
+  procedural functionary, not a hero; no personality or styling. Consistent identity;
+  restrained realism; no redesign, no glamour, no insignia, no text, no watermark
+  --v 7 --ar 2:3 --oref REPLACE_WITH_CARRIER_HERO_URL --ow 250
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  identity_anchor_ref: visual_dev/elements/characters/C10/identity_anchor.yaml
+  stage: "2_of_3_oref_identity_lock"
+  figure_alias: "@C10_CARRIER"
+  oref_source_hero_id: MJ_C10_CARRIER_HERO_V001
+  oref_source_external_ref: "archive/nexuszero/_elements/C10/stage1/images/ch_1.png"
+  oref_usage_note: >
+    Upload the approved CARRIER Stage-1 hero (MJ_C10_CARRIER_HERO_V001) to Midjourney,
+    copy its image URL, paste after --oref (replacing REPLACE_WITH_CARRIER_HERO_URL).
+    --ow 250; raise 400-600 if face drifts, lower 100-150 if stiff. Keep this figure
+    visibly distinct from @C10_HOLDER (heavier build, buzzed hair).
+  recommended_model_version: --v 7
+  recommended_style: "(none — identity from --oref; plain anonymous functionary)"
