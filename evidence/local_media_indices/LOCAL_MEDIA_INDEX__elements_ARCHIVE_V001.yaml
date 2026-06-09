@@ -41,3 +41,16 @@ entries:
     (selection aa47c521). Operator-authorized + approved 2026-06-09 from J1 batch;
     cleanest frontal identity, calm, safe/supported, pale-blue bracelet. Fetched from
     operator's MJ upload URL (384px variant). Safe/supported-only constraints binding.
+- kind: mj_v7_oref_identity_lock
+  element_id_or_take_id: MJ_C08_OREFLOCK_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-09T13:46:11Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C08/stage2/images/jin2_4.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C08/stage2/images/jin2_4.png
+  sha256: 8c766a47007d1f5e0330e5315f0ea9b7b1ec3da142c268b8d9128cc1c5050db1
+  size_bytes: 1745343
+  notes: Stage-2 MJ V7 --oref identity lock for protected-subject infant Jin (selection
+    89ce3688_1, ow 250), seeded from MJ_C08_HERO_V001. Operator-approved 2026-06-09
+    from J2 batch; calm, safe/supported, sweet chubby identity, bracelet present.
+    Safe/supported-only constraints binding.
