@@ -233,3 +233,43 @@ entries:
     MJ_C06_HERO_V001. Operator-approved 2026-06-10 from Z2 batch (7 candidates);
     best identity match to Stage-1 hero — West African face geometry consistent,
     soft frontal light, face fully visible. Seeds Stage-3 ChatGPT Images 2 four_view_scale_angle_v3.
+- kind: gpt_images_2_perspective_view
+  element_id_or_take_id: PPACK_C06_FIELD_NIGHT_V001__full_body_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C06/stage3/images/zar_3_1.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C06/stage3/images/zar_3_1.png
+  sha256: 95d405dbf8edce6bb65d8258f233ce34f20355a55c914c453b7ab03989091661
+  size_bytes: 2247336
+  notes: "C06 Zara field-night look — full_body_front. Khaki/olive-tan operational shirt + trousers + boots. QC 89."
+- kind: gpt_images_2_perspective_view
+  element_id_or_take_id: PPACK_C06_FIELD_NIGHT_V001__three_quarter_waist
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C06/stage3/images/zar_3_2.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C06/stage3/images/zar_3_2.png
+  sha256: e8902b9d545ff039076c9f4b4aa2aaf011321a42526488ab1492b17794ece0f9
+  size_bytes: 1894862
+  notes: "C06 Zara field-night look — three_quarter_waist. QC 90."
+- kind: gpt_images_2_perspective_view
+  element_id_or_take_id: PPACK_C06_FIELD_NIGHT_V001__close_portrait_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C06/stage3/images/zar_3_3.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C06/stage3/images/zar_3_3.png
+  sha256: 00e274151080a0be59951f7b36bb1548591a993ac74d660791ec3223cd6e3139
+  size_bytes: 2270055
+  notes: "C06 Zara field-night look — close_portrait_front. West African heritage clear, warmth readable. QC 92."
+- kind: gpt_images_2_perspective_view
+  element_id_or_take_id: PPACK_C06_FIELD_NIGHT_V001__profile_full
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C06/stage3/images/zar_3_4.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C06/stage3/images/zar_3_4.png
+  sha256: 352150e4687c9aea8977fce410da239b781133373bc03a675ce1e174b15951ce
+  size_bytes: 1716250
+  notes: "C06 Zara field-night look — profile_full. Clean lateral, khaki wardrobe consistent. QC 88."
