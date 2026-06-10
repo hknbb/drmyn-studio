@@ -1,0 +1,22 @@
+session_id: OP-2026-06-10-C06-zara-stage1-hero
+created_at: "2026-06-10T00:00:00Z"
+scene_id: null
+current_task: "C06 Zara Stage-1 MJ v8.1 hero selection from Z1 batch"
+status: complete
+recommended_files:
+  - archive/nexuszero/_elements/C06/stage1/images/u9435212546_Woman_mid_30s_to_early_40s_lean_athletic_build_tr_5491cc2a-88ea-473c-8eb7-bb846aae6948_3.png
+  - visual_dev/elements/characters/C06/identity_anchor.yaml
+  - prompts/draft/SC0089__t2i-char-c06-identity-mj-v8__v01.yaml
+recommended_steps:
+  - "Generate Stage-2 --oref lock in MJ V7 using MJ_C06_HERO_V001 as --oref source (--ow 250)"
+  - "Provide Stage-2 batch folder path for hero selection"
+  - "After Stage-2 lock: generate Stage-3 ChatGPT Images 2 four_view_scale_angle_v3 pack"
+notes: >
+  Stage-1 hero selected 2026-06-10 from Z1 batch (11 candidates).
+  Hero ID: MJ_C06_HERO_V001 (5491cc2a..._3.png).
+  Selected on: West African face geometry + skin tone clear; quiet intelligent eyes
+  with warmth beneath operational guard; trustworthy at rest; real three-dimensional
+  person; not cold/editorial; age mid-30s to early 40s; lean athletic build.
+  Disqualified: 5d6132ab (blue eyes AI artifact); b240d932 (age too old + jewelry);
+  1252b74b (cold expression); bff0151b (editorial/fashion drift).
+  identity_anchor.yaml front_hero_lock_ref updated to non-pending.
