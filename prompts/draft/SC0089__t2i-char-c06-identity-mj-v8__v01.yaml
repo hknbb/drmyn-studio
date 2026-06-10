@@ -12,13 +12,15 @@ source_refs:
   aesthetic_refs:
   - OUTER_DISTRICT_NIGHT
 prompt_text: >-
-  Zara, mid 30s to early 40s, lean athletic build with trained physical economy.
-  West African heritage visible in face geometry, skin tone, hair texture. Dark hair
-  pulled back or short and practical. Alert, contained operational presence with
-  authority from decision precision, not display. Muted-neutral practical clothing.
-  Competence and vigilance legible in stillness. Cinematic production character
-  reference, neutral clean background, identity readability, restrained realism, no
-  redesign, no fashion spread, no text, no watermark
+  Woman, mid 30s to early 40s, lean athletic build, trained physical economy. West
+  African heritage clear in face geometry, skin tone, and hair texture — real human
+  face with quiet intelligent eyes and natural warmth beneath the operational guard;
+  trustworthy and alive even at rest. Dark hair pulled back short and practical.
+  Contained focused presence; authority from decision precision and physical stillness,
+  not display; not cold, not hard-edged, not editorial. Muted-neutral practical
+  clothing. Real three-dimensional person — human dignity and competence both
+  readable; no glamour, no fashion spread, no action-figure styling. Plain neutral
+  background; restrained realism; no redesign, no text, no watermark
   --v 8.1 --style raw --ar 2:3 --seed 114006
 status: active
 canon_lock: false

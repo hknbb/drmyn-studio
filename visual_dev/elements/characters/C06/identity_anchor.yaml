@@ -16,6 +16,7 @@ fixed_identity_anchors:
   - "Lean to athletic, upright; trained physical economy; occupies specific points in a room rather than fills it."
   - "Contained operational power; authority from decision precision and physical stillness, not display. Competence legible in economy of movement."
   - "West African heritage visible in skin tone, hair texture, face geometry. Natural maintenance over presentation; no glamor."
+  - "Warm human presence beneath the operational guard: quiet intelligent eyes that read as trustworthy even at rest; real three-dimensional person, not a cold or editorial rendering."
 mutable_appearance_allowed:
   - "Wardrobe per scene look (hunter-pool field-operational / other contexts as scenes dictate)."
   - "Hair state within the anchor (pulled back short and practical, or tied back, or disordered by exertion)."
@@ -28,6 +29,7 @@ forbidden_drift:
   - "Do not equip her with a signature weapon as identity prop (no specific gun, no holster used as branding)."
   - "Do not erase her competence or make her read as amateur, even when wardrobe is utilitarian."
   - "Do not alter face geometry, age read, or body type between looks."
+  - "Do not render cold, hard-edged, or editorial; she is a sympathetic ally — human dignity and trustworthiness must read in the face even under operational discipline."
 notes: >
   Canonical identity anchor for Zara Okonkwo (C06), authored fresh under Production
   System v2. One identity, multiple scene looks grounded in hunter-pool operational
