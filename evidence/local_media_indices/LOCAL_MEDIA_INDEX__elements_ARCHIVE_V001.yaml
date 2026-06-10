@@ -273,3 +273,16 @@ entries:
   sha256: 352150e4687c9aea8977fce410da239b781133373bc03a675ce1e174b15951ce
   size_bytes: 1716250
   notes: "C06 Zara field-night look — profile_full. Clean lateral, khaki wardrobe consistent. QC 88."
+- kind: mj_v81_narrative_identity_hero
+  element_id_or_take_id: MJ_C09_HERO_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C09/stage1/images/ott_1.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C09/stage1/images/ott_1.png
+  sha256: 0daefbb2cf8d01bf08fe9da169a048791589786fa23ea283fa1492da39b47d19
+  size_bytes: 7391529
+  notes: Stage-1 MJ v8.1 narrative-identity hero for Otto (C09). Operator-approved
+    2026-06-10 from O1 batch (5 candidates); selected on flat unsentimental face,
+    grey close-kept hair, solid settled build, dark neutral jacket, plain neutral
+    background. Age reads 65-70 (operational lifer). Seeds Stage-2 --oref lock.

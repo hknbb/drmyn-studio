@@ -9,8 +9,11 @@ source_reference_strategy:
   contact_sheet_layout_forbidden_as_lock: true
 source_reference_sheet_ref: prompts/draft/SC0047__t2i-char-c09-identity-mj-v8__v01.yaml
 front_hero_lock_ref:
-  pending: true
-  external_ref: "pending — Stage 1 Midjourney V8.1 narrative identity output not yet generated; lock after Stage 2 V7 --oref refinement."
+  pending: false
+  element_id: MJ_C09_HERO_V001
+  external_ref: "archive/nexuszero/_elements/C09/stage1/images/ott_1.png"
+  operator_approved_at: "2026-06-10"
+  notes: "Selected from O1 batch (5 candidates). Flat unsentimental face, grey close-kept hair, solid settled build, dark neutral jacket. Age 65-70. Seeds Stage-2 --oref lock."
 fixed_identity_anchors:
   - "Man, sixty to seventy; the age operational lifers reach all at once; face geometry and identity must stay constant across all scene looks."
   - "Solid, settled, economical build; does not move more than the moment needs; worn unhurried authority."
