@@ -4,7 +4,7 @@ scene_id: null
 current_task: "C06 Zara Stage-1 MJ v8.1 hero selection from Z1 batch"
 status: complete
 recommended_files:
-  - archive/nexuszero/_elements/C06/stage1/images/u9435212546_Woman_mid_30s_to_early_40s_lean_athletic_build_tr_5491cc2a-88ea-473c-8eb7-bb846aae6948_3.png
+  - archive/nexuszero/_elements/C06/stage1/images/zar_1.png
   - visual_dev/elements/characters/C06/identity_anchor.yaml
   - prompts/draft/SC0089__t2i-char-c06-identity-mj-v8__v01.yaml
 recommended_steps:

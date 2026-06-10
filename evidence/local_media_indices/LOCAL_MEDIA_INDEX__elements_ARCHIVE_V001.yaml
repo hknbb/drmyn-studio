@@ -212,8 +212,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-10T00:00:00Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/_elements/C06/stage1/images/u9435212546_Woman_mid_30s_to_early_40s_lean_athletic_build_tr_5491cc2a-88ea-473c-8eb7-bb846aae6948_3.png
-  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C06/stage1/images/u9435212546_Woman_mid_30s_to_early_40s_lean_athletic_build_tr_5491cc2a-88ea-473c-8eb7-bb846aae6948_3.png
+  local_path: archive/nexuszero/_elements/C06/stage1/images/zar_1.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C06/stage1/images/zar_1.png
   sha256: 53131128cae44277f5ebbf221e14b2210d18d582a2408743d8b7c5a7a578bf8f
   size_bytes: 7175236
   notes: Stage-1 MJ v8.1 narrative-identity hero for Zara Okonkwo (C06). Operator-approved
@@ -225,8 +225,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-10T00:00:00Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/_elements/C06/stage2/images/u9435212546_Same_woman_identical_face_-_mid_30s_to_early_40s__2ec5901c-377f-4615-b61f-f314282b122b_3.png
-  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C06/stage2/images/u9435212546_Same_woman_identical_face_-_mid_30s_to_early_40s__2ec5901c-377f-4615-b61f-f314282b122b_3.png
+  local_path: archive/nexuszero/_elements/C06/stage2/images/zar_2.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C06/stage2/images/zar_2.png
   sha256: d03cd81b2d67b904990fccf245ff7801464e4517432d4981f8e1be9fe8945aec
   size_bytes: 1579494
   notes: Stage-2 MJ V7 --oref lock (--ow 250) for Zara Okonkwo (C06), seeded from

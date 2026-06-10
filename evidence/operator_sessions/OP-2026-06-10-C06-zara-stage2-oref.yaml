@@ -4,7 +4,7 @@ scene_id: null
 current_task: "C06 Zara Stage-2 MJ V7 --oref lock selection from Z2 batch"
 status: complete
 recommended_files:
-  - archive/nexuszero/_elements/C06/stage2/images/u9435212546_Same_woman_identical_face_-_mid_30s_to_early_40s__2ec5901c-377f-4615-b61f-f314282b122b_3.png
+  - archive/nexuszero/_elements/C06/stage2/images/zar_2.png
   - visual_dev/elements/characters/C06/identity_anchor.yaml
   - visual_dev/elements/characters/C06/perspective_packs/PPACK_C06_FIELD_NIGHT_V001.yaml
 recommended_steps:
