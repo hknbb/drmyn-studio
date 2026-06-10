@@ -1,0 +1,30 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KER_C09_QUAY_V001
+status: approved
+element_id: C09
+element_type: character
+source_midjourney_reference:
+  reference_id: MJ_C09_OREFLOCK_V001
+  prompt_id: SC0047__t2i-char-c09-oref-lock-mj-v7__v01
+  operator_session_ref: OP-2026-06-10-C09-otto-stage3-fourview
+gpt_images_2_perspectives:
+  full_body_front: PPACK_C09_QUAY_V001__full_body_front
+  three_quarter_waist: PPACK_C09_QUAY_V001__three_quarter_waist
+  close_portrait_front: PPACK_C09_QUAY_V001__close_portrait_front
+  profile_full: PPACK_C09_QUAY_V001__profile_full
+continuity_anchors:
+  - "Locked @C09_OTTO identity: man sixty to seventy, solid settled economical build, grey close-kept hair, weathered skin, flat unsentimental presence."
+  - "Eyes carry the stillness of someone who has waited in many rooms; does not offer his hand; withheld reliability."
+  - "WD014 maritime-blue working wardrobe: heavy dark navy or dark blue weathered jacket, muted olive-green inner layer or collar, dark navy work trousers, worn boots."
+  - "No glamor, no styling; the wear of decades at the water shown, not softened."
+  - "Do not soften into grandfatherly warmth; flat, unsentimental, operationally exact."
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-2026-06-10-C09-otto-stage3-fourview
+downstream_use:
+  - kling_omni_3_shot_prompt
+source_refs:
+  gpt_images_pack_ref: visual_dev/elements/characters/C09/perspective_packs/PPACK_C09_QUAY_V001.yaml
+  element_sheet_ref: visual_dev/elements/characters/C09/look_sheets/LOOKSHEET_C09_QUAY_V001.yaml

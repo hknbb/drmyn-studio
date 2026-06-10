@@ -300,3 +300,43 @@ entries:
     with ott_1.png, even frontal light, clean grey background, dark navy jacket +
     muted olive-green inner layer clearly visible (WD014). Seeds Stage-3 ChatGPT
     Images 2 four_view_scale_angle_v3.
+- kind: gpt_images_2_perspective_pack
+  element_id_or_take_id: PPACK_C09_QUAY_V001__full_body_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C09/stage3/images/ott_3_1.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C09/stage3/images/ott_3_1.png
+  sha256: bdf126a85829c6e5dcfa472fcc8344d46e99e95feba408ecb98ea25d50146592
+  size_bytes: 1972012
+  notes: "C09 Otto quay look — full_body_front. Head-to-toe, dark navy jacket + olive-green inner, navy trousers, worn boots. QC 90."
+- kind: gpt_images_2_perspective_pack
+  element_id_or_take_id: PPACK_C09_QUAY_V001__three_quarter_waist
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C09/stage3/images/ott_3_2.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C09/stage3/images/ott_3_2.png
+  sha256: 095a91f49aa0421d4281cf6e74091ffe5ce88e3fc2d86900b34c61ff6b76733f
+  size_bytes: 1994180
+  notes: "C09 Otto quay look — three_quarter_waist. Olive-green collar clearly visible, WD014 wardrobe consistent. QC 91."
+- kind: gpt_images_2_perspective_pack
+  element_id_or_take_id: PPACK_C09_QUAY_V001__close_portrait_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C09/stage3/images/ott_3_3.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C09/stage3/images/ott_3_3.png
+  sha256: 557f3ec580cc0bd750903e672b58dd479e215185078fc942cd27fa3d851d41e5
+  size_bytes: 2159249
+  notes: "C09 Otto quay look — close_portrait_front. Strongest face-geometry fidelity, flat unsentimental presence. QC 92."
+- kind: gpt_images_2_perspective_pack
+  element_id_or_take_id: PPACK_C09_QUAY_V001__profile_full
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C09/stage3/images/ott_3_4.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C09/stage3/images/ott_3_4.png
+  sha256: 71bae5da8540784d0dc0235b967d95b2a72144208b051e69ad1d1571187b92e1
+  size_bytes: 2100927
+  notes: "C09 Otto quay look — profile_full. Clean lateral, olive-green inner layer visible, identity wrap complete. QC 90."
