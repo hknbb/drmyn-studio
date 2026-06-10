@@ -220,3 +220,16 @@ entries:
     2026-06-10 from Z1 batch (11 candidates); selected on West African face geometry
     + operational stillness + warmth in eyes without maternal softness (quiet intelligent
     eyes, trustworthy at rest). Seeds Stage-2 --oref lock.
+- kind: mj_v7_oref_identity_lock
+  element_id_or_take_id: MJ_C06_OREFLOCK_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C06/stage2/images/u9435212546_Same_woman_identical_face_-_mid_30s_to_early_40s__2ec5901c-377f-4615-b61f-f314282b122b_3.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C06/stage2/images/u9435212546_Same_woman_identical_face_-_mid_30s_to_early_40s__2ec5901c-377f-4615-b61f-f314282b122b_3.png
+  sha256: d03cd81b2d67b904990fccf245ff7801464e4517432d4981f8e1be9fe8945aec
+  size_bytes: 1579494
+  notes: Stage-2 MJ V7 --oref lock (--ow 250) for Zara Okonkwo (C06), seeded from
+    MJ_C06_HERO_V001. Operator-approved 2026-06-10 from Z2 batch (7 candidates);
+    best identity match to Stage-1 hero — West African face geometry consistent,
+    soft frontal light, face fully visible. Seeds Stage-3 ChatGPT Images 2 four_view_scale_angle_v3.

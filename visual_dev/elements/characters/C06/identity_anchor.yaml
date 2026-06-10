@@ -13,7 +13,14 @@ front_hero_lock_ref:
   element_id: MJ_C06_HERO_V001
   external_ref: "archive/nexuszero/_elements/C06/stage1/images/u9435212546_Woman_mid_30s_to_early_40s_lean_athletic_build_tr_5491cc2a-88ea-473c-8eb7-bb846aae6948_3.png"
   operator_approved_at: "2026-06-10"
-  notes: "Selected from Z1 batch (11 candidates). West African heritage clear, quiet intelligent eyes, warmth beneath operational guard, not cold/editorial. Seeds Stage-2 --oref lock."
+  notes: "Selected from Z1 batch (11 candidates). West African heritage clear, quiet intelligent eyes, warmth beneath operational guard, not cold/editorial."
+oref_lock_ref:
+  pending: false
+  element_id: MJ_C06_OREFLOCK_V001
+  external_ref: "archive/nexuszero/_elements/C06/stage2/images/u9435212546_Same_woman_identical_face_-_mid_30s_to_early_40s__2ec5901c-377f-4615-b61f-f314282b122b_3.png"
+  prompt_ref: "prompts/draft/SC0089__t2i-char-c06-oref-lock-mj-v7__v01.yaml"
+  operator_approved_at: "2026-06-10"
+  notes: "Selected from Z2 batch (7 candidates). Best identity consistency with Stage-1 hero; soft frontal light; face fully visible. Seeds Stage-3 four_view_scale_angle_v3."
 fixed_identity_anchors:
   - "Woman, mid 30s to early 40s; face geometry and identity must stay constant across all scene looks."
   - "Lean to athletic, upright; trained physical economy; occupies specific points in a room rather than fills it."
