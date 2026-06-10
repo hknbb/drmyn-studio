@@ -1,0 +1,33 @@
+prompt_id: SC0047__t2i-char-c09-oref-lock-mj-v7__v01
+scene_id: SC0047
+prompt_type: t2i_character_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0047/scene_card.yaml
+  scene_excerpt: "Stage-2 --oref identity lock for Otto (C09); clean canonical reference seeding Stage-3 four-view pack."
+  character_refs:
+  - C09
+oref_source_id: MJ_C09_HERO_V001
+oref_source_external_ref: "archive/nexuszero/_elements/C09/stage1/images/ott_1.png"
+oref_cdn_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/6135d6c9b9266e17fdb705361cd2fd693f8c22d99979f4b063083ec0961f1a86_384_N.png"
+prompt_text: >-
+  Same man, identical face — sixty to seventy, solid settled build, grey close-kept
+  hair, weathered skin. Straight to camera, even frontal light, plain neutral
+  background. Dark neutral jacket or heavy working clothes. Face fully visible,
+  no shadow cropping. Flat unsentimental expression. Restrained realism, no
+  redesign, no text, no watermark
+  --v 7 --style raw --ar 2:3 --ow 250 --oref https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/6135d6c9b9266e17fdb705361cd2fd693f8c22d99979f4b063083ec0961f1a86_384_N.png
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  identity_anchor_ref: visual_dev/elements/characters/C09/identity_anchor.yaml
+  stage: "2_of_3_oref_lock"
+  oref_weight: 250
+  recommended_model_version: --v 7
+  recommended_style: --style raw
+  lock_target: "clean canonical frontal reference for Stage-3 ChatGPT Images 2 four_view_scale_angle_v3"
