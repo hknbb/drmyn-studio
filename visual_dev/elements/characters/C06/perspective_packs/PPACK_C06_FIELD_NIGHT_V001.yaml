@@ -13,12 +13,13 @@ shared_preservation_instruction: >
   Preserve the locked Zara identity exactly across all four views — same face geometry,
   age (mid 30s to early 40s), lean athletic build, West African heritage visible in
   skin tone, hair texture, face geometry. Dark hair short and practical or pulled back
-  tight, no glamor. Same SC0089 field-operational wardrobe (WD013: dark technical top,
-  durable dark trousers, low-profile dark footwear, optional dark jacket) in every
-  view. Contained operational presence with authority from physical stillness and
-  decision precision, not display. Change only camera scale and angle, never the
-  person or the garments. Restrained realism; no redesign, no stylization, no
-  fashion-editorial; neutral clean background; no text, no watermark.
+  tight, no glamor. Same SC0089 field-operational wardrobe (WD013: khaki/olive-tan
+  operational shirt, khaki/olive trousers, practical dark or khaki boots) in every
+  view — earth-tone palette, no black, no bright color. Contained operational presence
+  with authority from physical stillness and decision precision, not display. Change
+  only camera scale and angle, never the person or the garments. Restrained realism;
+  no redesign, no stylization, no fashion-editorial; neutral clean background; no text,
+  no watermark.
 source_refs:
   scene_card_ref: planning/scenes/SC0089/scene_card.yaml
   element_sheet_ref: visual_dev/elements/characters/C06/look_sheets/LOOKSHEET_C06_FIELD_NIGHT_V001.yaml
@@ -28,9 +29,9 @@ prompts:
     perspective: full_body_front
     prompt_text: >
       Full-body front view, head to feet in frame, of the locked reference woman in her
-      dark field-operational look: dark technical top, durable dark trousers, dark
-      operational footwear, optional dark jacket. Standing alert, night-ready operational
-      posture, trained physical economy, even neutral lighting, neutral clean background.
+      field-operational look: khaki or olive-tan operational shirt/blouse, khaki or
+      olive trousers, practical dark or khaki boots. Standing alert, operational posture,
+      trained physical economy, even neutral lighting, neutral clean background.
       Preserve identity, West African heritage, and wardrobe exactly; restrained realism,
       no redesign, no text, no watermark.
     constraints:
@@ -44,10 +45,10 @@ prompts:
     perspective: three_quarter_waist
     prompt_text: >
       Three-quarter angle, waist-up framing, of the same locked reference woman in the
-      identical dark field-operational wardrobe. Body turned ~30-45 degrees, head toward
-      camera, alert and observant. Even neutral lighting, neutral clean background.
-      Preserve identity, West African heritage, and garments exactly; restrained realism,
-      no redesign, no text, no watermark.
+      identical khaki/olive-tan field-operational wardrobe. Body turned ~30-45 degrees,
+      head toward camera, alert and observant. Even neutral lighting, neutral clean
+      background. Preserve identity, West African heritage, and garments exactly;
+      restrained realism, no redesign, no text, no watermark.
     constraints:
       - "Waist-up scale; three-quarter body angle."
       - "Identity + wardrobe identical to full_body_front."
@@ -74,7 +75,7 @@ prompts:
   - prompt_id: PPACK_C06_FIELD_NIGHT_V001__profile_full
     perspective: profile_full
     prompt_text: >
-      Side profile view of the same locked reference woman in the identical dark
+      Side profile view of the same locked reference woman in the identical khaki/olive-tan
       field-operational wardrobe, for a 3D identity wrap. Clean lateral profile, even
       neutral lighting, neutral clean background. Hair short and practical or pulled back
       tight, discipline and alert operational posture legible. West African heritage

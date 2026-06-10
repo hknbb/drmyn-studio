@@ -13,12 +13,12 @@ physical:
   physical_features: "Mid 30s to early 40s; alert observant eyes; exact face geometry; vigilance and competence legible beneath operational discipline. No decorative styling. Trained physical stillness legible in resting state."
 wardrobe:
   primary_wardrobe_id: WD013
-  garment_top: "Dark technical top or close-fitting operational layer, black or slate deep charcoal; civilian construction, not military; built for climbing, crouch work, and sustained fieldwork."
-  garment_bottom: "Dark durable operational trousers in black or slate; practical and movement-easy cut; no flash or accent detail."
-  footwear: "Dark practical operational boots or field-grade footwear; low-profile, sound-disciplined, built for sustained movement and infiltration work."
-  outerwear: "Optional close-fitting dark jacket or tactical-adjacent civilian layer in black or deep charcoal; minimal silhouette; built for operational fieldwork, not statement."
+  garment_top: "Khaki or olive-tan operational shirt/blouse; civilian construction, not military; practical button-front or zip; built for fieldwork and sustained movement. Muted earth tone, not bright, not fashion-styled."
+  garment_bottom: "Khaki or olive-tan durable operational trousers; practical and movement-easy cut; same earth-tone palette as top; no flash or accent detail."
+  footwear: "Dark or khaki practical operational boots or field-grade footwear; low-profile, sound-disciplined, built for sustained movement and infiltration work."
+  outerwear: "Optional close-fitting khaki or olive jacket or field-grade civilian layer; minimal silhouette; same earth-tone palette; built for operational fieldwork, not statement."
   accessories: []
-palette: "Dark operational neutrals (black, slate, deep charcoal, muted olive); no bright color, no flash, no luxury accent; reads as night-ready, civilian-operational, professional-grade."
+palette: "Khaki and olive-tan earth tones (warm khaki, muted olive, tan); no black, no bright color, no flash, no luxury accent; reads as field-operational, civilian-grade, purposeful."
 status: draft
 notes: >
   Full head-to-toe look definition for Zara's SC0089 field-night operational look so
