@@ -115,6 +115,86 @@ entries:
   size_bytes: 1257048
   notes: Stage-2 --oref lock for @C10_CARRIER (57ebf8cf_0). Heavier/stockier, buzzed
     hair, goatee; clean frontal. Operator-approved 2026-06-09.
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C10_CARRIER_V001__full_body_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C10/stage3/images/car_3_1.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage3/images/car_3_1.png
+  sha256: ed3675cfe186ea9635884b2100204f515e0983c2ded5b15679f28cd9fd72c15b
+  size_bytes: 1592253
+  notes: '@C10_CARRIER Stage-3 full_body_front; heavier/stockier, buzzed hair. Dual-ref seeded. QC 87.'
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C10_CARRIER_V001__three_quarter_waist
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C10/stage3/images/car_3_2.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage3/images/car_3_2.png
+  sha256: c21f3d1da4aa20a99184fa49efda35336f733ba7acba18361d7861e113c93284
+  size_bytes: 2105268
+  notes: '@C10_CARRIER Stage-3 three_quarter_waist. QC 89.'
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C10_CARRIER_V001__close_portrait_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C10/stage3/images/car_3_3.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage3/images/car_3_3.png
+  sha256: d550efb0929ba4828acfb21c5953748dbddd2a14dc7e11b567a1c662d769723b
+  size_bytes: 1788845
+  notes: '@C10_CARRIER Stage-3 close_portrait_front; frontal identity lock. QC 91.'
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C10_CARRIER_V001__profile_full
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C10/stage3/images/car_3_4.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage3/images/car_3_4.png
+  sha256: c0038bc3d2e219c15484c40f70e6c0f579c4ec95720a79efbd7098e26b955a9e
+  size_bytes: 2050258
+  notes: '@C10_CARRIER Stage-3 profile_full; clean 90 deg. QC 88.'
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C10_HOLDER_V001__full_body_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C10/stage3/images/hol_3_1.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage3/images/hol_3_1.png
+  sha256: f681b857d3a832878200b55e201742648fe5fcd219a0268e362099313457a520
+  size_bytes: 1652578
+  notes: '@C10_HOLDER Stage-3 full_body_front; leaner, fuller hair + beard. Dual-ref seeded. QC 87.'
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C10_HOLDER_V001__three_quarter_waist
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C10/stage3/images/hol_3_2.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage3/images/hol_3_2.png
+  sha256: 39f270cc54ddd852f2225d9580128620802fe7fa8f918666f5e84aed94204d1e
+  size_bytes: 2213235
+  notes: '@C10_HOLDER Stage-3 three_quarter_waist. QC 89.'
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C10_HOLDER_V001__close_portrait_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C10/stage3/images/hol_3_3.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage3/images/hol_3_3.png
+  sha256: b5d581d9ccf378b8caea9e7d3674a89489f6be1dd2b57d798f3e5b8d29922966
+  size_bytes: 2026666
+  notes: '@C10_HOLDER Stage-3 close_portrait_front; frontal identity lock. QC 90.'
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C10_HOLDER_V001__profile_full
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C10/stage3/images/hol_3_4.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage3/images/hol_3_4.png
+  sha256: 48b4b0d9a5b25186448ea92212399e5e0a00e9a5efecc1d972f86bdccccb189d
+  size_bytes: 2047279
+  notes: '@C10_HOLDER Stage-3 profile_full; clean 90 deg, distinct from CARRIER. QC 88.'
 - kind: mj_v7_oref_identity_lock
   element_id_or_take_id: MJ_C10_HOLDER_OREFLOCK_V001
   storage_backend: local_manual

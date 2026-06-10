@@ -86,21 +86,25 @@ record_type: element_binding
 element_id: C10
 element_type: character
 kling_alias: "@C10_CARRIER"
-binding_status: planned
+binding_status: created
+platform_asset_ref: visual_dev/elements/characters/C10/kling_element_reference_C10_carrier.yaml
+platform_asset_ref_note: "KER_C10_CARRIER_V001 — four-view Kling element reference (QC>=85)."
 voice_capability: none
 native_audio_readiness: not_required
 kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
-notes: "Figure binding: the first enforcer (carrier) who lifts and carries Jin. Distinct on-screen figure from @C10_HOLDER (anti-clone); shares base element C10."
-provenance: { created_by: "claude_code (M5 FAZ D)", created_at: "2026-06-04T00:00:00Z" }
+notes: "Figure binding: the enforcer who lifts and carries Jin. Heavier/stockier build, buzzed hair, goatee. Promoted to 'created': Stage-1 hero (MJ_C10_CARRIER_HERO_V001) + Stage-2 lock (MJ_C10_CARRIER_OREFLOCK_V001) + Stage-3 four-view QC>=85 (PQC_C10_CARRIER_V001) + reference KER_C10_CARRIER_V001. Anti-clone distinct from @C10_HOLDER; reinforce at O3 via distinguishing_detail + positioning."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-10T00:00:00Z" }
 ---
 schema_version: "0.x-draft"
 record_type: element_binding
 element_id: C10
 element_type: character
 kling_alias: "@C10_HOLDER"
-binding_status: planned
+binding_status: created
+platform_asset_ref: visual_dev/elements/characters/C10/kling_element_reference_C10_holder.yaml
+platform_asset_ref_note: "KER_C10_HOLDER_V001 — four-view Kling element reference (QC>=85)."
 voice_capability: none
 native_audio_readiness: not_required
 kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
-notes: "Figure binding: the second enforcer (holder) who restrains Nadia. Distinct on-screen figure from @C10_CARRIER (anti-clone); shares base element C10."
-provenance: { created_by: "claude_code (M5 FAZ D)", created_at: "2026-06-04T00:00:00Z" }
+notes: "Figure binding: the enforcer who restrains Nadia. Leaner build, fuller short hair + beard. Promoted to 'created': Stage-1 hero (MJ_C10_HOLDER_HERO_V001) + Stage-2 lock (MJ_C10_HOLDER_OREFLOCK_V001) + Stage-3 four-view QC>=85 (PQC_C10_HOLDER_V001) + reference KER_C10_HOLDER_V001. Anti-clone distinct from @C10_CARRIER; reinforce at O3 via distinguishing_detail + positioning."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-10T00:00:00Z" }

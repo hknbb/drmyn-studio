@@ -1,0 +1,30 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KER_C10_HOLDER_V001
+status: approved
+element_id: C10
+element_type: character
+source_midjourney_reference:
+  reference_id: MJ_C10_HOLDER_OREFLOCK_V001
+  prompt_id: SC0014__t2i-char-c10-holder-oref-lock-mj-v7__v01
+  operator_session_ref: OP-2026-06-10-C10-holder-fourview
+gpt_images_2_perspectives:
+  full_body_front: PPACK_C10_HOLDER_V001__full_body_front
+  three_quarter_waist: PPACK_C10_HOLDER_V001__three_quarter_waist
+  close_portrait_front: PPACK_C10_HOLDER_V001__close_portrait_front
+  profile_full: PPACK_C10_HOLDER_V001__profile_full
+continuity_anchors:
+  - "Locked @C10_HOLDER identity: anonymous adult enforcement operative, leaner build, fuller short hair and short beard, mid-30s to 40s, unremarkable face geometry."
+  - "Professional neutral demeanor; interchangeable procedural functionary — no personality, no attitude, no hero presence."
+  - "WD009 plain dark functional clothing; no insignia, no tactical rig, no decorative elements."
+  - "Neutral clean background; even soft light; restrained realism, not glamorous, not tactical-commando."
+  - "Anti-clone: visibly distinct from @C10_CARRIER (heavier/stockier / buzzed hair / goatee) — enforce at O3 via distinguishing_detail + positioning/action."
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-2026-06-10-C10-holder-fourview
+downstream_use:
+  - kling_omni_3_shot_prompt
+source_refs:
+  gpt_images_pack_ref: visual_dev/elements/characters/C10/perspective_packs/PPACK_C10_HOLDER_V001.yaml
+  element_sheet_ref: visual_dev/elements/characters/C10/look_sheets/LOOKSHEET_C10_ENFORCER_V001.yaml
