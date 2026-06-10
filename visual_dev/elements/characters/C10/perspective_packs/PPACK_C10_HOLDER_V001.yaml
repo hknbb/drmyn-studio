@@ -2,7 +2,7 @@ schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
 prompt_pack_id: PPACK_C10_HOLDER_V001
 status: draft
-source_reference_id: "DUAL SEED for @C10_HOLDER. PRIMARY (geometry/pose/light) = MJ_C10_HOLDER_OREFLOCK_V001 Stage-2 lock (archive/nexuszero/_elements/C10/stage2/images/hol_4.png; sha256 d9a071ac04bd78d4da3d614cd18f92ed847f2563687ab130145dcdfbd182d095). SECONDARY (skin tone/hair texture) = MJ_C10_HOLDER_HERO_V001 Stage-1 hero (archive/nexuszero/_elements/C10/stage1/images/ch_2.png; sha256 0958a093389360d9b23a4d865cb409bce081f4fa57c99ecb10925c4d52c12590)."
+source_reference_id: "DUAL SEED for @C10_HOLDER. PRIMARY (geometry/pose/light) = MJ_C10_HOLDER_OREFLOCK_V001 Stage-2 lock (archive/nexuszero/_elements/C10/stage2/images/hol_4.png; sha256 d9a071ac04bd78d4da3d614cd18f92ed847f2563687ab130145dcdfbd182d095). SECONDARY (skin tone/hair texture) = MJ_C10_HOLDER_HERO_V001 Stage-1 hero (archive/nexuszero/_elements/C10/stage1/images/hol_1.png; sha256 0958a093389360d9b23a4d865cb409bce081f4fa57c99ecb10925c4d52c12590)."
 target_model: chatgpt_images_2
 target_role: multi_perspective_element_expander
 element_id: C10

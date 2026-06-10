@@ -30,7 +30,7 @@ generation_params:
   stage: "2_of_3_oref_identity_lock"
   figure_alias: "@C10_CARRIER"
   oref_source_hero_id: MJ_C10_CARRIER_HERO_V001
-  oref_source_external_ref: "archive/nexuszero/_elements/C10/stage1/images/ch_1.png"
+  oref_source_external_ref: "archive/nexuszero/_elements/C10/stage1/images/car_1.png"
   oref_source_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/8818fa16d9a4751f0243b72d851bd28ef8c6673ce11a16d1137efc836d492f42_384_N.png"
   oref_usage_note: >
     Upload the approved CARRIER Stage-1 hero (MJ_C10_CARRIER_HERO_V001) to Midjourney,

@@ -17,7 +17,7 @@ figure_hero_locks:
   - figure_alias: "@C10_CARRIER"
     stage1_narrative_identity_locked: true
     selected_hero_id: MJ_C10_CARRIER_HERO_V001
-    external_ref: "archive/nexuszero/_elements/C10/stage1/images/ch_1.png"
+    external_ref: "archive/nexuszero/_elements/C10/stage1/images/car_1.png"
     sha256: "9e7306e4a47ef164562822fd06e0d14804cf7b8412df05981c6671a54009e6aa"
     distinguishing_detail: "Heavier / stockier build, buzzed very-short hair, light stubble. Lifts and carries Jin."
     approved_by: operator
@@ -25,7 +25,7 @@ figure_hero_locks:
   - figure_alias: "@C10_HOLDER"
     stage1_narrative_identity_locked: true
     selected_hero_id: MJ_C10_HOLDER_HERO_V001
-    external_ref: "archive/nexuszero/_elements/C10/stage1/images/ch_2.png"
+    external_ref: "archive/nexuszero/_elements/C10/stage1/images/hol_1.png"
     sha256: "0958a093389360d9b23a4d865cb409bce081f4fa57c99ecb10925c4d52c12590"
     distinguishing_detail: "Leaner build, darker fuller short hair + short beard. Restrains Nadia."
     approved_by: operator

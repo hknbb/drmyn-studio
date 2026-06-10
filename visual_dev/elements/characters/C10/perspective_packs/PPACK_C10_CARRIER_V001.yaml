@@ -2,7 +2,7 @@ schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
 prompt_pack_id: PPACK_C10_CARRIER_V001
 status: draft
-source_reference_id: "DUAL SEED for @C10_CARRIER. PRIMARY (geometry/pose/light) = MJ_C10_CARRIER_OREFLOCK_V001 Stage-2 lock (archive/nexuszero/_elements/C10/stage2/images/car_5.png; sha256 8ea76c35bdb33fa5071f880af0156b594f30f8674659e54ce1905b7fbec136c8). SECONDARY (skin tone/hair texture) = MJ_C10_CARRIER_HERO_V001 Stage-1 hero (archive/nexuszero/_elements/C10/stage1/images/ch_1.png; sha256 9e7306e4a47ef164562822fd06e0d14804cf7b8412df05981c6671a54009e6aa)."
+source_reference_id: "DUAL SEED for @C10_CARRIER. PRIMARY (geometry/pose/light) = MJ_C10_CARRIER_OREFLOCK_V001 Stage-2 lock (archive/nexuszero/_elements/C10/stage2/images/car_5.png; sha256 8ea76c35bdb33fa5071f880af0156b594f30f8674659e54ce1905b7fbec136c8). SECONDARY (skin tone/hair texture) = MJ_C10_CARRIER_HERO_V001 Stage-1 hero (archive/nexuszero/_elements/C10/stage1/images/car_1.png; sha256 9e7306e4a47ef164562822fd06e0d14804cf7b8412df05981c6671a54009e6aa)."
 target_model: chatgpt_images_2
 target_role: multi_perspective_element_expander
 element_id: C10

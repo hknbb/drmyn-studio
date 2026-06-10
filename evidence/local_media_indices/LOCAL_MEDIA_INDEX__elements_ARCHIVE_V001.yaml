@@ -85,8 +85,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-09T19:09:33Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/_elements/C10/stage1/images/ch_1.png
-  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage1/images/ch_1.png
+  local_path: archive/nexuszero/_elements/C10/stage1/images/car_1.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage1/images/car_1.png
   sha256: 9e7306e4a47ef164562822fd06e0d14804cf7b8412df05981c6671a54009e6aa
   size_bytes: 6929205
   notes: Stage-1 hero for @C10_CARRIER (33ddd2dd_0). Operator-approved 2026-06-09.
@@ -97,8 +97,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-09T19:09:33Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/_elements/C10/stage1/images/ch_2.png
-  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage1/images/ch_2.png
+  local_path: archive/nexuszero/_elements/C10/stage1/images/hol_1.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage1/images/hol_1.png
   sha256: 0958a093389360d9b23a4d865cb409bce081f4fa57c99ecb10925c4d52c12590
   size_bytes: 6742950
   notes: Stage-1 hero for @C10_HOLDER (3f56fca9_3). Operator-approved 2026-06-09.
