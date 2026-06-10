@@ -12,11 +12,11 @@ full_body_visible: true
 shared_preservation_instruction: >
   Preserve the locked Otto identity exactly across all four views — same face geometry,
   age (sixty to seventy), solid settled economical build, grey close-kept hair, weathered
-  skin, no glamor. Same SC0047 quay-morning working wardrobe (WD014: heavy weathered
-  jacket over layered utilitarian fabrics, durable work trousers, worn boots) in every
-  view. Change only camera scale and angle, never the person or the garments. Functional
-  realism; no redesign, no stylization, no softening; neutral clean background; no text,
-  no watermark.
+  skin, no glamor. Same SC0047 quay-morning working wardrobe (WD014: heavy dark navy or
+  dark blue weathered jacket, dark blue or navy work trousers, worn boots; optional
+  muted olive-green accent in secondary layer) in every view. Change only camera scale
+  and angle, never the person or the garments. Functional realism; no redesign, no
+  stylization, no softening; neutral clean background; no text, no watermark.
 source_refs:
   scene_card_ref: planning/scenes/SC0047/scene_card.yaml
   element_sheet_ref: visual_dev/elements/characters/C09/look_sheets/LOOKSHEET_C09_QUAY_V001.yaml
@@ -26,10 +26,11 @@ prompts:
     perspective: full_body_front
     prompt_text: >
       Full-body front view, head to feet in frame, of the locked reference man in his
-      quay working look: heavy weathered jacket over layered utilitarian fabrics,
-      durable work trousers, worn boots. Standing steady, even cool maritime-morning
-      light, neutral clean background. Preserve identity and wardrobe exactly; functional
-      realism, no redesign, no text, no watermark.
+      quay working look: heavy dark navy or dark blue weathered jacket over layered dark
+      blue utilitarian fabrics, dark navy work trousers, worn boots; optional muted
+      olive-green accent layer. Standing steady, even cool maritime-morning light, neutral
+      clean background. Preserve identity and wardrobe exactly; functional realism, no
+      redesign, no text, no watermark.
     constraints:
       - "Head-to-toe, no cropping of feet or head."
       - "Same identity + WD014 wardrobe as the locked reference."
@@ -41,9 +42,10 @@ prompts:
     perspective: three_quarter_waist
     prompt_text: >
       Three-quarter angle, waist-up framing, of the same locked reference man in the
-      identical quay-working wardrobe. Body turned ~30-45 degrees, head toward camera.
-      Even cool maritime-morning light, neutral clean background. Preserve identity and
-      garments exactly; functional realism, no redesign, no text, no watermark.
+      identical dark navy/dark blue quay-working wardrobe. Body turned ~30-45 degrees,
+      head toward camera. Even cool maritime-morning light, neutral clean background.
+      Preserve identity and garments exactly; functional realism, no redesign, no text,
+      no watermark.
     constraints:
       - "Waist-up scale; three-quarter body angle."
       - "Identity + wardrobe identical to full_body_front."
@@ -68,10 +70,10 @@ prompts:
   - prompt_id: PPACK_C09_QUAY_V001__profile_full
     perspective: profile_full
     prompt_text: >
-      Side profile view of the same locked reference man in the identical
-      quay-working wardrobe, for a 3D identity wrap. Clean lateral profile, even cool
-      maritime-morning light, neutral clean background. Preserve identity and garments
-      exactly; functional realism, no redesign, no text, no watermark.
+      Side profile view of the same locked reference man in the identical dark navy/dark
+      blue quay-working wardrobe, for a 3D identity wrap. Clean lateral profile, even
+      cool maritime-morning light, neutral clean background. Preserve identity and
+      garments exactly; functional realism, no redesign, no text, no watermark.
     constraints:
       - "True side profile (90 degrees)."
       - "Identity + wardrobe identical to the other three views."

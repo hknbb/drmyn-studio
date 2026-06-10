@@ -15,9 +15,9 @@ oref_cdn_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04
 prompt_text: >-
   Same man, identical face — sixty to seventy, solid settled build, grey close-kept
   hair, weathered skin. Straight to camera, even frontal light, plain neutral
-  background. Dark neutral jacket or heavy working clothes. Face fully visible,
-  no shadow cropping. Flat unsentimental expression. Restrained realism, no
-  redesign, no text, no watermark
+  background. Dark navy or dark blue heavy working jacket, dark blue layers underneath;
+  optional muted olive-green accent. Face fully visible, no shadow cropping. Flat
+  unsentimental expression. Restrained realism, no redesign, no text, no watermark
   --v 7 --style raw --ar 2:3 --ow 250 --oref https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/6135d6c9b9266e17fdb705361cd2fd693f8c22d99979f4b063083ec0961f1a86_384_N.png
 status: active
 canon_lock: false
