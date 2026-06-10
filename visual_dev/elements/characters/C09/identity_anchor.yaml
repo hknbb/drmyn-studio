@@ -14,6 +14,12 @@ front_hero_lock_ref:
   external_ref: "archive/nexuszero/_elements/C09/stage1/images/ott_1.png"
   operator_approved_at: "2026-06-10"
   notes: "Selected from O1 batch (5 candidates). Flat unsentimental face, grey close-kept hair, solid settled build, dark neutral jacket. Age 65-70. Seeds Stage-2 --oref lock."
+oref_lock_ref:
+  pending: false
+  element_id: MJ_C09_OREFLOCK_V001
+  external_ref: "archive/nexuszero/_elements/C09/stage2/images/ott_2.png"
+  operator_approved_at: "2026-06-10"
+  notes: "Selected from O2 batch (11 candidates; o2_9). Identity consistent with ott_1.png — same face geometry, age 65-70, grey hair, weathered skin. Dark navy jacket + muted olive-green inner layer (WD014). Even frontal light, plain grey background. Seeds Stage-3 four_view_scale_angle_v3."
 fixed_identity_anchors:
   - "Man, sixty to seventy; the age operational lifers reach all at once; face geometry and identity must stay constant across all scene looks."
   - "Solid, settled, economical build; does not move more than the moment needs; worn unhurried authority."

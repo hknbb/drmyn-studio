@@ -286,3 +286,17 @@ entries:
     2026-06-10 from O1 batch (5 candidates); selected on flat unsentimental face,
     grey close-kept hair, solid settled build, dark neutral jacket, plain neutral
     background. Age reads 65-70 (operational lifer). Seeds Stage-2 --oref lock.
+- kind: mj_v7_oref_identity_lock
+  element_id_or_take_id: MJ_C09_OREFLOCK_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-10T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C09/stage2/images/ott_2.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C09/stage2/images/ott_2.png
+  sha256: e28461a9bb7bf0d2c8814b68351dce5ab0ad52f0601ce674304a450586f8070b
+  size_bytes: 1580261
+  notes: Stage-2 MJ V7 --oref identity lock for Otto (C09). Operator-approved 2026-06-10
+    from O2 batch (11 candidates); selected o2_9 on strongest identity consistency
+    with ott_1.png, even frontal light, clean grey background, dark navy jacket +
+    muted olive-green inner layer clearly visible (WD014). Seeds Stage-3 ChatGPT
+    Images 2 four_view_scale_angle_v3.
