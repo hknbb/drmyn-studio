@@ -5,11 +5,10 @@
 
 ## 🇹🇷 Şu An Neredeyiz (Türkçe Özet)
 
-Milestone M5'teyiz: SC0014 tüm element binding'leri "created" seviyesine ulaştı.
-PROP001 pale-blue bracelet tamamlandı (QC 92/90/93 → KER_PROP001_BRACELET_V001 →
-@PROP001_BRACELET created). SC0014 artık clip plan + continuity ledger + O3 prompt
-üretimine hazır (FAZ C). Sıradaki sahne elementleri: SC0089, SC0047, SC0111
-lokasyonları + propları. Bilinen yapısal sorunlar "Known Issues" bölümünde.
+Milestone M5'teyiz: SC0014 FAZ C tamamlandı — 8 clip, 8 O3 prompt (Format A, diyalog suppress),
+continuity ledger SCL_SC0014_V001. SC0014 artık Kling üretimine hazır (FAZ D/E: kullanıcı video
+üretir + takes seçer). Sıradaki öncelik: SC0089, SC0047, SC0111 sahne elementleri (lokasyon +
+prop pipeline'ları). Bilinen yapısal sorunlar "Known Issues" bölümünde.
 
 ## Status
 
@@ -17,7 +16,7 @@ lokasyonları + propları. Bilinen yapısal sorunlar "Known Issues" bölümünde
 |---|---|
 | Active branch | `feat/sc0014-scene-production` |
 | Milestone | M5 — character visual element pipeline |
-| Last updated | 2026-06-12 |
+| Last updated | 2026-06-12 (FAZ C complete) |
 | Public checkpoint | v0.17.0 (Zenodo DOI: 10.5281/zenodo.20241807) |
 
 ## Character Pipeline (C01–C10)
@@ -48,8 +47,8 @@ Stages: S1 = MJ v8.1 hero · S2 = MJ v7 --oref identity lock · S3 = four-view p
 
 ## Next Steps (priority order)
 
-1. **SC0014 FAZ C** — clip plan + continuity ledger + O3 prompt üretimi (tüm element binding'leri created). (NEXT)
-2. Remaining locations + props for SC0089, SC0047, SC0111.
+1. **SC0014 FAZ D/E** — kullanıcı Kling O3'te 8 clip üretir → takes → selected_take → scene_clip_map. (operator-driven)
+2. **SC0089, SC0047, SC0111 element pipeline** — remaining locations + props (first-ref → 3-view → KER → created). (NEXT metadata)
 3. **PR-BATCH-KEYCHAR-1** — C03 Birta + C05 Marcus pre-checkpoint registration.
 4. **C07 Sera** + **Halo Unit** element production.
 
@@ -71,8 +70,9 @@ From `closingpriceclaudecodeanalysisforcode.md` (multi-agent analysis, 2026-06-0
 ## Session Log (newest first, keep ~10 lines)
 
 <!-- AUTO:SESSION_LOG:START -->
+- 2026-06-12 — SC0014 FAZ C complete: 8-clip plan + SCL_SC0014_V001 ledger + 8 Format A O3 prompts (dialogue suppressed; Kling ready)
+- 2026-06-12 — lock PROP001 bracelet three-view + promote @PROP001_BRACELET to created (SC0014, QC>=85); SC0014 all elements created
 - 2026-06-12 — lock LOC001 nursery three-view + promote @LOC001_NURSERY to created (SC0014, QC>=85)
-- 2026-06-12 — PROP001 bracelet + promote @PROP001_BRACELET to created; SC0014 all elements created
 - 2026-06-12 — complete C02 Roman full pipeline + promote @C02_ROMAN to created (SC0111, QC>=85)
 - 2026-06-10 — lock C09 Otto Stage-3 four-view + promote @C09_OTTO to created (SC0047, QC>=85)
 - 2026-06-10 — lock C09 Otto Stage-2 oref (ott_2.png) + update identity anchor
@@ -81,5 +81,4 @@ From `closingpriceclaudecodeanalysisforcode.md` (multi-agent analysis, 2026-06-0
 - 2026-06-10 — lock C09 Otto Stage-1 hero (MJ_C09_HERO_V001)
 - 2026-06-10 — promote C06 Zara to created (SC0089, QC>=85, khaki WD013)
 - 2026-06-10 — update C06 Zara wardrobe to khaki/olive-tan (WD013)
-- 2026-06-10 — [chore] rename C06 archive paths to zar_1/zar_2 convention
 <!-- AUTO:SESSION_LOG:END -->
