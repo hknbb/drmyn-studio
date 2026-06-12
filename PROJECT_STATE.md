@@ -5,14 +5,12 @@
 
 ## 🇹🇷 Şu An Neredeyiz (Türkçe Özet)
 
-Milestone M5'teyiz: ana karakterlerin görsel element pipeline'ı (MJ hero →
---oref lock → four-view → binding "created"). Son iş (12 Haziran): C02 Roman'ın
-tam pipeline'ı tamamlandı ve SC0111 binding'i "created" seviyesine yükseltildi.
-C01, C02, C04, C06, C08, C09 ve C10 (Carrier+Holder) karakterlerinin binding'leri
-"created" durumda. Sırada: C03 Birta ve C05 Marcus'un üretilmiş görsellerinin
-kayıt altına alınması (PR-BATCH-KEYCHAR-1 batch PR'ı), ardından C07 Sera ve
-Halo Unit, sonra golden scene üretimi (aktif branch SC0014 sahne üretimi için
-açıldı). Bilinen yapısal sorunlar aşağıda "Known Issues" bölümünde.
+Milestone M5'teyiz: SC0014 sahnesinin lokasyon element üretimine geçildi.
+Karakter pipeline'ı (C01/C02/C04/C06/C08/C09/C10) tamamlandı — tümü "created".
+Şimdi: LOC001 Vale nursery lokasyon pipeline'ı başlatılıyor (first-ref → 3-view
+→ PQC → KER → binding). PPACK mevcut ama source_reference_id boş, first-ref
+görsel üretimi kullanıcıya geçilecek. Bilinen yapısal sorunlar "Known Issues"
+bölümünde.
 
 ## Status
 
@@ -25,20 +23,22 @@ açıldı). Bilinen yapısal sorunlar aşağıda "Known Issues" bölümünde.
 
 ## Character Pipeline (C01–C10)
 
+<!-- AUTO:PIPELINE:START -->
 Stages: S1 = MJ v8.1 hero · S2 = MJ v7 --oref identity lock · S3 = four-view pack · Binding = lifecycle status
 
 | ID | Name | S1 | S2 | S3 | Binding | Scene(s) | Notes |
 |---|---|---|---|---|---|---|---|
-| C01 | Nadia Vale | ✅ | ✅ | ✅ | **created** | SC0047, SC0089, SC0111 | 4 look bindings created: base, field-night, transit, battle-worn (+nursery four-view) |
-| C02 | Roman Vale | ✅ | ✅ | ✅ | **created** | SC0111 | Full pipeline completed 2026-06-12, QC≥85 |
-| C03 | Birta | — | — | — | pending registration | — | Visuals produced in-session (pre-checkpoint); needs PR-BATCH-KEYCHAR-1 registration |
-| C04 | Dimitri | ✅ | ✅ | ✅ | **created** | SC0014 | Dual-seed four-view pack, QC≥85 |
-| C05 | Marcus | — | — | — | pending registration | — | Visuals produced in-session (pre-checkpoint); needs PR-BATCH-KEYCHAR-1 registration |
-| C06 | Zara | ✅ | ✅ | ✅ | **created** | SC0089 | Khaki/olive-tan wardrobe WD013, QC≥85 |
-| C07 | Sera | — | — | — | not started | — | Queued after key-character batch |
-| C08 | Jin | ✅ | ✅ | ✅ | **created** | SC0014 | Protected subject, QC≥85 |
-| C09 | Otto | ✅ | ✅ | ✅ | **created** | SC0047 | Dark navy/olive wardrobe WD014, QC≥85 |
-| C10 | Carrier+Holder | ✅ | ✅ | ✅ | **created** | SC0014 | Two distinct enforcer figures, per-figure packs, QC≥85 |
+| C01 | Nadia Vale | ✅ | ✅ | ✅ | **created** | SC0047, SC0089, SC0111 | 4 look bindings created: base, field-night, transit, battle-worn |
+| C02 | Roman Vale | ✅ | ✅ | ✅ | **created** | SC0111 |  |
+| C03 | Birta | — | — | — | — | — | Needs PR-BATCH-KEYCHAR-1 registration |
+| C04 | Dimitri | ✅ | ✅ | ✅ | **created** | SC0014 |  |
+| C05 | Marcus | — | — | — | — | — | Needs PR-BATCH-KEYCHAR-1 registration |
+| C06 | Zara | ✅ | ✅ | ✅ | **created** | SC0089 |  |
+| C07 | Sera | — | — | — | — | — | Queued after key-character batch |
+| C08 | Jin | ✅ | ✅ | ✅ | **created** | SC0014 |  |
+| C09 | Otto | ✅ | ✅ | ✅ | **created** | SC0047 |  |
+| C10 | Carrier+Holder | ✅ | ✅ | ✅ | **created** | SC0014 | Two enforcer figures (Carrier + Holder), per-figure packs |
+<!-- AUTO:PIPELINE:END -->
 
 ## Active Scene Work
 
@@ -49,14 +49,14 @@ Stages: S1 = MJ v8.1 hero · S2 = MJ v7 --oref identity lock · S3 = four-view p
 
 ## Next Steps (priority order)
 
-1. **PR-BATCH-KEYCHAR-1** — register the pre-checkpoint visual batch
-   (originally C02–C05; C02 now done in-repo → effectively **C03 Birta + C05
-   Marcus**): reference_chain, perspective packs, image selections, QC records,
-   media index, kling element refs. See `revised_character_batch_to_golden_scene_plan.md`.
-2. **C07 Sera** + **Halo Unit** element production (same 3-stage pipeline).
-3. **Golden scene production** — SC0014 (active branch) / SC0001 per revised plan.
-4. Refresh `revised_character_batch_to_golden_scene_plan.md` — it predates the
-   C02/C06/C08/C09/C10 completions recorded above.
+1. **LOC001 Vale nursery** (SC0014) — first-ref prompt created → user generates
+   in ChatGPT Images → archive → PPACK 3-view source_reference_id updated →
+   user generates 3 views → archive → PQC (≥85) → image_selection → KER →
+   binding `planned → created`. (ACTIVE)
+2. **PROP001 pale-blue bracelet** (SC0014) — same first-ref + scale-angle pipeline.
+3. Remaining locations: SC0089 night transit, LOC006 Merin quay, LOC007 Veltain antechamber.
+4. **PR-BATCH-KEYCHAR-1** — C03 Birta + C05 Marcus pre-checkpoint registration.
+5. **C07 Sera** + **Halo Unit** element production.
 
 ## Known Issues / Blockers
 
@@ -75,9 +75,15 @@ From `closingpriceclaudecodeanalysisforcode.md` (multi-agent analysis, 2026-06-0
 
 ## Session Log (newest first, keep ~10 lines)
 
-- 2026-06-12 — Cross-CLI memory system installed (AGENTS.md contract + this dashboard); home-dir CLAUDE.md conflict removed.
-- 2026-06-12 — C02 Roman full pipeline (S1 hero → S2 oref → S3 four-view) + promoted to created (SC0111, QC≥85).
-- 2026-06-10 — C09 Otto full pipeline + created (SC0047, WD014); C10 Carrier+Holder four-views + created (SC0014).
-- 2026-06-10 — C06 Zara full pipeline + created (SC0089, WD013 khaki).
-- 2026-06-09 — C01 battle-worn + transit four-views; C04 operational four-view; C08 nursery four-view → bindings created.
-- 2026-06-08 — C01 field-night + nursery four-views.
+<!-- AUTO:SESSION_LOG:START -->
+- 2026-06-12 — complete C02 Roman full pipeline + promote @C02_ROMAN to created (SC0111, QC>=85)
+- 2026-06-10 — lock C09 Otto Stage-3 four-view + promote @C09_OTTO to created (SC0047, QC>=85)
+- 2026-06-10 — lock C09 Otto Stage-2 oref (ott_2.png) + update identity anchor
+- 2026-06-10 — update C09 Otto wardrobe to dark navy/blue + muted olive-green (WD014)
+- 2026-06-10 — add C09 Otto Stage-2 --oref lock prompt with CDN URL
+- 2026-06-10 — lock C09 Otto Stage-1 hero (MJ_C09_HERO_V001)
+- 2026-06-10 — promote C06 Zara to created (SC0089, QC>=85, khaki WD013)
+- 2026-06-10 — update C06 Zara wardrobe to khaki/olive-tan (WD013)
+- 2026-06-10 — [chore] rename C06 archive paths to zar_1/zar_2 convention
+- 2026-06-10 — lock C06 Zara Stage-2 --oref identity lock (MJ_C06_OREFLOCK_V001)
+<!-- AUTO:SESSION_LOG:END -->
