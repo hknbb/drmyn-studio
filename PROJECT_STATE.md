@@ -5,12 +5,11 @@
 
 ## 🇹🇷 Şu An Neredeyiz (Türkçe Özet)
 
-Milestone M5'teyiz: SC0014 sahnesinin lokasyon element üretimine geçildi.
-Karakter pipeline'ı (C01/C02/C04/C06/C08/C09/C10) tamamlandı — tümü "created".
-Şimdi: LOC001 Vale nursery lokasyon pipeline'ı başlatılıyor (first-ref → 3-view
-→ PQC → KER → binding). PPACK mevcut ama source_reference_id boş, first-ref
-görsel üretimi kullanıcıya geçilecek. Bilinen yapısal sorunlar "Known Issues"
-bölümünde.
+Milestone M5'teyiz: SC0014 lokasyon elementleri üretimi süruyor.
+LOC001 Vale nursery tam pipeline tamamlandı ve "created" seviyesine yükseltildi
+(first-ref loc001_1.png → 3-view QC 91/88/90 → KER_LOC001_NURSERY_V001 →
+@LOC001_NURSERY binding created). Sırada: PROP001 pale-blue bracelet (SC0014'ün
+son pending elementi). Bilinen yapısal sorunlar "Known Issues" bölümünde.
 
 ## Status
 
@@ -76,6 +75,7 @@ From `closingpriceclaudecodeanalysisforcode.md` (multi-agent analysis, 2026-06-0
 ## Session Log (newest first, keep ~10 lines)
 
 <!-- AUTO:SESSION_LOG:START -->
+- 2026-06-12 — LOC001 Vale nursery full pipeline + promote @LOC001_NURSERY to created (SC0014, QC>=85)
 - 2026-06-12 — complete C02 Roman full pipeline + promote @C02_ROMAN to created (SC0111, QC>=85)
 - 2026-06-10 — lock C09 Otto Stage-3 four-view + promote @C09_OTTO to created (SC0047, QC>=85)
 - 2026-06-10 — lock C09 Otto Stage-2 oref (ott_2.png) + update identity anchor

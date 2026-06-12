@@ -405,4 +405,44 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/C02/stage3/images/rom_3_4.png
   sha256: 5f31f012e49e14a8845fc20025b373d564e30fbb151a37a5a62dca429df01cd3
   size_bytes: 1772641
-  notes: "C02 Roman compound look — profile_full. Clean 90 deg lateral, full silhouette, dark olive green suit + black shoes, tall controlled build. QC 91."
+  notes: "C02 Roman compound look — profile_full. Clean 90 deg lateral, dark olive green suit, tall controlled build. QC 91."
+- kind: chatgpt_images_location_first_reference
+  element_id_or_take_id: CHATGPTIMG_LOC001_FIRSTREF_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-12T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/LOC001/stage1/images/loc001_1.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC001/stage1/images/loc001_1.png
+  sha256: b1b3d5b82ffcb30dda09f49a91aa8c72a9b7767e9365ea4ad0bb48ccd461a860
+  size_bytes: 1962194
+  notes: "LOC001 Vale nursery — Stage-1 ChatGPT Images first-reference establishing master. Wide interior, evening warm practicals, crib + low shelf + nursing chair, generous floor for SC0014 actor blocking. Operator-approved 2026-06-12. Source for PPACK_LOC001_NURSERY_EVENING_V001 scale-angle pack."
+- kind: chatgpt_images_location_scale_angle_view
+  element_id_or_take_id: PPACK_LOC001_NURSERY_EVENING_V001__front_reference
+  storage_backend: local_manual
+  last_seen_at: '2026-06-12T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_1.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_1.png
+  sha256: 4c53128f788a396e7ce9cb9de0b4cf9eb929730bb370182c21376e7719ee1421
+  size_bytes: 1924832
+  notes: "LOC001 nursery — front_reference. Wide establishing master, deep staging, generous blocking space for SC0014 actors. QC 91."
+- kind: chatgpt_images_location_scale_angle_view
+  element_id_or_take_id: PPACK_LOC001_NURSERY_EVENING_V001__three_quarter_medium
+  storage_backend: local_manual
+  last_seen_at: '2026-06-12T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_2.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_2.png
+  sha256: cb4f3af477457bd40ba8418c97a5023e7ab109d22b01166d08cdd10bae730846
+  size_bytes: 1911971
+  notes: "LOC001 nursery — three_quarter_medium. Medium-depth angle, crib + nursing chair centered, consistent objects and lighting. QC 88."
+- kind: chatgpt_images_location_scale_angle_view
+  element_id_or_take_id: PPACK_LOC001_NURSERY_EVENING_V001__three_quarter_close
+  storage_backend: local_manual
+  last_seen_at: '2026-06-12T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_3.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_3.png
+  sha256: 033985a8c1a77afc9c5b5292cb531df8d5c69cd0df7f450d9b6dd16225eabb4a
+  size_bytes: 1947967
+  notes: "LOC001 nursery — three_quarter_close. Clear three-quarter angle, shelf + crib railing detail visible, warm lamp prominent. QC 90."

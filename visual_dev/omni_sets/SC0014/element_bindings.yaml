@@ -62,11 +62,13 @@ record_type: element_binding
 element_id: LOC001
 element_type: location
 kling_alias: "@LOC001_NURSERY"
-binding_status: planned
+binding_status: created
+platform_asset_ref: visual_dev/elements/locations/LOC001/kling_element_reference_LOC001_nursery.yaml
+platform_asset_ref_note: "KER_LOC001_NURSERY_V001 — three-view scale-angle Kling location reference (QC>=85)."
 voice_capability: none
 native_audio_readiness: not_required
 kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
-notes: "Vale residence nursery (LOC001 sub-area). Planned alias; created after the location reference exists."
+notes: "Vale residence nursery (LOC001 sub-area). Promoted to 'created': Stage-1 first-reference (CHATGPTIMG_LOC001_FIRSTREF_V001) + Stage-3 three-view QC>=85 (PQC_LOC001_NURSERY_EVENING_V001) + reference KER_LOC001_NURSERY_V001."
 provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
 ---
 schema_version: "0.x-draft"
