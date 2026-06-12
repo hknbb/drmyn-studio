@@ -1,0 +1,72 @@
+schema_version: "0.x-draft"
+record_type: perspective_qc_report
+perspective_qc_id: PQC_C02_COMPOUND_V001
+status: approved
+scene_id: SC0111
+element_id: C02
+prompt_pack_id: PPACK_C02_COMPOUND_V001
+operator_session_ref: OP-2026-06-12-C02-roman-stage3-fourview
+perspective_scores:
+  - prompt_id: PPACK_C02_COMPOUND_V001__full_body_front
+    perspective: full_body_front
+    identity_preservation: 94
+    perspective_usefulness: 95
+    material_palette_continuity: 95
+    production_reference_cleanliness: 95
+    hallucination_absence: 95
+    silhouette_readability: 95
+    scale_distinction: 95
+    total_score: 95
+    decision: pass
+  - prompt_id: PPACK_C02_COMPOUND_V001__three_quarter_waist
+    perspective: three_quarter_waist
+    identity_preservation: 90
+    perspective_usefulness: 90
+    material_palette_continuity: 91
+    production_reference_cleanliness: 90
+    hallucination_absence: 91
+    silhouette_readability: 90
+    wardrobe_world_fit: 90
+    view_distinction: 90
+    total_score: 90
+    decision: pass
+  - prompt_id: PPACK_C02_COMPOUND_V001__close_portrait_front
+    perspective: close_portrait_front
+    identity_preservation: 88
+    perspective_usefulness: 89
+    material_palette_continuity: 88
+    production_reference_cleanliness: 89
+    hallucination_absence: 90
+    character_description_strength: 89
+    identity_readability: 90
+    expression_performance_readability: 88
+    total_score: 89
+    decision: pass
+  - prompt_id: PPACK_C02_COMPOUND_V001__profile_full
+    perspective: profile_full
+    identity_preservation: 90
+    perspective_usefulness: 91
+    material_palette_continuity: 91
+    production_reference_cleanliness: 91
+    hallucination_absence: 91
+    no_directional_confusion: 91
+    total_score: 91
+    decision: pass
+gate:
+  minimum_score: 85
+  all_four_required: true
+  all_perspectives_required: true
+  can_advance_to_kling_reference: true
+notes: >
+  Real review of operator-approved Stage-3 four_view_scale_angle_v3 set for @C02_ROMAN
+  (archived, git-ignored). All four views read as the same man — late 40s to 50s, tall
+  controlled silhouette, sharp angular face geometry, slicked-back dark hair with grey
+  temples, light stubble, composed cold gaze. Identity highly consistent across all four
+  perspectives. Dark olive green tailored suit (WD003 accepted wardrobe, locked from
+  Stage-2 --cref) with off-white shirt and black shoes held throughout. Full-body front
+  delivers sharpest silhouette — head-to-toe immaculate, institutional gravity legible
+  at full scale. Profile confirms tall slim controlled silhouette with exact suit tailoring.
+  Close portrait delivers strong face-geometry fidelity; patrician calm and cold institutional
+  authority clearly present. Three-quarter angle shows centered gravity and effortful
+  stillness in shoulders. All perspectives >= 85. Dual-reference seeded (MJ_C02_OREFLOCK_V001
+  primary + MJ_C02_HERO_V001 secondary).

@@ -1,0 +1,30 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KER_C02_COMPOUND_V001
+status: approved
+element_id: C02
+element_type: character
+source_midjourney_reference:
+  reference_id: MJ_C02_OREFLOCK_V001
+  prompt_id: SC0111__t2i-char-c02-identity-mj-v8__v01
+  operator_session_ref: OP-2026-06-12-C02-roman-stage3-fourview
+gpt_images_2_perspectives:
+  full_body_front: PPACK_C02_COMPOUND_V001__full_body_front
+  three_quarter_waist: PPACK_C02_COMPOUND_V001__three_quarter_waist
+  close_portrait_front: PPACK_C02_COMPOUND_V001__close_portrait_front
+  profile_full: PPACK_C02_COMPOUND_V001__profile_full
+continuity_anchors:
+  - "Locked @C02_ROMAN identity: man late 40s to 50s, tall controlled silhouette, sharp angular face geometry, slicked-back dark hair with grey temples, light stubble."
+  - "Patrician calm and cold institutional authority; the threat is cold and architecturally built, not performative rage."
+  - "WD003 dark olive green tailored suit, off-white/white shirt, black formal shoes — immaculate baseline."
+  - "Effortful stillness and composed fatigue legible; no damage, no disorder at compound-entry baseline."
+  - "Do not soften into grandfatherly warmth or flamboyant villainy; institutional gravity and stillness is the core read."
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-2026-06-12-C02-roman-stage3-fourview
+downstream_use:
+  - kling_omni_3_shot_prompt
+source_refs:
+  gpt_images_pack_ref: visual_dev/elements/characters/C02/perspective_packs/PPACK_C02_COMPOUND_V001.yaml
+  element_sheet_ref: visual_dev/elements/characters/C02/look_sheets/LOOKSHEET_C02_COMPOUND_V001.yaml

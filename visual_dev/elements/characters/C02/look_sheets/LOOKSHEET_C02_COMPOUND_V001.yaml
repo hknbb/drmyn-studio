@@ -13,12 +13,12 @@ physical:
   physical_features: "Late 40s to 50s; face geometry exact and composed; cold precise gaze; patrician calm; the threat is stillness, not expression. Jawline and shoulders read as controlled effort. No decorative facial hair or styling."
 wardrobe:
   primary_wardrobe_id: WD003
-  garment_top: "Dark tailored structured shirt or upper garment in black or deep charcoal; exact tailoring, disciplined construction, no decorative looseness. Corporate/private-control aesthetic, not performance. Clean and immaculate."
-  garment_bottom: "Dark tailored suiting trousers in black or slate deep charcoal; exact cut, precise creasing, movement-easy without flash. Institutional restraint, not luxury display. Immaculate."
-  footwear: "Dark practical formal footwear, low-profile, disciplined construction. Black or charcoal. Immaculate, no scuffing or wear visible at baseline."
-  outerwear: "Dark tailored jacket (optional) or suit jacket in black or deep charcoal; close-fitting, minimal silhouette, exact tailoring, no decorative detail. May be worn or removed; if worn, contributes to the centered control silhouette."
+  garment_top: "Tailored structured shirt in off-white or white; exact construction, no decorative looseness. Open collar, controlled. Clean and immaculate."
+  garment_bottom: "Dark olive green tailored suit trousers; exact cut, precise creasing, movement-easy without flash. Institutional restraint. Immaculate."
+  footwear: "Dark practical formal footwear, low-profile, disciplined construction. Black. Immaculate, no scuffing or wear visible at baseline."
+  outerwear: "Dark olive green tailored suit jacket; close-fitting, minimal silhouette, exact tailoring, no decorative detail. Contributes to the centered control silhouette."
   accessories: []
-palette: "Dark tailored neutrals (black, slate, deep charcoal) with controlled white contrast. Muted luxury restraint over saturated display. Harsh institutional cool light (cold color temperature, low-key, hard); reads as institutional threat, not warmth. Composed immaculate baseline."
+palette: "Dark olive green tailored suit, off-white shirt, black shoes (WD003). Muted authority, institutional cool light. Private-sector threat register, not warmth."
 status: draft
 notes: >
   Full head-to-toe look definition for Roman's SC0111 composed compound control so the

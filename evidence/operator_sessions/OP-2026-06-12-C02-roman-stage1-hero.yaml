@@ -1,0 +1,19 @@
+session_id: OP-2026-06-12-C02-roman-stage1-hero
+created_at: "2026-06-12T00:00:00Z"
+scene_id: SC0111
+current_task: "C02 Roman Stage-1 MJ v8.1 hero selection from R1 batch"
+status: complete
+recommended_files:
+  - archive/nexuszero/_elements/C02/stage1/images/rom_1.png
+  - visual_dev/elements/characters/C02/identity_anchor.yaml
+  - prompts/draft/SC0111__t2i-char-c02-identity-mj-v8__v01.yaml
+recommended_steps:
+  - "Generate Stage-2 --cref lock in MJ V7 using MJ_C02_HERO_V001 as --cref source"
+  - "Provide Stage-2 batch folder path for hero selection"
+  - "After Stage-2 lock: generate Stage-3 ChatGPT Images 2 four_view_scale_angle_v3 pack"
+notes: >
+  Stage-1 hero selected 2026-06-12 from R1 batch. Hero ID: MJ_C02_HERO_V001 (rom_1.png).
+  Original MJ filename: u9435212546_Photorealistic_DSLR_portrait_of_a_real_man_late_4_8086a695-5e59-4aa1-98bd-2b8f149c5f6d_2.png.
+  Selected on: sharp angular face geometry, slicked-back dark hair, strong jawline, light
+  stubble, composed cold gaze — patrician threat legible. Late 40s age read. Black tailored
+  suit, dramatic institutional lighting. Seeds Stage-2 --cref lock.

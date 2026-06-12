@@ -1,0 +1,20 @@
+session_id: OP-2026-06-12-C02-roman-stage2-oref
+created_at: "2026-06-12T00:00:00Z"
+scene_id: SC0111
+current_task: "C02 Roman Stage-2 MJ V7 --cref identity lock selection from R2 batch"
+status: complete
+recommended_files:
+  - archive/nexuszero/_elements/C02/stage2/images/rom_2.png
+  - visual_dev/elements/characters/C02/identity_anchor.yaml
+  - visual_dev/elements/characters/C02/perspective_packs/PPACK_C02_COMPOUND_V001.yaml
+recommended_steps:
+  - "Generate Stage-3 ChatGPT Images 2 four_view_scale_angle_v3 pack using rom_2.png as PRIMARY seed and rom_1.png as SECONDARY (skin tone/warmth only)"
+  - "Use PPACK_C02_COMPOUND_V001 prompts for all four perspectives"
+  - "Provide Stage-3 batch folder path for perspective QC"
+notes: >
+  Stage-2 --cref lock selected 2026-06-12 from R2 batch. Lock ID: MJ_C02_OREFLOCK_V001 (rom_2.png).
+  Original MJ filename: u9435212546_Photorealistic_DSLR_portrait_of_a_real_man_late_4_e7615b4f-c491-4d1a-b65a-9a90700f4956_2.png.
+  Selected on: clean frontal pose, plain grey background, identity consistent with rom_1.png.
+  Note: --cref lock carried dark olive green suit from reference; wardrobe drifted from
+  Stage-1 black to olive green. Operator accepted olive green as final wardrobe (WD003 updated).
+  Seeds Stage-3 four_view_scale_angle_v3.

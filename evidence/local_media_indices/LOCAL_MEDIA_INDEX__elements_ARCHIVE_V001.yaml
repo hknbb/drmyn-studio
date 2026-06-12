@@ -340,3 +340,69 @@ entries:
   sha256: 71bae5da8540784d0dc0235b967d95b2a72144208b051e69ad1d1571187b92e1
   size_bytes: 2100927
   notes: "C09 Otto quay look — profile_full. Clean lateral, olive-green inner layer visible, identity wrap complete. QC 90."
+- kind: mj_v81_narrative_identity_hero
+  element_id_or_take_id: MJ_C02_HERO_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-12T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C02/stage1/images/rom_1.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C02/stage1/images/rom_1.png
+  sha256: 6d694b6d49295e1bfe881fec04c0789027595b9e7fd04681fe87c3cc06e2a469
+  size_bytes: 6424907
+  notes: Stage-1 MJ v8.1 narrative-identity hero for Roman (C02). Operator-approved 2026-06-12
+    from R1 batch; selected on sharp angular face geometry, slicked-back dark hair, strong
+    jawline, light stubble, composed cold gaze. Late 40s-50s. Black tailored suit in Stage-1
+    (wardrobe drifted to olive green at Stage-2 --cref). Seeds Stage-2 identity lock.
+- kind: mj_v7_oref_identity_lock
+  element_id_or_take_id: MJ_C02_OREFLOCK_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-12T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C02/stage2/images/rom_2.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C02/stage2/images/rom_2.png
+  sha256: 3f5a1513506066fd0f349fd528b7f4ca84c19339c53fa72b6aaeff74956cd7dc
+  size_bytes: 1338039
+  notes: Stage-2 MJ V7 --cref identity lock for Roman (C02). Operator-approved 2026-06-12
+    from R2 batch; clean frontal pose, plain grey background, identity consistent. Wardrobe
+    drifted to dark olive green via --cref; accepted as final WD003 wardrobe. Seeds Stage-3
+    ChatGPT Images 2 four_view_scale_angle_v3.
+- kind: gpt_images_2_perspective_pack
+  element_id_or_take_id: PPACK_C02_COMPOUND_V001__full_body_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-12T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C02/stage3/images/rom_3_1.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C02/stage3/images/rom_3_1.png
+  sha256: 2d45d9842e8b2cffbcef5f83172eaaab6d884cbce6e15ac103deff594ed22a4d
+  size_bytes: 1826228
+  notes: "C02 Roman compound look — full_body_front. Head-to-toe, dark olive green suit, off-white shirt, black shoes, tall centered silhouette. QC 95."
+- kind: gpt_images_2_perspective_pack
+  element_id_or_take_id: PPACK_C02_COMPOUND_V001__three_quarter_waist
+  storage_backend: local_manual
+  last_seen_at: '2026-06-12T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C02/stage3/images/rom_3_2.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C02/stage3/images/rom_3_2.png
+  sha256: 168032bb5f58b59a94d4c4672289d205e05636cfc296ed4548b3947cef3d7341
+  size_bytes: 1883947
+  notes: "C02 Roman compound look — three_quarter_waist. 30-45 deg turn, olive green suit + off-white shirt, identity consistent. QC 90."
+- kind: gpt_images_2_perspective_pack
+  element_id_or_take_id: PPACK_C02_COMPOUND_V001__close_portrait_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-12T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C02/stage3/images/rom_3_3.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C02/stage3/images/rom_3_3.png
+  sha256: 57edd62a279562ab35bfcafc5b6876bb77043e055033aa50455bb4bb8f6457ad
+  size_bytes: 2310634
+  notes: "C02 Roman compound look — close_portrait_front. Frontal identity lock, sharp angular face, grey temples, patrician cold gaze. QC 89."
+- kind: gpt_images_2_perspective_pack
+  element_id_or_take_id: PPACK_C02_COMPOUND_V001__profile_full
+  storage_backend: local_manual
+  last_seen_at: '2026-06-12T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/C02/stage3/images/rom_3_4.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/C02/stage3/images/rom_3_4.png
+  sha256: 5f31f012e49e14a8845fc20025b373d564e30fbb151a37a5a62dca429df01cd3
+  size_bytes: 1772641
+  notes: "C02 Roman compound look — profile_full. Clean 90 deg lateral, full silhouette, dark olive green suit + black shoes, tall controlled build. QC 91."
