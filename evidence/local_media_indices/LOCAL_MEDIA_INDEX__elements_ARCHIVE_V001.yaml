@@ -446,3 +446,43 @@ entries:
   sha256: 033985a8c1a77afc9c5b5292cb531df8d5c69cd0df7f450d9b6dd16225eabb4a
   size_bytes: 1947967
   notes: "LOC001 nursery — three_quarter_close. Clear three-quarter angle, shelf + crib railing detail visible, warm lamp prominent. QC 90."
+- kind: chatgpt_images_prop_first_reference
+  element_id_or_take_id: CHATGPTIMG_PROP001_FIRSTREF_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-12T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/PROP001/stage1/images/prop001_1.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/PROP001/stage1/images/prop001_1.png
+  sha256: 00c20aaadbde1fde4eb44b0bb727beb5ae71db1a374dd815025076198a5bf7d8
+  size_bytes: 992389
+  notes: "PROP001 pale-blue infant bracelet — Stage-1 ChatGPT Images first-reference. Pale blue band, clasp, 'Jin' ID strip, medically plausible, 1:1. Operator-approved 2026-06-12. Source for PPACK_PROP001_BRACELET_V001 scale-angle pack."
+- kind: chatgpt_images_prop_scale_angle_view
+  element_id_or_take_id: PPACK_PROP001_BRACELET_V001__front_reference
+  storage_backend: local_manual
+  last_seen_at: '2026-06-12T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/PROP001/stage3/images/prop001_3_1.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/PROP001/stage3/images/prop001_3_1.png
+  sha256: a6207f86a7cfbb34dbcef4e5355d41bb07d04e9ade58c1c2fe62e064c9528191
+  size_bytes: 1283044
+  notes: "PROP001 bracelet — front_reference. Full flat lay, whole band + clasp + Jin ID strip readable. QC 92."
+- kind: chatgpt_images_prop_scale_angle_view
+  element_id_or_take_id: PPACK_PROP001_BRACELET_V001__three_quarter_medium
+  storage_backend: local_manual
+  last_seen_at: '2026-06-12T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/PROP001/stage3/images/prop001_3_2.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/PROP001/stage3/images/prop001_3_2.png
+  sha256: 414e3afc54285ff3bc7fecd363cfed98fe897be798f29a38b135279b2393acbf
+  size_bytes: 821560
+  notes: "PROP001 bracelet — three_quarter_medium. Band curve and lateral profile, same pale-blue object. QC 90."
+- kind: chatgpt_images_prop_scale_angle_view
+  element_id_or_take_id: PPACK_PROP001_BRACELET_V001__three_quarter_close
+  storage_backend: local_manual
+  last_seen_at: '2026-06-12T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/PROP001/stage3/images/prop001_3_3.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/PROP001/stage3/images/prop001_3_3.png
+  sha256: ad1e6ca6a59bf9fcf71bc49caf5aee48c11d77e07f88eae40ade7b76eb78be1c
+  size_bytes: 1561498
+  notes: "PROP001 bracelet — three_quarter_close. Sharp macro, clasp + Jin ID strip — load-bearing SC0014 insert beat. QC 93."

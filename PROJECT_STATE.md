@@ -5,11 +5,11 @@
 
 ## 🇹🇷 Şu An Neredeyiz (Türkçe Özet)
 
-Milestone M5'teyiz: SC0014 lokasyon elementleri üretimi süruyor.
-LOC001 Vale nursery tam pipeline tamamlandı ve "created" seviyesine yükseltildi
-(first-ref loc001_1.png → 3-view QC 91/88/90 → KER_LOC001_NURSERY_V001 →
-@LOC001_NURSERY binding created). Sırada: PROP001 pale-blue bracelet (SC0014'ün
-son pending elementi). Bilinen yapısal sorunlar "Known Issues" bölümünde.
+Milestone M5'teyiz: SC0014 tüm element binding'leri "created" seviyesine ulaştı.
+PROP001 pale-blue bracelet tamamlandı (QC 92/90/93 → KER_PROP001_BRACELET_V001 →
+@PROP001_BRACELET created). SC0014 artık clip plan + continuity ledger + O3 prompt
+üretimine hazır (FAZ C). Sıradaki sahne elementleri: SC0089, SC0047, SC0111
+lokasyonları + propları. Bilinen yapısal sorunlar "Known Issues" bölümünde.
 
 ## Status
 
@@ -27,7 +27,7 @@ Stages: S1 = MJ v8.1 hero · S2 = MJ v7 --oref identity lock · S3 = four-view p
 
 | ID | Name | S1 | S2 | S3 | Binding | Scene(s) | Notes |
 |---|---|---|---|---|---|---|---|
-| C01 | Nadia Vale | ✅ | ✅ | ✅ | **created** | SC0047, SC0089, SC0111 | 4 look bindings created: base, field-night, transit, battle-worn |
+| C01 | Nadia Vale | ✅ | ✅ | ✅ | **created** | SC0014, SC0047, SC0089, SC0111 | 4 look bindings created: base, field-night, transit, battle-worn |
 | C02 | Roman Vale | ✅ | ✅ | ✅ | **created** | SC0111 |  |
 | C03 | Birta | — | — | — | — | — | Needs PR-BATCH-KEYCHAR-1 registration |
 | C04 | Dimitri | ✅ | ✅ | ✅ | **created** | SC0014 |  |
@@ -48,14 +48,10 @@ Stages: S1 = MJ v8.1 hero · S2 = MJ v7 --oref identity lock · S3 = four-view p
 
 ## Next Steps (priority order)
 
-1. **LOC001 Vale nursery** (SC0014) — first-ref prompt created → user generates
-   in ChatGPT Images → archive → PPACK 3-view source_reference_id updated →
-   user generates 3 views → archive → PQC (≥85) → image_selection → KER →
-   binding `planned → created`. (ACTIVE)
-2. **PROP001 pale-blue bracelet** (SC0014) — same first-ref + scale-angle pipeline.
-3. Remaining locations: SC0089 night transit, LOC006 Merin quay, LOC007 Veltain antechamber.
-4. **PR-BATCH-KEYCHAR-1** — C03 Birta + C05 Marcus pre-checkpoint registration.
-5. **C07 Sera** + **Halo Unit** element production.
+1. **SC0014 FAZ C** — clip plan + continuity ledger + O3 prompt üretimi (tüm element binding'leri created). (NEXT)
+2. Remaining locations + props for SC0089, SC0047, SC0111.
+3. **PR-BATCH-KEYCHAR-1** — C03 Birta + C05 Marcus pre-checkpoint registration.
+4. **C07 Sera** + **Halo Unit** element production.
 
 ## Known Issues / Blockers
 
@@ -75,7 +71,8 @@ From `closingpriceclaudecodeanalysisforcode.md` (multi-agent analysis, 2026-06-0
 ## Session Log (newest first, keep ~10 lines)
 
 <!-- AUTO:SESSION_LOG:START -->
-- 2026-06-12 — LOC001 Vale nursery full pipeline + promote @LOC001_NURSERY to created (SC0014, QC>=85)
+- 2026-06-12 — lock LOC001 nursery three-view + promote @LOC001_NURSERY to created (SC0014, QC>=85)
+- 2026-06-12 — PROP001 bracelet + promote @PROP001_BRACELET to created; SC0014 all elements created
 - 2026-06-12 — complete C02 Roman full pipeline + promote @C02_ROMAN to created (SC0111, QC>=85)
 - 2026-06-10 — lock C09 Otto Stage-3 four-view + promote @C09_OTTO to created (SC0047, QC>=85)
 - 2026-06-10 — lock C09 Otto Stage-2 oref (ott_2.png) + update identity anchor
@@ -85,5 +82,4 @@ From `closingpriceclaudecodeanalysisforcode.md` (multi-agent analysis, 2026-06-0
 - 2026-06-10 — promote C06 Zara to created (SC0089, QC>=85, khaki WD013)
 - 2026-06-10 — update C06 Zara wardrobe to khaki/olive-tan (WD013)
 - 2026-06-10 — [chore] rename C06 archive paths to zar_1/zar_2 convention
-- 2026-06-10 — lock C06 Zara Stage-2 --oref identity lock (MJ_C06_OREFLOCK_V001)
 <!-- AUTO:SESSION_LOG:END -->

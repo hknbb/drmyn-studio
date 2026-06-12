@@ -1,0 +1,29 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KER_PROP001_BRACELET_V001
+status: approved
+element_id: PROP001
+element_type: prop
+source_midjourney_reference:
+  reference_id: CHATGPTIMG_PROP001_FIRSTREF_V001
+  prompt_id: SC0014__t2i-prop-prop001-bracelet-first-ref-chatgpt__v01
+  operator_session_ref: OP-2026-06-12-PROP001-bracelet-threeview
+gpt_images_2_perspectives:
+  front_reference: PPACK_PROP001_BRACELET_V001__front_reference
+  three_quarter_medium_reference: PPACK_PROP001_BRACELET_V001__three_quarter_medium
+  three_quarter_close_reference: PPACK_PROP001_BRACELET_V001__three_quarter_close
+continuity_anchors:
+  - "Locked PROP001: thin pale-blue infant medical bracelet band, snap clasp, white ID strip with 'Jin' printed in small type."
+  - "Ordinary, medically plausible construction — not tech-futuristic or decorative."
+  - "Load-bearing SC0014 insert beat: Nadia's fingers find the bracelet during the taking."
+  - "No hands or people in reference plates; clean neutral background."
+  - "Do not redesign, embellish, or alter the clasp type or band color."
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-2026-06-12-PROP001-bracelet-threeview
+downstream_use:
+  - kling_omni_3_shot_prompt
+source_refs:
+  gpt_images_pack_ref: visual_dev/elements/props/PROP001/perspective_packs/PPACK_PROP001_BRACELET_V001.yaml
+  element_sheet_ref: planning/props/PROP001.yaml

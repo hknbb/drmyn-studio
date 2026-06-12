@@ -1,0 +1,56 @@
+schema_version: "0.x-draft"
+record_type: perspective_qc_report
+perspective_qc_id: PQC_PROP001_BRACELET_V001
+status: approved
+scene_id: SC0014
+element_id: PROP001
+prompt_pack_id: PPACK_PROP001_BRACELET_V001
+operator_session_ref: OP-2026-06-12-PROP001-bracelet-threeview
+perspective_scores:
+  - prompt_id: PPACK_PROP001_BRACELET_V001__front_reference
+    perspective: front_reference
+    identity_preservation: 92
+    perspective_usefulness: 91
+    material_palette_continuity: 92
+    production_reference_cleanliness: 93
+    hallucination_absence: 93
+    scale_distinction: 90
+    view_distinction: 90
+    total_score: 92
+    decision: pass
+  - prompt_id: PPACK_PROP001_BRACELET_V001__three_quarter_medium
+    perspective: three_quarter_medium_reference
+    identity_preservation: 90
+    perspective_usefulness: 90
+    material_palette_continuity: 91
+    production_reference_cleanliness: 92
+    hallucination_absence: 92
+    scale_distinction: 89
+    view_distinction: 89
+    total_score: 90
+    decision: pass
+  - prompt_id: PPACK_PROP001_BRACELET_V001__three_quarter_close
+    perspective: three_quarter_close_reference
+    identity_preservation: 93
+    perspective_usefulness: 94
+    material_palette_continuity: 92
+    production_reference_cleanliness: 93
+    hallucination_absence: 93
+    scale_distinction: 92
+    view_distinction: 93
+    total_score: 93
+    decision: pass
+gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  can_advance_to_kling_reference: true
+notes: >
+  Real review of operator-approved Stage-3 three_view_scale_angle_v2 set for @PROP001_BRACELET
+  (archived, git-ignored). All three views confirm the same pale-blue infant medical bracelet:
+  same band color, same clasp, same 'Jin' printed ID strip, medically plausible and
+  not tech-futuristic. front_reference delivers full band-and-clasp flat lay, whole
+  object readable. three_quarter_medium shows band curve and lateral profile.
+  three_quarter_close delivers sharp macro on clasp and ID strip — the load-bearing insert
+  beat detail (Nadia's fingers find the bracelet). Object identity consistent and
+  production-clean across all three views. No people, no hands, no extra text.
+  Source: CHATGPTIMG_PROP001_FIRSTREF_V001 (prop001_1.png). All perspectives >= 85.

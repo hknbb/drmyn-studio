@@ -1,8 +1,8 @@
 schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
 prompt_pack_id: PPACK_PROP001_BRACELET_V001
-status: draft
-source_reference_id: "CHATGPTIMG_ELEMENT_PROP001_BRACELET (PENDING — generate the first reference via SC0014__t2i-prop-prop001-bracelet-first-ref-chatgpt__v01 before this scale-angle pack)"
+status: approved
+source_reference_id: "CHATGPTIMG_PROP001_FIRSTREF_V001"
 target_model: chatgpt_images_2
 target_role: multi_perspective_element_expander
 element_id: PROP001
