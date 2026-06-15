@@ -1,0 +1,48 @@
+session_id: OP-2026-06-15-SC0014-anchor-animate-faz3-5
+created_at: "2026-06-15T00:00:00Z"
+scene_id: SC0014
+current_task: "Anchor & Animate Faz 3–5: archive adapter + shot-still validator + SC0014 v06 anchored package generation"
+recommended_files:
+  - scripts/archive_media.py
+  - scripts/agents/adapters/kling_omni.py
+  - scripts/validators/validate_shot_still_coverage.py
+  - scripts/generate_sc0014_v06_anchored.py
+  - prompts/draft/SC0014__still-01__v01.yaml
+  - prompts/draft/SC0014__contact-clip-01__v01.yaml
+  - prompts/draft/SC0014__omni-kling-omni-clip-clip-sc0014-01-safe__v01.yaml
+recommended_steps:
+  - "Faz 6: docs/operator_guides/shot_photography_contact_sheet.md yaz (operatör akış dokümantasyonu)."
+  - "Faz 6: CI — pytest yolları + contact_sheets glob güncellemesi."
+  - "Operatör üretim döngüsü: 22 still üret → archive --subdir shots → 8 contact-sheet → 8 anchored_i2v Kling clip."
+status: complete
+notes: >
+  Faz 3-5 tamamlandı. SC0014 v06 Anchor & Animate paketi üretildi (38 prompt kayıtı).
+
+  Faz 3 (archive + adapter):
+    archive_media.py: --subdir shots|contact_sheets (K4 sahne-altı kategori).
+    kling_omni.py: anchored_i2v render modu — start_frame_ref, contact_sheet_ref,
+    visual_input_budget (total≤7), frame_chain_source=designed_still_pass1,
+    suppress_entry_anchors=True (start-frame görsel durumu taşıyor); contact-sheet
+    negatif terimleri (subtitles, visible-grid, timecode-overlay).
+    14 test: tests/agents/test_kling_omni_anchored_i2v.py.
+
+  Faz 4 (validator):
+    validate_shot_still_coverage.py: 6 hata kodu (STILL_MISSING, CONTACT_SHEET_MISSING,
+    CONTACT_SHEET_ORDER_MISMATCH, ARCHIVE_FILENAME_DUPLICATE, VISUAL_BUDGET_EXCEEDED,
+    PROTECTED_FLAGS_MISSING). Promptlar yoksa sessiz geçer.
+    validate_production_records.py: clip-manifest taraması + per-sahne dispatch.
+    17 test: tests/test_shot_still_coverage.py.
+
+  Faz 5 (v06 anchored package):
+    22 still_generation (SC0014__still-01..22__v01.yaml)
+    8 shot_design contact-sheet (SC0014__contact-clip-01..08__v01.yaml)
+    8 omni_instruction anchored_i2v (SC0014__omni-kling-omni-clip-clip-sc0014-01..08-safe__v01.yaml)
+    8 run record (evidence/prompt_runs/RUN_SC0014_CLIP_SC0014_01..08_KO_0001.yaml)
+    Pass-1 frame-chain: CLIP01 → kendi ilk shotı; CLIPn → CLIPn-1'in son shotı.
+    Build-then-clean: 8 v05 prompt dosyası silindi + 8 KO_0006 run kaydı silindi.
+    scene_prompt_map.csv + prompt_library.yaml: v03/v04/v05 kaldırıldı, 38 v01 eklendi.
+
+  Soft 1800-char uyarısı: CLIP02(1839) CLIP03(2306) CLIP04(2334) CLIP05(2192) CLIP06(1961).
+  Tümü 2500-char hard cap altında. Operatör final passlar için metni kısaltabilir.
+
+  Test sonucu: 1508 geçti, 3 atlandı.

@@ -76,7 +76,14 @@
             "required": ["subject", "screen_position"],
             "properties": {
               "subject": { "type": "string", "minLength": 1, "maxLength": 80 },
-              "screen_position": { "type": "string", "minLength": 1, "maxLength": 60 }
+              "screen_position": { "type": "string", "minLength": 1, "maxLength": 60 },
+              "posture": { "type": "string", "maxLength": 80 },
+              "relation": { "type": "string", "maxLength": 120 },
+              "gaze_target": { "type": "string", "maxLength": 80 },
+              "visibility": {
+                "type": "string",
+                "enum": ["on_frame", "partial_frame", "off_frame", "occluded", "heard_offscreen"]
+              }
             }
           }
         },

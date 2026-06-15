@@ -1,0 +1,63 @@
+session_id: OP-2026-06-15-SC0014-anchor-animate-faz0
+created_at: "2026-06-15T00:00:00Z"
+scene_id: SC0014
+current_task: "Anchor & Animate Faz 0 — resmi snapshot lock + K1/K2/K3/K4 kararları"
+recommended_files:
+  - model_guidance_snapshots/openai/20260615T000000Z_chatgpt_image_best_available.yaml
+  - model_guidance_snapshots/kling/20260615T000000Z_kling_omni_video_best_available.yaml
+  - docs/model_guides/chatgpt_image.yaml
+  - docs/model_guides/kling_omni.yaml
+recommended_steps:
+  - "Faz 1: schemas/extracted_frame_reference.schema.json yarat; omni_clip_manifest.schema.json frame_reference'a designed_still_archive_filename + designed_still_local_media_index_ref ekle; shot_still_resolver.py yaz + test."
+  - "Faz 2: shot_still_planner.py + contact_sheet_planner.py (ChatGPTImageAdapter multi-panel, operator_upload_order) yaz + testler."
+  - "Faz 3: archive_media.py'ye --subdir shots|contact_sheets ekle; kling_omni.py'ye anchored_i2v render modu + frame-chain yaz + golden test."
+  - "Faz 4: validate_shot_still_coverage.py (her iki bütçe modu) yaz + dispatch."
+  - "Faz 5: SC0014 v06 anchored paketi üret (22 still + 8 contact-sheet + 8 anchored_i2v); ardından v05 text-only supersede + dangling-ref temizliği."
+  - "Faz 6: docs + CI + PROJECT_STATE + memory."
+status: complete
+notes: >
+  Faz 0 tamamlandı. Anchor & Animate pipeline için iki resmi snapshot kilitlendi
+  ve dört mimari karar (K1–K4) kayıt altına alındı.
+
+  K1 — Resmi snapshot önce (uygulama kısıtı):
+    GPT Image 2 limitleri resmi OpenAI image generation guide + gpt-image-2 model
+    docs'tan kilitlendi (≤16 input, ≤10 output, 50MB/görsel). Kling limitleri
+    resmi Kling VIDEO 3.0 Omni kılavuzundan kilitlendi (≤7 element, ≤15s, ≤6-shot).
+    Üçüncü-taraf kaynaklar (apiyi.com, WaveSpeed, glbgpt, invideo) limitleri
+    doğruladı ama hard-limit kaynağı DEĞİL — taktik not olarak değerlendirilir.
+    Adapter davranışı bu iki snapshot'a kilitlenmeden yazılmaz.
+
+  K2 — anchored_i2v seviyesi (mimari karar):
+    anchored_i2v birincil olarak prompt generation_params seviyesinde taşınır:
+    {input_mode, start_frame_ref, contact_sheet_ref, visual_input_budget,
+    frame_chain_source, active_element_aliases}. Manifest authored içeriği
+    (shots, figures, entry/exit_state, action, dialogue) DOKUNULMAZ. Yalnız
+    clip-seviye continuity_input_mode + first/last_frame_reference alanları
+    minimal güncellenir (frame-chain + designed-still bağlamak için). Bu "manifest'e
+    dokunulmaz" = authored shot içeriği; frame-wiring sınırlı/clip-seviye istisna.
+
+  K3 — CLIP03 korumalı özne (gated inclusion):
+    CLIP03 v06 anchored pakete ALINIR. Start-frame still'i güvenli: Nadia oturmuş
+    Jin'i tutar, bebek sakin/destekli, distress off-frame, temas-yok. Üretim C08
+    insan-onay gate'i arkasında kalır (değişmez). still_generation prompt'u
+    protected_subject_flags: [C08_NO_CONTACT, C08_DISTRESS_OFF_FRAME] içerecek.
+
+  K4 — Archive yolu sözleşmesi (K4):
+    shots / contact_sheets yeni media-type DEĞİL, sahne-altı kategori.
+    archive_media.py'ye --subdir shots|contact_sheets eklenir (mevcut stage<N>/
+    images|video mantığını kırmadan). Binary'ler gitignored arşivde; yalnız
+    local_media_index güncellenir.
+
+  Snapshot değişiklikleri:
+    - 20260615T000000Z_chatgpt_image_best_available.yaml (YENİ): 20260511 supersede;
+      expires 2026-08-15; max_input_images=16, max_output_images=10,
+      max_image_size_mb=50, supports_multi_image_reference=true; per-shot still
+      + contact-sheet prompting kuralları eklendi.
+    - 20260615T000000Z_kling_omni_video_best_available.yaml (YENİ): 20260613 supersede;
+      expires 2026-07-15; supports_anchored_i2v=true; anchored_i2v_input_budget
+      breakdown (7 total: 1 start-frame + opt.1 contact-sheet + ≤5/6 element);
+      anchored_i2v / contact-sheet / frame-chain prompting kuralları eklendi;
+      K2+K3 kararları provenance/change_summary'de kayıtlı.
+
+  Sıradaki adım: Faz 1 — extracted_frame_reference şema + manifest frame alanları +
+  shot_still_resolver.py (bkz. recommended_steps).

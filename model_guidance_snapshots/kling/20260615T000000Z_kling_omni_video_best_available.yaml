@@ -1,0 +1,77 @@
+record_type: model_guidance_snapshot
+schema_version: "0.x-draft"
+snapshot_id: "20260615T000000Z_kling_omni_video_best_available"
+internal_model_target: kling_omni_video_best_available
+provider: kling
+model_family: video_generation
+provider_surface: manual_external
+observed_at: "2026-06-15T00:00:00Z"
+expires_at: "2026-07-15T00:00:00Z"
+human_verified: true
+current_default_model: "Kling VIDEO 3.0 Omni"
+latest_available_model: "Kling VIDEO 3.0 Omni"
+best_for_this_task: "Kling VIDEO 3.0 Omni"
+feature_required_model:
+  native_audio: "Kling VIDEO 3.0 Omni"
+  native_audio_dialogue: "Kling VIDEO 3.0 Omni"
+  multi_shot: "Kling VIDEO 3.0 Omni"
+  element_reference: "Kling VIDEO 3.0 Omni"
+  storyboard_narration: "Kling VIDEO 3.0 Omni"
+  image_to_video: "Kling VIDEO 3.0 Omni"
+  anchored_i2v: "Kling VIDEO 3.0 Omni"
+version_policy:
+  hardcode_in_adapter: false
+  adapter_must_read_snapshot: true
+  prompt_generation_blocks_if_expired: true
+  prompt_generation_blocks_if_unverified: true
+sources:
+  - source_type: official_docs
+    title: "Kling VIDEO 3.0 Omni Model User Guide"
+    retrieved_at: "2026-06-15T00:00:00Z"
+    url: "https://kling.ai/quickstart/klingai-video-3-omni-model-user-guide"
+  - source_type: verified_platform_blog
+    title: "FAL.ai — Kling 3.0 Prompting Guide (multi-shot continuity + per-character action/dialogue binding)"
+    retrieved_at: "2026-06-14T00:00:00Z"
+    url: "https://blog.fal.ai/kling-3-0-prompting-guide/"
+capabilities:
+  output_type: video
+  supports_native_audio: true
+  supports_native_audio_dialogue: true
+  supports_multi_shot: true
+  supports_camera_motion: true
+  supports_element_reference: true
+  supports_image_to_video: true
+  supports_anchored_i2v: true
+constraints:
+  max_duration_seconds: 15
+  max_shots_per_generation: 6
+  repo_min_shot_seconds: 2
+  prompt_text_max_chars: 2500
+  negative_prompt_max_chars: 2500
+  no_video_input_max_images_or_elements: 7
+  with_video_input_max_images_or_elements: 4
+  native_audio_separate_param: false
+  anchored_i2v_input_budget:
+    total_max: 7
+    start_frame_slots: 1
+    contact_sheet_slots: 1
+    remaining_element_slots_without_contact_sheet: 6
+    remaining_element_slots_with_contact_sheet: 5
+    note: "start-frame always counts as one input slot; contact_sheet is optional (default off)"
+prompting_rules:
+  - "Use VIDEO 3.0 Omni for element-based multi-shot clips when Native Audio, character/element consistency, or shot-level storyboard narration is required."
+  - "A single generation may run up to 15 seconds. Repo prompt records cap each generation at 6 shots and prefer 2 seconds or more per shot for stable review."
+  - "For multi-shot clips, specify per-shot duration, framing, angle, narrative content, camera movement, and transition or hand-off."
+  - "Use timecoded shot directions when shot rhythm matters: [MM:SS - MM:SS] medium shot: action. Cut to close-up..."
+  - "Keep element identity in attached @aliases. Do not redescribe wardrobe, face, or look unless the shot requires a non-identity action cue."
+  - "For native-audio passes, write speech inline in prompt_text with speaker @alias and tone; visual-test passes keep dialogue suppressed unless all speaker elements are native-audio ready."
+  - "For protected-subject scenes, stage action through adult performance, safe handling, and off-frame distress constraints; do not exploit child distress."
+  - "Continuity is a chain: open each shot by restating the carried world state (who/what is where, from the prior shot's settled end) before the new action, so positions do not reset at the cut. The more explicit the transition, the cleaner the result."
+  - "With two or more on-screen figures (or any dialogue), give each figure its own action clause bound to a unique @alias (avoid pronouns); for dialogue, action first then the quoted line. Never lump multiple actions into one sentence."
+  - "Anchored I2V (anchored_i2v mode): supply exactly one start-frame still as the authoritative I2V seed (image-to-video). The start-frame occupies one input slot out of the 7-slot budget. Remaining slots: up to 6 element refs (on-frame characters, key props) when contact_sheet is off; up to 5 when contact_sheet is on (contact_sheet occupies a second slot). The text prompt then covers motion direction and dialogue only — target <1800 chars. The 2500-char hard cap remains fatal on final_candidate/final_locked passes."
+  - "Contact sheet as Kling input (optional, default OFF): contact_sheet_ref is operator-toggled; when on, add 'no subtitles, no visible grid, no timecode overlay' to negative prompt to prevent grid artifacts bleeding into video. Contact sheet primary role is operator storyboard/QC reference, not Kling identity lock."
+  - "Frame chain (two-pass): pass-1 uses the designed last-shot still as the next clip's start-frame candidate; pass-2 replaces it with the real extracted last frame from the selected Kling take (extracted_frame_reference record). The extracted frame takes precedence over the designed still when available."
+  - "anchored_i2v is carried at generation_params level (input_mode, start_frame_ref, contact_sheet_ref, visual_input_budget, frame_chain_source, active_element_aliases). Manifest authored shot content (shots, figures, entry/exit_state, action) is NOT modified for anchored_i2v; only clip-level continuity_input_mode and first/last_frame_reference wiring fields are updated."
+provenance:
+  created_by: claude_code
+  created_at: "2026-06-15T00:00:00Z"

@@ -1,0 +1,59 @@
+prompt_id: SC0014__still-05__v01
+scene_id: SC0014
+prompt_type: still_generation
+lifecycle_stage: draft
+target_models:
+- gpt-image-2
+source_refs:
+  scene_card: planning/scenes/SC0014/scene_card.yaml
+  scene_excerpt: planning/scenes/SC0014/manifests/CLIP_SC0014_02_manifest.yaml
+prompt_text: 'Generate a cinematic still photograph for a detail shot. Framing: close shot, insert angle (her hands and arms
+  around the infant, safe and supported). Scene state: Nadia seated center, still holding Jin; the door closed.. Action/subject:
+  Room tone holds soft around them. Lighting: practical source, soft quality, warm tone. Visual anchors (identity reference):
+  Locked Nadia identity: soft rounded face, gently rounded jaw, full soft cheeks, warm large almond eyes, soft full lips,
+  small soft nose, light freckles; early-to-mid 30s. Soft face geometry held const | Locked Nadia identity: soft rounded face,
+  gently rounded jaw, full soft cheeks, warm large almond eyes, soft full lips, small soft nose, light freckles; early-to-mid
+  30s; dark hair pulled back for the | Locked Nadia identity: soft rounded face, gently rounded jaw, full soft cheeks, warm
+  large almond eyes, soft full lips, small soft nose, light freckles; early-to-mid 30s; dark hair loosely up. | Locked Nadia
+  identity: soft rounded face, gently rounded jaw, full soft cheeks, warm large almond eyes, soft full lips, small soft nose,
+  light freckles; early-to-mid 30s; dark hair in practical restra. Style: grounded dramatic realism, photorealistic, warm
+  practical lighting, subtle film grain. Constraints: No text overlay, no watermarks, no subtitles, no timecode, no additional
+  people or figures not described in the action. Protected subject: The infant must be calm, fully supported, safe. No distress,
+  no unsupported posture, no contact with non-caregiver adults.'
+generation_params:
+  provider: openai
+  provider_surface: chatgpt_ui
+  model_guidance_snapshot_ref: model_guidance_snapshots/openai/20260615T000000Z_chatgpt_image_best_available.yaml
+  resolved_model_name: gpt-image-2
+  resolved_model_role: best_for_this_task
+  constraint_strategy: embedded_positive_constraints
+  clip_id: CLIP_SC0014_02
+  shot_id: SHOT_SC0014_02_B
+  shot_order_index: 5
+  archive_filename: SC0014_05_clip-sc0014-02_shot-sc0014-02-b.png
+  input_reference_images:
+  - archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_47.png
+  - archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_55.png
+  - archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_28.png
+  - archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_18.png
+  - archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_28_02.png
+  - archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_27_53.png
+  - archive/nexuszero/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_30_00.png
+  - archive/nexuszero/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_34_52.png
+  - archive/nexuszero/SC0014/C08/stage3/images/jin3_4.png
+  - archive/nexuszero/SC0014/C08/stage3/images/jin3_2.png
+  - archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_1.png
+  protected_subject_flags:
+  - C08_NO_CONTACT
+  - C08_DISTRESS_OFF_FRAME
+  repo_binary_committed: false
+  external_generation_required: true
+expected_output:
+  asset_type: still
+  aspect_ratio: '16:9'
+  variation_count: 1
+status: active
+canon_lock: false
+provenance:
+  created_by: claude_code
+  created_at: '2026-06-15T00:00:00Z'

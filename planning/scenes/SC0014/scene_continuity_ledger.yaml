@@ -8,16 +8,22 @@ notes: >
   holds rather than tracking a lateral axis, so screen_direction stays neutral
   throughout (no 180-degree flips). Nadia is the constant subject and stays screen
   center across every cut; the door and enforcers hold screen-right; the empty crib
-  is the closing center. exit_state(N) is authored to match entry_state(N+1).
+  is the closing center. exit_state(N) is authored to match entry_state(N+1). v05:
+  key_positions use @aliases with posture/relation so the intra-clip state chain
+  (omni_clip_manifest shots[].entry_state/exit_state) ties to the clip seam.
 clip_chain:
   - clip_id: CLIP_SC0014_01
     order: 1
     entry_state:
       summary: "Empty, carefully-made nursery at evening; soft warm light; crib and chair as the protected center."
+      props_state:
+        - { prop: crib, state: "empty, made, waiting" }
       camera_state: { shot_size: wide, angle: eye_level, movement: static, subject_screen_position: center }
       screen_direction: neutral
     exit_state:
       summary: "Establishing hold settles on the crib and chair; the room waits, still warm."
+      props_state:
+        - { prop: crib, state: "empty, made, waiting" }
       camera_state: { shot_size: wide, angle: eye_level, movement: static, subject_screen_position: center }
       screen_direction: neutral
     frame_continuity: { from_clip_id: CLIP_SC0014_01, to_clip_id: CLIP_SC0014_02, continuity_input_mode: frame_input_eligible }
@@ -26,15 +32,19 @@ clip_chain:
     entry_state:
       summary: "Nadia is in the chair holding Jin, awake; not rocking, just holding; door closed."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Jin, screen_position: center }
+        - { subject: "@C01_NADIA", screen_position: center, posture: seated, relation: "holding @C08_JIN", visibility: on_frame }
+        - { subject: "@C08_JIN", screen_position: center, posture: cradled, relation: "in @C01_NADIA arms", visibility: on_frame }
+      props_state:
+        - { prop: "@DOOR_NURSERY", state: closed }
       camera_state: { shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center }
       screen_direction: neutral
     exit_state:
       summary: "Nadia holds Jin; the held stillness just before interruption."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Jin, screen_position: center }
+        - { subject: "@C01_NADIA", screen_position: center, posture: seated, relation: "holding @C08_JIN", visibility: on_frame }
+        - { subject: "@C08_JIN", screen_position: center, posture: cradled, relation: "in @C01_NADIA arms", visibility: on_frame }
+      props_state:
+        - { prop: "@DOOR_NURSERY", state: closed }
       camera_state: { shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center }
       screen_direction: neutral
     frame_continuity: { from_clip_id: CLIP_SC0014_02, to_clip_id: CLIP_SC0014_03, continuity_input_mode: frame_input_eligible }
@@ -43,18 +53,21 @@ clip_chain:
     entry_state:
       summary: "The door opens; Nadia holds Jin, center; Dimitri and two men enter and stand just inside the door."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Jin, screen_position: center }
-        - { subject: Dimitri, screen_position: right }
+        - { subject: "@C01_NADIA", screen_position: center, posture: seated, relation: "holding @C08_JIN", visibility: on_frame }
+        - { subject: "@C08_JIN", screen_position: center, posture: cradled, relation: "in @C01_NADIA arms", visibility: on_frame }
+        - { subject: "@C04_DIMITRI", screen_position: right, posture: standing, visibility: on_frame }
+      props_state:
+        - { prop: "@DOOR_NURSERY", state: open }
       camera_state: { shot_size: medium_wide, angle: eye_level, movement: static, subject_screen_position: center }
       screen_direction: neutral
-      offscreen: []
     exit_state:
       summary: "Dimitri has spoken ('Mrs. Vale' / 'It's time'); Nadia has looked up; three men hold the doorway, Nadia center with Jin."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Jin, screen_position: center }
-        - { subject: Dimitri, screen_position: right }
+        - { subject: "@C01_NADIA", screen_position: center, posture: seated, relation: "holding @C08_JIN", visibility: on_frame }
+        - { subject: "@C08_JIN", screen_position: center, posture: cradled, relation: "in @C01_NADIA arms", visibility: on_frame }
+        - { subject: "@C04_DIMITRI", screen_position: right, posture: standing, visibility: on_frame }
+      props_state:
+        - { prop: "@DOOR_NURSERY", state: open }
       camera_state: { shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center }
       screen_direction: neutral
     frame_continuity: { from_clip_id: CLIP_SC0014_03, to_clip_id: CLIP_SC0014_04, continuity_input_mode: metadata_only }
@@ -63,17 +76,17 @@ clip_chain:
     entry_state:
       summary: "Nadia stands holding Jin and takes one step back; Dimitri (right) says 'don't make this harder'; the first man begins to advance."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Jin, screen_position: center }
-        - { subject: Dimitri, screen_position: right }
+        - { subject: "@C01_NADIA", screen_position: center, posture: standing, relation: "holding @C08_JIN", visibility: on_frame }
+        - { subject: "@C08_JIN", screen_position: center, posture: cradled, relation: "in @C01_NADIA arms", visibility: on_frame }
+        - { subject: "@C04_DIMITRI", screen_position: right, posture: standing, visibility: on_frame }
       camera_state: { shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center }
       screen_direction: neutral
     exit_state:
       summary: "The first man (carrier) has closed in from the right; Nadia turns her body to shield Jin, still center."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Jin, screen_position: center }
-        - { subject: Enforcer carrier, screen_position: right }
+        - { subject: "@C01_NADIA", screen_position: center, posture: "turned, shielding", relation: "holding @C08_JIN", visibility: on_frame }
+        - { subject: "@C08_JIN", screen_position: center, posture: cradled, relation: "shielded in @C01_NADIA arms", visibility: on_frame }
+        - { subject: "@C10_CARRIER", screen_position: right, posture: "closed in", visibility: on_frame }
       camera_state: { shot_size: medium_close, angle: eye_level, movement: handheld, subject_screen_position: center }
       screen_direction: neutral
     frame_continuity: { from_clip_id: CLIP_SC0014_04, to_clip_id: CLIP_SC0014_05, continuity_input_mode: frame_input_eligible }
@@ -82,19 +95,19 @@ clip_chain:
     entry_state:
       summary: "The carrier (right) lifts Jin free of Nadia's arms; Nadia center, resisting."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Jin, screen_position: center }
-        - { subject: Enforcer carrier, screen_position: right }
+        - { subject: "@C01_NADIA", screen_position: center, posture: resisting, relation: "holding @C08_JIN", visibility: on_frame }
+        - { subject: "@C08_JIN", screen_position: center, posture: "being lifted", relation: "in @C01_NADIA arms", visibility: on_frame }
+        - { subject: "@C10_CARRIER", screen_position: right, posture: "lifting the child", visibility: on_frame }
       camera_state: { shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center }
       screen_direction: neutral
     exit_state:
       summary: "Jin is lifted away (right); Nadia's hand finds then loses the bracelet; the second man holds her by both arms, center."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Jin, screen_position: right }
-        - { subject: Enforcer holder, screen_position: center }
+        - { subject: "@C01_NADIA", screen_position: center, posture: "held by both arms", relation: "empty hands", visibility: on_frame }
+        - { subject: "@C08_JIN", screen_position: right, posture: "carried clear", relation: "lifted from @C01_NADIA", visibility: partial_frame }
+        - { subject: "@C10_HOLDER", screen_position: center, posture: standing, relation: "restraining @C01_NADIA", visibility: on_frame }
       props_state:
-        - { prop: pale blue bracelet, state: "slips from Nadia's fingers; her hand goes empty" }
+        - { prop: "@PROP001_BRACELET", state: "slips from Nadia's fingers; her hand goes empty" }
       camera_state: { shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center }
       screen_direction: neutral
     frame_continuity: { from_clip_id: CLIP_SC0014_05, to_clip_id: CLIP_SC0014_06, continuity_input_mode: frame_input_eligible }
@@ -103,58 +116,60 @@ clip_chain:
     entry_state:
       summary: "Nadia is held center; Jin is carried toward the door (right)."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Jin, screen_position: right }
-        - { subject: Enforcer holder, screen_position: center }
+        - { subject: "@C01_NADIA", screen_position: center, posture: "held by both arms", relation: "empty hands", visibility: on_frame }
+        - { subject: "@C08_JIN", screen_position: right, posture: "carried toward the door", relation: "away from @C01_NADIA", visibility: partial_frame }
+        - { subject: "@C10_HOLDER", screen_position: center, posture: standing, relation: "restraining @C01_NADIA", visibility: on_frame }
       camera_state: { shot_size: medium_wide, angle: eye_level, movement: static, subject_screen_position: center }
       screen_direction: neutral
     exit_state:
       summary: "The door closes; Jin is gone; Nadia held center, the crib empty behind her."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Enforcer holder, screen_position: center }
+        - { subject: "@C01_NADIA", screen_position: center, posture: "held by both arms", relation: "empty hands", visibility: on_frame }
+        - { subject: "@C10_HOLDER", screen_position: center, posture: standing, relation: "restraining @C01_NADIA", visibility: on_frame }
+        - { subject: "@C08_JIN", screen_position: right, visibility: off_frame }
       props_state:
-        - { prop: crib, state: "empty" }
+        - { prop: crib, state: empty }
+        - { prop: "@DOOR_NURSERY", state: closed }
       camera_state: { shot_size: medium_wide, angle: eye_level, movement: static, subject_screen_position: center }
       screen_direction: neutral
-      offscreen: [Jin]
     frame_continuity: { from_clip_id: CLIP_SC0014_06, to_clip_id: CLIP_SC0014_07, continuity_input_mode: frame_input_eligible }
   - clip_id: CLIP_SC0014_07
     order: 7
     entry_state:
       summary: "The second man releases Nadia (center), steps back, nods once."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Enforcer holder, screen_position: center }
+        - { subject: "@C01_NADIA", screen_position: center, posture: standing, relation: "empty hands", visibility: on_frame }
+        - { subject: "@C10_HOLDER", screen_position: center, posture: "stepping back", visibility: on_frame }
       camera_state: { shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center }
       screen_direction: neutral
     exit_state:
       summary: "The man has left; Nadia stands alone, center, in the emptied room."
       key_positions:
-        - { subject: Nadia, screen_position: center }
+        - { subject: "@C01_NADIA", screen_position: center, posture: standing, relation: "alone", visibility: on_frame }
+        - { subject: "@C10_HOLDER", screen_position: right, visibility: off_frame }
+        - { subject: "@C08_JIN", screen_position: right, visibility: off_frame }
       camera_state: { shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center }
       screen_direction: neutral
-      offscreen: [Jin, Enforcer holder]
     frame_continuity: { from_clip_id: CLIP_SC0014_07, to_clip_id: CLIP_SC0014_08, continuity_input_mode: frame_input_eligible }
   - clip_id: CLIP_SC0014_08
     order: 8
     entry_state:
       summary: "Nadia stands alone center; the crib is empty; her bracelet hand open at her side."
       key_positions:
-        - { subject: Nadia, screen_position: center }
+        - { subject: "@C01_NADIA", screen_position: center, posture: standing, relation: "alone, hand open and empty", visibility: on_frame }
       props_state:
-        - { prop: crib, state: "empty" }
+        - { prop: crib, state: empty }
       camera_state: { shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center }
       screen_direction: neutral
     exit_state:
       summary: "Nadia does not move toward the door; she is already somewhere else; the warm room reclaims its quiet around the empty crib."
       key_positions:
-        - { subject: Nadia, screen_position: center }
+        - { subject: "@C01_NADIA", screen_position: center, posture: standing, relation: "alone, already elsewhere", visibility: on_frame }
+        - { subject: "@C08_JIN", screen_position: right, visibility: off_frame }
       props_state:
-        - { prop: crib, state: "empty" }
+        - { prop: crib, state: empty }
       camera_state: { shot_size: wide, angle: eye_level, movement: dolly_out, subject_screen_position: center }
       screen_direction: neutral
-      offscreen: [Jin]
 provenance:
-  created_by: "claude_code (M5 FAZ C)"
+  created_by: "claude_code (M5 FAZ C; v05 state-chain enrichment)"
   created_at: "2026-06-04T00:00:00Z"

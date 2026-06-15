@@ -25,12 +25,42 @@ screenplay
 Calibrated to the official Kling VIDEO 3.0 Omni guide (see
 `model_guidance_snapshots/kling/…_kling_omni_video_best_available.yaml`):
 
-- Single generation: **≤ 6 shots (cuts), ≤ 15s total**; a shot may be **2–15s** (2s cutaways are valid).
-- **Format A (silent):** `Shot N (Xs): <framing>. <action + @Element + "Cut to…">.`
-- **Format B (native audio):** `[MM:SS – MM:SS] <shot>: @Element <action>. Audio: <cue>.` with inline dialogue `— Name: "…"`.
+- Single generation: **≤ 6 shots (cuts), ≤ 15s total**; repo-authored shots may be **2–15s**. Use 2–4s cutaways/close-ups for reaction, reveal, prop, or pressure beats; reserve one long take only when the beat truly needs continuous performance.
+- **Goro-style timecode-first blocks** (calibrated to the official VIDEO 3.0 Omni examples + the user-supplied reference prompt). Each shot is:
+  `[MM:SS - MM:SS] <Framing label>: <action + @Element + performance>. <natural camera sentence>. Audio: <diegetic cue>. — @Alias (tone): "verbatim line"`
+  - **No `Shot N (Xs):` prefix and no added "Cut to"** — the timecode block *is* the cut.
+  - Framing label comes from `coverage_role` first (so a reaction reads "Cutaway", a detail "Insert", a reverse "Reverse angle"), else from `camera.framing` ("Wide shot", "Medium shot", "Close-up", …).
+  - Camera/movement/lens and `performance_note` are **woven into prose**, never dumped as `Camera:/Lighting:/Motion: subject 0.1` telemetry. Numeric intensities and structured camera/lighting/motion stay in the manifest for QC only.
+  - `diegetic_audio` renders as a per-shot `Audio:` line (non-speech sound design); thread continuity ("continues", "softens").
+- **Coverage, not same-frame splits (director pass).** A long beat is covered by **distinct** shots — establish → reaction/insert → reverse → resolve, with `focus_alias` choosing each shot's subject — authored in `omni_clip_manifest.shots[]` (or hinted on the beat). The deterministic packer no longer fabricates two identical wide shots from one hold; coverage is an authored, human-PR-gated decision that adds **no new story facts**.
+- **Dialogue is verbatim, alias-tagged, and decoupled from audio.** The speaker's exact `line_text` renders inline in the speaking shot as `— @Alias (tone): "…"` (sequenced with "Immediately,"). This is **always** present as on-screen dialogue text; `native_audio_readiness`/`render_pass` only gate whether Kling also generates spoken **voice** (`audio_gate_status`), never whether the text appears. Enforced by `validate_dialogue_coverage` (every `dialogue_required`, non-`implied` line whose beat is covered must be assigned to exactly one shot).
+- **Positions chain across cuts (entry/exit state).** Each shot opens by restating the
+  carried world state — who/what is where as the shot begins (the prior shot's settled
+  end) — **before** the new action, so Kling keeps positions instead of resetting them at
+  the cut. Authored in `omni_clip_manifest.shots[].entry_state` / `exit_state` (a rich
+  `world_state`: `summary`, `key_positions{subject @alias, screen_position, posture,
+  relation, gaze_target, visibility}`, `props_state`), chained so `exit_state(N) ==
+  entry_state(N+1)` within a clip and matching the `scene_continuity_ledger` entry/exit at
+  the **clip seam**. Subjects in prompt-facing state are `@alias` only (canonical ids stay
+  in `figures[].base_element_id`). The renderer prints the carried state as the shot's
+  opening clause.
+- **One action per character (multi-figure disambiguation).** In a shot with ≥2 on-frame
+  figures (or any dialogue), each figure carries its own `shots[].figures[].action` clause
+  so the model never confuses who does what (Kling/FAL.ai: bind the action to a unique
+  `@alias`, avoid pronouns); `prompt_action` stays environment-only. Around a protected
+  subject, the action states non-contact explicitly (e.g. "does not touch @C08_JIN").
+- Enforced by `validate_state_chain` (`ENTRY_STATE_MISSING_AFTER_FIRST_SHOT`,
+  `SHOT_EXIT_STATE_MISSING`, `CARRIED_SUBJECT_DROPPED`, `CARRIED_PROP_DROPPED`,
+  `RELATION_BROKEN_WITHOUT_ACTION`, `CLIP_SEAM_MISMATCH`, `FIGURE_ACTION_MISSING`,
+  `DIALOGUE_SPEAKER_NOT_ON_FRAME_OR_OFFSCREEN_MARKED`, plus render-aware
+  `PROMPT_RENDER_OMITS_ENTRY_STATE` / `PROMPT_RENDER_OMITS_FIGURE_ACTION` via the adapter's
+  pure `render_prompt_text_only`). The 2500-char API cap is render_pass-aware: a warning on
+  `visual_test`, fatal on `final_candidate`/`final_locked`.
 - **Describe action and camera, not appearance** — identity/wardrobe/look are carried by the attached `@elements`.
-- Use linking words ("continuing", "immediately") and consistent screen direction across cuts.
-- Enforced by `validate_omni_clip_manifest` (≤6 shots, sum==total) and the golden test `tests/agents/test_prompt_golden_format.py`.
+- `short_insert` beats merge into neighboring action by default. Mark `standalone_insert: true`
+  only for load-bearing 2s cutaways such as a prop reveal, reaction detail, or irreversible state
+  change that must be reviewed as its own camera beat.
+- Enforced by `validate_omni_clip_manifest` (≤6 shots, sum==total), `validate_dialogue_coverage` (no dropped line), and the golden test `tests/agents/test_prompt_golden_format.py`.
 
 ## Anti-clone: one figure ⇒ one alias
 
@@ -91,9 +121,10 @@ adapter) when the model changes.
 
 ## Status / open items
 
-- Prompt generation is canonical via `generate_from_clip_manifest`. The legacy **storyboard layer
-  has been removed** (schemas, agents, pipeline/graph modes, gate/operator/status hooks). The
-  `KlingOmniAdapter.generate()` method is retained as the shared adapter contract but no longer reads
-  any storyboard records. Build new scenes on the clip-manifest path only.
+- Prompt generation is canonical via `generate_from_clip_manifest`. New Kling prompt work must be
+  driven by `omni_clip_manifest` records, not storyboard options or `shot_list_omni` gates. Some
+  legacy hooks may remain for older artifacts, but they must not control new Kling prompt generation.
+  The `KlingOmniAdapter.generate()` method is retained as the shared adapter contract; build new
+  scenes on the clip-manifest path only.
 - Scene teardown + rebuild of SC0001/SC0014 under this system is a separate, operator-gated step
   (irreversible deletes; requires operator-produced media + real QC scores).

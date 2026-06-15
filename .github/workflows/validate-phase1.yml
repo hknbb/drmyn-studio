@@ -12,6 +12,10 @@ on:
       - "schemas/**"
       - "evidence/**"
       - "scripts/**"
+      - "docs/**"
+      - "model_guidance_snapshots/**"
+      - "tests/**"
+      - ".yamllint"
       - ".github/workflows/validate-phase1.yml"
   workflow_dispatch:
 
@@ -39,11 +43,17 @@ jobs:
       - name: Install validation dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install jsonschema PyYAML yamllint pandas
+          pip install jsonschema PyYAML yamllint pandas pytest
 
-      - name: Lint YAML
+      - name: Lint YAML (advisory)
         run: |
           yamllint source planning prompts .github || true
+
+      - name: Lint YAML (blocking — SC0014 manifests + continuity ledger)
+        run: |
+          yamllint -c .yamllint \
+            planning/scenes/SC0014/manifests \
+            planning/scenes/SC0014/scene_continuity_ledger.yaml
 
       - name: Ensure expected directories exist
         run: |
@@ -95,6 +105,18 @@ jobs:
           python scripts/validate_production_records.py \
             --repo-root . \
             --report-json evidence/validation_reports/production_records_validation_report.json
+
+      - name: Run targeted tests (Kling Omni renderer + state chain + Anchor & Animate)
+        run: |
+          python -m pytest -q \
+            tests/test_state_chain.py \
+            tests/agents/test_prompt_golden_format.py \
+            tests/agents/test_kling_omni_clip_manifest_generation.py \
+            tests/agents/test_kling_omni_anchored_i2v.py \
+            tests/test_omni_clip_planner.py \
+            tests/test_continuity_presence.py \
+            tests/test_dialogue_coverage.py \
+            tests/test_shot_still_coverage.py
 
       - name: Upload validation artifacts
         uses: actions/upload-artifact@v7

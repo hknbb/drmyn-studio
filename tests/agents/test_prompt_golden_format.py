@@ -47,6 +47,8 @@ def _setup(tmp_path: Path) -> Path:
                 "prompt_action": "@C10_HOLDER restrains @C01_NADIA while @C10_CARRIER lifts the child away",
                 "duration_reason": "action 5s",
                 "required_element_ids": ["C10", "LOC001"],
+                "camera": {"framing": "medium", "movement": "static"},
+                "performance_note": "still, contained dread",
                 "figures": [
                     {
                         "figure_id": "FIG_HOLDER",
@@ -68,9 +70,12 @@ def _setup(tmp_path: Path) -> Path:
                 "shot_id": "SHOT_SC0001_01_B",
                 "duration_seconds": 2,
                 "source_beat_ids": ["BRACELET"],
-                "prompt_action": "Cut to insert. A hand closes around a small band",
+                "prompt_action": "A hand closes around a small band",
                 "duration_reason": "insert 2s",
                 "required_element_ids": ["LOC001"],
+                "coverage_role": "insert",
+                "camera": {"framing": "insert", "movement": "static"},
+                "diegetic_audio": "a small metallic click",
             },
         ],
         "kling_native_audio": {
@@ -136,9 +141,21 @@ def test_golden_o3_multishot_format(tmp_path: Path) -> None:
     result = adapter.generate_from_clip_manifest(str(mpath))
     text = result.prompt_record["prompt_text"]
 
-    # Format A: explicit per-shot blocks with parenthesised durations.
-    assert "Shot 1 (5s):" in text
-    assert "Shot 2 (2s):" in text
+    # Goro-style timecode-first shot headings (no "Shot N (Xs):" prefix, no added "Cut to").
+    assert "[00:00 - 00:05]" in text
+    assert "[00:05 - 00:07]" in text
+    assert "Medium shot:" in text          # shot 1 framing=medium
+    assert "Insert:" in text               # shot 2 coverage_role=insert
+    assert "Shot 1 (5s):" not in text
+    assert "Shot 2 (2s):" not in text
+    assert "Cut to" not in text            # the timecode block is the cut
+    assert "@@" not in text
+
+    # Camera + performance woven as prose, not telemetry.
+    assert "still, contained dread" in text           # performance_note woven into action
+    assert "frame holds steady" in text                # static movement prose (no telemetry)
+    assert "Motion:" not in text and "subject 0." not in text
+    assert "Audio: a small metallic click" in text    # diegetic_audio rendered as Audio line
 
     # Anti-clone roster: both figure aliases, distinguishing details, no-extras negative.
     assert "@C10_HOLDER" in text and "@C10_CARRIER" in text
@@ -147,7 +164,7 @@ def test_golden_o3_multishot_format(tmp_path: Path) -> None:
     assert "No additional, extra, or duplicated people" in text
 
     # Action-not-appearance rule.
-    assert "Describe action and camera" in text
+    assert "Direct action and camera" in text
 
     # Inter-clip continuity hand-off reached the prompt.
     assert "Continue from previous clip:" in text

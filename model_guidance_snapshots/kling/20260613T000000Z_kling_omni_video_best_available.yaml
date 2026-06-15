@@ -1,0 +1,64 @@
+record_type: model_guidance_snapshot
+schema_version: "0.x-draft"
+snapshot_id: "20260613T000000Z_kling_omni_video_best_available"
+internal_model_target: kling_omni_video_best_available
+provider: kling
+model_family: video_generation
+provider_surface: manual_external
+observed_at: "2026-06-13T00:00:00Z"
+expires_at: "2026-06-20T00:00:00Z"
+human_verified: true
+current_default_model: "Kling VIDEO 3.0 Omni"
+latest_available_model: "Kling VIDEO 3.0 Omni"
+best_for_this_task: "Kling VIDEO 3.0 Omni"
+feature_required_model:
+  native_audio: "Kling VIDEO 3.0 Omni"
+  native_audio_dialogue: "Kling VIDEO 3.0 Omni"
+  multi_shot: "Kling VIDEO 3.0 Omni"
+  element_reference: "Kling VIDEO 3.0 Omni"
+  storyboard_narration: "Kling VIDEO 3.0 Omni"
+version_policy:
+  hardcode_in_adapter: false
+  adapter_must_read_snapshot: true
+  prompt_generation_blocks_if_expired: true
+  prompt_generation_blocks_if_unverified: true
+sources:
+  - source_type: official_docs
+    title: "Kling VIDEO 3.0 Omni Model User Guide"
+    retrieved_at: "2026-06-13T00:00:00Z"
+    url: "https://kling.ai/quickstart/klingai-video-3-omni-model-user-guide"
+  - source_type: verified_platform_blog
+    title: "FAL.ai — Kling 3.0 Prompting Guide (multi-shot continuity + per-character action/dialogue binding)"
+    retrieved_at: "2026-06-14T00:00:00Z"
+    url: "https://blog.fal.ai/kling-3-0-prompting-guide/"
+capabilities:
+  output_type: video
+  supports_native_audio: true
+  supports_native_audio_dialogue: true
+  supports_multi_shot: true
+  supports_camera_motion: true
+  supports_element_reference: true
+  supports_image_to_video: true
+  max_duration_seconds: 15
+constraints:
+  max_duration_seconds: 15
+  max_shots_per_generation: 6
+  repo_min_shot_seconds: 2
+  prompt_text_max_chars: 2500
+  negative_prompt_max_chars: 2500
+  no_video_input_max_images_or_elements: 7
+  with_video_input_max_images_or_elements: 4
+  native_audio_separate_param: false
+prompting_rules:
+  - "Use VIDEO 3.0 Omni for element-based multi-shot clips when Native Audio, character/element consistency, or shot-level storyboard narration is required."
+  - "A single generation may run up to 15 seconds. Repo prompt records cap each generation at 6 shots and prefer 2 seconds or more per shot for stable review."
+  - "For multi-shot clips, specify per-shot duration, framing, angle, narrative content, camera movement, and transition or hand-off."
+  - "Use timecoded shot directions when shot rhythm matters: Shot N (Xs): [MM:SS - MM:SS] medium shot: action. Cut to close-up..."
+  - "Keep element identity in attached @aliases. Do not redescribe wardrobe, face, or look unless the shot requires a non-identity action cue."
+  - "For native-audio passes, write speech inline in prompt_text with speaker @alias and tone; visual-test passes keep dialogue suppressed unless all speaker elements are native-audio ready."
+  - "For protected-subject scenes, stage action through adult performance, safe handling, and off-frame distress constraints; do not exploit child distress."
+  - "Continuity is a chain: open each shot by restating the carried world state (who/what is where, from the prior shot's settled end) before the new action, so positions do not reset at the cut. The more explicit the transition, the cleaner the result."
+  - "With two or more on-screen figures (or any dialogue), give each figure its own action clause bound to a unique @alias (avoid pronouns); for dialogue, action first then the quoted line. Never lump multiple actions into one sentence."
+provenance:
+  created_by: codex
+  created_at: "2026-06-13T00:00:00Z"

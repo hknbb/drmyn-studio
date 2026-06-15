@@ -52,6 +52,15 @@ from scripts.validators.validate_scene_status_consistency import (
     validate_scene_status_consistency_for_scene,
 )
 from scripts.validators.validate_figure_roster import validate_scene_figures
+from scripts.validators.validate_continuity_presence import (
+    validate_scene_continuity_presence,
+)
+from scripts.validators.validate_state_chain import (
+    validate_scene_state_chain,
+)
+from scripts.validators.validate_shot_still_coverage import (
+    validate_shot_still_coverage,
+)
 
 
 IMAGE_SELECTION_PATTERN = "visual_dev/elements/**/image_selection.yaml"
@@ -2994,6 +3003,32 @@ def run_validation(
                 )
             )
             invalid_files.add(bindings_file)
+        for issue in validate_scene_continuity_presence(repo_root, scene_id):
+            src_file = issue.file
+            all_issues.append(
+                ProductionValidationIssue(
+                    file=src_file,
+                    record_type="continuity_presence",
+                    field_path=issue.field_path,
+                    message=f"{issue.error_code}: {issue.message}",
+                )
+            )
+            invalid_files.add(src_file)
+        manifests_dir = _relative(
+            repo_root / "planning" / "scenes" / scene_id / "manifests", repo_root
+        )
+        for issue in validate_scene_state_chain(repo_root, scene_id):
+            all_issues.append(
+                ProductionValidationIssue(
+                    file=manifests_dir,
+                    record_type="state_chain",
+                    field_path=f"{issue.clip_id}/{issue.shot_id}",
+                    message=f"{issue.error_code}: {issue.message}",
+                )
+            )
+            # Warnings are reported but do not invalidate the scene.
+            if issue.severity == "error":
+                invalid_files.add(manifests_dir)
 
     gptimg2_registration_issues = validate_gptimg2_registration_gates(
         repo_root=repo_root,
@@ -3017,6 +3052,30 @@ def run_validation(
     if character_continuity_issues:
         all_issues.extend(character_continuity_issues)
         invalid_files.update(issue.file for issue in character_continuity_issues)
+
+    # Shot-still coverage: discover scenes from clip manifests, validate anchor-animate prompts.
+    clip_manifest_scenes: set[str] = set()
+    for path in sorted(repo_root.glob("planning/scenes/SC*/manifests/CLIP_*.yaml")):
+        for part in path.parts:
+            if re.fullmatch(r"SC\d{4}", part):
+                clip_manifest_scenes.add(part)
+                break
+    for scene_id in sorted(clip_manifest_scenes):
+        manifests_dir = _relative(
+            repo_root / "planning" / "scenes" / scene_id / "manifests", repo_root
+        )
+        for issue in validate_shot_still_coverage(repo_root, scene_id):
+            field_path = "/".join(filter(None, [issue.clip_id, issue.shot_id]))
+            all_issues.append(
+                ProductionValidationIssue(
+                    file=manifests_dir,
+                    record_type="shot_still_coverage",
+                    field_path=field_path or issue.error_code,
+                    message=f"{issue.error_code}: {issue.message}",
+                )
+            )
+            if issue.severity == "error":
+                invalid_files.add(manifests_dir)
 
     report = ProductionValidationReport(
         total_files=total,

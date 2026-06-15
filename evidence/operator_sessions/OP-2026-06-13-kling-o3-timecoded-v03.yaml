@@ -1,0 +1,33 @@
+session_id: OP-2026-06-13-kling-o3-timecoded-v03
+created_at: "2026-06-13T00:00:00Z"
+scene_id: SC0014
+current_task: "Kling O3 timecoded multi-shot prompt repair + SC0014 v03 prompt package"
+status: complete
+recommended_files:
+  - prompts/draft/SC0014__omni-kling-omni-clip-clip-sc0014-01-safe__v03.yaml
+  - prompts/draft/SC0014__omni-kling-omni-clip-clip-sc0014-02-safe__v03.yaml
+  - prompts/draft/SC0014__omni-kling-omni-clip-clip-sc0014-03-safe__v03.yaml
+  - prompts/draft/SC0014__omni-kling-omni-clip-clip-sc0014-04-safe__v03.yaml
+  - prompts/draft/SC0014__omni-kling-omni-clip-clip-sc0014-05-safe__v03.yaml
+  - prompts/draft/SC0014__omni-kling-omni-clip-clip-sc0014-06-safe__v03.yaml
+  - prompts/draft/SC0014__omni-kling-omni-clip-clip-sc0014-07-safe__v03.yaml
+  - prompts/draft/SC0014__omni-kling-omni-clip-clip-sc0014-08-safe__v03.yaml
+recommended_steps:
+  - "Operator should use the v03 prompt records for the next Kling O3 attempt; v02 remains preserved as prior draft evidence."
+  - "Keep visual_test/audio-off for SC0014 until protected-subject review and speaker readiness allow any performance pass."
+  - "After generation, archive media and continue with video_takes -> video_review -> selected_take -> scene_clip_map."
+notes: >
+  Approved Codex repair after operator reported that Kling O3 prompts were becoming
+  static long takes instead of timecoded multi-camera shot plans. Changes made:
+  official 2026-06-13 Kling VIDEO 3.0 Omni snapshot locked; model guide and
+  scene-continuity docs aligned to <=15s, <=6 shots, [MM:SS - MM:SS] shot blocks;
+  adapter now emits timecoded shot headings, shorter camera/lighting/motion grammar,
+  explicit cuts, no duplicate @@ alias rewrite, and accepts clip-manifest-gated
+  prompt validation; planner now supports splittable long-hold coverage and
+  standalone_insert: true for load-bearing 2s cutaways. SC0014 kept the active
+  8-clip package while manifests were revised to split long holds inside existing
+  clip IDs and preserve the bracelet as @PROP001_BRACELET standalone insert.
+  Generated 8 v03 draft prompt records and pending run records in evidence/prompt_runs.
+  Validation: targeted pytest 141 passed, 1 skipped; model research gate passed.
+  Prompt-record validator now only fails on two pre-existing unrelated MJ oref
+  schema extras in SC0047 and SC0089.

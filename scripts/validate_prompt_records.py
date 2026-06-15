@@ -14,6 +14,7 @@ if str(REPO_ROOT) not in sys.path:
 from scripts.validators.validate_shot_element_manifest import (
     validate_shot_element_manifest_file,
 )
+from scripts.validators.validate_omni_clip_manifest import validate_omni_clip_manifest
 
 
 CANONICAL_ID_RE = re.compile(r"(?<!@)\b(?:C\d{2}|LOC\d{3}(?:_[A-Z0-9_]+)?|PROP\d{3}|WD\d{3})\b")
@@ -151,10 +152,14 @@ def _prompt_semantic_errors(instance, repo_root):
     errors = []
 
     manifest_ref = params.get("shot_element_manifest_ref")
+    clip_manifest_ref = params.get("omni_clip_manifest_ref")
     manifest_data = None
-    if not is_deprecated and not (isinstance(manifest_ref, str) and manifest_ref.strip()):
+    has_shot_manifest = isinstance(manifest_ref, str) and manifest_ref.strip()
+    has_clip_manifest = isinstance(clip_manifest_ref, str) and clip_manifest_ref.strip()
+    if not is_deprecated and not (has_shot_manifest or has_clip_manifest):
         errors.append(
-            "generation_params.shot_element_manifest_ref is required for active "
+            "generation_params.shot_element_manifest_ref or "
+            "generation_params.omni_clip_manifest_ref is required for active "
             "Kling Omni prompts"
         )
 
@@ -193,6 +198,30 @@ def _prompt_semantic_errors(instance, repo_root):
                 "shot_element_manifest_ref is present; use environmental_only_allowed_ids "
                 "in the manifest instead"
             )
+
+    if isinstance(clip_manifest_ref, str) and clip_manifest_ref.strip():
+        clip_manifest_path = repo_root / clip_manifest_ref
+        if not clip_manifest_path.exists():
+            errors.append(
+                f"generation_params.omni_clip_manifest_ref not found: {clip_manifest_ref}"
+            )
+        else:
+            clip_manifest_data = _load_yaml_mapping(clip_manifest_path)
+            if clip_manifest_data.get("record_type") != "omni_clip_manifest":
+                errors.append(
+                    "generation_params.omni_clip_manifest_ref must point to an "
+                    "omni_clip_manifest record"
+                )
+            if clip_manifest_data.get("scene_id") != scene_id:
+                errors.append(
+                    "generation_params.omni_clip_manifest_ref scene_id does not "
+                    f"match prompt scene_id {scene_id!r}"
+                )
+            for issue in validate_omni_clip_manifest(clip_manifest_data, repo_root):
+                errors.append(
+                    "omni_clip_manifest_ref "
+                    f"{issue.error_code}: {issue.message}"
+                )
 
     not_attached = set(_string_items(params.get("not_attached_as_kling_elements")))
 
@@ -339,7 +368,10 @@ def main(args=None):
     for d in prompt_dirs:
         dir_path = repo_root / "prompts" / d
         if dir_path.exists():
-            yaml_files.extend(list(dir_path.glob("*.yaml")))
+            yaml_files.extend(
+                path for path in dir_path.glob("*.yaml")
+                if not path.name.endswith("_run.yaml")
+            )
 
     report = {
         "total_files_scanned": len(yaml_files),

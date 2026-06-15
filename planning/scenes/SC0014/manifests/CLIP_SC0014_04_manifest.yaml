@@ -11,11 +11,23 @@ shots:
   duration_seconds: 5
   source_beat_ids:
   - NADIA_STANDS_STEPS_BACK
-  prompt_action: She stands, still holding Jin. She takes one step back — not toward anything, just back. The instinct of something th...
-  duration_reason: normal/action 5s
+  prompt_action: The room tightens, cool and close, around a single soft step on the floor.
+  duration_reason: normal/action — Nadia rises and steps back (the cornered instinct)
+  exit_state:
+    summary: "Nadia stands center holding Jin, one step back; Dimitri in the background (right)."
+    key_positions:
+    - { subject: '@C01_NADIA', screen_position: center, posture: "standing, stepped back", relation: holding @C08_JIN, visibility: on_frame }
+    - { subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame }
+    - { subject: '@C04_DIMITRI', screen_position: right, posture: "standing, not advancing", visibility: on_frame }
+    screen_direction: neutral
   required_element_ids:
   - C01
   - C08
+  - C04
+  coverage_role: establish
+  focus_alias: '@C01_NADIA'
+  performance_note: the instinct of something that knows it is cornered; one step back, no further, arms closing around the child
+  diegetic_audio: room tone, cool and tight; a single soft step on the floor
   camera:
     angle: eye_level
     framing: medium
@@ -35,22 +47,57 @@ shots:
     base_element_id: C01
     kling_alias: '@C01_NADIA'
     role: Nadia, the protagonist
+    visibility: on_frame
+    action: stands, still holding @C08_JIN, and takes one step back — cornered, no further
+    exit_state_note: standing center, one step back, the child held
   - figure_id: FIG_JIN
     base_element_id: C08
     kling_alias: '@C08_JIN'
     role: Jin, the infant (protected subject)
     distinguishing_detail: Infant; pale blue name bracelet on wrist.
+    visibility: on_frame
+    action: stays fully supported through the movement, calm
+    exit_state_note: cradled center
+  - figure_id: FIG_DIMITRI
+    base_element_id: C04
+    kling_alias: '@C04_DIMITRI'
+    role: Dimitri, lead enforcer
+    visibility: on_frame
+    action: stands in the background, not yet advancing
+    exit_state_note: standing screen-right, background
 - shot_id: SHOT_SC0014_04_B
   duration_seconds: 3
   source_beat_ids:
   - DIMITRI_DONT_MAKE_HARDER
-  prompt_action: 'Dimitri: "Please don''t make this harder." She says nothing.'
-  duration_reason: normal/dialogue 3s
+  prompt_action: The room holds low and flat between them.
+  duration_reason: normal/dialogue — Dimitri's line, Nadia silent
+  entry_state:
+    summary: "Nadia stands center holding Jin; Dimitri (right); the first man waiting."
+    key_positions:
+    - { subject: '@C01_NADIA', screen_position: center, posture: standing, relation: holding @C08_JIN, visibility: on_frame }
+    - { subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame }
+    - { subject: '@C04_DIMITRI', screen_position: right, posture: standing, visibility: on_frame }
+    - { subject: '@C10_CARRIER', screen_position: right, posture: "waiting, about to advance", visibility: on_frame }
+    screen_direction: neutral
+  exit_state:
+    summary: "Dimitri has spoken; Nadia silent, holding Jin; the first man about to advance."
+    key_positions:
+    - { subject: '@C01_NADIA', screen_position: center, posture: standing, relation: holding @C08_JIN, visibility: on_frame }
+    - { subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame }
+    - { subject: '@C04_DIMITRI', screen_position: right, posture: standing, visibility: on_frame }
+    - { subject: '@C10_CARRIER', screen_position: right, posture: "about to advance", visibility: on_frame }
+    screen_direction: neutral
   dialogue_line_ids:
   - DLG_DIMITRI_DONT_HARDER
   required_element_ids:
   - C04
   - C01
+  - C08
+  - C10
+  coverage_role: reverse
+  focus_alias: '@C04_DIMITRI'
+  performance_note: even, almost gentle — the politeness of procedure; she gives nothing back
+  diegetic_audio: room tone, low and flat
   camera:
     angle: eye_level
     framing: medium
@@ -64,15 +111,66 @@ shots:
   motion:
     subject_intensity: 0.1
     camera_intensity: 0.0
+  figures:
+  - figure_id: FIG_DIMITRI
+    base_element_id: C04
+    kling_alias: '@C04_DIMITRI'
+    role: Dimitri, lead enforcer
+    visibility: on_frame
+    action: speaks once, even and quiet, the politeness of procedure
+    exit_state_note: standing screen-right, having spoken
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+    visibility: on_frame
+    action: says nothing, holds @C08_JIN close, gives nothing back
+    exit_state_note: standing center, silent, the child held
+  - figure_id: FIG_JIN
+    base_element_id: C08
+    kling_alias: '@C08_JIN'
+    role: Jin, the infant (protected subject)
+    distinguishing_detail: Infant; pale blue name bracelet on wrist.
+    visibility: on_frame
+    action: stays held close, calm
+    exit_state_note: cradled center
+  - figure_id: FIG_ENF_CARRIER
+    base_element_id: C10
+    kling_alias: '@C10_CARRIER'
+    role: first enforcer; carries the child
+    distinguishing_detail: Heavier build, buzzed hair, goatee; nearer Nadia.
+    visibility: on_frame
+    action: holds his position, about to advance
+    exit_state_note: standing nearer Nadia, about to advance
 - shot_id: SHOT_SC0014_04_C
   duration_seconds: 5
   source_beat_ids:
   - FIRST_MAN_ADVANCES
-  prompt_action: The first man moves toward her. She turns her body to shield the child. She is not slow and not weak and it does not ...
-  duration_reason: normal/action 5s
+  prompt_action: The frame holds a restrained unease as weight shifts.
+  duration_reason: normal/action — the first man advances, Nadia shields
+  entry_state:
+    summary: "Nadia stands center holding Jin; the first man advancing from the right; Dimitri off-frame."
+    key_positions:
+    - { subject: '@C01_NADIA', screen_position: center, posture: standing, relation: holding @C08_JIN, visibility: on_frame }
+    - { subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame }
+    - { subject: '@C10_CARRIER', screen_position: right, posture: advancing, visibility: on_frame }
+    - { subject: '@C04_DIMITRI', screen_position: right, visibility: off_frame }
+    screen_direction: neutral
+  exit_state:
+    summary: "The first man has closed in from the right; Nadia turns her body to shield Jin, still center."
+    key_positions:
+    - { subject: '@C01_NADIA', screen_position: center, posture: "turned, shielding", relation: holding @C08_JIN, visibility: on_frame }
+    - { subject: '@C08_JIN', screen_position: center, posture: shielded, relation: in @C01_NADIA arms, visibility: on_frame }
+    - { subject: '@C10_CARRIER', screen_position: right, posture: "closed in", visibility: on_frame }
+    screen_direction: neutral
   required_element_ids:
   - C01
   - C08
+  - C10
+  coverage_role: resolve
+  focus_alias: '@C01_NADIA'
+  performance_note: total resistance that does not matter; the struggle stays in adult bodies, the child supported and calm
+  diegetic_audio: room tone; the shift of weight as he advances — fabric and a single footstep
   camera:
     angle: eye_level
     framing: medium
@@ -92,28 +190,38 @@ shots:
     base_element_id: C01
     kling_alias: '@C01_NADIA'
     role: Nadia, the protagonist
+    visibility: on_frame
+    action: turns her body, shoulder between the man and @C08_JIN, both arms staying around the child
+    exit_state_note: turned, shielding, the child held center
   - figure_id: FIG_JIN
     base_element_id: C08
     kling_alias: '@C08_JIN'
     role: Jin, the infant (protected subject)
     distinguishing_detail: Infant; pale blue name bracelet on wrist.
+    visibility: on_frame
+    action: stays supported and calm, shielded behind her shoulder
+    exit_state_note: shielded center
   - figure_id: FIG_ENF_CARRIER
     base_element_id: C10
     kling_alias: '@C10_CARRIER'
-    role: first enforcer, carries the child
-    distinguishing_detail: Stands nearer Nadia's side; the one who steps forward first.
+    role: first enforcer; carries the child
+    distinguishing_detail: Heavier build, buzzed hair, goatee; nearer Nadia.
+    visibility: on_frame
+    action: moves toward @C01_NADIA and reaches, kept off @C08_JIN by her shoulder
+    exit_state_note: closed in from the right
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: Generated by omni_clip_planner packer_version=rhythm_aware_v1
+notes: 'SC0014 v05 state-chain director pass (no new story facts): establish on Nadia rising and stepping back -> reverse on Dimitri (DLG_DIMITRI_DONT_HARDER) -> resolve on Nadia shielding as the first man advances. Canonical per-alias roles; prompt_action environment-only; each on-frame figure carries its own action; carrier kept off the protected infant (her shoulder between them). entry_state/exit_state chain the shield configuration into CLIP 05.'
 provenance:
-  created_by: claude_code (M5 FAZ C)
-  created_at: '2026-06-04T10:37:10Z'
+  created_by: claude_code (M5 FAZ D — v05 state-chain director pass)
+  created_at: '2026-06-14T00:00:00Z'
 dialogue_line_ids:
 - DLG_DIMITRI_DONT_HARDER
 required_element_ids:
 - C01
 - C08
 - C04
+- C10

@@ -1,0 +1,39 @@
+session_id: OP-2026-06-13-SC0014-prompt-v02
+created_at: "2026-06-13T00:00:00Z"
+scene_id: SC0014
+current_task: "SC0014 FAZ D revision — director's continuity pass; all 8 O3 prompts revised to v02"
+status: complete
+recommended_files:
+  - prompts/draft/SC0014__clip-sc0014-01-safe__v02.yaml
+  - prompts/draft/SC0014__clip-sc0014-02-safe__v02.yaml
+  - prompts/draft/SC0014__clip-sc0014-03-safe__v02.yaml
+  - prompts/draft/SC0014__clip-sc0014-04-safe__v02.yaml
+  - prompts/draft/SC0014__clip-sc0014-05-safe__v02.yaml
+  - prompts/draft/SC0014__clip-sc0014-06-safe__v02.yaml
+  - prompts/draft/SC0014__clip-sc0014-07-safe__v02.yaml
+  - prompts/draft/SC0014__clip-sc0014-08-safe__v02.yaml
+recommended_steps:
+  - "Operator generates all 8 clips in Kling O3 from v02 prompts (CFG 0.5, 16:9, audio off)."
+  - "Frame-chain (image-to-video init) only on edges 04->05, 05->06, 06->07, 07->08; fresh start for 01, 02, 03, 04."
+  - "On return: archive media, write video_take -> video_review -> selected_take -> scene_clip_map."
+notes: >
+  Director-level revision pass over the 8 FAZ C v01 prompts, triggered by the first
+  field test (CLIP 08 generation, 2026-06-13): the requested dolly-back was swallowed
+  at camera intensity 0.2 and the hand blocking drifted to the crib rail. Audit found
+  and fixed: (1) figure-roster contradictions in clips 03/04 (figure count excluded
+  on-screen Nadia/infant; clip 04 text referenced holder+Dimitri beyond roster);
+  (2) missing @C10_HOLDER element/figure in clip 06 (ledger key_positions requires him
+  holding Nadia, else clip 07 release breaks); (3) missing bracelet beat in clip 05
+  shot text (ledger props_state has it; emotionally canonical); (4) quoted dialogue in
+  clips 03/04 conflicting with Format A suppression -> converted to silent speech
+  performance + 'subtitles' negative; (5) seated->standing transition made explicit
+  ('rises from the chair', clip 04); (6) clip 08 camera fix: mandatory single
+  continuous dolly back medium->wide, intensity 0.35, negatives 'static-camera,
+  frozen-frame'; (7) clip 01 person-leak guard ('no people' + people negatives) and
+  removed meaningless continue-from on the scene's first clip; (8) infant safety
+  language hardened in every Jin clip (supported, calm, distress off-frame).
+  Non-destructive versioning: v01 prompt files left intact; v02 supersedes for
+  generation. Manifests/ledger unchanged (canonical layer; roster sync there would
+  need an approved plan batch). Ledger edge 01->02 flagged as mislabeled
+  (frame_input_eligible -> should be metadata_only); fix pending operator approval.
+  Validator: 125/125 valid, 0 invalid. All prompt_text under 2500 chars (max 2401).

@@ -8,14 +8,28 @@ total_duration_seconds: 11
 continuity_input_mode: frame_input_eligible
 shots:
 - shot_id: SHOT_SC0014_06_A
-  duration_seconds: 11
+  duration_seconds: 4
   source_beat_ids:
   - JIN_CARRIED_OUT
-  prompt_action: She watches Jin carried to the door. Jin makes a small sound — not fear, just sound; too young to know what is happen...
-  duration_reason: long_hold/hold 11s
+  prompt_action: The room holds cool and flat as the child recedes toward the door.
+  duration_reason: long_hold/hold — Nadia foreground, child receding (coverage 1/3)
+  exit_state:
+    summary: "Nadia held center; the carrier carries Jin to the door (right); the second man holds her."
+    key_positions:
+    - { subject: '@C01_NADIA', screen_position: center, posture: "held in place", relation: empty hands, visibility: on_frame }
+    - { subject: '@C08_JIN', screen_position: right, posture: "carried toward the door", relation: "carried by @C10_CARRIER", visibility: on_frame }
+    - { subject: '@C10_CARRIER', screen_position: right, posture: "carrying the child to the door", visibility: on_frame }
+    - { subject: '@C10_HOLDER', screen_position: center, posture: standing, relation: "restraining @C01_NADIA", visibility: occluded }
+    screen_direction: neutral
   required_element_ids:
   - C01
   - C08
+  - C10
+  - LOC001
+  coverage_role: establish
+  focus_alias: '@C01_NADIA'
+  performance_note: she watches; held in place; everything in the eyes, nothing in the body she is allowed to move
+  diegetic_audio: room tone, cool and flat; a small infant sound, kept gentle and off the child's face
   camera:
     angle: eye_level
     framing: medium_wide
@@ -35,25 +49,139 @@ shots:
     base_element_id: C01
     kling_alias: '@C01_NADIA'
     role: Nadia, the protagonist
+    visibility: on_frame
+    action: held in place, watches @C08_JIN recede, everything held in her eyes
+    exit_state_note: held center, watching
   - figure_id: FIG_JIN
     base_element_id: C08
     kling_alias: '@C08_JIN'
     role: Jin, the infant (protected subject)
     distinguishing_detail: Infant; pale blue name bracelet on wrist.
+    visibility: on_frame
+    action: is carried toward the door, safely supported, calm, distress kept off-frame
+    exit_state_note: receding to the door, right
   - figure_id: FIG_ENF_CARRIER
     base_element_id: C10
     kling_alias: '@C10_CARRIER'
-    role: first enforcer, carries the child
-    distinguishing_detail: Stands nearer Nadia's side; the one who steps forward first.
+    role: first enforcer; carries the child
+    distinguishing_detail: Heavier build, buzzed hair, goatee; nearer Nadia.
+    visibility: on_frame
+    action: carries @C08_JIN toward the door, the child receding from her
+    exit_state_note: at the door with the child, right
+- shot_id: SHOT_SC0014_06_B
+  duration_seconds: 3
+  source_beat_ids:
+  - JIN_CARRIED_OUT
+  prompt_action: The door of @LOC001_NURSERY closes — the room sealed from what just left it.
+  duration_reason: long_hold/hold — detail insert on the closing door (coverage 2/3)
+  entry_state:
+    summary: "The child has reached the door; Nadia held center; the door beginning to close."
+    key_positions:
+    - { subject: '@C01_NADIA', screen_position: center, posture: "held in place", relation: empty hands, visibility: occluded }
+    - { subject: '@C10_HOLDER', screen_position: center, relation: "restraining @C01_NADIA", visibility: occluded }
+    - { subject: '@C08_JIN', screen_position: right, visibility: off_frame }
+    - { subject: '@C10_CARRIER', screen_position: right, visibility: off_frame }
+    props_state:
+    - { prop: '@DOOR_NURSERY', state: closing }
+    screen_direction: neutral
+  exit_state:
+    summary: "The door has closed; Jin is gone; Nadia held center."
+    key_positions:
+    - { subject: '@C01_NADIA', screen_position: center, posture: "held in place", relation: empty hands, visibility: occluded }
+    - { subject: '@C10_HOLDER', screen_position: center, relation: "restraining @C01_NADIA", visibility: occluded }
+    - { subject: '@C08_JIN', screen_position: right, visibility: off_frame }
+    props_state:
+    - { prop: '@DOOR_NURSERY', state: closed }
+    screen_direction: neutral
+  required_element_ids:
+  - LOC001
+  - C01
+  - C08
+  - C10
+  coverage_role: detail
+  focus_alias: '@LOC001_NURSERY'
+  performance_note: the ordinary finality of a door; the room sealing
+  diegetic_audio: the door closing; then room tone, very still
+  camera:
+    angle: insert
+    framing: close
+    movement: static
+    lens_bias: the door meeting the frame
+  lighting:
+    source: practical
+    quality: soft
+    color_temp: cool
+    intensity: dim
+  motion:
+    subject_intensity: 0.2
+    camera_intensity: 0.0
+    blocking_notes: Detail on the door closing; no child in frame.
+- shot_id: SHOT_SC0014_06_C
+  duration_seconds: 4
+  source_beat_ids:
+  - JIN_CARRIED_OUT
+  prompt_action: The frame closes to what is left in her face when there is nothing left to hold.
+  duration_reason: long_hold/hold — close resolve on Nadia (coverage 3/3)
+  entry_state:
+    summary: "The door closed; Nadia held center, the room sealed; Jin gone to the right."
+    key_positions:
+    - { subject: '@C01_NADIA', screen_position: center, posture: "held in place", relation: empty hands, visibility: on_frame }
+    - { subject: '@C10_HOLDER', screen_position: center, relation: "restraining @C01_NADIA", visibility: occluded }
+    - { subject: '@C08_JIN', screen_position: right, visibility: off_frame }
+    props_state:
+    - { prop: '@DOOR_NURSERY', state: closed }
+    screen_direction: neutral
+  exit_state:
+    summary: "The door closed; Jin is gone; Nadia held center, the crib empty behind her."
+    key_positions:
+    - { subject: '@C01_NADIA', screen_position: center, posture: "held in place", relation: empty hands, visibility: on_frame }
+    - { subject: '@C10_HOLDER', screen_position: center, relation: "restraining @C01_NADIA", visibility: occluded }
+    - { subject: '@C08_JIN', screen_position: right, visibility: off_frame }
+    props_state:
+    - { prop: crib, state: empty }
+    - { prop: '@DOOR_NURSERY', state: closed }
+    screen_direction: neutral
+  required_element_ids:
+  - C01
+  - C08
+  - C10
+  coverage_role: resolve
+  focus_alias: '@C01_NADIA'
+  performance_note: not collapse — the stillness of someone already going somewhere else
+  diegetic_audio: room tone, very still; the white-noise hum continues, meaning nothing now
+  camera:
+    angle: eye_level
+    framing: close
+    movement: static
+    lens_bias: what is left in Nadia's face
+  lighting:
+    source: practical
+    quality: soft
+    color_temp: cool
+    intensity: dim
+  motion:
+    subject_intensity: 0.15
+    camera_intensity: 0.0
+    blocking_notes: Emphasis entirely on Nadia.
+  figures:
+  - figure_id: FIG_NADIA
+    base_element_id: C01
+    kling_alias: '@C01_NADIA'
+    role: Nadia, the protagonist
+    visibility: on_frame
+    action: holds still, already going somewhere else, nothing left to hold
+    exit_state_note: held center, the crib empty behind her
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: Generated by omni_clip_planner packer_version=rhythm_aware_v1
+notes: 'SC0014 v05 state-chain director pass (no new story facts): carry-out establish -> closing-door detail -> close resolve on Nadia of JIN_CARRIED_OUT. The second man (holder) keeps restraining Nadia (occluded) throughout; prompt_action environment-only; entry_state/exit_state chain the held/empty configuration and the closing door into CLIP 07. Protected-subject: infant supported, kept gentle and off the child''s face.'
 provenance:
-  created_by: claude_code (M5 FAZ C)
-  created_at: '2026-06-04T10:37:10Z'
+  created_by: claude_code (M5 FAZ D — v05 state-chain director pass)
+  created_at: '2026-06-14T00:00:00Z'
 required_element_ids:
 - C01
 - C08
+- C10
+- LOC001

@@ -82,6 +82,13 @@ def dest_relpath(
     return Path("archive") / project / scene / element / f"stage{stage}" / bucket / filename
 
 
+def dest_relpath_subdir(
+    *, project: str, scene: str, subdir: str, filename: str
+) -> Path:
+    """Scene-level subcategory path (K4 convention): no element or stage component."""
+    return Path("archive") / project / scene / subdir / filename
+
+
 def index_path_for(scene: str) -> Path:
     return INDEX_DIR / f"LOCAL_MEDIA_INDEX_{scene}_ARCHIVE_V001.yaml"
 
@@ -129,15 +136,33 @@ def archive_one(args: argparse.Namespace) -> dict[str, Any]:
     if not SCENE_RE.match(args.scene):
         raise ValueError(f"--scene must be SCdddd or _elements, got {args.scene!r}")
 
+    subdir = getattr(args, "subdir", None)
+    if subdir:
+        if not args.element:
+            # subdir mode: no element/stage required
+            pass
+        # element is ignored when subdir is set
+    else:
+        if not args.element:
+            raise ValueError("--element is required unless --subdir is set.")
+
     media_type = infer_media_type(src, args.media_type)
-    rel = dest_relpath(
-        project=args.project,
-        scene=args.scene,
-        element=args.element,
-        stage=args.stage,
-        media_type=media_type,
-        filename=src.name,
-    )
+    if subdir:
+        rel = dest_relpath_subdir(
+            project=args.project,
+            scene=args.scene,
+            subdir=subdir,
+            filename=src.name,
+        )
+    else:
+        rel = dest_relpath(
+            project=args.project,
+            scene=args.scene,
+            element=args.element,
+            stage=args.stage,
+            media_type=media_type,
+            filename=src.name,
+        )
     dest = repo_root / rel
 
     if args.dry_run:
@@ -166,7 +191,11 @@ def archive_one(args: argparse.Namespace) -> dict[str, Any]:
         entry["sha256"] = digest
     if size is not None:
         entry["size_bytes"] = size
-    note = args.notes or f"Archived {media_type} for {args.element} (stage {args.stage})."
+    if subdir:
+        default_note = f"Archived {media_type} for scene {args.scene}/{subdir}."
+    else:
+        default_note = f"Archived {media_type} for {args.element} (stage {args.stage})."
+    note = args.notes or default_note
     note += f" Source: {src}." if not args.notes else ""
     entry["notes"] = note
 
@@ -199,8 +228,10 @@ def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--src", required=True, help="Path to the source media file.")
     p.add_argument("--scene", required=True, help="SCdddd or _elements.")
-    p.add_argument("--element", required=True, help="Element/character id (e.g. C10, LOC001).")
+    p.add_argument("--element", default=None, help="Element/character id (e.g. C10, LOC001). Required unless --subdir is set.")
     p.add_argument("--stage", type=int, default=3, choices=[1, 2, 3], help="Pipeline stage.")
+    p.add_argument("--subdir", choices=["shots", "contact_sheets"], default=None,
+                   help="Scene-level subcategory (shots|contact_sheets). When set, --element and --stage are ignored.")
     p.add_argument("--media-type", choices=["image", "video"], default=None)
     p.add_argument("--kind", default="archived_media", help="Semantic kind label for the index entry.")
     p.add_argument("--id", default=None, help="element_id_or_take_id (defaults to --element).")

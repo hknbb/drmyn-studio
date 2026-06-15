@@ -1,0 +1,71 @@
+session_id: OP-2026-06-14-SC0014-state-chain-v05
+created_at: "2026-06-14T21:00:00Z"
+scene_id: SC0014
+current_task: "Kling O3 state-chain continuity + per-character action; SC0014 v05 package"
+recommended_files:
+  - prompts/draft/SC0014__clip-sc0014-01-safe__v05.yaml
+  - prompts/draft/SC0014__clip-sc0014-02-safe__v05.yaml
+  - prompts/draft/SC0014__clip-sc0014-03-safe__v05.yaml
+  - prompts/draft/SC0014__clip-sc0014-04-safe__v05.yaml
+  - prompts/draft/SC0014__clip-sc0014-05-safe__v05.yaml
+  - prompts/draft/SC0014__clip-sc0014-06-safe__v05.yaml
+  - prompts/draft/SC0014__clip-sc0014-07-safe__v05.yaml
+  - prompts/draft/SC0014__clip-sc0014-08-safe__v05.yaml
+recommended_steps:
+  - "Use the v05 prompt records for the next Kling O3 attempt (CFG 0.5, 16:9, audio OFF); v04 records set status: deprecated (supersession recorded here — prompt_record schema has no superseded_by field)."
+  - "Each clip now opens by restating the carried positions (entry_state) before the new action; CLIP_03 specifically opens with Nadia already seated holding Jin so she no longer reads as entering with the men."
+  - "C08 (Jin) protected-subject hard human-review gate remains in force; carrier actions are explicitly non-contact around the infant. This pass is metadata + prompt only; it does not authorize generation."
+  - "After generation, continue with video_takes -> video_review -> selected_take -> scene_clip_map."
+status: complete
+notes: >
+  Closed the continuity-reset and multi-character-confusion failures. Engine:
+  (1) omni_clip_manifest schema gained per-shot entry_state/exit_state (rich
+  world_state: summary + key_positions{@alias, screen_position, posture, relation,
+  gaze_target, visibility} + props_state) and per-figure action/exit_state_note/
+  visibility; scene_continuity_ledger world_state gained the same optional fields.
+  (2) Renderer (kling_omni.py) now prints the carried-state anchor at the start of
+  each shot BEFORE the new action (positions chain instead of resetting), emits one
+  action clause per figure (multi-character disambiguation), renders key_positions/
+  props in continuity phrases, exposes a pure render_prompt_text_only dry-run, and
+  makes the 2500-char cap render_pass-aware (warning on visual_test, fatal on
+  final_candidate/final_locked). (3) New validate_state_chain.py (wired into
+  validate_production_records) enforces ENTRY_STATE_MISSING_AFTER_FIRST_SHOT,
+  SHOT_EXIT_STATE_MISSING, CARRIED_SUBJECT_DROPPED, CARRIED_PROP_DROPPED,
+  RELATION_BROKEN_WITHOUT_ACTION, CLIP_SEAM_MISMATCH, FIGURE_ACTION_MISSING,
+  DIALOGUE_SPEAKER_NOT_ON_FRAME_OR_OFFSCREEN_MARKED, the advisory
+  CHARACTER_ACTION_DUPLICATED_IN_PROMPT_ACTION, and render-aware
+  PROMPT_RENDER_OMITS_ENTRY_STATE / PROMPT_RENDER_OMITS_FIGURE_ACTION /
+  PROMPT_OVER_2500.
+  SC0014: all 8 manifests re-authored with entry_state/exit_state + per-figure
+  actions and canonical per-alias roles (shot-specific variation moved from role to
+  action); ledger key_positions converted to @alias subjects with posture/relation.
+  CLIP_03 fixed (Nadia/Jin added as seated figures in shot A so the clip opens with
+  her already holding the child). 8 v05 prompts generated (short-filename convention,
+  version 5, run_counter 6) and v04 records deprecated; evidence CSVs deduped. Six
+  SC0014 validators (manifest schema, figure_roster, continuity_ledger,
+  continuity_presence, dialogue_coverage, state_chain incl. render-aware) report 0
+  errors; every v05 prompt is <=2500 chars. CI (validate-phase1.yml) gained docs/**,
+  model_guidance_snapshots/**, tests/** triggers, a blocking yamllint for the SC0014
+  manifests + ledger (.yamllint), and a targeted pytest step. Guide bumped to 0.6.0
+  with intra_shot_state_chaining + per_character_action_binding rules (sourced to the
+  FAL.ai Kling 3.0 guide + Kling VIDEO 3.0 Omni guide) and a shot-count cap note;
+  the 20260613 snapshot gained the two rules + the FAL.ai source. Pre-existing
+  unrelated prompt-record failures remain (SC0047/SC0089 oref-lock files), untouched.
+
+  Cleanup + regeneration pass (operator "temizle ve yeniden üret"): the 8 v05
+  prompts were regenerated from the current (linter-touched) manifests via
+  KlingOmniAdapter.generate_from_clip_manifest (version 5, run_counter 5, safe,
+  visual_test, test_720p, locked_guide) — this restored the per-clip tuned
+  negative_prompts that the prior v05 run had reset to the generic base
+  (e.g. CLIP_01 people/human-figures, CLIP_03/04 extra-people/duplicate-faces/
+  subtitles, CLIP_08 static-camera/frozen-frame) and added the 20260613 snapshot
+  ref for provenance. The obsolete v04 prompt drafts were removed (they were
+  untracked working files, never committed, fully superseded by v05) rather than
+  kept as deprecated stubs, so prompts/draft now holds exactly one current set
+  (8 v05). Re-validation: validate_production_records 131 files 0 invalid; all 8
+  SC0014 v05 prompts valid (only the pre-existing SC0047/SC0089 failures remain);
+  validate_state_chain SC0014 and validate_continuity_presence SC0014 both clean;
+  pytest (state_chain + golden_format + clip_manifest_generation + continuity_presence
+  + omni_clip_manifest_semantics) 110 passed, 1 skipped. CLIP_03 (2493) and CLIP_04
+  (2499) render close to the 2500-char cap (under it; visual_test pass). C08
+  protected-subject gate unchanged; metadata + prompt only, no generation authorized.

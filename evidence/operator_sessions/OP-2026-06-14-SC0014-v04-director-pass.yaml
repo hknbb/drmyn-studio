@@ -1,0 +1,29 @@
+session_id: OP-2026-06-14-SC0014-v04-director-pass
+created_at: "2026-06-14T18:07:00Z"
+scene_id: SC0014
+current_task: "SC0014 v04 director pass — 8-clip coverage rebuild + 8 Goro-style prompts (superseded by v05)"
+recommended_files:
+  - planning/scenes/SC0014/manifests/CLIP_SC0014_04_manifest.yaml
+  - planning/scenes/SC0014/manifests/CLIP_SC0014_07_manifest.yaml
+  - docs/model_guides/kling_omni.yaml
+recommended_steps:
+  - "Superseded by the v05 state-chain director pass (OP-2026-06-14-SC0014-state-chain-v05); use v05 prompts."
+  - "C08 (Jin) protected-subject hard human-review gate remains in force before any external generation."
+status: complete
+notes: >
+  v04 director pass (now superseded by v05). Retained the 8-clip structure: full
+  establish/detail/reverse/resolve coverage fills each dramatic unit at 10-13s, so
+  the <=15s / <=6-shot Omni cap leaves no room to merge units (01+02=21s, 07+08=16s
+  both exceed the cap). Brought CLIP_04 and CLIP_07 up to v04 coverage (07's
+  RELEASE_AND_EXIT is splittable:false, kept as one 5s resolve shot after
+  validate_omni_clip_manifest flagged UNSPLITTABLE_BEAT_SPLIT); strengthened
+  protected-subject (C08 Jin) safe-handling/distress-off-frame language in 02/05/06.
+  Regenerated all 8 Goro-style timecode-first prompts via
+  KlingOmniAdapter.generate_from_clip_manifest (version 4, safe, visual_test,
+  test_720p, locked_guide). Removed pre-compaction long-form (prompt_id-named) v04
+  duplicates that broke the short-filename convention; v03 working drafts were never
+  in git and were not recreated (their source_refs were schema-invalid). Protected
+  subject: metadata + prompt only; no generation authorized. Validation at the time:
+  validate_production_records 129 files 0 invalid; 8/8 SC0014 v04 prompts valid;
+  continuity_presence 0 issues. Record reformatted to the operator_session schema in
+  the v05 session (content preserved).

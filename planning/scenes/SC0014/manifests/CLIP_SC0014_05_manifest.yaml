@@ -11,11 +11,23 @@ shots:
   duration_seconds: 5
   source_beat_ids:
   - MAN_LIFTS_JIN
-  prompt_action: The man reaches for the child with both hands — careful, firm. She holds. He lifts. Her arms resist with everything a...
-  duration_reason: normal/action 5s
+  prompt_action: The frame holds close on the lift; room tone, fabric.
+  duration_reason: normal/action — the lift, held on Nadia's resisting arms
+  exit_state:
+    summary: "Jin is lifted free to the right; Nadia's arms emptied, center; the carrier holds the child."
+    key_positions:
+    - { subject: '@C01_NADIA', screen_position: center, posture: resisting, relation: empty hands, visibility: on_frame }
+    - { subject: '@C08_JIN', screen_position: right, posture: "lifted, fully supported", relation: "carried by @C10_CARRIER", visibility: partial_frame }
+    - { subject: '@C10_CARRIER', screen_position: right, posture: "lifting the child", visibility: on_frame }
+    screen_direction: neutral
   required_element_ids:
   - C01
   - C08
+  - C10
+  coverage_role: resolve
+  focus_alias: '@C01_NADIA'
+  performance_note: the loss made physical; resistance to the last, the emphasis on her arms
+  diegetic_audio: room tone; the soft displacement of fabric as the child is lifted
   camera:
     angle: eye_level
     framing: medium_close
@@ -29,33 +41,105 @@ shots:
   motion:
     subject_intensity: 0.6
     camera_intensity: 0.1
-    blocking_notes: 'CRITICAL: infant fully supported at all times; no unsafe hold, no distress exploitation; emphasis on Nadia''s arms, not the child''s face.'
+    blocking_notes: Infant fully supported; no unsafe hold; emphasize Nadia's arms, not the child's face.
   figures:
   - figure_id: FIG_NADIA
     base_element_id: C01
     kling_alias: '@C01_NADIA'
     role: Nadia, the protagonist
+    visibility: on_frame
+    action: holds, her arms resisting with everything a person can give, and it is not enough
+    exit_state_note: center, arms emptied
   - figure_id: FIG_JIN
     base_element_id: C08
     kling_alias: '@C08_JIN'
     role: Jin, the infant (protected subject)
     distinguishing_detail: Infant; pale blue name bracelet on wrist.
+    visibility: on_frame
+    action: is lifted free, fully and safely supported, calm, any distress kept off-frame
+    exit_state_note: lifted clear to the right, supported
   - figure_id: FIG_ENF_CARRIER
     base_element_id: C10
     kling_alias: '@C10_CARRIER'
-    role: first enforcer, carries the child
-    distinguishing_detail: Stands nearer Nadia's side; the one who steps forward first.
+    role: first enforcer; carries the child
+    distinguishing_detail: Heavier build, buzzed hair, goatee; nearer Nadia.
+    visibility: on_frame
+    action: reaches with both hands, careful and firm, and lifts @C08_JIN free
+    exit_state_note: holding the child, screen-right
 - shot_id: SHOT_SC0014_05_B
-  duration_seconds: 7
+  duration_seconds: 2
   source_beat_ids:
   - BRACELET_BEAT
-  - SECOND_MAN_RESTRAINS
-  prompt_action: 'The second man holds her by both arms. Not roughly. Just completely.
-
-    '
-  duration_reason: BRACELET_BEAT (short_insert merged fwd); normal/action 5s
+  prompt_action: '@C01_NADIA fingers find @PROP001_BRACELET — the pale blue band, the clasp, the small type of his name — for one beat; then her hand is empty.'
+  duration_reason: BRACELET_BEAT standalone_insert 2s load-bearing cutaway
+  entry_state:
+    summary: "Nadia's empty hand, center; the carrier and child gone to the right of this tight frame."
+    key_positions:
+    - { subject: '@C01_NADIA', screen_position: center, posture: resisting, relation: empty hands, visibility: on_frame }
+    - { subject: '@C08_JIN', screen_position: right, visibility: off_frame }
+    - { subject: '@C10_CARRIER', screen_position: right, visibility: off_frame }
+    props_state:
+    - { prop: '@PROP001_BRACELET', state: "her fingers find it for one beat" }
+    screen_direction: neutral
+  exit_state:
+    summary: "The bracelet has slipped; Nadia's hand goes empty."
+    key_positions:
+    - { subject: '@C01_NADIA', screen_position: center, posture: resisting, relation: empty hands, visibility: on_frame }
+    props_state:
+    - { prop: '@PROP001_BRACELET', state: "slips from her fingers; her hand goes empty" }
+    screen_direction: neutral
   required_element_ids:
   - C01
+  - PROP001
+  coverage_role: insert
+  focus_alias: '@PROP001_BRACELET'
+  performance_note: the whole loss compresses into one beat of contact, then an empty hand
+  diegetic_audio: room tone narrows to near-silence; the faint sound of fingers leaving fabric
+  camera:
+    angle: insert
+    framing: extreme_close
+    movement: static
+    lens_bias: macro on fingers + pale blue bracelet
+  lighting:
+    source: practical
+    quality: soft
+    color_temp: warm
+    intensity: dim
+  motion:
+    subject_intensity: 0.3
+    camera_intensity: 0.0
+    blocking_notes: The bracelet (pale blue band, clasp, name) is the load-bearing prop; one-beat contact then empty hand.
+- shot_id: SHOT_SC0014_05_C
+  duration_seconds: 5
+  source_beat_ids:
+  - SECOND_MAN_RESTRAINS
+  prompt_action: The room returns, cool and flat, on the complete restraint.
+  duration_reason: normal/action — the complete, gentle restraint
+  entry_state:
+    summary: "Nadia center, empty hands; the second man closing on her from the door side; Jin gone to the right."
+    key_positions:
+    - { subject: '@C01_NADIA', screen_position: center, posture: standing, relation: empty hands, visibility: on_frame }
+    - { subject: '@C10_HOLDER', screen_position: center, posture: "closing in", visibility: on_frame }
+    - { subject: '@C08_JIN', screen_position: right, visibility: off_frame }
+    props_state:
+    - { prop: '@PROP001_BRACELET', state: "slipped from Nadia's fingers; her hand empty" }
+    screen_direction: neutral
+  exit_state:
+    summary: "The second man holds Nadia by both arms, center; the bracelet lost; Jin carried away to the right."
+    key_positions:
+    - { subject: '@C01_NADIA', screen_position: center, posture: "held by both arms", relation: empty hands, visibility: on_frame }
+    - { subject: '@C10_HOLDER', screen_position: center, posture: standing, relation: "restraining @C01_NADIA", visibility: on_frame }
+    - { subject: '@C08_JIN', screen_position: right, visibility: off_frame }
+    props_state:
+    - { prop: '@PROP001_BRACELET', state: "slipped from Nadia's fingers; her hand empty" }
+    screen_direction: neutral
+  required_element_ids:
+  - C01
+  - C10
+  coverage_role: reaction
+  focus_alias: '@C01_NADIA'
+  performance_note: contained completely, not violently; the stillness of total control
+  diegetic_audio: room tone returns, cool and flat
   camera:
     angle: eye_level
     framing: medium
@@ -74,20 +158,28 @@ shots:
     base_element_id: C01
     kling_alias: '@C01_NADIA'
     role: Nadia, the protagonist
+    visibility: on_frame
+    action: is held, contained completely, not violently
+    exit_state_note: held by both arms, center
   - figure_id: FIG_ENF_HOLDER
     base_element_id: C10
     kling_alias: '@C10_HOLDER'
-    role: second enforcer, restrains Nadia
-    distinguishing_detail: Stays back by the door until the child is taken.
+    role: second enforcer; restrains then releases Nadia
+    distinguishing_detail: Leaner build, short hair and beard; from the door side.
+    visibility: on_frame
+    action: holds @C01_NADIA by both arms — not roughly, just completely
+    exit_state_note: restraining Nadia, center
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: Generated by omni_clip_planner packer_version=rhythm_aware_v1
+notes: 'SC0014 v05 state-chain director pass (no new story facts): the lift resolve -> the load-bearing @PROP001_BRACELET insert (the whole loss compressed) -> the restraint. Canonical per-alias roles; figure-less bracelet insert keeps its prompt_action; entry_state/exit_state chain the empty-hands / lifted-away configuration into CLIP 06. Protected-subject safe handling preserved (infant fully supported, distress off-frame).'
 provenance:
-  created_by: claude_code (M5 FAZ C)
-  created_at: '2026-06-04T10:37:10Z'
+  created_by: claude_code (M5 FAZ D — v05 state-chain director pass)
+  created_at: '2026-06-14T00:00:00Z'
 required_element_ids:
 - C01
 - C08
+- C10
+- PROP001
