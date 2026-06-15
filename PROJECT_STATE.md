@@ -82,17 +82,14 @@ From `closingpriceclaudecodeanalysisforcode.md` (multi-agent analysis, 2026-06-0
 ## Session Log (newest first, keep ~10 lines)
 
 <!-- AUTO:SESSION_LOG:START -->
-- 2026-06-15 — SC0014 Anchor & Animate Faz 6: shot_photography_contact_sheet.md + CI (2 yeni test dosyası) + memory; TÜM FAZLAR (0-6) tamamlandı
-- 2026-06-15 — SC0014 Anchor & Animate Faz 3-5: archive_media --subdir + anchored_i2v adapter + validate_shot_still_coverage (Faz 3-4); 22 still + 8 contact-sheet + 8 Kling anchored_i2v promptu üretildi; v05 supersede + dangling-ref temizliği; 1508 test yeşil (Faz 5)
-- 2026-06-15 — SC0014 Anchor & Animate Faz 0: GPT Image 2 (≤16 giriş/≤10 çıkış/50MB) + Kling anchored_i2v snapshot'ları kilitlendi (20260615); K1-K4 kararları OP-2026-06-15-SC0014-anchor-animate-faz0'da kayıtlı; model guide'lar güncellendi (chatgpt_image 0.3.0, kling_omni 0.7.0)
-- 2026-06-14 — SC0014 çekim temizlik+yeniden-üretim: 8 v05 promptu güncel manifestlerden regenere edildi (per-clip tuned negatifler geri yüklendi + 20260613 snapshot ref); commit edilmemiş v04 taslakları kaldırıldı (prompts/draft tek set: 8 v05); 131/131 valid, state_chain+continuity_presence temiz, 110 test yeşil (1 skip)
-- 2026-06-14 — SC0014 Kling O3 → state-chain continuity (per-shot entry/exit_state) + per-character action; 8 manifests + ledger re-authored, 8 v05 prompts generated (v04 deprecated, evidence deduped); new validate_state_chain (render-aware); render_pass-aware 2500 cap; guide 0.6.0 + 2 rules; CI paths+pytest+blocking yamllint; CLIP_03 opening fixed (Nadia seated before men enter); 6 SC0014 validators 0 errors, all v05 <=2500
-- 2026-06-14 — SC0014 v04 director pass COMPLETED: CLIP 04/07 manifests finished to v04 coverage (07 single-shot, RELEASE_AND_EXIT splittable:false); 8 v04 prompts regenerated via kling_omni adapter (Goro-style); long-form duplicate prompt files removed; C08 safe-handling language strengthened; 8-clip structure retained (coverage fills 10-13s, <=15s blocks merges); 129/129 valid, 8/8 v04 prompts valid, continuity-presence clean, 94 tests green
-- 2026-06-14 — SC0014 Kling O3 → Goro-style coverage + verbatim inline dialogue (decoupled from voice gate); 8 manifests re-authored, 8 v04 prompts generated, v01/v02/v03 deleted; new validate_dialogue_coverage; renderer/planner/critic refactor green
-- 2026-06-13 — SC0014 validator: validate_continuity_presence deployed (Kontrol A+B); beat plan + 7 manifests backfill; CLIP 03 v03 prompt repaired; 127/127 valid, 87/87 tests green
-- 2026-06-13 — SC0014 FAZ D — Kling O3 timecoded multi-shot repair; 8 v03 prompts generated from revised clip manifests (long-hold splits, bracelet standalone insert, official snapshot)
-- 2026-06-13 — SC0014 FAZ D — director's continuity pass; 8 O3 prompts revised to v02 (roster fixes, CLIP08 dolly-back fix, bracelet beat, infant-safety language)
+- 2026-06-15 — SC0014 Anchor & Animate pipeline Faz 0â€“6 (shot-photography-first)
 - 2026-06-12 — SC0014 FAZ C â€” 8-clip plan + SCL ledger + 8 Format A O3 prompts (Kling ready)
 - 2026-06-12 — lock PROP001 bracelet three-view + promote @PROP001_BRACELET to created (SC0014, QC>=85); SC0014 all elements created
 - 2026-06-12 — lock LOC001 nursery three-view + promote @LOC001_NURSERY to created (SC0014, QC>=85)
+- 2026-06-12 — complete C02 Roman full pipeline + promote @C02_ROMAN to created (SC0111, QC>=85)
+- 2026-06-10 — lock C09 Otto Stage-3 four-view + promote @C09_OTTO to created (SC0047, QC>=85)
+- 2026-06-10 — lock C09 Otto Stage-2 oref (ott_2.png) + update identity anchor
+- 2026-06-10 — update C09 Otto wardrobe to dark navy/blue + muted olive-green (WD014)
+- 2026-06-10 — add C09 Otto Stage-2 --oref lock prompt with CDN URL
+- 2026-06-10 — lock C09 Otto Stage-1 hero (MJ_C09_HERO_V001)
 <!-- AUTO:SESSION_LOG:END -->
