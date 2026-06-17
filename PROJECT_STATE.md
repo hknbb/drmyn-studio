@@ -48,7 +48,7 @@ Stages: S1 = MJ v8.1 hero · S2 = MJ v7 --oref identity lock · S3 = four-view p
 | C02 | Roman Vale | ✅ | ✅ | ✅ | **created** | SC0111 |  |
 | C03 | Birta | — | — | — | — | — | Needs PR-BATCH-KEYCHAR-1 registration |
 | C04 | Dimitri | ✅ | ✅ | ✅ | **created** | SC0014 |  |
-| C05 | Marcus | — | — | — | — | — | Needs PR-BATCH-KEYCHAR-1 registration |
+| C05 | Marcus | ✅ | ✅ | ✅ | **created** | SC0047 | Needs PR-BATCH-KEYCHAR-1 registration |
 | C06 | Zara | ✅ | ✅ | ✅ | **created** | SC0089 |  |
 | C07 | Sera | — | — | — | — | — | Queued after key-character batch |
 | C08 | Jin | ✅ | ✅ | ✅ | **created** | SC0014 |  |
@@ -98,7 +98,9 @@ From `closingpriceclaudecodeanalysisforcode.md` (multi-agent analysis, 2026-06-0
 ## Session Log (newest first, keep ~10 lines)
 
 <!-- AUTO:SESSION_LOG:START -->
-- 2026-06-17 — promote @LOC005_CORRIDOR/@LOC006_QUAY/@LOC007_ANTECHAMBER/@PROP008_HANDSET to created (binding_status; QC>=85)
+- 2026-06-17 — v0.18.0 release artifacts: CHANGELOG + RELEASE_NOTES + MANIFEST + SANITIZATION_CHECKLIST
+- 2026-06-17 — [fix] operator session schema — remove extra fields, add required recommended_steps
+- 2026-06-17 — promote @LOC005_CORRIDOR/@LOC006_QUAY/@LOC007_ANTECHAMBER/@PROP008_HANDSET to created (SC0047/SC0089/SC0111, QC>=85)
 - 2026-06-17 — lock LOC005/006/007/PROP008 three-view packs + KER records (QC>=85); promote pending human PR
 - 2026-06-17 — [fix] SC0047/SC0089 oref schema drift + archive LOC005/006/007/PROP008 stage-1 first-refs
 - 2026-06-17 — archive SC0014 v07 Kling clips (8 takes, git-ignored) + add clips subdir
@@ -107,6 +109,4 @@ From `closingpriceclaudecodeanalysisforcode.md` (multi-agent analysis, 2026-06-0
 - 2026-06-12 — SC0014 FAZ C â€” 8-clip plan + SCL ledger + 8 Format A O3 prompts (Kling ready)
 - 2026-06-12 — lock PROP001 bracelet three-view + promote @PROP001_BRACELET to created (SC0014, QC>=85); SC0014 all elements created
 - 2026-06-12 — lock LOC001 nursery three-view + promote @LOC001_NURSERY to created (SC0014, QC>=85)
-- 2026-06-12 — complete C02 Roman full pipeline + promote @C02_ROMAN to created (SC0111, QC>=85)
-- 2026-06-10 — lock C09 Otto Stage-3 four-view + promote @C09_OTTO to created (SC0047, QC>=85)
 <!-- AUTO:SESSION_LOG:END -->
