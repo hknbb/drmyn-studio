@@ -4,56 +4,47 @@ scene_id: SC0014
 source_scene_beat_plan_ref: planning/scenes/SC0014/scene_beat_plan.yaml
 source_dialogue_beats_ref: planning/scenes/SC0014/dialogue_beats.yaml
 clip_summaries:
-- clip_id: CLIP_SC0014_01
-  clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_01_manifest.yaml
-  total_duration_seconds: 10
-  source_beat_count: 1
-- clip_id: CLIP_SC0014_02
-  clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_02_manifest.yaml
-  total_duration_seconds: 11
-  source_beat_count: 1
-- clip_id: CLIP_SC0014_03
-  clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_03_manifest.yaml
-  total_duration_seconds: 13
-  source_beat_count: 4
-- clip_id: CLIP_SC0014_04
-  clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_04_manifest.yaml
-  total_duration_seconds: 13
-  source_beat_count: 3
-- clip_id: CLIP_SC0014_05
-  clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_05_manifest.yaml
-  total_duration_seconds: 12
-  source_beat_count: 3
-- clip_id: CLIP_SC0014_06
-  clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_06_manifest.yaml
-  total_duration_seconds: 11
-  source_beat_count: 1
-- clip_id: CLIP_SC0014_07
-  clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_07_manifest.yaml
-  total_duration_seconds: 5
-  source_beat_count: 1
-- clip_id: CLIP_SC0014_08
-  clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_08_manifest.yaml
-  total_duration_seconds: 11
-  source_beat_count: 1
+  - clip_id: CLIP_SC0014_01
+    clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_01_manifest.yaml
+    total_duration_seconds: 10
+    source_beat_count: 1
+  - clip_id: CLIP_SC0014_02
+    clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_02_manifest.yaml
+    total_duration_seconds: 11
+    source_beat_count: 1
+  - clip_id: CLIP_SC0014_03
+    clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_03_manifest.yaml
+    total_duration_seconds: 13
+    source_beat_count: 4
+  - clip_id: CLIP_SC0014_04
+    clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_04_manifest.yaml
+    total_duration_seconds: 13
+    source_beat_count: 3
+  - clip_id: CLIP_SC0014_05
+    clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_05_manifest.yaml
+    total_duration_seconds: 12
+    source_beat_count: 3
+  - clip_id: CLIP_SC0014_06
+    clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_06_manifest.yaml
+    total_duration_seconds: 11
+    source_beat_count: 1
+  - clip_id: CLIP_SC0014_07
+    clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_07_manifest.yaml
+    total_duration_seconds: 5
+    source_beat_count: 1
+  - clip_id: CLIP_SC0014_08
+    clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_08_manifest.yaml
+    total_duration_seconds: 11
+    source_beat_count: 1
 packing_strategy:
   packer_version: rhythm_aware_v1
   packing_mode: rhythm_aware_constrained
   cut_point_preference_order:
-  - location_transition
-  - dialogue_exchange_end
-  - object_discovery
-  - beat_boundary
-notes: 'Computed by omni_clip_planner packer_version=rhythm_aware_v1. Clip count is
-  derived, not authored. Codex continuity repair 2026-06-13 preserves the active
-  8-clip SC0014 package while allowing shot [2..15]s integer-only, clip total <=15s,
-  standalone short_insert only when explicitly flagged, and no unsplittable beat split.
-  v04 director pass 2026-06-14: every clip rebuilt with distinct establish/detail/reverse/
-  resolve coverage (no same-frame splits); CLIP_07 RELEASE_AND_EXIT split into a 2-shot
-  reaction->resolve within the 5s/2-shot budget; v04 Goro-style prompts regenerated from
-  these manifests via the kling_omni adapter. 8-clip structure retained: with full coverage
-  each dramatic unit fills 10-13s, so the <=15s/<=6-shot limit leaves no room to merge
-  units without dropping coverage (01+02=21s, 07+08=16s both exceed the cap).'
+    - location_transition
+    - dialogue_exchange_end
+    - object_discovery
+    - beat_boundary
+notes: 'Computed by omni_clip_planner packer_version=rhythm_aware_v1. Clip count is derived, not authored. Codex continuity repair 2026-06-13 preserves the active 8-clip SC0014 package while allowing shot [2..15]s integer-only, clip total <=15s, standalone short_insert only when explicitly flagged, and no unsplittable beat split. v04 director pass 2026-06-14: every clip rebuilt with distinct establish/detail/reverse/ resolve coverage (no same-frame splits); CLIP_07 RELEASE_AND_EXIT split into a 2-shot reaction->resolve within the 5s/2-shot budget; v04 Goro-style prompts regenerated from these manifests via the kling_omni adapter. 8-clip structure retained: with full coverage each dramatic unit fills 10-13s, so the <=15s/<=6-shot limit leaves no room to merge units without dropping coverage (01+02=21s, 07+08=16s both exceed the cap).'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T10:37:10Z'

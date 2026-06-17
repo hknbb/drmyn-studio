@@ -7,192 +7,192 @@ source_dialogue_beats_ref: planning/scenes/SC0014/dialogue_beats.yaml
 total_duration_seconds: 11
 continuity_input_mode: frame_input_eligible
 shots:
-- shot_id: SHOT_SC0014_02_A
-  duration_seconds: 4
-  source_beat_ids:
-  - NADIA_HOLDING_JIN
-  prompt_action: The nursery holds warm and quiet around the chair by the crib.
-  render_action: The nursery holds warm and quiet around the chair beside the crib in @LOC001_NURSERY.
-  render_camera: Medium two-shot, static.
-  render_diegetic_audio: low warm room tone; soft slow breathing from @C08_JIN.
-  duration_reason: long_hold/hold — intimate two-shot establish (coverage 1/3)
-  exit_state:
-    summary: "Nadia seated center holding Jin, awake and calm; the door closed."
-    key_positions:
-    - { subject: '@C01_NADIA', screen_position: center, posture: seated, relation: holding @C08_JIN, visibility: on_frame }
-    - { subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame }
-    props_state:
-    - { prop: '@DOOR_NURSERY', state: closed }
-    screen_direction: neutral
-  required_element_ids:
-  - C01
-  - C08
-  - LOC001
-  coverage_role: establish
-  focus_alias: '@C01_NADIA'
-  performance_note: the way you hold something you are about to lose and cannot say so; outwardly still, contained
-  diegetic_audio: low warm room tone; soft, even infant breathing
-  camera:
-    angle: eye_level
-    framing: medium
-    movement: static
-    lens_bias: intimate two-shot, mother and child in the chair
-  lighting:
-    source: practical
-    quality: soft
-    color_temp: warm
-    intensity: dim
-  motion:
-    subject_intensity: 0.1
-    camera_intensity: 0.05
-    blocking_notes: Infant fully supported in arms; safe handling throughout.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-    render_action: sits in the wooden chair, both arms closed around @C08_JIN; she does not rock, eyes lowered to @C08_JIN, jaw tight
-    visibility: on_frame
-    action: sits in the chair holding @C08_JIN, awake — not rocking, just holding, as if holding something she is about to lose
-    exit_state_note: seated center, the child held close
-  - figure_id: FIG_JIN
-    base_element_id: C08
-    kling_alias: '@C08_JIN'
-    role: Jin, the infant (protected subject)
-    distinguishing_detail: Infant; pale blue name bracelet on wrist.
-    render_label: pale blue band on wrist
-    render_action: lies calm against @C01_NADIA chest, fully supported
-    visibility: on_frame
-    action: rests awake in @C01_NADIA's arms, calm and fully supported
-    exit_state_note: cradled center
-- shot_id: SHOT_SC0014_02_B
-  duration_seconds: 3
-  source_beat_ids:
-  - NADIA_HOLDING_JIN
-  prompt_action: Room tone holds soft around them.
-  render_action: An insert on @C01_NADIA hands and arms around @C08_JIN.
-  render_camera: Insert, close, static.
-  render_diegetic_audio: soft slow breathing from @C08_JIN; room tone holds.
-  duration_reason: long_hold/hold — detail insert on the hold (coverage 2/3)
-  entry_state:
-    summary: "Nadia seated center, still holding Jin; the door closed."
-    key_positions:
-    - { subject: '@C01_NADIA', screen_position: center, posture: seated, relation: holding @C08_JIN, visibility: on_frame }
-    - { subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame }
-    props_state:
-    - { prop: '@DOOR_NURSERY', state: closed }
-    screen_direction: neutral
-  exit_state:
-    summary: "Nadia's hands closed complete around Jin; the hold unchanged."
-    key_positions:
-    - { subject: '@C01_NADIA', screen_position: center, posture: seated, relation: holding @C08_JIN, visibility: on_frame }
-    - { subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame }
-    screen_direction: neutral
-  required_element_ids:
-  - C01
-  - C08
-  - LOC001
-  coverage_role: detail
-  focus_alias: '@C01_NADIA'
-  performance_note: hands that will not loosen; tenderness with dread underneath, kept off the child's face
-  diegetic_audio: soft infant breathing; room tone holds
-  camera:
-    angle: insert
-    framing: close
-    movement: static
-    lens_bias: her hands and arms around the infant, safe and supported
-  lighting:
-    source: practical
-    quality: soft
-    color_temp: warm
-    intensity: dim
-  motion:
-    subject_intensity: 0.1
-    camera_intensity: 0.05
-    blocking_notes: Detail favors Nadia's hands and arms, not the child's face.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-    render_action: closes both hands around @C08_JIN, careful, not loosening
-    visibility: on_frame
-    action: closes her hands complete around @C08_JIN, careful, unloosening
-    exit_state_note: seated center, hands closed around the child
-  - figure_id: FIG_JIN
-    base_element_id: C08
-    kling_alias: '@C08_JIN'
-    role: Jin, the infant (protected subject)
-    distinguishing_detail: Infant; pale blue name bracelet on wrist.
-    render_label: pale blue band on wrist
-    render_action: stays held against @C01_NADIA chest, calm
-    visibility: on_frame
-    action: stays cradled in @C01_NADIA's arms, calm
-    exit_state_note: cradled center
-- shot_id: SHOT_SC0014_02_C
-  duration_seconds: 4
-  source_beat_ids:
-  - NADIA_HOLDING_JIN
-  prompt_action: The frame eases in; room tone settles to a single slow breath.
-  render_action: The frame eases in on @C01_NADIA.
-  render_camera: Slow dolly-in to close on @C01_NADIA.
-  render_diegetic_audio: room tone settles to a single slow breath.
-  duration_reason: long_hold/hold — close push-in on Nadia (coverage 3/3)
-  entry_state:
-    summary: "Nadia seated center holding Jin, the dread kept off her face."
-    key_positions:
-    - { subject: '@C01_NADIA', screen_position: center, posture: seated, relation: holding @C08_JIN, visibility: on_frame }
-    - { subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame }
-    screen_direction: neutral
-  exit_state:
-    summary: "Nadia holds Jin; the held stillness just before interruption."
-    key_positions:
-    - { subject: '@C01_NADIA', screen_position: center, posture: seated, relation: holding @C08_JIN, visibility: on_frame }
-    - { subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame }
-    props_state:
-    - { prop: '@DOOR_NURSERY', state: closed }
-    screen_direction: neutral
-  required_element_ids:
-  - C01
-  - C08
-  - LOC001
-  coverage_role: push_in
-  focus_alias: '@C01_NADIA'
-  performance_note: contained dread surfaces only in the eyes; she holds her face still
-  diegetic_audio: room tone settles; a single slow breath
-  camera:
-    angle: eye_level
-    framing: close
-    movement: dolly_in
-    lens_bias: slow push to Nadia's contained dread
-  lighting:
-    source: practical
-    quality: soft
-    color_temp: warm
-    intensity: dim
-  motion:
-    subject_intensity: 0.1
-    camera_intensity: 0.1
-    blocking_notes: Infant stays supported in frame edge; emphasis on Nadia.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-    render_action: keeps her face still, eyes showing the fear she does not speak
-    visibility: on_frame
-    action: holds her face still, the dread surfacing only in her eyes
-    exit_state_note: seated center, holding Jin, the stillness held
-  - figure_id: FIG_JIN
-    base_element_id: C08
-    kling_alias: '@C08_JIN'
-    role: Jin, the infant (protected subject)
-    distinguishing_detail: Infant; pale blue name bracelet on wrist.
-    render_label: pale blue band on wrist
-    render_action: rests supported at the frame edge, calm
-    visibility: on_frame
-    action: rests supported at the frame's edge, calm
-    exit_state_note: cradled center
+  - shot_id: SHOT_SC0014_02_A
+    duration_seconds: 4
+    source_beat_ids:
+      - NADIA_HOLDING_JIN
+    prompt_action: The nursery holds warm and quiet around the chair by the crib.
+    render_action: The nursery holds warm and quiet around the chair beside the crib in @LOC001_NURSERY.
+    render_camera: Medium two-shot, static.
+    render_diegetic_audio: low warm room tone; soft slow breathing from @C08_JIN.
+    duration_reason: long_hold/hold — intimate two-shot establish (coverage 1/3)
+    exit_state:
+      summary: "Nadia seated center holding Jin, awake and calm; the door closed."
+      key_positions:
+        - {subject: '@C01_NADIA', screen_position: center, posture: seated, relation: holding @C08_JIN, visibility: on_frame}
+        - {subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame}
+      props_state:
+        - {prop: '@DOOR_NURSERY', state: closed}
+      screen_direction: neutral
+    required_element_ids:
+      - C01
+      - C08
+      - LOC001
+    coverage_role: establish
+    focus_alias: '@C01_NADIA'
+    performance_note: the way you hold something you are about to lose and cannot say so; outwardly still, contained
+    diegetic_audio: low warm room tone; soft, even infant breathing
+    camera:
+      angle: eye_level
+      framing: medium
+      movement: static
+      lens_bias: intimate two-shot, mother and child in the chair
+    lighting:
+      source: practical
+      quality: soft
+      color_temp: warm
+      intensity: dim
+    motion:
+      subject_intensity: 0.1
+      camera_intensity: 0.05
+      blocking_notes: Infant fully supported in arms; safe handling throughout.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: sits in the wooden chair, both arms closed around @C08_JIN; she does not rock, eyes lowered to @C08_JIN, jaw tight
+        visibility: on_frame
+        action: sits in the chair holding @C08_JIN, awake — not rocking, just holding, as if holding something she is about to lose
+        exit_state_note: seated center, the child held close
+      - figure_id: FIG_JIN
+        base_element_id: C08
+        kling_alias: '@C08_JIN'
+        role: Jin, the infant (protected subject)
+        distinguishing_detail: Infant; pale blue name bracelet on wrist.
+        render_label: pale blue band on wrist
+        render_action: lies calm against @C01_NADIA chest, fully supported
+        visibility: on_frame
+        action: rests awake in @C01_NADIA's arms, calm and fully supported
+        exit_state_note: cradled center
+  - shot_id: SHOT_SC0014_02_B
+    duration_seconds: 3
+    source_beat_ids:
+      - NADIA_HOLDING_JIN
+    prompt_action: Room tone holds soft around them.
+    render_action: An insert on @C01_NADIA hands and arms around @C08_JIN.
+    render_camera: Insert, close, static.
+    render_diegetic_audio: soft slow breathing from @C08_JIN; room tone holds.
+    duration_reason: long_hold/hold — detail insert on the hold (coverage 2/3)
+    entry_state:
+      summary: "Nadia seated center, still holding Jin; the door closed."
+      key_positions:
+        - {subject: '@C01_NADIA', screen_position: center, posture: seated, relation: holding @C08_JIN, visibility: on_frame}
+        - {subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame}
+      props_state:
+        - {prop: '@DOOR_NURSERY', state: closed}
+      screen_direction: neutral
+    exit_state:
+      summary: "Nadia's hands closed complete around Jin; the hold unchanged."
+      key_positions:
+        - {subject: '@C01_NADIA', screen_position: center, posture: seated, relation: holding @C08_JIN, visibility: on_frame}
+        - {subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame}
+      screen_direction: neutral
+    required_element_ids:
+      - C01
+      - C08
+      - LOC001
+    coverage_role: detail
+    focus_alias: '@C01_NADIA'
+    performance_note: hands that will not loosen; tenderness with dread underneath, kept off the child's face
+    diegetic_audio: soft infant breathing; room tone holds
+    camera:
+      angle: insert
+      framing: close
+      movement: static
+      lens_bias: her hands and arms around the infant, safe and supported
+    lighting:
+      source: practical
+      quality: soft
+      color_temp: warm
+      intensity: dim
+    motion:
+      subject_intensity: 0.1
+      camera_intensity: 0.05
+      blocking_notes: Detail favors Nadia's hands and arms, not the child's face.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: closes both hands around @C08_JIN, careful, not loosening
+        visibility: on_frame
+        action: closes her hands complete around @C08_JIN, careful, unloosening
+        exit_state_note: seated center, hands closed around the child
+      - figure_id: FIG_JIN
+        base_element_id: C08
+        kling_alias: '@C08_JIN'
+        role: Jin, the infant (protected subject)
+        distinguishing_detail: Infant; pale blue name bracelet on wrist.
+        render_label: pale blue band on wrist
+        render_action: stays held against @C01_NADIA chest, calm
+        visibility: on_frame
+        action: stays cradled in @C01_NADIA's arms, calm
+        exit_state_note: cradled center
+  - shot_id: SHOT_SC0014_02_C
+    duration_seconds: 4
+    source_beat_ids:
+      - NADIA_HOLDING_JIN
+    prompt_action: The frame eases in; room tone settles to a single slow breath.
+    render_action: The frame eases in on @C01_NADIA.
+    render_camera: Slow dolly-in to close on @C01_NADIA.
+    render_diegetic_audio: room tone settles to a single slow breath.
+    duration_reason: long_hold/hold — close push-in on Nadia (coverage 3/3)
+    entry_state:
+      summary: "Nadia seated center holding Jin, the dread kept off her face."
+      key_positions:
+        - {subject: '@C01_NADIA', screen_position: center, posture: seated, relation: holding @C08_JIN, visibility: on_frame}
+        - {subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame}
+      screen_direction: neutral
+    exit_state:
+      summary: "Nadia holds Jin; the held stillness just before interruption."
+      key_positions:
+        - {subject: '@C01_NADIA', screen_position: center, posture: seated, relation: holding @C08_JIN, visibility: on_frame}
+        - {subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame}
+      props_state:
+        - {prop: '@DOOR_NURSERY', state: closed}
+      screen_direction: neutral
+    required_element_ids:
+      - C01
+      - C08
+      - LOC001
+    coverage_role: push_in
+    focus_alias: '@C01_NADIA'
+    performance_note: contained dread surfaces only in the eyes; she holds her face still
+    diegetic_audio: room tone settles; a single slow breath
+    camera:
+      angle: eye_level
+      framing: close
+      movement: dolly_in
+      lens_bias: slow push to Nadia's contained dread
+    lighting:
+      source: practical
+      quality: soft
+      color_temp: warm
+      intensity: dim
+    motion:
+      subject_intensity: 0.1
+      camera_intensity: 0.1
+      blocking_notes: Infant stays supported in frame edge; emphasis on Nadia.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: keeps her face still, eyes showing the fear she does not speak
+        visibility: on_frame
+        action: holds her face still, the dread surfacing only in her eyes
+        exit_state_note: seated center, holding Jin, the stillness held
+      - figure_id: FIG_JIN
+        base_element_id: C08
+        kling_alias: '@C08_JIN'
+        role: Jin, the infant (protected subject)
+        distinguishing_detail: Infant; pale blue name bracelet on wrist.
+        render_label: pale blue band on wrist
+        render_action: rests supported at the frame edge, calm
+        visibility: on_frame
+        action: rests supported at the frame's edge, calm
+        exit_state_note: cradled center
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
@@ -203,6 +203,6 @@ provenance:
   created_by: claude_code (M5 — v07 text-only literal pass)
   created_at: '2026-06-16T00:00:00Z'
 required_element_ids:
-- C01
-- C08
-- LOC001
+  - C01
+  - C08
+  - LOC001

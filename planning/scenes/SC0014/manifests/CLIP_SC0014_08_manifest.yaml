@@ -7,150 +7,150 @@ source_dialogue_beats_ref: planning/scenes/SC0014/dialogue_beats.yaml
 total_duration_seconds: 11
 continuity_input_mode: frame_input_eligible
 shots:
-- shot_id: SHOT_SC0014_08_A
-  duration_seconds: 4
-  source_beat_ids:
-  - EMPTY_CRIB_CLOSE
-  prompt_action: The frame eases back; the crib sits empty; the room reclaims its quiet.
-  render_action: The frame eases back in @LOC001_NURSERY; the crib sits empty; @C01_NADIA stands alone.
-  render_camera: Wide, slow dolly-out.
-  render_diegetic_audio: low warm room tone returns; the white-noise hum, hollow now.
-  duration_reason: long_hold/hold — wide on the empty crib, slow dolly back (coverage 1/3)
-  exit_state:
-    summary: "Nadia stands center, alone; the crib empty; the room reclaiming its quiet."
-    key_positions:
-    - { subject: '@C01_NADIA', screen_position: center, posture: standing, relation: "alone, hand open and empty", visibility: on_frame }
-    props_state:
-    - { prop: crib, state: empty }
-    screen_direction: neutral
-  required_element_ids:
-  - C01
-  - LOC001
-  coverage_role: establish
-  focus_alias: '@LOC001_NURSERY'
-  performance_note: the warmth returns and means nothing now; the empty crib is the measure of the cost
-  diegetic_audio: low warm room tone returns; the white-noise hum, hollow now
-  camera:
-    angle: eye_level
-    framing: wide
-    movement: dolly_out
-    lens_bias: the room reclaiming its quiet, crib empty
-  lighting:
-    source: practical
-    quality: soft
-    color_temp: warm
-    intensity: dim
-  motion:
-    subject_intensity: 0.05
-    camera_intensity: 0.2
-    blocking_notes: The empty crib is the closing measure of the cost; warmth returns but means nothing now.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-    render_action: stands still as the room eases back around the empty crib, her arms empty at her sides
-    visibility: on_frame
-    action: stands still in @LOC001_NURSERY as the room eases back around the empty crib
-    exit_state_note: standing center, alone
-- shot_id: SHOT_SC0014_08_B
-  duration_seconds: 3
-  source_beat_ids:
-  - EMPTY_CRIB_CLOSE
-  prompt_action: '@C01_NADIA hand — the one that held the bracelet — open at her side, empty.'
-  render_action: '@C01_NADIA hand open at her side, empty.'
-  render_camera: Insert, close, static, on @C01_NADIA open hand.
-  render_diegetic_audio: room tone, very still.
-  duration_reason: long_hold/hold — detail insert on the open empty hand (coverage 2/3)
-  entry_state:
-    summary: "Nadia center, alone; her hand open and empty at her side; the crib empty."
-    key_positions:
-    - { subject: '@C01_NADIA', screen_position: center, posture: standing, relation: "alone, hand open and empty", visibility: on_frame }
-    props_state:
-    - { prop: crib, state: empty }
-    screen_direction: neutral
-  exit_state:
-    summary: "The open, empty hand held; nothing in it."
-    key_positions:
-    - { subject: '@C01_NADIA', screen_position: center, posture: standing, relation: "alone, hand open and empty", visibility: on_frame }
-    props_state:
-    - { prop: crib, state: empty }
-    screen_direction: neutral
-  required_element_ids:
-  - C01
-  - LOC001
-  coverage_role: detail
-  focus_alias: '@C01_NADIA'
-  performance_note: the hand that held the bracelet, now open and holding nothing
-  diegetic_audio: room tone, very still
-  camera:
-    angle: insert
-    framing: close
-    movement: static
-    lens_bias: macro on the open, empty hand
-  lighting:
-    source: practical
-    quality: soft
-    color_temp: warm
-    intensity: dim
-  motion:
-    subject_intensity: 0.05
-    camera_intensity: 0.0
-    blocking_notes: Detail on the open hand at her side.
-- shot_id: SHOT_SC0014_08_C
-  duration_seconds: 4
-  source_beat_ids:
-  - EMPTY_CRIB_CLOSE
-  prompt_action: The door stays unused behind her; the hum thins to nothing.
-  render_action: The door stays unused behind @C01_NADIA; the hum thins to nothing.
-  render_camera: Medium, static.
-  render_diegetic_audio: room tone holds; the hum thins to nothing.
-  duration_reason: long_hold/hold — resolve on Nadia, already somewhere else (coverage 3/3)
-  entry_state:
-    summary: "Nadia center, alone, the crib empty; the door unused behind her."
-    key_positions:
-    - { subject: '@C01_NADIA', screen_position: center, posture: standing, relation: "alone, hand open and empty", visibility: on_frame }
-    props_state:
-    - { prop: crib, state: empty }
-    screen_direction: neutral
-  exit_state:
-    summary: "Nadia does not move toward the door; she is already somewhere else; the warm room reclaims its quiet around the empty crib."
-    key_positions:
-    - { subject: '@C01_NADIA', screen_position: center, posture: standing, relation: "alone, already elsewhere", visibility: on_frame }
-    - { subject: '@C08_JIN', screen_position: right, visibility: off_frame }
-    props_state:
-    - { prop: crib, state: empty }
-    screen_direction: neutral
-  required_element_ids:
-  - C01
-  - LOC001
-  coverage_role: resolve
-  focus_alias: '@C01_NADIA'
-  performance_note: not grief performed — absence; she is already gone from the room she is standing in
-  diegetic_audio: room tone holds; the hum thins to nothing
-  camera:
-    angle: eye_level
-    framing: medium
-    movement: static
-    lens_bias: Nadia still, the door unused behind her
-  lighting:
-    source: practical
-    quality: soft
-    color_temp: warm
-    intensity: dim
-  motion:
-    subject_intensity: 0.05
-    camera_intensity: 0.0
-    blocking_notes: Closing image rhymes with the establish — same room, emptied.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-    render_action: does not move toward the door; she stands still, eyes fixed and far
-    visibility: on_frame
-    action: does not move toward the door; she is already somewhere else
-    exit_state_note: standing center, already elsewhere
+  - shot_id: SHOT_SC0014_08_A
+    duration_seconds: 4
+    source_beat_ids:
+      - EMPTY_CRIB_CLOSE
+    prompt_action: The frame eases back; the crib sits empty; the room reclaims its quiet.
+    render_action: The frame eases back in @LOC001_NURSERY; the crib sits empty; @C01_NADIA stands alone.
+    render_camera: Wide, slow dolly-out.
+    render_diegetic_audio: low warm room tone returns; the white-noise hum, hollow now.
+    duration_reason: long_hold/hold — wide on the empty crib, slow dolly back (coverage 1/3)
+    exit_state:
+      summary: "Nadia stands center, alone; the crib empty; the room reclaiming its quiet."
+      key_positions:
+        - {subject: '@C01_NADIA', screen_position: center, posture: standing, relation: "alone, hand open and empty", visibility: on_frame}
+      props_state:
+        - {prop: crib, state: empty}
+      screen_direction: neutral
+    required_element_ids:
+      - C01
+      - LOC001
+    coverage_role: establish
+    focus_alias: '@LOC001_NURSERY'
+    performance_note: the warmth returns and means nothing now; the empty crib is the measure of the cost
+    diegetic_audio: low warm room tone returns; the white-noise hum, hollow now
+    camera:
+      angle: eye_level
+      framing: wide
+      movement: dolly_out
+      lens_bias: the room reclaiming its quiet, crib empty
+    lighting:
+      source: practical
+      quality: soft
+      color_temp: warm
+      intensity: dim
+    motion:
+      subject_intensity: 0.05
+      camera_intensity: 0.2
+      blocking_notes: The empty crib is the closing measure of the cost; warmth returns but means nothing now.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: stands still as the room eases back around the empty crib, her arms empty at her sides
+        visibility: on_frame
+        action: stands still in @LOC001_NURSERY as the room eases back around the empty crib
+        exit_state_note: standing center, alone
+  - shot_id: SHOT_SC0014_08_B
+    duration_seconds: 3
+    source_beat_ids:
+      - EMPTY_CRIB_CLOSE
+    prompt_action: '@C01_NADIA hand — the one that held the bracelet — open at her side, empty.'
+    render_action: '@C01_NADIA hand open at her side, empty.'
+    render_camera: Insert, close, static, on @C01_NADIA open hand.
+    render_diegetic_audio: room tone, very still.
+    duration_reason: long_hold/hold — detail insert on the open empty hand (coverage 2/3)
+    entry_state:
+      summary: "Nadia center, alone; her hand open and empty at her side; the crib empty."
+      key_positions:
+        - {subject: '@C01_NADIA', screen_position: center, posture: standing, relation: "alone, hand open and empty", visibility: on_frame}
+      props_state:
+        - {prop: crib, state: empty}
+      screen_direction: neutral
+    exit_state:
+      summary: "The open, empty hand held; nothing in it."
+      key_positions:
+        - {subject: '@C01_NADIA', screen_position: center, posture: standing, relation: "alone, hand open and empty", visibility: on_frame}
+      props_state:
+        - {prop: crib, state: empty}
+      screen_direction: neutral
+    required_element_ids:
+      - C01
+      - LOC001
+    coverage_role: detail
+    focus_alias: '@C01_NADIA'
+    performance_note: the hand that held the bracelet, now open and holding nothing
+    diegetic_audio: room tone, very still
+    camera:
+      angle: insert
+      framing: close
+      movement: static
+      lens_bias: macro on the open, empty hand
+    lighting:
+      source: practical
+      quality: soft
+      color_temp: warm
+      intensity: dim
+    motion:
+      subject_intensity: 0.05
+      camera_intensity: 0.0
+      blocking_notes: Detail on the open hand at her side.
+  - shot_id: SHOT_SC0014_08_C
+    duration_seconds: 4
+    source_beat_ids:
+      - EMPTY_CRIB_CLOSE
+    prompt_action: The door stays unused behind her; the hum thins to nothing.
+    render_action: The door stays unused behind @C01_NADIA; the hum thins to nothing.
+    render_camera: Medium, static.
+    render_diegetic_audio: room tone holds; the hum thins to nothing.
+    duration_reason: long_hold/hold — resolve on Nadia, already somewhere else (coverage 3/3)
+    entry_state:
+      summary: "Nadia center, alone, the crib empty; the door unused behind her."
+      key_positions:
+        - {subject: '@C01_NADIA', screen_position: center, posture: standing, relation: "alone, hand open and empty", visibility: on_frame}
+      props_state:
+        - {prop: crib, state: empty}
+      screen_direction: neutral
+    exit_state:
+      summary: "Nadia does not move toward the door; she is already somewhere else; the warm room reclaims its quiet around the empty crib."
+      key_positions:
+        - {subject: '@C01_NADIA', screen_position: center, posture: standing, relation: "alone, already elsewhere", visibility: on_frame}
+        - {subject: '@C08_JIN', screen_position: right, visibility: off_frame}
+      props_state:
+        - {prop: crib, state: empty}
+      screen_direction: neutral
+    required_element_ids:
+      - C01
+      - LOC001
+    coverage_role: resolve
+    focus_alias: '@C01_NADIA'
+    performance_note: not grief performed — absence; she is already gone from the room she is standing in
+    diegetic_audio: room tone holds; the hum thins to nothing
+    camera:
+      angle: eye_level
+      framing: medium
+      movement: static
+      lens_bias: Nadia still, the door unused behind her
+    lighting:
+      source: practical
+      quality: soft
+      color_temp: warm
+      intensity: dim
+    motion:
+      subject_intensity: 0.05
+      camera_intensity: 0.0
+      blocking_notes: Closing image rhymes with the establish — same room, emptied.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: does not move toward the door; she stands still, eyes fixed and far
+        visibility: on_frame
+        action: does not move toward the door; she is already somewhere else
+        exit_state_note: standing center, already elsewhere
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
@@ -161,5 +161,5 @@ provenance:
   created_by: claude_code (M5 — v07 text-only literal pass)
   created_at: '2026-06-16T00:00:00Z'
 required_element_ids:
-- C01
-- LOC001
+  - C01
+  - LOC001
