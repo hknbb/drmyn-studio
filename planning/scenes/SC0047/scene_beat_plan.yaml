@@ -1,0 +1,317 @@
+schema_version: "0.x-draft"
+record_type: scene_beat_plan
+scene_id: SC0047
+notes: >
+  "MERIN — QUAY DISTRICT, UNIT 14-B" (source lines 3768-3861). Beats derived only from
+  scene_excerpt.md; no story facts added. The handset handoff is the structural pivot:
+  Otto gives Nadia the unmarked industrial handset from a locked case; she enters the
+  code (7-3-1-1-4); Marcus's recorded message (V.O.-only; he is deceased) delivers the
+  dossier on Roman via an encrypted partition. The scene is a two-hander of operational
+  precision and intimate loss — Otto's withdrawal to the window gives her privacy; Nadia's
+  read of the partition documentation is framed as time shifting (light quality changes,
+  quay beginning to move) while she absorbs the intelligence that will drive her assault.
+  Pacing: slow, still, weighted; no urgency, only the cold matter-of-factness of inheritance
+  and the weight of what comes next.
+source_beats:
+  - beat_id: ESTABLISH_FREIGHT_BAY
+    content: >
+      The converted freight bay: low concrete ceiling, one high window facing the quay,
+      light that smells like salt and diesel. Crates against the west wall. A folding table.
+      A camp stove that has not been used today. The room as the operational shelter and
+      the site of the inheritance to come.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: true
+    narrative_role: establish
+    required_element_ids: [LOC001]
+    camera: { angle: eye_level, framing: wide, movement: static, lens_bias: "wide establishing of the bay and the window; the grey water visible" }
+    lighting: { source: filtered_daylight, quality: soft, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.0, camera_intensity: 0.1, blocking_notes: "Hold on the room; establish the high window and the quay light as the breathing space." }
+    notes: "Establish the operational aesthetic — converted freight bay, minimal comfort, the grey water as context. The space is cold but human."
+
+  - beat_id: OTTO_WAITING
+    content: >
+      Otto is already there when Nadia arrives. He is sixty, or seventy, or the particular
+      age that people who have spent their lives in operational work look when you meet them
+      for the first time — which is: all of it, at once. He does not offer his hand.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: establish
+    required_element_ids: [C09]
+    figures:
+      - figure_id: FIG_OTTO
+        base_element_id: C09
+        kling_alias: "@C09_OTTO"
+        role: "Operational contact, aged by the work, waiting to give what he has been holding."
+        distinguishing_detail: "Does not offer his hand; stands ready but does not greet."
+    camera: { angle: eye_level, framing: medium, movement: static, lens_bias: "Otto in the room; the refusal of the handshake is the opening gesture" }
+    lighting: { source: filtered_daylight, quality: soft, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.1, camera_intensity: 0.0 }
+    notes: "Otto's operational stance and refusal of formality establish the transaction's gravity. He has been holding this and is ready to give it."
+
+  - beat_id: OTTO_HE_SAID_YOUD_COME
+    content: "Otto: 'He said you'd come.' His line establishes that Marcus planned this inheritance."
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C09, C01]
+    figures:
+      - figure_id: FIG_OTTO
+        base_element_id: C09
+        kling_alias: "@C09_OTTO"
+        role: "Speaks; relays Marcus's confidence that Nadia would come."
+    camera: { angle: eye_level, framing: medium, movement: static, lens_bias: "Otto's face, the certainty in his words" }
+    lighting: { source: filtered_daylight, quality: soft, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.1, camera_intensity: 0.0 }
+
+  - beat_id: OTTO_PRODUCES_HANDSET
+    content: >
+      Otto produces the phone from a locked case beneath the table. A handset — industrial-grade,
+      no manufacturer markings. He sets it on the table between them. The unmarked device is the
+      load-bearing object of the scene.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C09, PROP047]
+    figures:
+      - figure_id: FIG_OTTO
+        base_element_id: C09
+        kling_alias: "@C09_OTTO"
+        role: "Produces the handset from the locked case; performs the handoff."
+    camera: { angle: eye_level, framing: medium, movement: static, lens_bias: "the table, the locked case, Otto's hands, the handset being set down" }
+    lighting: { source: filtered_daylight, quality: soft, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.3, camera_intensity: 0.0, blocking_notes: "Deliberate, practiced movement; the case is unlocked beneath the table; the handset is placed on the table between them." }
+    notes: "The handset (PROP047) is introduced as a deferred load-bearing prop. Industrial-grade, unmarked. This is what Marcus left."
+
+  - beat_id: OTTO_HANDSET_INSERT
+    content: >
+      Close detail: the unmarked industrial handset on the folding table. No logos, no
+      branding, no identifying marks. Just a device, waiting.
+    semantic_duration_hint: short_insert
+    may_merge_with_next: true
+    splittable: false
+    narrative_role: insert
+    required_element_ids: [PROP047]
+    camera: { angle: eye_level, framing: extreme_close, movement: static, lens_bias: "macro on the handset; the unmarked surface, the industrial simplicity" }
+    lighting: { source: filtered_daylight, quality: soft, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.0, camera_intensity: 0.0 }
+    notes: "The handset is the load-bearing prop of the scene. Its unmarked surface is its anonymity and its security."
+
+  - beat_id: OTTO_HE_SAID_YOUD_KNOW
+    content: "Otto (CONT'D): 'He said you'd know the code.' She does."
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C09, C01]
+    figures:
+      - figure_id: FIG_OTTO
+        base_element_id: C09
+        kling_alias: "@C09_OTTO"
+        role: "States Marcus's second confidence: that Nadia knows the code."
+    camera: { angle: over_shoulder, framing: medium_close, movement: static, lens_bias: "favor Otto speaking; Nadia's certainty in her response" }
+    lighting: { source: filtered_daylight, quality: soft, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.1, camera_intensity: 0.0 }
+    notes: "Otto's words confirm Marcus's planning. She does know the code. The familiarity is the third layer of intimacy — Marcus trusted her with the access."
+
+  - beat_id: OTTO_MOVES_TO_WINDOW
+    content: >
+      Otto moves to the far end of the room. He turns his back. He looks out the high window
+      at the grey water. This is the only thing he has left to give her, and he gives it
+      without being asked — his withdrawal is the gift of privacy.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C09, LOC001]
+    figures:
+      - figure_id: FIG_OTTO
+        base_element_id: C09
+        kling_alias: "@C09_OTTO"
+        role: "Moves to the far end of the room; turns his back; looks out the window; gives her complete privacy."
+        distinguishing_detail: "Profile to the window; the grey water behind him; the single gesture of operational kindness."
+    camera: { angle: eye_level, framing: medium_wide, movement: tracking, lens_bias: "Otto's movement to the window; the high window and grey water framed behind him" }
+    lighting: { source: filtered_daylight, quality: soft, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.4, camera_intensity: 0.2, blocking_notes: "Otto walks to the far end; turns to face the window; settles into profile against the high window and quay." }
+    notes: "Otto's withdrawal is the emotional turn of the scene — the only gift left is solitude and privacy. His back to her is dignity and discretion."
+
+  - beat_id: NADIA_ENTERS_CODE
+    content: >
+      Nadia enters the access code: 7-3-1-1-4. The phone activates. A single audio file.
+      No label. She presses play. The code entry and the moment of activation.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01, PROP047]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Enters the code; activates the handset; presses play; begins to receive Marcus's message."
+    camera: { angle: eye_level, framing: close, movement: rack_focus, lens_bias: "Nadia's hands and face; code entry and activation" }
+    lighting: { source: filtered_daylight, quality: soft, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.2, camera_intensity: 0.2, blocking_notes: "Nadia's fingers on the handset; deliberate, controlled motion; the device activates silently." }
+    notes: "The code 7-3-1-1-4 opens the device. She knows it because Marcus trusted her. The play button is the moment she chooses to hear him."
+
+  - beat_id: AMBIENT_WIND
+    content: >
+      A beat of ambient noise — wherever he recorded it, there was wind. The recording begins.
+      The materiality of the dead man's voice: caught in wind, stored, waiting to be played.
+    semantic_duration_hint: short_insert
+    may_merge_with_next: true
+    splittable: false
+    narrative_role: transition
+    required_element_ids: [PROP047]
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia listening; the handset held to her ear or near her face" }
+    lighting: { source: filtered_daylight, quality: soft, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+    notes: "The wind in the recording is the only proof that Marcus made it elsewhere, at some earlier time. It is a ghost of place and time."
+
+  - beat_id: MARCUS_OPENING_MESSAGE
+    content: >
+      Marcus (V.O., recorded): "If you're hearing this, then things went the way I was afraid they'd go.
+      I'm sorry. I wanted more time." She does not stop the message. The first words establish the message
+      is a contingency, a backup, a prepared goodbye and briefing combined.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [PROP047, C01]
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia listening; the handset; Marcus as V.O. only" }
+    lighting: { source: filtered_daylight, quality: soft, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.1, camera_intensity: 0.0, blocking_notes: "Nadia is still, listening; her face carries the weight of hearing the dead." }
+    notes: "Marcus's recorded voice is V.O.-only; he is not present as a figure or body. The message is pre-recorded and contingent — he knew something might go wrong. The intimacy is in her listening, not in his physical presence."
+
+  - beat_id: MARCUS_ENCRYPTED_PARTITION
+    content: >
+      Marcus (V.O., CONT'D): "The phone has an encrypted partition — secondary code is the date we met,
+      reversed. In the partition: everything I had on Roman. Network structure, financial infrastructure,
+      the broadcast system, the names. It's complete. I spent two years on it." The dossier is revealed as
+      the load-bearing intelligence of the scene and the payload that will drive all confrontation scenes.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [PROP047, C01]
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia's face, absorbing the scope of what Marcus left her" }
+    lighting: { source: filtered_daylight, quality: soft, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+    notes: "The encrypted partition and the Roman dossier are the structural payload. 'Everything I had on Roman' — network, finance, broadcast system, names. Two years of work. This is what will enable her assault."
+
+  - beat_id: MARCUS_BROADCAST_ARCHITECTURE
+    content: >
+      Marcus (V.O., CONT'D): "In the package — look for the broadcast architecture file. There's a
+      maintenance access layer in the ORACLE PRIME infrastructure. That's what stops it. Not Roman.
+      The broadcast. Find that file." Marcus specifies the exact target: the broadcast architecture
+      and the maintenance access layer that will allow Nadia to strike at Roman's infrastructure.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [PROP047, C01]
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia listening; the handset; the weight of the specific instruction" }
+    lighting: { source: filtered_daylight, quality: soft, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+    notes: "Marcus provides the specific technical target. Not Roman himself, but the broadcast infrastructure. The maintenance access layer. The broadcast architecture file. This is the operational map of her assault."
+
+  - beat_id: MARCUS_FINAL_WORDS
+    content: >
+      Marcus (V.O., CONT'D): "Karev." One word. Her maiden name. His private anchor for her. Then:
+      "Take Jin home." The message ends. The ambient noise cuts. Silence. Otto has not moved from the window.
+      Marcus's last words — her name, the child, the life to protect — bring the recording to its close.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [PROP047, C01, C09]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Listens to Marcus's final words — her maiden name, the instruction to protect Jin."
+      - figure_id: FIG_OTTO
+        base_element_id: C09
+        kling_alias: "@C09_OTTO"
+        role: "Remains at the window, giving her solitude with the message."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia after the message; Otto at window in background" }
+    lighting: { source: filtered_daylight, quality: soft, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.0, camera_intensity: 0.0 }
+    notes: "Marcus's final words compress grief, love, and instruction into three elements: her name (Karev), the child (Jin), the end of his voice. The silence after is the weight she carries forward."
+
+  - beat_id: NADIA_CATALOGS_SILENCE
+    content: >
+      Nadia looks at the phone in her hand. She does not put it down. She catalogs — this is what
+      she does when she needs to stay functional. She missed the signal, the attentiveness that was
+      preparation, not guilt. She did not know. Not knowing means she did not have the last honest
+      conversation with him. She will carry that. The holding of the phone is the holding of what
+      she cannot undo.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: true
+    narrative_role: hold
+    required_element_ids: [C01, PROP047]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Holds the phone; catalogs her own failure to read the signal; grieves what she did not know."
+    camera: { angle: eye_level, framing: close, movement: static, lens_bias: "Nadia's face and hands with phone; processing and turning inward" }
+    lighting: { source: filtered_daylight, quality: soft, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0, blocking_notes: "Nadia holds the phone in her hand; does not put it down; processes in silence." }
+    notes: "The catalogs of her own failure — she missed the signal, she did not know, she did not have the last conversation. This is the grief she will carry forward. She is 'listening to a dead man tell her how to fight. She is listening because it is the only way left to be with him.'"
+
+  - beat_id: NADIA_OPENS_PARTITION
+    content: >
+      She enters the secondary code — the date reversed. The partition opens. The documentation
+      package is large. She starts at the broadcast architecture file. She reads for six minutes.
+      When she looks up, the quality of the light through the high window has shifted. Later morning.
+      The quay is starting to move. The read is the action of arming herself; time passes visibly
+      in the shifting light.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: true
+    narrative_role: hold
+    required_element_ids: [C01, PROP047, LOC001]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Enters the secondary code; opens the partition; reads the Roman documentation; absorbs the intelligence that will drive her assault."
+    camera: { angle: eye_level, framing: close, movement: static, lens_bias: "Nadia reading; concentration; light shifting subtly" }
+    lighting: { source: filtered_daylight, quality: soft, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.2, camera_intensity: 0.1, blocking_notes: "Nadia's attention moves through the documentation; the subtle shift in light quality marks the passage of six minutes; the quay begins to move in the world outside." }
+    notes: "Time passes in the read. The light shifts from early morning toward late morning. Her attention is entirely on the intelligence — the broadcast architecture, the ORACLE PRIME infrastructure, the maintenance access layer, the names. She is arming herself with knowledge."
+
+  - beat_id: OTTO_TRAIN_EAST
+    content: >
+      Otto: "There's a train east at fourteen hundred." Nadia: "I need the room until then."
+      He nods. Otto: "He was a careful man." He says it not as comfort. He says it as a fact
+      he has been holding, and he has now given it to someone who needed to have it.
+      Nadia: "Yes." She goes back to the documentation. Otto's final acknowledgment and the
+      continuation of her work.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C09, C01, PROP047]
+    figures:
+      - figure_id: FIG_OTTO
+        base_element_id: C09
+        kling_alias: "@C09_OTTO"
+        role: "States the logistics; offers the fact about Marcus as operational record, not comfort."
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Claims the time she needs; accepts Otto's statement about Marcus; returns to work."
+    camera: { angle: eye_level, framing: medium, movement: static, lens_bias: "both figures; the agreement; the quiet professionalism of the exchange" }
+    lighting: { source: filtered_daylight, quality: soft, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.1, camera_intensity: 0.0 }
+    notes: "Otto's final lines are operational and factual. 'He was a careful man' is not comfort — it is Marco's legacy as an operational record. Nadia's 'Yes' accepts this and returns to the work. The handoff is complete; the assault can begin."
+
+provenance:
+  created_by: "claude_code (M5 FAZ A — haiku)"
+  created_at: "2026-06-04T00:00:00Z"

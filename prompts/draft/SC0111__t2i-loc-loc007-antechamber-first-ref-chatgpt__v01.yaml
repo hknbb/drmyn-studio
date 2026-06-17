@@ -1,0 +1,28 @@
+prompt_id: SC0111__t2i-loc-loc007-antechamber-first-ref-chatgpt__v01
+scene_id: SC0111
+prompt_type: t2i_location_element
+lifecycle_stage: draft
+target_models:
+- chatgpt_image
+source_refs:
+  scene_card: planning/scenes/SC0111/scene_card.yaml
+  scene_excerpt: "Veltain antechamber corridor (LOC007): a narrow corridor outside the server core — minimal bare surfaces, a known floor seam, a retreat door frame, cold institutional neutrals, harsh low-key light; geometry that feels closing."
+  location_refs:
+  - LOC007
+  aesthetic_refs:
+  - VELTAIN_COMPOUND_HARSH
+prompt_text: >-
+  Wide establishing interior of a narrow institutional antechamber corridor outside a
+  server core: bare concrete and server-core surfaces, a subtle floor seam, a retreat
+  door frame, harsh low cool light, no warmth. Claustrophobic closing geometry. Deep
+  foreground-to-background, ~24mm lens feel, generous floor and negative space for
+  actor blocking (a two-person fight). No people in this plate; no text, no watermark.
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/chatgpt_image.yaml
+  adapter_name: chatgpt_image
+  stage: "1_of_2_non_character_first_reference"
+  perspective_pack_ref: visual_dev/elements/locations/LOC007/perspective_packs/PPACK_LOC007_ANTECHAMBER_V001.yaml
+  recommended_aspect_ratio: "16:9"

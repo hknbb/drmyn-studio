@@ -1,0 +1,39 @@
+prompt_id: SC0111__t2i-char-c02-identity-mj-v8__v01
+scene_id: SC0111
+prompt_type: t2i_character_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0111/scene_card.yaml
+  scene_excerpt: "Canonical identity reference (Stage 1 of 3) for the antagonist Roman across the compound escalation scene; identity-only, not a final production view."
+  character_refs:
+  - C02
+  aesthetic_refs:
+  - VELTAIN_COMPOUND_HARSH
+prompt_text: >-
+  Roman, late 40s to 50s, tall controlled silhouette, centered institutional gravity.
+  Dark tailored suiting with exact construction, disciplined restraint, no decorative
+  looseness. Patrician calm, unhurried authority, frighteningly still. Face geometry
+  exact and composed, cold precise gaze. Cinematic production character reference, neutral
+  clean background, identity readability, restrained realism, no redesign, no fashion
+  spread, no text, no watermark
+  --v 8.1 --style raw --ar 2:3 --seed 281047
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  identity_anchor_ref: visual_dev/elements/characters/C02/identity_anchor.yaml
+  stage: "1_of_3_narrative_identity"
+  aesthetic_keywords_injected:
+  - tall controlled silhouette, centered gravity
+  - tailored exact construction, dark restraint
+  - patrician calm, unhurried authority
+  - identity over coverage, cold institutional threat
+  planning_name_filter:
+    forbidden:
+    - Roman Vale
+  recommended_model_version: --v 8.1
+  recommended_style: --style raw

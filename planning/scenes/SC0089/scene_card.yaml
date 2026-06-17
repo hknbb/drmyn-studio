@@ -2,20 +2,25 @@ scene_id: SC0089
 sequence_id: SEQ18
 phase_id: PH_CRUCIBLE
 title: NORTHERN TRANSIT CORRIDOR — OUTER DISTRICT PERIMETER
-purpose: Placeholder scaffold seeded from the retrieval map; replace with canonical scene purpose.
-dramatic_function: TBD dramatic function derived during scene-card enrichment.
-location_id: LOC001
+purpose: "Nadia and Zara move at measured intervals through a night transit corridor lined with overhead light pools separated by darkness. Nadia reads a comms-ping spacing that reveals two hunter teams, not one. She confirms the broadcast decoy she planted continues to feed a false position into the ORACLE PRIME grid on its 12-minute cycle. The pair advances toward the junction at a controlled pace, managing threat vectors and timing against the decoy's passive burst cycle window."
+dramatic_function: "Kinetic infiltration under dual threat: tactical read and evasion in real time. Tension of measured movement, Nadia's ability to extract information from minimal signals (comms-ping spacing, seam vibration), the still-running decoy as a load-bearing continuity anchor, and the calculation of a narrowing coverage gap that conditions their survival margin."
+location_id: LOC005
 location_text_raw: NORTHERN TRANSIT CORRIDOR — OUTER DISTRICT PERIMETER
 time_of_day: NIGHT
 time_of_day_text_raw: NIGHT
-weather: TBD
+weather: "Exterior night; not otherwise source-stated."
 characters_present:
 - C01
+- C06
 characters_explicit_dialogue:
 - NADIA
 - ZARA
 - DIMITRI
-characters_explicit_mentions: []
+characters_explicit_mentions:
+- NADIA
+- ZARA
+- DIMITRI
+- ROMAN
 primary_pov_character: C01
 continuity_refs:
   wardrobe: []
@@ -24,13 +29,14 @@ continuity_refs:
   - SC0088
   next_expected_links:
   - SC0090
-  time_continuity_note: TBD continuity note.
+  time_continuity_note: "Continuous night approach along northern corridor. The planted broadcast decoy (false position signal on 12-minute passive burst cycle feeding ORACLE PRIME grid) is a load-bearing continuity element from prior scenes; Nadia placed it three hours earlier at the eastern junction node 7. The decoy's window and the coverage gap in the northwest quadrant (50m past the junction) define the tactical geometry and timing constraint."
 visual_targets:
-  palette: TBD visual palette
-  lens_bias: TBD lens bias
-  framing_bias: TBD framing bias
-  movement_bias: TBD movement bias
-  lighting_bias: TBD lighting bias
+  palette: "Night greys and deep blacks broken by pools of overhead light at 200m intervals. Industrial concrete dominant: sealed cargo facility on east (cold, utilitarian), long drainage embankment on west (weathered pour, repair seam lighter than base). Cold color temperature throughout."
+  lens_bias: "Wide-to-medium coverage reading light-pool rhythm and the spatial relationship between two figures. Pool-darkness-pool rhythm drives flow. Sufficient frame width to register industrial geometry and measure gap between figures."
+  framing_bias: "Long sight-line down corridor: light pool, darkness, next light pool. Two figures at intervals along wall. Later beats: seam texture detail, insert on repair-pour surface."
+  movement_bias: "Measured, paced, controlled stop-and-go. Static holds and slow tracking for measured advance. No sprints; movement reads 'normal to wide-angle lens' without heat-signature spikes."
+  lighting_bias: "Low-key practicals: overhead lights at 200m intervals create tight pools (hard, directional) surrounded by deep shadow. Cool temperature. No fill; contrast drives tension. Intensity drops into darkness between pools."
+  aesthetic_pack_refs: [OUTER_DISTRICT_NIGHT]
 promptability_score: 3
 excerpt_ref: scene_excerpt.md
 screen_excerpt_ref: scene_excerpt.md
@@ -45,12 +51,14 @@ boundary_start_kind: slug
 boundary_end_kind: cont_slug
 mapping_confidence: medium
 notes_grounding:
-- Hydrated from retrieval map and scene_excerpt.md only.
-- Title derived from opening slugline location.
-- Opening slugline provided grounded location/time extraction.
-- Retrieval map marks this scene as medium confidence.
-- Numbered Fountain marker present for this scene.
-status: scaffolded
+- "Enriched from scene_excerpt.md (source lines 7221-7413); no story facts added beyond the excerpt."
+- "characters_present: C01 (Nadia Vale) and C06 (Zara Okonkwo) are the only on-screen figures. Hunter teams are off-screen (heard/inferred via comms pings and seam vibration read). Dimitri's voice appears on radio but he is not present; dialogue is voice-over, not present on-screen."
+- "characters_explicit_dialogue: Nadia and Zara conduct the scene's dialogue. Dimitri's V.O. radio comms (lines 7375-7377, 7381-7383, 7396-7397) are not counted as dialogue-present (he is off-screen)."
+- "primary_pov_character is C01 (Nadia). Narrative coverage favors her reads, decisions, and technical assessment (comms-ping spacing, seam vibration, coverage-gap timing)."
+- "The broadcast decoy (12-minute passive burst cycle, false ORACLE PRIME position signal, placed 3 hours prior at eastern junction node 7) is a load-bearing continuity object from prior scenes."
+- "Title refined from opening slugline to canonical scene label."
+- "Promptability held at 3 due to tactical complexity and real-time threat pacing."
+status: review
 review_status: needs_human_review
 canon_lock: false
 omni_set_ref: visual_dev/omni_sets/SC0089/

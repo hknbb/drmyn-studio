@@ -1,0 +1,34 @@
+schema_version: "0.x-draft"
+record_type: character_look_sheet
+look_sheet_id: LOOKSHEET_C02_COMPOUND_V001
+character_id: C02
+look_id: C02_LOOK_COMPOUND_V001
+scene_refs:
+  - SC0111
+physical:
+  build: "Tall or lengthened control silhouette; centered, composed, difficult to read. Institutional gravity in posture; minimal but exact movement."
+  height: "Tall; reads centered and room-owning rather than flamboyant."
+  hair: "Groomed, composed, short. No decorative styling. Color not source-specified; neutral restraint bias."
+  skin_tone: "Neutral, no glamor finish; gray under institutional harsh low corridor light. Precision-maintained appearance."
+  physical_features: "Late 40s to 50s; face geometry exact and composed; cold precise gaze; patrician calm; the threat is stillness, not expression. Jawline and shoulders read as controlled effort. No decorative facial hair or styling."
+wardrobe:
+  primary_wardrobe_id: WD003
+  garment_top: "Tailored structured shirt in off-white or white; exact construction, no decorative looseness. Open collar, controlled. Clean and immaculate."
+  garment_bottom: "Dark olive green tailored suit trousers; exact cut, precise creasing, movement-easy without flash. Institutional restraint. Immaculate."
+  footwear: "Dark practical formal footwear, low-profile, disciplined construction. Black. Immaculate, no scuffing or wear visible at baseline."
+  outerwear: "Dark olive green tailored suit jacket; close-fitting, minimal silhouette, exact tailoring, no decorative detail. Contributes to the centered control silhouette."
+  accessories: []
+palette: "Dark olive green tailored suit, off-white shirt, black shoes (WD003). Muted authority, institutional cool light. Private-sector threat register, not warmth."
+status: draft
+notes: >
+  Full head-to-toe look definition for Roman's SC0111 composed compound control so the
+  four_view scale views do not crop or invent garments. Baseline immaculate register
+  with composed fatigue (effortful stillness, tired composure) but no damage. Identity
+  locked by C02_IDENTITY_ANCHOR_V001. Tall centered gravity, tailored exact construction,
+  dark restraint palette, institutional threat. Harsh institutional corridor light
+  (cold, low-key, hard) matches SC0111 scene card. Roman enters in control, using
+  corridor geometry knowledge; the reference documents this architectural moment,
+  not the physical compromise that follows.
+provenance:
+  created_by: "claude_code (M5 FAZ B — haiku)"
+  created_at: "2026-06-04T00:00:00Z"

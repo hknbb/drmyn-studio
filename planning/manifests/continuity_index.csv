@@ -5,8 +5,17 @@ wardrobe,WD003,Roman tailored control suit,SC0002|SC0007|SC0008|SC0009,review,Fa
 wardrobe,WD004,Birta domestic working attire,SC0001,review,False
 wardrobe,WD005,Dimitri operational executive attire,SC0002|SC0007|SC0009,review,False
 wardrobe,WD006,Marcus private operational attire,SC0004|SC0008|SC0009,review,False
+wardrobe,WD008,Jin infant evening onesie,SC0014,review,False
+wardrobe,WD009,Enforcer operational attire,SC0014,review,False
+wardrobe,WD010,Nadia home-evening domestic top,SC0014,review,False
+wardrobe,WD011,Nadia field-operational dark layers,SC0089|SC0111,review,False
+wardrobe,WD012,Nadia transit anonymous layers,SC0047,review,False
+wardrobe,WD013,Zara hunter-pool operational attire,SC0089,review,False
+wardrobe,WD014,Otto quay working attire,SC0047,review,False
 prop,PROP001,Jin's medical bracelet,SC0003|SC0010|SC0011|SC0014|SC0108|SC0109,review,False
 prop,PROP003,Tilted Vardova skyline photo frame,SC0001,review,False
 prop,PROP004,Marcus's burner phone,SC0046|SC0047,review,False
 prop,PROP005,Roman collection wristwatch,SC0002,review,False
 prop,PROP006,Vent-grille surveillance device,SC0006,review,False
+prop,PROP007,Jin's infant bracelet,SC0014,review,False
+prop,PROP008,Marcus's unmarked handset (dossier),SC0047,review,False

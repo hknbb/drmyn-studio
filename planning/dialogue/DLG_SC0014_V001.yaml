@@ -1,0 +1,27 @@
+schema_version: "0.x-draft"
+record_type: dialogue_extract_record
+dialogue_extract_id: DLG_SC0014_V001
+status: draft
+scene_id: SC0014
+source_screenplay_span:
+  start_line: 1080
+  end_line: 1093
+speakers:
+  - character_id: C04
+    display_name: Dimitri
+raw_lines:
+  - speaker: C04
+    text: "Mrs. Vale."
+  - speaker: C04
+    text: "It's time."
+  - speaker: C04
+    text: "Please don't make this harder."
+dialogue_function: procedural custody enforcement / polite coercion
+emotional_subtext: >
+  Dimitri executes the removal as administration, not aggression. Courtesy is the
+  instrument of control: naming her formally, stating inevitability, and framing
+  resistance as the thing that would make it "harder" — placing the cost of any
+  struggle on her, not on the men carrying it out. Nadia answers only with silence
+  and body; the scene's weight sits in what is not said.
+target_language: English
+language_support_status: officially_supported

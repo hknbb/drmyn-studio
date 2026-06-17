@@ -1,0 +1,97 @@
+schema_version: "0.x-draft"
+record_type: gpt_images_perspective_pack
+prompt_pack_id: PPACK_C10_ENFORCER_V001
+status: draft
+source_reference_id: "C10_IDENTITY_ANCHOR_V001 front_hero_lock (PENDING — generate after Stage 1 MJ V8.1 + Stage 2 V7 --oref lock exists)"
+target_model: chatgpt_images_2
+target_role: multi_perspective_element_expander
+element_id: C10
+element_type: character
+perspective_policy: four_view_scale_angle_v3
+full_body_visible: true
+shared_preservation_instruction: >
+  Preserve the locked anonymous enforcer identity exactly across all four views — same
+  unremarkable face geometry, age (mid-30s to 40s), generic competent build, short plain
+  dark hair, no distinctive features. Deliberate anonymity and interchangeability are
+  essential. Same SC0014 operational enforcement wardrobe (WD009: dark plain jacket,
+  dark plain trousers, dark plain shoes) in every view. Change only camera scale and
+  angle, never the person or the garments. Professional neutral demeanor throughout;
+  restrained realism, no redesign, no stylization, no fashion-editorial, no heroic
+  presence; neutral clean background; no text, no watermark.
+source_refs:
+  scene_card_ref: planning/scenes/SC0014/scene_card.yaml
+  element_sheet_ref: visual_dev/elements/characters/C10/look_sheets/LOOKSHEET_C10_ENFORCER_V001.yaml
+  model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260504T113000Z_chatgpt_image.yaml
+prompts:
+  - prompt_id: PPACK_C10_ENFORCER_V001__full_body_front
+    perspective: full_body_front
+    prompt_text: >
+      Full-body front view, head to feet in frame, of the locked reference anonymous
+      enforcer in operational dark attire: dark plain jacket, dark plain trousers, dark
+      plain shoes. Standing neutral, even soft light, neutral clean background. Preserve
+      anonymous identity and wardrobe exactly; generic adult, unremarkable face geometry,
+      no distinctive features; restrained realism, no redesign, no text, no watermark.
+    constraints:
+      - "Head-to-toe, no cropping of feet or head."
+      - "Same anonymous identity + WD009 wardrobe as the locked reference."
+      - "Neutral background; no scene set dressing."
+      - "Generic competent adult bearing; professional neutral demeanor."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "2:3"
+  - prompt_id: PPACK_C10_ENFORCER_V001__three_quarter_waist
+    perspective: three_quarter_waist
+    prompt_text: >
+      Three-quarter angle, waist-up framing, of the same locked reference anonymous
+      enforcer in the identical operational dark wardrobe. Body turned ~30-45 degrees,
+      head toward camera. Even soft light, neutral clean background. Preserve anonymous
+      identity and garments exactly; generic unremarkable features; restrained realism,
+      no redesign, no text, no watermark.
+    constraints:
+      - "Waist-up scale; three-quarter body angle."
+      - "Anonymous identity + wardrobe identical to full_body_front."
+      - "Neutral background."
+      - "No distinctive expression or attitude; procedural professional neutral only."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+  - prompt_id: PPACK_C10_ENFORCER_V001__close_portrait_front
+    perspective: close_portrait_front
+    prompt_text: >
+      Close front portrait, chest-up, of the same locked reference anonymous enforcer —
+      full frontal face for identity lock. Short plain dark hair, unremarkable face
+      geometry, generic adult features, no distinctive marking. Professional neutral
+      expression, no personality or attitude. Even soft light, neutral clean background.
+      Preserve anonymous identity exactly; restrained realism, no redesign, no text,
+      no watermark.
+    constraints:
+      - "Chest/shoulders/head; fully frontal face."
+      - "Maximum face-geometry fidelity to the locked anonymous reference."
+      - "Neutral background."
+      - "Unremarkable adult features; no distinctive traits to lock."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+  - prompt_id: PPACK_C10_ENFORCER_V001__profile_full
+    perspective: profile_full
+    prompt_text: >
+      Side profile view of the same locked reference anonymous enforcer in the identical
+      operational dark wardrobe, for a 3D identity wrap. Clean lateral profile, even
+      soft light, neutral clean background. Preserve anonymous identity and garments
+      exactly; generic adult, no signature features; restrained realism, no redesign,
+      no text, no watermark.
+    constraints:
+      - "True side profile (90 degrees)."
+      - "Anonymous identity + wardrobe identical to the other three views."
+      - "Neutral background."
+      - "Generic adult profile; no distinctive nose, chin, or skull shape to emphasize."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+qc_gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  failed_perspective_revision_only: true
+downstream_use:
+  - "kling_element_reference_record for C10 enforcer look (SC0014)"
+  - "SC0014 omni clip generation (two enforcer figures @C10_CARRIER/@C10_HOLDER attach from this base)"

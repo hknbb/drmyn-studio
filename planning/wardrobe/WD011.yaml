@@ -1,0 +1,22 @@
+wardrobe_id: WD011
+name: "Nadia field-operational dark layers"
+character_id: C01
+category: OPERATIONAL_FIELD
+description: >
+  Dark, movement-first operational civilian layers — close-fitting technical top,
+  durable trousers, low-profile jacket; nothing tactical-military or decorative.
+  Reads as someone equipped to move, climb, and stay unseen at night. Worn by Nadia
+  through the night infiltration and the Veltain compound assault. Distinct from the
+  domestic SC0014 look and the SC0047 transit look. In SC0111 the same layers are
+  battle-worn (dirt, sweat, blood, disorder) per look-variant appearance_state.
+palette: "dark operational neutrals (black, slate, deep charcoal); no flash, no accent color"
+scene_refs:
+  - SC0089
+  - SC0111
+handling_notes:
+  - "Civilian operational, not state-military; no signature weapon or holster as identity prop."
+  - "Built for mobility (climb, crouch, carry); preserve canonical Nadia identity (face, hair restraint, lean upright build)."
+  - "SC0111 state = damaged/battle-worn; carry continuity from SC0089 onward."
+status: review
+review_status: pending
+canon_lock: false

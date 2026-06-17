@@ -1,0 +1,30 @@
+schema_version: "0.x-draft"
+record_type: character_look_variant
+look_id: C06_LOOK_FIELD_NIGHT_V001
+character_id: C06
+inherits_identity_anchor: C06_IDENTITY_ANCHOR_V001
+status: draft
+look_role: "Hunter-pool field-night — Zara infiltrating with Nadia (SC0089)"
+wardrobe_refs:
+  primary_wardrobe_id: WD013
+  supplementary_wardrobe_ids: []
+appearance_state:
+  fatigue_level: tired
+  damage_level: none
+  hair_state_within_anchor: "Short and practical, or pulled back tight; disciplined, movement-ready, held for dark-operational work."
+continuity_scope:
+  start_scene: SC0089
+  end_scene: SC0089
+change_reason: "Zara deployed in hunter-pool field-operational gear for the night infiltration and transit corridor evasion alongside Nadia; the look she carries through the corridor under dual threat before taking high-side torso wound."
+notes: >
+  Look 1 of Zara's operational looks. Wardrobe WD013 (dark operational tactical-adjacent
+  civilian wardrobe: practical, mobile, dark neutrals, nothing decorative; reads as someone
+  who has worked for hire a long time). Identity carried by C06_IDENTITY_ANCHOR_V001;
+  wardrobe and operational readiness (tiredness, hair restraint) distinguish field-night
+  from domestic or other contexts. Base reference look is clean (damage none); the
+  high-side torso wound sustained mid-scene is applied as an in-scene shot detail later
+  in SC0089, not to this base look anchor. Stage-3 four-view pack:
+  perspective_packs/PPACK_C06_FIELD_NIGHT_V001.yaml.
+provenance:
+  created_by: "claude_code (haiku)"
+  created_at: "2026-06-04T00:00:00Z"

@@ -1,0 +1,74 @@
+prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-03-safe__v01
+scene_id: SC0014
+prompt_type: omni_instruction
+lifecycle_stage: deprecated
+target_models:
+- kling_omni
+source_refs:
+  scene_card: planning/scenes/SC0014/scene_card.yaml
+  scene_excerpt: planning/scenes/SC0014/scene_excerpt.md
+prompt_text: 'Kling Omni element-based clip; duration 13s. Active elements: @LOC001_NURSERY, @C04_DIMITRI, @C01_NADIA, @C08_JIN,
+  @C10_HOLDER, @C10_CARRIER. Direct action and camera; @elements carry identity, wardrobe, and look. Variant SAFE: prioritize
+  stable continuity, restrained camera language, and conservative execution. Figures: exactly 5 distinct figure(s) — @C01_NADIA,
+  @C08_JIN (Infant; pale blue name bracelet on wrist.), @C04_DIMITRI, @C10_CARRIER (Nearer Nadia; steps forward first.), @C10_HOLDER
+  (Stays back by the door.). No additional, extra, or duplicated people; do not clone or multiply any figure. Continue from
+  previous clip: The door opens; Nadia holds Jin, center; Dimitri and two men enter and stand just inside the door.; camera
+  medium_wide. [00:00 - 00:05] Medium-wide shot: The door of @LOC001_NURSERY opens — the intruding geometry against the room''s
+  warmth. @C01_NADIA remains seated, drawing @C08_JIN closer, eyes rising to the door. @C08_JIN rests calm in @C01_NADIA''s
+  arms, supported. @C04_DIMITRI enters and stops two steps inside, even and unhurried. @C10_CARRIER steps toward @C01_NADIA
+  and stops, hands open and still, not reaching for @C08_JIN. @C10_HOLDER holds the threshold, waiting. The frame holds steady;
+  doorway with three standing figures, Nadia and the child held center. Audio: the door opening; room tone tightens; the white-noise
+  hum continues. [00:05 - 00:08] Reverse angle: The room holds tight and quiet. @C04_DIMITRI addresses her from just inside
+  the door, flat and procedural. @C01_NADIA does not look up, holds @C08_JIN, gives nothing back. @C08_JIN rests in @C01_NADIA''s
+  arms, calm. The frame holds steady; favor Dimitri, Nadia foreground not looking up. — @C04_DIMITRI (Flat): "Mrs. Vale."
+  Audio: room tone low and tight. [00:08 - 00:13] Close-up: The room holds a single breath. @C01_NADIA lifts her eyes to the
+  door — the turn of the beat. @C08_JIN rests in @C01_NADIA''s arms, calm and supported. The frame holds steady; Nadia lifting
+  her eyes. — @C04_DIMITRI (Quiet): "It''s time." Audio: room tone holds; a held breath. End state for next clip: Dimitri
+  has spoken (''Mrs. Vale'' / ''It''s time''); Nadia has looked up; three men hold the doorway, Nadia center with Jin.; camera
+  medium. Continuity: metadata_only. Keep 13s; end settled. Do not add new story facts.'
+negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
+generation_params:
+  model_guidance_mode: dynamic_snapshot
+  adapter_name: kling_omni
+  clip_id: CLIP_SC0014_03
+  total_duration_seconds: 13
+  continuity_input_mode: metadata_only
+  omni_clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_03_manifest.yaml
+  source_scene_beat_plan_ref: planning/scenes/SC0014/scene_beat_plan.yaml
+  source_dialogue_beats_ref: planning/scenes/SC0014/dialogue_beats.yaml
+  repo_binary_committed: false
+  external_generation_required: true
+  recommended_cfg_scale: 0.5
+  recommended_ar: '16:9'
+  variant_mode: safe
+  render_pass: visual_test
+  quality_tier: test_720p
+  prompt_component_model: docs/methodology/omni_prompt_component_model.md
+  required_element_aliases:
+  - '@LOC001_NURSERY'
+  - '@C04_DIMITRI'
+  - '@C01_NADIA'
+  - '@C08_JIN'
+  - '@C10_HOLDER'
+  - '@C10_CARRIER'
+  input_mode: anchored_i2v
+  start_frame_ref: archive/nexuszero/SC0014/shots/SC0014_06_clip-sc0014-02_shot-sc0014-02-c.png
+  visual_input_budget:
+    total: 7
+    start_frame: 1
+    element_slots: 6
+  frame_chain_source: designed_still_pass1
+  audio_gate_status: allowed_audio_off
+  audio_gate_reason: visual_test_default_audio_off
+  model_guidance_snapshot_ref: model_guidance_snapshots/kling/20260615T000000Z_kling_omni_video_best_available.yaml
+  provider: kling
+  provider_surface: manual_external
+  resolved_model_name: Kling VIDEO 3.0 Omni
+  resolved_model_role: best_for_this_task
+  guidance_observed_at: '2026-06-15T00:00:00Z'
+  guidance_expires_at: '2026-07-15T00:00:00Z'
+expected_output:
+  asset_type: clip
+  duration_seconds: 13
+status: deprecated
+canon_lock: false

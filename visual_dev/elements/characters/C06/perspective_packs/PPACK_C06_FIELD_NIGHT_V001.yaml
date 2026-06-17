@@ -1,0 +1,97 @@
+schema_version: "0.x-draft"
+record_type: gpt_images_perspective_pack
+prompt_pack_id: PPACK_C06_FIELD_NIGHT_V001
+status: draft
+source_reference_id: "C06_IDENTITY_ANCHOR_V001 front_hero_lock (PENDING — generate after Stage 1 MJ V8.1 + Stage 2 V7 --oref lock exists)"
+target_model: chatgpt_images_2
+target_role: multi_perspective_element_expander
+element_id: C06
+element_type: character
+perspective_policy: four_view_scale_angle_v3
+full_body_visible: true
+shared_preservation_instruction: >
+  Preserve the locked Zara identity exactly across all four views — same face geometry,
+  age (mid 30s to early 40s), lean athletic build, West African heritage visible in
+  skin tone, hair texture, face geometry. Dark hair short and practical or pulled back
+  tight, no glamor. Same SC0089 field-operational wardrobe (WD013: khaki/olive-tan
+  operational shirt, khaki/olive trousers, practical dark or khaki boots) in every
+  view — earth-tone palette, no black, no bright color. Contained operational presence
+  with authority from physical stillness and decision precision, not display. Change
+  only camera scale and angle, never the person or the garments. Restrained realism;
+  no redesign, no stylization, no fashion-editorial; neutral clean background; no text,
+  no watermark.
+source_refs:
+  scene_card_ref: planning/scenes/SC0089/scene_card.yaml
+  element_sheet_ref: visual_dev/elements/characters/C06/look_sheets/LOOKSHEET_C06_FIELD_NIGHT_V001.yaml
+  model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260504T113000Z_chatgpt_image.yaml
+prompts:
+  - prompt_id: PPACK_C06_FIELD_NIGHT_V001__full_body_front
+    perspective: full_body_front
+    prompt_text: >
+      Full-body front view, head to feet in frame, of the locked reference woman in her
+      field-operational look: khaki or olive-tan operational shirt/blouse, khaki or
+      olive trousers, practical dark or khaki boots. Standing alert, operational posture,
+      trained physical economy, even neutral lighting, neutral clean background.
+      Preserve identity, West African heritage, and wardrobe exactly; restrained realism,
+      no redesign, no text, no watermark.
+    constraints:
+      - "Head-to-toe, no cropping of feet or head."
+      - "Same identity + WD013 dark operational wardrobe as the locked reference."
+      - "Neutral background; no scene set dressing."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "2:3"
+  - prompt_id: PPACK_C06_FIELD_NIGHT_V001__three_quarter_waist
+    perspective: three_quarter_waist
+    prompt_text: >
+      Three-quarter angle, waist-up framing, of the same locked reference woman in the
+      identical khaki/olive-tan field-operational wardrobe. Body turned ~30-45 degrees,
+      head toward camera, alert and observant. Even neutral lighting, neutral clean
+      background. Preserve identity, West African heritage, and garments exactly;
+      restrained realism, no redesign, no text, no watermark.
+    constraints:
+      - "Waist-up scale; three-quarter body angle."
+      - "Identity + wardrobe identical to full_body_front."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+  - prompt_id: PPACK_C06_FIELD_NIGHT_V001__close_portrait_front
+    perspective: close_portrait_front
+    prompt_text: >
+      Close front portrait, chest-up, of the same locked reference woman — full frontal
+      face for identity lock. Dark hair short and practical or pulled back tight, alert
+      observant eyes, exact face geometry, no glamor, operational discipline and
+      competence legible. West African heritage visible. Even neutral lighting, neutral
+      clean background. Preserve identity exactly; restrained realism, no redesign, no
+      text, no watermark.
+    constraints:
+      - "Chest/shoulders/head; fully frontal face."
+      - "Maximum face-geometry fidelity to the locked reference."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+  - prompt_id: PPACK_C06_FIELD_NIGHT_V001__profile_full
+    perspective: profile_full
+    prompt_text: >
+      Side profile view of the same locked reference woman in the identical khaki/olive-tan
+      field-operational wardrobe, for a 3D identity wrap. Clean lateral profile, even
+      neutral lighting, neutral clean background. Hair short and practical or pulled back
+      tight, discipline and alert operational posture legible. West African heritage
+      visible in profile. Preserve identity and garments exactly; restrained realism, no
+      redesign, no text, no watermark.
+    constraints:
+      - "True side profile (90 degrees)."
+      - "Identity + wardrobe identical to the other three views."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+qc_gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  failed_perspective_revision_only: true
+downstream_use:
+  - "kling_element_reference_record for C06 field-night look (SC0089)"
+  - "SC0089 omni clip generation (Zara element attach)"

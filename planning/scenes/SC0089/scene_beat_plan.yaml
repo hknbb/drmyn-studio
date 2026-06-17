@@ -1,0 +1,1061 @@
+schema_version: "0.x-draft"
+record_type: scene_beat_plan
+scene_id: SC0089
+notes: >
+  "Northern Transit Corridor — Outer District Perimeter" (source lines 7221-7413).
+  Beats derived only from scene_excerpt.md; no story facts added. Nadia (C01, @C01_NADIA)
+  and Zara (C06, @C06_ZARA) move at 8m intervals along the west wall of a 200m-spaced
+  overhead-light corridor. Nadia conducts a real-time tactical read: comms-ping spacing
+  reveals two hunter teams; her broadcast decoy still feeds ORACLE PRIME; seam vibration
+  on the embankment repair indicates advance element on the far side. She calls an
+  over-the-top breach into the drainage cut. Off-screen: Dimitri's command-channel
+  pings and voice, hunter teams approaching from south and north. Pacing: controlled,
+  measured movement punctuated by static holds (reads). The light pools and darkness
+  drive visual rhythm. After Zara is shot, the scene compresses into an urgent exit
+  through the drainage conduit, cut off by convergent comms activity.
+source_beats:
+  - beat_id: ESTABLISH_CORRIDOR_AND_LIGHTS
+    content: >
+      The corridor runs between a sealed cargo facility (east) and drainage embankment
+      (west). Overhead lights at 200m intervals. Each light creates a pool; between them,
+      darkness. The geometry is industrial, cold, measured.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: true
+    narrative_role: establish
+    required_element_ids: [LOC001]
+    camera: { angle: eye_level, framing: wide, movement: static, lens_bias: "wide sight-line down corridor; light-pool rhythm" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.0, camera_intensity: 0.0, blocking_notes: "Static hold on corridor length. Pool-darkness-pool rhythm established." }
+    notes: "Establish the light-pool rhythm and industrial setting that will frame all subsequent movement."
+
+  - beat_id: NADIA_ZARA_MOVING
+    content: >
+      Nadia is moving through the dark between the second and third lights. Zara is eight
+      meters behind her, same pace, same interval from the wall. They have been moving
+      this way for eleven minutes.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01, C06]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Ahead of Zara, moving through darkness toward third light; tactical focus."
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Eight meters behind Nadia, same pace, same wall interval; echo of Nadia's movement."
+    camera: { angle: eye_level, framing: medium_wide, movement: tracking, lens_bias: "track both figures at 8m separation, measured pace" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.2, camera_intensity: 0.2, blocking_notes: "Controlled, economical movement. Both figures at interval from wall. No sprints. Pace is 'normal to wide-angle lens' per excerpt." }
+    notes: "Establish the interval and measured pace that defines the scene's kinetic control."
+
+  - beat_id: NADIA_STOPS_THIRD_LIGHT
+    content: >
+      Nadia stops at the edge of the third light's pool. Holds up one hand without
+      looking back. A gesture of hold-position.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01, C06]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Stops, raises hand signal; tactical pause, silent communication."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia at light-pool edge, hand held up" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.1, camera_intensity: 0.0, blocking_notes: "Sharp stop. Hand-signal read by camera and by Zara (off-camera but registered)." }
+    notes: "Silent beat; the raised hand is the entire communication."
+
+  - beat_id: NADIA_COUNTS_LIGHTS_GEOMETRY
+    content: >
+      She counts the lights ahead. Four more before the junction. One hundred sixty
+      meters, approximately. The embankment runs continuous. No cover on the western
+      side until the drainage cut at the junction. She is conducting a spatial-temporal
+      assessment: distance, geometry, cover gaps, escape route.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: true
+    narrative_role: hold
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Scanning ahead, counting, calculating geometry and cover gaps."
+    camera: { angle: eye_level, framing: medium, movement: static, lens_bias: "Nadia's POV scan down corridor toward junction" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.1, blocking_notes: "Nearly still; eye-movement and slight head-turns to scan geometry. Then look back toward Zara." }
+    notes: "Nadia's tactical read drives the beat. The 160m distance to junction and the 50m drainage-cut safety window are load-bearing for later decision."
+
+  - beat_id: NADIA_LOOKS_BACK
+    content: "She looks back at Zara."
+    semantic_duration_hint: short_insert
+    may_merge_with_next: true
+    splittable: false
+    narrative_role: transition
+    required_element_ids: [C01, C06]
+    camera: { angle: eye_level, framing: medium, movement: static, lens_bias: "Nadia glancing back toward Zara" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.1, camera_intensity: 0.0 }
+
+  - beat_id: DIALOGUE_TWO_TEAMS
+    content: "NADIA (low): 'Two teams. Not one.'"
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C01, C06]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Speaking, revealing tactical read."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia speaking low toward Zara" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0, blocking_notes: "Low-volume delivery; still at edge of light pool." }
+    notes: "The revelation of dual threat vectors sets narrative stakes."
+
+  - beat_id: ZARA_HOW_DO_YOU_KNOW
+    content: "ZARA: 'How do you know?'"
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C06, C01]
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Questioning Nadia's read; seeking evidence."
+    camera: { angle: over_shoulder, framing: medium_close, movement: static, lens_bias: "Zara responding, Nadia off-camera or foreground" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+
+  - beat_id: NADIA_COMMS_PING_SPACING
+    content: >
+      NADIA: 'The spacing on the comms ping. One source, two different delay intervals.
+      Eastern approach and here.' She is explaining: the ping signature reveals two
+      distinct threat vectors because they have different latency profiles. One source
+      (the command node) but two delay intervals (two teams, different positions).
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Explaining her tactical read: comms-ping analysis revealing dual approach vectors."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia explaining, technical precision" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+    notes: "Nadia demonstrates her signal-intelligence competence. Load-bearing detail: the comms read is how she extracted two-team presence."
+
+  - beat_id: ZARA_BROADCAST_SIGNAL
+    content: "ZARA: 'The broadcast signal.' (A beat. Then understanding dawns.)"
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C06]
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Recognizing the decoy element; moving from question to understanding."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Zara's realization" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0, blocking_notes: "Silent beat between statement and understanding; Zara processes." }
+
+  - beat_id: NADIA_STILL_RUNNING
+    content: >
+      NADIA: 'It's still running.' She confirms: the passive 12-minute burst cycle,
+      the false position signal feeding into ORACLE PRIME, the decoy she placed three
+      hours ago at the eastern junction node 7. It is still operative.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Confirming the decoy is still running on its 12-minute cycle."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia confirming the operational status" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+    notes: "The decoy is a load-bearing continuity object. Its running status is the hinge that opens the coverage-gap window."
+
+  - beat_id: ZARA_PROCESSES_DECOY
+    content: >
+      Zara processes this. The passive burst cycle — twelve minutes, eastern approach
+      junction node 7, a false position signal still feeding into the ORACLE PRIME
+      grid on the interval they set it. Nadia placed herself there three hours ago.
+      The grid accepted it. (Internal monologue / beat.)
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: hold
+    required_element_ids: [C06]
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Integrating the decoy's operational parameters into tactical calculation."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Zara's face; internal processing evident" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0, blocking_notes: "Zara held silent; the mental calculation is visible via her composure and focus." }
+    notes: "This beat conveys shared understanding: Zara knows the decoy's mechanism and Nadia's prior action (placing it). The excerpt states this directly; keep the beat."
+
+  - beat_id: ZARA_ONE_ELEMENT_EAST
+    content: "ZARA: 'One element went east.'"
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C06]
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Verifying the deployment split: one team to the east, implying one here."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Zara stating the deployment logic" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+
+  - beat_id: NADIA_ONE_CAME_HERE
+    content: "NADIA: 'And one came here.'"
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Confirming: the second team is the northern corridor threat."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia confirming the deployment axis" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+
+  - beat_id: ZARA_HOW_MANY_HERE
+    content: "ZARA: 'How many here.'"
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C06]
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Pressing for tactical numbers."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Zara asking for threat size" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+
+  - beat_id: NADIA_AT_LEAST_EIGHT
+    content: >
+      NADIA: 'At least eight. Moving from the south junction. They have three minutes
+      on us, maybe less.' She is reading the hunt geometry and the speed of approach
+      from the timing implicit in the comms activity.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Giving threat assessment: eight-person force, three-minute time delta."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia, urgent and precise" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+    notes: "Time pressure introduced: three minutes."
+
+  - beat_id: NADIA_COVERAGE_GAP_CALCULATION
+    content: >
+      She looks at the drainage embankment. Runs the geometry. The gap in the deployment
+      documents — the coverage gap Zara's finger traced in the cache site, the gap Nadia
+      had already moved to before Zara finished tracing it — runs along the northwest
+      quadrant of the perimeter. Fifty meters past the junction. If the eastern element
+      doesn't collapse back in time. She is assessing: Do we make the 50m gap window?
+      Is the eastern element close enough to cut us off?
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: true
+    narrative_role: hold
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Running tactical geometry: distance to gap, timing, escape window."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia's focus, her eyes tracking the embankment ahead" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.1, camera_intensity: 0.0, blocking_notes: "Nearly still; internal calculation visible via gaze and micro-expressions." }
+    notes: "The coverage gap (50m past junction, northwest quadrant) is the escape hinge. Load-bearing continuity from prior reconnaissance."
+
+  - beat_id: NADIA_GAP_HOLDS_SIX_MINUTES
+    content: >
+      NADIA: 'The coverage gap holds for six minutes after the junction. If we're past
+      the drainage cut when the burst cycle ends.' She is stating the condition: the decoy's
+      12-minute cycle, the burst timing, the gap window. They have six minutes after crossing
+      the junction to reach the cut, or the gap closes and ORACLE PRIME reacquires.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Stating the timing condition that makes the move possible."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia, statement of operational fact" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+    notes: "The six-minute window is contingent on burst-cycle timing. Load-bearing fact."
+
+  - beat_id: ZARA_IF_WE_DONT
+    content: "ZARA: 'And if we're not.'"
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C06]
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Asking the failure condition."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Zara, stating the downside" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+
+  - beat_id: NADIA_WE_ARE
+    content: "NADIA: 'We are.' (Not a question. A declaration of intent and commitment.)"
+    semantic_duration_hint: normal
+    may_merge_with_next: true
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Committing to the move. Not asking. Deciding."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia, absolute certainty" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+    notes: "This is the hinge. Nadia's decision point and statement of will."
+
+  - beat_id: NADIA_MOVES_THIRD_LIGHT
+    content: >
+      She moves into the third light pool. No sprint — controlled pace, economy of motion,
+      the kind of movement that reads as normal to a wide-angle lens and doesn't produce a heat
+      signature spike in ORACLE PRIME's infrared grid.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Moving into light; controlled, economical pace; reads as normal."
+    camera: { angle: eye_level, framing: medium, movement: tracking, lens_bias: "track Nadia entering the light pool, pace steady" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: bright }
+    motion: { subject_intensity: 0.25, camera_intensity: 0.15, blocking_notes: "Controlled, not rushed. Wide-angle perspective shows the movement as 'normal.' No thermal spike." }
+    notes: "The intentional control of pace and movement is load-bearing. This is not panic. This is tactical execution."
+
+  - beat_id: ZARA_FOLLOWS
+    content: "Zara follows."
+    semantic_duration_hint: short_insert
+    may_merge_with_next: true
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C06]
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Following Nadia at interval; committing to the move."
+    camera: { angle: eye_level, framing: medium, movement: tracking, lens_bias: "track Zara following at 8m interval" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: bright }
+    motion: { subject_intensity: 0.25, camera_intensity: 0.15 }
+
+  - beat_id: PASS_LIGHTS_TRACKING
+    content: "They pass under the third light. Into darkness. Under the fourth."
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: true
+    narrative_role: action
+    required_element_ids: [C01, C06]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Leading the advance through light-dark-light rhythm."
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Following at interval through the same rhythm."
+    camera: { angle: eye_level, framing: medium_wide, movement: tracking, lens_bias: "wide track showing both figures traversing the light-pool rhythm" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.3, camera_intensity: 0.25, blocking_notes: "Track both figures at 8m separation through pools and darkness. Rhythm of light-shadow-light drives pacing." }
+    notes: "The light-pool rhythm visual becomes a pulse. Two figures in measured tempo."
+
+  - beat_id: DIMITRI_V_O_CONFIRM
+    content: >
+      Somewhere south of them — a frequency ping. Brief. Military economy. DIMITRI's
+      voice on the command channel, stripped to minimum. DIMITRI (V.O., on radio, distant):
+      'Northern corridor, confirm contact.' A response, unintelligible at distance. Another ping.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: pulse_check
+    required_element_ids: [C01, C06]
+    camera: { angle: eye_level, framing: medium_wide, movement: tracking, lens_bias: "figures moving; radio comms as sonic threat-indicator" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.25, camera_intensity: 0.2, blocking_notes: "Figures continue movement. Radio pings register as off-screen threat." }
+    notes: "Dimitri's V.O. is off-screen. The pings are acoustic confirmation of the hunt closing in. Threat intensity escalates."
+
+  - beat_id: DIMITRI_ACCELERATE
+    content: >
+      DIMITRI (V.O., on radio, closer now): 'Accelerate. He was ahead of us once.' The 'he'
+      — wrong pronoun, wrong person. He is working from a profile that has not been
+      updated for what she has become. Roman would not have said 'he.' Roman reads her file;
+      Roman knows who he's hunting. Dimitri is hunting the file's summary, not the person.
+      Nadia notes this. It does not slow her.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: true
+    narrative_role: dialogue
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Hearing the misgendering; registering it intellectually; not slowing."
+    camera: { angle: eye_level, framing: medium_close, movement: tracking, lens_bias: "favor Nadia's face amid the movement; her processing of the V.O." }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.25, camera_intensity: 0.15, blocking_notes: "Nadia continues movement at same pace. The misgendering registers internally; posture does not change." }
+    notes: "Character-reveal moment embedded in threat escalation. Dimitri's outdated profile vs. Nadia's evolved operational reality. Keep the movement continuous; don't break for the internal read."
+
+  - beat_id: REACH_FIFTH_LIGHT
+    content: >
+      They reach the fifth light. One hundred meters to the junction. The concrete
+      drainage embankment curves west here, following the old canal bed. The wall's surface
+      changes — newer pour, slightly lighter, where a section was repaired.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: establish
+    required_element_ids: [C01, C06]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Reaching the fifth light pool; at position to assess the embankment."
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Following at interval to the fifth light."
+    camera: { angle: eye_level, framing: medium, movement: static, lens_bias: "the fifth light pool; embankment detail becoming visible; repair seam" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: bright }
+    motion: { subject_intensity: 0.1, camera_intensity: 0.0, blocking_notes: "Both figures stop/slow in light pool. Detail of embankment repair seam becomes tactilely relevant." }
+    notes: "Spatial landmark. The repair seam is about to carry load-bearing tactical information."
+
+  - beat_id: NADIA_STOPS_PRESSES_SEAM
+    content: >
+      Nadia stops. She presses two fingers against the repair seam. Listens.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Conducting a haptic read of the embankment; listening for vibration."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "macro/insert on Nadia's fingers on the seam; detail of texture and contact" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: bright }
+    motion: { subject_intensity: 0.15, camera_intensity: 0.0, blocking_notes: "Nadia's hand against seam; stillness of tactical listening." }
+    notes: "A tactile read. The seam absorbs and transmits vibration. This is signal-intelligence via touch."
+
+  - beat_id: NADIA_TEAM_OTHER_SIDE
+    content: "NADIA (very low): 'There's a team on the other side.'"
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Revealing a third threat vector via tactile seam-read."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia's face, eyes still on seam; statement very low" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: bright }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+    notes: "Third threat vector confirmed: advance element on far side of embankment, not accounted for in the initial two-team read."
+
+  - beat_id: ZARA_HOW
+    content: "ZARA: 'How —'"
+    semantic_duration_hint: short_insert
+    may_merge_with_next: true
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C06]
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Asking for method; cut off."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Zara, interrupted question" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: bright }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+
+  - beat_id: NADIA_EXPLAINS_SEAM
+    content: >
+      NADIA: 'The seam. It's absorbing vibration it shouldn't. Someone's weight on the
+      other side.' She is explaining the read: the repair seam is acting as a coupling,
+      transmitting vibration from the far side. That vibration signature indicates personnel weight.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Explaining the tactical method: vibration-coupling analysis via seam contact."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia, hand still on seam; technical explanation" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: bright }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+    notes: "Nadia's multi-modality signal-intelligence: comms-ping spacing, thermal/ORACLE PRIME knowledge, tactile seam read."
+
+  - beat_id: ZARA_LOOKS_NORTH
+    content: >
+      A moment. Zara looks north at the junction. One hundred meters. The drainage cut is
+      visible as a shadow against the embankment's base.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: hold
+    required_element_ids: [C06]
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Calculating the remaining distance to the drainage cut; processing the closing geometry."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Zara looking toward junction; drainage cut as dark line at embankment base" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.1, camera_intensity: 0.0, blocking_notes: "Zara's gaze tracking the distance and the cut. The calculation is visible via attention and stillness." }
+    notes: "The drainage cut becomes the visual escape vector. 100m distance, advance element on far side of embankment, closing geometry."
+
+  - beat_id: ZARA_HOW_MANY_FORMAL
+    content: "ZARA: 'How many.'"
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C06]
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Asking for threat magnitude on the far side."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Zara, formal question" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: bright }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+
+  - beat_id: NADIA_ONE_OR_TWO
+    content: "NADIA: 'One. Maybe two.'"
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Answering: advance element is small, one or two operatives."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia, assessment" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: bright }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+
+  - beat_id: ZARA_ADVANCE_ELEMENT
+    content: "ZARA: 'Advance element. They came around.'"
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C06]
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Recognizing the deployment intent: advance element means the main force is behind, circling."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Zara, realizing the tactical trap" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: bright }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+    notes: "Zara's tactical understanding: advance element ≈ main force behind ≈ closing trap ≈ no longer a linear approach problem."
+
+  - beat_id: NARRATION_GEOMETRY_CHANGED
+    content: >
+      Which means the main force is behind them. Which means the geometry has changed.
+      They are not moving toward a gap. They are moving into a closing.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: pulse_check
+    required_element_ids: [C01, C06]
+    camera: { angle: eye_level, framing: wide, movement: static, lens_bias: "embankment, corridor behind, junction ahead; closing geometry" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.1 }
+    notes: "Narrative realization beat. The tactical picture has shifted from escape to containment. The next decision is not optional."
+
+  - beat_id: NADIA_LOOKS_AHEAD_TIMING
+    content: >
+      Nadia looks at the drainage cut. She looks at the timing. She looks at the embankment's
+      repair seam and the shadow of the cut and the distance. Running the compressed decision: Is there
+      a path through this closing? What is the least-bad move?
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: true
+    narrative_role: hold
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Assessing the closing geometry; running final tactical calculation."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia's gaze across cut, seam, distance; calculation visible" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: moderate }
+    motion: { subject_intensity: 0.15, camera_intensity: 0.1, blocking_notes: "Nearly still; gaze and micro-expressions carry the tactical recomputation." }
+    notes: "Nadia's decision point. The covering-gap window (50m past junction, six minutes) is now the only exit. Through the embankment, not around."
+
+  - beat_id: NADIA_GO_THROUGH
+    content: "NADIA: 'We go through, not around.' (Not asking.)"
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Making the decision. Through the embankment (over the top, through seam or over). Not the longer corridor detour."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia, absolute decision" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: bright }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+    notes: "Hinge decision. The move is no longer optional. It is the least-bad path."
+
+  - beat_id: ZARA_THERE_ARE
+    content: "ZARA: 'There are —'"
+    semantic_duration_hint: short_insert
+    may_merge_with_next: true
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C06]
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Objecting to the directness; cut off."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Zara, interrupted objection" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: bright }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+
+  - beat_id: NADIA_COUNTERS
+    content: >
+      NADIA: 'One. Maybe two. The main force is three minutes south. The cut is a
+      hundred meters. We go through.' She is not asking. She is restating the numbers
+      and the compulsion. The decision is made.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Overriding the objection with ruthless math. The move is the only move."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia, asserting decision" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: bright }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+    notes: "The decision is unilateral. Nadia is committing them both. Zara reads this and accepts it without further resistance."
+
+  - beat_id: ZARA_READS_NADIA
+    content: >
+      Zara reads her. A moment in which neither of them speaks and the calculation is made
+      without words. The transactional logic — the parallel terms, the stated conditions,
+      the ledger of what each woman owes the other — is suspended for exactly as long as
+      the math requires. Then it isn't suspended anymore. It's just what they're doing.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: hold
+    required_element_ids: [C01, C06]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Making the decision unilaterally; committed, waiting for Zara's acceptance."
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Reading Nadia; accepting the decision. Their transactional bond is suspended for action; becomes simple partnership."
+    camera: { angle: eye_level, framing: medium, movement: static, lens_bias: "both figures; the unspoken exchange; connection and commitment" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: bright }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0, blocking_notes: "Silent beat. Both still. The transaction is visible only in composure and mutual focus." }
+    notes: "Character-relationship beat. Their bond is not romantic or servile; it is transactional and absolute. Zara trusts Nadia's read. The move is on."
+
+  - beat_id: ZARA_THROUGH_SEAM_OR_OVER
+    content: "ZARA: 'Through the seam or over?'"
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C06]
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Asking for the method: breach the seam or climb over the embankment?"
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Zara, tactical question" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: bright }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+
+  - beat_id: NADIA_OVER
+    content: "NADIA: 'Over.'"
+    semantic_duration_hint: short_insert
+    may_merge_with_next: true
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Choosing the direct route: climb over the embankment and down the far side."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia, one-word answer" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: bright }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+
+  - beat_id: THEY_MOVE
+    content: "They move."
+    semantic_duration_hint: short_insert
+    may_merge_with_next: true
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01, C06]
+    camera: { angle: eye_level, framing: medium, movement: static }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: bright }
+    motion: { subject_intensity: 0.5, camera_intensity: 0.0 }
+
+  - beat_id: NADIA_EMBANKMENT_CLIMB
+    content: >
+      The embankment is three meters high. A drainage pipe bracket at two meters provides
+      the step. Nadia reaches the top in four seconds. Stays flat against the surface.
+      Looks over. An advance operative — one — posted at the embankment's far base,
+      facing north toward the junction. Not looking back. He does not expect approach
+      from the wall he is leaning against.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Climbing the 3m embankment fast and cleanly; reaching top, staying flat, assessing the operative below."
+    camera: { angle: eye_level, framing: medium_wide, movement: tracking, lens_bias: "track climb; flat position at top; POV insert on operative below" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.7, camera_intensity: 0.4, blocking_notes: "Fast, practiced climb. Flat position reads as trained tactical entry. POV insert on operative below, unaware." }
+    notes: "Nadia's competence and speed are demonstrated in the 4-second climb. The operative is vulnerable by position (facing away, not watching flank)."
+
+  - beat_id: NADIA_DROPS
+    content: >
+      Nadia drops. The operative goes down quickly. Not dead — she needs the corridor
+      behind her quiet, not sounding an alarm. He is quiet.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Dropping from embankment top; neutralizing the operative with controlled force; ensuring silence."
+    camera: { angle: eye_level, framing: medium, movement: handheld, lens_bias: "impact and control; emphasis on speed and precision, not brutality" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.8, camera_intensity: 0.3, blocking_notes: "Fast, practiced takedown. Emphasis is on control and speed. No excess. The operative is neutralized, not made a statement." }
+    notes: "Nadia's combat competence is direct and efficient. The tactical concern (silence) drives method. Not optional violence; necessary violence."
+
+  - beat_id: NADIA_SIGNALS_UP
+    content: "She signals up to Zara."
+    semantic_duration_hint: short_insert
+    may_merge_with_next: true
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "All-clear signal to Zara."
+    camera: { angle: low_angle, framing: medium_close, movement: static, lens_bias: "Nadia below, signaling up; Zara visible at embankment top" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.15, camera_intensity: 0.0 }
+
+  - beat_id: ZARA_COMES_OVER
+    content: >
+      Zara comes over the top. She lands correctly — weight distributed, controlled —
+      and then something is wrong. She goes down on one knee.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C06]
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Climbing and landing competently, then struck; down on one knee, injured."
+    camera: { angle: eye_level, framing: medium, movement: tracking, lens_bias: "Zara's descent; the landing; then the collapse onto one knee" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.6, camera_intensity: 0.3, blocking_notes: "Practiced landing disrupted by injury. The moment of realization visible in the kneeling posture." }
+    notes: "Turning point. Zara has been shot from the north junction. The scene shifts from evasion to casualty management under time pressure."
+
+  - beat_id: NADIA_AT_SIDE_FOUR_SECONDS
+    content: >
+      Nadia is at her side in the four seconds before the calculation catches up to
+      the movement. NADIA (very low): 'Where.'
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01, C06]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Moving to Zara before thought completes; assessing injury location."
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Injured; kneeling; reporting injury status."
+    camera: { angle: eye_level, framing: medium_close, movement: handheld, lens_bias: "Nadia reaching Zara; their proximity; the injury check" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.5, camera_intensity: 0.2, blocking_notes: "Nadia's response is reflexive and immediate. 'Where' is tactical assessment, not emotional." }
+    notes: "The four-second reflex vs. the calculation delay demonstrates Nadia's operational conditioning. She acts before she fully processes."
+
+  - beat_id: ZARA_REPORTS_WOUND
+    content: >
+      ZARA: 'Left side. High. Something from the north junction — I didn't —' She stops.
+      Breathes. Her hand is at her side below the jacket. When she pulls it back the dark is darker.
+      ZARA (CONT'D): 'I didn't hear it.'
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C06]
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Reporting the wound location and vector; registering the suppressed-round signature."
+    camera: { angle: eye_level, framing: medium_close, movement: handheld, lens_bias: "Zara's hand pulling back; the dark visibility of blood; her face" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.25, camera_intensity: 0.1, blocking_notes: "Zara is controlled but clearly injured. The 'didn't hear it' is the signature of a suppressed round." }
+    notes: "Suppressed round from north junction. This is Dimitri's area-deployment overflow: Nadia counted 2 teams, but Dimitri fielded a third vector (north element) that exceeds standard parameters."
+
+  - beat_id: NADIA_WOUND_ASSESSMENT
+    content: >
+      A suppressed round. From the north junction — an element they hadn't placed, a third
+      vector, the part of Dimitri's deployment that exceeded what any standard-parameter
+      hunt would have fielded. Roman deploys precision. Dimitri deployed area.
+      Nadia looks at her hand. Looks at the direction of the north junction. Looks at
+      the fifty meters between them and the drainage cut. She does not look at the wound
+      to assess it. She has already assessed it by feel, by the location of Zara's hand,
+      by the quality of the breathing. She knows what it is.
+    semantic_duration_hint: long_hold
+    may_merge_with_next: false
+    splittable: true
+    narrative_role: hold
+    required_element_ids: [C01, C06]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Assessing Zara's wound silently; looking at the geometry of the remaining distance; recalculating."
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Wounded, breathing, waiting for Nadia's assessment and decision."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia and Zara; the wound; the distance to the cut as backdrop" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0, blocking_notes: "Nadia's assessment is silent. The internal read (hand location, breathing quality, wound severity) is not vocalised but is complete." }
+    notes: "Nadia's clinical read of the wound is load-bearing for the continuation decision. She knows the prognosis without stating it. Zara will move because the alternative is death here."
+
+  - beat_id: NADIA_CAN_YOU_MOVE
+    content: >
+      NADIA (still very low): 'Can you move.' ZARA: 'Yes.' She says it the way she
+      states everything — flat, declarative, no performance in it. Her voice does not ask
+      Nadia to believe her. It simply reports.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C01, C06]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Asking the continuation question."
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Answering affirmatively; flat, no hedging."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "both figures; Nadia's question; Zara's answer" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+    notes: "The 'yes' is not optimistic. It is factual. Zara can move. Whether she can move far enough is a different calculation they're not vocalizing."
+
+  - beat_id: NADIA_THEN_WE_MOVE_NOW
+    content: "NADIA: 'Then we move now.'"
+    semantic_duration_hint: short_insert
+    may_merge_with_next: true
+    splittable: false
+    narrative_role: dialogue
+    required_element_ids: [C01]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Committing to immediate movement."
+    camera: { angle: eye_level, framing: medium_close, movement: static, lens_bias: "Nadia, decision made" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.05, camera_intensity: 0.0 }
+
+  - beat_id: NADIA_SHOULDER_SUPPORT
+    content: >
+      She gets her shoulder under Zara's arm without asking. Zara does not resist this
+      and does not lean into it more than the geometry requires. They are moving before
+      the position is fully settled.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01, C06]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Supporting Zara's weight at arm/shoulder; initiating movement."
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Accepting support without yielding or leaning; moving with Nadia."
+    camera: { angle: eye_level, framing: medium, movement: tracking, lens_bias: "both figures moving together; Nadia supporting; exact positioning" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.5, camera_intensity: 0.2, blocking_notes: "Zara does not resist but also does not lean more than geometry requires. Their movement is balanced, not crutch-and-patient." }
+    notes: "Character-dynamic beat. Zara's independence is maintained even while supported. Nadia provides help without softening the transactional clarity."
+
+  - beat_id: FIFTY_METERS_PRESSURE
+    content: "Fifty meters."
+    semantic_duration_hint: short_insert
+    may_merge_with_next: true
+    splittable: false
+    narrative_role: transition
+    camera: { angle: eye_level, framing: wide, movement: static, lens_bias: "the distance remaining to the drainage cut" }
+    lighting: { source: practical, quality: hard, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.0, camera_intensity: 0.0 }
+
+  - beat_id: DRAINAGE_CUT_DESCRIPTION
+    content: >
+      The drainage cut opens at the base of the embankment — a meter-wide conduit, three
+      decades of concrete grime, running northwest into the outer perimeter's maintenance
+      infrastructure. Low. They will have to bend. Zara will have to bend.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: establish
+    required_element_ids: [LOC001]
+    camera: { angle: low_angle, framing: wide, movement: static, lens_bias: "low angle on the drainage cut opening; concrete, grime, utility aesthetic" }
+    lighting: { source: practical, quality: diffused, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.0, camera_intensity: 0.0, blocking_notes: "Establish the physical constraint: low ceiling, narrow, old infrastructure. Zara injured will have difficulty." }
+    notes: "The drainage cut is the escape vector and the physical challenge. Low height means bending, which Zara will struggle with (high-side torso wound)."
+
+  - beat_id: REACH_CUT
+    content: "They reach it."
+    semantic_duration_hint: short_insert
+    may_merge_with_next: true
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01, C06]
+    camera: { angle: eye_level, framing: medium, movement: tracking, lens_bias: "both figures arriving at the cut opening" }
+    lighting: { source: practical, quality: diffused, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.4, camera_intensity: 0.2 }
+
+  - beat_id: DIMITRI_COMMS_FOUND_OPERATIVE
+    content: >
+      Behind them, south of the embankment — comms frequency activity. Multiple pings.
+      The main element has found the advance operative. DIMITRI (V.O., on radio, closer now):
+      'Northern embankment. All elements converge.'
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: pulse_check
+    required_element_ids: [C01, C06]
+    camera: { angle: eye_level, framing: medium_wide, movement: tracking, lens_bias: "figures at cut entrance; threat closing in, visible in sound and urgency" }
+    lighting: { source: practical, quality: diffused, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.3, camera_intensity: 0.1, blocking_notes: "Figures slowing/pausing at cut. Comms activity registers as immediate threat." }
+    notes: "The hunt has found the operative. All elements are now converging. The window is closing in real time."
+
+  - beat_id: NADIA_PULLS_COVER
+    content: >
+      Nadia pulls the drainage cover. It is heavy and it is old and it moves. They go in.
+    semantic_duration_hint: normal
+    may_merge_with_next: false
+    splittable: false
+    narrative_role: action
+    required_element_ids: [C01, C06]
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: "@C01_NADIA"
+        role: "Pulling the cover; determined effort against resistance."
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: "@C06_ZARA"
+        role: "Supporting herself; ready to enter."
+    camera: { angle: low_angle, framing: medium, movement: handheld, lens_bias: "the heavy cover being pulled; entrance to the conduit; both figures entering" }
+    lighting: { source: practical, quality: diffused, color_temp: cool, intensity: dim }
+    motion: { subject_intensity: 0.6, camera_intensity: 0.2, blocking_notes: "Nadia exerts force against the old, heavy cover. Both figures move into the opening. The cover is pulled shut behind them (implicit)." }
+    notes: "Scene closing image: entry into the drainage infrastructure. The cut offers concealment and a northwest escape vector. The cover closes. They are underground and invisible to ORACLE PRIME and the converging hunt."
+
+provenance:
+  created_by: "claude_code (M5 FAZ A — haiku)"
+  created_at: "2026-06-04T00:00:00Z"

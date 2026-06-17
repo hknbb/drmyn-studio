@@ -1,0 +1,71 @@
+schema_version: "0.x-draft"
+record_type: perspective_qc_report
+perspective_qc_id: PQC_C09_QUAY_V001
+status: approved
+scene_id: SC0047
+element_id: C09
+prompt_pack_id: PPACK_C09_QUAY_V001
+operator_session_ref: OP-2026-06-10-C09-otto-stage3-fourview
+perspective_scores:
+  - prompt_id: PPACK_C09_QUAY_V001__full_body_front
+    perspective: full_body_front
+    identity_preservation: 88
+    perspective_usefulness: 90
+    material_palette_continuity: 91
+    production_reference_cleanliness: 89
+    hallucination_absence: 90
+    silhouette_readability: 89
+    scale_distinction: 90
+    total_score: 90
+    decision: pass
+  - prompt_id: PPACK_C09_QUAY_V001__three_quarter_waist
+    perspective: three_quarter_waist
+    identity_preservation: 91
+    perspective_usefulness: 90
+    material_palette_continuity: 92
+    production_reference_cleanliness: 91
+    hallucination_absence: 91
+    silhouette_readability: 90
+    wardrobe_world_fit: 91
+    view_distinction: 90
+    total_score: 91
+    decision: pass
+  - prompt_id: PPACK_C09_QUAY_V001__close_portrait_front
+    perspective: close_portrait_front
+    identity_preservation: 93
+    perspective_usefulness: 92
+    material_palette_continuity: 90
+    production_reference_cleanliness: 92
+    hallucination_absence: 93
+    character_description_strength: 92
+    identity_readability: 93
+    expression_performance_readability: 91
+    total_score: 92
+    decision: pass
+  - prompt_id: PPACK_C09_QUAY_V001__profile_full
+    perspective: profile_full
+    identity_preservation: 90
+    perspective_usefulness: 90
+    material_palette_continuity: 91
+    production_reference_cleanliness: 90
+    hallucination_absence: 91
+    no_directional_confusion: 90
+    total_score: 90
+    decision: pass
+gate:
+  minimum_score: 85
+  all_four_required: true
+  all_perspectives_required: true
+  can_advance_to_kling_reference: true
+notes: >
+  Real review of operator-approved Stage-3 four_view_scale_angle_v3 set for @C09_OTTO
+  (archived, git-ignored). All four views read as the same man — sixty to seventy,
+  solid settled build, grey close-kept hair, weathered skin, flat unsentimental presence.
+  Identity consistent across all four perspectives; solid convergence with ott_2.png lock.
+  WD014 dark navy/dark blue jacket with muted olive-green inner layer clearly visible in
+  three-quarter, full-body, and profile views. Worn boots and dark navy trousers in
+  full-body view confirm head-to-toe wardrobe compliance. Close portrait delivers
+  sharpest face-geometry fidelity — strongest identity readability. Profile clean lateral,
+  olive-green accent confirms layered depth. All perspectives >= 85; full_body_front lowest
+  (90) due to very slightly heavier build read at full body vs ott_2. Dual-reference seeded
+  (MJ_C09_OREFLOCK_V001 primary + MJ_C09_HERO_V001 secondary).

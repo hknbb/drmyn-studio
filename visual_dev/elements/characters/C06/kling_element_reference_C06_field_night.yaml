@@ -1,0 +1,30 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KER_C06_FIELD_NIGHT_V001
+status: approved
+element_id: C06
+element_type: character
+source_midjourney_reference:
+  reference_id: MJ_C06_OREFLOCK_V001
+  prompt_id: SC0089__t2i-char-c06-oref-lock-mj-v7__v01
+  operator_session_ref: OP-2026-06-10-C06-zara-stage3-fourview
+gpt_images_2_perspectives:
+  full_body_front: PPACK_C06_FIELD_NIGHT_V001__full_body_front
+  three_quarter_waist: PPACK_C06_FIELD_NIGHT_V001__three_quarter_waist
+  close_portrait_front: PPACK_C06_FIELD_NIGHT_V001__close_portrait_front
+  profile_full: PPACK_C06_FIELD_NIGHT_V001__profile_full
+continuity_anchors:
+  - "Locked @C06_ZARA identity: woman mid 30s to early 40s, lean athletic build, West African heritage clear in face geometry and skin tone."
+  - "Dark hair pulled back short and practical; no glamor; trained physical economy; contained operational presence."
+  - "Warmth beneath operational guard: quiet intelligent eyes readable as trustworthy even at rest; not cold, not editorial."
+  - "WD013 khaki/olive-tan operational wardrobe: khaki shirt/blouse, olive trousers, practical boots — earth-tone palette throughout."
+  - "No jewelry, no insignia, no tactical rig, no weapon as identity prop."
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-2026-06-10-C06-zara-stage3-fourview
+downstream_use:
+  - kling_omni_3_shot_prompt
+source_refs:
+  gpt_images_pack_ref: visual_dev/elements/characters/C06/perspective_packs/PPACK_C06_FIELD_NIGHT_V001.yaml
+  element_sheet_ref: visual_dev/elements/characters/C06/look_sheets/LOOKSHEET_C06_FIELD_NIGHT_V001.yaml

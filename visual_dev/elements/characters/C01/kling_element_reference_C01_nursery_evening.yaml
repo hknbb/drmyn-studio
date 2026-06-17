@@ -1,0 +1,29 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KER_C01_NURSERY_EVENING_V001
+status: approved
+element_id: C01
+element_type: character
+source_midjourney_reference:
+  reference_id: MJ_C01_OREFLOCK_V001
+  prompt_id: SC0014__t2i-char-c01-oref-lock-mj-v7__v01
+  operator_session_ref: OP-2026-06-08-C01-nursery-fourview
+gpt_images_2_perspectives:
+  full_body_front: PPACK_C01_NURSERY_EVENING_V001__full_body_front
+  three_quarter_waist: PPACK_C01_NURSERY_EVENING_V001__three_quarter_waist
+  close_portrait_front: PPACK_C01_NURSERY_EVENING_V001__close_portrait_front
+  profile_full: PPACK_C01_NURSERY_EVENING_V001__profile_full
+continuity_anchors:
+  - "Locked Nadia identity: soft rounded face, gently rounded jaw, full soft cheeks, warm large almond eyes, soft full lips, small soft nose, light freckles; early-to-mid 30s; dark hair loosely up."
+  - "Calm naturally warm resting expression (relaxed closed lips, no smile)."
+  - "WD010 domestic-evening wardrobe: cream/ivory fine knit + warm-taupe drawstring trousers + socks."
+  - "Neutral clean background; even soft light; restrained natural realism (not angular, not cold, no glamour)."
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-2026-06-08-C01-nursery-fourview
+downstream_use:
+  - kling_omni_3_shot_prompt
+source_refs:
+  gpt_images_pack_ref: visual_dev/elements/characters/C01/perspective_packs/PPACK_C01_NURSERY_EVENING_V001.yaml
+  element_sheet_ref: visual_dev/elements/characters/C01/look_sheets/LOOKSHEET_C01_NURSERY_EVENING_V001.yaml

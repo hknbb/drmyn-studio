@@ -1,0 +1,120 @@
+schema_version: "0.x-draft"
+record_type: gpt_images_perspective_pack
+prompt_pack_id: PPACK_C01_COMPOUND_BATTLEWORN_V001
+status: draft
+source_reference_id: "DUAL SEED. PRIMARY (geometry/pose/light/expression) = MJ_C01_OREFLOCK_V001 Stage-2 --oref lock (archive/nexuszero/_elements/C01/stage2/images/u9435212546_Same_woman_identical_face_-_early-to-mid_thirties_213e614e-8328-4a65-a5c8-30d4d983130f_2.png; sha256 11f6710e87285c24df07677d84e27478437f63da49cccd403f1673ea47dd573a). SECONDARY (skin tone, warmth, hair detail only) = MJ_C01_HERO_V001 Stage-1 hero (archive/nexuszero/_elements/C01/stage1/images/u9435212546_Natural_relaxed_portrait_of_a_warm_kind_gentle_wo_3aa0e83b-7f2d-44c5-9668-948f15f791a6_3.png; sha256 4d2ccc4f5a73a71f13c4fe75b53b14060621eb08b5a79e4563640dc4312d59eb). Take pose/framing from PRIMARY and only skin tone + warmth + hair texture from SECONDARY; apply the battle-worn state (dirt/sweat/minor blood) on top of this preserved identity."
+target_model: chatgpt_images_2
+target_role: multi_perspective_element_expander
+element_id: C01
+element_type: character
+perspective_policy: four_view_scale_angle_v3
+full_body_visible: true
+shared_preservation_instruction: >
+  Use the two references: take pose and framing from the PRIMARY (Stage-2 lock) and only
+  skin tone, warmth and hair texture from the SECONDARY (Stage-1 hero); do not copy the
+  Stage-1 light/angle/background. Apply the battle-worn state on top of this preserved
+  identity.
+  Preserve the locked Nadia identity exactly across all four views — same warm,
+  soft-structured face from the seed: soft rounded face shape, gently rounded jawline,
+  full soft cheeks, gentle features, warm large almond eyes, soft full lips, small soft
+  nose, light natural freckles; early-to-mid 30s; slim healthy build; dark hair now
+  disordered/loosened/sweat-stuck. Even battered she is unmistakably herself — the soft
+  face geometry stays constant and her humanity reads through the exhaustion (hurt and
+  spent but resolute, not a hardened action figure). Same SC0111 battle-worn wardrobe
+  state (WD011: dark technical top now
+  grimed/bloodied, durable dark trousers now dirt-marked/torn at left thigh, low-profile
+  dark jacket now compromised/torn at left shoulder, dark operational boots now scuffed)
+  in every view. Restrained realistic injury visible consistently (dirt, sweat, favoring
+  left side, minor blood); no gore, no stylization. Change only camera scale and angle,
+  never the person or the garments. Restrained realism; no redesign, no stylization, no
+  fashion-editorial; neutral clean background; no text, no watermark.
+source_refs:
+  scene_card_ref: planning/scenes/SC0111/scene_card.yaml
+  element_sheet_ref: visual_dev/elements/characters/C01/look_sheets/LOOKSHEET_C01_COMPOUND_BATTLEWORN_V001.yaml
+  model_guidance_snapshot_ref: evidence/model_guidance_snapshots/20260504T113000Z_chatgpt_image.yaml
+prompts:
+  - prompt_id: PPACK_C01_COMPOUND_BATTLEWORN_V001__full_body_front
+    perspective: full_body_front
+    prompt_text: >
+      Full-body front view, head to feet in frame, of the locked reference woman in her
+      battle-worn state after close-quarters combat: grimed/bloodied dark technical top,
+      dirt-marked/torn dark trousers (torn at left thigh), compromised low-profile dark
+      jacket (torn at left shoulder), scuffed dark operational boots. Hair disordered,
+      loosened, sweat-stuck. Standing exhausted but upright, left-side deficit favored,
+      visible sweat and dirt, minor blood on left side and hands. Harsh institutional
+      low corridor light, cool color temperature. Neutral clean background. Preserve
+      identity, wardrobe state, and restrained injury exactly; restrained realism, no
+      redesign, no gore, no text, no watermark.
+    constraints:
+      - "Head-to-toe, no cropping of feet or head."
+      - "Same identity + WD011 battle-worn wardrobe state as the locked reference."
+      - "Hair disordered/loosened/sweat-stuck; exhaustion and injury visible (left-side favoring, dirt, sweat, minor blood)."
+      - "Neutral background; no scene set dressing."
+      - "Restrained realistic injury; no gore, no stylization."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "2:3"
+  - prompt_id: PPACK_C01_COMPOUND_BATTLEWORN_V001__three_quarter_waist
+    perspective: three_quarter_waist
+    prompt_text: >
+      Three-quarter angle, waist-up framing, of the same locked reference woman in the
+      identical battle-worn wardrobe. Body turned ~30-45 degrees, head toward camera,
+      exhausted watchfulness legible. Hair disordered/loosened/sweat-stuck. Visible dirt,
+      sweat, minor blood on left shoulder/arm/chest where jacket is torn. Harsh
+      institutional corridor light, cool color temperature. Neutral clean background.
+      Preserve identity, garments, and restrained injury exactly; restrained realism, no
+      redesign, no gore, no text, no watermark.
+    constraints:
+      - "Waist-up scale; three-quarter body angle."
+      - "Identity + wardrobe battle-worn state identical to full_body_front."
+      - "Hair and injury state consistent across perspectives."
+      - "Neutral background."
+      - "Restrained realistic injury; no gore."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+  - prompt_id: PPACK_C01_COMPOUND_BATTLEWORN_V001__close_portrait_front
+    perspective: close_portrait_front
+    prompt_text: >
+      Close front portrait, chest-up, of the same locked reference woman — full frontal
+      face for identity lock. Soft rounded face, full soft cheeks, warm large almond
+      eyes, soft full lips, light freckles (the soft face geometry stays constant); dark
+      hair disordered, loosened, stuck with sweat; exhausted, hurting and spent but
+      resolute — human resolve legible, not cold survival-hardness. Exact face geometry
+      from the seed. Visible sweat, some dirt on face and neck. Harsh institutional
+      corridor light, cool color temperature. Neutral clean background. Preserve identity
+      exactly; not angular, no sharp cheekbones, no glamour, no gore, no redesign, no
+      text, no watermark.
+    constraints:
+      - "Chest/shoulders/head; fully frontal face."
+      - "Maximum face-geometry fidelity to the locked reference."
+      - "Hair and exhaustion state clearly visible; sweat/dirt on face and neck."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+  - prompt_id: PPACK_C01_COMPOUND_BATTLEWORN_V001__profile_full
+    perspective: profile_full
+    prompt_text: >
+      Side profile view of the same locked reference woman in the identical battle-worn
+      wardrobe, for a 3D identity wrap. Clean lateral profile, disordered/sweat-stuck
+      hair visible, exhaustion and alert posture legible in neck and shoulders. Dark
+      technical top grimed/bloodied, visible sweat and dirt, minor blood on left
+      shoulder/arm (torn jacket visible). Harsh institutional corridor light, cool color
+      temperature. Neutral clean background. Preserve identity and warments exactly;
+      restrained realism, no redesign, no gore, no text, no watermark.
+    constraints:
+      - "True side profile (90 degrees)."
+      - "Identity + wardrobe battle-worn state identical to the other three views."
+      - "Hair disorder and left-side injury state clearly visible in profile."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+qc_gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  failed_perspective_revision_only: true
+downstream_use:
+  - "kling_element_reference_record for C01 compound battle-worn look (SC0111)"
+  - "SC0111 omni clip generation (Nadia element attach)"

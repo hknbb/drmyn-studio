@@ -1,0 +1,112 @@
+schema_version: 0.x-draft
+record_type: omni_clip_plan
+scene_id: SC0089
+source_scene_beat_plan_ref: planning/scenes/SC0089/scene_beat_plan.yaml
+source_dialogue_beats_ref: planning/scenes/SC0089/dialogue_beats.yaml
+clip_summaries:
+- clip_id: CLIP_SC0089_01
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_01_manifest.yaml
+  total_duration_seconds: 15
+  source_beat_count: 2
+- clip_id: CLIP_SC0089_02
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_02_manifest.yaml
+  total_duration_seconds: 5
+  source_beat_count: 1
+- clip_id: CLIP_SC0089_03
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_03_manifest.yaml
+  total_duration_seconds: 11
+  source_beat_count: 1
+- clip_id: CLIP_SC0089_04
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_04_manifest.yaml
+  total_duration_seconds: 15
+  source_beat_count: 4
+- clip_id: CLIP_SC0089_05
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_05_manifest.yaml
+  total_duration_seconds: 15
+  source_beat_count: 4
+- clip_id: CLIP_SC0089_06
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_06_manifest.yaml
+  total_duration_seconds: 13
+  source_beat_count: 3
+- clip_id: CLIP_SC0089_07
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_07_manifest.yaml
+  total_duration_seconds: 11
+  source_beat_count: 1
+- clip_id: CLIP_SC0089_08
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_08_manifest.yaml
+  total_duration_seconds: 15
+  source_beat_count: 3
+- clip_id: CLIP_SC0089_09
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_09_manifest.yaml
+  total_duration_seconds: 12
+  source_beat_count: 3
+- clip_id: CLIP_SC0089_10
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_10_manifest.yaml
+  total_duration_seconds: 13
+  source_beat_count: 3
+- clip_id: CLIP_SC0089_11
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_11_manifest.yaml
+  total_duration_seconds: 8
+  source_beat_count: 2
+- clip_id: CLIP_SC0089_12
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_12_manifest.yaml
+  total_duration_seconds: 14
+  source_beat_count: 3
+- clip_id: CLIP_SC0089_13
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_13_manifest.yaml
+  total_duration_seconds: 9
+  source_beat_count: 3
+- clip_id: CLIP_SC0089_14
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_14_manifest.yaml
+  total_duration_seconds: 10
+  source_beat_count: 1
+- clip_id: CLIP_SC0089_15
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_15_manifest.yaml
+  total_duration_seconds: 14
+  source_beat_count: 2
+- clip_id: CLIP_SC0089_16
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_16_manifest.yaml
+  total_duration_seconds: 10
+  source_beat_count: 2
+- clip_id: CLIP_SC0089_17
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_17_manifest.yaml
+  total_duration_seconds: 14
+  source_beat_count: 2
+- clip_id: CLIP_SC0089_18
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_18_manifest.yaml
+  total_duration_seconds: 14
+  source_beat_count: 4
+- clip_id: CLIP_SC0089_19
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_19_manifest.yaml
+  total_duration_seconds: 12
+  source_beat_count: 3
+- clip_id: CLIP_SC0089_20
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_20_manifest.yaml
+  total_duration_seconds: 7
+  source_beat_count: 1
+- clip_id: CLIP_SC0089_21
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_21_manifest.yaml
+  total_duration_seconds: 14
+  source_beat_count: 2
+- clip_id: CLIP_SC0089_22
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_22_manifest.yaml
+  total_duration_seconds: 14
+  source_beat_count: 4
+- clip_id: CLIP_SC0089_23
+  clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_23_manifest.yaml
+  total_duration_seconds: 12
+  source_beat_count: 3
+packing_strategy:
+  packer_version: rhythm_aware_v1
+  packing_mode: rhythm_aware_constrained
+  cut_point_preference_order:
+  - location_transition
+  - dialogue_exchange_end
+  - object_discovery
+  - beat_boundary
+notes: 'Computed by omni_clip_planner packer_version=rhythm_aware_v1. Clip count is
+  derived, not authored. Hard constraints: shot [3..15]s integer-only, clip total
+  <=15s, no short_insert as standalone shot, no unsplittable beat split.'
+provenance:
+  created_by: claude_code (M5 FAZ C)
+  created_at: '2026-06-04T10:47:13Z'

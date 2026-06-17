@@ -1,0 +1,66 @@
+record_type: model_guidance_snapshot
+schema_version: "0.x-draft"
+snapshot_id: "20260615T000000Z_chatgpt_image_best_available"
+internal_model_target: chatgpt_image_best_available
+provider: openai
+model_family: image_generation
+provider_surface: chatgpt_ui
+observed_at: "2026-06-15T00:00:00Z"
+expires_at: "2026-08-15T00:00:00Z"
+human_verified: true
+current_default_model: "gpt-image-2"
+latest_available_model: "gpt-image-2"
+best_for_this_task: "gpt-image-2"
+feature_required_model:
+  natural_language_revision: "gpt-image-2"
+  image_editing: "gpt-image-2"
+  multi_image_reference: "gpt-image-2"
+  shot_still_generation: "gpt-image-2"
+version_policy:
+  hardcode_in_adapter: false
+  adapter_must_read_snapshot: true
+  prompt_generation_blocks_if_expired: true
+  prompt_generation_blocks_if_unverified: true
+sources:
+  - source_type: official_docs
+    title: "OpenAI image generation guide"
+    retrieved_at: "2026-06-15T00:00:00Z"
+    url: "https://developers.openai.com/api/docs/guides/image-generation"
+  - source_type: official_docs
+    title: "gpt-image-2 model documentation"
+    retrieved_at: "2026-06-15T00:00:00Z"
+    url: "https://developers.openai.com/api/docs/models/gpt-image-2"
+  - source_type: official_docs
+    title: "OpenAI image generation API reference (multimodal input limits)"
+    retrieved_at: "2026-06-15T00:00:00Z"
+    url: "https://developers.openai.com/api/docs/guides/image-generation"
+capabilities:
+  output_type: image
+  supports_negative_prompt: false
+  supports_natural_language_revision: true
+  supports_image_editing: true
+  supports_multi_image_reference: true
+  max_input_images: 16
+  max_output_images: 10
+  max_image_size_mb: 50
+  supported_input_formats:
+    - PNG
+    - WebP
+    - JPG
+constraints:
+  negative_prompt_strategy: embedded_positive_constraints
+  recommended_prompt_style: natural_language_sentences
+  max_input_images: 16
+  max_output_images: 10
+  max_image_size_mb: 50
+prompting_rules:
+  - "Use full natural-language instructions; avoid Midjourney-style flag syntax."
+  - "Embed exclusions directly in prompt text because no separate negative_prompt field exists."
+  - "Use preserve lists for iterative edits to minimize identity drift."
+  - "For multi-image reference input (shot still generation): upload per-shot element reference images as input_reference_images (≤16 total); each character/prop/location element occupies one input slot. A 22-shot scene must be split per-clip (≤6 stills per clip) — scene-wide upload exceeds the 16-image limit."
+  - "For contact-sheet generation: supply the ordered per-shot stills (≤6 for a standard clip) as input images; compose a labeled panel grid in the prompt. Contact sheets are storyboard/QC references only, not identity-lock sources."
+  - "Image size limit per input image: 50 MB. PNG, WebP, and JPG are accepted input formats."
+  - "Output images per call: up to 10. For a 6-shot contact sheet, a single call produces 1 composite; for per-shot stills, batch ≤10 shots per call."
+provenance:
+  created_by: claude_code
+  created_at: "2026-06-15T00:00:00Z"

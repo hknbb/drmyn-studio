@@ -1,0 +1,41 @@
+prompt_id: SC0014__contact-clip-03__v01
+scene_id: SC0014
+prompt_type: shot_design
+lifecycle_stage: deprecated
+target_models:
+- gpt-image-2
+source_refs:
+  scene_card: planning/scenes/SC0014/scene_card.yaml
+  scene_excerpt: planning/scenes/SC0014/manifests/CLIP_SC0014_03_manifest.yaml
+prompt_text: 'Compose a 3-panel cinematic storyboard contact sheet for clip CLIP_SC0014_03. Arrange the 3 provided shot stills
+  in a single-row or grid layout with clear panel dividers. Label each panel at the bottom with its shot number and framing.
+  Panel layout: Panel 1: Shot 1 | establish | 5s | medium_wide; Panel 2: Shot 2 | reverse | 3s | medium_close; Panel 3: Shot
+  3 | resolve | 5s | close. Style: clean production storyboard, dark background, minimal label text. Constraints: No additional
+  narrative content, no extra characters or objects. No subtitles, no visible timecode overlay burned into the image panels,
+  no visible grid lines outside panel borders.'
+generation_params:
+  provider: openai
+  provider_surface: chatgpt_ui
+  model_guidance_snapshot_ref: model_guidance_snapshots/openai/20260615T000000Z_chatgpt_image_best_available.yaml
+  resolved_model_name: gpt-image-2
+  resolved_model_role: best_for_this_task
+  constraint_strategy: embedded_positive_constraints
+  clip_id: CLIP_SC0014_03
+  panel_count: 3
+  ordered_shot_stills: &id001
+  - SC0014_07_clip-sc0014-03_shot-sc0014-03-a.png
+  - SC0014_08_clip-sc0014-03_shot-sc0014-03-b.png
+  - SC0014_09_clip-sc0014-03_shot-sc0014-03-c.png
+  operator_upload_order: *id001
+  contact_sheet_for_kling_default: 'off'
+  repo_binary_committed: false
+  external_generation_required: true
+expected_output:
+  asset_type: image_set
+  aspect_ratio: '16:9'
+  variation_count: 1
+status: deprecated
+canon_lock: false
+provenance:
+  created_by: claude_code
+  created_at: '2026-06-15T00:00:00Z'

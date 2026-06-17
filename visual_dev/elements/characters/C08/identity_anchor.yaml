@@ -1,0 +1,54 @@
+schema_version: "0.x-draft"
+record_type: character_identity_anchor
+identity_anchor_id: C08_IDENTITY_ANCHOR_V001
+character_id: C08
+status: identity_locked_stage2
+source_reference_strategy:
+  reference_sheet_allowed_as_identity_source: false
+  final_hero_lock_requires_single_clean_image: true
+  contact_sheet_layout_forbidden_as_lock: true
+source_reference_sheet_ref: prompts/draft/SC0014__t2i-char-c08-identity-mj-v8__v01.yaml
+front_hero_lock_ref:
+  pending: false
+  stage1_narrative_identity_locked: true
+  protected_subject_gate: "Operator explicitly authorized Stage-1 identity generation on 2026-06-09; safe/supported-only constraints remain binding through every downstream stage."
+  selected_hero_id: MJ_C08_HERO_V001
+  media_index_ref: evidence/local_media_indices/LOCAL_MEDIA_INDEX__elements_ARCHIVE_V001.yaml
+  external_ref: "archive/nexuszero/_elements/C08/stage1/images/MJ_C08_HERO_V001.png"
+  sha256: "37a196ad892672affca7a21ad87f6321d1218701076efb2477226ac5a8a0f532"
+  approved_by: operator
+  approved_at: "2026-06-09T00:00:00Z"
+  selection_basis: "Operator-approved single clean image from MJ v8.1 J1 batch (aa47c521); cleanest frontal identity readability, calm, safe and fully supported, pale-blue bracelet present."
+  next_external_step: "Stage 2 — MJ V7 --oref refinement seeded from this hero (safe/supported framing), then Stage 3 ChatGPT four_view_scale_angle_v3."
+stage2_identity_lock_ref:
+  locked: true
+  selected_lock_id: MJ_C08_OREFLOCK_V001
+  prompt_ref: prompts/draft/SC0014__t2i-char-c08-oref-lock-mj-v7__v01.yaml
+  media_index_ref: evidence/local_media_indices/LOCAL_MEDIA_INDEX__elements_ARCHIVE_V001.yaml
+  external_ref: "archive/nexuszero/_elements/C08/stage2/images/jin2_4.png"
+  sha256: "8c766a47007d1f5e0330e5315f0ea9b7b1ec3da142c268b8d9128cc1c5050db1"
+  oref_source_hero_id: MJ_C08_HERO_V001
+  approved_by: operator
+  approved_at: "2026-06-09T00:00:00Z"
+  selection_basis: "Operator-approved from J2 --oref batch (89ce3688_1); sweet chubby identity, calm, safe/supported, bracelet present. Identity consistency with Stage-1 hero confirmed across the batch."
+  next_external_step: "Stage 3 — ChatGPT Images 2 four_view_scale_angle_v3, DUAL-seeded (Stage-2 lock primary + Stage-1 hero secondary), safe/supported framing only; then real perspective_qc (>=85) -> kling_element_reference -> binding 'created'."
+fixed_identity_anchors:
+  - "Infant, approximately eight months old; the specific child Jin in the SC0014 nursery scene."
+  - "Warm, soft, tender baby: soft round face, full chubby cheeks, big gentle warm eyes, tiny soft features, fine wispy hair, soft healthy skin — sweet and relatable, never clinical."
+  - "Calm, safe, fully supported at all times; identity read as an ordinary, peaceful baby."
+mutable_appearance_allowed:
+  - "Held position / supported pose within safe handling."
+  - "Pale blue name bracelet present on wrist (load-bearing scene prop)."
+forbidden_drift:
+  - "PROTECTED SUBJECT — no distress, fear, crying, or peril imagery; no unsafe, unsupported, or restraint handling."
+  - "Do not age the child up or down; do not place the infant in any context outside SC0014's supported, safe framing."
+  - "No exploitation of the child for emotional effect; the taking is carried by adult performance and Nadia's POV, never by the infant."
+notes: >
+  PROTECTED SUBJECT identity anchor for the infant Jin (C08). HARD GATE: no external
+  generation of any kind until explicit human review and approval (per
+  planning/scenes/SC0014/scene_card.yaml notes_grounding). This record is metadata
+  only. All handling must read safe and supported; infant distress stays off-frame in
+  any downstream shot. Authored fresh under Production System v2 after teardown.
+provenance:
+  created_by: "claude_code (M5 FAZ B)"
+  created_at: "2026-06-04T00:00:00Z"

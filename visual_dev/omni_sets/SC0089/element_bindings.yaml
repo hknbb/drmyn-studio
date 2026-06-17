@@ -1,0 +1,68 @@
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: C01
+element_type: character
+kling_alias: "@C01_NADIA"
+binding_status: created
+platform_asset_ref: visual_dev/elements/characters/C01/kling_element_reference_C01_field_night.yaml
+platform_asset_ref_note: "KER_C01_FIELD_NIGHT_V001 — field-night four-view Kling element reference (QC>=85)."
+voice_capability: none
+native_audio_readiness: blocked
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+speaker_mapping:
+  - speaker_element_id: C01
+    speaker_kling_alias: "@C01_NADIA"
+    dialogue_required: true
+    native_audio_readiness: blocked
+notes: "Nadia. Primary speaker in the corridor exchange. Visual binding promoted to 'created' (KER_C01_FIELD_NIGHT_V001, QC>=85). Voice still not provisioned -> dialogue suppressed (Format A) until a Kling-native voice exists."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
+---
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: C06
+element_type: character
+kling_alias: "@C06_ZARA"
+binding_status: created
+platform_asset_ref: visual_dev/elements/characters/C06/kling_element_reference_C06_field_night.yaml
+platform_asset_ref_note: "KER_C06_FIELD_NIGHT_V001 — field-night four-view Kling element reference (QC>=85)."
+voice_capability: none
+native_audio_readiness: blocked
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+speaker_mapping:
+  - speaker_element_id: C06
+    speaker_kling_alias: "@C06_ZARA"
+    dialogue_required: true
+    native_audio_readiness: blocked
+notes: "Zara. On-screen speaker alongside Nadia; takes the wound mid-scene. Visual binding promoted to 'created': Stage-1 hero (MJ_C06_HERO_V001) + Stage-2 lock (MJ_C06_OREFLOCK_V001) + Stage-3 four-view QC>=85 (PQC_C06_FIELD_NIGHT_V001) + reference KER_C06_FIELD_NIGHT_V001. Khaki/olive-tan WD013 wardrobe. Voice not provisioned -> dialogue suppressed (Format A) until Kling-native voice available."
+provenance: { created_by: "claude_code (M5 FAZ B)", created_at: "2026-06-10T00:00:00Z" }
+---
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: C04
+element_type: character
+kling_alias: "@C04_DIMITRI"
+binding_status: planned
+voice_capability: none
+native_audio_readiness: blocked
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+speaker_mapping:
+  - speaker_element_id: C04
+    speaker_kling_alias: "@C04_DIMITRI"
+    dialogue_required: false
+    native_audio_readiness: blocked
+notes: "Dimitri. Off-screen voice on the command radio only (no on-screen presence in SC0089)."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
+---
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: LOC005
+element_type: location
+kling_alias: "@LOC005_CORRIDOR"
+binding_status: created
+platform_asset_ref: visual_dev/elements/locations/LOC005/kling_element_reference_LOC005_corridor.yaml
+platform_asset_ref_note: "KER_LOC005_CORRIDOR_V001 — three-view scale-angle Kling location reference (QC>=85)."
+voice_capability: none
+native_audio_readiness: not_required
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+notes: "Northern transit corridor (night exterior). Promoted to 'created': Stage-1 first-reference (CHATGPTIMG_LOC005_FIRSTREF_V001) + Stage-2 three-view QC>=85 (PQC_LOC005_CORRIDOR_NIGHT_V001) + reference KER_LOC005_CORRIDOR_V001. Cold industrial night; overhead light pools separated by deep darkness; concrete + drainage embankment; no warmth."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }

@@ -1,0 +1,48 @@
+session_id: OP-2026-06-14-kling-o3-goro-coverage-dialogue-v04
+created_at: "2026-06-14T00:00:00Z"
+scene_id: SC0014
+current_task: "Kling O3 prompt system revised to Goro-style coverage + verbatim inline dialogue; SC0014 v04 package"
+status: complete
+recommended_files:
+  - prompts/draft/SC0014__omni-kling-omni-clip-clip-sc0014-01-safe__v04.yaml
+  - prompts/draft/SC0014__omni-kling-omni-clip-clip-sc0014-02-safe__v04.yaml
+  - prompts/draft/SC0014__omni-kling-omni-clip-clip-sc0014-03-safe__v04.yaml
+  - prompts/draft/SC0014__omni-kling-omni-clip-clip-sc0014-04-safe__v04.yaml
+  - prompts/draft/SC0014__omni-kling-omni-clip-clip-sc0014-05-safe__v04.yaml
+  - prompts/draft/SC0014__omni-kling-omni-clip-clip-sc0014-06-safe__v04.yaml
+  - prompts/draft/SC0014__omni-kling-omni-clip-clip-sc0014-07-safe__v04.yaml
+  - prompts/draft/SC0014__omni-kling-omni-clip-clip-sc0014-08-safe__v04.yaml
+recommended_steps:
+  - "Operator should use the v04 prompt records for the next Kling O3 attempt; v01/v02/v03 were deleted at operator request (v04 is the only clip prompt set)."
+  - "Dimitri's three verbatim lines now render as alias-tagged on-screen dialogue text in their speaking shots (CLIP_03 x2, CLIP_04 x1); native spoken VOICE stays off for the protected-subject visual_test pass (audio_gate_status=allowed_audio_off)."
+  - "After generation, archive media and continue with video_takes -> video_review -> selected_take -> scene_clip_map."
+notes: >
+  Operator reported the Kling O3 system still produced static long single-take prompts
+  (the v03 'repair' split one hold into two IDENTICAL wide shots and dumped
+  Camera:/Lighting:/Motion: telemetry) and, critically, dropped the characters'
+  verbatim dialogue entirely (blocked native_audio_readiness suppressed the line text).
+  Approved plan applied (no new story facts):
+  (1) Renderer (scripts/agents/adapters/kling_omni.py) rewritten to Goro-style
+  timecode-first blocks "[MM:SS - MM:SS] <Framing label>: <action + performance>.
+  <camera prose>. Audio: <diegetic cue>. -- @Alias (tone): \"line\"" — no "Shot N (Xs):"
+  prefix, no added "Cut to", no numeric telemetry; camera/lighting/motion stay in the
+  manifest for QC only.
+  (2) Dialogue decoupled from audio: verbatim line_text ALWAYS renders inline in the
+  speaking shot as alias-tagged text; the readiness/render_pass gate now only controls
+  native spoken-voice generation (audio_gate_status). The old "Audio plan suppressed /
+  text omitted" path was removed.
+  (3) Schemas gained optional per-shot coverage fields (coverage_role, focus_alias,
+  performance_note, diegetic_audio); the deterministic packer no longer fabricates
+  same-frame long-hold splits; new validate_dialogue_coverage guards against any
+  required line being dropped.
+  (4) SC0014 all 8 manifests re-authored as real coverage (establish -> detail/insert ->
+  reverse -> resolve) with cleaned dialogue actions; v04 prompts generated; v01/v02/v03
+  drafts + orphaned v01 run records deleted.
+  (5) CriticAgent's prompt-side lighting/motion "metadata consumption" check was removed
+  (it contradicted the no-telemetry design); manifest-level lighting/motion QC stays via
+  the omni_clip_manifest validators.
+  Validation: SC0014 manifest/figure-roster/continuity-ledger/dialogue-coverage validators
+  all 0 errors; all 8 v04 prompts pass CriticAgent; renderer/planner/golden/critic/dialogue
+  test suites green. Pre-existing, unrelated failures remain from the in-progress 2..15
+  duration migration (omni_clip_plan range test, legacy shot-count gate) and time-based
+  model-guidance snapshot expiry — not introduced by this change.

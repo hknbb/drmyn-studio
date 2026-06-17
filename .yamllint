@@ -1,0 +1,19 @@
+# Blocking yamllint config for state-heavy records (SC0014 manifests + ledger).
+# Only structural problems fail CI; cosmetic style (line length, comment spacing)
+# is disabled so authored prose-in-YAML does not block on length.
+extends: default
+
+rules:
+  line-length: disable
+  comments: disable
+  comments-indentation: disable
+  document-start: disable
+  truthy:
+    check-keys: false
+  braces:
+    max-spaces-inside: 1
+  empty-lines:
+    max: 2
+  # Structural guards that should block:
+  key-duplicates: enable
+  indentation: enable

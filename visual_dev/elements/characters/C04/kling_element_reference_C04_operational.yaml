@@ -1,0 +1,29 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KER_C04_OPERATIONAL_V001
+status: approved
+element_id: C04
+element_type: character
+source_midjourney_reference:
+  reference_id: MJ_C04_OREFLOCK_V001
+  prompt_id: SC0014__t2i-char-c04-oref-lock-mj-v7__v01
+  operator_session_ref: OP-2026-06-09-C04-operational-fourview
+gpt_images_2_perspectives:
+  full_body_front: PPACK_C04_OPERATIONAL_V001__full_body_front
+  three_quarter_waist: PPACK_C04_OPERATIONAL_V001__three_quarter_waist
+  close_portrait_front: PPACK_C04_OPERATIONAL_V001__close_portrait_front
+  profile_full: PPACK_C04_OPERATIONAL_V001__profile_full
+continuity_anchors:
+  - "Locked Dimitri identity: real three-dimensional lived-in human face, early 40s, lean contained build, dark neat hair, steady observant eyes, even calm resting expression."
+  - "Quiet controlled authority / procedural command — unsettling through calm certainty, NOT a caricature or cartoon villain, and NOT warm/sympathetic-soft."
+  - "WD005 operational-executive wardrobe: dark operational-executive jacket or tailored shirt, dark operational trousers, polished dark footwear."
+  - "Neutral clean background; even soft light; natural restrained realism, not glamorous, no cartoon menace."
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-2026-06-09-C04-operational-fourview
+downstream_use:
+  - kling_omni_3_shot_prompt
+source_refs:
+  gpt_images_pack_ref: visual_dev/elements/characters/C04/perspective_packs/PPACK_C04_OPERATIONAL_V001.yaml
+  element_sheet_ref: visual_dev/elements/characters/C04/look_sheets/LOOKSHEET_C04_OPERATIONAL_V001.yaml

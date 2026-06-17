@@ -1,0 +1,114 @@
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: C01
+element_type: character
+kling_alias: "@C01_NADIA"
+binding_status: created
+platform_asset_ref: visual_dev/elements/characters/C01/kling_element_reference_C01_nursery_evening.yaml
+platform_asset_ref_note: "KER_C01_NURSERY_EVENING_V001 — four-view Kling element reference (QC>=85)."
+voice_capability: none
+native_audio_readiness: not_required
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+notes: "Nadia. Silent in SC0014. Promoted to 'created': Stage-1 hero (MJ_C01_HERO_V001) + Stage-2 --oref lock (MJ_C01_OREFLOCK_V001) + Stage-3 four-view QC>=85 (PQC_C01_NURSERY_EVENING_V001) + reference KER_C01_NURSERY_EVENING_V001."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
+---
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: C04
+element_type: character
+kling_alias: "@C04_DIMITRI"
+binding_status: created
+platform_asset_ref: visual_dev/elements/characters/C04/kling_element_reference_C04_operational.yaml
+platform_asset_ref_note: "KER_C04_OPERATIONAL_V001 — operational four-view Kling element reference (QC>=85)."
+voice_capability: none
+native_audio_readiness: blocked
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+speaker_mapping:
+  - speaker_element_id: C04
+    speaker_kling_alias: "@C04_DIMITRI"
+    dialogue_required: true
+    native_audio_readiness: blocked
+notes: "Dimitri. The only speaker in SC0014 (three lines). Visual binding promoted to 'created' (KER_C04_OPERATIONAL_V001, QC>=85). Voice not provisioned -> dialogue suppressed (Format A) until a Kling-native voice is available AND protected-subject review clears the scene."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
+---
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: C08
+element_type: character
+kling_alias: "@C08_JIN"
+binding_status: created
+platform_asset_ref: visual_dev/elements/characters/C08/kling_element_reference_C08_nursery_evening.yaml
+platform_asset_ref_note: "KER_C08_NURSERY_EVENING_V001 — nursery four-view Kling element reference (QC>=85)."
+voice_capability: none
+native_audio_readiness: not_required
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+notes: "Jin (infant). PROTECTED SUBJECT — operator authorized + approved every stage (2026-06-09); visual binding promoted to 'created' (KER_C08_NURSERY_EVENING_V001, QC>=85). Safe/supported-only constraints REMAIN binding for SC0014 omni generation: keep the infant calm/safe/supported, carry the taking via adult performance + Nadia POV, infant distress off-frame. No dialogue."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
+---
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: C10
+element_type: character
+kling_alias: "@C10_ENFORCER"
+binding_status: planned
+voice_capability: none
+native_audio_readiness: not_required
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+notes: "Anonymous enforcer base. Two distinct on-screen figures (@C10_CARRIER, @C10_HOLDER) are authored in the beat-plan figures[] and attached per-figure at prompt time; this is the base element binding."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
+---
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: LOC001
+element_type: location
+kling_alias: "@LOC001_NURSERY"
+binding_status: created
+platform_asset_ref: visual_dev/elements/locations/LOC001/kling_element_reference_LOC001_nursery.yaml
+platform_asset_ref_note: "KER_LOC001_NURSERY_V001 — three-view scale-angle Kling location reference (QC>=85)."
+voice_capability: none
+native_audio_readiness: not_required
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+notes: "Vale residence nursery (LOC001 sub-area). Promoted to 'created': Stage-1 first-reference (CHATGPTIMG_LOC001_FIRSTREF_V001) + Stage-3 three-view QC>=85 (PQC_LOC001_NURSERY_EVENING_V001) + reference KER_LOC001_NURSERY_V001."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
+---
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: PROP001
+element_type: prop
+kling_alias: "@PROP001_BRACELET"
+binding_status: created
+platform_asset_ref: visual_dev/elements/props/PROP001/kling_element_reference_PROP001_bracelet.yaml
+platform_asset_ref_note: "KER_PROP001_BRACELET_V001 — three-view scale-angle Kling prop reference (QC>=85)."
+voice_capability: none
+native_audio_readiness: not_required
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+notes: "Pale blue infant bracelet. Load-bearing SC0014 insert beat. Promoted to 'created': Stage-1 first-reference (CHATGPTIMG_PROP001_FIRSTREF_V001) + Stage-3 three-view QC>=85 (PQC_PROP001_BRACELET_V001) + reference KER_PROP001_BRACELET_V001."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
+---
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: C10
+element_type: character
+kling_alias: "@C10_CARRIER"
+binding_status: created
+platform_asset_ref: visual_dev/elements/characters/C10/kling_element_reference_C10_carrier.yaml
+platform_asset_ref_note: "KER_C10_CARRIER_V001 — four-view Kling element reference (QC>=85)."
+voice_capability: none
+native_audio_readiness: not_required
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+notes: "Figure binding: the enforcer who lifts and carries Jin. Heavier/stockier build, buzzed hair, goatee. Promoted to 'created': Stage-1 hero (MJ_C10_CARRIER_HERO_V001) + Stage-2 lock (MJ_C10_CARRIER_OREFLOCK_V001) + Stage-3 four-view QC>=85 (PQC_C10_CARRIER_V001) + reference KER_C10_CARRIER_V001. Anti-clone distinct from @C10_HOLDER; reinforce at O3 via distinguishing_detail + positioning."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-10T00:00:00Z" }
+---
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: C10
+element_type: character
+kling_alias: "@C10_HOLDER"
+binding_status: created
+platform_asset_ref: visual_dev/elements/characters/C10/kling_element_reference_C10_holder.yaml
+platform_asset_ref_note: "KER_C10_HOLDER_V001 — four-view Kling element reference (QC>=85)."
+voice_capability: none
+native_audio_readiness: not_required
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+notes: "Figure binding: the enforcer who restrains Nadia. Leaner build, fuller short hair + beard. Promoted to 'created': Stage-1 hero (MJ_C10_HOLDER_HERO_V001) + Stage-2 lock (MJ_C10_HOLDER_OREFLOCK_V001) + Stage-3 four-view QC>=85 (PQC_C10_HOLDER_V001) + reference KER_C10_HOLDER_V001. Anti-clone distinct from @C10_CARRIER; reinforce at O3 via distinguishing_detail + positioning."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-10T00:00:00Z" }

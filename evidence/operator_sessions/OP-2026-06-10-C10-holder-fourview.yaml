@@ -1,0 +1,20 @@
+session_id: OP-2026-06-10-C10-holder-fourview
+created_at: "2026-06-10T00:00:00Z"
+scene_id: SC0014
+current_task: "@C10_HOLDER Stage-3 four-view QC + Kling element reference"
+recommended_files:
+  - visual_dev/elements/characters/C10/perspective_packs/PPACK_C10_HOLDER_V001.yaml
+  - evidence/perspective_qc/PQC_C10_HOLDER_V001.yaml
+  - visual_dev/elements/characters/C10/kling_element_reference_C10_holder.yaml
+  - visual_dev/omni_sets/SC0014/element_bindings.yaml
+recommended_steps:
+  - "Operator generated the Stage-3 four-view in ChatGPT Images 2 for @C10_HOLDER with dual references (MJ_C10_HOLDER_OREFLOCK_V001 primary + MJ_C10_HOLDER_HERO_V001 secondary)."
+  - "Operator provided H3 folder; all four views archived as hol_3_1..hol_3_4.png."
+  - "Assistant scored the four perspectives (all >=85) and recorded the perspective_qc_report PQC_C10_HOLDER_V001."
+  - "Promote SC0014 @C10_HOLDER binding to 'created' and author the kling_element_reference_record KER_C10_HOLDER_V001."
+status: complete
+notes: >
+  Real images, real review. Leaner anonymous operative, fuller short hair + short beard,
+  WD009 dark functional clothing. All four perspectives above 85 gate.
+  Anti-clone check: leaner build and fuller hair/beard read distinct from @C10_CARRIER.
+  No fabricated readiness.

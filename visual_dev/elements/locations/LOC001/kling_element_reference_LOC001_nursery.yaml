@@ -1,0 +1,29 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KER_LOC001_NURSERY_V001
+status: approved
+element_id: LOC001
+element_type: location
+source_midjourney_reference:
+  reference_id: CHATGPTIMG_LOC001_FIRSTREF_V001
+  prompt_id: SC0014__t2i-loc-loc001-nursery-first-ref-chatgpt__v01
+  operator_session_ref: OP-2026-06-12-LOC001-nursery-threeview
+gpt_images_2_perspectives:
+  front_reference: PPACK_LOC001_NURSERY_EVENING_V001__front_reference
+  three_quarter_medium_reference: PPACK_LOC001_NURSERY_EVENING_V001__three_quarter_medium
+  three_quarter_close_reference: PPACK_LOC001_NURSERY_EVENING_V001__three_quarter_close
+continuity_anchors:
+  - "Locked LOC001 nursery: small carefully-made room, crib + low shelf + nursing chair, soft warm evening practicals."
+  - "Pale warm-neutral walls; hardwood floor with rug; window showing evening exterior."
+  - "Generous floor and negative space for SC0014 actor blocking (chair center, doorway frame left)."
+  - "No people in location plates; no redesign; consistent lighting across all three views."
+  - "Do not add colder or theatrical lighting — warmth is contained and human, not cozy."
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-2026-06-12-LOC001-nursery-threeview
+downstream_use:
+  - kling_omni_3_shot_prompt
+source_refs:
+  gpt_images_pack_ref: visual_dev/elements/locations/LOC001/perspective_packs/PPACK_LOC001_NURSERY_EVENING_V001.yaml
+  element_sheet_ref: planning/locations/LOC001.yaml

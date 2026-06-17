@@ -1,0 +1,42 @@
+prompt_id: SC0089__t2i-char-c06-identity-mj-v8__v01
+scene_id: SC0089
+prompt_type: t2i_character_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0089/scene_card.yaml
+  scene_excerpt: "Canonical identity reference (Stage 1 of 3) for Zara Okonkwo (C06) across her operational scenes; identity-only, not a final production view. Zara infiltrating the night transit corridor with Nadia (SC0089)."
+  character_refs:
+  - C06
+  aesthetic_refs:
+  - OUTER_DISTRICT_NIGHT
+prompt_text: >-
+  Woman, mid 30s to early 40s, lean athletic build, trained physical economy. West
+  African heritage clear in face geometry, skin tone, and hair texture — real human
+  face with quiet intelligent eyes and natural warmth beneath the operational guard;
+  trustworthy and alive even at rest. Dark hair pulled back short and practical.
+  Contained focused presence; authority from decision precision and physical stillness,
+  not display; not cold, not hard-edged, not editorial. Muted-neutral practical
+  clothing. Real three-dimensional person — human dignity and competence both
+  readable; no glamour, no fashion spread, no action-figure styling. Plain neutral
+  background; restrained realism; no redesign, no text, no watermark
+  --v 8.1 --style raw --ar 2:3 --seed 114006
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  identity_anchor_ref: visual_dev/elements/characters/C06/identity_anchor.yaml
+  stage: "1_of_3_narrative_identity"
+  aesthetic_keywords_injected:
+  - lean athletic trained physical economy
+  - West African heritage; dark hair practical
+  - contained operational presence; authority from stillness
+  - identity over coverage; competence legible
+  planning_name_filter:
+    forbidden:
+    - Zara Okonkwo
+  recommended_model_version: --v 8.1
+  recommended_style: --style raw

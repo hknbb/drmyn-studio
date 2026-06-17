@@ -1,0 +1,20 @@
+wardrobe_id: WD013
+name: "Zara hunter-pool operational attire"
+character_id: C06
+category: OPERATIONAL_FIELD
+description: >
+  Dark operational tactical-adjacent civilian wardrobe for Zara — practical, mobile,
+  nothing decorative; reads as someone who has worked for hire a long time. Civilian
+  construction, not state-military. Worn through the night infiltration alongside
+  Nadia (SC0089). In that scene it takes a high-side torso wound; carry a damaged/
+  bloodied state from the embankment beat onward via look-variant appearance_state.
+palette: "dark operational neutrals (black, slate, deep brown, muted olive); no flash"
+scene_refs:
+  - SC0089
+handling_notes:
+  - "Working professional, not glamorous bounty-hunter; no fashion-forward styling."
+  - "No signature weapon as identity prop; no formal military uniform."
+  - "Do not over-design West African heritage into costume cliche; preserve canonical Zara identity."
+status: review
+review_status: pending
+canon_lock: false

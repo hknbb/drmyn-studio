@@ -1,0 +1,21 @@
+session_id: OP-2026-06-10-C09-otto-stage1-hero
+created_at: "2026-06-10T00:00:00Z"
+scene_id: null
+current_task: "C09 Otto Stage-1 MJ v8.1 hero selection from O1 batch"
+status: complete
+recommended_files:
+  - archive/nexuszero/_elements/C09/stage1/images/ott_1.png
+  - visual_dev/elements/characters/C09/identity_anchor.yaml
+  - prompts/draft/SC0047__t2i-char-c09-identity-mj-v8__v01.yaml
+recommended_steps:
+  - "Generate Stage-2 --oref lock in MJ V7 using MJ_C09_HERO_V001 as --oref source (--ow 250)"
+  - "Provide Stage-2 batch folder path for hero selection"
+  - "After Stage-2 lock: generate Stage-3 ChatGPT Images 2 four_view_scale_angle_v3 pack"
+notes: >
+  Stage-1 hero selected 2026-06-10 from O1 batch (5 candidates).
+  Hero ID: MJ_C09_HERO_V001 (ott_1.png).
+  Selected on: flat unsentimental face reads as "expects nothing from these rooms";
+  grey close-kept hair matches dossier anchor; solid settled build (65-70 age read);
+  dark neutral jacket closest to salt-faded neutrals palette; plain neutral background.
+  Disqualified: o1_4 (floral/printed jacket, wrong palette entirely).
+  identity_anchor.yaml front_hero_lock_ref updated to non-pending.

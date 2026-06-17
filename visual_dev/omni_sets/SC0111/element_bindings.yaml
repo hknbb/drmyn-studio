@@ -1,0 +1,41 @@
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: C01
+element_type: character
+kling_alias: "@C01_NADIA"
+binding_status: created
+platform_asset_ref: visual_dev/elements/characters/C01/kling_element_reference_C01_compound_battleworn.yaml
+platform_asset_ref_note: "KER_C01_COMPOUND_BATTLEWORN_V001 — battle-worn four-view Kling element reference (QC>=85)."
+voice_capability: none
+native_audio_readiness: not_required
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+notes: "Nadia. No dialogue in SC0111 (silent close-quarters fight). Visual binding promoted to 'created' (KER_C01_COMPOUND_BATTLEWORN_V001, QC>=85); action-driven Format A."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
+---
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: C02
+element_type: character
+kling_alias: "@C02_ROMAN"
+binding_status: created
+platform_asset_ref: visual_dev/elements/characters/C02/kling_element_reference_C02_compound.yaml
+platform_asset_ref_note: "KER_C02_COMPOUND_V001 — compound control four-view Kling element reference (QC>=85)."
+voice_capability: none
+native_audio_readiness: not_required
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+notes: "Roman. No dialogue in SC0111 (silent close-quarters fight). Visual binding promoted to 'created' (KER_C02_COMPOUND_V001, QC>=85); action-driven Format A."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
+---
+schema_version: "0.x-draft"
+record_type: element_binding
+element_id: LOC007
+element_type: location
+kling_alias: "@LOC007_ANTECHAMBER"
+binding_status: created
+platform_asset_ref: visual_dev/elements/locations/LOC007/kling_element_reference_LOC007_antechamber.yaml
+platform_asset_ref_note: "KER_LOC007_ANTECHAMBER_V001 — three-view scale-angle Kling location reference (QC>=85)."
+voice_capability: none
+native_audio_readiness: not_required
+kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
+notes: "Veltain compound antechamber corridor. Promoted to 'created': Stage-1 first-reference (CHATGPTIMG_LOC007_FIRSTREF_V001) + Stage-2 three-view QC>=85 (PQC_LOC007_ANTECHAMBER_V001) + reference KER_LOC007_ANTECHAMBER_V001. Narrow institutional corridor; bare concrete + server-core surfaces; harsh cool light; closing geometry; no warmth."
+provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }

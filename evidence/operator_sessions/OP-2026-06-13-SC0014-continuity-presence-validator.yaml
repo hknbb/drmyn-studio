@@ -1,0 +1,62 @@
+session_id: OP-2026-06-13-SC0014-continuity-presence-validator
+created_at: "2026-06-13T00:00:00Z"
+scene_id: SC0014
+current_task: "validate_continuity_presence deployed; SC0014 beat-plan and manifest backfill repaired"
+recommended_files:
+  - scripts/validators/validate_continuity_presence.py
+  - schemas/scene_beat_plan.schema.json
+  - planning/scenes/SC0014/scene_beat_plan.yaml
+  - planning/scenes/SC0014/manifests/CLIP_SC0014_03_manifest.yaml
+  - planning/scenes/SC0014/manifests/CLIP_SC0014_04_manifest.yaml
+  - planning/scenes/SC0014/manifests/CLIP_SC0014_05_manifest.yaml
+  - planning/scenes/SC0014/manifests/CLIP_SC0014_06_manifest.yaml
+  - planning/scenes/SC0014/manifests/CLIP_SC0014_07_manifest.yaml
+  - tests/test_continuity_presence.py
+recommended_steps:
+  - "Run validate_continuity_presence for all SC0014 clips after any manifest edit."
+  - "Use subjects_off_frame to acknowledge deliberate omissions rather than removing elements."
+status: complete
+notes: >
+  Deployed validate_continuity_presence.py (two new hard-fail controls) to close the
+  continuity-presence-gap error class discovered via CLIP 03 @C08_JIN omission. Performed
+  backfill audit across all SC0014 beat plan beats and clip manifests; repaired every hit.
+
+  Root cause: Four beats feeding CLIP 03 (DOOR_OPENS, DIMITRI_AND_MEN_ENTER,
+  DIMITRI_MRS_VALE, DIMITRI_ITS_TIME) omitted C01 and/or C08 from required_element_ids
+  and figures because their narrative focus was on Dimitri and the entry geometry. Nadia
+  and Jin are continuously present but were never declared. omni_clip_planner faithfully
+  propagated the omission into manifests; adapter propagated to prompts. No existing
+  validator caught this.
+
+  Controls added to scripts/validators/validate_continuity_presence.py:
+  (1) FIGURE_NOT_ATTACHED (hard-fail): every figure's base_element_id in a shot must
+  appear in that shot's required_element_ids.
+  (2) BEAT_ELEMENT_DROPPED (hard-fail): every element declared by a shot's source beats
+  must be carried into that shot's required_element_ids or figures.
+  (3) CONTINUITY_PRESENCE_GAP (hard-fail with opt-out via subjects_off_frame): a subject
+  present in an earlier and later beat but absent from an intermediate beat is flagged
+  unless subjects_off_frame acknowledges it. Locations (LOC*) excluded.
+
+  Schema change: added optional subjects_off_frame array to beat items in
+  schemas/scene_beat_plan.schema.json.
+
+  Integration: scripts/validate_production_records.py updated to import and dispatch
+  validate_scene_continuity_presence per scene.
+
+  Tests added: tests/test_continuity_presence.py — 7/7 passed.
+
+  Beat plan repairs (planning/scenes/SC0014/scene_beat_plan.yaml): DOOR_OPENS added
+  [C01,C08]; DIMITRI_AND_MEN_ENTER added [C01,C08] + figures [FIG_NADIA,FIG_JIN];
+  DIMITRI_MRS_VALE added [C08] + figures + subjects_off_frame [C10]; DIMITRI_ITS_TIME
+  added [C08] + figures + subjects_off_frame [C10]; NADIA_STANDS_STEPS_BACK added [C04]
+  + FIG_DIMITRI + subjects_off_frame [C10]; DIMITRI_DONT_MAKE_HARDER added [C08,C10];
+  BRACELET_BEAT subjects_off_frame [C08,C10]; SECOND_MAN_RESTRAINS subjects_off_frame [C08].
+
+  Manifest repairs: CLIP_03 shots A/B/C + clip-level; CLIP_04 shots A/B/C; CLIP_05 shots
+  A/C; CLIP_06 shots A/B + clip-level; CLIP_07 shot A + clip-level.
+
+  Prompt repair: prompts/draft/SC0014__clip-sc0014-03-safe__v03.yaml — added @C08_JIN to
+  required_element_aliases and prompt_text.
+
+  Validation result: 127 files scanned, 0 invalid; 0 continuity-presence issues; 87/87
+  pytest passed.

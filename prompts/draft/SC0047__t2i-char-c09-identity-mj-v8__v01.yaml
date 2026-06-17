@@ -1,0 +1,39 @@
+prompt_id: SC0047__t2i-char-c09-identity-mj-v8__v01
+scene_id: SC0047
+prompt_type: t2i_character_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0047/scene_card.yaml
+  scene_excerpt: "Canonical identity reference (Stage 1 of 3) for Otto across the quay handoff scene; identity-only, not a final production view."
+  character_refs:
+  - C09
+  aesthetic_refs:
+  - MERIN_QUAY_MORNING
+prompt_text: >-
+  Otto, sixty to seventy, a man worn by decades at the water. Solid settled build,
+  economical stillness, flat unsentimental presence. Weathered skin, grey close-kept
+  hair, salt-faded working clothes. The authority of someone who has waited in many
+  cold rooms and expects nothing from them. No glamor, no softening, functional realism,
+  exact identity, neutral clean background, no text, no watermark
+  --v 8.1 --style raw --ar 2:3 --seed 114047
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  identity_anchor_ref: visual_dev/elements/characters/C09/identity_anchor.yaml
+  stage: "1_of_3_narrative_identity"
+  aesthetic_keywords_injected:
+  - weathered waterfront presence
+  - grey close-kept hair
+  - solid settled economical build
+  - unsentimental functional authority
+  - salt-faded neutrals
+  planning_name_filter:
+    forbidden:
+    - Otto
+  recommended_model_version: --v 8.1
+  recommended_style: --style raw

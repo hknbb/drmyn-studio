@@ -6,7 +6,7 @@ provider: google
 model_family: image_generation
 provider_surface: gemini_app
 observed_at: "2026-05-08T11:00:00Z"
-expires_at: "2026-06-08T11:00:00Z"
+expires_at: "2026-07-03T00:00:00Z"
 human_verified: true
 current_default_model: "Nano Banana Pro / gemini-3-pro-image-preview"
 latest_available_model: "Nano Banana Pro / gemini-3-pro-image-preview"

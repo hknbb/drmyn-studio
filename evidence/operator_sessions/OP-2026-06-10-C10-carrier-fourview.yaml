@@ -1,0 +1,20 @@
+session_id: OP-2026-06-10-C10-carrier-fourview
+created_at: "2026-06-10T00:00:00Z"
+scene_id: SC0014
+current_task: "@C10_CARRIER Stage-3 four-view QC + Kling element reference"
+recommended_files:
+  - visual_dev/elements/characters/C10/perspective_packs/PPACK_C10_CARRIER_V001.yaml
+  - evidence/perspective_qc/PQC_C10_CARRIER_V001.yaml
+  - visual_dev/elements/characters/C10/kling_element_reference_C10_carrier.yaml
+  - visual_dev/omni_sets/SC0014/element_bindings.yaml
+recommended_steps:
+  - "Operator generated the Stage-3 four-view in ChatGPT Images 2 for @C10_CARRIER with dual references (MJ_C10_CARRIER_OREFLOCK_V001 primary + MJ_C10_CARRIER_HERO_V001 secondary)."
+  - "Operator provided C3 folder; all four views archived as car_3_1..car_3_4.png."
+  - "Assistant scored the four perspectives (all >=85) and recorded the perspective_qc_report PQC_C10_CARRIER_V001."
+  - "Promote SC0014 @C10_CARRIER binding to 'created' and author the kling_element_reference_record KER_C10_CARRIER_V001."
+status: complete
+notes: >
+  Real images, real review. Heavier/stockier anonymous operative, buzzed hair + goatee,
+  WD009 dark functional clothing. All four perspectives above 85 gate.
+  Anti-clone check: build reads distinct from @C10_HOLDER at portrait scale.
+  No fabricated readiness.

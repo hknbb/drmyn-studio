@@ -1,0 +1,68 @@
+schema_version: "0.x-draft"
+record_type: perspective_qc_report
+perspective_qc_id: PQC_C06_FIELD_NIGHT_V001
+status: approved
+scene_id: SC0089
+element_id: C06
+prompt_pack_id: PPACK_C06_FIELD_NIGHT_V001
+operator_session_ref: OP-2026-06-10-C06-zara-stage3-fourview
+perspective_scores:
+  - prompt_id: PPACK_C06_FIELD_NIGHT_V001__close_portrait_front
+    perspective: close_portrait_front
+    identity_preservation: 93
+    perspective_usefulness: 92
+    material_palette_continuity: 91
+    production_reference_cleanliness: 92
+    hallucination_absence: 93
+    character_description_strength: 92
+    identity_readability: 93
+    expression_performance_readability: 91
+    total_score: 92
+    decision: pass
+  - prompt_id: PPACK_C06_FIELD_NIGHT_V001__three_quarter_waist
+    perspective: three_quarter_waist
+    identity_preservation: 91
+    perspective_usefulness: 90
+    material_palette_continuity: 90
+    production_reference_cleanliness: 90
+    hallucination_absence: 91
+    silhouette_readability: 89
+    wardrobe_world_fit: 90
+    view_distinction: 89
+    total_score: 90
+    decision: pass
+  - prompt_id: PPACK_C06_FIELD_NIGHT_V001__full_body_front
+    perspective: full_body_front
+    identity_preservation: 89
+    perspective_usefulness: 90
+    material_palette_continuity: 90
+    production_reference_cleanliness: 89
+    hallucination_absence: 90
+    silhouette_readability: 88
+    scale_distinction: 88
+    total_score: 89
+    decision: pass
+  - prompt_id: PPACK_C06_FIELD_NIGHT_V001__profile_full
+    perspective: profile_full
+    identity_preservation: 88
+    perspective_usefulness: 89
+    material_palette_continuity: 88
+    production_reference_cleanliness: 89
+    hallucination_absence: 89
+    no_directional_confusion: 88
+    total_score: 88
+    decision: pass
+gate:
+  minimum_score: 85
+  all_four_required: true
+  all_perspectives_required: true
+  can_advance_to_kling_reference: true
+notes: >
+  Real review of operator-approved Stage-3 four_view_scale_angle_v3 set for @C06_ZARA
+  (archived, git-ignored). All four views read as the same lean athletic woman, mid 30s
+  to early 40s, West African heritage clear in face geometry and skin tone. Khaki/olive-tan
+  WD013 operational wardrobe (shirt, trousers, boots) held consistently across all views.
+  Quiet intelligent eyes with warmth beneath operational guard in close portrait — not cold,
+  not editorial. Profile clean lateral. Full body head-to-toe with no cropping. All
+  perspectives >=85; profile_full lowest (88) due to reduced face detail at full-body scale.
+  Dual-reference seeded (MJ_C06_OREFLOCK_V001 primary + MJ_C06_HERO_V001 secondary).

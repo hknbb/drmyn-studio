@@ -1,0 +1,68 @@
+prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-02-safe__v01
+scene_id: SC0014
+prompt_type: omni_instruction
+lifecycle_stage: deprecated
+target_models:
+- kling_omni
+source_refs:
+  scene_card: planning/scenes/SC0014/scene_card.yaml
+  scene_excerpt: planning/scenes/SC0014/scene_excerpt.md
+prompt_text: 'Kling Omni element-based clip; duration 11s. Active elements: @C01_NADIA, @C08_JIN, @LOC001_NURSERY. Direct
+  action and camera; @elements carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity, restrained
+  camera language, and conservative execution. Figures: exactly 2 distinct figure(s) — @C01_NADIA, @C08_JIN (Infant; pale
+  blue name bracelet on wrist.). No additional, extra, or duplicated people; do not clone or multiply any figure. Continue
+  from previous clip: Nadia is in the chair holding Jin, awake; not rocking, just holding; door closed.; camera medium_close.
+  [00:00 - 00:04] Medium shot: The nursery holds warm and quiet around the chair by the crib. @C01_NADIA sits in the chair
+  holding @C08_JIN, awake — not rocking, just holding, as if holding something she is about to lose. @C08_JIN rests awake
+  in @C01_NADIA''s arms, calm and fully supported. The frame holds steady; intimate two-shot, mother and child in the chair.
+  Audio: low warm room tone; soft, even infant breathing. [00:04 - 00:07] Insert: Room tone holds soft around them. @C01_NADIA
+  closes her hands complete around @C08_JIN, careful, unloosening. @C08_JIN stays cradled in @C01_NADIA''s arms, calm. The
+  frame holds steady; her hands and arms around the infant, safe and supported. Audio: soft infant breathing; room tone holds.
+  [00:07 - 00:11] Close-up: The frame eases in; room tone settles to a single slow breath. @C01_NADIA holds her face still,
+  the dread surfacing only in her eyes. @C08_JIN rests supported at the frame''s edge, calm. A slow dolly forward; slow push
+  to Nadia''s contained dread. Audio: room tone settles; a single slow breath. End state for next clip: Nadia holds Jin; the
+  held stillness just before interruption.; camera medium_close. Continuity: frame_input_eligible. Keep 11s; end settled.
+  Do not add new story facts.'
+negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
+generation_params:
+  model_guidance_mode: dynamic_snapshot
+  adapter_name: kling_omni
+  clip_id: CLIP_SC0014_02
+  total_duration_seconds: 11
+  continuity_input_mode: frame_input_eligible
+  omni_clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_02_manifest.yaml
+  source_scene_beat_plan_ref: planning/scenes/SC0014/scene_beat_plan.yaml
+  source_dialogue_beats_ref: planning/scenes/SC0014/dialogue_beats.yaml
+  repo_binary_committed: false
+  external_generation_required: true
+  recommended_cfg_scale: 0.5
+  recommended_ar: '16:9'
+  variant_mode: safe
+  render_pass: visual_test
+  quality_tier: test_720p
+  prompt_component_model: docs/methodology/omni_prompt_component_model.md
+  required_element_aliases:
+  - '@C01_NADIA'
+  - '@C08_JIN'
+  - '@LOC001_NURSERY'
+  input_mode: anchored_i2v
+  start_frame_ref: archive/nexuszero/SC0014/shots/SC0014_03_clip-sc0014-01_shot-sc0014-01-c.png
+  visual_input_budget:
+    total: 7
+    start_frame: 1
+    element_slots: 6
+  frame_chain_source: designed_still_pass1
+  audio_gate_status: allowed_audio_off
+  audio_gate_reason: visual_test_default_audio_off
+  model_guidance_snapshot_ref: model_guidance_snapshots/kling/20260615T000000Z_kling_omni_video_best_available.yaml
+  provider: kling
+  provider_surface: manual_external
+  resolved_model_name: Kling VIDEO 3.0 Omni
+  resolved_model_role: best_for_this_task
+  guidance_observed_at: '2026-06-15T00:00:00Z'
+  guidance_expires_at: '2026-07-15T00:00:00Z'
+expected_output:
+  asset_type: clip
+  duration_seconds: 11
+status: deprecated
+canon_lock: false

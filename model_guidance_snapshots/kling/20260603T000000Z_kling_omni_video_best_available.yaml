@@ -1,0 +1,93 @@
+record_type: model_guidance_snapshot
+schema_version: "0.x-draft"
+snapshot_id: "20260603T000000Z_kling_omni_video_best_available"
+internal_model_target: kling_omni_video_best_available
+provider: kling
+model_family: video_generation
+provider_surface: manual_external
+observed_at: "2026-06-03T00:00:00Z"
+expires_at: "2026-07-03T00:00:00Z"
+# human_verified: agent re-research performed 2026-06-03 from the official Kling
+# VIDEO 3.0 Omni user guide + Element Library guide (bot-protected; verified via
+# Kuaishou release + cited mirrors) and the verbatim multi-shot examples supplied
+# by operator hknbb. Operator-authorized via approved Production System v2 plan
+# (FAZ 1e). Model unchanged: Kling 3.0 Omni (O3) remains current as of this date.
+human_verified: true
+current_default_model: "Kling 3.0 Omni"
+latest_available_model: "Kling 3.0 Omni"
+best_for_this_task: "Kling 3.0 Omni"
+feature_required_model:
+  native_audio: "Kling 3.0 Omni"
+  native_audio_dialogue: "Kling 3.0 Omni"
+  multi_shot: "Kling 3.0 Omni"
+  element_reference: "Kling 3.0 Omni"
+version_policy:
+  hardcode_in_adapter: false
+  adapter_must_read_snapshot: true
+  prompt_generation_blocks_if_expired: true
+  prompt_generation_blocks_if_unverified: true
+sources:
+  - source_type: official_press
+    title: "Kuaishou — Kling AI Launches 3.0 Model (Video 3.0 Omni, 2026-02-05)"
+    retrieved_at: "2026-06-03T00:00:00Z"
+    url: "https://ir.kuaishou.com/news-releases/news-release-details/kling-ai-launches-30-model-ushering-era-where-everyone-can-be"
+  - source_type: official_docs
+    title: "Kling VIDEO 3.0 Omni model user guide (multi-shot, elements, native audio)"
+    retrieved_at: "2026-06-03T00:00:00Z"
+    url: "https://kling.ai/quickstart/klingai-video-3-omni-model-user-guide"
+  - source_type: official_docs
+    title: "Kling Element Library 3 user guide (multi-image character references)"
+    retrieved_at: "2026-06-03T00:00:00Z"
+    url: "https://kling.ai/quickstart/klingai-element-library-3-user-guide"
+  - source_type: verified_platform_blog
+    title: "FAL.ai Kling 3.0 prompting guide (multi-shot blocks, end-state)"
+    retrieved_at: "2026-06-03T00:00:00Z"
+    url: "https://blog.fal.ai/kling-3-0-prompting-guide/"
+  - source_type: verified_platform_blog
+    title: "WaveSpeed — Kling 3.0 Omni explained (multi-shot storyboard, ≤6 cuts, 15s)"
+    retrieved_at: "2026-06-03T00:00:00Z"
+    url: "https://wavespeed.ai/blog/posts/kling-3-0-omni-explained/"
+capabilities:
+  output_type: video
+  supports_native_audio: true
+  supports_native_audio_dialogue: true
+  supports_multi_shot: true
+  supports_camera_motion: true
+  supports_element_reference: true
+constraints:
+  max_duration_seconds: 15
+  max_shots_per_generation: 6
+  min_shot_duration_seconds: 2
+  max_shot_duration_seconds: 15
+  prompt_text_max_chars: 2500
+  negative_prompt_max_chars: 2500
+  max_elements_per_generation: 4
+  # Tier 1 (official API reference): the Kling v3 Omni endpoint exposes no separate
+  # audio/voice/dialogue parameter. Dialogue is in-prompt text only.
+  native_audio_separate_param: false
+prompting_rules:
+  # ── Multi-shot structure (official VIDEO 3.0 Omni examples) ──────────────────
+  - "Single generation packs UP TO 6 shots and UP TO 15 seconds total. Each shot is an explicit block; per-shot duration may be 2-15s (short cutaways of 2s are valid) but the shot count must be <=6 and the sum must be <=15s."
+  - "Format A (silent / standard): write each shot as 'Shot N (Xs): <framing>. <subject action + @Element + camera behavior>.' Use 'Cut to <framing>' to mark each transition. Example: 'Shot 2 (2s): Cut to close-up. @Element1's profile is half-hidden in shadow.'"
+  - "Format B (native audio): write each shot as a timecode block '[MM:SS - MM:SS] <shot type>: @Element <action>. Audio: <ambient/sfx cue>.' with inline dialogue as '— <Name>: \"<line>\"'. Example: '[00:00 - 00:02] Medium shot: @Goro gestures with a lit cigarette... Audio: faint cigarette crackle.'"
+  - "Describe ACTION and CAMERA over time, NOT appearance. Identity, wardrobe, and look are carried by the attached @Elements, not re-described in the shot text."
+  - "Continuity across shots: keep the same @Elements attached and use linking words ('continuing', 'immediately', 'then') and consistent screen direction so the model does not reset the scene at each cut."
+  - "End-state required per clip: describe how the final action settles to prevent 99% generation hang."
+  # ── Multi-character / anti-clone (official Element + guide rules) ─────────────
+  - "Each distinct on-screen figure MUST be its own @Element/alias. Never use one alias for two physically distinct figures (causes blending/clones). On first mention, append a unique distinguishing detail, e.g. '@Kaiko, a young woman with a blonde buzzcut and a scar on her eyebrow'."
+  - "State the exact figure count and forbid extras: 'exactly N figures: @A, @B; no additional, extra, or duplicated people.' This suppresses the known O3 extra-character/clone hallucination."
+  # ── Elements / references (Element Library guide) ────────────────────────────
+  - "Build each character element from ~4 multi-scale/angle references (full-body front, three-quarter waist, close portrait front, profile/back) for a 3D identity lock; include full-body so the model does not crop. Attach up to 4 elements per generation."
+  - "Reference every element with its @alias in the prompt; do not paste raw descriptions for an element that already exists in the library."
+  # ── Native audio / dialogue (Tier 1 API) ─────────────────────────────────────
+  - "Native-audio dialogue is written inline in prompt_text (Format B); there is no separate audio/voice API parameter (Magnific Kling v3 Omni reference). Render each line action-first: physical action, speaker clause (@alias + tone), then the quoted line."
+  - "Keep dialogue short and source-grounded; never invent lines. Prefer one speaking character focus per shot; place a temporal connector between consecutive speakers."
+  # ── Camera / negative prompt ─────────────────────────────────────────────────
+  - "Use professional camera terms (dolly, pan, tilt, zoom, crane, tracking, orbital, static); max 2 compatible movements stacked; specify motion intensity 0.1-1.0."
+  - "Negative prompt supported (max 2500 chars); write terms directly (not 'no-term'); focus on motion artifacts (sliding feet, morphing, warping, flicker)."
+  - "Never include canonical planning IDs (C01, LOC001, SC0001) or full display names in prompt_text; use @aliases only."
+provenance:
+  created_by: claude-code
+  created_at: "2026-06-03T00:00:00Z"
+  updated_by: operator/hknbb
+  updated_at: "2026-06-03T00:00:00Z"

@@ -1,0 +1,30 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KER_LOC006_QUAY_V001
+status: approved
+element_id: LOC006
+element_type: location
+source_midjourney_reference:
+  reference_id: CHATGPTIMG_LOC006_FIRSTREF_V001
+  prompt_id: SC0047__t2i-loc-loc006-quay-first-ref-chatgpt__v01
+  operator_session_ref: OP-2026-06-17-LOC005-LOC006-LOC007-PROP008-threeview
+gpt_images_2_perspectives:
+  front_reference: PPACK_LOC006_QUAY_MORNING_V001__front_reference
+  three_quarter_medium_reference: PPACK_LOC006_QUAY_MORNING_V001__three_quarter_medium
+  three_quarter_close_reference: PPACK_LOC006_QUAY_MORNING_V001__three_quarter_close
+continuity_anchors:
+  - "Locked LOC006 quay Unit 14-B: converted freight bay, low concrete ceiling, one high window facing the quay with grey water beyond."
+  - "Crates against the west wall; plain folding table (handset is set here); unused camp stove."
+  - "Cold maritime morning daylight from the high window — no warm key; available light only."
+  - "Generous floor and negative space for SC0047 two-hander blocking (table center; Otto to window giving privacy; Nadia with handset)."
+  - "No people in location plates; no redesign; consistent objects and cold morning palette across all three views."
+  - "Do not add warmth, interior practicals, or additional furniture — functional converted bay, temporary and spare."
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-2026-06-17-LOC005-LOC006-LOC007-PROP008-threeview
+downstream_use:
+  - kling_omni_3_shot_prompt
+source_refs:
+  gpt_images_pack_ref: visual_dev/elements/locations/LOC006/perspective_packs/PPACK_LOC006_QUAY_MORNING_V001.yaml
+  element_sheet_ref: planning/locations/LOC006.yaml

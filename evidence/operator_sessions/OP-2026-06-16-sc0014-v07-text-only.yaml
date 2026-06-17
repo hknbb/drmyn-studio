@@ -1,0 +1,58 @@
+session_id: OP-2026-06-16-sc0014-v07-text-only
+created_at: "2026-06-16T00:00:00Z"
+scene_id: SC0014
+current_task: "SC0014 v07: text-only literal multi-shot Kling prompts (kling_literal_alias_locked); Anchor & Animate retired"
+recommended_files:
+  - scripts/agents/adapters/kling_omni.py
+  - scripts/generate_sc0014_v07_text_only.py
+  - scripts/validate_prompt_records.py
+  - scripts/validators/validate_shot_still_coverage.py
+  - schemas/omni_clip_manifest.schema.json
+  - schemas/scene_continuity_ledger.schema.json
+  - schemas/prompt_record.schema.json
+  - planning/scenes/SC0014/manifests/CLIP_SC0014_01_manifest.yaml
+  - planning/scenes/SC0014/scene_continuity_ledger.yaml
+  - docs/operator_guides/kling_literal_multishot_playbook.md
+  - tests/test_sc0014_v07_literal.py
+recommended_steps:
+  - "Kling Element Library'de @aliasları element yüklemelerine bağla; 8 klibi text_only çalıştır."
+  - "Final pass için (gerekirse) her klibe continuity_seed_ref (extracted last-frame) ekle."
+  - "SC0047/SC0089 t2i oref schema drift'i AYRI ele al (bu değişikliğe karıştırma)."
+status: complete
+notes: >
+  Kök sorun: kötü dil (metafor, "infant/mother", "center") renderer'da değil kanonik
+  YAML'da yazılı; renderer onu olduğu gibi basıyordu. Çözüm dual-field split.
+
+  Şema: omni_clip_manifest'e shots[].render_action/render_camera/render_diegetic_audio +
+  figures[].render_action/render_label; scene_continuity_ledger'a render_start_state/
+  render_end_state; prompt_record generation_params'a language_profile enum
+  (kling_literal_alias_locked|legacy_prose), input_mode enum, continuity_seed_ref eklendi.
+
+  Renderer: kling_omni.py'ye kling_literal_alias_locked yolu (_build_prompt_text_literal +
+  literal yardımcılar) — yalnız render_* alanlarını basar; prompt_action/performance_note/
+  role/distinguishing_detail/lens_bias/ledger summary/screen_position'ı ASLA basmaz.
+  ELEMENT_CANONICAL_ID_LEAK_RE'ye (?<!@) eklendi (lokasyon aliası @LOC001_NURSERY artık
+  yanlış flaglenmiyor). Adapter default language_profile=legacy_prose (geriye dönük uyum).
+
+  Veri: 8 SC0014 manifestine literal render_* alanları yazıldı (şiirsel alanlar korundu).
+  CLIP 01 yeniden yapılandırıldı: boş oda ile bitmiyor — aynı klipte @C01_NADIA + @C08_JIN
+  reveal ediliyor. CLIP 02 "aniden insanlar" hissini kaldırdı. Ledger render seamleri +
+  CLIP 01 exit reveal'ı yansıtacak şekilde güncellendi.
+
+  Üretim: scripts/generate_sc0014_v07_text_only.py — 8 v07 text_only literal kayıt
+  (SC0014__omni-...-safe__v07) + run kayıtları; v06 still(22)/contact(8)/anchored(8) kayıtları
+  + prompt_library.yaml + scene_prompt_map.csv satırları deprecated; v07 satırları idempotent
+  upsert. Repo genelinde başka aktif Kling kaydı yok (backfill seti boş).
+
+  Validator: language_profile==kling_literal_alias_locked iken katı banlar (@alias + tırnaklı
+  diyalog maskelenir; sonra role nouns / metaphor / bare center fail). Aktif Kling kaydı
+  language_profile bildirmek zorunda; text_only altında start_frame_ref/contact_sheet_ref/
+  visual_input_budget yasak (seed-lock); required alias prompt'ta görünmeli; karakterli klipte
+  ≥1 fiziksel performans işareti. validate_shot_still_coverage deprecated kayıtları ve text_only
+  literal sahneyi atlar.
+
+  Doğrulama: 8 klip render çıktısı temiz (banned=0, canon_leak=0, ≤2500 char). prompt_records
+  validator: 55 dosya, sadece 2 hata (SC0047/SC0089 t2i oref drift — ilgisiz, ayrı raporlanır).
+  omni_clip_manifest + scene_continuity_ledger şema + semantik + continuity_presence +
+  state_chain(render_check) + shot_still_coverage: 0 sorun. Test: 1520 geçti, 3 atlandı
+  (12 yeni SC0014 v07 testi dahil). Kling'e canlı çağrı yok; hepsi draft/metadata, PR onayına tabi.

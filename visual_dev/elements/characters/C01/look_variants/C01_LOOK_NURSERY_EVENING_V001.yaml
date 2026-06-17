@@ -1,0 +1,26 @@
+schema_version: "0.x-draft"
+record_type: character_look_variant
+look_id: C01_LOOK_NURSERY_EVENING_V001
+character_id: C01
+inherits_identity_anchor: C01_IDENTITY_ANCHOR_V001
+status: draft
+look_role: "Domestic evening — Nadia at home holding Jin in the nursery (SC0014)"
+wardrobe_refs:
+  primary_wardrobe_id: WD010
+  supplementary_wardrobe_ids: []
+appearance_state:
+  fatigue_level: nominal
+  damage_level: none
+  hair_state_within_anchor: "Natural restraint, softly down or loosely back; relaxed domestic evening, not styled."
+continuity_scope:
+  start_scene: SC0014
+  end_scene: SC0014
+change_reason: "Earliest look in the four-scene set: contained domestic warmth before the taking; the baseline against which later operational/transit/battle-worn looks read."
+notes: >
+  Look 1 of 4 for Nadia. Wardrobe WD010 (home-evening domestic top). Identity carried
+  by C01_IDENTITY_ANCHOR_V001; only wardrobe + warmth/light register change vs other
+  looks. No fatigue, no damage. Stage-3 four-view pack:
+  perspective_packs/PPACK_C01_NURSERY_EVENING_V001.yaml.
+provenance:
+  created_by: "claude_code (M5 FAZ B)"
+  created_at: "2026-06-04T00:00:00Z"

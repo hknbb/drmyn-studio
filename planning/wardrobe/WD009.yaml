@@ -1,0 +1,20 @@
+wardrobe_id: WD009
+name: "Enforcer operational attire"
+character_id: C10
+category: OPERATIONAL_ENFORCER
+description: >
+  Plain dark functional clothing for the two anonymous men who accompany Dimitri in
+  the SC0014 nursery removal — practical, non-uniform civilian-security wear; nothing
+  decorative, nothing that individualizes. Reads as procedural muscle: competent,
+  unremarkable, interchangeable. The two figures share this base attire and are
+  distinguished at the figure level (@C10_CARRIER / @C10_HOLDER), not by wardrobe.
+palette: "flat dark neutrals (black, charcoal, dark grey); no insignia, no accent"
+scene_refs:
+  - SC0014
+handling_notes:
+  - "Anonymous and interchangeable by design; no individual identity styling, no signature gear."
+  - "Civilian-security, not state-military uniform; no weapons as identity props."
+  - "Distinguish the two enforcers via figure-level distinguishing_detail, not garments."
+status: review
+review_status: pending
+canon_lock: false

@@ -1,0 +1,30 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KER_LOC005_CORRIDOR_V001
+status: approved
+element_id: LOC005
+element_type: location
+source_midjourney_reference:
+  reference_id: CHATGPTIMG_LOC005_FIRSTREF_V001
+  prompt_id: SC0089__t2i-loc-loc005-corridor-first-ref-chatgpt__v01
+  operator_session_ref: OP-2026-06-17-LOC005-LOC006-LOC007-PROP008-threeview
+gpt_images_2_perspectives:
+  front_reference: PPACK_LOC005_CORRIDOR_NIGHT_V001__front_reference
+  three_quarter_medium_reference: PPACK_LOC005_CORRIDOR_NIGHT_V001__three_quarter_medium
+  three_quarter_close_reference: PPACK_LOC005_CORRIDOR_NIGHT_V001__three_quarter_close
+continuity_anchors:
+  - "Locked LOC005 corridor: night exterior transit corridor, overhead lights at intervals making pools of cold light separated by deep darkness."
+  - "Sealed cargo-processing facility wall (east); long concrete drainage embankment (west); drainage cut at the far junction."
+  - "Night greys and black throughout; cold, no warmth; industrial concrete."
+  - "Generous floor and negative space for SC0089 two-person blocking (Nadia + Zara at measured interval spacing)."
+  - "No people in location plates; no text, no watermark; consistent night palette across all three views."
+  - "Do not add warmth or interior lighting — overhead practicals only; the darkness between pools is a key spatial element."
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-2026-06-17-LOC005-LOC006-LOC007-PROP008-threeview
+downstream_use:
+  - kling_omni_3_shot_prompt
+source_refs:
+  gpt_images_pack_ref: visual_dev/elements/locations/LOC005/perspective_packs/PPACK_LOC005_CORRIDOR_NIGHT_V001.yaml
+  element_sheet_ref: planning/locations/LOC005.yaml

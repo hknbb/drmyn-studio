@@ -1,0 +1,33 @@
+schema_version: "0.x-draft"
+record_type: character_look_sheet
+look_sheet_id: LOOKSHEET_C06_FIELD_NIGHT_V001
+character_id: C06
+look_id: C06_LOOK_FIELD_NIGHT_V001
+scene_refs:
+  - SC0089
+physical:
+  build: "Lean to athletic, upright; trained to occupy specific points in a room rather than fill it. Physical economy reads as contained operational power."
+  height: "Average; presence from decision precision and stillness, not stature."
+  hair: "Dark, pulled back short and practical or tied back tight; disciplined restraint for movement and operational readiness. West African heritage visible in texture and tone."
+  skin_tone: "Natural, West African heritage; no glamor finish; neutral and competent under night operational lighting."
+  physical_features: "Mid 30s to early 40s; alert observant eyes; exact face geometry; vigilance and competence legible beneath operational discipline. No decorative styling. Trained physical stillness legible in resting state."
+wardrobe:
+  primary_wardrobe_id: WD013
+  garment_top: "Khaki or olive-tan operational shirt/blouse; civilian construction, not military; practical button-front or zip; built for fieldwork and sustained movement. Muted earth tone, not bright, not fashion-styled."
+  garment_bottom: "Khaki or olive-tan durable operational trousers; practical and movement-easy cut; same earth-tone palette as top; no flash or accent detail."
+  footwear: "Dark or khaki practical operational boots or field-grade footwear; low-profile, sound-disciplined, built for sustained movement and infiltration work."
+  outerwear: "Optional close-fitting khaki or olive jacket or field-grade civilian layer; minimal silhouette; same earth-tone palette; built for operational fieldwork, not statement."
+  accessories: []
+palette: "Khaki and olive-tan earth tones (warm khaki, muted olive, tan); no black, no bright color, no flash, no luxury accent; reads as field-operational, civilian-grade, purposeful."
+status: draft
+notes: >
+  Full head-to-toe look definition for Zara's SC0089 field-night operational look so
+  the four_view scale views do not crop or invent garments. Field-operational register
+  only; no domestic warmth or maternal softness coding. Identity locked by
+  C06_IDENTITY_ANCHOR_V001 (mid 30s to early 40s, lean-athletic, West African heritage,
+  trained physical economy). Distinct from any future domestic or other-context looks.
+  Base reference state is clean (damage_level none); high-side torso wound is applied
+  as in-scene shot detail later in SC0089.
+provenance:
+  created_by: "claude_code (haiku)"
+  created_at: "2026-06-04T00:00:00Z"

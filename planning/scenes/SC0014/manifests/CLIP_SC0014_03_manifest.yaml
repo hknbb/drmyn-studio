@@ -1,0 +1,268 @@
+schema_version: 0.x-draft
+record_type: omni_clip_manifest
+scene_id: SC0014
+clip_id: CLIP_SC0014_03
+source_scene_beat_plan_ref: planning/scenes/SC0014/scene_beat_plan.yaml
+source_dialogue_beats_ref: planning/scenes/SC0014/dialogue_beats.yaml
+total_duration_seconds: 13
+continuity_input_mode: metadata_only
+shots:
+  - shot_id: SHOT_SC0014_03_A
+    duration_seconds: 5
+    source_beat_ids:
+      - DOOR_OPENS
+      - DIMITRI_AND_MEN_ENTER
+    prompt_action: The door of @LOC001_NURSERY opens — the intruding geometry against the room's warmth.
+    render_action: The door of @LOC001_NURSERY opens; three figures stand just inside it, screen-right.
+    render_camera: Medium-wide shot, static.
+    render_diegetic_audio: the door opening; room tone tightens; the white-noise hum continues.
+    duration_reason: DOOR_OPENS (short_insert merged) + normal/action — entrance establish
+    exit_state:
+      summary: "Nadia stays center, seated, Jin in her arms; Dimitri and two men just inside the open door (right)."
+      key_positions:
+        - {subject: '@C01_NADIA', screen_position: center, posture: seated, relation: holding @C08_JIN, visibility: on_frame}
+        - {subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame}
+        - {subject: '@C04_DIMITRI', screen_position: right, posture: standing, visibility: on_frame}
+        - {subject: '@C10_CARRIER', screen_position: right, posture: standing, visibility: on_frame}
+        - {subject: '@C10_HOLDER', screen_position: right, posture: standing, visibility: on_frame}
+      props_state:
+        - {prop: '@DOOR_NURSERY', state: open}
+      screen_direction: neutral
+    required_element_ids:
+      - LOC001
+      - C04
+      - C01
+      - C08
+      - C10
+    coverage_role: establish
+    focus_alias: '@C04_DIMITRI'
+    performance_note: contained, exact, unhurried; three men in a stable line, the room belongs to them now
+    diegetic_audio: the door opening; room tone tightens; the white-noise hum continues
+    camera:
+      angle: eye_level
+      framing: medium_wide
+      movement: static
+      lens_bias: doorway with three standing figures, Nadia and the child held center
+    lighting:
+      source: practical
+      quality: soft
+      color_temp: neutral
+      intensity: dim
+    motion:
+      subject_intensity: 0.3
+      camera_intensity: 0.0
+      blocking_notes: Nadia seated center holding the child; three men in a stable line inside the door; no warmth relit.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: stays seated, draws @C08_JIN closer, eyes rising to the door
+        visibility: on_frame
+        action: remains seated, drawing @C08_JIN closer, eyes rising to the door
+        exit_state_note: seated center, the child held close
+      - figure_id: FIG_JIN
+        base_element_id: C08
+        kling_alias: '@C08_JIN'
+        role: Jin, the infant (protected subject)
+        distinguishing_detail: Infant; pale blue name bracelet on wrist.
+        render_label: pale blue band on wrist
+        render_action: rests calm against @C01_NADIA chest, supported
+        visibility: on_frame
+        action: rests calm in @C01_NADIA's arms, supported
+        exit_state_note: cradled center in Nadia's arms
+      - figure_id: FIG_DIMITRI
+        base_element_id: C04
+        kling_alias: '@C04_DIMITRI'
+        role: Dimitri, lead enforcer
+        render_action: steps in and stops two steps inside the door, even and unhurried, screen-right
+        visibility: on_frame
+        action: enters and stops two steps inside, even and unhurried
+        exit_state_note: standing just inside the door, screen-right
+      - figure_id: FIG_ENF_CARRIER
+        base_element_id: C10
+        kling_alias: '@C10_CARRIER'
+        role: first enforcer; carries the child
+        distinguishing_detail: Nearer Nadia; steps forward first.
+        render_label: heavier build, buzzed hair, goatee; nearer @C01_NADIA
+        render_action: steps toward @C01_NADIA and stops, hands open and still, not reaching for @C08_JIN
+        visibility: on_frame
+        action: steps toward @C01_NADIA and stops, hands open and still, not reaching for @C08_JIN
+        exit_state_note: standing nearer Nadia's side, hands still
+      - figure_id: FIG_ENF_HOLDER
+        base_element_id: C10
+        kling_alias: '@C10_HOLDER'
+        role: second enforcer; restrains then releases Nadia
+        distinguishing_detail: Stays back by the door.
+        render_label: leaner, clean-shaven; stays back by the door
+        render_action: stops at the threshold and waits, screen-right
+        visibility: on_frame
+        action: holds the threshold, waiting
+        exit_state_note: standing back by the door
+  - shot_id: SHOT_SC0014_03_B
+    duration_seconds: 3
+    source_beat_ids:
+      - DIMITRI_MRS_VALE
+    prompt_action: The room holds tight and quiet.
+    render_action: The room holds tight and quiet, screen-right favored.
+    render_camera: Over-shoulder on @C04_DIMITRI, medium close, static.
+    render_diegetic_audio: room tone low and tight.
+    duration_reason: normal/dialogue — over-shoulder on Dimitri
+    entry_state:
+      summary: "Nadia seated center holding Jin, not looking up; Dimitri just inside the door; the two men at the doorway."
+      key_positions:
+        - {subject: '@C01_NADIA', screen_position: center, posture: seated, relation: holding @C08_JIN, visibility: on_frame}
+        - {subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame}
+        - {subject: '@C04_DIMITRI', screen_position: right, posture: standing, visibility: on_frame}
+        - {subject: '@C10_CARRIER', screen_position: right, visibility: off_frame}
+        - {subject: '@C10_HOLDER', screen_position: right, visibility: off_frame}
+      props_state:
+        - {prop: '@DOOR_NURSERY', state: open}
+      screen_direction: neutral
+    exit_state:
+      summary: "Dimitri has said her name; Nadia still seated, holding Jin, on the edge of looking up."
+      key_positions:
+        - {subject: '@C01_NADIA', screen_position: center, posture: seated, relation: holding @C08_JIN, visibility: on_frame}
+        - {subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame}
+        - {subject: '@C04_DIMITRI', screen_position: right, posture: standing, visibility: on_frame}
+      screen_direction: neutral
+    dialogue_line_ids:
+      - DLG_DIMITRI_MRS_VALE
+    required_element_ids:
+      - C04
+      - C01
+      - C08
+    coverage_role: reverse
+    focus_alias: '@C04_DIMITRI'
+    performance_note: procedural courtesy without warmth; control without volume
+    diegetic_audio: room tone low and tight
+    camera:
+      angle: over_shoulder
+      framing: medium_close
+      movement: static
+      lens_bias: favor Dimitri, Nadia foreground not looking up
+    lighting:
+      source: practical
+      quality: soft
+      color_temp: neutral
+      intensity: dim
+    motion:
+      subject_intensity: 0.1
+      camera_intensity: 0.0
+    figures:
+      - figure_id: FIG_DIMITRI
+        base_element_id: C04
+        kling_alias: '@C04_DIMITRI'
+        role: Dimitri, lead enforcer
+        render_action: speaks to @C01_NADIA from just inside the door, flat and even
+        visibility: on_frame
+        action: addresses her from just inside the door, flat and procedural
+        exit_state_note: standing screen-right, having spoken her name
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: does not look up, holds @C08_JIN, gives nothing back
+        visibility: on_frame
+        action: does not look up, holds @C08_JIN, gives nothing back
+        exit_state_note: seated center, on the edge of looking up
+      - figure_id: FIG_JIN
+        base_element_id: C08
+        kling_alias: '@C08_JIN'
+        role: Jin, the infant (protected subject)
+        distinguishing_detail: Infant; pale blue name bracelet on wrist.
+        render_label: pale blue band on wrist
+        render_action: rests in @C01_NADIA arms, calm
+        visibility: on_frame
+        action: rests in @C01_NADIA's arms, calm
+        exit_state_note: cradled center
+  - shot_id: SHOT_SC0014_03_C
+    duration_seconds: 5
+    source_beat_ids:
+      - DIMITRI_ITS_TIME
+    prompt_action: The room holds a single breath.
+    render_action: The room holds a single breath, close on @C01_NADIA.
+    render_camera: Close on @C01_NADIA, static.
+    render_diegetic_audio: room tone holds; a held breath.
+    duration_reason: normal/dialogue — close on Nadia, the look up
+    entry_state:
+      summary: "Nadia seated center holding Jin, not looking up; Dimitri off-frame at the door."
+      key_positions:
+        - {subject: '@C01_NADIA', screen_position: center, posture: seated, relation: holding @C08_JIN, visibility: on_frame}
+        - {subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame}
+        - {subject: '@C04_DIMITRI', screen_position: right, posture: standing, visibility: heard_offscreen}
+      screen_direction: neutral
+    exit_state:
+      summary: "Dimitri has spoken ('It's time'); Nadia has looked up; she still holds Jin, center; three men hold the doorway (right)."
+      key_positions:
+        - {subject: '@C01_NADIA', screen_position: center, posture: seated, relation: holding @C08_JIN, visibility: on_frame}
+        - {subject: '@C08_JIN', screen_position: center, posture: cradled, relation: in @C01_NADIA arms, visibility: on_frame}
+        - {subject: '@C04_DIMITRI', screen_position: right, posture: standing, visibility: on_frame}
+      screen_direction: neutral
+    dialogue_line_ids:
+      - DLG_DIMITRI_ITS_TIME
+    required_element_ids:
+      - C04
+      - C01
+      - C08
+    coverage_role: resolve
+    focus_alias: '@C01_NADIA'
+    performance_note: the line that makes her look up; everything held, nothing spilled
+    diegetic_audio: room tone holds; a held breath
+    camera:
+      angle: eye_level
+      framing: close
+      movement: static
+      lens_bias: Nadia lifting her eyes
+    lighting:
+      source: practical
+      quality: soft
+      color_temp: neutral
+      intensity: dim
+    motion:
+      subject_intensity: 0.15
+      camera_intensity: 0.0
+      blocking_notes: The look up is the turn of the beat.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: lifts her eyes to the door
+        visibility: on_frame
+        action: lifts her eyes to the door — the turn of the beat
+        exit_state_note: seated center, eyes now up, the child still held
+      - figure_id: FIG_JIN
+        base_element_id: C08
+        kling_alias: '@C08_JIN'
+        role: Jin, the infant (protected subject)
+        distinguishing_detail: Infant; pale blue name bracelet on wrist.
+        render_label: pale blue band on wrist
+        render_action: rests in @C01_NADIA arms, calm and supported
+        visibility: on_frame
+        action: rests in @C01_NADIA's arms, calm and supported
+        exit_state_note: cradled center
+      - figure_id: FIG_DIMITRI
+        base_element_id: C04
+        kling_alias: '@C04_DIMITRI'
+        role: Dimitri, lead enforcer
+        visibility: heard_offscreen
+        exit_state_note: at the door, screen-right, having spoken
+kling_native_audio:
+  enabled: false
+  provider_policy: kling_native_only
+  external_tts_allowed: false
+  adr_vendor_allowed: false
+notes: 'SC0014 v07 text-only literal pass (no new story facts): entrance establish opens on the carried blocking (Nadia already seated holding Jin) then the door opens and the three men enter, so the prompt never reads as Nadia entering with them. render_* fields carry the literal alias-locked grammar; each figure carries its own alias-only literal action (carrier explicitly non-contact around the protected infant). Dialogue stays inline alias-tagged (DLG_DIMITRI_MRS_VALE in 03_B, DLG_DIMITRI_ITS_TIME in 03_C); native voice gated off for the protected-subject visual_test pass. Poetic fields retained for human review, not printed under the literal profile.'
+provenance:
+  created_by: claude_code (M5 — v07 text-only literal pass)
+  created_at: '2026-06-16T00:00:00Z'
+dialogue_line_ids:
+  - DLG_DIMITRI_MRS_VALE
+  - DLG_DIMITRI_ITS_TIME
+required_element_ids:
+  - LOC001
+  - C04
+  - C01
+  - C08
+  - C10

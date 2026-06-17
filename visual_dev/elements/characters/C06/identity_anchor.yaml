@@ -1,0 +1,54 @@
+schema_version: "0.x-draft"
+record_type: character_identity_anchor
+identity_anchor_id: C06_IDENTITY_ANCHOR_V001
+character_id: C06
+status: draft
+source_reference_strategy:
+  reference_sheet_allowed_as_identity_source: false
+  final_hero_lock_requires_single_clean_image: true
+  contact_sheet_layout_forbidden_as_lock: true
+source_reference_sheet_ref: prompts/draft/SC0089__t2i-char-c06-identity-mj-v8__v01.yaml
+front_hero_lock_ref:
+  pending: false
+  element_id: MJ_C06_HERO_V001
+  external_ref: "archive/nexuszero/_elements/C06/stage1/images/zar_1.png"
+  operator_approved_at: "2026-06-10"
+  notes: "Selected from Z1 batch (11 candidates). West African heritage clear, quiet intelligent eyes, warmth beneath operational guard, not cold/editorial."
+oref_lock_ref:
+  pending: false
+  element_id: MJ_C06_OREFLOCK_V001
+  external_ref: "archive/nexuszero/_elements/C06/stage2/images/zar_2.png"
+  prompt_ref: "prompts/draft/SC0089__t2i-char-c06-oref-lock-mj-v7__v01.yaml"
+  operator_approved_at: "2026-06-10"
+  notes: "Selected from Z2 batch (7 candidates). Best identity consistency with Stage-1 hero; soft frontal light; face fully visible. Seeds Stage-3 four_view_scale_angle_v3."
+fixed_identity_anchors:
+  - "Woman, mid 30s to early 40s; face geometry and identity must stay constant across all scene looks."
+  - "Lean to athletic, upright; trained physical economy; occupies specific points in a room rather than fills it."
+  - "Contained operational power; authority from decision precision and physical stillness, not display. Competence legible in economy of movement."
+  - "West African heritage visible in skin tone, hair texture, face geometry. Natural maintenance over presentation; no glamor."
+  - "Warm human presence beneath the operational guard: quiet intelligent eyes that read as trustworthy even at rest; real three-dimensional person, not a cold or editorial rendering."
+mutable_appearance_allowed:
+  - "Wardrobe per scene look (hunter-pool field-operational / other contexts as scenes dictate)."
+  - "Hair state within the anchor (pulled back short and practical, or tied back, or disordered by exertion)."
+  - "Fatigue level and damage (clean → tired → exhausted; none → dirt → injured) as circumstances progress."
+  - "Environmental lighting register and operational state (night practicals, field conditions)."
+forbidden_drift:
+  - "Do not style as a glamorous bounty hunter or fashion-forward action figure; she is a working professional, not an aesthetic."
+  - "Do not over-design West African heritage into costume cliché (no traditional dress, no flag colors, no jewelry shorthand)."
+  - "Do not soften her into visible maternal warmth; her motherhood is internal and never performed."
+  - "Do not equip her with a signature weapon as identity prop (no specific gun, no holster used as branding)."
+  - "Do not erase her competence or make her read as amateur, even when wardrobe is utilitarian."
+  - "Do not alter face geometry, age read, or body type between looks."
+  - "Do not render cold, hard-edged, or editorial; she is a sympathetic ally — human dignity and trustworthiness must read in the face even under operational discipline."
+notes: >
+  Canonical identity anchor for Zara Okonkwo (C06), authored fresh under Production
+  System v2. One identity, multiple scene looks grounded in hunter-pool operational
+  context. Character chain: Stage 1 MJ V8.1 narrative identity → Stage 2 MJ V7 --oref
+  lock → Stage 3 ChatGPT Images 2 four_view_scale_angle_v3 per look. Identity grounded
+  in C06.yaml visual_profile (mid 30s to early 40s, lean-athletic, dark operational
+  neutrals, West African heritage, trained physical economy) and do_not_invent_notes
+  constraints. front_hero_lock_ref stays pending until the operator generates and a
+  real lock image is selected (no fabricated lock).
+provenance:
+  created_by: "claude_code (haiku)"
+  created_at: "2026-06-04T00:00:00Z"

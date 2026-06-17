@@ -1,0 +1,60 @@
+character_id: C10
+display_name: "Koss Enforcement Operative (generic)"
+cue_name: "OPERATIVE"
+role: OBSTACLE
+source_truth_reference:
+  source_character_id: null
+  source_name: "Unnamed enforcement men (SC0014)"
+  source_files:
+    - source/screenplay/closing_price.fountain
+  planning_layer_note: >
+    Compact planning ID C10 represents the anonymous enforcement operatives who
+    accompany Dimitri (C04). In SC0014 there are two such men; both are rendered as
+    instances of this single generic operative identity. They are deliberately
+    anonymous functionaries, not named source-world characters.
+canonical_name: "Koss Enforcement Operative (generic)"
+aliases: []
+role_label: "Anonymous enforcement operative / functionary"
+story_function: >
+  Procedural muscle for the custody/enforcement apparatus. Present as professional,
+  unhurried, faceless process rather than as individual characters. In SC0014 one
+  performs the lift of the child and one restrains Nadia 'completely.' Their
+  anonymity is the point: the violence is institutional, not personal.
+arc_baseline:
+  wound: "Not applicable (anonymous functionary)."
+  mask: "Not applicable."
+  want: "Not applicable in narrative agency terms."
+  need: "Not applicable in narrative agency terms."
+  initial_arc_phase: NOT_APPLICABLE
+voice_register: "Minimal to none; procedural."
+visual_profile:
+  age_range: "mid-30s to 40s"
+  screen_presence: "Professionally anonymous, neutral, practiced and unhurried; face incidental and non-distinctive."
+  costume_logic: "Plain dark functional clothing — dark jacket, no insignia, no logo, no badge."
+  silhouette: "Unremarkable adult build; controlled economical movement."
+  color_bias: "Dark functional neutrals; cool night palette."
+  hair_makeup_notes: "Short, plain, unremarkable; no distinguishing styling."
+  heritage: "unspecified / not visually asserted."
+  evidence_note: "visual_profile is operator_inferred from the SC0014 screenplay description of two unnamed men; the text states only that they are practiced, larger, professional, and act with procedural courtesy."
+associated_props: []
+associated_locations: []
+relationship_keys:
+  - "Dimitri (C04): lead they accompany and execute for."
+  - "Nadia (C01): subject they restrain; Jin (C08): child one of them lifts."
+known_scene_anchors:
+  - SC0014
+do_not_invent_notes:
+  - "Do not give them names, dialogue, or individual backstory; they are anonymous process."
+  - "Do not stylize as tactical/military commandos; plain functional clothing, no insignia or weapons unless source-stated."
+  - "Do not make their handling of the infant unsafe or violent on the child; restraint reads on the adults, per SC0014 protected-subject staging."
+unresolved_questions:
+  - "TODO_REVIEW: whether the same generic operative identity recurs in other enforcement/custody scenes; confirm before treating as multi-scene continuity."
+continuity_refs:
+  wardrobe_ids:
+    - WD009
+  prop_ids: []
+  key_scene_ids:
+    - SC0014
+status: review
+review_status: pending
+canon_lock: false

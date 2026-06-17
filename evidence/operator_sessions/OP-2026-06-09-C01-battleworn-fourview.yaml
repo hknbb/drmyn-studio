@@ -1,0 +1,20 @@
+session_id: OP-2026-06-09-C01-battleworn-fourview
+created_at: "2026-06-09T12:30:00Z"
+scene_id: SC0111
+current_task: "C01 Nadia compound-battleworn four-view QC + Kling element reference"
+recommended_files:
+  - visual_dev/elements/characters/C01/perspective_packs/PPACK_C01_COMPOUND_BATTLEWORN_V001.yaml
+  - evidence/perspective_qc/PQC_C01_COMPOUND_BATTLEWORN_V001.yaml
+  - visual_dev/elements/characters/C01/kling_element_reference_C01_compound_battleworn.yaml
+  - visual_dev/omni_sets/SC0111/element_bindings.yaml
+recommended_steps:
+  - "Operator generated the Stage-3 battle-worn four-view in ChatGPT Images 2 with dual references (Stage-2 lock primary + Stage-1 hero secondary)."
+  - "Operator reviewed the four views; all read as the locked Nadia identity in WD011 battle-worn state with neutral backgrounds and an exhausted-but-resolute human expression."
+  - "Assistant scored the four perspectives (all >=85) and recorded the perspective_qc_report."
+  - "Promote SC0111 C01 binding to 'created' and author the battle-worn kling_element_reference_record."
+status: complete
+notes: >
+  Real images, real review. Same locked Nadia identity (MJ_C01_OREFLOCK_V001) carried
+  into the SC0111 battle-worn climax look, soft face geometry held under restrained
+  injury/exhaustion. No fabricated readiness. SC0111 is largely dialogue-free
+  (action-driven Format A); this is a visual binding promotion only.

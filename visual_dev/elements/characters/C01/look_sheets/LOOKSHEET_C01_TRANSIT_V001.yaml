@@ -1,0 +1,30 @@
+schema_version: "0.x-draft"
+record_type: character_look_sheet
+look_sheet_id: LOOKSHEET_C01_TRANSIT_V001
+character_id: C01
+look_id: C01_LOOK_TRANSIT_V001
+scene_refs:
+  - SC0047
+physical:
+  build: "Lean, upright, economical; trained-to-conserve-movement posture (former military medic)."
+  height: "Average; reads contained and exact rather than tall."
+  hair: "Dark, restrained for travel; secured back or under, no styling, practical against maritime air."
+  skin_tone: "Natural, no glamor finish; cool under maritime morning light."
+  physical_features: "Early-to-mid-30s; alert watchful eyes; exact face geometry; vigilance legible beneath calm. No decorative styling."
+wardrobe:
+  primary_wardrobe_id: WD012
+  garment_top: "Muted layered top in low-saturation neutral (soft grey or oat), worn under an unremarkable anonymous jacket; no logos, no distinctive silhouette."
+  garment_bottom: "Durable trousers in weathered navy or faded grey; practical, movement-easy, appropriate to working waterfront."
+  footwear: "Practical, weather-resistant footwear suitable for cold quay morning; non-descript, functional."
+  outerwear: "Unremarkable anonymous jacket over muted layer; deliberately forgettable, cold-weather appropriate."
+  accessories: []
+palette: "Muted travel neutrals (faded grey, oat, weathered navy); deliberately forgettable; maritime morning cool register."
+status: draft
+notes: >
+  Full head-to-toe look definition for Nadia's SC0047 quay-morning transit look so the four_view
+  scale views do not crop or invent garments. Transit-anonymous register only; no tactical coding.
+  Identity locked by C01_IDENTITY_ANCHOR_V001. Cold maritime air appropriate, reads as a person
+  passing through.
+provenance:
+  created_by: "claude_code (M5 FAZ B — haiku)"
+  created_at: "2026-06-04T00:00:00Z"

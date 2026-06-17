@@ -1,0 +1,48 @@
+element_id: PROP001
+element_type: prop
+selection_round: 1
+source_prompt_ids:
+  - SC0014__t2i-prop-prop001-bracelet-first-ref-chatgpt__v01
+candidate_images:
+  - asset_id: PPACK_PROP001_BRACELET_V001__front_reference
+    path: "archive/nexuszero/_elements/PROP001/stage3/images/prop001_3_1.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/PROP001/stage3/images/prop001_3_1.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 front_reference for @PROP001_BRACELET; full bracelet flat lay, whole pale-blue band + clasp + 'Jin' ID strip readable, medically plausible. QC 92."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+  - asset_id: PPACK_PROP001_BRACELET_V001__three_quarter_medium
+    path: "archive/nexuszero/_elements/PROP001/stage3/images/prop001_3_2.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/PROP001/stage3/images/prop001_3_2.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 three_quarter_medium for @PROP001_BRACELET; band curve and lateral profile visible, same pale-blue object and finish. QC 90."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 4
+  - asset_id: PPACK_PROP001_BRACELET_V001__three_quarter_close
+    path: "archive/nexuszero/_elements/PROP001/stage3/images/prop001_3_3.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/PROP001/stage3/images/prop001_3_3.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 three_quarter_close for @PROP001_BRACELET; sharp macro on clasp and 'Jin' ID strip — load-bearing SC0014 insert beat detail. QC 93."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+canonical_images:
+  - PPACK_PROP001_BRACELET_V001__front_reference
+  - PPACK_PROP001_BRACELET_V001__three_quarter_medium
+  - PPACK_PROP001_BRACELET_V001__three_quarter_close
+round_status: complete
+pack_manifest_sync: applied

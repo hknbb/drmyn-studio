@@ -1,0 +1,57 @@
+schema_version: "0.x-draft"
+record_type: perspective_qc_report
+perspective_qc_id: PQC_LOC001_NURSERY_EVENING_V001
+status: approved
+scene_id: SC0014
+element_id: LOC001
+prompt_pack_id: PPACK_LOC001_NURSERY_EVENING_V001
+operator_session_ref: OP-2026-06-12-LOC001-nursery-threeview
+perspective_scores:
+  - prompt_id: PPACK_LOC001_NURSERY_EVENING_V001__front_reference
+    perspective: front_reference
+    identity_preservation: 92
+    perspective_usefulness: 91
+    material_palette_continuity: 91
+    production_reference_cleanliness: 92
+    hallucination_absence: 90
+    view_distinction: 90
+    scale_distinction: 90
+    total_score: 91
+    decision: pass
+  - prompt_id: PPACK_LOC001_NURSERY_EVENING_V001__three_quarter_medium
+    perspective: three_quarter_medium_reference
+    identity_preservation: 89
+    perspective_usefulness: 88
+    material_palette_continuity: 90
+    production_reference_cleanliness: 89
+    hallucination_absence: 90
+    view_distinction: 88
+    scale_distinction: 88
+    total_score: 88
+    decision: pass
+  - prompt_id: PPACK_LOC001_NURSERY_EVENING_V001__three_quarter_close
+    perspective: three_quarter_close_reference
+    identity_preservation: 90
+    perspective_usefulness: 92
+    material_palette_continuity: 89
+    production_reference_cleanliness: 91
+    hallucination_absence: 90
+    view_distinction: 91
+    scale_distinction: 90
+    total_score: 90
+    decision: pass
+gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  can_advance_to_kling_reference: true
+notes: >
+  Real review of operator-approved Stage-3 three_view_scale_angle_v2 set for @LOC001_NURSERY
+  (archived, git-ignored). All three views read as the same carefully-made nursery: crib,
+  low shelf, nursing chair, warm evening practicals, pale warm-neutral walls. Room identity
+  consistent across all three perspectives — same objects, same palette, consistent geometry.
+  front_reference delivers widest depth and most generous floor space for SC0014 actor blocking.
+  three_quarter_medium_reference shifts viewpoint toward the crib and nursing chair.
+  three_quarter_close_reference provides clear three-quarter angle — strongest view distinction,
+  shelf and crib railing detail readable. No people in any plate; no text, no watermark.
+  Source: CHATGPTIMG_LOC001_FIRSTREF_V001 (loc001_1.png) used as reference image.
+  All perspectives >= 85.

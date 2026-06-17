@@ -1,0 +1,61 @@
+element_id: C06
+element_type: character
+selection_round: 1
+source_prompt_ids:
+  - SC0089__t2i-char-c06-oref-lock-mj-v7__v01
+candidate_images:
+  - asset_id: PPACK_C06_FIELD_NIGHT_V001__full_body_front
+    path: "archive/nexuszero/_elements/C06/stage3/images/zar_3_1.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C06/stage3/images/zar_3_1.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 full_body_front for @C06_ZARA; head-to-toe, lean athletic build, khaki/olive-tan WD013 wardrobe, operational posture. QC 89."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 4
+  - asset_id: PPACK_C06_FIELD_NIGHT_V001__three_quarter_waist
+    path: "archive/nexuszero/_elements/C06/stage3/images/zar_3_2.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C06/stage3/images/zar_3_2.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 three_quarter_waist for @C06_ZARA; 30-45 deg turn, identity + khaki wardrobe consistent, alert operational presence. QC 90."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 4
+  - asset_id: PPACK_C06_FIELD_NIGHT_V001__close_portrait_front
+    path: "archive/nexuszero/_elements/C06/stage3/images/zar_3_3.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C06/stage3/images/zar_3_3.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 close_portrait_front for @C06_ZARA; frontal identity lock, West African heritage clear, warmth in eyes, not cold/editorial. QC 92."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+  - asset_id: PPACK_C06_FIELD_NIGHT_V001__profile_full
+    path: "archive/nexuszero/_elements/C06/stage3/images/zar_3_4.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C06/stage3/images/zar_3_4.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 profile_full for @C06_ZARA; clean 90 deg lateral profile, khaki wardrobe consistent, upright posture. QC 88."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 4
+canonical_images:
+  - PPACK_C06_FIELD_NIGHT_V001__full_body_front
+  - PPACK_C06_FIELD_NIGHT_V001__three_quarter_waist
+  - PPACK_C06_FIELD_NIGHT_V001__close_portrait_front
+  - PPACK_C06_FIELD_NIGHT_V001__profile_full
+round_status: complete
+pack_manifest_sync: applied

@@ -1,0 +1,249 @@
+schema_version: "0.x-draft"
+record_type: golden_reference_plan
+golden_reference_plan_id: GOLDEN_PLAN_SC0014_V001
+scene_id: SC0014
+status: blocked
+selected_scene_reason:
+  - "Highest-stakes domestic loss beat in the equilibrium phase — the forced custody removal of Jin from Nadia, the event the rest of the film is measured against"
+  - "Concentrated two-location-free interior scene: a single nursery, controlled production surface, dramatic density carried by performance rather than spectacle"
+  - "Strong contrast to SC0001 — the same domestic-restraint visual grammar inverted from contained safety into dispossession; the empty crib is the closing image"
+  - "Exercises protected-subject production discipline at the hardest case (an infant taken by force), making it a valuable reference for the ethics gate, not only the visual gate"
+  - "Three tracked characters already scaffolded (C01 Nadia, C04 Dimitri, C08 Jin) plus a known location (LOC001), so the blocking surface is bounded and explicit"
+
+required_elements:
+  - element_id: C01
+    element_type: character
+    role: protagonist / primary subject / POV
+    on_camera_status: on_camera
+    kling_reference_id: KLING_REF_C01_NADIA_CANON_V2_V001
+    notes: >
+      Canonical v2 identity anchor, operator-approved. SC0014 is evening domestic
+      under threat — neither the SC0001 home-morning register nor the NIGHT_TIRED
+      (SC0004–SC0009) field register applies directly. No dedicated evening-removal
+      look variant exists; production proceeds at prompt-level using
+      @C01_NADIA_CANON_V2 with extended directives (contained domestic evening,
+      no field/operational coding, performance of total resistance under restraint).
+
+  - element_id: C04
+    element_type: character
+    role: antagonist agent / enforcement lead (Dimitri Koss)
+    on_camera_status: on_camera
+    kling_reference_id: KLING_REF_C04_V001
+    notes: >
+      Dimitri's operational look. Reference KLING_REF_C04_V001 is operator-approved,
+      but the composite alias element KLING_ELEM_C04_OPERATIONAL_V001 (@C04_OPERATIONAL)
+      is still status draft. Promote the alias element to review before alias-only
+      Kling prompt synthesis. Wardrobe (WD005, corporate-operational suit) is baked
+      into the alias.
+
+  - element_id: C08
+    element_type: character
+    role: protected subject / emotional center (Jin Vale, infant)
+    on_camera_status: on_camera
+    kling_reference_id: KLING_REF_C08_V001
+    notes: >
+      PROTECTED SUBJECT — hard gate. KLING_REF_C08_V001 exists and is
+      operator-approved, but there is NO kling_elements composite alias for C08
+      (no @alias), so alias-only prompts are blocked until KLING_ELEM_C08_* is
+      created. Per C08 do_not_invent_notes, generation MUST NOT depict unsafe
+      infant handling, unsupported posing, restraint imagery, or exploited distress.
+      In this scene the taking is rendered through Nadia's POV and adult performance;
+      the lift is implied/safe-supported; infant distress is kept off-frame; no
+      crib-risk or abandonment framing. A scene-specific protected-subject handling
+      note is required before any generation request.
+
+  - element_id: LOC001_JINS_ROOM
+    element_type: location_sub_area
+    role: primary location — Jin's nursery, Vale residence
+    on_camera_status: on_camera
+    notes: >
+      Sub-area of LOC001. Currently intake-slot only
+      (visual_dev/elements/locations/LOC001/sub_areas/jins_room/intake_slot.yaml,
+      source_status not_collected, intake_ready_to_proceed false). No perspective
+      pack, no kling_element_reference, no alias. Sub-area build PR required:
+      a small carefully-made nursery, crib, shelf of an eight-month-old's things,
+      soft contained warm evening light, single doorway. Mirrors the SC0001
+      kitchen_passage sub-area build pattern.
+
+  - element_id: SC0014_ENFORCERS
+    element_type: anonymous_silhouette
+    role: two unnamed enforcement men accompanying Dimitri
+    on_camera_status: on_camera
+    notes: >
+      No character records and none required. Render as anonymous, professionally
+      neutral adult figures (dark functional clothing, practiced, unhurried). One
+      performs the lift; one restrains Nadia "not roughly, just completely." Keep
+      faces incidental; they are procedure, not characters. Do not create compact
+      character IDs for them.
+
+character_look_requirements:
+  - element_id: C01
+    kling_reference_id: KLING_REF_C01_NADIA_CANON_V2_V001
+    kling_element_alias: "@C01_NADIA_CANON_V2"
+    prompt_level_continuity_policy:
+      - "Preserve canonical identity from KLING_REF_C01_NADIA_CANON_V2_V001"
+      - "Dark hair pulled back simple natural restraint; early-to-mid-30s lean face geometry, dark eyes — same anchor as SC0001"
+      - "Contained domestic evening register — plain matte dark fitted top, muted neutral palette, no field/operational or tactical coding"
+      - "No decorative softness and no styling change; this is the same woman from the morning, hours later"
+      - "Expression register — total physical resistance held inside a composed body; grief withheld; by the final hold she is 'already somewhere else' (interiorised, not collapsed)"
+
+  - element_id: C04
+    kling_reference_id: KLING_REF_C04_V001
+    kling_element_alias: "@C04_OPERATIONAL"
+    prompt_level_continuity_policy:
+      - "Preserve canonical identity from KLING_REF_C04_V001"
+      - "Short polished professional dark hair with light greying; 40s lean instrument face; hard-edged jaw"
+      - "Disciplined operational executive suit silhouette (WD005), dark corporate-neutral palette"
+      - "Affect — courteous procedural control, no anger, no relish; the violence is in the politeness"
+
+  - element_id: C08
+    kling_reference_id: KLING_REF_C08_V001
+    prompt_level_continuity_policy:
+      - "Preserve canonical identity from KLING_REF_C08_V001 — ordinary ~8-month-old infant, sparse soft natural dark hair, neutral skin tone, brown eyes, heritage not visually asserted"
+      - "Simple practical infant clothing in muted soft domestic neutrals; no themed or narrative-coded outfit; no bracelet baked into base identity (bracelet is a separate deferred prop)"
+      - "Calm ordinary infant presence; no idealization, no glow/halo, no symbolic posing"
+      - "SAFE HANDLING ONLY — supported, care-context handling; the lift is implied or framed off the infant; no restraint imagery on the child; no exploited distress; any infant sound is incidental, never performed pain"
+      - "Composite alias KLING_ELEM_C08_* must be created before alias-only prompt synthesis"
+
+wardrobe_continuity_policy:
+  policy_type: prompt_level_continuity
+  directive_text: >
+    No dedicated SC0014 look variant is required for first pass. C01 proceeds at
+    prompt-level using @C01_NADIA_CANON_V2 with contained-domestic-evening directives
+    (WD001 silhouette is acceptable; this is the same domestic register as the morning,
+    not a field look). C04 uses @C04_OPERATIONAL with WD005 baked in. C08 uses its
+    canonical infant identity with simple domestic-neutral infant clothing. The
+    anonymous enforcers are prompt-described in neutral dark functional clothing.
+  escalation_trigger: >
+    Escalate C01 to a dedicated C01_LOOK_HOME_EVENING_* asset_lookvariant PR if
+    Kling generation fails to hold the contained domestic register (drifts to
+    operational/field coding) or fails wardrobe continuity across two consecutive
+    takes at minimum_score < 80.
+
+dialogue_native_audio_needs:
+  readiness_state: suppressed
+  rendering_rule: >
+    All dialogue suppressed from Kling prompt text. Only Dimitri speaks; his lines
+    are sparse and procedural and carry as performance/blocking, not as spoken audio,
+    until a Dimitri voice reference is established and native_audio_readiness is
+    promoted to ready by a separate voice-pipeline PR. Dialogue line IDs are carried
+    as metadata only and do not appear in prompt_text. No lip-sync generation
+    authorized. When promoted to ready, re-generation with dialogue is authorized.
+  dialogue_sources:
+    - "DIMITRI — 'Mrs. Vale.'"
+    - "DIMITRI — 'It's time.'"
+    - "DIMITRI — 'Please don't make this harder.'"
+
+shot_coverage:
+  - shot_id: SH001
+    intent: Establishing — the carefully-made nursery and the protected center before intrusion
+    camera_role: establishing
+    framing_notes: >
+      Interior nursery, evening. Soft contained warm light. Crib, shelf of an
+      eight-month-old's things. Nadia in the chair by the crib holding Jin, awake,
+      not rocking, not singing — just holding. The room reads as made carefully.
+      Establish the protected center and the single doorway. Safe supported infant
+      handling only.
+    dialogue_present: false
+    manifest_status: pending
+
+  - shot_id: SH002
+    intent: The intrusion — door opens, Dimitri and two men enter, "Mrs. Vale / It's time"
+    camera_role: character_coverage
+    framing_notes: >
+      The door opens. Dimitri enters, two men behind him, standing just inside the
+      door — the intruding geometry against the contained room. Dimitri courteous,
+      procedural. Nadia does not look up on "Mrs. Vale," looks up on "It's time."
+      Dialogue suppressed; carried as performance.
+    dialogue_present: true
+    manifest_status: pending
+
+  - shot_id: SH003
+    intent: Cornered — Nadia stands, one step back, "Please don't make this harder"
+    camera_role: reaction
+    framing_notes: >
+      Nadia stands, still holding Jin, takes one step back — not toward anything,
+      the instinct of something that knows it is cornered. Dimitri's "Please don't
+      make this harder" lands on her stillness; she says nothing. Hold her body and
+      the child; the room's exits closed by the three men.
+    dialogue_present: true
+    manifest_status: pending
+
+  - shot_id: SH004
+    intent: The taking — first man advances and lifts the child free (protected-subject staged)
+    camera_role: character_coverage
+    framing_notes: >
+      The first man moves toward her; she turns her body to shield — not slow, not
+      weak, and it does not matter. The lift is staged through Nadia's resistance and
+      adult performance: frame the man's careful firm reach and Nadia's arms giving
+      everything, then the separation read on HER. PROTECTED SUBJECT — the lift is
+      implied/off the infant or safe-supported; no restraint imagery on the child;
+      no exploited distress.
+    dialogue_present: false
+    manifest_status: pending
+
+  - shot_id: SH005
+    intent: Insert — the bracelet beat; her fingers find the pale blue band for one beat, then the empty hand
+    camera_role: insert
+    framing_notes: >
+      Tight insert on Nadia's hand reaching after Jin: her fingers find the bracelet
+      — pale blue band, clasp, the small type of his name — for exactly one beat.
+      Then the empty hand. The whole loss compressed into the object and the hand.
+      No infant in frame; the bracelet carries the beat. (Bracelet is a deferred prop;
+      register PROP-JIN-BRACELET before this insert is finalized.)
+    dialogue_present: false
+    manifest_status: pending
+
+  - shot_id: SH006
+    intent: Held and watching — second man restrains her "completely," Jin carried to the door, door closes
+    camera_role: reaction
+    framing_notes: >
+      The second man holds her by both arms — not roughly, just completely. She
+      watches Jin carried to the door. Any infant sound is incidental, off-frame,
+      never performed distress. The door closes. Stay on Nadia; the violence is in
+      her restraint and her watching, not in the child.
+    dialogue_present: false
+    manifest_status: pending
+
+  - shot_id: SH007
+    intent: Final hold — the empty crib, the open hand, "she is already somewhere else"
+    camera_role: final_hold
+    framing_notes: >
+      The second man releases her, steps back, a single professional nod, leaves.
+      Nadia stands in the room. The crib is empty. The hand that held the bracelet is
+      open at her side. She does not move toward the door. Hold on the empty crib and
+      on Nadia — interiorised, not collapsed. The closing image of dispossession.
+    dialogue_present: false
+    manifest_status: pending
+
+qc_policy:
+  minimum_score: 80
+  all_shots_required: true
+
+external_generation_policy:
+  target_model: kling_omni_3
+  no_binary_commits: true
+  external_storage_only: true
+
+notes: >
+  SC0014 is the forced custody-removal beat — the equilibrium-phase counterpart and
+  inversion of SC0001. BLOCKED on production prerequisites before Kling generation:
+  (1) LOC001 jins_room sub-area build PR — currently intake-slot only, source not
+  collected; needs perspective pack + kling_element_reference + alias. (2) C08 Jin
+  composite alias — KLING_ELEM_C08_* does not exist; alias-only prompts blocked until
+  created. (3) C04 @C04_OPERATIONAL alias element is status draft; promote to review.
+  (4) Two anonymous enforcer figures need an agreed prompt-described treatment (no
+  character records). C01 evening register is a soft blocker — generation can proceed
+  at prompt-level using @C01_NADIA_CANON_V2, with a C01_LOOK_HOME_EVENING_* variant
+  recommended only on escalation.
+  HARD ETHICS GATE: this scene depicts an infant taken by force. Per C08
+  do_not_invent_notes, no unsafe handling, no restraint imagery on the child, no
+  exploited distress; the taking is carried by Nadia's POV and adult performance,
+  infant handling is safe/supported, and infant distress is kept off-frame. A
+  scene-specific protected-subject handling note and explicit human approval are
+  required before any generation request. Dialogue is suppressed; no lipsync
+  authorized. omni_set_ref: visual_dev/omni_sets/SC0014/.
+
+provenance:
+  created_by: hknbb
+  created_at: "2026-06-02T00:00:00Z"

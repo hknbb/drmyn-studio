@@ -1,0 +1,29 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KER_C08_NURSERY_EVENING_V001
+status: approved
+element_id: C08
+element_type: character
+source_midjourney_reference:
+  reference_id: MJ_C08_OREFLOCK_V001
+  prompt_id: SC0014__t2i-char-c08-oref-lock-mj-v7__v01
+  operator_session_ref: OP-2026-06-09-C08-nursery-fourview
+gpt_images_2_perspectives:
+  full_body_front: PPACK_C08_NURSERY_EVENING_V001__full_body_front
+  three_quarter_waist: PPACK_C08_NURSERY_EVENING_V001__three_quarter_waist
+  close_portrait_front: PPACK_C08_NURSERY_EVENING_V001__close_portrait_front
+  profile_full: PPACK_C08_NURSERY_EVENING_V001__profile_full
+continuity_anchors:
+  - "PROTECTED SUBJECT (infant Jin). Every downstream use keeps the baby calm, safe and FULLY SUPPORTED; no distress, no peril, no unsafe/restraint handling; the SC0014 taking is carried by adult performance + Nadia's POV, never by the infant; infant distress stays off-frame."
+  - "Locked Jin identity: warm soft baby ~8 months; soft round face, full chubby cheeks, big gentle warm eyes, tiny soft features, fine wispy hair, soft skin."
+  - "WD008 nursery onesie in warm muted neutrals with the pale blue name bracelet on one wrist."
+  - "Soft gentle even light; neutral clean background; natural soft realism, no glamour."
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-2026-06-09-C08-nursery-fourview
+downstream_use:
+  - kling_omni_3_shot_prompt
+source_refs:
+  gpt_images_pack_ref: visual_dev/elements/characters/C08/perspective_packs/PPACK_C08_NURSERY_EVENING_V001.yaml
+  element_sheet_ref: visual_dev/elements/characters/C08/look_sheets/LOOKSHEET_C08_NURSERY_EVENING_V001.yaml

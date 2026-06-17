@@ -1,0 +1,82 @@
+schema_version: "0.x-draft"
+record_type: character_identity_anchor
+identity_anchor_id: C10_IDENTITY_ANCHOR_V001
+character_id: C10
+status: identity_locked_stage2
+source_reference_strategy:
+  reference_sheet_allowed_as_identity_source: false
+  final_hero_lock_requires_single_clean_image: true
+  contact_sheet_layout_forbidden_as_lock: true
+source_reference_sheet_ref: prompts/draft/SC0014__t2i-char-c10-identity-mj-v8__v01.yaml
+front_hero_lock_ref:
+  pending: false
+  two_distinct_figures_note: "C10 is rendered as TWO distinct, somewhat-different anonymous men (anti-clone): @C10_CARRIER and @C10_HOLDER. Each has its own locked figure hero in figure_hero_locks; they share the anonymous-functionary design but are NOT identical."
+  media_index_ref: evidence/local_media_indices/LOCAL_MEDIA_INDEX__elements_ARCHIVE_V001.yaml
+  next_external_step: "Stage 2 — MJ V7 --oref refinement per figure (one lock each), then Stage 3 ChatGPT four_view_scale_angle_v3 per figure (two packs)."
+figure_hero_locks:
+  - figure_alias: "@C10_CARRIER"
+    stage1_narrative_identity_locked: true
+    selected_hero_id: MJ_C10_CARRIER_HERO_V001
+    external_ref: "archive/nexuszero/_elements/C10/stage1/images/car_1.png"
+    sha256: "9e7306e4a47ef164562822fd06e0d14804cf7b8412df05981c6671a54009e6aa"
+    distinguishing_detail: "Heavier / stockier build, buzzed very-short hair, light stubble. Lifts and carries Jin."
+    approved_by: operator
+    approved_at: "2026-06-09T00:00:00Z"
+  - figure_alias: "@C10_HOLDER"
+    stage1_narrative_identity_locked: true
+    selected_hero_id: MJ_C10_HOLDER_HERO_V001
+    external_ref: "archive/nexuszero/_elements/C10/stage1/images/hol_1.png"
+    sha256: "0958a093389360d9b23a4d865cb409bce081f4fa57c99ecb10925c4d52c12590"
+    distinguishing_detail: "Leaner build, darker fuller short hair + short beard. Restrains Nadia."
+    approved_by: operator
+    approved_at: "2026-06-09T00:00:00Z"
+figure_stage2_locks:
+  - figure_alias: "@C10_CARRIER"
+    locked: true
+    selected_lock_id: MJ_C10_CARRIER_OREFLOCK_V001
+    prompt_ref: prompts/draft/SC0014__t2i-char-c10-carrier-oref-lock-mj-v7__v01.yaml
+    external_ref: "archive/nexuszero/_elements/C10/stage2/images/car_5.png"
+    sha256: "8ea76c35bdb33fa5071f880af0156b594f30f8674659e54ce1905b7fbec136c8"
+    distinguishing_detail: "Heavier/stockier build, buzzed very-short hair, goatee."
+    approved_by: operator
+    approved_at: "2026-06-09T00:00:00Z"
+  - figure_alias: "@C10_HOLDER"
+    locked: true
+    selected_lock_id: MJ_C10_HOLDER_OREFLOCK_V001
+    prompt_ref: prompts/draft/SC0014__t2i-char-c10-holder-oref-lock-mj-v7__v01.yaml
+    external_ref: "archive/nexuszero/_elements/C10/stage2/images/hol_4.png"
+    sha256: "d9a071ac04bd78d4da3d614cd18f92ed847f2563687ab130145dcdfbd182d095"
+    distinguishing_detail: "Fuller short hair + fuller short beard, leaner read; chosen as the most distinct from CARRIER (anti-clone)."
+    approved_by: operator
+    approved_at: "2026-06-09T00:00:00Z"
+    note: "The two C10 Stage-2 batches came out as similar anonymous operatives (on-design: 'deliberately interchangeable'); this pair is the most visually distinct available. Anti-clone is reinforced at O3 by distinguishing_detail + positioning/action."
+fixed_identity_anchors:
+  - "Adult man, mid-30s to 40s; unremarkable face geometry and features (no distinctive marking or hero presence); face incidental, not individualized."
+  - "Generic competent adult build; practical economical movement; unhurried, professionally calm presence."
+  - "Deliberately anonymous and interchangeable; both C10 figures (@C10_CARRIER, @C10_HOLDER) share this identity anchor and differ only at figure-level distinguishing_detail."
+  - "No signature styling, no decorative finish, no hero-scale charisma; reads as procedural functionary, not protagonist."
+mutable_appearance_allowed:
+  - "Wardrobe per operational context (dark functional enforcement attire WD009; no insignia, no logo, no individuating gear)."
+  - "Hair state within the anchor (short, plain, practical; no styling)."
+  - "Fatigue level and damage consistent with procedural enforcement context (clean operational baseline)."
+  - "Lighting and environmental register (interior practicals, contained domestic setting per SC0014)."
+forbidden_drift:
+  - "Do not give distinctive face geometry, scars, tattoos, or any individualizing features; anonymity is the point."
+  - "Do not style as tactical commando, military, or heroic; plain functional civilian-security baseline only."
+  - "Do not assign personality, attitude, or emotional register; professional neutral, procedural courtesy only."
+  - "Do not introduce signature gear, weapons, or decorative elements; dark plain functional clothing (WD009) only."
+  - "Do not clone the second enforcer (@C10_HOLDER) from the first (@C10_CARRIER); they are distinct figures who share the identity anchor but are rendered as two separate people."
+notes: >
+  Canonical identity anchor for the anonymous enforcement operatives (C10 generic base).
+  Two distinct instances of C10 appear in SC0014 (@C10_CARRIER lifts the child,
+  @C10_HOLDER restrains Nadia). Both share this single identity anchor; the figures are
+  distinguished at the scene_beat_plan figure level via distinguishing_detail, not by
+  rewriting the identity. The two men are procedural, interchangeable functionaries —
+  their anonymity and indistinguishability is the character design intention. Character
+  chain: Stage 1 MJ V8.1 narrative identity → Stage 2 MJ V7 --oref lock → Stage 3
+  ChatGPT Images 2 four_view_scale_angle_v3 perspective pack. front_hero_lock_ref
+  stays pending until the operator generates and a real lock image is selected (no
+  fabricated lock).
+provenance:
+  created_by: "claude_code (M5 FAZ B)"
+  created_at: "2026-06-04T00:00:00Z"

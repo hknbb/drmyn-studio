@@ -2,32 +2,40 @@ scene_id: SC0111
 sequence_id: SEQ23
 phase_id: PH_RESOLUTION
 title: VELTAIN COMPOUND — ANTECHAMBER CORRIDOR
-purpose: Placeholder scaffold seeded from the retrieval map; replace with canonical scene purpose.
-dramatic_function: TBD dramatic function derived during scene-card enrichment.
-location_id: LOC001
+purpose: "The climactic physical reckoning between Nadia and Roman: injured on her left side and cornered by Roman's map-knowledge of the corridor geometry, Nadia pivots from retreat to approach, applies a bilateral carotid-sinus hold, and forces Roman to vasovagal collapse. She stands and moves on—Jin is in the building."
+dramatic_function: "Controlled violence meeting preparedness: value shifts from cornered/controlled-deficit to decisive victory-at-cost. Nadia's anatomical knowledge and will overcome Roman's spatial advantage; the cost is her exhaustion and the unanswered question of Roman's survival."
+location_id: LOC007
 location_text_raw: VELTAIN COMPOUND — ANTECHAMBER CORRIDOR
 time_of_day: UNKNOWN
 time_of_day_text_raw: CONTINUOUS
-weather: TBD
+weather: "Interior; not source-stated."
 characters_present:
 - C01
+- C02
 characters_explicit_dialogue: []
-characters_explicit_mentions: []
+characters_explicit_mentions:
+- NADIA
+- ROMAN
+- JIN
 primary_pov_character: C01
 continuity_refs:
   wardrobe: []
   props: []
   prior_scenes:
   - SC0110
+  - SC0104
+  - SC0102
   next_expected_links:
   - SC0112
-  time_continuity_note: TBD continuity note.
+  time_continuity_note: "CONTINUOUS from SC0110. References sternum injury from SC0104 and corridor geometry Roman mapped in SC0102. Nadia's left-side deficit is the direct consequence of the SC0104 rib impact; Roman's knowledge of the floor seam geometry is from SC0102 eleven-year-prior mapping."
 visual_targets:
-  palette: TBD visual palette
-  lens_bias: TBD lens bias
-  framing_bias: TBD framing bias
-  movement_bias: TBD movement bias
-  lighting_bias: TBD lighting bias
+  palette: "Cold institutional / harsh low light. Concrete corridor, server-core aesthetic. Limited color information; shadow and silhouette dominant."
+  lens_bias: "Tight, claustrophobic coverage registering bodies, leverage, and precision contact. Handheld movement only where the physical contact demands it; otherwise restrained static/tracking coverage that reads the geometry closing."
+  framing_bias: "The corridor closing geometry as the frame constraint. Floor seam as a tactical element. Door frame and server-core door entry as the back-wall. Backs-to-surfaces; bodies using the limited space."
+  movement_bias: "Controlled, precise, no wasted force. Both characters economical; the fight is about positioning and leverage, not wild action. Breathing visible. Muscles working."
+  lighting_bias: "Low-key, hard, cool, dim. Practical lighting only; no warm fills. The light is there to read the space and bodies, not to flatter. Cold color temperature; institutional."
+  aesthetic_pack_refs:
+  - VELTAIN_COMPOUND_HARSH
 promptability_score: 3
 excerpt_ref: scene_excerpt.md
 screen_excerpt_ref: scene_excerpt.md
@@ -42,12 +50,13 @@ boundary_start_kind: cont_slug
 boundary_end_kind: cont_slug
 mapping_confidence: medium
 notes_grounding:
-- Hydrated from retrieval map and scene_excerpt.md only.
-- Title derived from opening slugline location.
-- Opening slugline provided grounded location/time extraction.
-- Retrieval map marks this scene as medium confidence.
-- Numbered Fountain marker present for this scene.
-status: scaffolded
+- "Enriched from scene_excerpt.md (source lines 8993-9049); no story facts added beyond the excerpt."
+- "characters_present: C01 (Nadia Vale), C02 (Roman Vale). This is a 1:1 physical fight; no other characters or protected subjects."
+- "characters_explicit_mentions includes ROMAN (C02), NADIA (C01), and JIN (mentioned: 'Jin is in the building')."
+- "No dialogue in the scene; Format A (silent action)."
+- "Purpose and dramatic_function derived from excerpt narrative arc: Nadia's left-side deficit (from SC0104), Roman's spatial knowledge (from SC0102), the floor seam as tactical constraint, the shift from retreat to approach, the bilateral carotid-sinus hold (medical knowledge + desperation), vasovagal collapse, and the final line 'Jin is in the building' marking her decision to move."
+- "Continuity references SC0110 (prior), SC0104 (sternum injury origin), SC0102 (corridor mapping origin), and SC0112 (next)."
+status: review
 review_status: needs_human_review
 canon_lock: false
 omni_set_ref: visual_dev/omni_sets/SC0111/

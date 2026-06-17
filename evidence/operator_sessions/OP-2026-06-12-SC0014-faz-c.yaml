@@ -1,0 +1,36 @@
+session_id: OP-2026-06-12-SC0014-faz-c
+created_at: "2026-06-12T00:00:00Z"
+scene_id: SC0014
+current_task: "SC0014 FAZ C — clip plan + continuity ledger + O3 prompt generation (8 clips)"
+status: complete
+recommended_files:
+  - planning/scenes/SC0014/omni_clip_plan.yaml
+  - planning/scenes/SC0014/scene_continuity_ledger.yaml
+  - planning/scenes/SC0014/manifests/CLIP_SC0014_01_manifest.yaml
+  - planning/scenes/SC0014/manifests/CLIP_SC0014_02_manifest.yaml
+  - planning/scenes/SC0014/manifests/CLIP_SC0014_03_manifest.yaml
+  - planning/scenes/SC0014/manifests/CLIP_SC0014_04_manifest.yaml
+  - planning/scenes/SC0014/manifests/CLIP_SC0014_05_manifest.yaml
+  - planning/scenes/SC0014/manifests/CLIP_SC0014_06_manifest.yaml
+  - planning/scenes/SC0014/manifests/CLIP_SC0014_07_manifest.yaml
+  - planning/scenes/SC0014/manifests/CLIP_SC0014_08_manifest.yaml
+  - prompts/draft/SC0014__clip-sc0014-01-safe__v01.yaml
+  - prompts/draft/SC0014__clip-sc0014-05-safe__v01.yaml
+recommended_steps:
+  - "SC0014 FAZ C complete — 8 clips, 8 O3 prompts (Format A, audio suppressed), continuity ledger SCL_SC0014_V001."
+  - "Next: remaining scene element pipelines for SC0089, SC0047, SC0111 (locations + props)."
+notes: >
+  SC0014 FAZ C completed 2026-06-12. All element bindings were at created status.
+  Clip planner (rhythm_aware_v1) produced 8 clips covering 15 beats:
+    CLIP_01: 10s — ESTABLISH_NURSERY (wide, room alone)
+    CLIP_02: 11s — NADIA_HOLDING_JIN (medium_close; C01+C08+LOC001)
+    CLIP_03: 13s — DOOR_OPENS+DIMITRI_ENTER+two dialogue beats (metadata_only; C04+C01+C10x2+LOC001)
+    CLIP_04: 13s — NADIA_STEPS_BACK+DIMITRI_DONT+FIRST_MAN_ADVANCES (frame_input_eligible)
+    CLIP_05: 12s — MAN_LIFTS_JIN+BRACELET_BEAT+SECOND_MAN_RESTRAINS (critical protected-subject beat)
+    CLIP_06: 11s — JIN_CARRIED_OUT (C01+C08+C10_CARRIER; infant carried out, door closes)
+    CLIP_07:  5s — RELEASE_AND_EXIT (C01+C10_HOLDER; professional nod)
+    CLIP_08: 11s — EMPTY_CRIB_CLOSE (C01+LOC001; dolly out, warm room emptied)
+  All prompts Format A (dialogue suppressed) — native audio blocked until Kling-native voice
+  provisioned AND protected-subject review clears. Anti-clone roster present in all multi-figure
+  clips. Continuity ledger SCL_SC0014_V001 chains all 8 clips with entry/exit world states.
+  Validator: 124/124 valid, 0 Invalid.

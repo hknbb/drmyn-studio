@@ -1,0 +1,77 @@
+schema_version: 0.x-draft
+record_type: omni_clip_manifest
+scene_id: SC0014
+clip_id: CLIP_SC0014_07
+source_scene_beat_plan_ref: planning/scenes/SC0014/scene_beat_plan.yaml
+source_dialogue_beats_ref: planning/scenes/SC0014/dialogue_beats.yaml
+total_duration_seconds: 5
+continuity_input_mode: frame_input_eligible
+shots:
+  - shot_id: SHOT_SC0014_07_A
+    duration_seconds: 5
+    source_beat_ids:
+      - RELEASE_AND_EXIT
+    prompt_action: The room holds cool and flat through the release and the exit.
+    render_action: The room holds cool and flat through the release and the exit in @LOC001_NURSERY.
+    render_camera: Medium, static.
+    render_diegetic_audio: room tone, cool and flat; the rustle of his step back, then the door, then stillness.
+    duration_reason: normal/action — release, the single nod, and exit (RELEASE_AND_EXIT is splittable:false, kept as one shot)
+    exit_state:
+      summary: "The man has left through the door (right); Nadia stands alone, center, in the emptied room."
+      key_positions:
+        - {subject: '@C01_NADIA', screen_position: center, posture: standing, relation: alone, visibility: on_frame}
+        - {subject: '@C10_HOLDER', screen_position: right, visibility: off_frame}
+        - {subject: '@C08_JIN', screen_position: right, visibility: off_frame}
+      screen_direction: neutral
+    required_element_ids:
+      - C01
+      - C10
+    coverage_role: resolve
+    focus_alias: '@C01_NADIA'
+    performance_note: released but unmoving; she does not watch him go; the cold courtesy is his, not hers
+    diegetic_audio: room tone, cool and flat; the rustle of his step back, then the door, then stillness
+    camera:
+      angle: eye_level
+      framing: medium
+      movement: static
+      lens_bias: the cold courtesy of the nod and exit
+    lighting:
+      source: practical
+      quality: soft
+      color_temp: cool
+      intensity: dim
+    motion:
+      subject_intensity: 0.25
+      camera_intensity: 0.0
+      blocking_notes: He releases, nods, exits frame right; Nadia remains center, still.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: stays where she is, alone now, and does not look toward the door
+        visibility: on_frame
+        action: stays where she is, alone now, and does not watch him go
+        exit_state_note: standing center, alone
+      - figure_id: FIG_ENF_HOLDER
+        base_element_id: C10
+        kling_alias: '@C10_HOLDER'
+        role: second enforcer; restrains then releases Nadia
+        distinguishing_detail: Leaner build, short hair and beard; from the door side.
+        render_label: leaner build, short hair and beard; from the door side
+        render_action: lets go of @C01_NADIA arms, steps back, nods once, then leaves through the door at screen-right
+        visibility: on_frame
+        action: releases @C01_NADIA's arms, steps back, nods once, then leaves through the door at screen-right
+        exit_state_note: gone through the door, right
+kling_native_audio:
+  enabled: false
+  provider_policy: kling_native_only
+  external_tts_allowed: false
+  adr_vendor_allowed: false
+notes: 'SC0014 v07 text-only literal pass (no new story facts): RELEASE_AND_EXIT is splittable:false, so it stays a single 5s resolve shot — release, the single professional nod, and the exit, leaving Nadia alone. render_* fields carry the literal alias-locked grammar; exit_state leaves Nadia alone center (Jin and the holder off-frame) to chain into CLIP 08. Poetic fields retained for human review, not printed under the literal profile.'
+provenance:
+  created_by: claude_code (M5 — v07 text-only literal pass)
+  created_at: '2026-06-16T00:00:00Z'
+required_element_ids:
+  - C01
+  - C10

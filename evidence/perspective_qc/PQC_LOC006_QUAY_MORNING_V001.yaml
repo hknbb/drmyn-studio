@@ -1,0 +1,58 @@
+schema_version: "0.x-draft"
+record_type: perspective_qc_report
+perspective_qc_id: PQC_LOC006_QUAY_MORNING_V001
+status: approved
+scene_id: SC0047
+element_id: LOC006
+prompt_pack_id: PPACK_LOC006_QUAY_MORNING_V001
+operator_session_ref: OP-2026-06-17-LOC005-LOC006-LOC007-PROP008-threeview
+perspective_scores:
+  - prompt_id: PPACK_LOC006_QUAY_MORNING_V001__front_reference
+    perspective: front_reference
+    identity_preservation: 92
+    perspective_usefulness: 91
+    material_palette_continuity: 91
+    production_reference_cleanliness: 92
+    hallucination_absence: 91
+    view_distinction: 90
+    scale_distinction: 90
+    total_score: 91
+    decision: pass
+  - prompt_id: PPACK_LOC006_QUAY_MORNING_V001__three_quarter_medium
+    perspective: three_quarter_medium_reference
+    identity_preservation: 90
+    perspective_usefulness: 89
+    material_palette_continuity: 90
+    production_reference_cleanliness: 90
+    hallucination_absence: 90
+    view_distinction: 88
+    scale_distinction: 88
+    total_score: 89
+    decision: pass
+  - prompt_id: PPACK_LOC006_QUAY_MORNING_V001__three_quarter_close
+    perspective: three_quarter_close_reference
+    identity_preservation: 91
+    perspective_usefulness: 92
+    material_palette_continuity: 90
+    production_reference_cleanliness: 91
+    hallucination_absence: 91
+    view_distinction: 90
+    scale_distinction: 89
+    total_score: 90
+    decision: pass
+gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  can_advance_to_kling_reference: true
+notes: >
+  Operator-approved three_view_scale_angle_v2 set for @LOC006_QUAY (archived, git-ignored).
+  All three views read as the same converted freight bay: low concrete ceiling, high window
+  onto grey water, crates + folding table, cold maritime morning light.
+  front_reference (same image as stage-1 first-ref): widest depth, generous floor space
+  for SC0047 two-hander blocking (table center, Otto to window, Nadia entering).
+  three_quarter_medium_reference: three-quarter angle on folding table with window behind,
+  consistent bay objects and cold morning light.
+  three_quarter_close_reference: close on high window + grey water — the room's cold light
+  source, strongest view distinction of the set.
+  No people in any plate; no text, no watermark. Bay identity consistent across all views.
+  Source: CHATGPTIMG_LOC006_FIRSTREF_V001. All perspectives >= 85.

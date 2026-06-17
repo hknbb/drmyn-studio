@@ -1,0 +1,25 @@
+session_id: OP-2026-06-17-LOC005-LOC006-LOC007-PROP008-promotion
+created_at: "2026-06-17T00:00:00Z"
+scene_id: SC0047
+current_task: "Lifecycle promotion — LOC005/006/007/PROP008 binding_status: planned → created"
+recommended_files:
+  - visual_dev/omni_sets/SC0047/element_bindings.yaml
+  - visual_dev/omni_sets/SC0089/element_bindings.yaml
+  - visual_dev/omni_sets/SC0111/element_bindings.yaml
+recommended_steps:
+  - "Proceed to SC0047/SC0089/SC0111 Kling Omni clip plan (text_only literal, kling_literal_alias_locked)."
+  - "SC0014 video take QC (v07): operator watches 8 clips, provides status + 5 quality scores per clip."
+  - "PR-BATCH-KEYCHAR-1: C03 Birta + C05 Marcus pre-checkpoint registration."
+status: complete
+notes: >
+  Operatör "onay" (2026-06-17) ile LOC005/006/007/PROP008 lifecycle promotion onayı verdi.
+  KER kayıtları bir önceki oturumda (OP-2026-06-17-LOC005-LOC006-LOC007-PROP008-threeview)
+  yazılmış ve tüm 12 perspektif görseli için QC>=85 onayı alınmıştı.
+
+  Bu oturumda 3 element_bindings.yaml dosyasında 4 element binding güncellendi:
+  @LOC005_CORRIDOR (SC0089) created (KER_LOC005_CORRIDOR_V001);
+  @LOC006_QUAY (SC0047) created (KER_LOC006_QUAY_V001);
+  @LOC007_ANTECHAMBER (SC0111) created (KER_LOC007_ANTECHAMBER_V001);
+  @PROP008_HANDSET (SC0047) created (KER_PROP008_HANDSET_V001).
+  Canonical planning YAML status/canon_lock alanları convention gereği değiştirilmedi.
+  Sonraki adım: SC0047/SC0089/SC0111 Kling Omni clip planı.

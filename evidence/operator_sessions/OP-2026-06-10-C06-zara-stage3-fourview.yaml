@@ -1,0 +1,18 @@
+session_id: OP-2026-06-10-C06-zara-stage3-fourview
+created_at: "2026-06-10T00:00:00Z"
+scene_id: SC0089
+current_task: "C06 Zara Stage-3 ChatGPT Images 2 four_view_scale_angle_v3 QC and reference creation"
+status: complete
+recommended_files:
+  - visual_dev/elements/characters/C06/kling_element_reference_C06_field_night.yaml
+  - visual_dev/omni_sets/SC0089/element_bindings.yaml
+  - evidence/perspective_qc/PQC_C06_FIELD_NIGHT_V001.yaml
+recommended_steps:
+  - "element_binding @C06_ZARA in SC0089 promoted to 'created'"
+  - "Next character: Otto (C05) for SC0047 — Stage-1 MJ V8.1 narrative identity"
+notes: >
+  Stage-3 four-view pack QC complete 2026-06-10. All 4 perspectives pass >=85
+  (close_portrait_front:92, three_quarter_waist:90, full_body_front:89, profile_full:88).
+  Identity consistent, khaki/olive-tan WD013 wardrobe held across all views.
+  kling_element_reference_record KER_C06_FIELD_NIGHT_V001 created.
+  @C06_ZARA binding promoted to 'created' in SC0089 element_bindings.

@@ -1,0 +1,67 @@
+schema_version: "0.x-draft"
+record_type: perspective_qc_report
+perspective_qc_id: PQC_C10_HOLDER_V001
+status: approved
+scene_id: SC0014
+element_id: C10
+prompt_pack_id: PPACK_C10_HOLDER_V001
+operator_session_ref: OP-2026-06-10-C10-holder-fourview
+perspective_scores:
+  - prompt_id: PPACK_C10_HOLDER_V001__close_portrait_front
+    perspective: close_portrait_front
+    identity_preservation: 91
+    perspective_usefulness: 90
+    material_palette_continuity: 90
+    production_reference_cleanliness: 90
+    hallucination_absence: 91
+    character_description_strength: 90
+    identity_readability: 91
+    expression_performance_readability: 90
+    total_score: 90
+    decision: pass
+  - prompt_id: PPACK_C10_HOLDER_V001__three_quarter_waist
+    perspective: three_quarter_waist
+    identity_preservation: 90
+    perspective_usefulness: 89
+    material_palette_continuity: 89
+    production_reference_cleanliness: 89
+    hallucination_absence: 89
+    silhouette_readability: 89
+    wardrobe_world_fit: 89
+    view_distinction: 89
+    total_score: 89
+    decision: pass
+  - prompt_id: PPACK_C10_HOLDER_V001__profile_full
+    perspective: profile_full
+    identity_preservation: 88
+    perspective_usefulness: 88
+    material_palette_continuity: 88
+    production_reference_cleanliness: 89
+    hallucination_absence: 89
+    no_directional_confusion: 88
+    total_score: 88
+    decision: pass
+  - prompt_id: PPACK_C10_HOLDER_V001__full_body_front
+    perspective: full_body_front
+    identity_preservation: 86
+    perspective_usefulness: 88
+    material_palette_continuity: 87
+    production_reference_cleanliness: 87
+    hallucination_absence: 88
+    silhouette_readability: 87
+    scale_distinction: 87
+    total_score: 87
+    decision: pass
+gate:
+  minimum_score: 85
+  all_four_required: true
+  all_perspectives_required: true
+  can_advance_to_kling_reference: true
+notes: >
+  Real review of the operator-approved Stage-3 four_view_scale_angle_v3 set for @C10_HOLDER
+  (archived, git-ignored). All four views read as a leaner anonymous enforcement operative
+  with fuller short hair and short beard — plain dark functional clothing (WD009), neutral
+  procedural demeanor, neutral background, even soft light. Anti-clone check: leaner build
+  and fuller hair/beard read as distinct from @C10_CARRIER at portrait distance. All
+  perspectives >=85; full_body_front lowest (87) due to small face at full scale.
+  Dual-reference seeded (MJ_C10_HOLDER_OREFLOCK_V001 primary + MJ_C10_HOLDER_HERO_V001 secondary).

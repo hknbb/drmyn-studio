@@ -1,0 +1,19 @@
+session_id: OP-2026-06-08-C01-fieldnight-fourview
+created_at: "2026-06-08T21:00:00Z"
+scene_id: SC0089
+current_task: "C01 Nadia field-night four-view QC + Kling element reference promotion"
+recommended_files:
+  - visual_dev/elements/characters/C01/perspective_packs/PPACK_C01_FIELD_NIGHT_V001.yaml
+  - evidence/perspective_qc/PQC_C01_FIELD_NIGHT_V001.yaml
+  - visual_dev/elements/characters/C01/kling_element_reference_C01_field_night.yaml
+  - visual_dev/omni_sets/SC0089/element_bindings.yaml
+recommended_steps:
+  - "Operator generated the Stage-3 field-night four-view in ChatGPT Images 2 with dual references (Stage-2 lock primary + Stage-1 hero secondary)."
+  - "Operator reviewed the four views; all read as the locked Nadia identity in WD011 dark operational wardrobe with neutral backgrounds and warm-human expression."
+  - "Assistant scored the four perspectives (all >=85) and recorded the perspective_qc_report."
+  - "Promote SC0089 C01 binding to 'created' and author the field-night kling_element_reference_record."
+status: complete
+notes: >
+  Real images, real review. Same locked Nadia identity (MJ_C01_OREFLOCK_V001) carried
+  into the SC0089 field-night look. No fabricated readiness. Dialogue in SC0089 stays
+  native-audio blocked (Format A) regardless of this visual binding promotion.

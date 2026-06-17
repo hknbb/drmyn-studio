@@ -1,0 +1,49 @@
+schema_version: "0.x-draft"
+record_type: dialogue_beats
+scene_id: SC0089
+source_scene_beat_plan_ref: planning/scenes/SC0089/scene_beat_plan.yaml
+source_element_bindings_ref: visual_dev/omni_sets/SC0089/element_bindings.yaml
+dialogue_lines:
+  - { line_id: DLG_NADIA_TWO_TEAMS, target_beat_id: DIALOGUE_TWO_TEAMS, speaker_element_id: C01, speaker_kling_alias: "@C01_NADIA", line_text: "Two teams. Not one.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true, delivery_note: "Low; flat tactical read." }
+  - { line_id: DLG_ZARA_HOW_KNOW, target_beat_id: ZARA_HOW_DO_YOU_KNOW, speaker_element_id: C06, speaker_kling_alias: "@C06_ZARA", line_text: "How do you know?", line_type: spoken, native_audio_readiness: blocked, dialogue_required: false }
+  - { line_id: DLG_NADIA_PING, target_beat_id: NADIA_COMMS_PING_SPACING, speaker_element_id: C01, speaker_kling_alias: "@C01_NADIA", line_text: "The spacing on the comms ping. One source, two different delay intervals. Eastern approach and here.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true }
+  - { line_id: DLG_ZARA_BROADCAST, target_beat_id: ZARA_BROADCAST_SIGNAL, speaker_element_id: C06, speaker_kling_alias: "@C06_ZARA", line_text: "The broadcast signal.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true }
+  - { line_id: DLG_NADIA_STILL_RUNNING, target_beat_id: NADIA_STILL_RUNNING, speaker_element_id: C01, speaker_kling_alias: "@C01_NADIA", line_text: "It's still running.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true }
+  - { line_id: DLG_ZARA_EAST, target_beat_id: ZARA_ONE_ELEMENT_EAST, speaker_element_id: C06, speaker_kling_alias: "@C06_ZARA", line_text: "One element went east.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true }
+  - { line_id: DLG_NADIA_CAME_HERE, target_beat_id: NADIA_ONE_CAME_HERE, speaker_element_id: C01, speaker_kling_alias: "@C01_NADIA", line_text: "And one came here.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true }
+  - { line_id: DLG_ZARA_HOW_MANY, target_beat_id: ZARA_HOW_MANY_HERE, speaker_element_id: C06, speaker_kling_alias: "@C06_ZARA", line_text: "How many here.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: false }
+  - { line_id: DLG_NADIA_EIGHT, target_beat_id: NADIA_AT_LEAST_EIGHT, speaker_element_id: C01, speaker_kling_alias: "@C01_NADIA", line_text: "At least eight. Moving from the south junction. They have three minutes on us, maybe less.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true }
+  - { line_id: DLG_NADIA_GAP_SIX, target_beat_id: NADIA_GAP_HOLDS_SIX_MINUTES, speaker_element_id: C01, speaker_kling_alias: "@C01_NADIA", line_text: "The coverage gap holds for six minutes after the junction. If we're past the drainage cut when the burst cycle ends.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true }
+  - { line_id: DLG_ZARA_IF_NOT, target_beat_id: ZARA_IF_WE_DONT, speaker_element_id: C06, speaker_kling_alias: "@C06_ZARA", line_text: "And if we're not.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: false }
+  - { line_id: DLG_NADIA_WE_ARE, target_beat_id: NADIA_WE_ARE, speaker_element_id: C01, speaker_kling_alias: "@C01_NADIA", line_text: "We are.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true, delivery_note: "Not a question. A declaration." }
+  - { line_id: DLG_DIMITRI_ACCELERATE, target_beat_id: DIMITRI_ACCELERATE, speaker_element_id: C04, speaker_kling_alias: "@C04_DIMITRI", line_text: "Accelerate. He was ahead of us once.", line_type: offscreen, native_audio_readiness: blocked, dialogue_required: false, subtext_note: "Wrong pronoun ('he') — Dimitri hunts the file's summary, not the person she has become." }
+  - { line_id: DLG_NADIA_OTHER_SIDE, target_beat_id: NADIA_TEAM_OTHER_SIDE, speaker_element_id: C01, speaker_kling_alias: "@C01_NADIA", line_text: "There's a team on the other side.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true, delivery_note: "Very low." }
+  - { line_id: DLG_ZARA_HOW_CUT, target_beat_id: ZARA_HOW, speaker_element_id: C06, speaker_kling_alias: "@C06_ZARA", line_text: "How —", line_type: interrupted, native_audio_readiness: blocked, dialogue_required: false }
+  - { line_id: DLG_NADIA_SEAM, target_beat_id: NADIA_EXPLAINS_SEAM, speaker_element_id: C01, speaker_kling_alias: "@C01_NADIA", line_text: "The seam. It's absorbing vibration it shouldn't. Someone's weight on the other side.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true }
+  - { line_id: DLG_ZARA_HOW_MANY2, target_beat_id: ZARA_HOW_MANY_FORMAL, speaker_element_id: C06, speaker_kling_alias: "@C06_ZARA", line_text: "How many.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: false }
+  - { line_id: DLG_NADIA_ONE_TWO, target_beat_id: NADIA_ONE_OR_TWO, speaker_element_id: C01, speaker_kling_alias: "@C01_NADIA", line_text: "One. Maybe two.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true }
+  - { line_id: DLG_ZARA_ADVANCE, target_beat_id: ZARA_ADVANCE_ELEMENT, speaker_element_id: C06, speaker_kling_alias: "@C06_ZARA", line_text: "Advance element. They came around.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true }
+  - { line_id: DLG_NADIA_THROUGH, target_beat_id: NADIA_GO_THROUGH, speaker_element_id: C01, speaker_kling_alias: "@C01_NADIA", line_text: "We go through, not around.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true, delivery_note: "Not asking." }
+  - { line_id: DLG_ZARA_THERE_ARE, target_beat_id: ZARA_THERE_ARE, speaker_element_id: C06, speaker_kling_alias: "@C06_ZARA", line_text: "There are —", line_type: interrupted, native_audio_readiness: blocked, dialogue_required: false }
+  - { line_id: DLG_NADIA_COUNTERS, target_beat_id: NADIA_COUNTERS, speaker_element_id: C01, speaker_kling_alias: "@C01_NADIA", line_text: "One. Maybe two. The main force is three minutes south. The cut is a hundred meters. We go through.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true }
+  - { line_id: DLG_ZARA_SEAM_OR_OVER, target_beat_id: ZARA_THROUGH_SEAM_OR_OVER, speaker_element_id: C06, speaker_kling_alias: "@C06_ZARA", line_text: "Through the seam or over?", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true }
+  - { line_id: DLG_NADIA_OVER, target_beat_id: NADIA_OVER, speaker_element_id: C01, speaker_kling_alias: "@C01_NADIA", line_text: "Over.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true }
+  - { line_id: DLG_ZARA_WOUND1, target_beat_id: ZARA_REPORTS_WOUND, speaker_element_id: C06, speaker_kling_alias: "@C06_ZARA", line_text: "Left side. High. Something from the north junction — I didn't —", line_type: interrupted, native_audio_readiness: blocked, dialogue_required: true, delivery_note: "She stops, breathes; hand at her side." }
+  - { line_id: DLG_ZARA_WOUND2, target_beat_id: ZARA_REPORTS_WOUND, speaker_element_id: C06, speaker_kling_alias: "@C06_ZARA", line_text: "I didn't hear it.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true, subtext_note: "A suppressed round; a third vector they hadn't placed." }
+  - { line_id: DLG_NADIA_CAN_MOVE, target_beat_id: NADIA_CAN_YOU_MOVE, speaker_element_id: C01, speaker_kling_alias: "@C01_NADIA", line_text: "Can you move.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true, delivery_note: "Still very low." }
+  - { line_id: DLG_ZARA_YES, target_beat_id: NADIA_CAN_YOU_MOVE, speaker_element_id: C06, speaker_kling_alias: "@C06_ZARA", line_text: "Yes.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true, delivery_note: "Flat, declarative; reports rather than reassures." }
+  - { line_id: DLG_NADIA_MOVE_NOW, target_beat_id: NADIA_THEN_WE_MOVE_NOW, speaker_element_id: C01, speaker_kling_alias: "@C01_NADIA", line_text: "Then we move now.", line_type: spoken, native_audio_readiness: blocked, dialogue_required: true }
+ambient_sound_prompt: "Exterior night transit corridor — wind, distant cargo-facility hum, footsteps on concrete, intermittent comms pings on the command channel; later a suppressed round (felt, not heard) and controlled breathing under strain."
+kling_native_audio:
+  enabled: false
+  provider_policy: kling_native_only
+  external_tts_allowed: false
+  adr_vendor_allowed: false
+notes: >
+  Night infiltration exchange between Nadia and Zara, with Dimitri's voice on the
+  command radio (offscreen). Native audio disabled until a Kling-native voice is
+  provisioned; dialogue recorded as metadata (readiness blocked). Interrupted lines
+  ('How —', 'There are —', Zara's wound report) marked line_type: interrupted.
+provenance:
+  created_by: "claude_code (M5 FAZ C)"
+  created_at: "2026-06-04T00:00:00Z"

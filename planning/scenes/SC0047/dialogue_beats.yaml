@@ -1,0 +1,113 @@
+schema_version: "0.x-draft"
+record_type: dialogue_beats
+scene_id: SC0047
+source_scene_beat_plan_ref: planning/scenes/SC0047/scene_beat_plan.yaml
+source_element_bindings_ref: visual_dev/omni_sets/SC0047/element_bindings.yaml
+dialogue_lines:
+  - line_id: DLG_OTTO_YOUD_COME
+    target_beat_id: OTTO_HE_SAID_YOUD_COME
+    speaker_element_id: C09
+    speaker_kling_alias: "@C09_OTTO"
+    line_text: "He said you'd come."
+    line_type: spoken
+    native_audio_readiness: blocked
+    dialogue_required: true
+    delivery_note: "Flat, unsentimental; attributes everything to the absent Marcus."
+  - line_id: DLG_OTTO_YOUD_KNOW
+    target_beat_id: OTTO_HE_SAID_YOUD_KNOW
+    speaker_element_id: C09
+    speaker_kling_alias: "@C09_OTTO"
+    line_text: "He said you'd know the code."
+    line_type: spoken
+    native_audio_readiness: blocked
+    dialogue_required: true
+  - line_id: DLG_MARCUS_OPENING
+    target_beat_id: MARCUS_OPENING_MESSAGE
+    speaker_element_id: C05
+    speaker_kling_alias: "@C05_MARCUS"
+    line_text: "If you're hearing this, then things went the way I was afraid they'd go. I'm sorry. I wanted more time."
+    line_type: offscreen
+    native_audio_readiness: blocked
+    dialogue_required: true
+    delivery_note: "Recorded V.O. from the handset; a prepared goodbye and briefing combined. Wind ambient under the recording."
+  - line_id: DLG_MARCUS_PARTITION
+    target_beat_id: MARCUS_ENCRYPTED_PARTITION
+    speaker_element_id: C05
+    speaker_kling_alias: "@C05_MARCUS"
+    line_text: "The phone has an encrypted partition — secondary code is the date we met, reversed. In the partition: everything I had on Roman. Network structure, financial infrastructure, the broadcast system, the names. It's complete. I spent two years on it."
+    line_type: offscreen
+    native_audio_readiness: blocked
+    dialogue_required: true
+  - line_id: DLG_MARCUS_BROADCAST
+    target_beat_id: MARCUS_BROADCAST_ARCHITECTURE
+    speaker_element_id: C05
+    speaker_kling_alias: "@C05_MARCUS"
+    line_text: "In the package — look for the broadcast architecture file. There's a maintenance access layer in the ORACLE PRIME infrastructure. That's what stops it. Not Roman. The broadcast. Find that file."
+    line_type: offscreen
+    native_audio_readiness: blocked
+    dialogue_required: true
+  - line_id: DLG_MARCUS_KAREV
+    target_beat_id: MARCUS_FINAL_WORDS
+    speaker_element_id: C05
+    speaker_kling_alias: "@C05_MARCUS"
+    line_text: "Karev."
+    line_type: offscreen
+    native_audio_readiness: blocked
+    dialogue_required: true
+    subtext_note: "Her maiden name; Marcus's private anchor for her — used only when the feeling is real."
+  - line_id: DLG_MARCUS_TAKE_JIN
+    target_beat_id: MARCUS_FINAL_WORDS
+    speaker_element_id: C05
+    speaker_kling_alias: "@C05_MARCUS"
+    line_text: "Take Jin home."
+    line_type: offscreen
+    native_audio_readiness: blocked
+    dialogue_required: true
+  - line_id: DLG_OTTO_TRAIN
+    target_beat_id: OTTO_TRAIN_EAST
+    speaker_element_id: C09
+    speaker_kling_alias: "@C09_OTTO"
+    line_text: "There's a train east at fourteen hundred."
+    line_type: spoken
+    native_audio_readiness: blocked
+    dialogue_required: false
+  - line_id: DLG_NADIA_ROOM
+    target_beat_id: OTTO_TRAIN_EAST
+    speaker_element_id: C01
+    speaker_kling_alias: "@C01_NADIA"
+    line_text: "I need the room until then."
+    line_type: spoken
+    native_audio_readiness: blocked
+    dialogue_required: false
+  - line_id: DLG_OTTO_CAREFUL
+    target_beat_id: OTTO_TRAIN_EAST
+    speaker_element_id: C09
+    speaker_kling_alias: "@C09_OTTO"
+    line_text: "He was a careful man."
+    line_type: spoken
+    native_audio_readiness: blocked
+    dialogue_required: true
+    subtext_note: "Not comfort — a fact he has been holding, now given to someone who needed it."
+  - line_id: DLG_NADIA_YES
+    target_beat_id: OTTO_TRAIN_EAST
+    speaker_element_id: C01
+    speaker_kling_alias: "@C01_NADIA"
+    line_text: "Yes."
+    line_type: spoken
+    native_audio_readiness: blocked
+    dialogue_required: false
+ambient_sound_prompt: "Cold quay-side morning — water, distant freight handling, gulls; inside the bay, room tone and the small electronic activation of the handset; wind in Marcus's recording; then a hard silence when the message ends."
+kling_native_audio:
+  enabled: false
+  provider_policy: kling_native_only
+  external_tts_allowed: false
+  adr_vendor_allowed: false
+notes: >
+  SC0047 is the intended Format B native-audio pilot (Otto on-camera + Marcus's
+  recorded V.O. + Nadia's brief lines). Native audio stays DISABLED until a
+  Kling-native voice is provisioned; until then dialogue is recorded as metadata
+  (readiness blocked). Marcus's lines are line_type offscreen (a diegetic recording
+  played from the handset), not on-camera speech.
+provenance:
+  created_by: "claude_code (M5 FAZ C)"
+  created_at: "2026-06-04T00:00:00Z"

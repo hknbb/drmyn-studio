@@ -1,0 +1,21 @@
+schema_version: "0.x-draft"
+record_type: performance_intent_record
+performance_intent_id: PERF_SC0014_SH003_C04_V001
+status: draft
+scene_id: SC0014
+shot_id: SH003
+speaker: C04
+spoken_line: "Please don't make this harder."
+language: English
+delivery:
+  volume: low
+  pace: measured
+  tone: courteous_procedural
+  emotional_state: patient, faintly weary, control unbroken
+subtext: >
+  Coercion disguised as consideration. The line transfers the cost of the act onto
+  Nadia — any struggle becomes her fault, not theirs. It is the politest possible
+  form of force, and it is meant to make resistance feel undignified rather than
+  futile.
+face_direction: toward Nadia, level
+mouth_behavior: minimal, even speech; no affect

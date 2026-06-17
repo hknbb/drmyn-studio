@@ -2,82 +2,216 @@ element_id: C01
 element_type: character
 selection_round: 1
 source_prompt_ids:
-  - SC0001__t2i-char-c01-midjourney__v01
-  - SC0001__t2i-char-c01-chatgpt-image__v01
+  - SC0014__t2i-char-c01-oref-lock-mj-v7__v01
 candidate_images:
-  - asset_id: C01_WD001_front_reference
-    path: visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_front.png
-    repo_binary_committed: true
-    status: canonical
-    reason: >
-      Midjourney v8.1 output. Strong lean-upright silhouette, muted domestic
-      neutral palette, filtered early daylight. Selected as front_reference for
-      WD001 early-morning domestic control set (Path B, 2026-05-07).
+  - asset_id: PPACK_C01_NURSERY_EVENING_V001__close_portrait_front
+    path: "archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_27_53.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_27_53.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 four-view close_portrait_front; full frontal identity lock, soft-structured warm face, calm resting expression. QC 93."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+  - asset_id: PPACK_C01_NURSERY_EVENING_V001__three_quarter_waist
+    path: "archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_27_57.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_27_57.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 four-view three_quarter_waist; ~30-45 deg, waist-up, identity + wardrobe consistent. QC 92."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+  - asset_id: PPACK_C01_NURSERY_EVENING_V001__profile_full
+    path: "archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_27_49.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_27_49.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 four-view profile_full; true 90 deg side profile, soft jaw/nose line, identity consistent. QC 91."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 4
+  - asset_id: PPACK_C01_NURSERY_EVENING_V001__full_body_front
+    path: "archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_28_02.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_28_02.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 four-view full_body_front; head-to-toe, full wardrobe (cream knit + warm-taupe trousers + socks). Face small at full scale. QC 88."
     quality_scores:
       identity_consistency: 4
       source_grounding: 5
       style_compliance: 5
-      continuity: 4
-      production_usability: 5
-    failure_reason: null
-  - asset_id: C01_WD001_three_quarter_reference
-    path: visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_three_quarter.png
-    repo_binary_committed: true
-    status: canonical
-    reason: >
-      ChatGPT Image output. Three-quarter angle confirms silhouette read and
-      fabric drape without ornament. Selected as three_quarter_reference for
-      WD001 (Path B, 2026-05-07).
+      continuity: 5
+      production_usability: 4
+  - asset_id: PPACK_C01_FIELD_NIGHT_V001__close_portrait_front
+    path: "archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_18.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_18.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 field-night four-view close_portrait_front; frontal identity lock in dark operational wardrobe, calm focused expression. QC 93."
     quality_scores:
-      identity_consistency: 4
-      source_grounding: 4
+      identity_consistency: 5
+      source_grounding: 5
       style_compliance: 5
-      continuity: 4
-      production_usability: 4
-    failure_reason: null
-  - asset_id: C01_WD001_back_reference
-    path: visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_back.png
-    repo_binary_committed: true
-    status: canonical
-    reason: >
-      ChatGPT Image output. Back view documents closure details and fabric
-      fall. Committed as supplementary back_reference beyond required views
-      (Path B, 2026-05-07).
+      continuity: 5
+      production_usability: 5
+  - asset_id: PPACK_C01_FIELD_NIGHT_V001__three_quarter_waist
+    path: "archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_23.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_23.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 field-night four-view three_quarter_waist; ~30-45 deg, hooded dark jacket, identity consistent. QC 92."
     quality_scores:
-      identity_consistency: 4
-      source_grounding: 4
-      style_compliance: 4
-      continuity: 4
-      production_usability: 4
-    failure_reason: null
-  - asset_id: C01_WD001_context_reference
-    path: visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_context.png
-    repo_binary_committed: true
-    status: canonical
-    reason: >
-      ChatGPT Image output. Full-figure in kitchen passage framing (SC0001
-      setting: VALE RESIDENCE — VARDOVA — KITCHEN PASSAGE — EARLY MORNING).
-      Confirms wardrobe read in production context. Selected as
-      context_reference for WD001 (Path B, 2026-05-07).
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+  - asset_id: PPACK_C01_FIELD_NIGHT_V001__full_body_front
+    path: "archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_28.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_28.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 field-night four-view full_body_front; head-to-toe operational wardrobe (jacket + trousers + boots). Face small at full scale. QC 88."
     quality_scores:
       identity_consistency: 4
       source_grounding: 5
       style_compliance: 5
-      continuity: 4
+      continuity: 5
+      production_usability: 4
+  - asset_id: PPACK_C01_FIELD_NIGHT_V001__profile_full
+    path: "archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_48_54.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_48_54.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 field-night four-view profile_full; clean 90 deg profile, soft jaw, identity consistent. QC 91."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 4
+  - asset_id: PPACK_C01_TRANSIT_V001__close_portrait_front
+    path: "archive/nexuszero/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_34_52.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_34_52.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 transit four-view close_portrait_front; frontal identity lock in WD012 anonymous wardrobe, calm composed warm expression. QC 93."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
       production_usability: 5
-    failure_reason: null
+  - asset_id: PPACK_C01_TRANSIT_V001__three_quarter_waist
+    path: "archive/nexuszero/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_29_54.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_29_54.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 transit four-view three_quarter_waist; ~30-45 deg, anonymous jacket over muted layer, identity consistent. QC 92."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+  - asset_id: PPACK_C01_TRANSIT_V001__profile_full
+    path: "archive/nexuszero/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_32_54.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_32_54.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 transit four-view profile_full; clean 90 deg profile, soft jaw, identity consistent. QC 91."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 4
+  - asset_id: PPACK_C01_TRANSIT_V001__full_body_front
+    path: "archive/nexuszero/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_30_00.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_30_00.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 transit four-view full_body_front; head-to-toe anonymous wardrobe (jacket + trousers + footwear). Face small at full scale. QC 88."
+    quality_scores:
+      identity_consistency: 4
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 4
+  - asset_id: PPACK_C01_COMPOUND_BATTLEWORN_V001__close_portrait_front
+    path: "archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_55.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_55.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 battle-worn four-view close_portrait_front; frontal identity lock, soft face geometry held under exhaustion/dirt/minor blood, resolute-human expression. QC 93."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+  - asset_id: PPACK_C01_COMPOUND_BATTLEWORN_V001__three_quarter_waist
+    path: "archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_52.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_52.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 battle-worn four-view three_quarter_waist; ~30-45 deg, grimed/bloodied wardrobe, exhausted-resolute, identity consistent. QC 92."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+  - asset_id: PPACK_C01_COMPOUND_BATTLEWORN_V001__profile_full
+    path: "archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_58.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_58.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 battle-worn four-view profile_full; clean 90 deg profile, left-shoulder wardrobe damage visible, identity consistent. QC 91."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 4
+  - asset_id: PPACK_C01_COMPOUND_BATTLEWORN_V001__full_body_front
+    path: "archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_47.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_47.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 battle-worn four-view full_body_front; head-to-toe battle-worn wardrobe (torn/dirt-marked, scuffed boots). Face small at full scale. QC 88."
+    quality_scores:
+      identity_consistency: 4
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 4
 canonical_images:
-  - visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_front.png
-  - visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_three_quarter.png
-  - visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_back.png
-  - visual_dev/elements/characters/C01/wardrobe/WD001/c01_wd001_context.png
+  - PPACK_C01_NURSERY_EVENING_V001__close_portrait_front
+  - PPACK_C01_NURSERY_EVENING_V001__three_quarter_waist
+  - PPACK_C01_NURSERY_EVENING_V001__profile_full
+  - PPACK_C01_NURSERY_EVENING_V001__full_body_front
+  - PPACK_C01_FIELD_NIGHT_V001__close_portrait_front
+  - PPACK_C01_FIELD_NIGHT_V001__three_quarter_waist
+  - PPACK_C01_FIELD_NIGHT_V001__full_body_front
+  - PPACK_C01_FIELD_NIGHT_V001__profile_full
+  - PPACK_C01_TRANSIT_V001__close_portrait_front
+  - PPACK_C01_TRANSIT_V001__three_quarter_waist
+  - PPACK_C01_TRANSIT_V001__profile_full
+  - PPACK_C01_TRANSIT_V001__full_body_front
+  - PPACK_C01_COMPOUND_BATTLEWORN_V001__close_portrait_front
+  - PPACK_C01_COMPOUND_BATTLEWORN_V001__three_quarter_waist
+  - PPACK_C01_COMPOUND_BATTLEWORN_V001__profile_full
+  - PPACK_C01_COMPOUND_BATTLEWORN_V001__full_body_front
 round_status: complete
-pack_manifest_sync: pending
-review_notes: >
-  Round 1 selection complete. Four canonical wardrobe references committed via
-  Git LFS (B8A, PR #68). Midjourney v8.1 used for front_reference; ChatGPT
-  Image used for three_quarter, back, and context. All four cleared under Path
-  B operator decision (2026-05-07): AI-generated T2I images accepted as
-  canonical wardrobe references for WD001 early-morning domestic control set.
-  Nano Banana adapter prompt (SC0001__t2i-char-c01-nano-banana__v01) drafted
-  but not used in this round — retained for future rounds if needed.
+pack_manifest_sync: applied

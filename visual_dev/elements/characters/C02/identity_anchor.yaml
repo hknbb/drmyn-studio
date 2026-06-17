@@ -1,0 +1,44 @@
+schema_version: "0.x-draft"
+record_type: character_identity_anchor
+identity_anchor_id: C02_IDENTITY_ANCHOR_V001
+character_id: C02
+status: created
+source_reference_strategy:
+  reference_sheet_allowed_as_identity_source: false
+  final_hero_lock_requires_single_clean_image: true
+  contact_sheet_layout_forbidden_as_lock: true
+source_reference_sheet_ref: prompts/draft/SC0111__t2i-char-c02-identity-mj-v8__v01.yaml
+front_hero_lock_ref:
+  pending: false
+  stage1_ref: "external://local_manual/drmyn-studio-images/Roman/R1/u9435212546_Photorealistic_DSLR_portrait_of_a_real_man_late_4_8086a695-5e59-4aa1-98bd-2b8f149c5f6d_2.png"
+  stage2_ref: "external://local_manual/drmyn-studio-images/Roman/R2/u9435212546_Photorealistic_DSLR_portrait_of_a_real_man_late_4_e7615b4f-c491-4d1a-b65a-9a90700f4956_2.png"
+  external_ref: "external://local_manual/drmyn-studio-images/Roman/R2/u9435212546_Photorealistic_DSLR_portrait_of_a_real_man_late_4_e7615b4f-c491-4d1a-b65a-9a90700f4956_2.png"
+  locked_at: "2026-06-12T00:00:00Z"
+  chain: "Stage1 MJ V8.1 narrative identity → Stage2 MJ V7 --cref lock → Stage3 ChatGPT Images 2 four_view_scale_angle_v3"
+fixed_identity_anchors:
+  - "Man, late 40s to 50s; face geometry and identity must stay constant across all scene looks."
+  - "Tall or lengthened control silhouette; centered, composed, difficult to read; controlled institutional gravity."
+  - "Patrician calm and unhurried authority; the threat stays cold and procedural, not performative."
+  - "Disciplined tailored corporate/private-control wardrobe with exact construction and no decorative looseness; color bias dark restraint."
+mutable_appearance_allowed:
+  - "Wardrobe per scene look (office control / private-room control / compound escalation)."
+  - "Hair state within the anchor (groomed, composure-intact, effortfully still under stress)."
+  - "Fatigue level and damage (immaculate → tired → injured) as the narrative escalates."
+  - "Environmental lighting register (warm office, cool private-room, harsh institutional compound)."
+forbidden_drift:
+  - "Do not reduce him to shouting rage or flamboyant villainy; the threat is cold and architecturally built."
+  - "Do not soften into human vulnerability or decorative luxury styling."
+  - "Do not alter face geometry, age read, or silhouette between looks."
+  - "Do not erase the institutional gravity and stillness that makes him frightening."
+notes: >
+  Canonical identity anchor for Roman Vale (C02), authored fresh under Production
+  System v2. One identity, one scene look (SC0111 compound escalation). Character chain:
+  Stage 1 MJ V8.1 narrative identity → Stage 2 MJ V7 --oref lock → Stage 3 ChatGPT Images 2
+  four_view_scale_angle_v3. front_hero_lock_ref stays pending until the operator generates
+  and a real lock image is selected (no fabricated lock). Roman is the architect of control,
+  in charge, then taken down; this look captures the controlled moment before the fight
+  descends into physical compromise. Tall silhouette, tailored suiting, centered gravity,
+  no decorative styling — institutional threat, not rage.
+provenance:
+  created_by: "claude_code (M5 FAZ B)"
+  created_at: "2026-06-04T00:00:00Z"

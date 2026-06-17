@@ -1,0 +1,30 @@
+schema_version: "0.x-draft"
+record_type: character_look_sheet
+look_sheet_id: LOOKSHEET_C01_FIELD_NIGHT_V001
+character_id: C01
+look_id: C01_LOOK_FIELD_NIGHT_V001
+scene_refs:
+  - SC0089
+physical:
+  build: "Lean, upright, economical; trained-to-conserve-movement posture (former military medic)."
+  height: "Average; reads contained and exact rather than tall."
+  hair: "Dark, pulled back tight and low; disciplined restraint for movement and operational readiness."
+  skin_tone: "Natural, no glamor finish; neutral under night operational lighting."
+  physical_features: "Early-to-mid-30s; alert watchful eyes; exact face geometry; vigilance legible beneath tactical focus. No decorative styling."
+wardrobe:
+  primary_wardrobe_id: WD011
+  garment_top: "Dark technical top, close-fitting for movement; black or slate deep charcoal; operational civilian cut, not military; designed for climbing and crouch work."
+  garment_bottom: "Dark durable trousers in black or slate; operational cut; practical and movement-easy; no flash or accent detail."
+  footwear: "Dark practical operational boots; low-profile, sound-disciplined, built for sustained movement and field work."
+  outerwear: "Low-profile dark jacket, close-fitting; black or deep charcoal; minimal silhouette; built for layering over technical top and easy field operations."
+  accessories: []
+palette: "Dark operational neutrals (black, slate, deep charcoal); no flash, no accent color; reads as night-ready, civilian-operational."
+status: draft
+notes: >
+  Full head-to-toe look definition for Nadia's SC0089 night field-operational look so
+  the four_view scale views do not crop or invent garments. Field-operational register
+  only; no domestic/warmth coding. Identity locked by C01_IDENTITY_ANCHOR_V001. Distinct
+  from SC0014 domestic warmth and later battle-worn SC0111 state.
+provenance:
+  created_by: "claude_code (M5 FAZ B — haiku)"
+  created_at: "2026-06-04T00:00:00Z"

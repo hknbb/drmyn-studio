@@ -1,0 +1,170 @@
+schema_version: 0.x-draft
+record_type: scene_continuity_ledger
+scene_continuity_ledger_id: SCL_SC0111_V001
+scene_id: SC0111
+source_omni_clip_plan_ref: planning/scenes/SC0111/omni_clip_plan.yaml
+notes: Inter-clip continuity for SC0111 (8 clips). Silent close-quarters fight (no dialogue); camera holds tight on the grapple so screen_direction stays neutral (no 180-degree flips). Nadia and Roman remain engaged at center throughout; exit(N) matches entry(N+1).
+clip_chain:
+- clip_id: CLIP_SC0111_01
+  order: 1
+  entry_state:
+    summary: Nadia is adjusted to her left-side deficit from the sternum injury. Roman watches how she has adjusted to it — her left arm leverage compromised, her movement compensating. He is reading her in real time.
+    key_positions: &id001
+    - subject: Nadia
+      screen_position: engaged-center
+    - subject: Roman
+      screen_position: engaged-center
+    camera_state: &id002
+      shot_size: medium_close
+      angle: eye_level
+      movement: handheld
+      subject_screen_position: center
+    screen_direction: neutral
+  exit_state:
+    summary: Roman comes in lower on the third approach — below the sternum contact she landed in SC0104, inside the deflection range her left arm can produce with compromised leverage. He is learning her compensation.
+    key_positions: *id001
+    camera_state: *id002
+    screen_direction: neutral
+  frame_continuity:
+    from_clip_id: CLIP_SC0111_01
+    to_clip_id: CLIP_SC0111_02
+    continuity_input_mode: frame_input_eligible
+- clip_id: CLIP_SC0111_02
+  order: 2
+  entry_state:
+    summary: Roman uses the floor seam. Nadia knows it is there — he told her in SC0102 when he mapped the corridor. What she does not have is the exact position in this low light. He does. He drives her back toward it on a line that ends at the seam, not the shortest path.
+    key_positions: *id001
+    camera_state: &id003
+      shot_size: medium_close
+      angle: eye_level
+      movement: handheld
+      subject_screen_position: center
+    screen_direction: neutral
+  exit_state:
+    summary: The door frame of his retreat catches her right shoulder. Not thrown — she is managed into it, the geometry doing the work. He is not wasting energy on force. He is spending effort on precision. Her back is to the server core door.
+    key_positions: *id001
+    camera_state: *id003
+    screen_direction: neutral
+  frame_continuity:
+    from_clip_id: CLIP_SC0111_02
+    to_clip_id: CLIP_SC0111_03
+    continuity_input_mode: frame_input_eligible
+- clip_id: CLIP_SC0111_03
+  order: 3
+  entry_state:
+    summary: 'Her left arm is not reliably functional — the rib injury has shortened every movement arc on that side, and he has methodically narrowed what the right arm can reach. The breathing cost is now operating-expense rather than overhead: every inhale is a decision with a price. He is running out the cloc...'
+    key_positions: *id001
+    camera_state: &id004
+      shot_size: medium_close
+      angle: eye_level
+      movement: handheld
+      subject_screen_position: center
+    screen_direction: neutral
+  exit_state:
+    summary: 'Her left arm is not reliably functional — the rib injury has shortened every movement arc on that side, and he has methodically narrowed what the right arm can reach. The breathing cost is now operating-expense rather than overhead: every inhale is a decision with a price. He is running out the cloc...'
+    key_positions: *id001
+    camera_state: *id004
+    screen_direction: neutral
+  frame_continuity:
+    from_clip_id: CLIP_SC0111_03
+    to_clip_id: CLIP_SC0111_04
+    continuity_input_mode: frame_input_eligible
+- clip_id: CLIP_SC0111_04
+  order: 4
+  entry_state:
+    summary: 'She has no room to establish a counter-line. The geometry is closed. She knows about carotid sinus pressure: bilateral sustained pressure at the baroreceptor concentration point triggers vasovagal reflex — the autonomic nervous system cannot override it. She learned this as a medic in the context of...'
+    key_positions: *id001
+    camera_state: &id005
+      shot_size: medium_close
+      angle: eye_level
+      movement: handheld
+      subject_screen_position: center
+    screen_direction: neutral
+  exit_state:
+    summary: 'She has no room to establish a counter-line. The geometry is closed. She knows about carotid sinus pressure: bilateral sustained pressure at the baroreceptor concentration point triggers vasovagal reflex — the autonomic nervous system cannot override it. She learned this as a medic in the context of...'
+    key_positions: *id001
+    camera_state: *id005
+    screen_direction: neutral
+  frame_continuity:
+    from_clip_id: CLIP_SC0111_04
+    to_clip_id: CLIP_SC0111_05
+    continuity_input_mode: frame_input_eligible
+- clip_id: CLIP_SC0111_05
+  order: 5
+  entry_state:
+    summary: She stopped running from maximum proximity four exchanges ago. She closes distance. He does not expect it. She has been managing space, extending range. The shift from retreat to approach takes a half-second he has not allocated.
+    key_positions: *id001
+    camera_state: &id006
+      shot_size: medium_close
+      angle: eye_level
+      movement: handheld
+      subject_screen_position: center
+    screen_direction: neutral
+  exit_state:
+    summary: 'She applies. Sustained. Both sides. The pressure is specific and deliberate — not a choke, not a strike: a bilateral hold targeting the baroreceptor reflex, maintained with whatever her arms have left.'
+    key_positions: *id001
+    camera_state: *id006
+    screen_direction: neutral
+  frame_continuity:
+    from_clip_id: CLIP_SC0111_05
+    to_clip_id: CLIP_SC0111_06
+    continuity_input_mode: frame_input_eligible
+- clip_id: CLIP_SC0111_06
+  order: 6
+  entry_state:
+    summary: Four seconds. He is still standing, his hands trying to find purchase, his body not yet understanding what is being asked of it.
+    key_positions: *id001
+    camera_state: &id007
+      shot_size: medium_close
+      angle: eye_level
+      movement: handheld
+      subject_screen_position: center
+    screen_direction: neutral
+  exit_state:
+    summary: Seven. He goes down the way vasovagal response takes a person — not a fall, not a collapse, a controlled exit of the legs from load-bearing status. She goes with him, one knee on the corridor floor, because she does not have the margin to release cleanly and step back. She releases.
+    key_positions: *id001
+    camera_state: *id007
+    screen_direction: neutral
+  frame_continuity:
+    from_clip_id: CLIP_SC0111_06
+    to_clip_id: CLIP_SC0111_07
+    continuity_input_mode: frame_input_eligible
+- clip_id: CLIP_SC0111_07
+  order: 7
+  entry_state:
+    summary: She tries to stand. Her left side is settled into a specific, narrow, consuming pain — not acute anymore, categorical. She gets to one knee. She gives herself the count of three. At three she stands.
+    key_positions: *id001
+    camera_state: &id008
+      shot_size: medium_close
+      angle: eye_level
+      movement: handheld
+      subject_screen_position: center
+    screen_direction: neutral
+  exit_state:
+    summary: She tries to stand. Her left side is settled into a specific, narrow, consuming pain — not acute anymore, categorical. She gets to one knee. She gives herself the count of three. At three she stands.
+    key_positions: *id001
+    camera_state: *id008
+    screen_direction: neutral
+  frame_continuity:
+    from_clip_id: CLIP_SC0111_07
+    to_clip_id: CLIP_SC0111_08
+    continuity_input_mode: frame_input_eligible
+- clip_id: CLIP_SC0111_08
+  order: 8
+  entry_state:
+    summary: Roman is on the corridor floor. Breathing — she can see the chest moving from here, the way she has been trained to see it from a distance in low light without equipment. He is not confirmed as to what comes next. The film does not resolve this here.
+    key_positions: *id001
+    camera_state: &id009
+      shot_size: medium_close
+      angle: eye_level
+      movement: handheld
+      subject_screen_position: center
+    screen_direction: neutral
+  exit_state:
+    summary: She is not standing here long enough for resolution. Jin is in the building. She is standing. She moves.
+    key_positions: *id001
+    camera_state: *id009
+    screen_direction: neutral
+provenance:
+  created_by: claude_code (M5 FAZ C)
+  created_at: '2026-06-04T00:00:00Z'

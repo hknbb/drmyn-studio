@@ -1,0 +1,21 @@
+schema_version: "0.x-draft"
+record_type: performance_intent_record
+performance_intent_id: PERF_SC0014_SH002_C04_V001
+status: draft
+scene_id: SC0014
+shot_id: SH002
+speaker: C04
+spoken_line: "Mrs. Vale. It's time."
+language: English
+delivery:
+  volume: low
+  pace: measured
+  tone: courteous_procedural
+  emotional_state: controlled, unhurried, no aggression
+subtext: >
+  An administrator announcing an inevitability. The formality ("Mrs. Vale") is
+  distance, not respect; "It's time" frames the removal as a schedule rather than
+  a choice. No threat is voiced because none is needed — the two men behind him
+  are the sentence.
+face_direction: toward Nadia, level
+mouth_behavior: minimal, even speech; no affect

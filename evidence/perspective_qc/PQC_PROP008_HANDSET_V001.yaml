@@ -1,0 +1,58 @@
+schema_version: "0.x-draft"
+record_type: perspective_qc_report
+perspective_qc_id: PQC_PROP008_HANDSET_V001
+status: approved
+scene_id: SC0047
+element_id: PROP008
+prompt_pack_id: PPACK_PROP008_HANDSET_V001
+operator_session_ref: OP-2026-06-17-LOC005-LOC006-LOC007-PROP008-threeview
+perspective_scores:
+  - prompt_id: PPACK_PROP008_HANDSET_V001__front_reference
+    perspective: front_reference
+    identity_preservation: 93
+    perspective_usefulness: 92
+    material_palette_continuity: 93
+    production_reference_cleanliness: 93
+    hallucination_absence: 93
+    view_distinction: 91
+    scale_distinction: 91
+    total_score: 92
+    decision: pass
+  - prompt_id: PPACK_PROP008_HANDSET_V001__three_quarter_medium
+    perspective: three_quarter_medium_reference
+    identity_preservation: 91
+    perspective_usefulness: 90
+    material_palette_continuity: 91
+    production_reference_cleanliness: 91
+    hallucination_absence: 92
+    view_distinction: 90
+    scale_distinction: 89
+    total_score: 90
+    decision: pass
+  - prompt_id: PPACK_PROP008_HANDSET_V001__three_quarter_close
+    perspective: three_quarter_close_reference
+    identity_preservation: 92
+    perspective_usefulness: 93
+    material_palette_continuity: 92
+    production_reference_cleanliness: 92
+    hallucination_absence: 93
+    view_distinction: 91
+    scale_distinction: 91
+    total_score: 91
+    decision: pass
+gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  can_advance_to_kling_reference: true
+notes: >
+  Operator-approved three_view_scale_angle_v2 set for @PROP008_HANDSET (archived, git-ignored).
+  All three views confirm the same plain industrial-grade handset: no manufacturer markings,
+  matte casing, physical buttons, unlit screen — ordinary hardened field hardware, not
+  futuristic. No logos, no glowing UI, no hands, no people.
+  front_reference: full face-on, whole device readable, clean neutral background.
+  three_quarter_medium_reference: three-quarter angle showing device thickness, side buttons,
+  rugged casing depth — load-bearing for SC0047 handoff shot (Otto produces it from locked case).
+  three_quarter_close_reference: macro on unlit screen + keypad detail + matte texture —
+  strongest detail view, supports the code-entry beat (Nadia enters 7-3-1-1-4).
+  Object identity consistent across all three views. All perspectives >= 85.
+  Source: CHATGPTIMG_PROP008_FIRSTREF_V001.
