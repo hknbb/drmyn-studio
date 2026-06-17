@@ -124,7 +124,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage3/images/car_3_1.png
   sha256: ed3675cfe186ea9635884b2100204f515e0983c2ded5b15679f28cd9fd72c15b
   size_bytes: 1592253
-  notes: '@C10_CARRIER Stage-3 full_body_front; heavier/stockier, buzzed hair. Dual-ref seeded. QC 87.'
+  notes: '@C10_CARRIER Stage-3 full_body_front; heavier/stockier, buzzed hair. Dual-ref
+    seeded. QC 87.'
 - kind: gpt_images_2_perspective_output
   element_id_or_take_id: PPACK_C10_CARRIER_V001__three_quarter_waist
   storage_backend: local_manual
@@ -164,7 +165,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage3/images/hol_3_1.png
   sha256: f681b857d3a832878200b55e201742648fe5fcd219a0268e362099313457a520
   size_bytes: 1652578
-  notes: '@C10_HOLDER Stage-3 full_body_front; leaner, fuller hair + beard. Dual-ref seeded. QC 87.'
+  notes: '@C10_HOLDER Stage-3 full_body_front; leaner, fuller hair + beard. Dual-ref
+    seeded. QC 87.'
 - kind: gpt_images_2_perspective_output
   element_id_or_take_id: PPACK_C10_HOLDER_V001__three_quarter_waist
   storage_backend: local_manual
@@ -194,7 +196,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/C10/stage3/images/hol_3_4.png
   sha256: 48b4b0d9a5b25186448ea92212399e5e0a00e9a5efecc1d972f86bdccccb189d
   size_bytes: 2047279
-  notes: '@C10_HOLDER Stage-3 profile_full; clean 90 deg, distinct from CARRIER. QC 88.'
+  notes: '@C10_HOLDER Stage-3 profile_full; clean 90 deg, distinct from CARRIER. QC
+    88.'
 - kind: mj_v7_oref_identity_lock
   element_id_or_take_id: MJ_C10_HOLDER_OREFLOCK_V001
   storage_backend: local_manual
@@ -230,9 +233,9 @@ entries:
   sha256: d03cd81b2d67b904990fccf245ff7801464e4517432d4981f8e1be9fe8945aec
   size_bytes: 1579494
   notes: Stage-2 MJ V7 --oref lock (--ow 250) for Zara Okonkwo (C06), seeded from
-    MJ_C06_HERO_V001. Operator-approved 2026-06-10 from Z2 batch (7 candidates);
-    best identity match to Stage-1 hero — West African face geometry consistent,
-    soft frontal light, face fully visible. Seeds Stage-3 ChatGPT Images 2 four_view_scale_angle_v3.
+    MJ_C06_HERO_V001. Operator-approved 2026-06-10 from Z2 batch (7 candidates); best
+    identity match to Stage-1 hero — West African face geometry consistent, soft frontal
+    light, face fully visible. Seeds Stage-3 ChatGPT Images 2 four_view_scale_angle_v3.
 - kind: gpt_images_2_perspective_view
   element_id_or_take_id: PPACK_C06_FIELD_NIGHT_V001__full_body_front
   storage_backend: local_manual
@@ -242,7 +245,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/C06/stage3/images/zar_3_1.png
   sha256: 95d405dbf8edce6bb65d8258f233ce34f20355a55c914c453b7ab03989091661
   size_bytes: 2247336
-  notes: "C06 Zara field-night look — full_body_front. Khaki/olive-tan operational shirt + trousers + boots. QC 89."
+  notes: C06 Zara field-night look — full_body_front. Khaki/olive-tan operational
+    shirt + trousers + boots. QC 89.
 - kind: gpt_images_2_perspective_view
   element_id_or_take_id: PPACK_C06_FIELD_NIGHT_V001__three_quarter_waist
   storage_backend: local_manual
@@ -252,7 +256,7 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/C06/stage3/images/zar_3_2.png
   sha256: e8902b9d545ff039076c9f4b4aa2aaf011321a42526488ab1492b17794ece0f9
   size_bytes: 1894862
-  notes: "C06 Zara field-night look — three_quarter_waist. QC 90."
+  notes: C06 Zara field-night look — three_quarter_waist. QC 90.
 - kind: gpt_images_2_perspective_view
   element_id_or_take_id: PPACK_C06_FIELD_NIGHT_V001__close_portrait_front
   storage_backend: local_manual
@@ -262,7 +266,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/C06/stage3/images/zar_3_3.png
   sha256: 00e274151080a0be59951f7b36bb1548591a993ac74d660791ec3223cd6e3139
   size_bytes: 2270055
-  notes: "C06 Zara field-night look — close_portrait_front. West African heritage clear, warmth readable. QC 92."
+  notes: C06 Zara field-night look — close_portrait_front. West African heritage clear,
+    warmth readable. QC 92.
 - kind: gpt_images_2_perspective_view
   element_id_or_take_id: PPACK_C06_FIELD_NIGHT_V001__profile_full
   storage_backend: local_manual
@@ -272,7 +277,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/C06/stage3/images/zar_3_4.png
   sha256: 352150e4687c9aea8977fce410da239b781133373bc03a675ce1e174b15951ce
   size_bytes: 1716250
-  notes: "C06 Zara field-night look — profile_full. Clean lateral, khaki wardrobe consistent. QC 88."
+  notes: C06 Zara field-night look — profile_full. Clean lateral, khaki wardrobe consistent.
+    QC 88.
 - kind: mj_v81_narrative_identity_hero
   element_id_or_take_id: MJ_C09_HERO_V001
   storage_backend: local_manual
@@ -298,8 +304,8 @@ entries:
   notes: Stage-2 MJ V7 --oref identity lock for Otto (C09). Operator-approved 2026-06-10
     from O2 batch (11 candidates); selected o2_9 on strongest identity consistency
     with ott_1.png, even frontal light, clean grey background, dark navy jacket +
-    muted olive-green inner layer clearly visible (WD014). Seeds Stage-3 ChatGPT
-    Images 2 four_view_scale_angle_v3.
+    muted olive-green inner layer clearly visible (WD014). Seeds Stage-3 ChatGPT Images
+    2 four_view_scale_angle_v3.
 - kind: gpt_images_2_perspective_pack
   element_id_or_take_id: PPACK_C09_QUAY_V001__full_body_front
   storage_backend: local_manual
@@ -309,7 +315,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/C09/stage3/images/ott_3_1.png
   sha256: bdf126a85829c6e5dcfa472fcc8344d46e99e95feba408ecb98ea25d50146592
   size_bytes: 1972012
-  notes: "C09 Otto quay look — full_body_front. Head-to-toe, dark navy jacket + olive-green inner, navy trousers, worn boots. QC 90."
+  notes: C09 Otto quay look — full_body_front. Head-to-toe, dark navy jacket + olive-green
+    inner, navy trousers, worn boots. QC 90.
 - kind: gpt_images_2_perspective_pack
   element_id_or_take_id: PPACK_C09_QUAY_V001__three_quarter_waist
   storage_backend: local_manual
@@ -319,7 +326,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/C09/stage3/images/ott_3_2.png
   sha256: 095a91f49aa0421d4281cf6e74091ffe5ce88e3fc2d86900b34c61ff6b76733f
   size_bytes: 1994180
-  notes: "C09 Otto quay look — three_quarter_waist. Olive-green collar clearly visible, WD014 wardrobe consistent. QC 91."
+  notes: C09 Otto quay look — three_quarter_waist. Olive-green collar clearly visible,
+    WD014 wardrobe consistent. QC 91.
 - kind: gpt_images_2_perspective_pack
   element_id_or_take_id: PPACK_C09_QUAY_V001__close_portrait_front
   storage_backend: local_manual
@@ -329,7 +337,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/C09/stage3/images/ott_3_3.png
   sha256: 557f3ec580cc0bd750903e672b58dd479e215185078fc942cd27fa3d851d41e5
   size_bytes: 2159249
-  notes: "C09 Otto quay look — close_portrait_front. Strongest face-geometry fidelity, flat unsentimental presence. QC 92."
+  notes: C09 Otto quay look — close_portrait_front. Strongest face-geometry fidelity,
+    flat unsentimental presence. QC 92.
 - kind: gpt_images_2_perspective_pack
   element_id_or_take_id: PPACK_C09_QUAY_V001__profile_full
   storage_backend: local_manual
@@ -339,7 +348,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/C09/stage3/images/ott_3_4.png
   sha256: 71bae5da8540784d0dc0235b967d95b2a72144208b051e69ad1d1571187b92e1
   size_bytes: 2100927
-  notes: "C09 Otto quay look — profile_full. Clean lateral, olive-green inner layer visible, identity wrap complete. QC 90."
+  notes: C09 Otto quay look — profile_full. Clean lateral, olive-green inner layer
+    visible, identity wrap complete. QC 90.
 - kind: mj_v81_narrative_identity_hero
   element_id_or_take_id: MJ_C02_HERO_V001
   storage_backend: local_manual
@@ -349,10 +359,11 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/C02/stage1/images/rom_1.png
   sha256: 6d694b6d49295e1bfe881fec04c0789027595b9e7fd04681fe87c3cc06e2a469
   size_bytes: 6424907
-  notes: Stage-1 MJ v8.1 narrative-identity hero for Roman (C02). Operator-approved 2026-06-12
-    from R1 batch; selected on sharp angular face geometry, slicked-back dark hair, strong
-    jawline, light stubble, composed cold gaze. Late 40s-50s. Black tailored suit in Stage-1
-    (wardrobe drifted to olive green at Stage-2 --cref). Seeds Stage-2 identity lock.
+  notes: Stage-1 MJ v8.1 narrative-identity hero for Roman (C02). Operator-approved
+    2026-06-12 from R1 batch; selected on sharp angular face geometry, slicked-back
+    dark hair, strong jawline, light stubble, composed cold gaze. Late 40s-50s. Black
+    tailored suit in Stage-1 (wardrobe drifted to olive green at Stage-2 --cref).
+    Seeds Stage-2 identity lock.
 - kind: mj_v7_oref_identity_lock
   element_id_or_take_id: MJ_C02_OREFLOCK_V001
   storage_backend: local_manual
@@ -363,9 +374,9 @@ entries:
   sha256: 3f5a1513506066fd0f349fd528b7f4ca84c19339c53fa72b6aaeff74956cd7dc
   size_bytes: 1338039
   notes: Stage-2 MJ V7 --cref identity lock for Roman (C02). Operator-approved 2026-06-12
-    from R2 batch; clean frontal pose, plain grey background, identity consistent. Wardrobe
-    drifted to dark olive green via --cref; accepted as final WD003 wardrobe. Seeds Stage-3
-    ChatGPT Images 2 four_view_scale_angle_v3.
+    from R2 batch; clean frontal pose, plain grey background, identity consistent.
+    Wardrobe drifted to dark olive green via --cref; accepted as final WD003 wardrobe.
+    Seeds Stage-3 ChatGPT Images 2 four_view_scale_angle_v3.
 - kind: gpt_images_2_perspective_pack
   element_id_or_take_id: PPACK_C02_COMPOUND_V001__full_body_front
   storage_backend: local_manual
@@ -375,7 +386,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/C02/stage3/images/rom_3_1.png
   sha256: 2d45d9842e8b2cffbcef5f83172eaaab6d884cbce6e15ac103deff594ed22a4d
   size_bytes: 1826228
-  notes: "C02 Roman compound look — full_body_front. Head-to-toe, dark olive green suit, off-white shirt, black shoes, tall centered silhouette. QC 95."
+  notes: C02 Roman compound look — full_body_front. Head-to-toe, dark olive green
+    suit, off-white shirt, black shoes, tall centered silhouette. QC 95.
 - kind: gpt_images_2_perspective_pack
   element_id_or_take_id: PPACK_C02_COMPOUND_V001__three_quarter_waist
   storage_backend: local_manual
@@ -385,7 +397,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/C02/stage3/images/rom_3_2.png
   sha256: 168032bb5f58b59a94d4c4672289d205e05636cfc296ed4548b3947cef3d7341
   size_bytes: 1883947
-  notes: "C02 Roman compound look — three_quarter_waist. 30-45 deg turn, olive green suit + off-white shirt, identity consistent. QC 90."
+  notes: C02 Roman compound look — three_quarter_waist. 30-45 deg turn, olive green
+    suit + off-white shirt, identity consistent. QC 90.
 - kind: gpt_images_2_perspective_pack
   element_id_or_take_id: PPACK_C02_COMPOUND_V001__close_portrait_front
   storage_backend: local_manual
@@ -395,7 +408,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/C02/stage3/images/rom_3_3.png
   sha256: 57edd62a279562ab35bfcafc5b6876bb77043e055033aa50455bb4bb8f6457ad
   size_bytes: 2310634
-  notes: "C02 Roman compound look — close_portrait_front. Frontal identity lock, sharp angular face, grey temples, patrician cold gaze. QC 89."
+  notes: C02 Roman compound look — close_portrait_front. Frontal identity lock, sharp
+    angular face, grey temples, patrician cold gaze. QC 89.
 - kind: gpt_images_2_perspective_pack
   element_id_or_take_id: PPACK_C02_COMPOUND_V001__profile_full
   storage_backend: local_manual
@@ -405,7 +419,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/C02/stage3/images/rom_3_4.png
   sha256: 5f31f012e49e14a8845fc20025b373d564e30fbb151a37a5a62dca429df01cd3
   size_bytes: 1772641
-  notes: "C02 Roman compound look — profile_full. Clean 90 deg lateral, dark olive green suit, tall controlled build. QC 91."
+  notes: C02 Roman compound look — profile_full. Clean 90 deg lateral, dark olive
+    green suit, tall controlled build. QC 91.
 - kind: chatgpt_images_location_first_reference
   element_id_or_take_id: CHATGPTIMG_LOC001_FIRSTREF_V001
   storage_backend: local_manual
@@ -415,7 +430,10 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC001/stage1/images/loc001_1.png
   sha256: b1b3d5b82ffcb30dda09f49a91aa8c72a9b7767e9365ea4ad0bb48ccd461a860
   size_bytes: 1962194
-  notes: "LOC001 Vale nursery — Stage-1 ChatGPT Images first-reference establishing master. Wide interior, evening warm practicals, crib + low shelf + nursing chair, generous floor for SC0014 actor blocking. Operator-approved 2026-06-12. Source for PPACK_LOC001_NURSERY_EVENING_V001 scale-angle pack."
+  notes: LOC001 Vale nursery — Stage-1 ChatGPT Images first-reference establishing
+    master. Wide interior, evening warm practicals, crib + low shelf + nursing chair,
+    generous floor for SC0014 actor blocking. Operator-approved 2026-06-12. Source
+    for PPACK_LOC001_NURSERY_EVENING_V001 scale-angle pack.
 - kind: chatgpt_images_location_scale_angle_view
   element_id_or_take_id: PPACK_LOC001_NURSERY_EVENING_V001__front_reference
   storage_backend: local_manual
@@ -425,7 +443,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_1.png
   sha256: 4c53128f788a396e7ce9cb9de0b4cf9eb929730bb370182c21376e7719ee1421
   size_bytes: 1924832
-  notes: "LOC001 nursery — front_reference. Wide establishing master, deep staging, generous blocking space for SC0014 actors. QC 91."
+  notes: LOC001 nursery — front_reference. Wide establishing master, deep staging,
+    generous blocking space for SC0014 actors. QC 91.
 - kind: chatgpt_images_location_scale_angle_view
   element_id_or_take_id: PPACK_LOC001_NURSERY_EVENING_V001__three_quarter_medium
   storage_backend: local_manual
@@ -435,7 +454,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_2.png
   sha256: cb4f3af477457bd40ba8418c97a5023e7ab109d22b01166d08cdd10bae730846
   size_bytes: 1911971
-  notes: "LOC001 nursery — three_quarter_medium. Medium-depth angle, crib + nursing chair centered, consistent objects and lighting. QC 88."
+  notes: LOC001 nursery — three_quarter_medium. Medium-depth angle, crib + nursing
+    chair centered, consistent objects and lighting. QC 88.
 - kind: chatgpt_images_location_scale_angle_view
   element_id_or_take_id: PPACK_LOC001_NURSERY_EVENING_V001__three_quarter_close
   storage_backend: local_manual
@@ -445,7 +465,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_3.png
   sha256: 033985a8c1a77afc9c5b5292cb531df8d5c69cd0df7f450d9b6dd16225eabb4a
   size_bytes: 1947967
-  notes: "LOC001 nursery — three_quarter_close. Clear three-quarter angle, shelf + crib railing detail visible, warm lamp prominent. QC 90."
+  notes: LOC001 nursery — three_quarter_close. Clear three-quarter angle, shelf +
+    crib railing detail visible, warm lamp prominent. QC 90.
 - kind: chatgpt_images_prop_first_reference
   element_id_or_take_id: CHATGPTIMG_PROP001_FIRSTREF_V001
   storage_backend: local_manual
@@ -455,7 +476,9 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/PROP001/stage1/images/prop001_1.png
   sha256: 00c20aaadbde1fde4eb44b0bb727beb5ae71db1a374dd815025076198a5bf7d8
   size_bytes: 992389
-  notes: "PROP001 pale-blue infant bracelet — Stage-1 ChatGPT Images first-reference. Pale blue band, clasp, 'Jin' ID strip, medically plausible, 1:1. Operator-approved 2026-06-12. Source for PPACK_PROP001_BRACELET_V001 scale-angle pack."
+  notes: PROP001 pale-blue infant bracelet — Stage-1 ChatGPT Images first-reference.
+    Pale blue band, clasp, 'Jin' ID strip, medically plausible, 1:1. Operator-approved
+    2026-06-12. Source for PPACK_PROP001_BRACELET_V001 scale-angle pack.
 - kind: chatgpt_images_prop_scale_angle_view
   element_id_or_take_id: PPACK_PROP001_BRACELET_V001__front_reference
   storage_backend: local_manual
@@ -465,7 +488,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/PROP001/stage3/images/prop001_3_1.png
   sha256: a6207f86a7cfbb34dbcef4e5355d41bb07d04e9ade58c1c2fe62e064c9528191
   size_bytes: 1283044
-  notes: "PROP001 bracelet — front_reference. Full flat lay, whole band + clasp + Jin ID strip readable. QC 92."
+  notes: PROP001 bracelet — front_reference. Full flat lay, whole band + clasp + Jin
+    ID strip readable. QC 92.
 - kind: chatgpt_images_prop_scale_angle_view
   element_id_or_take_id: PPACK_PROP001_BRACELET_V001__three_quarter_medium
   storage_backend: local_manual
@@ -475,7 +499,8 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/PROP001/stage3/images/prop001_3_2.png
   sha256: 414e3afc54285ff3bc7fecd363cfed98fe897be798f29a38b135279b2393acbf
   size_bytes: 821560
-  notes: "PROP001 bracelet — three_quarter_medium. Band curve and lateral profile, same pale-blue object. QC 90."
+  notes: PROP001 bracelet — three_quarter_medium. Band curve and lateral profile,
+    same pale-blue object. QC 90.
 - kind: chatgpt_images_prop_scale_angle_view
   element_id_or_take_id: PPACK_PROP001_BRACELET_V001__three_quarter_close
   storage_backend: local_manual
@@ -485,4 +510,65 @@ entries:
   external_storage_ref: external://local_manual/archive/nexuszero/_elements/PROP001/stage3/images/prop001_3_3.png
   sha256: ad1e6ca6a59bf9fcf71bc49caf5aee48c11d77e07f88eae40ade7b76eb78be1c
   size_bytes: 1561498
-  notes: "PROP001 bracelet — three_quarter_close. Sharp macro, clasp + Jin ID strip — load-bearing SC0014 insert beat. QC 93."
+  notes: PROP001 bracelet — three_quarter_close. Sharp macro, clasp + Jin ID strip
+    — load-bearing SC0014 insert beat. QC 93.
+- kind: chatgpt_images_location_first_reference
+  element_id_or_take_id: CHATGPTIMG_LOC006_FIRSTREF_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-16T21:12:31Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/LOC006/stage1/images/ChatGPT Image 16 Haz
+    2026 22_25_48.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC006/stage1/images/ChatGPT
+    Image 16 Haz 2026 22_25_48.png
+  sha256: e04c1277eb2f45ee421d5ade1ace5d1c6c65633f1edcf58931e41bbd929245a9
+  size_bytes: 2417803
+  notes: LOC006 Merin quay Unit 14-B — Stage-1 ChatGPT Images first-reference establishing
+    master. Wide interior, cold maritime morning, high window + grey water, crates
+    + folding table + camp stove, generous floor for SC0047 actor blocking. Source
+    for PPACK_LOC006_QUAY_MORNING_V001 scale-angle pack.
+- kind: chatgpt_images_prop_first_reference
+  element_id_or_take_id: CHATGPTIMG_PROP008_FIRSTREF_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-16T21:12:44Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/PROP008/stage1/images/ChatGPT Image 16 Haz
+    2026 22_30_51.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/PROP008/stage1/images/ChatGPT
+    Image 16 Haz 2026 22_30_51.png
+  sha256: 7e6e3234b835fe5424a1d754ee5ee97db556fe8ea48466c363274c903b9c7936
+  size_bytes: 1628872
+  notes: PROP008 Marcus's unmarked handset — Stage-1 ChatGPT Images first-reference.
+    Plain industrial-grade handset, no markings, matte casing, physical buttons, unlit
+    screen; ordinary field hardware. 1:1. Source for PPACK_PROP008_HANDSET_V001 scale-angle
+    pack.
+- kind: chatgpt_images_location_first_reference
+  element_id_or_take_id: CHATGPTIMG_LOC005_FIRSTREF_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-16T21:12:46Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/LOC005/stage1/images/ChatGPT Image 16 Haz
+    2026 22_31_51.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC005/stage1/images/ChatGPT
+    Image 16 Haz 2026 22_31_51.png
+  sha256: 60ea3f83c2b8fa4be8378ccf1050267e9c6612552420f2c3f5a57f404b85f369
+  size_bytes: 2005700
+  notes: LOC005 Northern Transit Corridor — Stage-1 ChatGPT Images first-reference
+    establishing master. Wide night exterior, overhead light pools + deep shadow intervals,
+    cargo-processing facility wall + drainage embankment, drainage cut at junction.
+    Source for PPACK_LOC005_CORRIDOR_NIGHT_V001 scale-angle pack.
+- kind: chatgpt_images_location_first_reference
+  element_id_or_take_id: CHATGPTIMG_LOC007_FIRSTREF_V001
+  storage_backend: local_manual
+  last_seen_at: '2026-06-16T21:12:48Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/LOC007/stage1/images/ChatGPT Image 16 Haz
+    2026 23_15_04.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC007/stage1/images/ChatGPT
+    Image 16 Haz 2026 23_15_04.png
+  sha256: f517eb51667dc6189a004b9e465956ef49462784e8493d22180f511cc43dec2f
+  size_bytes: 2307988
+  notes: LOC007 Veltain Compound Antechamber Corridor — Stage-1 ChatGPT Images first-reference
+    establishing master. Narrow interior corridor, bare concrete + server-core surfaces,
+    floor seam, retreat door frame, harsh cold low-key light, claustrophobic geometry.
+    Source for PPACK_LOC007_ANTECHAMBER_V001 scale-angle pack.

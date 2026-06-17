@@ -5,16 +5,28 @@
 
 ## 🇹🇷 Şu An Neredeyiz (Türkçe Özet)
 
-Milestone M5'teyiz: SC0014 **Anchor & Animate** v06 paketi tamamlandı (Faz 0-5).
-**Faz 5 TAMAMLANDI (2026-06-15):** 22 shot still + 8 contact-sheet + 8 anchored_i2v Kling promptu
-`prompts/draft/`'a yazıldı; v05 text-only set supersede edildi (8 dosya silindi, KO_0006 run kayıtları
-temizlendi, `scene_prompt_map.csv` + `prompt_library.yaml` 38 yeni v01 kayıtla güncellendi).
-Anchored paketin kalbinde: her shot ChatGPT Images 2'de fotoğraflanır → per-clip contact sheet →
-Kling `anchored_i2v` (start-frame + element refs + kısa metin <2500; pass-1 frame-chain aktif).
-**Faz 6 TAMAMLANDI (2026-06-15):** `docs/operator_guides/shot_photography_contact_sheet.md` yazıldı;
-CI'ya 2 yeni test dosyası eklendi (`test_kling_omni_anchored_i2v.py` + `test_shot_still_coverage.py`);
-memory güncellendi. Anchor & Animate mimarisi (Faz 0-6) tüm fazlarıyla teslim edildi.
-**Operatör sırası:** 22 still üret → arşivle → contact sheet → 8 Kling anchored_i2v clip.
+Milestone M5'teyiz. **SC0014 v07 TAMAMLANDI (2026-06-16):** Anchor & Animate (22 still + contact-sheet
++ `anchored_i2v`) rotası emekliye ayrıldı; yerine **text_only literal multi-shot** geldi
+(`language_profile: kling_literal_alias_locked`). Kök sorun çözüldü: kötü dil (metafor, "infant/mother",
+serbest "center") renderer'da değil kanonik YAML'daydı — **dual-field split** ile şiirsel alanlar insana
+kaldı, modele yalnız yeni literal `render_*` alanları basılıyor. 8 klibe literal render_* yazıldı;
+**CLIP 01 artık boş oda ile bitmiyor, aynı klipte @C01_NADIA + @C08_JIN reveal ediliyor**; CLIP 02
+"aniden insanlar" hissini kaldırdı. 8 v07 kayıt üretildi (`...-safe__v07`), v06'nın 38 satırı (still/
+contact/anchored) deprecated. Validator katı banları zorluyor (raw isim / role noun / metafor / bare
+center; alias+diyalog maskeli); aktif Kling kaydı `language_profile` bildirmek zorunda; `text_only`
+altında anchored üçlüsü yasak. Test: 1520 geçti / 3 atlandı (12 yeni v07 testi). Kling'e canlı çağrı yok.
+**2026-06-16 operatör üretimi:** Operatör 8 klibi Kling'de text_only çalıştırdı; 8 .mp4 lokal olarak
+`archive/nexuszero/SC0014/clips/` altına arşivlendi (git-ignored) ve
+`evidence/local_media_indices/LOCAL_MEDIA_INDEX_SC0014_ARCHIVE_V001.yaml`'e metadata-only kayıt
+girildi (`kling_omni_v07_text_only_take`, take_id `CLIP_SC0014_0N_v07_take01`). QC/seçim henüz
+yapılmadı — Batch 8.5 `review-video-takes` akışı (status + 5 kalite skoru) bekliyor.
+**Operatör sırası:** Klipleri izle → her klip için status/kalite skoru ver → `review-video-takes`
+çalıştır (`video_takes.yaml` + review notes).
+**2026-06-16 oref schema drift düzeltildi:** SC0047/SC0089 Stage-2 `--oref` lock kayıtlarında
+kök seviyede duran `oref_source_id`/`oref_source_external_ref`/`oref_cdn_url` alanları
+`prompt_record` şemasında tanımsızdı (root `additionalProperties: false`); üç alan
+`generation_params` içine taşındı (o blok `additionalProperties: true`). Hiçbir kod bu
+alanları kök seviyede okumuyordu, taşıma güvenli. `validate_prompt_records.py`: 55/55 temiz.
 
 ## Status
 
@@ -22,7 +34,7 @@ memory güncellendi. Anchor & Animate mimarisi (Faz 0-6) tüm fazlarıyla teslim
 |---|---|
 | Active branch | `feat/sc0014-scene-production` |
 | Milestone | M5 — character visual element pipeline |
-| Last updated | 2026-06-15 |
+| Last updated | 2026-06-17 |
 | Public checkpoint | v0.17.0 (Zenodo DOI: 10.5281/zenodo.20241807) |
 
 ## Character Pipeline (C01–C10)
@@ -46,20 +58,23 @@ Stages: S1 = MJ v8.1 hero · S2 = MJ v7 --oref identity lock · S3 = four-view p
 
 ## Active Scene Work
 
-- **SC0014** Anchor & Animate **v06 anchored paketi hazır** (Faz 0-5 tamamlandı):
-  22 shot still prompts (SC0014__still-01..22__v01) + 8 contact-sheet prompts
-  (SC0014__contact-clip-01..08__v01) + 8 anchored_i2v Kling prompts
-  (SC0014__omni-kling-omni-clip-clip-sc0014-01..08-safe__v01). Pass-1 frame-chain aktif:
-  her clip start-frame = önceki clip'in son shot stilli. C08 gate korunuyor. v05 text-only
-  set supersede edildi. **Operatör sırası:** 22 still üret → arşivle → contact sheet →
-  Kling'e anchored_i2v olarak çalıştır.
+- **SC0014 v07 text-only literal paket hazır** (Anchor & Animate emekli):
+  8 `text_only` Kling promptu (`SC0014__omni-kling-omni-clip-clip-sc0014-01..08-safe__v07`),
+  `language_profile: kling_literal_alias_locked`. 8 manifest + ledger literal `render_*`
+  alanları taşıyor (şiirsel alanlar korundu, modele basılmıyor). CLIP 01 reveal'lı
+  (Nadia+Jin); v06'nın 22 still + 8 contact + 8 anchored kaydı + library/map satırları
+  deprecated. C08 gate korunuyor. 8 klip operatör tarafından Kling'de çalıştırıldı ve
+  `archive/nexuszero/SC0014/clips/` altına arşivlendi (git-ignored; index:
+  `LOCAL_MEDIA_INDEX_SC0014_ARCHIVE_V001.yaml`, kind `kling_omni_v07_text_only_take`).
+  QC/seçim henüz yapılmadı. **Operatör sırası:** klipleri izle → her klip için
+  status + 5 kalite skoru ver → `review-video-takes` çalıştır.
 - Golden scenes referenced by created bindings: **SC0014, SC0047, SC0089, SC0111**.
 - Golden scene **SC0001** queued in the revised plan (after character batch).
 
 ## Next Steps (priority order)
 
-1. **SC0014 Faz 6** — `docs/operator_guides/shot_photography_contact_sheet.md` + CI (pytest yolları + contact_sheets glob) + memory update. (NEXT metadata)
-2. **SC0014 operatör üretim döngüsü** — 22 still üret (ChatGPT Images 2 w/ element refs) → arşivle (`--subdir shots`) → 8 contact-sheet → 8 anchored_i2v Kling clip. (operator-driven)
+1. **SC0014 video take QC (v07)** — 8 klip arşivlendi (QC bekliyor). Operatör her klip için status (selected/candidate/rejected/needs_revision) + 5 kalite skoru (identity_consistency, source_grounding, style_compliance, continuity, production_usability, 1-5) versin → `review-video-takes` çalıştırılıp `video_takes.yaml` yazılacak. Final pass için gerekirse `continuity_seed_ref` (extracted last-frame). (operator-driven)
+2. ~~SC0047/SC0089 t2i oref schema drift~~ — **çözüldü 2026-06-16**: 3 kök alan `generation_params` içine taşındı, validator 55/55 temiz.
 3. **SC0089, SC0047, SC0111 element pipeline** — remaining locations + props (first-ref → 3-view → KER → created).
 4. **PR-BATCH-KEYCHAR-1** — C03 Birta + C05 Marcus pre-checkpoint registration.
 5. **C07 Sera** + **Halo Unit** element production.
@@ -82,6 +97,8 @@ From `closingpriceclaudecodeanalysisforcode.md` (multi-agent analysis, 2026-06-0
 ## Session Log (newest first, keep ~10 lines)
 
 <!-- AUTO:SESSION_LOG:START -->
+- 2026-06-17 — archive SC0014 v07 Kling clips (8 takes, git-ignored) + add clips subdir
+- 2026-06-17 — SC0014 v07 text-only literal multi-shot (kling_literal_alias_locked); Anchor & Animate retired
 - 2026-06-15 — SC0014 Anchor & Animate pipeline Faz 0â€“6 (shot-photography-first)
 - 2026-06-12 — SC0014 FAZ C â€” 8-clip plan + SCL ledger + 8 Format A O3 prompts (Kling ready)
 - 2026-06-12 — lock PROP001 bracelet three-view + promote @PROP001_BRACELET to created (SC0014, QC>=85); SC0014 all elements created
@@ -90,6 +107,4 @@ From `closingpriceclaudecodeanalysisforcode.md` (multi-agent analysis, 2026-06-0
 - 2026-06-10 — lock C09 Otto Stage-3 four-view + promote @C09_OTTO to created (SC0047, QC>=85)
 - 2026-06-10 — lock C09 Otto Stage-2 oref (ott_2.png) + update identity anchor
 - 2026-06-10 — update C09 Otto wardrobe to dark navy/blue + muted olive-green (WD014)
-- 2026-06-10 — add C09 Otto Stage-2 --oref lock prompt with CDN URL
-- 2026-06-10 — lock C09 Otto Stage-1 hero (MJ_C09_HERO_V001)
 <!-- AUTO:SESSION_LOG:END -->

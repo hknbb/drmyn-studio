@@ -9,9 +9,6 @@ source_refs:
   scene_excerpt: "Stage-2 --oref identity lock for Otto (C09); clean canonical reference seeding Stage-3 four-view pack."
   character_refs:
   - C09
-oref_source_id: MJ_C09_HERO_V001
-oref_source_external_ref: "archive/nexuszero/_elements/C09/stage1/images/ott_1.png"
-oref_cdn_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/6135d6c9b9266e17fdb705361cd2fd693f8c22d99979f4b063083ec0961f1a86_384_N.png"
 prompt_text: >-
   Same man, identical face — sixty to seventy, solid settled build, grey close-kept
   hair, weathered skin. Straight to camera, even frontal light, plain neutral
@@ -28,6 +25,9 @@ generation_params:
   identity_anchor_ref: visual_dev/elements/characters/C09/identity_anchor.yaml
   stage: "2_of_3_oref_lock"
   oref_weight: 250
+  oref_source_id: MJ_C09_HERO_V001
+  oref_source_external_ref: "archive/nexuszero/_elements/C09/stage1/images/ott_1.png"
+  oref_cdn_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/6135d6c9b9266e17fdb705361cd2fd693f8c22d99979f4b063083ec0961f1a86_384_N.png"
   recommended_model_version: --v 7
   recommended_style: --style raw
   lock_target: "clean canonical frontal reference for Stage-3 ChatGPT Images 2 four_view_scale_angle_v3"

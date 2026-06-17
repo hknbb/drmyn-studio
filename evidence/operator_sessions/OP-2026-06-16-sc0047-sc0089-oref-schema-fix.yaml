@@ -1,0 +1,31 @@
+session_id: OP-2026-06-16-sc0047-sc0089-oref-schema-fix
+created_at: "2026-06-16T00:00:00Z"
+scene_id: SC0047
+current_task: "Fix prompt_record schema drift in SC0047/SC0089 Stage-2 oref-lock records"
+recommended_files:
+  - prompts/draft/SC0047__t2i-char-c09-oref-lock-mj-v7__v01.yaml
+  - prompts/draft/SC0089__t2i-char-c06-oref-lock-mj-v7__v01.yaml
+  - schemas/prompt_record.schema.json
+  - scripts/validate_prompt_records.py
+recommended_steps:
+  - "Yok — drift kapatıldı, ek operatör adımı gerekmiyor."
+status: complete
+notes: >
+  validate_prompt_records.py 2 dosyada hata veriyordu: SC0047__t2i-char-c09-oref-lock-mj-v7__v01.yaml
+  ve SC0089__t2i-char-c06-oref-lock-mj-v7__v01.yaml kök seviyede oref_source_id,
+  oref_source_external_ref, oref_cdn_url alanları taşıyordu; prompt_record.schema.json kökte
+  additionalProperties:false olduğu için bunlar "unexpected" hatası veriyordu.
+
+  Düzeltme: bu 3 alan her iki dosyada da generation_params bloğuna taşındı (o blok
+  additionalProperties:true kabul ediyor). Şema değişikliği yapılmadı; repo genelinde bu
+  alanları kök seviyede okuyan hiçbir Python kodu bulunmadı (grep ile doğrulandı), taşıma
+  güvenli. Başka hiçbir prompt_record bu alanları kullanmıyordu, yani yeni bir konvansiyon
+  icat etmek yerine zaten var olan generation_params serbest-alan deseni kullanıldı.
+
+  Doğrulama: scripts/validate_prompt_records.py --repo-root . → "55 files validated
+  successfully." scripts/validate_production_records.py --repo-root . → temiz (hata yok).
+  v07 SC0014 değişikliğine karışmadı (PROJECT_STATE.md Next Steps #2'de ayrı item olarak
+  bekliyordu). Hiçbir binary commit edilmedi; hiçbir lifecycle alanı değiştirilmedi.
+
+  PROJECT_STATE.md güncellendi: Türkçe özet (yeni paragraf), Next Steps #2 strikethrough +
+  "çözüldü", Session Log (yeni üst satır, en eski satır düşürüldü).
