@@ -3,3 +3,6 @@ LOC001,"Vale Residence, Vardova",HOME,True,PROP001|PROP003,SC0001|SC0003|SC0005|
 LOC002,Nadia's Private Study,HOME,True,,SC0006,review,pending,False
 LOC003,Roman's Operational Floor,OFFICE,True,PROP005,SC0002,review,pending,False
 LOC004,Hidden Room / Anonymous Room,LIMINAL,False,,SC0004|SC0008|SC0009,review,pending,False
+LOC005,Northern Transit Corridor — Outer District Perimeter,INDUSTRIAL,False,,SC0089,review,pending,False
+LOC006,"Merin — Quay District, Unit 14-B",INDUSTRIAL,False,PROP008,SC0047,review,pending,False
+LOC007,Veltain Compound — Antechamber Corridor,INSTITUTION,False,,SC0111,review,pending,False
