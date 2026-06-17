@@ -58,9 +58,11 @@ record_type: element_binding
 element_id: LOC005
 element_type: location
 kling_alias: "@LOC005_CORRIDOR"
-binding_status: planned
+binding_status: created
+platform_asset_ref: visual_dev/elements/locations/LOC005/kling_element_reference_LOC005_corridor.yaml
+platform_asset_ref_note: "KER_LOC005_CORRIDOR_V001 — three-view scale-angle Kling location reference (QC>=85)."
 voice_capability: none
 native_audio_readiness: not_required
 kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
-notes: "Northern transit corridor (night). Planned alias."
+notes: "Northern transit corridor (night exterior). Promoted to 'created': Stage-1 first-reference (CHATGPTIMG_LOC005_FIRSTREF_V001) + Stage-2 three-view QC>=85 (PQC_LOC005_CORRIDOR_NIGHT_V001) + reference KER_LOC005_CORRIDOR_V001. Cold industrial night; overhead light pools separated by deep darkness; concrete + drainage embankment; no warmth."
 provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
