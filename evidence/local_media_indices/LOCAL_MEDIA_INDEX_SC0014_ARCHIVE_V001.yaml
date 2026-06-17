@@ -133,3 +133,83 @@ entries:
   sha256: 94ce23a9c69d8d0fc64a363917bd63e8d37ba78a29466d4aebd191285aef6868
   size_bytes: 1951894
   notes: Stage-3 four-view full_body_front.
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0014_01_v07_take01
+  storage_backend: local_manual
+  last_seen_at: '2026-06-16T18:54:35Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0014/clips/1.mp4
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/clips/1.mp4
+  sha256: 0deb2bc367953a150f8bc6712487125110dc0998c4a27c6d0a58cc84b7bdfaca
+  size_bytes: 9133651
+  notes: Kling Omni v07 text_only literal output for CLIP_SC0014_01; QC pending.
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0014_02_v07_take01
+  storage_backend: local_manual
+  last_seen_at: '2026-06-16T18:54:37Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0014/clips/2.mp4
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/clips/2.mp4
+  sha256: f685f4c47a2aa2d8655d7e8d9e9cd1fff68525135371b603e524457cfc91b7cf
+  size_bytes: 12067151
+  notes: Kling Omni v07 text_only literal output for CLIP_SC0014_02; QC pending.
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0014_03_v07_take01
+  storage_backend: local_manual
+  last_seen_at: '2026-06-16T18:54:38Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0014/clips/3.mp4
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/clips/3.mp4
+  sha256: c12a3e0d7f145297e5361bac5eb38613bffe749c624ba672313afce940782ef1
+  size_bytes: 15005147
+  notes: Kling Omni v07 text_only literal output for CLIP_SC0014_03; QC pending.
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0014_04_v07_take01
+  storage_backend: local_manual
+  last_seen_at: '2026-06-16T18:54:40Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0014/clips/4.mp4
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/clips/4.mp4
+  sha256: f764b69e357106c03e04698c83cd796041d3ad5b36946ac732848fa0e3874db2
+  size_bytes: 19802055
+  notes: Kling Omni v07 text_only literal output for CLIP_SC0014_04; QC pending.
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0014_05_v07_take01
+  storage_backend: local_manual
+  last_seen_at: '2026-06-16T18:54:43Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0014/clips/5.mp4
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/clips/5.mp4
+  sha256: 2533ff0c08bfade6535f924bfd9a5fd0e29aa9ab1f82b70bf64f235d5da0cc5c
+  size_bytes: 14894026
+  notes: Kling Omni v07 text_only literal output for CLIP_SC0014_05; QC pending.
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0014_06_v07_take01
+  storage_backend: local_manual
+  last_seen_at: '2026-06-16T18:54:43Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0014/clips/6.mp4
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/clips/6.mp4
+  sha256: 1061db80b5cec1506a453076efa0538e04e003b935a269d9d6679174c9f05151
+  size_bytes: 14296910
+  notes: Kling Omni v07 text_only literal output for CLIP_SC0014_06; QC pending.
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0014_07_v07_take01
+  storage_backend: local_manual
+  last_seen_at: '2026-06-16T18:54:44Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0014/clips/7.mp4
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/clips/7.mp4
+  sha256: 088efdec8d189886c03b9f9febfe349149815606f080b3d2fda59fa394697012
+  size_bytes: 5218155
+  notes: Kling Omni v07 text_only literal output for CLIP_SC0014_07; QC pending.
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0014_08_v07_take01
+  storage_backend: local_manual
+  last_seen_at: '2026-06-16T18:54:46Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/SC0014/clips/8.mp4
+  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/clips/8.mp4
+  sha256: 9cad08e6f5141de8470dfff5ebb4a23203175dc8f24a7404f6592247203d333c
+  size_bytes: 15281788
+  notes: Kling Omni v07 text_only literal output for CLIP_SC0014_08; QC pending.

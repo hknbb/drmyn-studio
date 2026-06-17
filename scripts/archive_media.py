@@ -230,8 +230,8 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--scene", required=True, help="SCdddd or _elements.")
     p.add_argument("--element", default=None, help="Element/character id (e.g. C10, LOC001). Required unless --subdir is set.")
     p.add_argument("--stage", type=int, default=3, choices=[1, 2, 3], help="Pipeline stage.")
-    p.add_argument("--subdir", choices=["shots", "contact_sheets"], default=None,
-                   help="Scene-level subcategory (shots|contact_sheets). When set, --element and --stage are ignored.")
+    p.add_argument("--subdir", choices=["shots", "contact_sheets", "clips"], default=None,
+                   help="Scene-level subcategory (shots|contact_sheets|clips). When set, --element and --stage are ignored.")
     p.add_argument("--media-type", choices=["image", "video"], default=None)
     p.add_argument("--kind", default="archived_media", help="Semantic kind label for the index entry.")
     p.add_argument("--id", default=None, help="element_id_or_take_id (defaults to --element).")
