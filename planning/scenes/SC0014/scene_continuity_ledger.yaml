@@ -8,12 +8,18 @@ notes: >
   holds rather than tracking a lateral axis, so screen_direction stays neutral
   throughout (no 180-degree flips). Nadia is the constant subject and stays screen
   center across every cut; the door and enforcers hold screen-right; the empty crib
-  is the closing center. exit_state(N) is authored to match entry_state(N+1). v05:
-  key_positions use @aliases with posture/relation so the intra-clip state chain
-  (omni_clip_manifest shots[].entry_state/exit_state) ties to the clip seam.
+  is the closing center. exit_state(N) is authored to match entry_state(N+1).
+  v05: key_positions use @aliases with posture/relation so the intra-clip state
+  chain (omni_clip_manifest shots[].entry_state/exit_state) ties to the clip seam.
+  v07 text-only literal pass: render_start_state/render_end_state carry the
+  model-facing alias-locked literal seam strings; the poetic summary/key_positions
+  remain human-readable bookkeeping and are never printed under the
+  kling_literal_alias_locked profile. CLIP_01 now ends on the Nadia+Jin reveal so
+  CLIP_02 continues established blocking instead of introducing people from nowhere.
 clip_chain:
   - clip_id: CLIP_SC0014_01
     order: 1
+    render_end_state: "@C01_NADIA seated in the chair beside the empty crib, @C08_JIN held against her chest; door closed."
     entry_state:
       summary: "Empty, carefully-made nursery at evening; soft warm light; crib and chair as the protected center."
       props_state:
@@ -21,14 +27,19 @@ clip_chain:
       camera_state: { shot_size: wide, angle: eye_level, movement: static, subject_screen_position: center }
       screen_direction: neutral
     exit_state:
-      summary: "Establishing hold settles on the crib and chair; the room waits, still warm."
+      summary: "Nadia revealed seated in the chair holding Jin; the room no longer empty, still warm."
+      key_positions:
+        - { subject: "@C01_NADIA", screen_position: center, posture: seated, relation: "holding @C08_JIN", visibility: on_frame }
+        - { subject: "@C08_JIN", screen_position: center, posture: cradled, relation: "in @C01_NADIA arms", visibility: on_frame }
       props_state:
         - { prop: crib, state: "empty, made, waiting" }
-      camera_state: { shot_size: wide, angle: eye_level, movement: static, subject_screen_position: center }
+      camera_state: { shot_size: medium, angle: eye_level, movement: dolly_in, subject_screen_position: center }
       screen_direction: neutral
     frame_continuity: { from_clip_id: CLIP_SC0014_01, to_clip_id: CLIP_SC0014_02, continuity_input_mode: frame_input_eligible }
   - clip_id: CLIP_SC0014_02
     order: 2
+    render_start_state: "@C01_NADIA seated in the chair, @C08_JIN held against her chest; door closed."
+    render_end_state: "@C01_NADIA seated, @C08_JIN held against her chest; door closed; the hold unchanged."
     entry_state:
       summary: "Nadia is in the chair holding Jin, awake; not rocking, just holding; door closed."
       key_positions:
@@ -50,6 +61,8 @@ clip_chain:
     frame_continuity: { from_clip_id: CLIP_SC0014_02, to_clip_id: CLIP_SC0014_03, continuity_input_mode: frame_input_eligible }
   - clip_id: CLIP_SC0014_03
     order: 3
+    render_start_state: "@C01_NADIA seated, @C08_JIN held against her chest; door closed."
+    render_end_state: "@C01_NADIA seated, @C08_JIN held; @C04_DIMITRI and two figures just inside the open door, screen-right; @C01_NADIA has looked up."
     entry_state:
       summary: "The door opens; Nadia holds Jin, center; Dimitri and two men enter and stand just inside the door."
       key_positions:
@@ -73,6 +86,8 @@ clip_chain:
     frame_continuity: { from_clip_id: CLIP_SC0014_03, to_clip_id: CLIP_SC0014_04, continuity_input_mode: metadata_only }
   - clip_id: CLIP_SC0014_04
     order: 4
+    render_start_state: "@C01_NADIA seated, @C08_JIN held; @C04_DIMITRI and two figures just inside the door, screen-right."
+    render_end_state: "@C01_NADIA standing, @C08_JIN held and shielded behind her shoulder; @C10_CARRIER closed in from screen-right."
     entry_state:
       summary: "Nadia stands holding Jin and takes one step back; Dimitri (right) says 'don't make this harder'; the first man begins to advance."
       key_positions:
@@ -92,6 +107,8 @@ clip_chain:
     frame_continuity: { from_clip_id: CLIP_SC0014_04, to_clip_id: CLIP_SC0014_05, continuity_input_mode: frame_input_eligible }
   - clip_id: CLIP_SC0014_05
     order: 5
+    render_start_state: "@C01_NADIA standing, @C08_JIN shielded in her arms; @C10_CARRIER close on screen-right."
+    render_end_state: "@C08_JIN lifted clear to screen-right; @C01_NADIA hands empty, held by both arms by @C10_HOLDER."
     entry_state:
       summary: "The carrier (right) lifts Jin free of Nadia's arms; Nadia center, resisting."
       key_positions:
@@ -113,6 +130,8 @@ clip_chain:
     frame_continuity: { from_clip_id: CLIP_SC0014_05, to_clip_id: CLIP_SC0014_06, continuity_input_mode: frame_input_eligible }
   - clip_id: CLIP_SC0014_06
     order: 6
+    render_start_state: "@C01_NADIA held by both arms by @C10_HOLDER, hands empty; @C10_CARRIER carrying @C08_JIN toward the door, screen-right."
+    render_end_state: "the door closed; @C08_JIN gone; @C01_NADIA held, the crib empty behind her."
     entry_state:
       summary: "Nadia is held center; Jin is carried toward the door (right)."
       key_positions:
@@ -135,6 +154,8 @@ clip_chain:
     frame_continuity: { from_clip_id: CLIP_SC0014_06, to_clip_id: CLIP_SC0014_07, continuity_input_mode: frame_input_eligible }
   - clip_id: CLIP_SC0014_07
     order: 7
+    render_start_state: "@C01_NADIA held by @C10_HOLDER, hands empty; the door closed; @C08_JIN gone."
+    render_end_state: "@C10_HOLDER gone through the door, screen-right; @C01_NADIA standing alone, hands empty."
     entry_state:
       summary: "The second man releases Nadia (center), steps back, nods once."
       key_positions:
@@ -153,6 +174,8 @@ clip_chain:
     frame_continuity: { from_clip_id: CLIP_SC0014_07, to_clip_id: CLIP_SC0014_08, continuity_input_mode: frame_input_eligible }
   - clip_id: CLIP_SC0014_08
     order: 8
+    render_start_state: "@C01_NADIA standing alone, hands empty; the crib empty; door closed."
+    render_end_state: "@C01_NADIA standing alone by the empty crib; the room still and warm."
     entry_state:
       summary: "Nadia stands alone center; the crib is empty; her bracelet hand open at her side."
       key_positions:
@@ -171,5 +194,5 @@ clip_chain:
       camera_state: { shot_size: wide, angle: eye_level, movement: dolly_out, subject_screen_position: center }
       screen_direction: neutral
 provenance:
-  created_by: "claude_code (M5 FAZ C; v05 state-chain enrichment)"
-  created_at: "2026-06-04T00:00:00Z"
+  created_by: "claude_code (M5 — v07 text-only literal pass; v05 state-chain enrichment)"
+  created_at: "2026-06-16T00:00:00Z"

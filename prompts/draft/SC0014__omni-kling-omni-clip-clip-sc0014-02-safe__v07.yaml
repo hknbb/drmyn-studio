@@ -1,0 +1,61 @@
+prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-02-safe__v07
+scene_id: SC0014
+prompt_type: omni_instruction
+lifecycle_stage: draft
+target_models:
+- kling_omni
+source_refs:
+  scene_card: planning/scenes/SC0014/scene_card.yaml
+  scene_excerpt: planning/scenes/SC0014/scene_excerpt.md
+prompt_text: 'Kling Omni element-based clip; duration 11s. Active elements: @C01_NADIA, @C08_JIN, @LOC001_NURSERY. Direct
+  action and camera; @elements carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity, restrained
+  camera language, and conservative execution. Figures: exactly 2 distinct figure(s) — @C01_NADIA, @C08_JIN (pale blue band
+  on wrist). No additional, extra, or duplicated people; do not clone or multiply any figure. Start state: @C01_NADIA seated
+  in the chair, @C08_JIN held against her chest; door closed. [00:00 - 00:04] Medium shot: The nursery holds warm and quiet
+  around the chair beside the crib in @LOC001_NURSERY. @C01_NADIA sits in the wooden chair, both arms closed around @C08_JIN;
+  she does not rock, eyes lowered to @C08_JIN, jaw tight. @C08_JIN lies calm against @C01_NADIA chest, fully supported. Medium
+  two-shot, static. Audio: low warm room tone; soft slow breathing from @C08_JIN. [00:04 - 00:07] Insert: An insert on @C01_NADIA
+  hands and arms around @C08_JIN. @C01_NADIA closes both hands around @C08_JIN, careful, not loosening. @C08_JIN stays held
+  against @C01_NADIA chest, calm. Insert, close, static. Audio: soft slow breathing from @C08_JIN; room tone holds. [00:07
+  - 00:11] Close-up: The frame eases in on @C01_NADIA. @C01_NADIA keeps her face still, eyes showing the fear she does not
+  speak. @C08_JIN rests supported at the frame edge, calm. Slow dolly-in to close on @C01_NADIA. Audio: room tone settles
+  to a single slow breath. End state: @C01_NADIA seated, @C08_JIN held against her chest; door closed; the hold unchanged.
+  Continuity: frame_input_eligible. Keep 11s; end settled. Do not add new story facts.'
+negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
+generation_params:
+  model_guidance_mode: dynamic_snapshot
+  adapter_name: kling_omni
+  clip_id: CLIP_SC0014_02
+  total_duration_seconds: 11
+  continuity_input_mode: frame_input_eligible
+  omni_clip_manifest_ref: planning/scenes/SC0014/manifests/CLIP_SC0014_02_manifest.yaml
+  source_scene_beat_plan_ref: planning/scenes/SC0014/scene_beat_plan.yaml
+  source_dialogue_beats_ref: planning/scenes/SC0014/dialogue_beats.yaml
+  repo_binary_committed: false
+  external_generation_required: true
+  recommended_cfg_scale: 0.5
+  recommended_ar: '16:9'
+  variant_mode: safe
+  render_pass: visual_test
+  quality_tier: test_720p
+  prompt_component_model: docs/methodology/omni_prompt_component_model.md
+  language_profile: kling_literal_alias_locked
+  input_mode: text_only
+  required_element_aliases:
+  - '@C01_NADIA'
+  - '@C08_JIN'
+  - '@LOC001_NURSERY'
+  audio_gate_status: allowed_audio_off
+  audio_gate_reason: visual_test_default_audio_off
+  model_guidance_snapshot_ref: model_guidance_snapshots/kling/20260615T000000Z_kling_omni_video_best_available.yaml
+  provider: kling
+  provider_surface: manual_external
+  resolved_model_name: Kling VIDEO 3.0 Omni
+  resolved_model_role: best_for_this_task
+  guidance_observed_at: '2026-06-15T00:00:00Z'
+  guidance_expires_at: '2026-07-15T00:00:00Z'
+expected_output:
+  asset_type: clip
+  duration_seconds: 11
+status: active
+canon_lock: false

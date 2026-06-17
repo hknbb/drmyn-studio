@@ -1,7 +1,7 @@
-prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-07-safe__v01
+prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-07-safe__v07
 scene_id: SC0014
 prompt_type: omni_instruction
-lifecycle_stage: deprecated
+lifecycle_stage: draft
 target_models:
 - kling_omni
 source_refs:
@@ -9,14 +9,14 @@ source_refs:
   scene_excerpt: planning/scenes/SC0014/scene_excerpt.md
 prompt_text: 'Kling Omni element-based clip; duration 5s. Active elements: @C01_NADIA, @C10_HOLDER. Direct action and camera;
   @elements carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity, restrained camera language, and
-  conservative execution. Figures: exactly 2 distinct figure(s) — @C01_NADIA, @C10_HOLDER (Leaner build, short hair and beard;
-  from the door side.). No additional, extra, or duplicated people; do not clone or multiply any figure. Continue from previous
-  clip: The second man releases Nadia (center), steps back, nods once.; camera medium. [00:00 - 00:05] Medium shot: The room
-  holds cool and flat through the release and the exit. @C01_NADIA stays where she is, alone now, and does not watch him go.
-  @C10_HOLDER releases @C01_NADIA''s arms, steps back, nods once, then leaves through the door at screen-right. The frame
-  holds steady; the cold courtesy of the nod and exit. Audio: room tone, cool and flat; the rustle of his step back, then
-  the door, then stillness. End state for next clip: The man has left; Nadia stands alone, center, in the emptied room.; camera
-  medium. Continuity: frame_input_eligible. Keep 5s; end settled. Do not add new story facts.'
+  conservative execution. Figures: exactly 2 distinct figure(s) — @C01_NADIA, @C10_HOLDER (leaner build, short hair and beard;
+  from the door side). No additional, extra, or duplicated people; do not clone or multiply any figure. Start state: @C01_NADIA
+  held by @C10_HOLDER, hands empty; the door closed; @C08_JIN gone. [00:00 - 00:05] Medium shot: The room holds cool and flat
+  through the release and the exit in @LOC001_NURSERY. @C01_NADIA stays where she is, alone now, and does not look toward
+  the door. @C10_HOLDER lets go of @C01_NADIA arms, steps back, nods once, then leaves through the door at screen-right. Medium,
+  static. Audio: room tone, cool and flat; the rustle of his step back, then the door, then stillness. End state: @C10_HOLDER
+  gone through the door, screen-right; @C01_NADIA standing alone, hands empty. Continuity: frame_input_eligible. Keep 5s;
+  end settled. Do not add new story facts.'
 negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
 generation_params:
   model_guidance_mode: dynamic_snapshot
@@ -35,16 +35,11 @@ generation_params:
   render_pass: visual_test
   quality_tier: test_720p
   prompt_component_model: docs/methodology/omni_prompt_component_model.md
+  language_profile: kling_literal_alias_locked
+  input_mode: text_only
   required_element_aliases:
   - '@C01_NADIA'
   - '@C10_HOLDER'
-  input_mode: anchored_i2v
-  start_frame_ref: archive/nexuszero/SC0014/shots/SC0014_18_clip-sc0014-06_shot-sc0014-06-c.png
-  visual_input_budget:
-    total: 7
-    start_frame: 1
-    element_slots: 6
-  frame_chain_source: designed_still_pass1
   audio_gate_status: allowed_audio_off
   audio_gate_reason: visual_test_default_audio_off
   model_guidance_snapshot_ref: model_guidance_snapshots/kling/20260615T000000Z_kling_omni_video_best_available.yaml
@@ -57,5 +52,5 @@ generation_params:
 expected_output:
   asset_type: clip
   duration_seconds: 5
-status: deprecated
+status: active
 canon_lock: false

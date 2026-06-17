@@ -54,7 +54,17 @@ def validate_shot_still_coverage(
     cs_prompts = _discover_prompts(repo_root, scene_id, "shot_design")
     kling_prompts = _discover_prompts(repo_root, scene_id, "omni_instruction")
 
-    # Skip if anchor-animate pipeline hasn't produced any prompts yet.
+    # Scenes whose active Kling route is the v07 text-only literal profile do not
+    # use the anchor-animate (still/contact) pipeline; skip its coverage contract.
+    for p in kling_prompts:
+        gp = p.get("generation_params") or {}
+        if (
+            gp.get("input_mode") == "text_only"
+            or gp.get("language_profile") == "kling_literal_alias_locked"
+        ):
+            return []
+
+    # Skip if anchor-animate pipeline hasn't produced any (non-deprecated) prompts yet.
     if not still_prompts and not cs_prompts:
         return []
 
@@ -212,6 +222,10 @@ def _discover_prompts(
         try:
             data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
         except Exception:
+            continue
+        # Deprecated records (e.g. the retired v06 still/contact route) no longer
+        # carry the anchor-animate coverage contract.
+        if data.get("lifecycle_stage") == "deprecated" or data.get("status") == "deprecated":
             continue
         if data.get("prompt_type") == prompt_type:
             results.append(data)

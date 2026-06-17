@@ -114,6 +114,21 @@
             "maxLength": 500,
             "description": "Prompt-generation action description (e.g., 'Nadia fills glass, drinks, sets down'). No generation happens here; this is metadata for later prompt authoring."
           },
+          "render_action": {
+            "type": "string",
+            "maxLength": 500,
+            "description": "Model-facing LITERAL shot action under language_profile=kling_literal_alias_locked. Alias-only, concrete, camera-led; no raw names, no role nouns (infant/child/mother/man/woman/baby/enforcer), no metaphor/abstraction, no bare position labels (center/centered). Emotion via physical performance only. When present and the active language_profile is literal, the renderer prints THIS instead of prompt_action/performance_note. prompt_action stays as the human-readable field."
+          },
+          "render_camera": {
+            "type": "string",
+            "maxLength": 160,
+            "description": "Model-facing LITERAL camera sentence for the literal profile (e.g. 'Medium two-shot, static.' or 'Slow dolly-in to close.'). One move per shot. Replaces the poetic camera.lens_bias in the rendered prompt; lens_bias stays human-readable."
+          },
+          "render_diegetic_audio": {
+            "type": "string",
+            "maxLength": 200,
+            "description": "Model-facing LITERAL diegetic audio cue for the literal profile (e.g. 'low room tone; faint white-noise hum; soft slow breathing from @C08_JIN'). Alias-only; no role nouns. Replaces the poetic diegetic_audio in the rendered prompt; diegetic_audio stays human-readable."
+          },
           "duration_reason": {
             "type": "string",
             "minLength": 1,
@@ -143,6 +158,16 @@
                 "kling_alias": { "type": "string", "pattern": "^@[A-Z0-9_]+$" },
                 "role": { "type": "string", "minLength": 1, "maxLength": 160 },
                 "distinguishing_detail": { "type": "string", "maxLength": 200 },
+                "render_label": {
+                  "type": "string",
+                  "maxLength": 200,
+                  "description": "Model-facing NEUTRAL distinguishing label for the literal profile (e.g. 'pale blue band on wrist', 'heavier build, buzzed hair, goatee'). Must NOT contain role nouns (infant/child/mother/man/woman/baby/enforcer) or raw names. Replaces distinguishing_detail in the rendered anti-clone roster line; distinguishing_detail stays human-readable."
+                },
+                "render_action": {
+                  "type": "string",
+                  "maxLength": 200,
+                  "description": "Model-facing LITERAL per-figure action for the literal profile. Alias-only, concrete physical performance; no role nouns, no metaphor, no bare position labels. Replaces the poetic per-figure action in the rendered prompt; action stays human-readable."
+                },
                 "action": {
                   "type": "string",
                   "maxLength": 200,

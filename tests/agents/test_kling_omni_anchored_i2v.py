@@ -308,13 +308,15 @@ def test_entry_anchors_suppressed_in_anchored_mode(anchored_result):
 # text_only (default) remains unaffected
 # -------------------------------------------------------------------------
 
-def test_text_only_default_no_input_mode_in_params():
+def test_text_only_default_no_anchored_fields_in_params():
+    """text_only records the input_mode but never the anchored_i2v visual triplet."""
     with tempfile.TemporaryDirectory() as td:
         tmpdir = Path(td)
         manifest_path = _setup_tmpdir(tmpdir)
         adapter = KlingOmniAdapter(repo_root=tmpdir, model_guidance_mode="dynamic_snapshot")
         result = adapter.generate_from_clip_manifest(manifest_path)
     gp = result.prompt_record["generation_params"]
-    assert "input_mode" not in gp
+    assert gp["input_mode"] == "text_only"
     assert "start_frame_ref" not in gp
+    assert "contact_sheet_ref" not in gp
     assert "visual_input_budget" not in gp

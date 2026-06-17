@@ -65,6 +65,7 @@ def get_valid_kling_prompt():
             "@Nadia."
         ),
         "generation_params": {
+            "language_profile": "legacy_prose",
             "required_element_aliases": ["@Nadia"],
             "repo_canonical_aliases": ["@C01_HOME_MORNING"],
             "alias_resolution": {"@C01_HOME_MORNING": "@Nadia"},

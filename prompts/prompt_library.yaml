@@ -4,226 +4,274 @@ prompts:
 - prompt_id: SC0014__still-01__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-02__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-03__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-04__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-05__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-06__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-07__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-08__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-09__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-10__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-11__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-12__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-13__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-14__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-15__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-16__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-17__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-18__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-19__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-20__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-21__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__still-22__v01
   scene_id: SC0014
   prompt_type: still_generation
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__contact-clip-01__v01
   scene_id: SC0014
   prompt_type: shot_design
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__contact-clip-02__v01
   scene_id: SC0014
   prompt_type: shot_design
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__contact-clip-03__v01
   scene_id: SC0014
   prompt_type: shot_design
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__contact-clip-04__v01
   scene_id: SC0014
   prompt_type: shot_design
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__contact-clip-05__v01
   scene_id: SC0014
   prompt_type: shot_design
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__contact-clip-06__v01
   scene_id: SC0014
   prompt_type: shot_design
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__contact-clip-07__v01
   scene_id: SC0014
   prompt_type: shot_design
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__contact-clip-08__v01
   scene_id: SC0014
   prompt_type: shot_design
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - chatgpt_image_best_available
 - prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-01-safe__v01
   scene_id: SC0014
   prompt_type: omni_instruction
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - kling_omni
 - prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-02-safe__v01
   scene_id: SC0014
   prompt_type: omni_instruction
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - kling_omni
 - prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-03-safe__v01
   scene_id: SC0014
   prompt_type: omni_instruction
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - kling_omni
 - prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-04-safe__v01
   scene_id: SC0014
   prompt_type: omni_instruction
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - kling_omni
 - prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-05-safe__v01
   scene_id: SC0014
   prompt_type: omni_instruction
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - kling_omni
 - prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-06-safe__v01
   scene_id: SC0014
   prompt_type: omni_instruction
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - kling_omni
 - prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-07-safe__v01
   scene_id: SC0014
   prompt_type: omni_instruction
-  lifecycle_stage: draft
+  lifecycle_stage: deprecated
   target_models:
   - kling_omni
 - prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-08-safe__v01
+  scene_id: SC0014
+  prompt_type: omni_instruction
+  lifecycle_stage: deprecated
+  target_models:
+  - kling_omni
+- prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-01-safe__v07
+  scene_id: SC0014
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-02-safe__v07
+  scene_id: SC0014
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-03-safe__v07
+  scene_id: SC0014
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-04-safe__v07
+  scene_id: SC0014
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-05-safe__v07
+  scene_id: SC0014
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-06-safe__v07
+  scene_id: SC0014
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-07-safe__v07
+  scene_id: SC0014
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-08-safe__v07
   scene_id: SC0014
   prompt_type: omni_instruction
   lifecycle_stage: draft

@@ -35,6 +35,16 @@
           "order": { "type": "integer", "minimum": 1 },
           "entry_state": { "$ref": "#/$defs/world_state" },
           "exit_state": { "$ref": "#/$defs/world_state" },
+          "render_start_state": {
+            "type": "string",
+            "maxLength": 400,
+            "description": "Model-facing LITERAL clip-seam start state for language_profile=kling_literal_alias_locked. Alias-only literal blocking; no raw names, no role nouns, no metaphor, no bare position labels (center/centered). The renderer prints at most a short 'Start state:' line from this; entry_state.summary/key_positions stay human-readable bookkeeping and are never printed under the literal profile."
+          },
+          "render_end_state": {
+            "type": "string",
+            "maxLength": 400,
+            "description": "Model-facing LITERAL clip-seam end state for the literal profile. Same constraints as render_start_state. Optional; the literal renderer favours self-contained shots over seam reliance."
+          },
           "frame_continuity": {
             "type": "object",
             "additionalProperties": false,

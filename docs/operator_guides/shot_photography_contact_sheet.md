@@ -1,5 +1,11 @@
 # Shot Photography & Contact Sheet Playbook (Anchor & Animate)
 
+> ⚠️ **HISTORICAL / DEPRECATED for SC0014 (v07).** The still → contact-sheet →
+> `anchored_i2v` route below is retired for SC0014: the 22-still pass and contact
+> sheets proved too manual. The current route is **text_only literal multi-shot** —
+> see [`kling_literal_multishot_playbook.md`](kling_literal_multishot_playbook.md).
+> This document is kept for historical reference only.
+
 ## 1. Overview
 
 This playbook covers the **Anchor & Animate** production loop for a scene. Every shot is

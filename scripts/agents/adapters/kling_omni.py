@@ -34,7 +34,7 @@ CHARACTER_ID_RE = re.compile(r"^C\d{2}$")
 # prompt_text must reference elements only through their @alias values; raw
 # canonical IDs must not leak into the text Kling receives.
 ELEMENT_CANONICAL_ID_LEAK_RE = re.compile(
-    r"\b(C\d{2}|LOC\d{3}(?:_[A-Z0-9_]+)?|PROP\d{3}|WD\d{3}|STYLE\d{3})\b"
+    r"(?<!@)\b(C\d{2}|LOC\d{3}(?:_[A-Z0-9_]+)?|PROP\d{3}|WD\d{3}|STYLE\d{3})\b"
 )
 MANIFEST_READY_GATE_STATUS = "all_elements_ready"
 
@@ -266,6 +266,38 @@ def _load_continuity_states(
     return None, None
 
 
+def _load_continuity_render_states(
+    scene_id: str, clip_id: str, repo_root: Path
+) -> tuple[str | None, str | None]:
+    """Load this clip's literal render_start_state / render_end_state seam strings.
+
+    These are the model-facing, alias-locked seam strings used by the
+    kling_literal_alias_locked profile. The poetic entry_state/exit_state
+    bookkeeping is never printed under that profile.
+    """
+    ledger_path = (
+        repo_root / "planning" / "scenes" / scene_id / "scene_continuity_ledger.yaml"
+    )
+    if not ledger_path.exists():
+        return None, None
+    try:
+        with ledger_path.open(encoding="utf-8") as fh:
+            data = yaml.safe_load(fh)
+    except Exception:
+        return None, None
+    if not isinstance(data, dict):
+        return None, None
+    for entry in data.get("clip_chain") or []:
+        if isinstance(entry, dict) and entry.get("clip_id") == clip_id:
+            start = entry.get("render_start_state")
+            end = entry.get("render_end_state")
+            return (
+                start if isinstance(start, str) and start.strip() else None,
+                end if isinstance(end, str) and end.strip() else None,
+            )
+    return None, None
+
+
 def _load_audio_readiness(scene_id: str, repo_root: Path) -> dict[str, str]:
     """Load native_audio_readiness by element_id from element_bindings."""
     bindings_path = (
@@ -421,6 +453,8 @@ class KlingOmniAdapter:
         start_frame_ref: str | None = None,
         contact_sheet_ref: str | None = None,
         active_element_aliases: list[str] | None = None,
+        language_profile: str = "legacy_prose",
+        continuity_seed_ref: str | None = None,
     ) -> KlingOmniBuildResult:
         """Generate prompt/run records from a single omni_clip_manifest.yaml.
 
@@ -461,6 +495,21 @@ class KlingOmniAdapter:
         if is_anchored and not start_frame_ref:
             raise KlingOmniAdapterError(
                 "input_mode='anchored_i2v' requires start_frame_ref to be set."
+            )
+
+        _valid_language_profiles = {"kling_literal_alias_locked", "legacy_prose"}
+        if language_profile not in _valid_language_profiles:
+            raise KlingOmniAdapterError(
+                f"Invalid language_profile {language_profile!r}; expected one of "
+                f"{sorted(_valid_language_profiles)}"
+            )
+        is_literal = language_profile == "kling_literal_alias_locked"
+        if is_literal and is_anchored:
+            # The literal alias-locked profile (v07) is the text-only multi-shot
+            # route; it never carries the anchored_i2v visual-input triplet.
+            raise KlingOmniAdapterError(
+                "language_profile='kling_literal_alias_locked' is text_only only; "
+                "it cannot be combined with input_mode='anchored_i2v'."
             )
 
         manifest_path = Path(manifest_ref)
@@ -568,24 +617,41 @@ class KlingOmniAdapter:
                 "'created' or better that matches the clip's required_element_ids"
             )
 
-        prompt_text, alias_warnings = self._build_prompt_text_with_aliases(
-            shots=shots,
-            total_duration=total_duration,
-            max_duration=max_duration,
-            continuity_mode=continuity_mode,
-            variant_mode=variant_mode,
-            alias_map=alias_map,
-            char_ids=char_ids,
-            required_aliases=required_aliases,
-            beat_content_lookup=beat_plan_lookup,
-            strict_element_first=strict_element_first,
-            dialogue_beats_lines=dialogue_beats_lines_data or None,
-            readiness_map=readiness_map_data,
-            continuity_entry=continuity_entry,
-            continuity_exit=continuity_exit,
-            render_pass=render_pass,
-            suppress_entry_anchors=is_anchored,
-        )
+        if is_literal:
+            render_start_state, render_end_state = _load_continuity_render_states(
+                scene_id, clip_id, self.repo_root
+            )
+            prompt_text, alias_warnings = self._build_prompt_text_literal(
+                shots=shots,
+                total_duration=total_duration,
+                continuity_mode=continuity_mode,
+                variant_mode=variant_mode,
+                alias_map=alias_map,
+                required_aliases=required_aliases,
+                dialogue_beats_lines=dialogue_beats_lines_data or None,
+                render_start_state=render_start_state,
+                render_end_state=render_end_state,
+                render_pass=render_pass,
+            )
+        else:
+            prompt_text, alias_warnings = self._build_prompt_text_with_aliases(
+                shots=shots,
+                total_duration=total_duration,
+                max_duration=max_duration,
+                continuity_mode=continuity_mode,
+                variant_mode=variant_mode,
+                alias_map=alias_map,
+                char_ids=char_ids,
+                required_aliases=required_aliases,
+                beat_content_lookup=beat_plan_lookup,
+                strict_element_first=strict_element_first,
+                dialogue_beats_lines=dialogue_beats_lines_data or None,
+                readiness_map=readiness_map_data,
+                continuity_entry=continuity_entry,
+                continuity_exit=continuity_exit,
+                render_pass=render_pass,
+                suppress_entry_anchors=is_anchored,
+            )
 
         # Warn if anchored_i2v prompt exceeds recommended target (not fatal)
         if is_anchored and len(prompt_text) > 1800:
@@ -632,7 +698,14 @@ class KlingOmniAdapter:
             "render_pass": render_pass,
             "quality_tier": quality_tier,
             "prompt_component_model": "docs/methodology/omni_prompt_component_model.md",
+            "language_profile": language_profile,
+            "input_mode": input_mode,
         }
+
+        if is_literal and continuity_seed_ref:
+            # text_only-only optional continuity seed; deliberately NOT the
+            # anchored_i2v triplet (no contact_sheet_ref, no visual_input_budget).
+            generation_params["continuity_seed_ref"] = continuity_seed_ref
 
         if required_aliases:
             generation_params["required_element_aliases"] = required_aliases
@@ -1105,6 +1178,198 @@ class KlingOmniAdapter:
             all_warnings.append(message)
 
         return text, all_warnings
+
+    def _build_prompt_text_literal(
+        self,
+        shots: list[Any],
+        total_duration: int,
+        continuity_mode: str,
+        variant_mode: str,
+        alias_map: dict[str, str],
+        required_aliases: list[str],
+        dialogue_beats_lines: list[dict[str, Any]] | None,
+        render_start_state: str | None,
+        render_end_state: str | None,
+        render_pass: str = "visual_test",
+    ) -> tuple[str, list[str]]:
+        """Build prompt text under language_profile=kling_literal_alias_locked.
+
+        Thin literal emitter: prints ONLY the model-facing ``render_*`` fields
+        (shots[].render_action/render_camera/render_diegetic_audio,
+        figures[].render_action/render_label, ledger render_start/end_state) plus
+        the alias roster, timecodes, and literal alias-tagged dialogue. It never
+        prints prompt_action, performance_note, role, distinguishing_detail,
+        lens_bias, ledger summary, or any screen_position/subject_screen_position
+        bookkeeping — those stay human-readable and out of the prompt.
+        """
+        warnings: list[str] = []
+        if not required_aliases:
+            raise KlingOmniAdapterError(
+                "kling_literal_alias_locked synthesis requires at least one active "
+                "Kling alias resolved from the manifest's required_element_ids."
+            )
+
+        parts: list[str] = [
+            f"Kling Omni element-based clip; duration {total_duration}s.",
+            f"Active elements: {', '.join(required_aliases)}.",
+            "Direct action and camera; @elements carry identity, wardrobe, and look.",
+            self._variant_preamble(variant_mode),
+        ]
+
+        roster = self._build_figure_roster_line_literal(shots)
+        if roster:
+            parts.append(roster)
+
+        if isinstance(render_start_state, str) and render_start_state.strip():
+            parts.append(f"Start state: {render_start_state.strip().rstrip('.')}.")
+
+        elapsed = 0
+        rendered_line_ids: set[str] = set()
+        for index, shot in enumerate(shots, start=1):
+            if index > 6:
+                raise KlingOmniAdapterError(
+                    "Kling Omni clip-manifest prompt synthesis supports at most "
+                    "6 shots per generation."
+                )
+            duration = int(shot.get("duration_seconds", 0))
+            heading = self._build_shot_heading(duration, elapsed, shot)
+            action = self._literal_shot_action(shot)
+            figure_actions = self._compose_figure_actions_literal(shot)
+            camera_sentence = self._build_camera_sentence_literal(shot)
+            dialogue_clause = self._render_shot_dialogue(
+                shot, dialogue_beats_lines or [], alias_map, rendered_line_ids
+            )
+            audio_clause = self._build_diegetic_audio_clause_literal(shot)
+            if not action and not figure_actions:
+                warnings.append(
+                    f"shot {shot.get('shot_id')!r} has no render_action and no figure "
+                    "render_action under the literal profile; the manifest needs "
+                    "render_* fields authored for kling_literal_alias_locked."
+                )
+
+            block = heading
+            if action:
+                block += f" {action}"
+            if figure_actions:
+                block += f" {figure_actions}"
+            if camera_sentence:
+                block += f" {camera_sentence}"
+            if dialogue_clause:
+                block += f" {dialogue_clause}"
+            if audio_clause:
+                block += f" {audio_clause}"
+            parts.append(block)
+            elapsed += duration
+
+        if isinstance(render_end_state, str) and render_end_state.strip():
+            parts.append(f"End state: {render_end_state.strip().rstrip('.')}.")
+
+        parts.append(f"Continuity: {continuity_mode}.")
+        parts.append(f"Keep {total_duration}s; end settled. Do not add new story facts.")
+
+        raw_joined = " ".join(p for p in parts if p)
+        _assert_no_canonical_id_leak(raw_joined)
+        text = _sanitize_prompt_text(raw_joined)
+
+        if len(text) > 2500:
+            message = (
+                f"prompt_text is {len(text)} characters, exceeds 2500-char API limit. "
+                "Shorten render_action descriptions."
+            )
+            if render_pass in _FINAL_PASSES:
+                raise KlingOmniAdapterError(message)
+            warnings.append(message)
+
+        return text, warnings
+
+    @staticmethod
+    def _build_figure_roster_line_literal(shots: list[Any]) -> str:
+        """Anti-clone roster line for the literal profile: uses the NEUTRAL
+        render_label (no role nouns) instead of distinguishing_detail."""
+        ordered: list[str] = []
+        details: dict[str, str] = {}
+        for shot in shots:
+            if not isinstance(shot, dict):
+                continue
+            for fig in shot.get("figures") or []:
+                if not isinstance(fig, dict):
+                    continue
+                alias = fig.get("kling_alias")
+                if not isinstance(alias, str) or not alias:
+                    continue
+                if alias not in ordered:
+                    ordered.append(alias)
+                    label = fig.get("render_label")
+                    if isinstance(label, str) and label.strip():
+                        details[alias] = label.strip()
+        if not ordered:
+            return ""
+        labelled = [f"{a} ({details[a]})" if a in details else a for a in ordered]
+        return (
+            f"Figures: exactly {len(ordered)} distinct figure(s) — {', '.join(labelled)}. "
+            "No additional, extra, or duplicated people; do not clone or multiply any figure."
+        )
+
+    @staticmethod
+    def _literal_shot_action(shot: dict[str, Any]) -> str:
+        """Literal shot action from render_action only. Never falls back to the
+        poetic prompt_action/performance_note."""
+        action = shot.get("render_action")
+        if not (isinstance(action, str) and action.strip()):
+            return ""
+        text = action.strip()
+        if not text.endswith((".", "!", "?", '"')):
+            text += "."
+        return text[0].upper() + text[1:]
+
+    @staticmethod
+    def _compose_figure_actions_literal(shot: dict[str, Any]) -> str:
+        """One literal clause per figure from figures[].render_action only."""
+        clauses: list[str] = []
+        for fig in shot.get("figures") or []:
+            if not isinstance(fig, dict):
+                continue
+            act = fig.get("render_action")
+            alias = fig.get("kling_alias")
+            if not (isinstance(act, str) and act.strip() and isinstance(alias, str)):
+                continue
+            text = act.strip()
+            if alias not in text:
+                text = f"{alias} {text}"
+            if not text.endswith((".", "!", "?")):
+                text += "."
+            clauses.append(text[0].upper() + text[1:])
+        return " ".join(clauses)
+
+    @staticmethod
+    def _build_camera_sentence_literal(shot: dict[str, Any]) -> str:
+        """Literal camera sentence from render_camera; falls back to the movement
+        enum prose only (never the poetic lens_bias)."""
+        camera = shot.get("camera") if isinstance(shot.get("camera"), dict) else {}
+        render_camera = shot.get("render_camera")
+        if isinstance(render_camera, str) and render_camera.strip():
+            sentence = render_camera.strip()
+        else:
+            movement = camera.get("movement")
+            phrase = _MOVEMENT_PROSE.get(movement) if isinstance(movement, str) else None
+            if not phrase:
+                return ""
+            sentence = phrase
+        if not sentence.endswith((".", "!", "?")):
+            sentence += "."
+        return sentence[0].upper() + sentence[1:]
+
+    @staticmethod
+    def _build_diegetic_audio_clause_literal(shot: dict[str, Any]) -> str:
+        """Literal 'Audio:' line from render_diegetic_audio only (never the poetic
+        diegetic_audio, which may carry role nouns like 'infant')."""
+        audio = shot.get("render_diegetic_audio")
+        if isinstance(audio, str) and audio.strip():
+            a = audio.strip()
+            if not a.endswith((".", "!", "?")):
+                a += "."
+            return f"Audio: {a}"
+        return ""
 
     @staticmethod
     def _build_figure_roster_line(shots: list[Any]) -> str:

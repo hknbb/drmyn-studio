@@ -1,7 +1,7 @@
 prompt_id: SC0014__still-19__v01
 scene_id: SC0014
 prompt_type: still_generation
-lifecycle_stage: draft
+lifecycle_stage: deprecated
 target_models:
 - gpt-image-2
 source_refs:
@@ -49,7 +49,7 @@ expected_output:
   asset_type: still
   aspect_ratio: '16:9'
   variation_count: 1
-status: active
+status: deprecated
 canon_lock: false
 provenance:
   created_by: claude_code

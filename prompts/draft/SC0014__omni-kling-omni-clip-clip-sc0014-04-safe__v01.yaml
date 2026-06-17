@@ -1,7 +1,7 @@
 prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-04-safe__v01
 scene_id: SC0014
 prompt_type: omni_instruction
-lifecycle_stage: draft
+lifecycle_stage: deprecated
 target_models:
 - kling_omni
 source_refs:
@@ -69,5 +69,5 @@ generation_params:
 expected_output:
   asset_type: clip
   duration_seconds: 13
-status: active
+status: deprecated
 canon_lock: false
