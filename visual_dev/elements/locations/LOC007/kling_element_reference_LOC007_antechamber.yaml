@@ -1,0 +1,30 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KER_LOC007_ANTECHAMBER_V001
+status: approved
+element_id: LOC007
+element_type: location
+source_midjourney_reference:
+  reference_id: CHATGPTIMG_LOC007_FIRSTREF_V001
+  prompt_id: SC0111__t2i-loc-loc007-antechamber-first-ref-chatgpt__v01
+  operator_session_ref: OP-2026-06-17-LOC005-LOC006-LOC007-PROP008-threeview
+gpt_images_2_perspectives:
+  front_reference: PPACK_LOC007_ANTECHAMBER_V001__front_reference
+  three_quarter_medium_reference: PPACK_LOC007_ANTECHAMBER_V001__three_quarter_medium
+  three_quarter_close_reference: PPACK_LOC007_ANTECHAMBER_V001__three_quarter_close
+continuity_anchors:
+  - "Locked LOC007 antechamber: narrow institutional corridor outside the server core, bare concrete and server-core surfaces."
+  - "Known floor seam (Roman mapped from SC0102); retreat door frame; harsh low cool light; closing geometry — no warmth."
+  - "Claustrophobic: the corridor narrows the longer the fight runs (SC0111 staging constraint)."
+  - "Generous floor and negative space for SC0111 two-person fight blocking (Nadia + Roman; bilateral carotid-sinus hold)."
+  - "No people in location plates; no text, no watermark; consistent institutional palette across all three views."
+  - "Do not add warmth, furniture, or decorative elements — stripped, institutional, cold."
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-2026-06-17-LOC005-LOC006-LOC007-PROP008-threeview
+downstream_use:
+  - kling_omni_3_shot_prompt
+source_refs:
+  gpt_images_pack_ref: visual_dev/elements/locations/LOC007/perspective_packs/PPACK_LOC007_ANTECHAMBER_V001.yaml
+  element_sheet_ref: planning/locations/LOC007.yaml

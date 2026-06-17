@@ -1,8 +1,8 @@
 schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
 prompt_pack_id: PPACK_LOC007_ANTECHAMBER_V001
-status: draft
-source_reference_id: "CHATGPTIMG_ELEMENT_LOC007_ANTECHAMBER (PENDING — generate the first reference via SC0111__t2i-loc-loc007-antechamber-first-ref-chatgpt__v01 before this scale-angle pack)"
+status: review
+source_reference_id: "CHATGPTIMG_LOC007_FIRSTREF_V001"
 target_model: chatgpt_images_2
 target_role: multi_perspective_element_expander
 element_id: LOC007

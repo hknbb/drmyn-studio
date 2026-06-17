@@ -1,0 +1,59 @@
+schema_version: "0.x-draft"
+record_type: perspective_qc_report
+perspective_qc_id: PQC_LOC007_ANTECHAMBER_V001
+status: approved
+scene_id: SC0111
+element_id: LOC007
+prompt_pack_id: PPACK_LOC007_ANTECHAMBER_V001
+operator_session_ref: OP-2026-06-17-LOC005-LOC006-LOC007-PROP008-threeview
+perspective_scores:
+  - prompt_id: PPACK_LOC007_ANTECHAMBER_V001__front_reference
+    perspective: front_reference
+    identity_preservation: 91
+    perspective_usefulness: 91
+    material_palette_continuity: 90
+    production_reference_cleanliness: 91
+    hallucination_absence: 91
+    view_distinction: 90
+    scale_distinction: 90
+    total_score: 90
+    decision: pass
+  - prompt_id: PPACK_LOC007_ANTECHAMBER_V001__three_quarter_medium
+    perspective: three_quarter_medium_reference
+    identity_preservation: 89
+    perspective_usefulness: 88
+    material_palette_continuity: 89
+    production_reference_cleanliness: 90
+    hallucination_absence: 90
+    view_distinction: 88
+    scale_distinction: 88
+    total_score: 88
+    decision: pass
+  - prompt_id: PPACK_LOC007_ANTECHAMBER_V001__three_quarter_close
+    perspective: three_quarter_close_reference
+    identity_preservation: 90
+    perspective_usefulness: 91
+    material_palette_continuity: 90
+    production_reference_cleanliness: 91
+    hallucination_absence: 91
+    view_distinction: 89
+    scale_distinction: 89
+    total_score: 90
+    decision: pass
+gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  can_advance_to_kling_reference: true
+notes: >
+  Operator-approved three_view_scale_angle_v2 set for @LOC007_ANTECHAMBER (archived, git-ignored).
+  All three views read as the same narrow institutional antechamber corridor: bare concrete and
+  server-core surfaces, the floor seam, the door frame, harsh low cool light, closing geometry.
+  No warmth; institutional and stripped.
+  front_reference: widest establishing depth, closing corridor geometry receding — reads the
+  spatial pressure of the SC0111 Nadia/Roman fight; generous floor for two-person blocking.
+  three_quarter_medium_reference: three-quarter at server-core door frame + wall plane —
+  the geometry Roman uses and Nadia must read and invert (bilateral carotid-sinus hold).
+  three_quarter_close_reference: close on floor seam + bare wall base — the specific surface
+  detail the corridor's geometry turns on (Roman's floor-seam map from SC0102).
+  No people in any plate; no text, no watermark. Corridor identity consistent across all views.
+  Source: CHATGPTIMG_LOC007_FIRSTREF_V001. All perspectives >= 85.

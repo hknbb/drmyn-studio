@@ -1,8 +1,8 @@
 schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
 prompt_pack_id: PPACK_LOC005_CORRIDOR_NIGHT_V001
-status: draft
-source_reference_id: "CHATGPTIMG_ELEMENT_LOC005_CORRIDOR (PENDING — generate the first reference via SC0089__t2i-loc-loc005-corridor-first-ref-chatgpt__v01 before this scale-angle pack)"
+status: review
+source_reference_id: "CHATGPTIMG_LOC005_FIRSTREF_V001"
 target_model: chatgpt_images_2
 target_role: multi_perspective_element_expander
 element_id: LOC005

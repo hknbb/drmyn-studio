@@ -572,3 +572,163 @@ entries:
     establishing master. Narrow interior corridor, bare concrete + server-core surfaces,
     floor seam, retreat door frame, harsh cold low-key light, claustrophobic geometry.
     Source for PPACK_LOC007_ANTECHAMBER_V001 scale-angle pack.
+- kind: chatgpt_images_location_scale_angle_view
+  element_id_or_take_id: PPACK_LOC006_QUAY_MORNING_V001__front_reference
+  storage_backend: local_manual
+  last_seen_at: '2026-06-17T12:16:59Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/LOC006/stage2/images/ChatGPT Image 16 Haz
+    2026 22_25_48.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC006/stage2/images/ChatGPT
+    Image 16 Haz 2026 22_25_48.png
+  sha256: 7e20cf2564badd73c7a1fe60dd14c3d33d303d7ea9faa3a8ae8f278dd1dd967b
+  size_bytes: 3420331
+  notes: LOC006 Merin quay — front_reference. Wide establishing master, high window
+    + grey water deep frame, crates + folding table, low concrete ceiling, generous
+    blocking floor. Same image as stage-1 first-ref.
+- kind: chatgpt_images_location_scale_angle_view
+  element_id_or_take_id: PPACK_LOC006_QUAY_MORNING_V001__three_quarter_medium
+  storage_backend: local_manual
+  last_seen_at: '2026-06-17T12:17:01Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/LOC006/stage2/images/ChatGPT Image 17 Haz
+    2026 13_29_19.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC006/stage2/images/ChatGPT
+    Image 17 Haz 2026 13_29_19.png
+  sha256: 62c0261cc6ca32d00c129cc10ae99b42ae8642ac51ed3d7e63cdfef1324b8582
+  size_bytes: 2350342
+  notes: LOC006 Merin quay — three_quarter_medium. Three-quarter angle on folding
+    table, high window + grey water behind, same cold morning light.
+- kind: chatgpt_images_location_scale_angle_view
+  element_id_or_take_id: PPACK_LOC006_QUAY_MORNING_V001__three_quarter_close
+  storage_backend: local_manual
+  last_seen_at: '2026-06-17T12:17:02Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/LOC006/stage2/images/ChatGPT Image 17 Haz
+    2026 13_34_47.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC006/stage2/images/ChatGPT
+    Image 17 Haz 2026 13_34_47.png
+  sha256: 9b24dff32f8928637300f38da0b8698c79a087f71b348dd262be78a3b3dfa1fb
+  size_bytes: 2429243
+  notes: LOC006 Merin quay — three_quarter_close. Close view of high window + grey
+    water, cold maritime light source of the room.
+- kind: chatgpt_images_prop_scale_angle_view
+  element_id_or_take_id: PPACK_PROP008_HANDSET_V001__front_reference
+  storage_backend: local_manual
+  last_seen_at: '2026-06-17T12:17:35Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/PROP008/stage2/images/ChatGPT Image 17 Haz
+    2026 14_31_57.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/PROP008/stage2/images/ChatGPT
+    Image 17 Haz 2026 14_31_57.png
+  sha256: f41418255cc0e45055020cddd927b172f89d762028862eeea49d6d95009ad87a
+  size_bytes: 1692425
+  notes: PROP008 unmarked handset — front_reference. Full face, casing + physical
+    buttons + unlit screen, soft even light, neutral background. Ordinary hardened
+    field hardware.
+- kind: chatgpt_images_prop_scale_angle_view
+  element_id_or_take_id: PPACK_PROP008_HANDSET_V001__three_quarter_medium
+  storage_backend: local_manual
+  last_seen_at: '2026-06-17T12:17:36Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/PROP008/stage2/images/ChatGPT Image 17 Haz
+    2026 14_32_02.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/PROP008/stage2/images/ChatGPT
+    Image 17 Haz 2026 14_32_02.png
+  sha256: 5709ffe28fac7ef8b41b06c6a5caad19adddfa21ea4b7893b026af862b727b4a
+  size_bytes: 1679663
+  notes: PROP008 unmarked handset — three_quarter_medium. Three-quarter angle showing
+    thickness, side buttons, rugged casing depth.
+- kind: chatgpt_images_prop_scale_angle_view
+  element_id_or_take_id: PPACK_PROP008_HANDSET_V001__three_quarter_close
+  storage_backend: local_manual
+  last_seen_at: '2026-06-17T12:17:38Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/PROP008/stage2/images/ChatGPT Image 17 Haz
+    2026 14_32_07.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/PROP008/stage2/images/ChatGPT
+    Image 17 Haz 2026 14_32_07.png
+  sha256: 6b3713ec1a6b9a340519642e86a5694a2fa258263b1731ca0ff10de433bddfa9
+  size_bytes: 2191472
+  notes: PROP008 unmarked handset — three_quarter_close. Close macro of unlit screen
+    + keypad detail + matte casing texture.
+- kind: chatgpt_images_location_scale_angle_view
+  element_id_or_take_id: PPACK_LOC005_CORRIDOR_NIGHT_V001__front_reference
+  storage_backend: local_manual
+  last_seen_at: '2026-06-17T12:17:47Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/LOC005/stage2/images/ChatGPT Image 17 Haz
+    2026 15_05_49.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC005/stage2/images/ChatGPT
+    Image 17 Haz 2026 15_05_49.png
+  sha256: 06b523099e75948b804801cd71d25bce146d8106d76afeadce7601cd7edd3d18
+  size_bytes: 2557191
+  notes: LOC005 Northern Transit Corridor — front_reference. Wide establishing master,
+    light-pool/darkness rhythm receding to junction, cargo-facility wall + concrete
+    embankment framing the lane.
+- kind: chatgpt_images_location_scale_angle_view
+  element_id_or_take_id: PPACK_LOC005_CORRIDOR_NIGHT_V001__three_quarter_medium
+  storage_backend: local_manual
+  last_seen_at: '2026-06-17T12:17:49Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/LOC005/stage2/images/ChatGPT Image 17 Haz
+    2026 15_05_54.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC005/stage2/images/ChatGPT
+    Image 17 Haz 2026 15_05_54.png
+  sha256: 75bd71d27a824be7d354b9e4c2032d988b3de2fdedc17cdbe86a019e0beecc93
+  size_bytes: 1817126
+  notes: LOC005 Northern Transit Corridor — three_quarter_medium. Three-quarter medium
+    at a single light pool, cold overhead cone against surrounding darkness.
+- kind: chatgpt_images_location_scale_angle_view
+  element_id_or_take_id: PPACK_LOC005_CORRIDOR_NIGHT_V001__three_quarter_close
+  storage_backend: local_manual
+  last_seen_at: '2026-06-17T12:17:50Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/LOC005/stage2/images/ChatGPT Image 17 Haz
+    2026 15_06_00.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC005/stage2/images/ChatGPT
+    Image 17 Haz 2026 15_06_00.png
+  sha256: 999dc6034a8f38cacb3f14a39dce315c1ff0120217c9ddb7e1f891bfbfbe05a3
+  size_bytes: 1839140
+  notes: LOC005 Northern Transit Corridor — three_quarter_close. Close view of drainage
+    cut at embankment base, dark conduit mouth + repaired concrete seam.
+- kind: chatgpt_images_location_scale_angle_view
+  element_id_or_take_id: PPACK_LOC007_ANTECHAMBER_V001__front_reference
+  storage_backend: local_manual
+  last_seen_at: '2026-06-17T12:18:00Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/LOC007/stage2/images/ChatGPT Image 17 Haz
+    2026 15_13_02.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC007/stage2/images/ChatGPT
+    Image 17 Haz 2026 15_13_02.png
+  sha256: 1d81d4b82f7c7c0db40f274d7a0548353074707ea4292aa5c6440591bbe3bf28
+  size_bytes: 2333144
+  notes: LOC007 Veltain Antechamber Corridor — front_reference. Wide establishing
+    master, narrow corridor depth, bare concrete + server-core surfaces, door frame,
+    harsh low cool light, closing geometry.
+- kind: chatgpt_images_location_scale_angle_view
+  element_id_or_take_id: PPACK_LOC007_ANTECHAMBER_V001__three_quarter_medium
+  storage_backend: local_manual
+  last_seen_at: '2026-06-17T12:18:01Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/LOC007/stage2/images/ChatGPT Image 17 Haz
+    2026 15_13_11.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC007/stage2/images/ChatGPT
+    Image 17 Haz 2026 15_13_11.png
+  sha256: ddd7757cb4cf8003561aa59f32a1feae8d224d450fe77b26745f5c5e4bf8784d
+  size_bytes: 2291848
+  notes: LOC007 Veltain Antechamber Corridor — three_quarter_medium. Three-quarter
+    medium at server-core door frame + wall plane the fight is managed against.
+- kind: chatgpt_images_location_scale_angle_view
+  element_id_or_take_id: PPACK_LOC007_ANTECHAMBER_V001__three_quarter_close
+  storage_backend: local_manual
+  last_seen_at: '2026-06-17T12:18:03Z'
+  repo_binary_committed: false
+  local_path: archive/nexuszero/_elements/LOC007/stage2/images/ChatGPT Image 17 Haz
+    2026 15_13_17.png
+  external_storage_ref: external://local_manual/archive/nexuszero/_elements/LOC007/stage2/images/ChatGPT
+    Image 17 Haz 2026 15_13_17.png
+  sha256: c4bc38d10b5de6fb53908fe34bbc0efccdd88fe3cb1b438d50159faadc11266d
+  size_bytes: 3108691
+  notes: LOC007 Veltain Antechamber Corridor — three_quarter_close. Close view of
+    floor seam + bare wall base, the corridor geometry the fight turns on.

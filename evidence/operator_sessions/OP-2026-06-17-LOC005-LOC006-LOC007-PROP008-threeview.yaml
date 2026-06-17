@@ -1,0 +1,38 @@
+session_id: OP-2026-06-17-LOC005-LOC006-LOC007-PROP008-threeview
+created_at: "2026-06-17T00:00:00Z"
+scene_id: SC0047
+current_task: "Lock LOC005/LOC006/LOC007/PROP008 three-view perspective packs + write KER records (QC>=85)"
+recommended_files:
+  - visual_dev/elements/locations/LOC005/kling_element_reference_LOC005_corridor.yaml
+  - visual_dev/elements/locations/LOC006/kling_element_reference_LOC006_quay.yaml
+  - visual_dev/elements/locations/LOC007/kling_element_reference_LOC007_antechamber.yaml
+  - visual_dev/elements/props/PROP008/kling_element_reference_PROP008_handset.yaml
+  - evidence/perspective_qc/PQC_LOC005_CORRIDOR_NIGHT_V001.yaml
+  - evidence/perspective_qc/PQC_LOC006_QUAY_MORNING_V001.yaml
+  - evidence/perspective_qc/PQC_LOC007_ANTECHAMBER_V001.yaml
+  - evidence/perspective_qc/PQC_PROP008_HANDSET_V001.yaml
+recommended_steps:
+  - "Human PR review: promote LOC005/006/007/PROP008 element status to 'created' and set canon_lock:true."
+  - "Wire @LOC005_CORRIDOR, @LOC006_QUAY, @LOC007_ANTECHAMBER, @PROP008_HANDSET aliases in Kling Element Library."
+  - "Then proceed to SC0047/SC0089/SC0111 Kling Omni clip plan generation."
+status: complete
+notes: >
+  Operatör SC0047 (LOC006 Merin quay + PROP008 handset), SC0089 (LOC005 transit corridor),
+  ve SC0111 (LOC007 antechamber) için stage-1 first-ref + stage-2 three_view_scale_angle_v2
+  perspektif paketlerini ChatGPT Images'da ürettiğini bildirdi.
+
+  Stage-1 first-ref görseller önceki oturumda (2026-06-17) arşivlenmişti.
+  Bu oturumda stage-2 görseller arşivlendi (toplam 12 görsel, 3 per element):
+  - LOC006: archive/nexuszero/_elements/LOC006/stage2/images/
+  - PROP008: archive/nexuszero/_elements/PROP008/stage2/images/
+  - LOC005: archive/nexuszero/_elements/LOC005/stage2/images/
+  - LOC007: archive/nexuszero/_elements/LOC007/stage2/images/
+  Tümü git-ignored, repo_binary_committed:false, sha256+size_bytes dahil.
+
+  Operatör "Hepsi tamam" ile 4 element × 3 perspektif = 12 görsel için QC>=85 onayı verdi.
+  PQC raporları yazıldı (en düşük 88, en yüksek 92). image_selection.yaml dosyaları
+  pending_review'dan complete/selected'a güncellendi. 4 KER kaydı yazıldı.
+  Perspektif paket YAML'ları draft→review, source_reference_id PENDING'den gerçek ID'ye güncellendi.
+
+  Lifecycle promotion (element status: review → created, canon_lock: true) human PR gerektirir.
+  Hiçbir binary commit edilmedi; hiçbir lifecycle alanı direkt değiştirilmedi.

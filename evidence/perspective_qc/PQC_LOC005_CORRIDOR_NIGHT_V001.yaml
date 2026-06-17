@@ -1,0 +1,58 @@
+schema_version: "0.x-draft"
+record_type: perspective_qc_report
+perspective_qc_id: PQC_LOC005_CORRIDOR_NIGHT_V001
+status: approved
+scene_id: SC0089
+element_id: LOC005
+prompt_pack_id: PPACK_LOC005_CORRIDOR_NIGHT_V001
+operator_session_ref: OP-2026-06-17-LOC005-LOC006-LOC007-PROP008-threeview
+perspective_scores:
+  - prompt_id: PPACK_LOC005_CORRIDOR_NIGHT_V001__front_reference
+    perspective: front_reference
+    identity_preservation: 92
+    perspective_usefulness: 91
+    material_palette_continuity: 91
+    production_reference_cleanliness: 91
+    hallucination_absence: 91
+    view_distinction: 90
+    scale_distinction: 90
+    total_score: 91
+    decision: pass
+  - prompt_id: PPACK_LOC005_CORRIDOR_NIGHT_V001__three_quarter_medium
+    perspective: three_quarter_medium_reference
+    identity_preservation: 89
+    perspective_usefulness: 88
+    material_palette_continuity: 89
+    production_reference_cleanliness: 89
+    hallucination_absence: 90
+    view_distinction: 88
+    scale_distinction: 87
+    total_score: 88
+    decision: pass
+  - prompt_id: PPACK_LOC005_CORRIDOR_NIGHT_V001__three_quarter_close
+    perspective: three_quarter_close_reference
+    identity_preservation: 90
+    perspective_usefulness: 90
+    material_palette_continuity: 89
+    production_reference_cleanliness: 90
+    hallucination_absence: 90
+    view_distinction: 89
+    scale_distinction: 88
+    total_score: 89
+    decision: pass
+gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  can_advance_to_kling_reference: true
+notes: >
+  Operator-approved three_view_scale_angle_v2 set for @LOC005_CORRIDOR (archived, git-ignored).
+  All three views read as the same night industrial transit corridor: light-pool/darkness rhythm,
+  sealed cargo-processing facility wall, concrete drainage embankment, night greys throughout.
+  front_reference: widest establishing depth, light pools receding to far junction — carries
+  the SC0089 measured-movement tension; generous floor for Nadia + Zara two-person blocking.
+  three_quarter_medium_reference: three-quarter angle at single overhead light pool, cold cone
+  against surrounding darkness, embankment edge visible — captures the interval rhythm.
+  three_quarter_close_reference: close on drainage cut at embankment base — the dark conduit
+  mouth and repaired concrete seam that is Zara's western escape route.
+  No people in any plate; no text, no watermark. Corridor identity consistent across all views.
+  Source: CHATGPTIMG_LOC005_FIRSTREF_V001. All perspectives >= 85.

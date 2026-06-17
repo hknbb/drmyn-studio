@@ -1,0 +1,48 @@
+element_id: LOC005
+element_type: location
+selection_round: 1
+source_prompt_ids:
+  - SC0089__t2i-loc-loc005-corridor-first-ref-chatgpt__v01
+candidate_images:
+  - asset_id: PPACK_LOC005_CORRIDOR_NIGHT_V001__front_reference
+    path: "archive/nexuszero/_elements/LOC005/stage2/images/ChatGPT Image 17 Haz 2026 15_05_49.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/LOC005/stage2/images/ChatGPT Image 17 Haz 2026 15_05_49.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "LOC005 corridor front_reference. Wide establishing master, light-pool/darkness rhythm to junction, cargo-facility wall + concrete embankment. QC 91."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+  - asset_id: PPACK_LOC005_CORRIDOR_NIGHT_V001__three_quarter_medium
+    path: "archive/nexuszero/_elements/LOC005/stage2/images/ChatGPT Image 17 Haz 2026 15_05_54.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/LOC005/stage2/images/ChatGPT Image 17 Haz 2026 15_05_54.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "LOC005 corridor three_quarter_medium. Three-quarter at single light pool, cold overhead cone against darkness, embankment edge visible. QC 88."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 4
+      production_usability: 4
+  - asset_id: PPACK_LOC005_CORRIDOR_NIGHT_V001__three_quarter_close
+    path: "archive/nexuszero/_elements/LOC005/stage2/images/ChatGPT Image 17 Haz 2026 15_06_00.png"
+    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/LOC005/stage2/images/ChatGPT Image 17 Haz 2026 15_06_00.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "LOC005 corridor three_quarter_close. Close view of drainage cut at embankment base, dark conduit mouth + concrete seam (Zara's western escape route). QC 89."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 4
+      production_usability: 5
+canonical_images:
+  - PPACK_LOC005_CORRIDOR_NIGHT_V001__front_reference
+  - PPACK_LOC005_CORRIDOR_NIGHT_V001__three_quarter_medium
+  - PPACK_LOC005_CORRIDOR_NIGHT_V001__three_quarter_close
+round_status: complete
+pack_manifest_sync: applied

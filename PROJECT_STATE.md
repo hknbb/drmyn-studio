@@ -75,7 +75,7 @@ Stages: S1 = MJ v8.1 hero · S2 = MJ v7 --oref identity lock · S3 = four-view p
 
 1. **SC0014 video take QC (v07)** — 8 klip arşivlendi (QC bekliyor). Operatör her klip için status (selected/candidate/rejected/needs_revision) + 5 kalite skoru (identity_consistency, source_grounding, style_compliance, continuity, production_usability, 1-5) versin → `review-video-takes` çalıştırılıp `video_takes.yaml` yazılacak. Final pass için gerekirse `continuity_seed_ref` (extracted last-frame). (operator-driven)
 2. ~~SC0047/SC0089 t2i oref schema drift~~ — **çözüldü 2026-06-16**: 3 kök alan `generation_params` içine taşındı, validator 55/55 temiz.
-3. **SC0089, SC0047, SC0111 element pipeline** — remaining locations + props (first-ref → 3-view → KER → created).
+3. **LOC005/006/007/PROP008 lifecycle promotion** — KER kayıtları yazıldı (QC>=85, 2026-06-17). Human PR gerekli: element status review→created + canon_lock:true + Kling Element Library alias binding (@LOC005_CORRIDOR, @LOC006_QUAY, @LOC007_ANTECHAMBER, @PROP008_HANDSET). Ardından SC0047/SC0089/SC0111 Kling clip planına geçilebilir.
 4. **PR-BATCH-KEYCHAR-1** — C03 Birta + C05 Marcus pre-checkpoint registration.
 5. **C07 Sera** + **Halo Unit** element production.
 
@@ -97,6 +97,8 @@ From `closingpriceclaudecodeanalysisforcode.md` (multi-agent analysis, 2026-06-0
 ## Session Log (newest first, keep ~10 lines)
 
 <!-- AUTO:SESSION_LOG:START -->
+- 2026-06-17 — lock LOC005/006/007/PROP008 three-view packs + KER records (QC>=85); promote to created pending human PR
+- 2026-06-17 — [fix] SC0047/SC0089 oref schema drift + archive LOC005/006/007/PROP008 stage-1 first-refs
 - 2026-06-17 — archive SC0014 v07 Kling clips (8 takes, git-ignored) + add clips subdir
 - 2026-06-17 — SC0014 v07 text-only literal multi-shot (kling_literal_alias_locked); Anchor & Animate retired
 - 2026-06-15 — SC0014 Anchor & Animate pipeline Faz 0â€“6 (shot-photography-first)
@@ -106,5 +108,4 @@ From `closingpriceclaudecodeanalysisforcode.md` (multi-agent analysis, 2026-06-0
 - 2026-06-12 — complete C02 Roman full pipeline + promote @C02_ROMAN to created (SC0111, QC>=85)
 - 2026-06-10 — lock C09 Otto Stage-3 four-view + promote @C09_OTTO to created (SC0047, QC>=85)
 - 2026-06-10 — lock C09 Otto Stage-2 oref (ott_2.png) + update identity anchor
-- 2026-06-10 — update C09 Otto wardrobe to dark navy/blue + muted olive-green (WD014)
 <!-- AUTO:SESSION_LOG:END -->
