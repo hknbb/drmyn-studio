@@ -1,0 +1,20 @@
+wardrobe_id: WD015
+name: "Sera newsroom-field practical professional wear"
+character_id: C07
+category: PROFESSIONAL_NEWSROOM
+description: >
+  Smart-casual newsroom and field hybrid — dark professional blazer (black or
+  charcoal) over a fitted dark top, dark neutral trousers. Nothing fashion-forward,
+  nothing glamorous; clothes that read as someone who takes their work seriously
+  without performing it. The wardrobe of a senior investigative journalist who
+  dresses to be taken seriously, not to be seen. Worn by Sera at SC0040.
+palette: "dark professional neutrals (black, charcoal, deep navy)"
+scene_refs:
+  - SC0040
+handling_notes:
+  - "No anchor-studio styling; no broadcast-set glamour; no fashion-forward elements."
+  - "Dark practical baseline — the armour of someone who spent years in newsrooms."
+  - "No accessories, no ornamentation; clothes are a functional professional register."
+status: review
+review_status: pending
+canon_lock: false
