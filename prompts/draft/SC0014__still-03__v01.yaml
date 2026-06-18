@@ -1,4 +1,4 @@
-prompt_id: SC0014__still-03__v01
+﻿prompt_id: SC0014__still-03__v01
 scene_id: SC0014
 prompt_type: still_generation
 lifecycle_stage: deprecated
@@ -26,7 +26,7 @@ generation_params:
   shot_order_index: 3
   archive_filename: SC0014_03_clip-sc0014-01_shot-sc0014-01-c.png
   input_reference_images:
-  - archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_1.png
+  - archive/closing_price/_elements/LOC001/stage3/images/loc001_3_1.png
   protected_subject_flags: []
   repo_binary_committed: false
   external_generation_required: true

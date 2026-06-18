@@ -1,4 +1,4 @@
-element_id: C10
+﻿element_id: C10
 element_type: character
 selection_round: 1
 source_prompt_ids:
@@ -7,8 +7,8 @@ source_prompt_ids:
 candidate_images:
   # --- @C10_CARRIER four views ---
   - asset_id: PPACK_C10_CARRIER_V001__full_body_front
-    path: "archive/nexuszero/_elements/C10/stage3/images/car_3_1.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C10/stage3/images/car_3_1.png"
+    path: "archive/closing_price/_elements/C10/stage3/images/car_3_1.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/C10/stage3/images/car_3_1.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 full_body_front for @C10_CARRIER; head-to-toe, heavier/stockier build, buzzed hair, dark functional clothing. QC 87."
@@ -19,8 +19,8 @@ candidate_images:
       continuity: 5
       production_usability: 4
   - asset_id: PPACK_C10_CARRIER_V001__three_quarter_waist
-    path: "archive/nexuszero/_elements/C10/stage3/images/car_3_2.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C10/stage3/images/car_3_2.png"
+    path: "archive/closing_price/_elements/C10/stage3/images/car_3_2.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/C10/stage3/images/car_3_2.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 three_quarter_waist for @C10_CARRIER; 30-45 deg, identity + wardrobe consistent, neutral demeanor. QC 89."
@@ -31,8 +31,8 @@ candidate_images:
       continuity: 5
       production_usability: 4
   - asset_id: PPACK_C10_CARRIER_V001__close_portrait_front
-    path: "archive/nexuszero/_elements/C10/stage3/images/car_3_3.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C10/stage3/images/car_3_3.png"
+    path: "archive/closing_price/_elements/C10/stage3/images/car_3_3.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/C10/stage3/images/car_3_3.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 close_portrait_front for @C10_CARRIER; frontal identity lock, buzzed hair, goatee, unremarkable face geometry. QC 91."
@@ -43,8 +43,8 @@ candidate_images:
       continuity: 5
       production_usability: 5
   - asset_id: PPACK_C10_CARRIER_V001__profile_full
-    path: "archive/nexuszero/_elements/C10/stage3/images/car_3_4.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C10/stage3/images/car_3_4.png"
+    path: "archive/closing_price/_elements/C10/stage3/images/car_3_4.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/C10/stage3/images/car_3_4.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 profile_full for @C10_CARRIER; clean 90 deg profile, identity consistent. QC 88."
@@ -56,8 +56,8 @@ candidate_images:
       production_usability: 4
   # --- @C10_HOLDER four views ---
   - asset_id: PPACK_C10_HOLDER_V001__full_body_front
-    path: "archive/nexuszero/_elements/C10/stage3/images/hol_3_1.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C10/stage3/images/hol_3_1.png"
+    path: "archive/closing_price/_elements/C10/stage3/images/hol_3_1.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/C10/stage3/images/hol_3_1.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 full_body_front for @C10_HOLDER; head-to-toe, leaner build, fuller hair + beard, dark functional clothing. QC 87."
@@ -68,8 +68,8 @@ candidate_images:
       continuity: 5
       production_usability: 4
   - asset_id: PPACK_C10_HOLDER_V001__three_quarter_waist
-    path: "archive/nexuszero/_elements/C10/stage3/images/hol_3_2.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C10/stage3/images/hol_3_2.png"
+    path: "archive/closing_price/_elements/C10/stage3/images/hol_3_2.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/C10/stage3/images/hol_3_2.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 three_quarter_waist for @C10_HOLDER; 30-45 deg, leaner read, identity + wardrobe consistent. QC 89."
@@ -80,8 +80,8 @@ candidate_images:
       continuity: 5
       production_usability: 4
   - asset_id: PPACK_C10_HOLDER_V001__close_portrait_front
-    path: "archive/nexuszero/_elements/C10/stage3/images/hol_3_3.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C10/stage3/images/hol_3_3.png"
+    path: "archive/closing_price/_elements/C10/stage3/images/hol_3_3.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/C10/stage3/images/hol_3_3.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 close_portrait_front for @C10_HOLDER; frontal identity lock, fuller hair + short beard, unremarkable face geometry. QC 90."
@@ -92,8 +92,8 @@ candidate_images:
       continuity: 5
       production_usability: 5
   - asset_id: PPACK_C10_HOLDER_V001__profile_full
-    path: "archive/nexuszero/_elements/C10/stage3/images/hol_3_4.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C10/stage3/images/hol_3_4.png"
+    path: "archive/closing_price/_elements/C10/stage3/images/hol_3_4.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/C10/stage3/images/hol_3_4.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 profile_full for @C10_HOLDER; clean 90 deg profile, identity consistent, distinct from CARRIER. QC 88."

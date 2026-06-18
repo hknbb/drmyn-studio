@@ -7,79 +7,95 @@ source_dialogue_beats_ref: ''
 total_duration_seconds: 15
 continuity_input_mode: frame_input_eligible
 shots:
-- shot_id: SHOT_SC0111_01_A
-  duration_seconds: 10
-  source_beat_ids:
-  - ESTABLISH_ADJUSTMENT
-  prompt_action: Nadia is adjusted to her left-side deficit from the sternum injury. Roman watches how she has adjusted to it — her le...
-  duration_reason: long_hold/establish 10s
-  required_element_ids:
-  - C01
-  - C02
-  camera:
-    angle: eye_level
-    framing: medium_wide
-    movement: static
-    lens_bias: the two of them in the corridor space; reading bodies
-  lighting:
-    source: low_key
-    quality: hard
-    color_temp: cool
-    intensity: dim
-  motion:
-    subject_intensity: 0.15
-    camera_intensity: 0.0
-    blocking_notes: Nadia's breathing visible; left arm held closer to body; Roman's stance predatory but still.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-  - figure_id: FIG_ROMAN
-    base_element_id: C02
-    kling_alias: '@C02_ROMAN'
-    role: Roman, the antagonist
-- shot_id: SHOT_SC0111_01_B
-  duration_seconds: 5
-  source_beat_ids:
-  - THIRD_APPROACH_LOWER
-  prompt_action: Roman comes in lower on the third approach — below the sternum contact she landed in SC0104, inside the deflection ra...
-  duration_reason: normal/action 5s
-  required_element_ids:
-  - C01
-  - C02
-  camera:
-    angle: eye_level
-    framing: medium_close
-    movement: handheld
-    lens_bias: contact level; reading the lower line Roman has chosen
-  lighting:
-    source: low_key
-    quality: hard
-    color_temp: cool
-    intensity: dim
-  motion:
-    subject_intensity: 0.6
-    camera_intensity: 0.3
-    blocking_notes: Contact exchange; Nadia's left arm cannot cover the approach line as effectively.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-  - figure_id: FIG_ROMAN
-    base_element_id: C02
-    kling_alias: '@C02_ROMAN'
-    role: Roman, the antagonist
+  - shot_id: SHOT_SC0111_01_A
+    duration_seconds: 10
+    source_beat_ids:
+      - ESTABLISH_ADJUSTMENT
+    prompt_action: Nadia is adjusted to her left-side deficit from the sternum injury. Roman watches how she has adjusted to it — her le...
+    duration_reason: long_hold/establish 10s
+    required_element_ids:
+      - C01
+      - C02
+    camera:
+      angle: eye_level
+      framing: medium_wide
+      movement: static
+      lens_bias: the two of them in the corridor space; reading bodies
+    lighting:
+      source: low_key
+      quality: hard
+      color_temp: cool
+      intensity: dim
+    motion:
+      subject_intensity: 0.15
+      camera_intensity: 0.0
+      blocking_notes: Nadia's breathing visible; left arm held closer to body; Roman's stance predatory but still.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: '@C01_NADIA faces @C02_ROMAN, left arm held close to body, breathing visible.'
+        render_label: battle-worn field jacket, left arm limited range.
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: '@C02_ROMAN'
+        role: Roman, the antagonist
+        render_action: '@C02_ROMAN faces @C01_NADIA, stance low, watching.'
+        render_label: dark close-fitted jacket, weight low.
+    render_action: "@LOC007_ANTECHAMBER narrow concrete corridor, server-core surface at the far end. @C01_NADIA and @C02_ROMAN face each other at close range. @C01_NADIA's left arm is held closer to her body — not extended. @C02_ROMAN's stance is low, weight balanced. Both breathing visible. No contact."
+    render_camera: Medium-wide static. Both figures in corridor. @LOC007_ANTECHAMBER walls tight on both sides.
+    render_diegetic_audio: Controlled breathing from both. Cool corridor ambient. No voices.
+  - shot_id: SHOT_SC0111_01_B
+    duration_seconds: 5
+    source_beat_ids:
+      - THIRD_APPROACH_LOWER
+    prompt_action: Roman comes in lower on the third approach — below the sternum contact she landed in SC0104, inside the deflection ra...
+    duration_reason: normal/action 5s
+    required_element_ids:
+      - C01
+      - C02
+    camera:
+      angle: eye_level
+      framing: medium_close
+      movement: handheld
+      lens_bias: contact level; reading the lower line Roman has chosen
+    lighting:
+      source: low_key
+      quality: hard
+      color_temp: cool
+      intensity: dim
+    motion:
+      subject_intensity: 0.6
+      camera_intensity: 0.3
+      blocking_notes: Contact exchange; Nadia's left arm cannot cover the approach line as effectively.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: '@C01_NADIA deflects with right arm; left arm held, not reaching the line.'
+        render_label: battle-worn field jacket, left arm limited range.
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: '@C02_ROMAN'
+        role: Roman, the antagonist
+        render_action: "@C02_ROMAN steps in low — below sternum line, inside @C01_NADIA's left-arm range."
+        render_label: dark close-fitted jacket.
+    render_action: "@C02_ROMAN steps in — approach line is low, below @C01_NADIA's sternum, inside the deflection arc of @C01_NADIA's left arm. @C01_NADIA's right arm moves to deflect. @C01_NADIA's left arm cannot cover the approach line."
+    render_camera: Medium-close handheld. Contact level. Lower approach angle of @C02_ROMAN visible.
+    render_diegetic_audio: Controlled breathing. Fabric contact impact.
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: Generated by omni_clip_planner packer_version=rhythm_aware_v1
+notes: 'SC0111 v07 text-only literal pass (kling_literal_alias_locked): render_* fields authored for model-facing literal grammar; poetic prompt_action/lens_bias remain for human review only. Silent action scene — no dialogue; Format A throughout.'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T10:50:27Z'
+  render_fields_added_by: claude_code (M5 v07 SC0111 literal pass)
+  render_fields_added_at: '2026-06-17T00:00:00Z'
 required_element_ids:
-- C01
-- C02
+  - C01
+  - C02

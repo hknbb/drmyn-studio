@@ -1,4 +1,4 @@
-prompt_id: SC0047__t2i-char-c09-oref-lock-mj-v7__v01
+﻿prompt_id: SC0047__t2i-char-c09-oref-lock-mj-v7__v01
 scene_id: SC0047
 prompt_type: t2i_character_element
 lifecycle_stage: draft
@@ -10,7 +10,7 @@ source_refs:
   character_refs:
   - C09
 prompt_text: >-
-  Same man, identical face — sixty to seventy, solid settled build, grey close-kept
+  Same man, identical face â€” sixty to seventy, solid settled build, grey close-kept
   hair, weathered skin. Straight to camera, even frontal light, plain neutral
   background. Dark navy or dark blue heavy working jacket, dark blue layers underneath;
   optional muted olive-green accent. Face fully visible, no shadow cropping. Flat
@@ -26,7 +26,7 @@ generation_params:
   stage: "2_of_3_oref_lock"
   oref_weight: 250
   oref_source_id: MJ_C09_HERO_V001
-  oref_source_external_ref: "archive/nexuszero/_elements/C09/stage1/images/ott_1.png"
+  oref_source_external_ref: "archive/closing_price/_elements/C09/stage1/images/ott_1.png"
   oref_cdn_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/6135d6c9b9266e17fdb705361cd2fd693f8c22d99979f4b063083ec0961f1a86_384_N.png"
   recommended_model_version: --v 7
   recommended_style: --style raw

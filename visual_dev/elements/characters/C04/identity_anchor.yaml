@@ -1,4 +1,4 @@
-schema_version: "0.x-draft"
+﻿schema_version: "0.x-draft"
 record_type: character_identity_anchor
 identity_anchor_id: C04_IDENTITY_ANCHOR_V001
 character_id: C04
@@ -13,37 +13,37 @@ front_hero_lock_ref:
   stage1_narrative_identity_locked: true
   selected_hero_id: MJ_C04_HERO_V001
   media_index_ref: evidence/local_media_indices/LOCAL_MEDIA_INDEX__elements_ARCHIVE_V001.yaml
-  external_ref: "archive/nexuszero/_elements/C04/stage1/images/dim1_4.png"
+  external_ref: "archive/closing_price/_elements/C04/stage1/images/dim1_4.png"
   sha256: "38cff8999d045893dce9dc4181b14c9481b47c2d90f1322412dc67b51b4f6a4c"
   approved_by: operator
   approved_at: "2026-06-09T00:00:00Z"
-  selection_basis: "Operator-approved single clean image from MJ v8.1 D1 batch (b24e0bce_1); most believable, three-dimensional controlled-but-human read — mature, intelligent, quiet authority, even resting expression."
-  next_external_step: "Stage 2 — MJ V7 --oref refinement seeded from this hero, then Stage 3 ChatGPT four_view_scale_angle_v3."
+  selection_basis: "Operator-approved single clean image from MJ v8.1 D1 batch (b24e0bce_1); most believable, three-dimensional controlled-but-human read â€” mature, intelligent, quiet authority, even resting expression."
+  next_external_step: "Stage 2 â€” MJ V7 --oref refinement seeded from this hero, then Stage 3 ChatGPT four_view_scale_angle_v3."
 stage2_identity_lock_ref:
   locked: true
   selected_lock_id: MJ_C04_OREFLOCK_V001
   prompt_ref: prompts/draft/SC0014__t2i-char-c04-oref-lock-mj-v7__v01.yaml
   media_index_ref: evidence/local_media_indices/LOCAL_MEDIA_INDEX__elements_ARCHIVE_V001.yaml
-  external_ref: "archive/nexuszero/_elements/C04/stage2/images/dim2_5.png"
+  external_ref: "archive/closing_price/_elements/C04/stage2/images/dim2_5.png"
   sha256: "326d02c8b700b33dc168e542deb9fbf9ec6f20e3783c5c61621fabaa10cccf32"
   oref_source_hero_id: MJ_C04_HERO_V001
   approved_by: operator
   approved_at: "2026-06-09T00:00:00Z"
   selection_basis: "Operator-approved from D2 --oref batch (c254c586_0); clean near-frontal canonical, calm controlled resting expression. Identity consistency with Stage-1 hero confirmed across the batch."
-  next_external_step: "Stage 3 — ChatGPT Images 2 four_view_scale_angle_v3, DUAL-seeded (Stage-2 lock primary + Stage-1 hero secondary); then real perspective_qc (>=85) -> kling_element_reference -> binding 'created'."
+  next_external_step: "Stage 3 â€” ChatGPT Images 2 four_view_scale_angle_v3, DUAL-seeded (Stage-2 lock primary + Stage-1 hero secondary); then real perspective_qc (>=85) -> kling_element_reference -> binding 'created'."
 fixed_identity_anchors:
   - "Man, early 40s; face geometry and identity must stay constant across all operational looks."
-  - "A real, three-dimensional human with an inner life and a lived-in face — controlled and intelligent, NOT a hard-edged caricature or cartoon villain."
+  - "A real, three-dimensional human with an inner life and a lived-in face â€” controlled and intelligent, NOT a hard-edged caricature or cartoon villain."
   - "Lean, contained build; precision-trained, economical movement; calm self-possessed bearing."
-  - "Quiet controlled authority and procedural command — steady observant eyes, even resting expression; unsettling through calm certainty rather than scowling or glaring."
+  - "Quiet controlled authority and procedural command â€” steady observant eyes, even resting expression; unsettling through calm certainty rather than scowling or glaring."
   - "Neat professional grooming; dark corporate neutrals worn with precision; no glamour finish, not a fashion model."
 mutable_appearance_allowed:
   - "Wardrobe per operational context (office-facing operational executive / field-command variant)."
   - "Hair state within the anchor (neat, precise, contained)."
-  - "Fatigue level and damage (clean → minimal fatigue; none → operational exertion register) as circumstance demands."
+  - "Fatigue level and damage (clean â†’ minimal fatigue; none â†’ operational exertion register) as circumstance demands."
   - "Environmental lighting register (office practicals, field tactical, command-center harsh)."
 forbidden_drift:
-  - "Do not soften into a straightforward ally-in-waiting or a warm/sympathetic-soft read; his threat is procedural, not sympathetic. (Humanized does NOT mean warm — he is a believable man, not a friend.)"
+  - "Do not soften into a straightforward ally-in-waiting or a warm/sympathetic-soft read; his threat is procedural, not sympathetic. (Humanized does NOT mean warm â€” he is a believable man, not a friend.)"
   - "Do not render as a hard-edged caricature, scowling heavy, or cartoon villain; the menace is calm and exact, not theatrical."
   - "Do not style as charismatic, invulnerable, or fashion-forward; read as instrument-level efficiency."
   - "Do not alter face geometry, age read, or lean silhouette between looks."
@@ -53,9 +53,9 @@ notes: >
   authored fresh under Production System v2 after the clean-slate teardown (no surviving
   pre-teardown element records). One identity, planned for multiple operational looks
   (SC0014 nursery-removal command, future office and field variants). Character chain:
-  Stage 1 MJ V8.1 narrative identity → Stage 2 MJ V7 --oref lock → Stage 3 ChatGPT Images 2
+  Stage 1 MJ V8.1 narrative identity â†’ Stage 2 MJ V7 --oref lock â†’ Stage 3 ChatGPT Images 2
   four_view_scale_angle_v3 per look. front_hero_lock_ref stays pending until the operator
   generates and a real lock image is selected (no fabricated lock).
 provenance:
-  created_by: "claude_code (M5 FAZ B — haiku)"
+  created_by: "claude_code (M5 FAZ B â€” haiku)"
   created_at: "2026-06-04T00:00:00Z"

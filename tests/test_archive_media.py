@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import sys
 from pathlib import Path
@@ -52,7 +52,7 @@ def test_archives_image_into_standard_tree(tmp_path: Path) -> None:
     assert dest.is_file(), "binary should be copied into the gitignored archive tree"
     assert src.is_file(), "default mode copies (does not move) the source"
 
-    assert entry["local_path"] == "archive/nexuszero/_elements/C10/stage3/images/" + src.name
+    assert entry["local_path"] == "archive/closing_price/_elements/C10/stage3/images/" + src.name
     assert entry["external_storage_ref"].startswith("external://local_manual/archive/")
     assert entry["repo_binary_committed"] is False
     assert len(entry["sha256"]) == 64

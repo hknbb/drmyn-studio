@@ -7,73 +7,98 @@ source_dialogue_beats_ref: planning/scenes/SC0089/dialogue_beats.yaml
 total_duration_seconds: 12
 continuity_input_mode: frame_input_eligible
 shots:
-- shot_id: SHOT_SC0089_23_A
-  duration_seconds: 7
-  source_beat_ids:
-  - REACH_CUT
-  - DIMITRI_COMMS_FOUND_OPERATIVE
-  prompt_action: Behind them, south of the embankment — comms frequency activity. Multiple pings. The main element has found the advan...
-  duration_reason: REACH_CUT (short_insert merged fwd); normal/pulse_check 5s
-  required_element_ids:
-  - C01
-  - C06
-  camera:
-    angle: eye_level
-    framing: medium_wide
-    movement: tracking
-    lens_bias: figures at cut entrance; threat closing in, visible in sound and urgency
-  lighting:
-    source: practical
-    quality: diffused
-    color_temp: cool
-    intensity: dim
-  motion:
-    subject_intensity: 0.4
-    camera_intensity: 0.2
-    blocking_notes: Figures slowing/pausing at cut. Comms activity registers as immediate threat.
-- shot_id: SHOT_SC0089_23_B
-  duration_seconds: 5
-  source_beat_ids:
-  - NADIA_PULLS_COVER
-  prompt_action: 'Nadia pulls the drainage cover. It is heavy and it is old and it moves. They go in.
+  - shot_id: SHOT_SC0089_23_A
+    duration_seconds: 7
+    source_beat_ids:
+      - REACH_CUT
+      - DIMITRI_COMMS_FOUND_OPERATIVE
+    prompt_action: Behind them, south of the embankment — comms frequency activity. Multiple pings. The main element has found the advan...
+    duration_reason: REACH_CUT (short_insert merged fwd); normal/pulse_check 5s
+    required_element_ids:
+      - C01
+      - C06
+    camera:
+      angle: eye_level
+      framing: medium_wide
+      movement: tracking
+      lens_bias: figures at cut entrance; threat closing in, visible in sound and urgency
+    lighting:
+      source: practical
+      quality: diffused
+      color_temp: cool
+      intensity: dim
+    motion:
+      subject_intensity: 0.4
+      camera_intensity: 0.2
+      blocking_notes: Figures slowing/pausing at cut. Comms activity registers as immediate threat.
+    render_action: "@C01_NADIA and @C06_ZARA reach the conduit entrance, slowing. @C01_NADIA looks back (left, south) over shoulder. @C06_ZARA's right hand holds @C06_ZARA's left side. Multiple comms pings audible from south."
+    render_camera: Medium-wide tracking then static. Both figures at conduit. Corridor behind shows empty.
+    render_diegetic_audio: Multiple comms pings from south in quick succession. Night ambient.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: '@C01_NADIA at conduit entrance, looks back south over shoulder.'
+        render_label: dark field jacket, night-transit build.
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: '@C06_ZARA'
+        role: Zara, operative ally
+        render_action: '@C06_ZARA at conduit entrance, right hand holding left side.'
+        render_label: khaki-olive jacket, field-night build.
+  - shot_id: SHOT_SC0089_23_B
+    duration_seconds: 5
+    source_beat_ids:
+      - NADIA_PULLS_COVER
+    prompt_action: 'Nadia pulls the drainage cover. It is heavy and it is old and it moves. They go in.
 
-    '
-  duration_reason: normal/action 5s
-  required_element_ids:
-  - C01
-  - C06
-  camera:
-    angle: low_angle
-    framing: medium
-    movement: handheld
-    lens_bias: the heavy cover being pulled; entrance to the conduit; both figures entering
-  lighting:
-    source: practical
-    quality: diffused
-    color_temp: cool
-    intensity: dim
-  motion:
-    subject_intensity: 0.6
-    camera_intensity: 0.2
-    blocking_notes: Nadia exerts force against the old, heavy cover. Both figures move into the opening. The cover is pulled shut behind them (implicit).
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-  - figure_id: FIG_ZARA
-    base_element_id: C06
-    kling_alias: '@C06_ZARA'
-    role: Zara, operative ally
+      '
+    duration_reason: normal/action 5s
+    required_element_ids:
+      - C01
+      - C06
+    camera:
+      angle: low_angle
+      framing: medium
+      movement: handheld
+      lens_bias: the heavy cover being pulled; entrance to the conduit; both figures entering
+    lighting:
+      source: practical
+      quality: diffused
+      color_temp: cool
+      intensity: dim
+    motion:
+      subject_intensity: 0.6
+      camera_intensity: 0.2
+      blocking_notes: Nadia exerts force against the old, heavy cover. Both figures move into the opening. The cover is pulled shut behind them (implicit).
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: '@C01_NADIA grips drain cover with both hands, pulls, torso engaged — cover shifts.'
+        render_label: dark field jacket, night-transit build.
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: '@C06_ZARA'
+        role: Zara, operative ally
+        render_action: '@C06_ZARA moves into conduit opening behind @C01_NADIA.'
+        render_label: khaki-olive jacket, field-night build.
+    render_action: '@C01_NADIA grips the drain cover — heavy, circular. @C01_NADIA pulls with both hands, torso engaged. The cover shifts. @C01_NADIA and @C06_ZARA move into the conduit opening.'
+    render_camera: Medium handheld, low angle. @C01_NADIA at cover. @C06_ZARA entering.
+    render_diegetic_audio: Metal scrape on concrete. Footsteps entering conduit.
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: Generated by omni_clip_planner packer_version=rhythm_aware_v1
+notes: 'SC0089 v07 text-only literal pass (kling_literal_alias_locked): render_* fields authored for model-facing literal grammar; poetic prompt_action/lens_bias remain for human review only. Legacy element ID refs fixed: LOC001→LOC005.'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T10:47:13Z'
+  render_fields_added_by: claude_code (M5 v07 SC0089 literal pass)
+  render_fields_added_at: '2026-06-17T00:00:00Z'
 required_element_ids:
-- C01
-- C06
+  - C01
+  - C06

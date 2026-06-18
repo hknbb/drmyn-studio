@@ -1,4 +1,4 @@
-prompt_id: SC0014__still-02__v01
+﻿prompt_id: SC0014__still-02__v01
 scene_id: SC0014
 prompt_type: still_generation
 lifecycle_stage: deprecated
@@ -9,7 +9,7 @@ source_refs:
   scene_excerpt: planning/scenes/SC0014/manifests/CLIP_SC0014_01_manifest.yaml
 prompt_text: 'Generate a cinematic still photograph for a detail shot. Framing: close shot, insert angle (the small specific
   objects of an infant''s life). Scene state: the room still, the shelf of the child''s things in view. Action/subject: A
-  shelf of an eight-month-old''s things in  — the small specific objects that mean a child lives here. Lighting: practical
+  shelf of an eight-month-old''s things in  â€” the small specific objects that mean a child lives here. Lighting: practical
   source, soft quality, warm tone. Visual anchors (identity reference): Locked  nursery: small carefully-made room, crib +
   low shelf + nursing chair, soft warm evening practicals.. Style: grounded dramatic realism, photorealistic, warm practical
   lighting, subtle film grain. Constraints: No text overlay, no watermarks, no subtitles, no timecode, no additional people
@@ -26,7 +26,7 @@ generation_params:
   shot_order_index: 2
   archive_filename: SC0014_02_clip-sc0014-01_shot-sc0014-01-b.png
   input_reference_images:
-  - archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_1.png
+  - archive/closing_price/_elements/LOC001/stage3/images/loc001_3_1.png
   protected_subject_flags: []
   repo_binary_committed: false
   external_generation_required: true

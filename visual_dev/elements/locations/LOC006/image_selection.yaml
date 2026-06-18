@@ -1,12 +1,12 @@
-element_id: LOC006
+﻿element_id: LOC006
 element_type: location
 selection_round: 1
 source_prompt_ids:
   - SC0047__t2i-loc-loc006-quay-first-ref-chatgpt__v01
 candidate_images:
   - asset_id: PPACK_LOC006_QUAY_MORNING_V001__front_reference
-    path: "archive/nexuszero/_elements/LOC006/stage2/images/ChatGPT Image 16 Haz 2026 22_25_48.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/LOC006/stage2/images/ChatGPT Image 16 Haz 2026 22_25_48.png"
+    path: "archive/closing_price/_elements/LOC006/stage2/images/ChatGPT Image 16 Haz 2026 22_25_48.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/LOC006/stage2/images/ChatGPT Image 16 Haz 2026 22_25_48.png"
     repo_binary_committed: false
     status: selected
     reason: "LOC006 quay front_reference. Wide establishing master, high window + grey water deep frame, crates + folding table, low concrete ceiling, generous blocking floor for SC0047 two-hander. QC 91."
@@ -17,8 +17,8 @@ candidate_images:
       continuity: 5
       production_usability: 5
   - asset_id: PPACK_LOC006_QUAY_MORNING_V001__three_quarter_medium
-    path: "archive/nexuszero/_elements/LOC006/stage2/images/ChatGPT Image 17 Haz 2026 13_29_19.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/LOC006/stage2/images/ChatGPT Image 17 Haz 2026 13_29_19.png"
+    path: "archive/closing_price/_elements/LOC006/stage2/images/ChatGPT Image 17 Haz 2026 13_29_19.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/LOC006/stage2/images/ChatGPT Image 17 Haz 2026 13_29_19.png"
     repo_binary_committed: false
     status: selected
     reason: "LOC006 quay three_quarter_medium. Three-quarter angle on folding table, high window + grey water behind, consistent bay and cold morning light. QC 89."
@@ -29,8 +29,8 @@ candidate_images:
       continuity: 5
       production_usability: 4
   - asset_id: PPACK_LOC006_QUAY_MORNING_V001__three_quarter_close
-    path: "archive/nexuszero/_elements/LOC006/stage2/images/ChatGPT Image 17 Haz 2026 13_34_47.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/LOC006/stage2/images/ChatGPT Image 17 Haz 2026 13_34_47.png"
+    path: "archive/closing_price/_elements/LOC006/stage2/images/ChatGPT Image 17 Haz 2026 13_34_47.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/LOC006/stage2/images/ChatGPT Image 17 Haz 2026 13_34_47.png"
     repo_binary_committed: false
     status: selected
     reason: "LOC006 quay three_quarter_close. Close view of high window + grey water, the cold maritime light source of the room. QC 90."

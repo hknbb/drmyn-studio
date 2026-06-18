@@ -1,8 +1,8 @@
-schema_version: "0.x-draft"
+﻿schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
 prompt_pack_id: PPACK_C08_NURSERY_EVENING_V001
 status: draft
-source_reference_id: "PROTECTED SUBJECT — operator-authorized 2026-06-09; safe/supported-only constraints binding. DUAL SEED. PRIMARY (geometry/pose/light/expression) = MJ_C08_OREFLOCK_V001 Stage-2 --oref lock (archive/nexuszero/_elements/C08/stage2/images/jin2_4.png; sha256 8c766a47007d1f5e0330e5315f0ea9b7b1ec3da142c268b8d9128cc1c5050db1). SECONDARY (skin tone, warmth, hair detail only) = MJ_C08_HERO_V001 Stage-1 hero (archive/nexuszero/_elements/C08/stage1/images/MJ_C08_HERO_V001.png; sha256 37a196ad892672affca7a21ad87f6321d1218701076efb2477226ac5a8a0f532). Take pose/framing/light from PRIMARY; take only skin tone + warmth + hair texture from SECONDARY."
+source_reference_id: "PROTECTED SUBJECT â€” operator-authorized 2026-06-09; safe/supported-only constraints binding. DUAL SEED. PRIMARY (geometry/pose/light/expression) = MJ_C08_OREFLOCK_V001 Stage-2 --oref lock (archive/closing_price/_elements/C08/stage2/images/jin2_4.png; sha256 8c766a47007d1f5e0330e5315f0ea9b7b1ec3da142c268b8d9128cc1c5050db1). SECONDARY (skin tone, warmth, hair detail only) = MJ_C08_HERO_V001 Stage-1 hero (archive/closing_price/_elements/C08/stage1/images/MJ_C08_HERO_V001.png; sha256 37a196ad892672affca7a21ad87f6321d1218701076efb2477226ac5a8a0f532). Take pose/framing/light from PRIMARY; take only skin tone + warmth + hair texture from SECONDARY."
 target_model: chatgpt_images_2
 target_role: multi_perspective_element_expander
 element_id: C08
@@ -53,7 +53,7 @@ prompts:
   - prompt_id: PPACK_C08_NURSERY_EVENING_V001__close_portrait_front
     perspective: close_portrait_front
     prompt_text: >
-      Close front portrait of the same calm, content infant — peaceful expression, soft
+      Close front portrait of the same calm, content infant â€” peaceful expression, soft
       fine hair, for identity reference. Gentle even light, neutral clean background.
       Preserve identity exactly; no distress, no redesign, no text, no watermark.
     constraints:
@@ -81,5 +81,5 @@ qc_gate:
   all_perspectives_required: true
   failed_perspective_revision_only: true
 downstream_use:
-  - "kling_element_reference_record for C08 infant nursery look (SC0014) — PROTECTED, post human approval only"
+  - "kling_element_reference_record for C08 infant nursery look (SC0014) â€” PROTECTED, post human approval only"
   - "SC0014 omni clip generation (Jin element attach; protected-subject hard gate)"

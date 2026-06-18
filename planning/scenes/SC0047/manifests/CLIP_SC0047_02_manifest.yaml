@@ -7,110 +7,137 @@ source_dialogue_beats_ref: planning/scenes/SC0047/dialogue_beats.yaml
 total_duration_seconds: 13
 continuity_input_mode: metadata_only
 shots:
-- shot_id: SHOT_SC0047_02_A
-  duration_seconds: 3
-  source_beat_ids:
-  - OTTO_HE_SAID_YOUD_COME
-  prompt_action: 'Otto: ''He said you''d come.'' His line establishes that Marcus planned this inheritance.'
-  duration_reason: normal/dialogue 3s
-  dialogue_line_ids:
-  - DLG_OTTO_YOUD_COME
-  required_element_ids:
-  - C09
-  - C01
-  camera:
-    angle: eye_level
-    framing: medium
-    movement: static
-    lens_bias: Otto's face, the certainty in his words
-  lighting:
-    source: filtered_daylight
-    quality: soft
-    color_temp: cool
-    intensity: moderate
-  motion:
-    subject_intensity: 0.1
-    camera_intensity: 0.0
-  figures:
-  - figure_id: FIG_OTTO
-    base_element_id: C09
-    kling_alias: '@C09_OTTO'
-    role: Otto, the quay contact
-    distinguishing_detail: Does not offer his hand; stands ready but does not greet.
-- shot_id: SHOT_SC0047_02_B
-  duration_seconds: 5
-  source_beat_ids:
-  - OTTO_PRODUCES_HANDSET
-  prompt_action: Otto produces the phone from a locked case beneath the table. A handset — industrial-grade, no manufacturer markings....
-  duration_reason: normal/action 5s
-  required_element_ids:
-  - C09
-  - PROP047
-  camera:
-    angle: eye_level
-    framing: medium
-    movement: static
-    lens_bias: the table, the locked case, Otto's hands, the handset being set down
-  lighting:
-    source: filtered_daylight
-    quality: soft
-    color_temp: cool
-    intensity: moderate
-  motion:
-    subject_intensity: 0.3
-    camera_intensity: 0.0
-    blocking_notes: Deliberate, practiced movement; the case is unlocked beneath the table; the handset is placed on the table between them.
-  figures:
-  - figure_id: FIG_OTTO
-    base_element_id: C09
-    kling_alias: '@C09_OTTO'
-    role: Otto, the quay contact
-    distinguishing_detail: Does not offer his hand; stands ready but does not greet.
-- shot_id: SHOT_SC0047_02_C
-  duration_seconds: 5
-  source_beat_ids:
-  - OTTO_HANDSET_INSERT
-  - OTTO_HE_SAID_YOUD_KNOW
-  prompt_action: 'Otto (CONT''D): ''He said you''d know the code.'' She does.'
-  duration_reason: OTTO_HANDSET_INSERT (short_insert merged fwd); normal/dialogue 3s
-  dialogue_line_ids:
-  - DLG_OTTO_YOUD_KNOW
-  required_element_ids:
-  - PROP047
-  - C09
-  - C01
-  camera:
-    angle: over_shoulder
-    framing: medium_close
-    movement: static
-    lens_bias: favor Otto speaking; Nadia's certainty in her response
-  lighting:
-    source: filtered_daylight
-    quality: soft
-    color_temp: cool
-    intensity: moderate
-  motion:
-    subject_intensity: 0.1
-    camera_intensity: 0.0
-  figures:
-  - figure_id: FIG_OTTO
-    base_element_id: C09
-    kling_alias: '@C09_OTTO'
-    role: Otto, the quay contact
-    distinguishing_detail: Does not offer his hand; stands ready but does not greet.
+  - shot_id: SHOT_SC0047_02_A
+    duration_seconds: 3
+    source_beat_ids:
+      - OTTO_HE_SAID_YOUD_COME
+    prompt_action: 'Otto: ''He said you''d come.'' His line establishes that Marcus planned this inheritance.'
+    duration_reason: normal/dialogue 3s
+    dialogue_line_ids:
+      - DLG_OTTO_YOUD_COME
+    required_element_ids:
+      - C09
+      - C01
+    camera:
+      angle: eye_level
+      framing: medium
+      movement: static
+      lens_bias: Otto's face, the certainty in his words
+    lighting:
+      source: filtered_daylight
+      quality: soft
+      color_temp: cool
+      intensity: moderate
+    motion:
+      subject_intensity: 0.1
+      camera_intensity: 0.0
+    figures:
+      - figure_id: FIG_OTTO
+        base_element_id: C09
+        kling_alias: '@C09_OTTO'
+        role: Otto, the quay contact
+        distinguishing_detail: Does not offer his hand; stands ready but does not greet.
+        render_action: faces @C01_NADIA across the table, lips moving, not gesturing.
+        render_label: weathered grey jacket, close-kept grey hair.
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: faces @C09_OTTO across the table, still, listening.
+    render_action: '@C09_OTTO and @C01_NADIA face each other across the folding table. @C09_OTTO lips move; @C01_NADIA is still, listening. Neither gestures.'
+    render_camera: Medium two-shot, static.
+    render_diegetic_audio: '@C09_OTTO speaks; dialogue audio suppressed (Format A).'
+  - shot_id: SHOT_SC0047_02_B
+    duration_seconds: 5
+    source_beat_ids:
+      - OTTO_PRODUCES_HANDSET
+    prompt_action: Otto produces the phone from a locked case beneath the table. A handset — industrial-grade, no manufacturer markings....
+    duration_reason: normal/action 5s
+    required_element_ids:
+      - C09
+      - PROP008
+    camera:
+      angle: eye_level
+      framing: medium
+      movement: static
+      lens_bias: the table, the locked case, Otto's hands, the handset being set down
+    lighting:
+      source: filtered_daylight
+      quality: soft
+      color_temp: cool
+      intensity: moderate
+    motion:
+      subject_intensity: 0.3
+      camera_intensity: 0.0
+      blocking_notes: Deliberate, practiced movement; the case is unlocked beneath the table; the handset is placed on the table between them.
+    figures:
+      - figure_id: FIG_OTTO
+        base_element_id: C09
+        kling_alias: '@C09_OTTO'
+        role: Otto, the quay contact
+        distinguishing_detail: Does not offer his hand; stands ready but does not greet.
+        render_action: lifts a locked case from beneath the table, opens it, removes @PROP008_HANDSET, and sets it on the table.
+        render_label: weathered grey jacket, close-kept grey hair.
+    render_action: '@C09_OTTO reaches beneath the folding table with both hands, lifts a locked case onto the table surface, and opens it. @C09_OTTO removes @PROP008_HANDSET — a plain industrial handset with no markings — and sets @PROP008_HANDSET on the table between them.'
+    render_camera: Medium shot on the table, static.
+    render_diegetic_audio: case latch opening; @PROP008_HANDSET placed on the table; room tone holds.
+  - shot_id: SHOT_SC0047_02_C
+    duration_seconds: 5
+    source_beat_ids:
+      - OTTO_HANDSET_INSERT
+      - OTTO_HE_SAID_YOUD_KNOW
+    prompt_action: 'Otto (CONT''D): ''He said you''d know the code.'' She does.'
+    duration_reason: OTTO_HANDSET_INSERT (short_insert merged fwd); normal/dialogue 3s
+    dialogue_line_ids:
+      - DLG_OTTO_YOUD_KNOW
+    required_element_ids:
+      - PROP008
+      - C09
+      - C01
+    camera:
+      angle: over_shoulder
+      framing: medium_close
+      movement: static
+      lens_bias: favor Otto speaking; Nadia's certainty in her response
+    lighting:
+      source: filtered_daylight
+      quality: soft
+      color_temp: cool
+      intensity: moderate
+    motion:
+      subject_intensity: 0.1
+      camera_intensity: 0.0
+    figures:
+      - figure_id: FIG_OTTO
+        base_element_id: C09
+        kling_alias: '@C09_OTTO'
+        role: Otto, the quay contact
+        distinguishing_detail: Does not offer his hand; stands ready but does not greet.
+        render_action: faces @C01_NADIA; lips move.
+        render_label: weathered grey jacket, close-kept grey hair.
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: faces @C09_OTTO across the table; lips move briefly in reply.
+    render_action: '@C09_OTTO and @C01_NADIA face each other across the table; @PROP008_HANDSET lies on the table between them. @C09_OTTO lips move; @C01_NADIA lips move in a brief reply. Neither picks up @PROP008_HANDSET.'
+    render_camera: Over-shoulder medium close on @C09_OTTO, static.
+    render_diegetic_audio: '@C09_OTTO and @C01_NADIA speak in sequence; dialogue audio suppressed (Format A).'
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: Generated by omni_clip_planner packer_version=rhythm_aware_v1
+notes: 'SC0047 v07 text-only literal pass (kling_literal_alias_locked): render_* fields authored for model-facing literal grammar; poetic prompt_action/lens_bias/diegetic_audio remain for human review only. Legacy element ID refs fixed: PROP047→PROP008, LOC001→LOC006.'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T10:43:15Z'
+  render_fields_added_by: claude_code (M5 v07 SC0047 literal pass)
+  render_fields_added_at: '2026-06-17T00:00:00Z'
 dialogue_line_ids:
-- DLG_OTTO_YOUD_COME
-- DLG_OTTO_YOUD_KNOW
+  - DLG_OTTO_YOUD_COME
+  - DLG_OTTO_YOUD_KNOW
 required_element_ids:
-- C09
-- C01
-- PROP047
+  - C09
+  - C01
+  - PROP008

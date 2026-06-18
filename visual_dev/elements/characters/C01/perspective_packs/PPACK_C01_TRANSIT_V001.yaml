@@ -1,8 +1,8 @@
-schema_version: "0.x-draft"
+﻿schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
 prompt_pack_id: PPACK_C01_TRANSIT_V001
 status: draft
-source_reference_id: "DUAL SEED. PRIMARY (geometry/pose/light/expression) = MJ_C01_OREFLOCK_V001 Stage-2 --oref lock (archive/nexuszero/_elements/C01/stage2/images/u9435212546_Same_woman_identical_face_-_early-to-mid_thirties_213e614e-8328-4a65-a5c8-30d4d983130f_2.png; sha256 11f6710e87285c24df07677d84e27478437f63da49cccd403f1673ea47dd573a). SECONDARY (skin tone, warmth, hair detail only) = MJ_C01_HERO_V001 Stage-1 hero (archive/nexuszero/_elements/C01/stage1/images/u9435212546_Natural_relaxed_portrait_of_a_warm_kind_gentle_wo_3aa0e83b-7f2d-44c5-9668-948f15f791a6_3.png; sha256 4d2ccc4f5a73a71f13c4fe75b53b14060621eb08b5a79e4563640dc4312d59eb). Take pose/framing/neutral light from PRIMARY; take only skin tone + warmth + hair texture from SECONDARY."
+source_reference_id: "DUAL SEED. PRIMARY (geometry/pose/light/expression) = MJ_C01_OREFLOCK_V001 Stage-2 --oref lock (archive/closing_price/_elements/C01/stage2/images/u9435212546_Same_woman_identical_face_-_early-to-mid_thirties_213e614e-8328-4a65-a5c8-30d4d983130f_2.png; sha256 11f6710e87285c24df07677d84e27478437f63da49cccd403f1673ea47dd573a). SECONDARY (skin tone, warmth, hair detail only) = MJ_C01_HERO_V001 Stage-1 hero (archive/closing_price/_elements/C01/stage1/images/u9435212546_Natural_relaxed_portrait_of_a_warm_kind_gentle_wo_3aa0e83b-7f2d-44c5-9668-948f15f791a6_3.png; sha256 4d2ccc4f5a73a71f13c4fe75b53b14060621eb08b5a79e4563640dc4312d59eb). Take pose/framing/neutral light from PRIMARY; take only skin tone + warmth + hair texture from SECONDARY."
 target_model: chatgpt_images_2
 target_role: multi_perspective_element_expander
 element_id: C01
@@ -13,13 +13,13 @@ shared_preservation_instruction: >
   Use the two references: take pose, framing and neutral light from the PRIMARY
   (Stage-2 lock); take only skin tone, warmth and hair texture from the SECONDARY
   (Stage-1 hero). Do not copy the Stage-1 light/angle/background.
-  Preserve the locked Nadia identity exactly across all four views — same warm,
+  Preserve the locked Nadia identity exactly across all four views â€” same warm,
   soft-structured face from the seed: soft rounded face shape, gently rounded jawline,
   full soft cheeks, gentle features, warm large almond eyes, soft full lips, small soft
   nose, light natural freckles; early-to-mid 30s; slim healthy build; dark hair in
   practical restraint for travel. Her warmth and face geometry stay constant; the
   transit register shows ONLY in the anonymous wardrobe and a calm, composed, slightly
-  travel-weary but warm expression — trying to read as unremarkable, still human and
+  travel-weary but warm expression â€” trying to read as unremarkable, still human and
   present. Same SC0047 transit-anonymous wardrobe (WD012: unremarkable jacket over muted
   layer, durable trousers, practical footwear) in every view. Change only camera scale
   and angle, never the person or the garments. Natural restrained realism; not angular,
@@ -63,10 +63,10 @@ prompts:
   - prompt_id: PPACK_C01_TRANSIT_V001__close_portrait_front
     perspective: close_portrait_front
     prompt_text: >
-      Close front portrait, chest-up, of the same locked reference woman — full frontal
+      Close front portrait, chest-up, of the same locked reference woman â€” full frontal
       face for identity lock. Soft rounded face, full soft cheeks, warm large almond
       eyes, soft full lips, light freckles; dark hair in practical restraint for travel;
-      calm, composed, slightly travel-weary but warm expression — human and present, not
+      calm, composed, slightly travel-weary but warm expression â€” human and present, not
       cold. Exact face geometry from the seed. Even soft light, neutral clean background.
       Preserve identity exactly; not angular, no sharp cheekbones, not cold, not stern,
       no glamour, no redesign, no text, no watermark.

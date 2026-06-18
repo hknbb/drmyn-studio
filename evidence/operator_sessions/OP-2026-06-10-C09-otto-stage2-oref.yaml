@@ -1,10 +1,10 @@
-session_id: OP-2026-06-10-C09-otto-stage2-oref
+﻿session_id: OP-2026-06-10-C09-otto-stage2-oref
 created_at: "2026-06-10T00:00:00Z"
 scene_id: SC0047
 current_task: "C09 Otto Stage-2 MJ V7 --oref identity lock selection from O2 batch"
 status: complete
 recommended_files:
-  - archive/nexuszero/_elements/C09/stage2/images/ott_2.png
+  - archive/closing_price/_elements/C09/stage2/images/ott_2.png
   - visual_dev/elements/characters/C09/identity_anchor.yaml
   - visual_dev/elements/characters/C09/perspective_packs/PPACK_C09_QUAY_V001.yaml
 recommended_steps:

@@ -1,4 +1,4 @@
-prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-02-safe__v01
+﻿prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-02-safe__v01
 scene_id: SC0014
 prompt_type: omni_instruction
 lifecycle_stage: deprecated
@@ -9,11 +9,11 @@ source_refs:
   scene_excerpt: planning/scenes/SC0014/scene_excerpt.md
 prompt_text: 'Kling Omni element-based clip; duration 11s. Active elements: @C01_NADIA, @C08_JIN, @LOC001_NURSERY. Direct
   action and camera; @elements carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity, restrained
-  camera language, and conservative execution. Figures: exactly 2 distinct figure(s) — @C01_NADIA, @C08_JIN (Infant; pale
+  camera language, and conservative execution. Figures: exactly 2 distinct figure(s) â€” @C01_NADIA, @C08_JIN (Infant; pale
   blue name bracelet on wrist.). No additional, extra, or duplicated people; do not clone or multiply any figure. Continue
   from previous clip: Nadia is in the chair holding Jin, awake; not rocking, just holding; door closed.; camera medium_close.
   [00:00 - 00:04] Medium shot: The nursery holds warm and quiet around the chair by the crib. @C01_NADIA sits in the chair
-  holding @C08_JIN, awake — not rocking, just holding, as if holding something she is about to lose. @C08_JIN rests awake
+  holding @C08_JIN, awake â€” not rocking, just holding, as if holding something she is about to lose. @C08_JIN rests awake
   in @C01_NADIA''s arms, calm and fully supported. The frame holds steady; intimate two-shot, mother and child in the chair.
   Audio: low warm room tone; soft, even infant breathing. [00:04 - 00:07] Insert: Room tone holds soft around them. @C01_NADIA
   closes her hands complete around @C08_JIN, careful, unloosening. @C08_JIN stays cradled in @C01_NADIA''s arms, calm. The
@@ -46,7 +46,7 @@ generation_params:
   - '@C08_JIN'
   - '@LOC001_NURSERY'
   input_mode: anchored_i2v
-  start_frame_ref: archive/nexuszero/SC0014/shots/SC0014_03_clip-sc0014-01_shot-sc0014-01-c.png
+  start_frame_ref: archive/closing_price/SC0014/shots/SC0014_03_clip-sc0014-01_shot-sc0014-01-c.png
   visual_input_budget:
     total: 7
     start_frame: 1

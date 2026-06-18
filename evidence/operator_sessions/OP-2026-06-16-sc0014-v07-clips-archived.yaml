@@ -1,4 +1,4 @@
-session_id: OP-2026-06-16-sc0014-v07-clips-archived
+﻿session_id: OP-2026-06-16-sc0014-v07-clips-archived
 created_at: "2026-06-16T00:00:00Z"
 scene_id: SC0014
 current_task: "Archive 8 operator-generated Kling Omni v07 clips (metadata-only, no QC yet)"
@@ -7,32 +7,32 @@ recommended_files:
   - scripts/archive_media.py
   - docs/operator_guides/kling_omni_generation_playbook.md
 recommended_steps:
-  - "Klipleri izle; her klip için status (selected/candidate/rejected/needs_revision) + reason ver."
-  - "Her klip için 5 kalite skoru (identity_consistency, source_grounding, style_compliance, continuity, production_usability; 1-5) ver."
+  - "Klipleri izle; her klip iÃ§in status (selected/candidate/rejected/needs_revision) + reason ver."
+  - "Her klip iÃ§in 5 kalite skoru (identity_consistency, source_grounding, style_compliance, continuity, production_usability; 1-5) ver."
   - "scripts/agents/run_pipeline.py --mode review-video-takes ile video_takes.yaml + review notes yaz."
 status: complete
 notes: >
-  Operatör SC0014'ün 8 v07 text_only Kling Omni klibini ürettiğini bildirdi
-  (C:\Users\babac\drmyn-studio-images\SC0014\1.mp4 .. 8.mp4, klip numarasına göre
-  adlandırıldı). QC kararı (status/kalite skoru) henüz verilmedi; operatör "sadece
-  dosyala, QC sonra" seçeneğini seçti.
+  OperatÃ¶r SC0014'Ã¼n 8 v07 text_only Kling Omni klibini Ã¼rettiÄŸini bildirdi
+  (C:\Users\babac\drmyn-studio-images\SC0014\1.mp4 .. 8.mp4, klip numarasÄ±na gÃ¶re
+  adlandÄ±rÄ±ldÄ±). QC kararÄ± (status/kalite skoru) henÃ¼z verilmedi; operatÃ¶r "sadece
+  dosyala, QC sonra" seÃ§eneÄŸini seÃ§ti.
 
-  archive_media.py'nin --subdir seçeneği yalnızca shots/contact_sheets kabul ediyordu;
-  v07 still/contact-sheet üretmediği için klip çıktıları için yeni bir "clips"
+  archive_media.py'nin --subdir seÃ§eneÄŸi yalnÄ±zca shots/contact_sheets kabul ediyordu;
+  v07 still/contact-sheet Ã¼retmediÄŸi iÃ§in klip Ã§Ä±ktÄ±larÄ± iÃ§in yeni bir "clips"
   scene-level subdir eklendi (script: scripts/archive_media.py). Bu, var olan
   shots/contact_sheets konvansiyonuna paralel.
 
-  8 klip archive_media.py ile archive/nexuszero/SC0014/clips/{1..8}.mp4 olarak
-  (git-ignored, repo_binary_committed: false) arşivlendi ve
+  8 klip archive_media.py ile archive/closing_price/SC0014/clips/{1..8}.mp4 olarak
+  (git-ignored, repo_binary_committed: false) arÅŸivlendi ve
   evidence/local_media_indices/LOCAL_MEDIA_INDEX_SC0014_ARCHIVE_V001.yaml'e
   kind=kling_omni_v07_text_only_take, id=CLIP_SC0014_0N_v07_take01 olarak
-  metadata-only kayıt girildi (sha256 + size_bytes dahil).
+  metadata-only kayÄ±t girildi (sha256 + size_bytes dahil).
 
-  Bu adım Batch 8.5 "review-video-takes" akışının (video_take_review.py,
-  scripts/agents/run_pipeline.py --mode review-video-takes) ÖNÜNDE bir ön-dosyalama
-  adımıdır — video_takes.yaml henüz yazılmadı çünkü o akış per-take status + 5
-  kalite skoru (insan QC kararı) gerektiriyor ve bunlar izleme gerektirir.
-  tests/test_archive_media.py (4 test) yeni subdir seçeneğiyle hâlâ geçiyor.
+  Bu adÄ±m Batch 8.5 "review-video-takes" akÄ±ÅŸÄ±nÄ±n (video_take_review.py,
+  scripts/agents/run_pipeline.py --mode review-video-takes) Ã–NÃœNDE bir Ã¶n-dosyalama
+  adÄ±mÄ±dÄ±r â€” video_takes.yaml henÃ¼z yazÄ±lmadÄ± Ã§Ã¼nkÃ¼ o akÄ±ÅŸ per-take status + 5
+  kalite skoru (insan QC kararÄ±) gerektiriyor ve bunlar izleme gerektirir.
+  tests/test_archive_media.py (4 test) yeni subdir seÃ§eneÄŸiyle hÃ¢lÃ¢ geÃ§iyor.
 
-  PROJECT_STATE.md güncellendi: Türkçe özet, Active Scene Work, Next Steps #1,
-  Session Log. Hiçbir binary commit edilmedi; hiçbir lifecycle alanı değiştirilmedi.
+  PROJECT_STATE.md gÃ¼ncellendi: TÃ¼rkÃ§e Ã¶zet, Active Scene Work, Next Steps #1,
+  Session Log. HiÃ§bir binary commit edilmedi; hiÃ§bir lifecycle alanÄ± deÄŸiÅŸtirilmedi.

@@ -1,4 +1,4 @@
-prompt_id: SC0014__still-01__v01
+﻿prompt_id: SC0014__still-01__v01
 scene_id: SC0014
 prompt_type: still_generation
 lifecycle_stage: deprecated
@@ -8,7 +8,7 @@ source_refs:
   scene_card: planning/scenes/SC0014/scene_card.yaml
   scene_excerpt: planning/scenes/SC0014/manifests/CLIP_SC0014_01_manifest.yaml
 prompt_text: 'Generate a cinematic still photograph for a establish shot. Framing: wide shot, eye_level angle (wide-ish, gentle).
-  Action/subject: A small nursery in , made carefully — soft warm light, a crib, a chair, the deliberate warmth of a room
+  Action/subject: A small nursery in , made carefully â€” soft warm light, a crib, a chair, the deliberate warmth of a room
   that means something. No people foregrounded yet; the room is the protected center. Lighting: practical source, soft quality,
   warm tone. Visual anchors (identity reference): Locked  nursery: small carefully-made room, crib + low shelf + nursing chair,
   soft warm evening practicals.. Style: grounded dramatic realism, photorealistic, warm practical lighting, subtle film grain.
@@ -26,7 +26,7 @@ generation_params:
   shot_order_index: 1
   archive_filename: SC0014_01_clip-sc0014-01_shot-sc0014-01-a.png
   input_reference_images:
-  - archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_1.png
+  - archive/closing_price/_elements/LOC001/stage3/images/loc001_3_1.png
   protected_subject_flags: []
   repo_binary_committed: false
   external_generation_required: true

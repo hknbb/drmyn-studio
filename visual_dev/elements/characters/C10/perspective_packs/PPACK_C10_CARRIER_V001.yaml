@@ -1,8 +1,8 @@
-schema_version: "0.x-draft"
+﻿schema_version: "0.x-draft"
 record_type: gpt_images_perspective_pack
 prompt_pack_id: PPACK_C10_CARRIER_V001
 status: draft
-source_reference_id: "DUAL SEED for @C10_CARRIER. PRIMARY (geometry/pose/light) = MJ_C10_CARRIER_OREFLOCK_V001 Stage-2 lock (archive/nexuszero/_elements/C10/stage2/images/car_5.png; sha256 8ea76c35bdb33fa5071f880af0156b594f30f8674659e54ce1905b7fbec136c8). SECONDARY (skin tone/hair texture) = MJ_C10_CARRIER_HERO_V001 Stage-1 hero (archive/nexuszero/_elements/C10/stage1/images/car_1.png; sha256 9e7306e4a47ef164562822fd06e0d14804cf7b8412df05981c6671a54009e6aa)."
+source_reference_id: "DUAL SEED for @C10_CARRIER. PRIMARY (geometry/pose/light) = MJ_C10_CARRIER_OREFLOCK_V001 Stage-2 lock (archive/closing_price/_elements/C10/stage2/images/car_5.png; sha256 8ea76c35bdb33fa5071f880af0156b594f30f8674659e54ce1905b7fbec136c8). SECONDARY (skin tone/hair texture) = MJ_C10_CARRIER_HERO_V001 Stage-1 hero (archive/closing_price/_elements/C10/stage1/images/car_1.png; sha256 9e7306e4a47ef164562822fd06e0d14804cf7b8412df05981c6671a54009e6aa)."
 target_model: chatgpt_images_2
 target_role: multi_perspective_element_expander
 element_id: C10
@@ -12,7 +12,7 @@ full_body_visible: true
 shared_preservation_instruction: >
   Use the two references: pose/framing/light from the PRIMARY (Stage-2 lock), skin tone
   and hair texture only from the SECONDARY (Stage-1 hero). This is the @C10_CARRIER figure
-  — an anonymous adult enforcement operative, heavier/stockier build, buzzed very-short
+  â€” an anonymous adult enforcement operative, heavier/stockier build, buzzed very-short
   hair, goatee. Keep him visibly DISTINCT from the leaner @C10_HOLDER figure (anti-clone).
   Plain dark functional clothing (WD009, no insignia, no tactical rig); professional
   neutral demeanor; interchangeable procedural functionary, not a hero. Change only camera
@@ -54,7 +54,7 @@ prompts:
   - prompt_id: PPACK_C10_CARRIER_V001__close_portrait_front
     perspective: close_portrait_front
     prompt_text: >
-      Close front portrait, chest-up, of the same @C10_CARRIER operative — full frontal
+      Close front portrait, chest-up, of the same @C10_CARRIER operative â€” full frontal
       face for identity lock. Buzzed very-short hair, goatee, unremarkable face geometry,
       neutral procedural demeanor. Even soft light, neutral clean background. Preserve
       identity exactly; no insignia, no redesign, no text, no watermark.

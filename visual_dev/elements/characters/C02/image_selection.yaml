@@ -1,12 +1,12 @@
-element_id: C02
+﻿element_id: C02
 element_type: character
 selection_round: 1
 source_prompt_ids:
   - SC0111__t2i-char-c02-identity-mj-v8__v01
 candidate_images:
   - asset_id: PPACK_C02_COMPOUND_V001__full_body_front
-    path: "archive/nexuszero/_elements/C02/stage3/images/rom_3_1.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C02/stage3/images/rom_3_1.png"
+    path: "archive/closing_price/_elements/C02/stage3/images/rom_3_1.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/C02/stage3/images/rom_3_1.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 full_body_front for @C02_ROMAN; head-to-toe, dark olive green tailored suit, off-white shirt, black shoes, tall centered silhouette, institutional gravity. QC 95."
@@ -17,8 +17,8 @@ candidate_images:
       continuity: 5
       production_usability: 5
   - asset_id: PPACK_C02_COMPOUND_V001__three_quarter_waist
-    path: "archive/nexuszero/_elements/C02/stage3/images/rom_3_2.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C02/stage3/images/rom_3_2.png"
+    path: "archive/closing_price/_elements/C02/stage3/images/rom_3_2.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/C02/stage3/images/rom_3_2.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 three_quarter_waist for @C02_ROMAN; 30-45 deg turn, dark olive green suit + off-white shirt, identity and wardrobe consistent. QC 90."
@@ -29,8 +29,8 @@ candidate_images:
       continuity: 5
       production_usability: 4
   - asset_id: PPACK_C02_COMPOUND_V001__close_portrait_front
-    path: "archive/nexuszero/_elements/C02/stage3/images/rom_3_3.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C02/stage3/images/rom_3_3.png"
+    path: "archive/closing_price/_elements/C02/stage3/images/rom_3_3.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/C02/stage3/images/rom_3_3.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 close_portrait_front for @C02_ROMAN; frontal identity lock, sharp angular face, slicked-back dark hair with grey temples, light stubble, institutional gravity. QC 89."
@@ -41,8 +41,8 @@ candidate_images:
       continuity: 5
       production_usability: 4
   - asset_id: PPACK_C02_COMPOUND_V001__profile_full
-    path: "archive/nexuszero/_elements/C02/stage3/images/rom_3_4.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C02/stage3/images/rom_3_4.png"
+    path: "archive/closing_price/_elements/C02/stage3/images/rom_3_4.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/C02/stage3/images/rom_3_4.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 profile_full for @C02_ROMAN; clean 90 deg lateral, full silhouette, dark olive green suit + black shoes, tall controlled build confirmed. QC 91."

@@ -7,74 +7,85 @@ source_dialogue_beats_ref: planning/scenes/SC0047/dialogue_beats.yaml
 total_duration_seconds: 10
 continuity_input_mode: frame_input_eligible
 shots:
-- shot_id: SHOT_SC0047_03_A
-  duration_seconds: 5
-  source_beat_ids:
-  - OTTO_MOVES_TO_WINDOW
-  prompt_action: Otto moves to the far end of the room. He turns his back. He looks out the high window at the grey water. This is the...
-  duration_reason: normal/action 5s
-  required_element_ids:
-  - C09
-  - LOC001
-  camera:
-    angle: eye_level
-    framing: medium_wide
-    movement: tracking
-    lens_bias: Otto's movement to the window; the high window and grey water framed behind him
-  lighting:
-    source: filtered_daylight
-    quality: soft
-    color_temp: cool
-    intensity: moderate
-  motion:
-    subject_intensity: 0.4
-    camera_intensity: 0.2
-    blocking_notes: Otto walks to the far end; turns to face the window; settles into profile against the high window and quay.
-  figures:
-  - figure_id: FIG_OTTO
-    base_element_id: C09
-    kling_alias: '@C09_OTTO'
-    role: Otto, the quay contact
-    distinguishing_detail: Does not offer his hand; stands ready but does not greet.
-- shot_id: SHOT_SC0047_03_B
-  duration_seconds: 5
-  source_beat_ids:
-  - NADIA_ENTERS_CODE
-  prompt_action: 'Nadia enters the access code: 7-3-1-1-4. The phone activates. A single audio file. No label. She presses play. The co...'
-  duration_reason: normal/action 5s
-  required_element_ids:
-  - C01
-  - PROP047
-  camera:
-    angle: eye_level
-    framing: close
-    movement: rack_focus
-    lens_bias: Nadia's hands and face; code entry and activation
-  lighting:
-    source: filtered_daylight
-    quality: soft
-    color_temp: cool
-    intensity: moderate
-  motion:
-    subject_intensity: 0.2
-    camera_intensity: 0.2
-    blocking_notes: Nadia's fingers on the handset; deliberate, controlled motion; the device activates silently.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
+  - shot_id: SHOT_SC0047_03_A
+    duration_seconds: 5
+    source_beat_ids:
+      - OTTO_MOVES_TO_WINDOW
+    prompt_action: Otto moves to the far end of the room. He turns his back. He looks out the high window at the grey water. This is the...
+    duration_reason: normal/action 5s
+    required_element_ids:
+      - C09
+      - LOC006
+    camera:
+      angle: eye_level
+      framing: medium_wide
+      movement: tracking
+      lens_bias: Otto's movement to the window; the high window and grey water framed behind him
+    lighting:
+      source: filtered_daylight
+      quality: soft
+      color_temp: cool
+      intensity: moderate
+    motion:
+      subject_intensity: 0.4
+      camera_intensity: 0.2
+      blocking_notes: Otto walks to the far end; turns to face the window; settles into profile against the high window and quay.
+    figures:
+      - figure_id: FIG_OTTO
+        base_element_id: C09
+        kling_alias: '@C09_OTTO'
+        role: Otto, the quay contact
+        distinguishing_detail: Does not offer his hand; stands ready but does not greet.
+        render_action: turns from the table, walks to the high window, stops facing the glass.
+        render_label: weathered grey jacket, close-kept grey hair.
+    render_action: '@C09_OTTO turns from the folding table and walks to the far end of @LOC006_QUAY. @C09_OTTO stops at the high window, turns to face the glass, and holds still there.'
+    render_camera: Medium-wide shot tracking @C09_OTTO to the window, settling static.
+    render_diegetic_audio: footsteps on concrete; room tone; water sound from beyond the high window.
+  - shot_id: SHOT_SC0047_03_B
+    duration_seconds: 5
+    source_beat_ids:
+      - NADIA_ENTERS_CODE
+    prompt_action: 'Nadia enters the access code: 7-3-1-1-4. The phone activates. A single audio file. No label. She presses play. The co...'
+    duration_reason: normal/action 5s
+    required_element_ids:
+      - C01
+      - PROP008
+    camera:
+      angle: eye_level
+      framing: close
+      movement: rack_focus
+      lens_bias: Nadia's hands and face; code entry and activation
+    lighting:
+      source: filtered_daylight
+      quality: soft
+      color_temp: cool
+      intensity: moderate
+    motion:
+      subject_intensity: 0.2
+      camera_intensity: 0.2
+      blocking_notes: Nadia's fingers on the handset; deliberate, controlled motion; the device activates silently.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: picks up @PROP008_HANDSET, presses five digits, then presses play.
+    render_action: "@C01_NADIA stands at the folding table; @PROP008_HANDSET is on the table. @C01_NADIA's fingers press the keypad — five keystrokes. @PROP008_HANDSET screen activates. @C01_NADIA presses the play button."
+    render_camera: Close shot on @C01_NADIA face and hands, rack focus.
+    render_diegetic_audio: keypad tones; a soft electronic activation chime from @PROP008_HANDSET.
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: Generated by omni_clip_planner packer_version=rhythm_aware_v1
+notes: 'SC0047 v07 text-only literal pass (kling_literal_alias_locked): render_* fields authored for model-facing literal grammar; poetic prompt_action/lens_bias/diegetic_audio remain for human review only. Legacy element ID refs fixed: PROP047→PROP008, LOC001→LOC006.'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T10:43:15Z'
+  render_fields_added_by: claude_code (M5 v07 SC0047 literal pass)
+  render_fields_added_at: '2026-06-17T00:00:00Z'
 required_element_ids:
-- C09
-- LOC001
-- C01
-- PROP047
+  - C09
+  - LOC006
+  - C01
+  - PROP008

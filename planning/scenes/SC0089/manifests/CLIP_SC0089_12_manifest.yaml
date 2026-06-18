@@ -7,80 +7,94 @@ source_dialogue_beats_ref: planning/scenes/SC0089/dialogue_beats.yaml
 total_duration_seconds: 14
 continuity_input_mode: frame_input_eligible
 shots:
-- shot_id: SHOT_SC0089_12_A
-  duration_seconds: 8
-  source_beat_ids:
-  - ZARA_HOW
-  - NADIA_EXPLAINS_SEAM
-  prompt_action: 'NADIA: ''The seam. It''s absorbing vibration it shouldn''t. Someone''s weight on the other side.'' She is explaining the r...'
-  duration_reason: ZARA_HOW (short_insert merged fwd); normal/dialogue 6s
-  dialogue_line_ids:
-  - DLG_ZARA_HOW_CUT
-  - DLG_NADIA_SEAM
-  required_element_ids:
-  - C06
-  - C01
-  camera:
-    angle: eye_level
-    framing: medium_close
-    movement: static
-    lens_bias: Nadia, hand still on seam; technical explanation
-  lighting:
-    source: practical
-    quality: hard
-    color_temp: cool
-    intensity: bright
-  motion:
-    subject_intensity: 0.05
-    camera_intensity: 0.0
-  figures:
-  - figure_id: FIG_ZARA
-    base_element_id: C06
-    kling_alias: '@C06_ZARA'
-    role: Zara, operative ally
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-- shot_id: SHOT_SC0089_12_B
-  duration_seconds: 6
-  source_beat_ids:
-  - ZARA_LOOKS_NORTH
-  prompt_action: A moment. Zara looks north at the junction. One hundred meters. The drainage cut is visible as a shadow against the e...
-  duration_reason: normal/hold 6s
-  required_element_ids:
-  - C06
-  camera:
-    angle: eye_level
-    framing: medium_close
-    movement: static
-    lens_bias: Zara looking toward junction; drainage cut as dark line at embankment base
-  lighting:
-    source: practical
-    quality: hard
-    color_temp: cool
-    intensity: moderate
-  motion:
-    subject_intensity: 0.1
-    camera_intensity: 0.0
-    blocking_notes: Zara's gaze tracking the distance and the cut. The calculation is visible via attention and stillness.
-  figures:
-  - figure_id: FIG_ZARA
-    base_element_id: C06
-    kling_alias: '@C06_ZARA'
-    role: Zara, operative ally
+  - shot_id: SHOT_SC0089_12_A
+    duration_seconds: 8
+    source_beat_ids:
+      - ZARA_HOW
+      - NADIA_EXPLAINS_SEAM
+    prompt_action: 'NADIA: ''The seam. It''s absorbing vibration it shouldn''t. Someone''s weight on the other side.'' She is explaining the r...'
+    duration_reason: ZARA_HOW (short_insert merged fwd); normal/dialogue 6s
+    dialogue_line_ids:
+      - DLG_ZARA_HOW_CUT
+      - DLG_NADIA_SEAM
+    required_element_ids:
+      - C06
+      - C01
+    camera:
+      angle: eye_level
+      framing: medium_close
+      movement: static
+      lens_bias: Nadia, hand still on seam; technical explanation
+    lighting:
+      source: practical
+      quality: hard
+      color_temp: cool
+      intensity: bright
+    motion:
+      subject_intensity: 0.05
+      camera_intensity: 0.0
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: '@C06_ZARA'
+        role: Zara, operative ally
+        render_action: "@C06_ZARA's mouth opens, then closes, listening to @C01_NADIA."
+        render_label: khaki-olive jacket, field-night build.
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: '@C01_NADIA hand on seam, lips move at low volume explaining.'
+        render_label: dark field jacket, night-transit build.
+    render_action: "@C06_ZARA's mouth opens. @C01_NADIA's hand presses the seam once more — the answer delivered through touch before words. @C01_NADIA's lips move low, explaining. @C06_ZARA listens, still."
+    render_camera: Medium-close static. @C01_NADIA hand on seam dominant. @C06_ZARA behind.
+    render_diegetic_audio: '[FORMAT A — no native voice] Night ambient.'
+  - shot_id: SHOT_SC0089_12_B
+    duration_seconds: 6
+    source_beat_ids:
+      - ZARA_LOOKS_NORTH
+    prompt_action: A moment. Zara looks north at the junction. One hundred meters. The drainage cut is visible as a shadow against the e...
+    duration_reason: normal/hold 6s
+    required_element_ids:
+      - C06
+    camera:
+      angle: eye_level
+      framing: medium_close
+      movement: static
+      lens_bias: Zara looking toward junction; drainage cut as dark line at embankment base
+    lighting:
+      source: practical
+      quality: hard
+      color_temp: cool
+      intensity: moderate
+    motion:
+      subject_intensity: 0.1
+      camera_intensity: 0.0
+      blocking_notes: Zara's gaze tracking the distance and the cut. The calculation is visible via attention and stillness.
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: '@C06_ZARA'
+        role: Zara, operative ally
+        render_action: '@C06_ZARA turns head north, gaze holds junction distance and drainage cut gap.'
+        render_label: khaki-olive jacket, field-night build.
+    render_action: "@C06_ZARA turns head left-to-right (north). @C06_ZARA's gaze holds the junction 100 meters ahead. Drainage cut visible as a dark horizontal gap at the base of the embankment."
+    render_camera: Medium-close static. @C06_ZARA right-of-frame. Junction depth behind.
+    render_diegetic_audio: Night wind. No voices.
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: Generated by omni_clip_planner packer_version=rhythm_aware_v1
+notes: 'SC0089 v07 text-only literal pass (kling_literal_alias_locked): render_* fields authored for model-facing literal grammar; poetic prompt_action/lens_bias remain for human review only. Legacy element ID refs fixed: LOC001→LOC005.'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T10:47:13Z'
+  render_fields_added_by: claude_code (M5 v07 SC0089 literal pass)
+  render_fields_added_at: '2026-06-17T00:00:00Z'
 dialogue_line_ids:
-- DLG_ZARA_HOW_CUT
-- DLG_NADIA_SEAM
+  - DLG_ZARA_HOW_CUT
+  - DLG_NADIA_SEAM
 required_element_ids:
-- C06
-- C01
+  - C06
+  - C01

@@ -1,4 +1,4 @@
-prompt_id: SC0014__still-21__v01
+﻿prompt_id: SC0014__still-21__v01
 scene_id: SC0014
 prompt_type: still_generation
 lifecycle_stage: deprecated
@@ -9,7 +9,7 @@ source_refs:
   scene_excerpt: planning/scenes/SC0014/manifests/CLIP_SC0014_08_manifest.yaml
 prompt_text: 'Generate a cinematic still photograph for a detail shot. Framing: close shot, insert angle (macro on the open,
   empty hand). Scene state: Nadia center, alone; her hand open and empty at her side; the crib empty.. Action/subject: hand
-  — the one that held the bracelet — open at her side, empty. Lighting: practical source, soft quality, warm tone. Visual
+  â€” the one that held the bracelet â€” open at her side, empty. Lighting: practical source, soft quality, warm tone. Visual
   anchors (identity reference): Locked Nadia identity: soft rounded face, gently rounded jaw, full soft cheeks, warm large
   almond eyes, soft full lips, small soft nose, light freckles; early-to-mid 30s. Soft face geometry held const | Locked Nadia
   identity: soft rounded face, gently rounded jaw, full soft cheeks, warm large almond eyes, soft full lips, small soft nose,
@@ -31,15 +31,15 @@ generation_params:
   shot_order_index: 21
   archive_filename: SC0014_21_clip-sc0014-08_shot-sc0014-08-b.png
   input_reference_images:
-  - archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_47.png
-  - archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_55.png
-  - archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_28.png
-  - archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_18.png
-  - archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_28_02.png
-  - archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_27_53.png
-  - archive/nexuszero/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_30_00.png
-  - archive/nexuszero/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_34_52.png
-  - archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_1.png
+  - archive/closing_price/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_47.png
+  - archive/closing_price/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_55.png
+  - archive/closing_price/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_28.png
+  - archive/closing_price/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_18.png
+  - archive/closing_price/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_28_02.png
+  - archive/closing_price/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_27_53.png
+  - archive/closing_price/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_30_00.png
+  - archive/closing_price/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_34_52.png
+  - archive/closing_price/_elements/LOC001/stage3/images/loc001_3_1.png
   protected_subject_flags: []
   repo_binary_committed: false
   external_generation_required: true

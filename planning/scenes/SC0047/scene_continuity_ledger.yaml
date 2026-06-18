@@ -16,171 +16,189 @@ clip_chain:
     entry_state:
       summary: "Converted freight bay, cold quay morning; high window with grey water; Otto already waiting, screen right."
       key_positions:
-        - { subject: Otto, screen_position: right }
-      camera_state: { shot_size: wide, angle: eye_level, movement: static, subject_screen_position: right }
+        - {subject: Otto, screen_position: right}
+      camera_state: {shot_size: wide, angle: eye_level, movement: static, subject_screen_position: right}
       screen_direction: neutral
     exit_state:
       summary: "Otto stands by the table, screen right; the bay is established; Nadia has arrived, screen center."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Otto, screen_position: right }
-      camera_state: { shot_size: medium_wide, angle: eye_level, movement: static, subject_screen_position: center }
+        - {subject: Nadia, screen_position: center}
+        - {subject: Otto, screen_position: right}
+      camera_state: {shot_size: medium_wide, angle: eye_level, movement: static, subject_screen_position: center}
       screen_direction: neutral
-    frame_continuity: { from_clip_id: CLIP_SC0047_01, to_clip_id: CLIP_SC0047_02, continuity_input_mode: frame_input_eligible }
+    frame_continuity: {from_clip_id: CLIP_SC0047_01, to_clip_id: CLIP_SC0047_02, continuity_input_mode: frame_input_eligible}
+    render_start_state: '@LOC006_QUAY empty; high window with grey water visible outside; no figures in frame.'
+    render_end_state: '@C01_NADIA inside the doorway; @C09_OTTO near the table; the freight bay established.'
   - clip_id: CLIP_SC0047_02
     order: 2
     entry_state:
       summary: "Otto (right) speaks and produces the unmarked handset from the locked case, setting it on the table; Nadia center."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Otto, screen_position: right }
+        - {subject: Nadia, screen_position: center}
+        - {subject: Otto, screen_position: right}
       props_state:
-        - { prop: handset, state: "produced from locked case, set on the table between them" }
-      camera_state: { shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center }
+        - {prop: handset, state: "produced from locked case, set on the table between them"}
+      camera_state: {shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center}
       screen_direction: neutral
     exit_state:
       summary: "The handset sits on the table (center); Otto has said she'll know the code; Nadia center, Otto right."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Otto, screen_position: right }
+        - {subject: Nadia, screen_position: center}
+        - {subject: Otto, screen_position: right}
       props_state:
-        - { prop: handset, state: "on the table, unactivated" }
-      camera_state: { shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center }
+        - {prop: handset, state: "on the table, unactivated"}
+      camera_state: {shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center}
       screen_direction: neutral
-    frame_continuity: { from_clip_id: CLIP_SC0047_02, to_clip_id: CLIP_SC0047_03, continuity_input_mode: metadata_only }
+    frame_continuity: {from_clip_id: CLIP_SC0047_02, to_clip_id: CLIP_SC0047_03, continuity_input_mode: metadata_only}
+    render_start_state: '@C01_NADIA inside the doorway; @C09_OTTO near the table, facing her.'
+    render_end_state: '@PROP008_HANDSET on the table between @C09_OTTO and @C01_NADIA; neither has picked it up.'
   - clip_id: CLIP_SC0047_03
     order: 3
     entry_state:
       summary: "Otto moves to the far end and turns his back to the high window (right), giving Nadia privacy; Nadia at the table, center."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Otto, screen_position: right }
+        - {subject: Nadia, screen_position: center}
+        - {subject: Otto, screen_position: right}
       props_state:
-        - { prop: handset, state: "on the table" }
-      camera_state: { shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center }
+        - {prop: handset, state: "on the table"}
+      camera_state: {shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center}
       screen_direction: neutral
     exit_state:
       summary: "Nadia enters the code 7-3-1-1-4; the handset activates with a single audio file; Otto at the window, right."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Otto, screen_position: right }
+        - {subject: Nadia, screen_position: center}
+        - {subject: Otto, screen_position: right}
       props_state:
-        - { prop: handset, state: "activated; single unlabeled audio file ready" }
-      camera_state: { shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center }
+        - {prop: handset, state: "activated; single unlabeled audio file ready"}
+      camera_state: {shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center}
       screen_direction: neutral
-    frame_continuity: { from_clip_id: CLIP_SC0047_03, to_clip_id: CLIP_SC0047_04, continuity_input_mode: frame_input_eligible }
+    frame_continuity: {from_clip_id: CLIP_SC0047_03, to_clip_id: CLIP_SC0047_04, continuity_input_mode: frame_input_eligible}
+    render_start_state: '@PROP008_HANDSET on the table; @C09_OTTO on one side, @C01_NADIA on the other side.'
+    render_end_state: '@C01_NADIA holding @PROP008_HANDSET with audio active; @C09_OTTO at the far-end window, back to the room.'
   - clip_id: CLIP_SC0047_04
     order: 4
     entry_state:
       summary: "A beat of wind ambient, then Marcus's recorded voice begins (offscreen); Nadia listens, center; Otto at window, right."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Otto, screen_position: right }
-      camera_state: { shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center }
+        - {subject: Nadia, screen_position: center}
+        - {subject: Otto, screen_position: right}
+      camera_state: {shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center}
       screen_direction: neutral
       offscreen: [Marcus]
     exit_state:
       summary: "Marcus's opening message lands; Nadia does not stop it; she holds center, listening."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Otto, screen_position: right }
-      camera_state: { shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center }
+        - {subject: Nadia, screen_position: center}
+        - {subject: Otto, screen_position: right}
+      camera_state: {shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center}
       screen_direction: neutral
       offscreen: [Marcus]
-    frame_continuity: { from_clip_id: CLIP_SC0047_04, to_clip_id: CLIP_SC0047_05, continuity_input_mode: metadata_only }
+    frame_continuity: {from_clip_id: CLIP_SC0047_04, to_clip_id: CLIP_SC0047_05, continuity_input_mode: metadata_only}
+    render_start_state: '@C01_NADIA at the table, @PROP008_HANDSET in her hand; @C09_OTTO at the window, back to the room.'
+    render_end_state: '@C01_NADIA standing, @PROP008_HANDSET held in both hands; @C09_OTTO background at the window.'
   - clip_id: CLIP_SC0047_05
     order: 5
     entry_state:
       summary: "Marcus (V.O.) details the encrypted partition and the Roman dossier; Nadia listens, center."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Otto, screen_position: right }
-      camera_state: { shot_size: close, angle: eye_level, movement: static, subject_screen_position: center }
+        - {subject: Nadia, screen_position: center}
+        - {subject: Otto, screen_position: right}
+      camera_state: {shot_size: close, angle: eye_level, movement: static, subject_screen_position: center}
       screen_direction: neutral
       offscreen: [Marcus]
     exit_state:
       summary: "The dossier is named; Nadia absorbs it, center, still."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Otto, screen_position: right }
-      camera_state: { shot_size: close, angle: eye_level, movement: static, subject_screen_position: center }
+        - {subject: Nadia, screen_position: center}
+        - {subject: Otto, screen_position: right}
+      camera_state: {shot_size: close, angle: eye_level, movement: static, subject_screen_position: center}
       screen_direction: neutral
       offscreen: [Marcus]
-    frame_continuity: { from_clip_id: CLIP_SC0047_05, to_clip_id: CLIP_SC0047_06, continuity_input_mode: metadata_only }
+    frame_continuity: {from_clip_id: CLIP_SC0047_05, to_clip_id: CLIP_SC0047_06, continuity_input_mode: metadata_only}
+    render_start_state: '@C01_NADIA standing at the table, @PROP008_HANDSET in both hands; @C09_OTTO background at the window.'
+    render_end_state: '@C01_NADIA standing, @PROP008_HANDSET in both hands; unchanged; @C09_OTTO background at the window.'
   - clip_id: CLIP_SC0047_06
     order: 6
     entry_state:
       summary: "Marcus (V.O.) names the broadcast architecture file and the maintenance access layer; Nadia listens, center."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Otto, screen_position: right }
-      camera_state: { shot_size: close, angle: eye_level, movement: static, subject_screen_position: center }
+        - {subject: Nadia, screen_position: center}
+        - {subject: Otto, screen_position: right}
+      camera_state: {shot_size: close, angle: eye_level, movement: static, subject_screen_position: center}
       screen_direction: neutral
       offscreen: [Marcus]
     exit_state:
       summary: "The target is specified; Nadia holds center as the briefing nears its end."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Otto, screen_position: right }
-      camera_state: { shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center }
+        - {subject: Nadia, screen_position: center}
+        - {subject: Otto, screen_position: right}
+      camera_state: {shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center}
       screen_direction: neutral
       offscreen: [Marcus]
-    frame_continuity: { from_clip_id: CLIP_SC0047_06, to_clip_id: CLIP_SC0047_07, continuity_input_mode: metadata_only }
+    frame_continuity: {from_clip_id: CLIP_SC0047_06, to_clip_id: CLIP_SC0047_07, continuity_input_mode: metadata_only}
+    render_start_state: '@C01_NADIA standing, @PROP008_HANDSET in both hands; @C09_OTTO at the window.'
+    render_end_state: '@C01_NADIA standing at the table, @PROP008_HANDSET held; the recording on @PROP008_HANDSET nearly finished.'
   - clip_id: CLIP_SC0047_07
     order: 7
     entry_state:
       summary: "Marcus's last words ('Karev.' / 'Take Jin home.'); the recording ends and the ambient cuts to silence; Nadia center, Otto unmoved at the window, right."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Otto, screen_position: right }
-      camera_state: { shot_size: close, angle: eye_level, movement: static, subject_screen_position: center }
+        - {subject: Nadia, screen_position: center}
+        - {subject: Otto, screen_position: right}
+      camera_state: {shot_size: close, angle: eye_level, movement: static, subject_screen_position: center}
       screen_direction: neutral
       offscreen: [Marcus]
     exit_state:
       summary: "Silence holds; Nadia catalogs it, center; Otto still at the window, right."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Otto, screen_position: right }
-      camera_state: { shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center }
+        - {subject: Nadia, screen_position: center}
+        - {subject: Otto, screen_position: right}
+      camera_state: {shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center}
       screen_direction: neutral
-    frame_continuity: { from_clip_id: CLIP_SC0047_07, to_clip_id: CLIP_SC0047_08, continuity_input_mode: frame_input_eligible }
+    frame_continuity: {from_clip_id: CLIP_SC0047_07, to_clip_id: CLIP_SC0047_08, continuity_input_mode: frame_input_eligible}
+    render_start_state: '@C01_NADIA at the table, @PROP008_HANDSET held; @C09_OTTO background at the window.'
+    render_end_state: '@C01_NADIA standing, @PROP008_HANDSET in both hands, in silence; @C09_OTTO background at the window.'
   - clip_id: CLIP_SC0047_08
     order: 8
     entry_state:
       summary: "Nadia opens the encrypted partition and begins to work the dossier; center, the handset in hand."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Otto, screen_position: right }
+        - {subject: Nadia, screen_position: center}
+        - {subject: Otto, screen_position: right}
       props_state:
-        - { prop: handset, state: "partition open; dossier accessible" }
-      camera_state: { shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center }
+        - {prop: handset, state: "partition open; dossier accessible"}
+      camera_state: {shot_size: medium_close, angle: eye_level, movement: static, subject_screen_position: center}
       screen_direction: neutral
     exit_state:
       summary: "Nadia has the dossier; she settles into the work, center."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Otto, screen_position: right }
+        - {subject: Nadia, screen_position: center}
+        - {subject: Otto, screen_position: right}
       props_state:
-        - { prop: handset, state: "partition open; dossier accessible" }
-      camera_state: { shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center }
+        - {prop: handset, state: "partition open; dossier accessible"}
+      camera_state: {shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center}
       screen_direction: neutral
-    frame_continuity: { from_clip_id: CLIP_SC0047_08, to_clip_id: CLIP_SC0047_09, continuity_input_mode: frame_input_eligible }
+    frame_continuity: {from_clip_id: CLIP_SC0047_08, to_clip_id: CLIP_SC0047_09, continuity_input_mode: frame_input_eligible}
+    render_start_state: '@C01_NADIA standing, @PROP008_HANDSET in both hands, in silence; @C09_OTTO background at the window.'
+    render_end_state: '@C01_NADIA reading from @PROP008_HANDSET partition at the table; @C09_OTTO background at the window.'
   - clip_id: CLIP_SC0047_09
     order: 9
     entry_state:
       summary: "Otto (right): 'There's a train east at fourteen hundred.' Nadia (center): 'I need the room until then.'"
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Otto, screen_position: right }
-      camera_state: { shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center }
+        - {subject: Nadia, screen_position: center}
+        - {subject: Otto, screen_position: right}
+      camera_state: {shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center}
       screen_direction: neutral
     exit_state:
       summary: "Otto: 'He was a careful man.' Nadia: 'Yes.' She returns to the documentation; Otto holds the room with her, right."
       key_positions:
-        - { subject: Nadia, screen_position: center }
-        - { subject: Otto, screen_position: right }
-      camera_state: { shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center }
+        - {subject: Nadia, screen_position: center}
+        - {subject: Otto, screen_position: right}
+      camera_state: {shot_size: medium, angle: eye_level, movement: static, subject_screen_position: center}
       screen_direction: neutral
+    render_start_state: '@C01_NADIA reading @PROP008_HANDSET at the table; @C09_OTTO at the window, back to the room.'
+    render_end_state: '@C01_NADIA reading @PROP008_HANDSET at the table; @C09_OTTO near the window; scene closed.'
 provenance:
   created_by: "claude_code (M5 FAZ C)"
   created_at: "2026-06-04T00:00:00Z"

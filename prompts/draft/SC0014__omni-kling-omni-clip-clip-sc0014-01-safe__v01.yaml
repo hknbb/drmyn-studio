@@ -1,4 +1,4 @@
-prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-01-safe__v01
+﻿prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-01-safe__v01
 scene_id: SC0014
 prompt_type: omni_instruction
 lifecycle_stage: deprecated
@@ -10,14 +10,14 @@ source_refs:
 prompt_text: 'Kling Omni element-based clip; duration 10s. Active elements: @LOC001_NURSERY. Direct action and camera; @elements
   carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity, restrained camera language, and conservative
   execution. Continue from previous clip: Empty, carefully-made nursery at evening; soft warm light; crib and chair as the
-  protected center.; camera wide. [00:00 - 00:04] Wide shot: A small nursery in @LOC001_NURSERY, made carefully — soft warm
+  protected center.; camera wide. [00:00 - 00:04] Wide shot: A small nursery in @LOC001_NURSERY, made carefully â€” soft warm
   light, a crib, a chair, the deliberate warmth of a room that means something. No people foregrounded yet; the room is the
-  protected center — the room held still and reverent, warmth that has something to measure the coming loss against. The frame
+  protected center â€” the room held still and reverent, warmth that has something to measure the coming loss against. The frame
   holds steady; wide-ish, gentle. Audio: low warm room tone; a faint white-noise hum; the small sounds of an infant. [00:04
-  - 00:07] Insert: A shelf of an eight-month-old''s things in @LOC001_NURSERY — the small specific objects that mean a child
-  lives here — the ordinary tenderness of a kept room, every object chosen. The frame holds steady; the small specific objects
+  - 00:07] Insert: A shelf of an eight-month-old''s things in @LOC001_NURSERY â€” the small specific objects that mean a child
+  lives here â€” the ordinary tenderness of a kept room, every object chosen. The frame holds steady; the small specific objects
   of an infant''s life. Audio: room tone holds; the hum continues. [00:07 - 00:10] Medium shot: The crib and the chair in
-  @LOC001_NURSERY, the protected center, as the frame settles toward them — the room waits; the warmth is about to be tested.
+  @LOC001_NURSERY, the protected center, as the frame settles toward them â€” the room waits; the warmth is about to be tested.
   A slow dolly forward; settle on crib and chair. Audio: room tone settles; the hum thins. End state for next clip: Establishing
   hold settles on the crib and chair; the room waits, still warm.; camera wide. Continuity: frame_input_eligible. Keep 10s;
   end settled. Do not add new story facts.'
@@ -42,7 +42,7 @@ generation_params:
   required_element_aliases:
   - '@LOC001_NURSERY'
   input_mode: anchored_i2v
-  start_frame_ref: archive/nexuszero/SC0014/shots/SC0014_01_clip-sc0014-01_shot-sc0014-01-a.png
+  start_frame_ref: archive/closing_price/SC0014/shots/SC0014_01_clip-sc0014-01_shot-sc0014-01-a.png
   visual_input_budget:
     total: 7
     start_frame: 1

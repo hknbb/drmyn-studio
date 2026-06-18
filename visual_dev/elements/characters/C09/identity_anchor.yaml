@@ -1,4 +1,4 @@
-schema_version: "0.x-draft"
+﻿schema_version: "0.x-draft"
 record_type: character_identity_anchor
 identity_anchor_id: C09_IDENTITY_ANCHOR_V001
 character_id: C09
@@ -11,15 +11,15 @@ source_reference_sheet_ref: prompts/draft/SC0047__t2i-char-c09-identity-mj-v8__v
 front_hero_lock_ref:
   pending: false
   element_id: MJ_C09_HERO_V001
-  external_ref: "archive/nexuszero/_elements/C09/stage1/images/ott_1.png"
+  external_ref: "archive/closing_price/_elements/C09/stage1/images/ott_1.png"
   operator_approved_at: "2026-06-10"
   notes: "Selected from O1 batch (5 candidates). Flat unsentimental face, grey close-kept hair, solid settled build, dark neutral jacket. Age 65-70. Seeds Stage-2 --oref lock."
 oref_lock_ref:
   pending: false
   element_id: MJ_C09_OREFLOCK_V001
-  external_ref: "archive/nexuszero/_elements/C09/stage2/images/ott_2.png"
+  external_ref: "archive/closing_price/_elements/C09/stage2/images/ott_2.png"
   operator_approved_at: "2026-06-10"
-  notes: "Selected from O2 batch (11 candidates; o2_9). Identity consistent with ott_1.png — same face geometry, age 65-70, grey hair, weathered skin. Dark navy jacket + muted olive-green inner layer (WD014). Even frontal light, plain grey background. Seeds Stage-3 four_view_scale_angle_v3."
+  notes: "Selected from O2 batch (11 candidates; o2_9). Identity consistent with ott_1.png â€” same face geometry, age 65-70, grey hair, weathered skin. Dark navy jacket + muted olive-green inner layer (WD014). Even frontal light, plain grey background. Seeds Stage-3 four_view_scale_angle_v3."
 fixed_identity_anchors:
   - "Man, sixty to seventy; the age operational lifers reach all at once; face geometry and identity must stay constant across all scene looks."
   - "Solid, settled, economical build; does not move more than the moment needs; worn unhurried authority."
@@ -38,8 +38,8 @@ forbidden_drift:
 notes: >
   Canonical identity anchor for Otto (C09), authored fresh under Production System v2
   after the clean-slate teardown. One identity, one scene look (SC0047 quay handoff).
-  Character chain: Stage 1 MJ V8.1 narrative identity → Stage 2 MJ V7 --oref lock
-  → Stage 3 ChatGPT Images 2 four_view_scale_angle_v3. front_hero_lock_ref stays
+  Character chain: Stage 1 MJ V8.1 narrative identity â†’ Stage 2 MJ V7 --oref lock
+  â†’ Stage 3 ChatGPT Images 2 four_view_scale_angle_v3. front_hero_lock_ref stays
   pending until the operator generates and a real lock image is selected (no fabricated lock).
 provenance:
   created_by: "claude_code (Haiku 4.5)"

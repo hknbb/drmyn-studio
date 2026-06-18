@@ -1,4 +1,4 @@
-prompt_id: SC0014__still-22__v01
+﻿prompt_id: SC0014__still-22__v01
 scene_id: SC0014
 prompt_type: still_generation
 lifecycle_stage: deprecated
@@ -31,15 +31,15 @@ generation_params:
   shot_order_index: 22
   archive_filename: SC0014_22_clip-sc0014-08_shot-sc0014-08-c.png
   input_reference_images:
-  - archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_47.png
-  - archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_55.png
-  - archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_28.png
-  - archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_18.png
-  - archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_28_02.png
-  - archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_27_53.png
-  - archive/nexuszero/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_30_00.png
-  - archive/nexuszero/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_34_52.png
-  - archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_1.png
+  - archive/closing_price/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_47.png
+  - archive/closing_price/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_55.png
+  - archive/closing_price/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_28.png
+  - archive/closing_price/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_18.png
+  - archive/closing_price/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_28_02.png
+  - archive/closing_price/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_27_53.png
+  - archive/closing_price/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_30_00.png
+  - archive/closing_price/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_34_52.png
+  - archive/closing_price/_elements/LOC001/stage3/images/loc001_3_1.png
   protected_subject_flags: []
   repo_binary_committed: false
   external_generation_required: true

@@ -1,4 +1,4 @@
-prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-08-safe__v01
+﻿prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-08-safe__v01
 scene_id: SC0014
 prompt_type: omni_instruction
 lifecycle_stage: deprecated
@@ -9,12 +9,12 @@ source_refs:
   scene_excerpt: planning/scenes/SC0014/scene_excerpt.md
 prompt_text: 'Kling Omni element-based clip; duration 11s. Active elements: @C01_NADIA, @LOC001_NURSERY. Direct action and
   camera; @elements carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity, restrained camera language,
-  and conservative execution. Figures: exactly 1 distinct figure(s) — @C01_NADIA. No additional, extra, or duplicated people;
+  and conservative execution. Figures: exactly 1 distinct figure(s) â€” @C01_NADIA. No additional, extra, or duplicated people;
   do not clone or multiply any figure. Continue from previous clip: Nadia stands alone center; the crib is empty; her bracelet
   hand open at her side.; camera medium. [00:00 - 00:04] Wide shot: The frame eases back; the crib sits empty; the room reclaims
   its quiet. @C01_NADIA stands still in @LOC001_NURSERY as the room eases back around the empty crib. A slow dolly back; the
   room reclaiming its quiet, crib empty. Audio: low warm room tone returns; the white-noise hum, hollow now. [00:04 - 00:07]
-  Insert: @C01_NADIA hand — the one that held the bracelet — open at her side, empty — the hand that held the bracelet, now
+  Insert: @C01_NADIA hand â€” the one that held the bracelet â€” open at her side, empty â€” the hand that held the bracelet, now
   open and holding nothing. The frame holds steady; macro on the open, empty hand. Audio: room tone, very still. [00:07 -
   00:11] Medium shot: The door stays unused behind her; the hum thins to nothing. @C01_NADIA does not move toward the door;
   she is already somewhere else. The frame holds steady; Nadia still, the door unused behind her. Audio: room tone holds;
@@ -43,7 +43,7 @@ generation_params:
   - '@C01_NADIA'
   - '@LOC001_NURSERY'
   input_mode: anchored_i2v
-  start_frame_ref: archive/nexuszero/SC0014/shots/SC0014_19_clip-sc0014-07_shot-sc0014-07-a.png
+  start_frame_ref: archive/closing_price/SC0014/shots/SC0014_19_clip-sc0014-07_shot-sc0014-07-a.png
   visual_input_budget:
     total: 7
     start_frame: 1

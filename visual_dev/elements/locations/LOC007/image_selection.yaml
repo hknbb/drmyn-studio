@@ -1,12 +1,12 @@
-element_id: LOC007
+﻿element_id: LOC007
 element_type: location
 selection_round: 1
 source_prompt_ids:
   - SC0111__t2i-loc-loc007-antechamber-first-ref-chatgpt__v01
 candidate_images:
   - asset_id: PPACK_LOC007_ANTECHAMBER_V001__front_reference
-    path: "archive/nexuszero/_elements/LOC007/stage2/images/ChatGPT Image 17 Haz 2026 15_13_02.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/LOC007/stage2/images/ChatGPT Image 17 Haz 2026 15_13_02.png"
+    path: "archive/closing_price/_elements/LOC007/stage2/images/ChatGPT Image 17 Haz 2026 15_13_02.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/LOC007/stage2/images/ChatGPT Image 17 Haz 2026 15_13_02.png"
     repo_binary_committed: false
     status: selected
     reason: "LOC007 antechamber front_reference. Wide establishing master, narrow closing corridor, bare concrete + server-core surfaces, door frame, harsh cool light, generous floor for fight blocking. QC 90."
@@ -17,8 +17,8 @@ candidate_images:
       continuity: 5
       production_usability: 5
   - asset_id: PPACK_LOC007_ANTECHAMBER_V001__three_quarter_medium
-    path: "archive/nexuszero/_elements/LOC007/stage2/images/ChatGPT Image 17 Haz 2026 15_13_11.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/LOC007/stage2/images/ChatGPT Image 17 Haz 2026 15_13_11.png"
+    path: "archive/closing_price/_elements/LOC007/stage2/images/ChatGPT Image 17 Haz 2026 15_13_11.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/LOC007/stage2/images/ChatGPT Image 17 Haz 2026 15_13_11.png"
     repo_binary_committed: false
     status: selected
     reason: "LOC007 antechamber three_quarter_medium. Three-quarter at server-core door frame + wall plane the fight is managed against. QC 88."
@@ -29,11 +29,11 @@ candidate_images:
       continuity: 4
       production_usability: 4
   - asset_id: PPACK_LOC007_ANTECHAMBER_V001__three_quarter_close
-    path: "archive/nexuszero/_elements/LOC007/stage2/images/ChatGPT Image 17 Haz 2026 15_13_17.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/LOC007/stage2/images/ChatGPT Image 17 Haz 2026 15_13_17.png"
+    path: "archive/closing_price/_elements/LOC007/stage2/images/ChatGPT Image 17 Haz 2026 15_13_17.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/LOC007/stage2/images/ChatGPT Image 17 Haz 2026 15_13_17.png"
     repo_binary_committed: false
     status: selected
-    reason: "LOC007 antechamber three_quarter_close. Close view of floor seam + bare wall base — the corridor geometry detail the SC0111 fight turns on. QC 90."
+    reason: "LOC007 antechamber three_quarter_close. Close view of floor seam + bare wall base â€” the corridor geometry detail the SC0111 fight turns on. QC 90."
     quality_scores:
       identity_consistency: 5
       source_grounding: 5

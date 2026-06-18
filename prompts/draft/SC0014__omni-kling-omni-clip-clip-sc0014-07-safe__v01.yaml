@@ -1,4 +1,4 @@
-prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-07-safe__v01
+﻿prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-07-safe__v01
 scene_id: SC0014
 prompt_type: omni_instruction
 lifecycle_stage: deprecated
@@ -9,7 +9,7 @@ source_refs:
   scene_excerpt: planning/scenes/SC0014/scene_excerpt.md
 prompt_text: 'Kling Omni element-based clip; duration 5s. Active elements: @C01_NADIA, @C10_HOLDER. Direct action and camera;
   @elements carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity, restrained camera language, and
-  conservative execution. Figures: exactly 2 distinct figure(s) — @C01_NADIA, @C10_HOLDER (Leaner build, short hair and beard;
+  conservative execution. Figures: exactly 2 distinct figure(s) â€” @C01_NADIA, @C10_HOLDER (Leaner build, short hair and beard;
   from the door side.). No additional, extra, or duplicated people; do not clone or multiply any figure. Continue from previous
   clip: The second man releases Nadia (center), steps back, nods once.; camera medium. [00:00 - 00:05] Medium shot: The room
   holds cool and flat through the release and the exit. @C01_NADIA stays where she is, alone now, and does not watch him go.
@@ -39,7 +39,7 @@ generation_params:
   - '@C01_NADIA'
   - '@C10_HOLDER'
   input_mode: anchored_i2v
-  start_frame_ref: archive/nexuszero/SC0014/shots/SC0014_18_clip-sc0014-06_shot-sc0014-06-c.png
+  start_frame_ref: archive/closing_price/SC0014/shots/SC0014_18_clip-sc0014-06_shot-sc0014-06-c.png
   visual_input_budget:
     total: 7
     start_frame: 1

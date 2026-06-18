@@ -7,70 +7,82 @@ source_dialogue_beats_ref: planning/scenes/SC0089/dialogue_beats.yaml
 total_duration_seconds: 15
 continuity_input_mode: frame_input_eligible
 shots:
-- shot_id: SHOT_SC0089_01_A
-  duration_seconds: 10
-  source_beat_ids:
-  - ESTABLISH_CORRIDOR_AND_LIGHTS
-  prompt_action: The corridor runs between a sealed cargo facility (east) and drainage embankment (west). Overhead lights at 200m inte...
-  duration_reason: long_hold/establish 10s
-  required_element_ids:
-  - LOC001
-  camera:
-    angle: eye_level
-    framing: wide
-    movement: static
-    lens_bias: wide sight-line down corridor; light-pool rhythm
-  lighting:
-    source: practical
-    quality: hard
-    color_temp: cool
-    intensity: moderate
-  motion:
-    subject_intensity: 0.0
-    camera_intensity: 0.0
-    blocking_notes: Static hold on corridor length. Pool-darkness-pool rhythm established.
-- shot_id: SHOT_SC0089_01_B
-  duration_seconds: 5
-  source_beat_ids:
-  - NADIA_ZARA_MOVING
-  prompt_action: Nadia is moving through the dark between the second and third lights. Zara is eight meters behind her, same pace, sam...
-  duration_reason: normal/action 5s
-  required_element_ids:
-  - C01
-  - C06
-  camera:
-    angle: eye_level
-    framing: medium_wide
-    movement: tracking
-    lens_bias: track both figures at 8m separation, measured pace
-  lighting:
-    source: practical
-    quality: hard
-    color_temp: cool
-    intensity: dim
-  motion:
-    subject_intensity: 0.2
-    camera_intensity: 0.2
-    blocking_notes: Controlled, economical movement. Both figures at interval from wall. No sprints. Pace is 'normal to wide-angle lens' per excerpt.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-  - figure_id: FIG_ZARA
-    base_element_id: C06
-    kling_alias: '@C06_ZARA'
-    role: Zara, operative ally
+  - shot_id: SHOT_SC0089_01_A
+    duration_seconds: 10
+    source_beat_ids:
+      - ESTABLISH_CORRIDOR_AND_LIGHTS
+    prompt_action: The corridor runs between a sealed cargo facility (east) and drainage embankment (west). Overhead lights at 200m inte...
+    duration_reason: long_hold/establish 10s
+    required_element_ids:
+      - LOC005
+    camera:
+      angle: eye_level
+      framing: wide
+      movement: static
+      lens_bias: wide sight-line down corridor; light-pool rhythm
+    lighting:
+      source: practical
+      quality: hard
+      color_temp: cool
+      intensity: moderate
+    motion:
+      subject_intensity: 0.0
+      camera_intensity: 0.0
+      blocking_notes: Static hold on corridor length. Pool-darkness-pool rhythm established.
+    render_action: '@LOC005_CORRIDOR — concrete passage between sealed cargo facility (east wall) and drainage embankment (west wall). Overhead practical lights at intervals: each creates a tight pool on the ground; deep shadow lies between pools. No figures in frame. Left-to-right axis.'
+    render_camera: Wide static. Full sight-line along corridor. Pool-shadow-pool rhythm fills frame.
+    render_diegetic_audio: Low exterior wind. Distant cargo-facility hum. Concrete ambient.
+  - shot_id: SHOT_SC0089_01_B
+    duration_seconds: 5
+    source_beat_ids:
+      - NADIA_ZARA_MOVING
+    prompt_action: Nadia is moving through the dark between the second and third lights. Zara is eight meters behind her, same pace, sam...
+    duration_reason: normal/action 5s
+    required_element_ids:
+      - C01
+      - C06
+    camera:
+      angle: eye_level
+      framing: medium_wide
+      movement: tracking
+      lens_bias: track both figures at 8m separation, measured pace
+    lighting:
+      source: practical
+      quality: hard
+      color_temp: cool
+      intensity: dim
+    motion:
+      subject_intensity: 0.2
+      camera_intensity: 0.2
+      blocking_notes: Controlled, economical movement. Both figures at interval from wall. No sprints. Pace is 'normal to wide-angle lens' per excerpt.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: '@C01_NADIA walks left-to-right in shadow, arms low, controlled pace.'
+        render_label: dark field jacket, close-fitted, night-transit build.
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: '@C06_ZARA'
+        role: Zara, operative ally
+        render_action: '@C06_ZARA follows @C01_NADIA 8 meters behind, same pace and wall distance.'
+        render_label: khaki-olive jacket, field-night build.
+    render_action: '@C01_NADIA moves left-to-right through shadow between second and third overhead pools. @C06_ZARA follows 8 meters behind, same pace, same distance from the west wall. Both arms low. No sprint.'
+    render_camera: Medium-wide tracking left. Both figures at 8m separation visible.
+    render_diegetic_audio: Footsteps on concrete at measured cadence. Night wind. No voices.
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: Generated by omni_clip_planner packer_version=rhythm_aware_v1
+notes: 'SC0089 v07 text-only literal pass (kling_literal_alias_locked): render_* fields authored for model-facing literal grammar; poetic prompt_action/lens_bias remain for human review only. Legacy element ID refs fixed: LOC001→LOC005.'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T10:47:13Z'
+  render_fields_added_by: claude_code (M5 v07 SC0089 literal pass)
+  render_fields_added_at: '2026-06-17T00:00:00Z'
 required_element_ids:
-- LOC001
-- C01
-- C06
+  - LOC005
+  - C01
+  - C06

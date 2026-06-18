@@ -1,4 +1,4 @@
-scene_id: SC0014
+﻿scene_id: SC0014
 created_at: '2026-06-08T17:33:14Z'
 storage_policy: external_image_only
 entries:
@@ -7,9 +7,9 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-08T17:33:14Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026
+  local_path: archive/closing_price/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026
     20_27_53.png
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C01/stage3/images/ChatGPT
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/C01/stage3/images/ChatGPT
     Image 8 Haz 2026 20_27_53.png
   sha256: b6a3c6d00357d6953da2f533ba4c163f57c84614bcc065cd3435639fd783fb15
   size_bytes: 2246582
@@ -20,9 +20,9 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-08T17:33:16Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026
+  local_path: archive/closing_price/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026
     20_27_57.png
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C01/stage3/images/ChatGPT
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/C01/stage3/images/ChatGPT
     Image 8 Haz 2026 20_27_57.png
   sha256: f29c05b3b67f2236df8ea6b1d141fb459ef44fd182c5afa860445cbe642dd597
   size_bytes: 2157481
@@ -32,9 +32,9 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-08T17:33:17Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026
+  local_path: archive/closing_price/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026
     20_27_49.png
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C01/stage3/images/ChatGPT
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/C01/stage3/images/ChatGPT
     Image 8 Haz 2026 20_27_49.png
   sha256: 95a8a7d51282eed78616242fa02b9ca704ac2ebe78b4d8c893eee50554a38e2e
   size_bytes: 2155916
@@ -44,9 +44,9 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-08T17:33:19Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026
+  local_path: archive/closing_price/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026
     20_28_02.png
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C01/stage3/images/ChatGPT
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/C01/stage3/images/ChatGPT
     Image 8 Haz 2026 20_28_02.png
   sha256: 6c9b5dfc05ab048dad37ca9c17456c180e3af260c6e548c0b27c34f89ea7d21a
   size_bytes: 2157777
@@ -56,8 +56,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-09T14:30:00Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/C08/stage3/images/jin3_2.png
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C08/stage3/images/jin3_2.png
+  local_path: archive/closing_price/SC0014/C08/stage3/images/jin3_2.png
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/C08/stage3/images/jin3_2.png
   sha256: dfef4ecfd9f5be1c18d190a11d5fc5e1d95d45f54f19354cc4ee23d21f64510d
   size_bytes: 2175747
   notes: PROTECTED SUBJECT. Stage-3 four-view close_portrait_front; calm, safe/supported.
@@ -67,8 +67,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-09T14:30:00Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/C08/stage3/images/jin3_3.png
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C08/stage3/images/jin3_3.png
+  local_path: archive/closing_price/SC0014/C08/stage3/images/jin3_3.png
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/C08/stage3/images/jin3_3.png
   sha256: 799bcbf89f5ad73e2313169b9f7e6056f3ac650da1c4c700a73413a16fe86247
   size_bytes: 2229962
   notes: PROTECTED SUBJECT. Stage-3 four-view three_quarter_waist; calm, safe/supported.
@@ -77,8 +77,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-09T14:30:00Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/C08/stage3/images/jin3_1.png
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C08/stage3/images/jin3_1.png
+  local_path: archive/closing_price/SC0014/C08/stage3/images/jin3_1.png
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/C08/stage3/images/jin3_1.png
   sha256: caa462d08413f346461b9e4da0981bd16cb5b0584794484d72752ae52a47e0f8
   size_bytes: 2223289
   notes: PROTECTED SUBJECT. Stage-3 four-view profile_full; calm, safe/supported.
@@ -87,8 +87,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-09T14:30:01Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/C08/stage3/images/jin3_4.png
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C08/stage3/images/jin3_4.png
+  local_path: archive/closing_price/SC0014/C08/stage3/images/jin3_4.png
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/C08/stage3/images/jin3_4.png
   sha256: 6ac368801ff46a726291a74bd74d2345a9da09d798c5ee71f08ce1499f4848c4
   size_bytes: 2183739
   notes: PROTECTED SUBJECT. Stage-3 four-view full_body_front; whole infant safely
@@ -98,8 +98,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-09T17:31:35Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/C04/stage3/images/dim3_2.png
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C04/stage3/images/dim3_2.png
+  local_path: archive/closing_price/SC0014/C04/stage3/images/dim3_2.png
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/C04/stage3/images/dim3_2.png
   sha256: 8d4d04c59f1e7d2f7031d9ea553f71140a24ec68ca000a4d7b61da34a54805cf
   size_bytes: 2277068
   notes: Stage-3 four-view close_portrait_front. Dual-ref seeded.
@@ -108,8 +108,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-09T17:31:36Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/C04/stage3/images/dim3_3.png
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C04/stage3/images/dim3_3.png
+  local_path: archive/closing_price/SC0014/C04/stage3/images/dim3_3.png
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/C04/stage3/images/dim3_3.png
   sha256: 054d2da778a0a6a5c419896c61298f42294dee85b4a522096da3b030643d11ad
   size_bytes: 1911146
   notes: Stage-3 four-view three_quarter_waist.
@@ -118,8 +118,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-09T17:31:36Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/C04/stage3/images/dim3_1.png
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C04/stage3/images/dim3_1.png
+  local_path: archive/closing_price/SC0014/C04/stage3/images/dim3_1.png
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/C04/stage3/images/dim3_1.png
   sha256: f020685dcc2477a083f6c80f606d9d300b11ba440f220a5d890e433a4fa6c627
   size_bytes: 2060534
   notes: Stage-3 four-view profile_full.
@@ -128,8 +128,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-09T17:31:36Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/C04/stage3/images/dim3_4.png
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/C04/stage3/images/dim3_4.png
+  local_path: archive/closing_price/SC0014/C04/stage3/images/dim3_4.png
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/C04/stage3/images/dim3_4.png
   sha256: 94ce23a9c69d8d0fc64a363917bd63e8d37ba78a29466d4aebd191285aef6868
   size_bytes: 1951894
   notes: Stage-3 four-view full_body_front.
@@ -138,8 +138,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-16T18:54:35Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/clips/1.mp4
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/clips/1.mp4
+  local_path: archive/closing_price/SC0014/clips/1.mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/clips/1.mp4
   sha256: 0deb2bc367953a150f8bc6712487125110dc0998c4a27c6d0a58cc84b7bdfaca
   size_bytes: 9133651
   notes: Kling Omni v07 text_only literal output for CLIP_SC0014_01; QC pending.
@@ -148,8 +148,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-16T18:54:37Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/clips/2.mp4
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/clips/2.mp4
+  local_path: archive/closing_price/SC0014/clips/2.mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/clips/2.mp4
   sha256: f685f4c47a2aa2d8655d7e8d9e9cd1fff68525135371b603e524457cfc91b7cf
   size_bytes: 12067151
   notes: Kling Omni v07 text_only literal output for CLIP_SC0014_02; QC pending.
@@ -158,8 +158,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-16T18:54:38Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/clips/3.mp4
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/clips/3.mp4
+  local_path: archive/closing_price/SC0014/clips/3.mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/clips/3.mp4
   sha256: c12a3e0d7f145297e5361bac5eb38613bffe749c624ba672313afce940782ef1
   size_bytes: 15005147
   notes: Kling Omni v07 text_only literal output for CLIP_SC0014_03; QC pending.
@@ -168,8 +168,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-16T18:54:40Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/clips/4.mp4
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/clips/4.mp4
+  local_path: archive/closing_price/SC0014/clips/4.mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/clips/4.mp4
   sha256: f764b69e357106c03e04698c83cd796041d3ad5b36946ac732848fa0e3874db2
   size_bytes: 19802055
   notes: Kling Omni v07 text_only literal output for CLIP_SC0014_04; QC pending.
@@ -178,8 +178,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-16T18:54:43Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/clips/5.mp4
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/clips/5.mp4
+  local_path: archive/closing_price/SC0014/clips/5.mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/clips/5.mp4
   sha256: 2533ff0c08bfade6535f924bfd9a5fd0e29aa9ab1f82b70bf64f235d5da0cc5c
   size_bytes: 14894026
   notes: Kling Omni v07 text_only literal output for CLIP_SC0014_05; QC pending.
@@ -188,8 +188,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-16T18:54:43Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/clips/6.mp4
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/clips/6.mp4
+  local_path: archive/closing_price/SC0014/clips/6.mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/clips/6.mp4
   sha256: 1061db80b5cec1506a453076efa0538e04e003b935a269d9d6679174c9f05151
   size_bytes: 14296910
   notes: Kling Omni v07 text_only literal output for CLIP_SC0014_06; QC pending.
@@ -198,8 +198,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-16T18:54:44Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/clips/7.mp4
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/clips/7.mp4
+  local_path: archive/closing_price/SC0014/clips/7.mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/clips/7.mp4
   sha256: 088efdec8d189886c03b9f9febfe349149815606f080b3d2fda59fa394697012
   size_bytes: 5218155
   notes: Kling Omni v07 text_only literal output for CLIP_SC0014_07; QC pending.
@@ -208,8 +208,8 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-16T18:54:46Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0014/clips/8.mp4
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0014/clips/8.mp4
+  local_path: archive/closing_price/SC0014/clips/8.mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0014/clips/8.mp4
   sha256: 9cad08e6f5141de8470dfff5ebb4a23203175dc8f24a7404f6592247203d333c
   size_bytes: 15281788
   notes: Kling Omni v07 text_only literal output for CLIP_SC0014_08; QC pending.
