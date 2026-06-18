@@ -1,4 +1,4 @@
-"""
+﻿"""
 Golden test for KlingOmniAdapter anchored_i2v render mode (Faz 3, Anchor & Animate).
 
 Validates:
@@ -172,7 +172,7 @@ def anchored_result():
         result = adapter.generate_from_clip_manifest(
             manifest_path,
             input_mode="anchored_i2v",
-            start_frame_ref="archive/nexuszero/SC9001/shots/SC9001_02_clip-sc9001-01_shot-sc9001-01-b.png",
+            start_frame_ref="archive/closing_price/SC9001/shots/SC9001_02_clip-sc9001-01_shot-sc9001-01-b.png",
             active_element_aliases=["@C01_NADIA"],
         )
     return result
@@ -187,8 +187,8 @@ def anchored_with_contact_sheet_result():
         result = adapter.generate_from_clip_manifest(
             manifest_path,
             input_mode="anchored_i2v",
-            start_frame_ref="archive/nexuszero/SC9001/shots/SC9001_02.png",
-            contact_sheet_ref="archive/nexuszero/SC9001/contact_sheets/SC9001_clip01_contact.png",
+            start_frame_ref="archive/closing_price/SC9001/shots/SC9001_02.png",
+            contact_sheet_ref="archive/closing_price/SC9001/contact_sheets/SC9001_clip01_contact.png",
         )
     return result
 
@@ -299,7 +299,7 @@ def test_negative_prompt_has_contact_sheet_terms(anchored_with_contact_sheet_res
 def test_entry_anchors_suppressed_in_anchored_mode(anchored_result):
     """Start-frame provides visual state; per-shot entry-state text should be absent."""
     text = anchored_result.prompt_record["prompt_text"]
-    # The entry_state summary in the manifest says "Nadia at doorway" — should not appear
+    # The entry_state summary in the manifest says "Nadia at doorway" â€” should not appear
     assert "Nadia at doorway" not in text
     assert "Nadia center frame" not in text
 

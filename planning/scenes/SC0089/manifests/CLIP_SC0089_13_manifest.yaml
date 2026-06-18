@@ -7,103 +7,120 @@ source_dialogue_beats_ref: planning/scenes/SC0089/dialogue_beats.yaml
 total_duration_seconds: 9
 continuity_input_mode: metadata_only
 shots:
-- shot_id: SHOT_SC0089_13_A
-  duration_seconds: 3
-  source_beat_ids:
-  - ZARA_HOW_MANY_FORMAL
-  prompt_action: 'ZARA: ''How many.'''
-  duration_reason: normal/dialogue 3s
-  dialogue_line_ids:
-  - DLG_ZARA_HOW_MANY2
-  required_element_ids:
-  - C06
-  camera:
-    angle: eye_level
-    framing: medium_close
-    movement: static
-    lens_bias: Zara, formal question
-  lighting:
-    source: practical
-    quality: hard
-    color_temp: cool
-    intensity: bright
-  motion:
-    subject_intensity: 0.05
-    camera_intensity: 0.0
-  figures:
-  - figure_id: FIG_ZARA
-    base_element_id: C06
-    kling_alias: '@C06_ZARA'
-    role: Zara, operative ally
-- shot_id: SHOT_SC0089_13_B
-  duration_seconds: 3
-  source_beat_ids:
-  - NADIA_ONE_OR_TWO
-  prompt_action: 'NADIA: ''One. Maybe two.'''
-  duration_reason: normal/dialogue 3s
-  dialogue_line_ids:
-  - DLG_NADIA_ONE_TWO
-  required_element_ids:
-  - C01
-  camera:
-    angle: eye_level
-    framing: medium_close
-    movement: static
-    lens_bias: Nadia, assessment
-  lighting:
-    source: practical
-    quality: hard
-    color_temp: cool
-    intensity: bright
-  motion:
-    subject_intensity: 0.05
-    camera_intensity: 0.0
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-- shot_id: SHOT_SC0089_13_C
-  duration_seconds: 3
-  source_beat_ids:
-  - ZARA_ADVANCE_ELEMENT
-  prompt_action: 'ZARA: ''Advance element. They came around.'''
-  duration_reason: normal/dialogue 3s
-  dialogue_line_ids:
-  - DLG_ZARA_ADVANCE
-  required_element_ids:
-  - C06
-  camera:
-    angle: eye_level
-    framing: medium_close
-    movement: static
-    lens_bias: Zara, realizing the tactical trap
-  lighting:
-    source: practical
-    quality: hard
-    color_temp: cool
-    intensity: bright
-  motion:
-    subject_intensity: 0.05
-    camera_intensity: 0.0
-  figures:
-  - figure_id: FIG_ZARA
-    base_element_id: C06
-    kling_alias: '@C06_ZARA'
-    role: Zara, operative ally
+  - shot_id: SHOT_SC0089_13_A
+    duration_seconds: 3
+    source_beat_ids:
+      - ZARA_HOW_MANY_FORMAL
+    prompt_action: 'ZARA: ''How many.'''
+    duration_reason: normal/dialogue 3s
+    dialogue_line_ids:
+      - DLG_ZARA_HOW_MANY2
+    required_element_ids:
+      - C06
+    camera:
+      angle: eye_level
+      framing: medium_close
+      movement: static
+      lens_bias: Zara, formal question
+    lighting:
+      source: practical
+      quality: hard
+      color_temp: cool
+      intensity: bright
+    motion:
+      subject_intensity: 0.05
+      camera_intensity: 0.0
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: '@C06_ZARA'
+        role: Zara, operative ally
+        render_action: '@C06_ZARA turns head to @C01_NADIA, lips move at minimum volume.'
+        render_label: khaki-olive jacket, field-night build.
+    render_action: "@C06_ZARA turns head toward @C01_NADIA. @C06_ZARA's lips move at minimum volume. No inflection — a formal question."
+    render_camera: Medium-close static. @C06_ZARA bright pool light.
+    render_diegetic_audio: '[FORMAT A — no native voice] Night ambient.'
+  - shot_id: SHOT_SC0089_13_B
+    duration_seconds: 3
+    source_beat_ids:
+      - NADIA_ONE_OR_TWO
+    prompt_action: 'NADIA: ''One. Maybe two.'''
+    duration_reason: normal/dialogue 3s
+    dialogue_line_ids:
+      - DLG_NADIA_ONE_TWO
+    required_element_ids:
+      - C01
+    camera:
+      angle: eye_level
+      framing: medium_close
+      movement: static
+      lens_bias: Nadia, assessment
+    lighting:
+      source: practical
+      quality: hard
+      color_temp: cool
+      intensity: bright
+    motion:
+      subject_intensity: 0.05
+      camera_intensity: 0.0
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: '@C01_NADIA lips move briefly, eyes forward, flat delivery.'
+        render_label: dark field jacket, night-transit build.
+    render_action: "@C01_NADIA's lips move. @C01_NADIA does not turn. Flat delivery."
+    render_camera: Medium-close static. @C01_NADIA bright pool light.
+    render_diegetic_audio: '[FORMAT A — no native voice] Night ambient.'
+  - shot_id: SHOT_SC0089_13_C
+    duration_seconds: 3
+    source_beat_ids:
+      - ZARA_ADVANCE_ELEMENT
+    prompt_action: 'ZARA: ''Advance element. They came around.'''
+    duration_reason: normal/dialogue 3s
+    dialogue_line_ids:
+      - DLG_ZARA_ADVANCE
+    required_element_ids:
+      - C06
+    camera:
+      angle: eye_level
+      framing: medium_close
+      movement: static
+      lens_bias: Zara, realizing the tactical trap
+    lighting:
+      source: practical
+      quality: hard
+      color_temp: cool
+      intensity: bright
+    motion:
+      subject_intensity: 0.05
+      camera_intensity: 0.0
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: '@C06_ZARA'
+        role: Zara, operative ally
+        render_action: '@C06_ZARA eyes shift right then forward, lips move low.'
+        render_label: khaki-olive jacket, field-night build.
+    render_action: "@C06_ZARA's eyes shift right, then return forward. @C06_ZARA's lips move at low volume. @C06_ZARA absorbs the new threat geometry without visible agitation."
+    render_camera: Medium-close static. @C06_ZARA direct, pool light.
+    render_diegetic_audio: '[FORMAT A — no native voice] Night ambient.'
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: Generated by omni_clip_planner packer_version=rhythm_aware_v1
+notes: 'SC0089 v07 text-only literal pass (kling_literal_alias_locked): render_* fields authored for model-facing literal grammar; poetic prompt_action/lens_bias remain for human review only. Legacy element ID refs fixed: LOC001→LOC005.'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T10:47:13Z'
+  render_fields_added_by: claude_code (M5 v07 SC0089 literal pass)
+  render_fields_added_at: '2026-06-17T00:00:00Z'
 dialogue_line_ids:
-- DLG_ZARA_HOW_MANY2
-- DLG_NADIA_ONE_TWO
-- DLG_ZARA_ADVANCE
+  - DLG_ZARA_HOW_MANY2
+  - DLG_NADIA_ONE_TWO
+  - DLG_ZARA_ADVANCE
 required_element_ids:
-- C06
-- C01
+  - C06
+  - C01

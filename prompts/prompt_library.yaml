@@ -277,3 +277,243 @@ prompts:
   lifecycle_stage: draft
   target_models:
   - kling_omni
+- prompt_id: SC0047__omni-kling-omni-clip-clip-sc0047-01-safe__v07
+  scene_id: SC0047
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0047__omni-kling-omni-clip-clip-sc0047-02-safe__v07
+  scene_id: SC0047
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0047__omni-kling-omni-clip-clip-sc0047-03-safe__v07
+  scene_id: SC0047
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0047__omni-kling-omni-clip-clip-sc0047-04-safe__v07
+  scene_id: SC0047
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0047__omni-kling-omni-clip-clip-sc0047-05-safe__v07
+  scene_id: SC0047
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0047__omni-kling-omni-clip-clip-sc0047-06-safe__v07
+  scene_id: SC0047
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0047__omni-kling-omni-clip-clip-sc0047-07-safe__v07
+  scene_id: SC0047
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0047__omni-kling-omni-clip-clip-sc0047-08-safe__v07
+  scene_id: SC0047
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0047__omni-kling-omni-clip-clip-sc0047-09-safe__v07
+  scene_id: SC0047
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-01-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-02-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-03-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-04-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-05-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-06-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-07-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-08-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-09-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-10-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-11-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-12-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-13-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-14-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-15-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-16-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-17-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-18-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-19-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-20-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-21-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-22-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-23-safe__v07
+  scene_id: SC0089
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0111__omni-kling-omni-clip-clip-sc0111-01-safe__v07
+  scene_id: SC0111
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0111__omni-kling-omni-clip-clip-sc0111-02-safe__v07
+  scene_id: SC0111
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0111__omni-kling-omni-clip-clip-sc0111-03-safe__v07
+  scene_id: SC0111
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0111__omni-kling-omni-clip-clip-sc0111-04-safe__v07
+  scene_id: SC0111
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0111__omni-kling-omni-clip-clip-sc0111-05-safe__v07
+  scene_id: SC0111
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0111__omni-kling-omni-clip-clip-sc0111-06-safe__v07
+  scene_id: SC0111
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0111__omni-kling-omni-clip-clip-sc0111-07-safe__v07
+  scene_id: SC0111
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni
+- prompt_id: SC0111__omni-kling-omni-clip-clip-sc0111-08-safe__v07
+  scene_id: SC0111
+  prompt_type: omni_instruction
+  lifecycle_stage: draft
+  target_models:
+  - kling_omni

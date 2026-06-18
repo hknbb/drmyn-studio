@@ -7,80 +7,96 @@ source_dialogue_beats_ref: ''
 total_duration_seconds: 13
 continuity_input_mode: frame_input_eligible
 shots:
-- shot_id: SHOT_SC0111_06_A
-  duration_seconds: 6
-  source_beat_ids:
-  - FOUR_SECONDS_STANDING
-  prompt_action: Four seconds. He is still standing, his hands trying to find purchase, his body not yet understanding what is being a...
-  duration_reason: normal/hold 6s
-  required_element_ids:
-  - C01
-  - C02
-  camera:
-    angle: eye_level
-    framing: medium_close
-    movement: static
-    lens_bias: the hold sustained; his face showing dawning effect
-  lighting:
-    source: low_key
-    quality: hard
-    color_temp: cool
-    intensity: dim
-  motion:
-    subject_intensity: 0.3
-    camera_intensity: 0.0
-    blocking_notes: Both bodies locked; beginning of Roman's physical response visible.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-  - figure_id: FIG_ROMAN
-    base_element_id: C02
-    kling_alias: '@C02_ROMAN'
-    role: Roman, the antagonist
-- shot_id: SHOT_SC0111_06_B
-  duration_seconds: 7
-  source_beat_ids:
-  - SIX_SECONDS_UNDERSTANDS
-  - SEVEN_SECONDS_COLLAPSE
-  prompt_action: Seven. He goes down the way vasovagal response takes a person — not a fall, not a collapse, a controlled exit of the ...
-  duration_reason: SIX_SECONDS_UNDERSTANDS (short_insert merged fwd); normal/action 5s
-  required_element_ids:
-  - C01
-  - C02
-  camera:
-    angle: eye_level
-    framing: medium
-    movement: handheld
-    lens_bias: both of them going down; Nadia with him; the corridor floor
-  lighting:
-    source: low_key
-    quality: hard
-    color_temp: cool
-    intensity: dim
-  motion:
-    subject_intensity: 0.7
-    camera_intensity: 0.3
-    blocking_notes: Coordinated descent; Nadia controlled with him; floor contact; release as he goes down.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-  - figure_id: FIG_ROMAN
-    base_element_id: C02
-    kling_alias: '@C02_ROMAN'
-    role: Roman, the antagonist
+  - shot_id: SHOT_SC0111_06_A
+    duration_seconds: 6
+    source_beat_ids:
+      - FOUR_SECONDS_STANDING
+    prompt_action: Four seconds. He is still standing, his hands trying to find purchase, his body not yet understanding what is being a...
+    duration_reason: normal/hold 6s
+    required_element_ids:
+      - C01
+      - C02
+    camera:
+      angle: eye_level
+      framing: medium_close
+      movement: static
+      lens_bias: the hold sustained; his face showing dawning effect
+    lighting:
+      source: low_key
+      quality: hard
+      color_temp: cool
+      intensity: dim
+    motion:
+      subject_intensity: 0.3
+      camera_intensity: 0.0
+      blocking_notes: Both bodies locked; beginning of Roman's physical response visible.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: "@C01_NADIA maintains hold — both thumbs sustained on @C02_ROMAN's neck."
+        render_label: battle-worn field jacket.
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: '@C02_ROMAN'
+        role: Roman, the antagonist
+        render_action: "@C02_ROMAN upright, hands on @C01_NADIA's forearms, grip weakening."
+        render_label: dark close-fitted jacket.
+    render_action: "@C01_NADIA maintains bilateral thumb pressure on @C02_ROMAN's neck. @C02_ROMAN's hands continue on @C01_NADIA's forearms — grip weakening. @C02_ROMAN is still upright. Both bodies locked."
+    render_camera: Medium-close static. Hold sustained. @C02_ROMAN's face visible — body response beginning.
+    render_diegetic_audio: Sustained effort. @C02_ROMAN's breathing slowing.
+  - shot_id: SHOT_SC0111_06_B
+    duration_seconds: 7
+    source_beat_ids:
+      - SIX_SECONDS_UNDERSTANDS
+      - SEVEN_SECONDS_COLLAPSE
+    prompt_action: Seven. He goes down the way vasovagal response takes a person — not a fall, not a collapse, a controlled exit of the ...
+    duration_reason: SIX_SECONDS_UNDERSTANDS (short_insert merged fwd); normal/action 5s
+    required_element_ids:
+      - C01
+      - C02
+    camera:
+      angle: eye_level
+      framing: medium
+      movement: handheld
+      lens_bias: both of them going down; Nadia with him; the corridor floor
+    lighting:
+      source: low_key
+      quality: hard
+      color_temp: cool
+      intensity: dim
+    motion:
+      subject_intensity: 0.7
+      camera_intensity: 0.3
+      blocking_notes: Coordinated descent; Nadia controlled with him; floor contact; release as he goes down.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: '@C01_NADIA goes down with @C02_ROMAN, one knee on floor, releases pressure as @C02_ROMAN lands.'
+        render_label: battle-worn field jacket.
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: '@C02_ROMAN'
+        role: Roman, the antagonist
+        render_action: '@C02_ROMAN descends to floor — knees unlock, controlled loss of load-bearing.'
+        render_label: dark close-fitted jacket.
+    render_action: "@C02_ROMAN's knees unlock — legs lose load in a controlled descent, not a fall. @C02_ROMAN descends to the corridor floor. @C01_NADIA goes with @C02_ROMAN — one knee on concrete. @C01_NADIA releases thumb pressure as @C02_ROMAN reaches the floor. @C01_NADIA remains on one knee."
+    render_camera: Medium handheld. Both descending. Corridor floor. @C01_NADIA one knee down.
+    render_diegetic_audio: Bodies controlled to floor. Release of held breath.
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: Generated by omni_clip_planner packer_version=rhythm_aware_v1
+notes: 'SC0111 v07 text-only literal pass (kling_literal_alias_locked): render_* fields authored for model-facing literal grammar; poetic prompt_action/lens_bias remain for human review only. Silent action scene — no dialogue; Format A throughout.'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T10:50:27Z'
+  render_fields_added_by: claude_code (M5 v07 SC0111 literal pass)
+  render_fields_added_at: '2026-06-17T00:00:00Z'
 required_element_ids:
-- C01
-- C02
+  - C01
+  - C02

@@ -1,4 +1,4 @@
-scene_id: SC0089
+﻿scene_id: SC0089
 created_at: '2026-06-08T20:53:34Z'
 storage_policy: external_image_only
 entries:
@@ -7,9 +7,9 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-08T20:53:34Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026
+  local_path: archive/closing_price/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026
     23_31_18.png
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0089/C01/stage3/images/ChatGPT
+  external_storage_ref: external://local_manual/archive/closing_price/SC0089/C01/stage3/images/ChatGPT
     Image 8 Haz 2026 23_31_18.png
   sha256: caff5269c1eaa98e88af05faedcb2bff14ce2769780348ab69b37f4ba3804fda
   size_bytes: 2069353
@@ -19,9 +19,9 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-08T20:53:34Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026
+  local_path: archive/closing_price/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026
     23_31_23.png
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0089/C01/stage3/images/ChatGPT
+  external_storage_ref: external://local_manual/archive/closing_price/SC0089/C01/stage3/images/ChatGPT
     Image 8 Haz 2026 23_31_23.png
   sha256: 6ac6dbe5ddac760a543b6b2e731d490816b432d2079d92d12971613ad200fa28
   size_bytes: 1871014
@@ -31,9 +31,9 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-08T20:53:35Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026
+  local_path: archive/closing_price/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026
     23_31_28.png
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0089/C01/stage3/images/ChatGPT
+  external_storage_ref: external://local_manual/archive/closing_price/SC0089/C01/stage3/images/ChatGPT
     Image 8 Haz 2026 23_31_28.png
   sha256: a2ebf73464fa596e80746efb5409f312089eb53be97f02f1342824de29cbc944
   size_bytes: 1926627
@@ -43,9 +43,9 @@ entries:
   storage_backend: local_manual
   last_seen_at: '2026-06-08T20:53:35Z'
   repo_binary_committed: false
-  local_path: archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026
+  local_path: archive/closing_price/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026
     23_48_54.png
-  external_storage_ref: external://local_manual/archive/nexuszero/SC0089/C01/stage3/images/ChatGPT
+  external_storage_ref: external://local_manual/archive/closing_price/SC0089/C01/stage3/images/ChatGPT
     Image 8 Haz 2026 23_48_54.png
   sha256: ab6d26c6c4c73af58ebd0ed2cdbcbe0ea44c4c6db12015a0a50ceb24b329c236
   size_bytes: 1986840

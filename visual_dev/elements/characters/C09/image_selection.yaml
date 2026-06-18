@@ -1,12 +1,12 @@
-element_id: C09
+﻿element_id: C09
 element_type: character
 selection_round: 1
 source_prompt_ids:
   - SC0047__t2i-char-c09-oref-lock-mj-v7__v01
 candidate_images:
   - asset_id: PPACK_C09_QUAY_V001__full_body_front
-    path: "archive/nexuszero/_elements/C09/stage3/images/ott_3_1.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C09/stage3/images/ott_3_1.png"
+    path: "archive/closing_price/_elements/C09/stage3/images/ott_3_1.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/C09/stage3/images/ott_3_1.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 full_body_front for @C09_OTTO; head-to-toe, dark navy jacket, navy trousers, worn boots, olive-green inner layer visible. QC 90."
@@ -17,8 +17,8 @@ candidate_images:
       continuity: 5
       production_usability: 4
   - asset_id: PPACK_C09_QUAY_V001__three_quarter_waist
-    path: "archive/nexuszero/_elements/C09/stage3/images/ott_3_2.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C09/stage3/images/ott_3_2.png"
+    path: "archive/closing_price/_elements/C09/stage3/images/ott_3_2.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/C09/stage3/images/ott_3_2.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 three_quarter_waist for @C09_OTTO; 30-45 deg turn, olive-green collar clearly visible, identity + WD014 wardrobe consistent. QC 91."
@@ -29,8 +29,8 @@ candidate_images:
       continuity: 5
       production_usability: 5
   - asset_id: PPACK_C09_QUAY_V001__close_portrait_front
-    path: "archive/nexuszero/_elements/C09/stage3/images/ott_3_3.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C09/stage3/images/ott_3_3.png"
+    path: "archive/closing_price/_elements/C09/stage3/images/ott_3_3.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/C09/stage3/images/ott_3_3.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 close_portrait_front for @C09_OTTO; frontal identity lock, flat unsentimental presence, grey close-kept hair, weathered skin. QC 92."
@@ -41,8 +41,8 @@ candidate_images:
       continuity: 5
       production_usability: 5
   - asset_id: PPACK_C09_QUAY_V001__profile_full
-    path: "archive/nexuszero/_elements/C09/stage3/images/ott_3_4.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/C09/stage3/images/ott_3_4.png"
+    path: "archive/closing_price/_elements/C09/stage3/images/ott_3_4.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/C09/stage3/images/ott_3_4.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 profile_full for @C09_OTTO; clean 90 deg lateral, dark navy + olive-green inner layer confirms layered wardrobe depth. QC 90."

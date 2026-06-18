@@ -7,76 +7,88 @@ source_dialogue_beats_ref: planning/scenes/SC0089/dialogue_beats.yaml
 total_duration_seconds: 14
 continuity_input_mode: frame_input_eligible
 shots:
-- shot_id: SHOT_SC0089_18_A
-  duration_seconds: 9
-  source_beat_ids:
-  - NADIA_OVER
-  - THEY_MOVE
-  - NADIA_EMBANKMENT_CLIMB
-  prompt_action: The embankment is three meters high. A drainage pipe bracket at two meters provides the step. Nadia reaches the top i...
-  duration_reason: NADIA_OVER (short_insert merged fwd); THEY_MOVE (short_insert merged fwd); normal/action 5s
-  dialogue_line_ids:
-  - DLG_NADIA_OVER
-  required_element_ids:
-  - C01
-  - C06
-  camera:
-    angle: eye_level
-    framing: medium_wide
-    movement: tracking
-    lens_bias: track climb; flat position at top; POV insert on operative below
-  lighting:
-    source: practical
-    quality: hard
-    color_temp: cool
-    intensity: dim
-  motion:
-    subject_intensity: 0.7
-    camera_intensity: 0.4
-    blocking_notes: Fast, practiced climb. Flat position reads as trained tactical entry. POV insert on operative below, unaware.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-- shot_id: SHOT_SC0089_18_B
-  duration_seconds: 5
-  source_beat_ids:
-  - NADIA_DROPS
-  prompt_action: Nadia drops. The operative goes down quickly. Not dead — she needs the corridor behind her quiet, not sounding an ala...
-  duration_reason: normal/action 5s
-  required_element_ids:
-  - C01
-  camera:
-    angle: eye_level
-    framing: medium
-    movement: handheld
-    lens_bias: impact and control; emphasis on speed and precision, not brutality
-  lighting:
-    source: practical
-    quality: hard
-    color_temp: cool
-    intensity: dim
-  motion:
-    subject_intensity: 0.8
-    camera_intensity: 0.3
-    blocking_notes: Fast, practiced takedown. Emphasis is on control and speed. No excess. The operative is neutralized, not made a statement.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
+  - shot_id: SHOT_SC0089_18_A
+    duration_seconds: 9
+    source_beat_ids:
+      - NADIA_OVER
+      - THEY_MOVE
+      - NADIA_EMBANKMENT_CLIMB
+    prompt_action: The embankment is three meters high. A drainage pipe bracket at two meters provides the step. Nadia reaches the top i...
+    duration_reason: NADIA_OVER (short_insert merged fwd); THEY_MOVE (short_insert merged fwd); normal/action 5s
+    dialogue_line_ids:
+      - DLG_NADIA_OVER
+    required_element_ids:
+      - C01
+      - C06
+    camera:
+      angle: eye_level
+      framing: medium_wide
+      movement: tracking
+      lens_bias: track climb; flat position at top; POV insert on operative below
+    lighting:
+      source: practical
+      quality: hard
+      color_temp: cool
+      intensity: dim
+    motion:
+      subject_intensity: 0.7
+      camera_intensity: 0.4
+      blocking_notes: Fast, practiced climb. Flat position reads as trained tactical entry. POV insert on operative below, unaware.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: '@C01_NADIA lips move briefly, turns to wall, grabs bracket, climbs, goes flat at rim.'
+        render_label: dark field jacket, night-transit build.
+    render_action: "@C01_NADIA's lips move — one word at minimum volume. @C01_NADIA turns and approaches the west embankment wall. @C01_NADIA reaches for a pipe bracket at 2m height. @C01_NADIA climbs — right hand then left foot, practiced sequence — and goes flat at the top rim. @C06_ZARA stays at base."
+    render_camera: Medium-wide tracking. @C01_NADIA approaches wall, climbs, tops out. @C06_ZARA at base.
+    render_diegetic_audio: "[FORMAT A — no native voice for 'Over'] Concrete scrape of climb. Night wind."
+  - shot_id: SHOT_SC0089_18_B
+    duration_seconds: 5
+    source_beat_ids:
+      - NADIA_DROPS
+    prompt_action: Nadia drops. The operative goes down quickly. Not dead — she needs the corridor behind her quiet, not sounding an ala...
+    duration_reason: normal/action 5s
+    required_element_ids:
+      - C01
+    camera:
+      angle: eye_level
+      framing: medium
+      movement: handheld
+      lens_bias: impact and control; emphasis on speed and precision, not brutality
+    lighting:
+      source: practical
+      quality: hard
+      color_temp: cool
+      intensity: dim
+    motion:
+      subject_intensity: 0.8
+      camera_intensity: 0.3
+      blocking_notes: Fast, practiced takedown. Emphasis is on control and speed. No excess. The operative is neutralized, not made a statement.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: '@C01_NADIA drops from rim, lands controlled, arms wrap, figure goes down, straightens.'
+        render_label: dark field jacket, night-transit build.
+    render_action: '@C01_NADIA drops from embankment rim. @C01_NADIA lands controlled — weight forward, arms wrap. An unseen figure on the far side goes down. @C01_NADIA straightens.'
+    render_camera: Medium handheld. @C01_NADIA descending and neutralizing unseen figure.
+    render_diegetic_audio: Impact on ground. Then silence.
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: Generated by omni_clip_planner packer_version=rhythm_aware_v1
+notes: 'SC0089 v07 text-only literal pass (kling_literal_alias_locked): render_* fields authored for model-facing literal grammar; poetic prompt_action/lens_bias remain for human review only. Legacy element ID refs fixed: LOC001→LOC005.'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T10:47:13Z'
+  render_fields_added_by: claude_code (M5 v07 SC0089 literal pass)
+  render_fields_added_at: '2026-06-17T00:00:00Z'
 dialogue_line_ids:
-- DLG_NADIA_OVER
+  - DLG_NADIA_OVER
 required_element_ids:
-- C01
-- C06
+  - C01
+  - C06

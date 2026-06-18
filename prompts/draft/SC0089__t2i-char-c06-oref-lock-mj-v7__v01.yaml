@@ -1,4 +1,4 @@
-prompt_id: SC0089__t2i-char-c06-oref-lock-mj-v7__v01
+﻿prompt_id: SC0089__t2i-char-c06-oref-lock-mj-v7__v01
 scene_id: SC0089
 prompt_type: t2i_character_element
 lifecycle_stage: draft
@@ -10,7 +10,7 @@ source_refs:
   character_refs:
   - C06
 prompt_text: >-
-  Same woman, identical face — mid 30s to early 40s, lean athletic build, West
+  Same woman, identical face â€” mid 30s to early 40s, lean athletic build, West
   African heritage in face geometry and skin tone. Straight to camera, even frontal
   light, plain neutral background. Dark hair pulled back practical. Muted neutral
   operational clothing. Face fully visible, no shadow cropping. Restrained realism,
@@ -26,7 +26,7 @@ generation_params:
   stage: "2_of_3_oref_lock"
   oref_weight: 250
   oref_source_id: MJ_C06_HERO_V001
-  oref_source_external_ref: "archive/nexuszero/_elements/C06/stage1/images/zar_1.png"
+  oref_source_external_ref: "archive/closing_price/_elements/C06/stage1/images/zar_1.png"
   oref_cdn_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/25da50c54707aa7f05c22a2c85ced7161e99a546ed62715e46ce2c319a4c6617_384_N.png"
   recommended_model_version: --v 7
   recommended_style: --style raw

@@ -5,646 +5,692 @@ scene_id: SC0089
 source_omni_clip_plan_ref: planning/scenes/SC0089/omni_clip_plan.yaml
 notes: Inter-clip continuity for SC0089 (23 clips). Night corridor evasion rendered on a consistent left-to-right travel axis (no 180-degree flips); Nadia leads, Zara trails throughout; hunter teams stay offscreen. Summaries derive from each clip first/last beat. exit(N) matches entry(N+1) by construction.
 clip_chain:
-- clip_id: CLIP_SC0089_01
-  order: 1
-  entry_state:
-    summary: The corridor runs between a sealed cargo facility (east) and drainage embankment (west). Overhead lights at 200m intervals. Each light creates a pool; between them, darkness. The geometry is industrial, cold, measured.
-    key_positions: &id001
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id002
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: Nadia is moving through the dark between the second and third lights. Zara is eight meters behind her, same pace, same interval from the wall. They have been moving this way for eleven minutes.
-    key_positions: *id001
-    camera_state: *id002
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_01
-    to_clip_id: CLIP_SC0089_02
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_02
-  order: 2
-  entry_state:
-    summary: Nadia stops at the edge of the third light's pool. Holds up one hand without looking back. A gesture of hold-position.
-    key_positions: &id003
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id004
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: Nadia stops at the edge of the third light's pool. Holds up one hand without looking back. A gesture of hold-position.
-    key_positions: *id003
-    camera_state: *id004
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_02
-    to_clip_id: CLIP_SC0089_03
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_03
-  order: 3
-  entry_state:
-    summary: 'She counts the lights ahead. Four more before the junction. One hundred sixty meters, approximately. The embankment runs continuous. No cover on the western side until the drainage cut at the junction. She is conducting a spatial-temporal assessment: distance, geometry, cover gaps, escape route.'
-    key_positions: &id005
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id006
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: 'She counts the lights ahead. Four more before the junction. One hundred sixty meters, approximately. The embankment runs continuous. No cover on the western side until the drainage cut at the junction. She is conducting a spatial-temporal assessment: distance, geometry, cover gaps, escape route.'
-    key_positions: *id005
-    camera_state: *id006
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_03
-    to_clip_id: CLIP_SC0089_04
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_04
-  order: 4
-  entry_state:
-    summary: She looks back at Zara.
-    key_positions: &id007
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id008
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: 'NADIA: ''The spacing on the comms ping. One source, two different delay intervals. Eastern approach and here.'' She is explaining: the ping signature reveals two distinct threat vectors because they have different latency profiles. One source (the command node) but two delay intervals (two teams, diff...'
-    key_positions: *id007
-    camera_state: *id008
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_04
-    to_clip_id: CLIP_SC0089_05
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_05
-  order: 5
-  entry_state:
-    summary: 'ZARA: ''The broadcast signal.'' (A beat. Then understanding dawns.)'
-    key_positions: &id009
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id010
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: 'ZARA: ''One element went east.'''
-    key_positions: *id009
-    camera_state: *id010
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_05
-    to_clip_id: CLIP_SC0089_06
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_06
-  order: 6
-  entry_state:
-    summary: 'NADIA: ''And one came here.'''
-    key_positions: &id011
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id012
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: 'NADIA: ''At least eight. Moving from the south junction. They have three minutes on us, maybe less.'' She is reading the hunt geometry and the speed of approach from the timing implicit in the comms activity.'
-    key_positions: *id011
-    camera_state: *id012
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_06
-    to_clip_id: CLIP_SC0089_07
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_07
-  order: 7
-  entry_state:
-    summary: She looks at the drainage embankment. Runs the geometry. The gap in the deployment documents — the coverage gap Zara's finger traced in the cache site, the gap Nadia had already moved to before Zara finished tracing it — runs along the northwest quadrant of the perimeter. Fifty meters past the junct...
-    key_positions: &id013
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id014
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: She looks at the drainage embankment. Runs the geometry. The gap in the deployment documents — the coverage gap Zara's finger traced in the cache site, the gap Nadia had already moved to before Zara finished tracing it — runs along the northwest quadrant of the perimeter. Fifty meters past the junct...
-    key_positions: *id013
-    camera_state: *id014
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_07
-    to_clip_id: CLIP_SC0089_08
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_08
-  order: 8
-  entry_state:
-    summary: 'NADIA: ''The coverage gap holds for six minutes after the junction. If we''re past the drainage cut when the burst cycle ends.'' She is stating the condition: the decoy''s 12-minute cycle, the burst timing, the gap window. They have six minutes after crossing the junction to reach the cut, or the gap cl...'
-    key_positions: &id015
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id016
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: 'NADIA: ''We are.'' (Not a question. A declaration of intent and commitment.)'
-    key_positions: *id015
-    camera_state: *id016
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_08
-    to_clip_id: CLIP_SC0089_09
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_09
-  order: 9
-  entry_state:
-    summary: She moves into the third light pool. No sprint — controlled pace, economy of motion, the kind of movement that reads as normal to a wide-angle lens and doesn't produce a heat signature spike in ORACLE PRIME's infrared grid.
-    key_positions: &id017
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id018
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: They pass under the third light. Into darkness. Under the fourth.
-    key_positions: *id017
-    camera_state: *id018
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_09
-    to_clip_id: CLIP_SC0089_10
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_10
-  order: 10
-  entry_state:
-    summary: 'Somewhere south of them — a frequency ping. Brief. Military economy. DIMITRI''s voice on the command channel, stripped to minimum. DIMITRI (V.O., on radio, distant): ''Northern corridor, confirm contact.'' A response, unintelligible at distance. Another ping.'
-    key_positions: &id019
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id020
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: They reach the fifth light. One hundred meters to the junction. The concrete drainage embankment curves west here, following the old canal bed. The wall's surface changes — newer pour, slightly lighter, where a section was repaired.
-    key_positions: *id019
-    camera_state: *id020
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_10
-    to_clip_id: CLIP_SC0089_11
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_11
-  order: 11
-  entry_state:
-    summary: Nadia stops. She presses two fingers against the repair seam. Listens.
-    key_positions: &id021
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id022
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: 'NADIA (very low): ''There''s a team on the other side.'''
-    key_positions: *id021
-    camera_state: *id022
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_11
-    to_clip_id: CLIP_SC0089_12
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_12
-  order: 12
-  entry_state:
-    summary: 'ZARA: ''How —'''
-    key_positions: &id023
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id024
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: A moment. Zara looks north at the junction. One hundred meters. The drainage cut is visible as a shadow against the embankment's base.
-    key_positions: *id023
-    camera_state: *id024
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_12
-    to_clip_id: CLIP_SC0089_13
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_13
-  order: 13
-  entry_state:
-    summary: 'ZARA: ''How many.'''
-    key_positions: &id025
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id026
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: 'ZARA: ''Advance element. They came around.'''
-    key_positions: *id025
-    camera_state: *id026
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_13
-    to_clip_id: CLIP_SC0089_14
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_14
-  order: 14
-  entry_state:
-    summary: Which means the main force is behind them. Which means the geometry has changed. They are not moving toward a gap. They are moving into a closing.
-    key_positions: &id027
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id028
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: Which means the main force is behind them. Which means the geometry has changed. They are not moving toward a gap. They are moving into a closing.
-    key_positions: *id027
-    camera_state: *id028
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_14
-    to_clip_id: CLIP_SC0089_15
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_15
-  order: 15
-  entry_state:
-    summary: 'Nadia looks at the drainage cut. She looks at the timing. She looks at the embankment''s repair seam and the shadow of the cut and the distance. Running the compressed decision: Is there a path through this closing? What is the least-bad move?'
-    key_positions: &id029
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id030
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: 'NADIA: ''We go through, not around.'' (Not asking.)'
-    key_positions: *id029
-    camera_state: *id030
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_15
-    to_clip_id: CLIP_SC0089_16
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_16
-  order: 16
-  entry_state:
-    summary: 'ZARA: ''There are —'''
-    key_positions: &id031
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id032
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: 'NADIA: ''One. Maybe two. The main force is three minutes south. The cut is a hundred meters. We go through.'' She is not asking. She is restating the numbers and the compulsion. The decision is made.'
-    key_positions: *id031
-    camera_state: *id032
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_16
-    to_clip_id: CLIP_SC0089_17
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_17
-  order: 17
-  entry_state:
-    summary: Zara reads her. A moment in which neither of them speaks and the calculation is made without words. The transactional logic — the parallel terms, the stated conditions, the ledger of what each woman owes the other — is suspended for exactly as long as the math requires. Then it isn't suspended anymo...
-    key_positions: &id033
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id034
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: 'ZARA: ''Through the seam or over?'''
-    key_positions: *id033
-    camera_state: *id034
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_17
-    to_clip_id: CLIP_SC0089_18
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_18
-  order: 18
-  entry_state:
-    summary: 'NADIA: ''Over.'''
-    key_positions: &id035
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id036
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: Nadia drops. The operative goes down quickly. Not dead — she needs the corridor behind her quiet, not sounding an alarm. He is quiet.
-    key_positions: *id035
-    camera_state: *id036
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_18
-    to_clip_id: CLIP_SC0089_19
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_19
-  order: 19
-  entry_state:
-    summary: She signals up to Zara.
-    key_positions: &id037
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id038
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: 'Nadia is at her side in the four seconds before the calculation catches up to the movement. NADIA (very low): ''Where.'''
-    key_positions: *id037
-    camera_state: *id038
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_19
-    to_clip_id: CLIP_SC0089_20
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_20
-  order: 20
-  entry_state:
-    summary: 'ZARA: ''Left side. High. Something from the north junction — I didn''t —'' She stops. Breathes. Her hand is at her side below the jacket. When she pulls it back the dark is darker. ZARA (CONT''D): ''I didn''t hear it.'''
-    key_positions: &id039
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id040
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: 'ZARA: ''Left side. High. Something from the north junction — I didn''t —'' She stops. Breathes. Her hand is at her side below the jacket. When she pulls it back the dark is darker. ZARA (CONT''D): ''I didn''t hear it.'''
-    key_positions: *id039
-    camera_state: *id040
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_20
-    to_clip_id: CLIP_SC0089_21
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_21
-  order: 21
-  entry_state:
-    summary: A suppressed round. From the north junction — an element they hadn't placed, a third vector, the part of Dimitri's deployment that exceeded what any standard-parameter hunt would have fielded. Roman deploys precision. Dimitri deployed area. Nadia looks at her hand. Looks at the direction of the nort...
-    key_positions: &id041
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id042
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: 'NADIA (still very low): ''Can you move.'' ZARA: ''Yes.'' She says it the way she states everything — flat, declarative, no performance in it. Her voice does not ask Nadia to believe her. It simply reports.'
-    key_positions: *id041
-    camera_state: *id042
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_21
-    to_clip_id: CLIP_SC0089_22
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_22
-  order: 22
-  entry_state:
-    summary: 'NADIA: ''Then we move now.'''
-    key_positions: &id043
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id044
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: The drainage cut opens at the base of the embankment — a meter-wide conduit, three decades of concrete grime, running northwest into the outer perimeter's maintenance infrastructure. Low. They will have to bend. Zara will have to bend.
-    key_positions: *id043
-    camera_state: *id044
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  frame_continuity:
-    from_clip_id: CLIP_SC0089_22
-    to_clip_id: CLIP_SC0089_23
-    continuity_input_mode: frame_input_eligible
-- clip_id: CLIP_SC0089_23
-  order: 23
-  entry_state:
-    summary: They reach it.
-    key_positions: &id045
-    - subject: Nadia
-      screen_position: lead
-    - subject: Zara
-      screen_position: trail
-    camera_state: &id046
-      shot_size: medium
-      angle: eye_level
-      movement: tracking
-      subject_screen_position: lead
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
-  exit_state:
-    summary: Nadia pulls the drainage cover. It is heavy and it is old and it moves. They go in.
-    key_positions: *id045
-    camera_state: *id046
-    screen_direction: left_to_right
-    offscreen:
-    - hunter teams
+  - clip_id: CLIP_SC0089_01
+    order: 1
+    entry_state:
+      summary: The corridor runs between a sealed cargo facility (east) and drainage embankment (west). Overhead lights at 200m intervals. Each light creates a pool; between them, darkness. The geometry is industrial, cold, measured.
+      key_positions: &id001
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id002
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: Nadia is moving through the dark between the second and third lights. Zara is eight meters behind her, same pace, same interval from the wall. They have been moving this way for eleven minutes.
+      key_positions: *id001
+      camera_state: *id002
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_01
+      to_clip_id: CLIP_SC0089_02
+      continuity_input_mode: frame_input_eligible
+    render_start_state: '@LOC005_CORRIDOR — overhead pools at intervals, deep shadow between. No figures in frame.'
+    render_end_state: '@C01_NADIA in shadow between pools moving left-to-right. @C06_ZARA 8 meters behind, same axis.'
+  - clip_id: CLIP_SC0089_02
+    order: 2
+    entry_state:
+      summary: Nadia stops at the edge of the third light's pool. Holds up one hand without looking back. A gesture of hold-position.
+      key_positions: &id003
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id004
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: Nadia stops at the edge of the third light's pool. Holds up one hand without looking back. A gesture of hold-position.
+      key_positions: *id003
+      camera_state: *id004
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_02
+      to_clip_id: CLIP_SC0089_03
+      continuity_input_mode: frame_input_eligible
+    render_start_state: '@C01_NADIA and @C06_ZARA moving left-to-right in shadow.'
+    render_end_state: '@C01_NADIA stationary at pool edge, right hand raised (stop signal). @C06_ZARA position held behind.'
+  - clip_id: CLIP_SC0089_03
+    order: 3
+    entry_state:
+      summary: 'She counts the lights ahead. Four more before the junction. One hundred sixty meters, approximately. The embankment runs continuous. No cover on the western side until the drainage cut at the junction. She is conducting a spatial-temporal assessment: distance, geometry, cover gaps, escape route.'
+      key_positions: &id005
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id006
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: 'She counts the lights ahead. Four more before the junction. One hundred sixty meters, approximately. The embankment runs continuous. No cover on the western side until the drainage cut at the junction. She is conducting a spatial-temporal assessment: distance, geometry, cover gaps, escape route.'
+      key_positions: *id005
+      camera_state: *id006
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_03
+      to_clip_id: CLIP_SC0089_04
+      continuity_input_mode: frame_input_eligible
+    render_start_state: '@C01_NADIA at pool edge, right hand raised. @C06_ZARA behind, stationary.'
+    render_end_state: '@C01_NADIA holding position, gaze tracking corridor geometry ahead. @C06_ZARA behind, stationary.'
+  - clip_id: CLIP_SC0089_04
+    order: 4
+    entry_state:
+      summary: She looks back at Zara.
+      key_positions: &id007
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id008
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: 'NADIA: ''The spacing on the comms ping. One source, two different delay intervals. Eastern approach and here.'' She is explaining: the ping signature reveals two distinct threat vectors because they have different latency profiles. One source (the command node) but two delay intervals (two teams, diff...'
+      key_positions: *id007
+      camera_state: *id008
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_04
+      to_clip_id: CLIP_SC0089_05
+      continuity_input_mode: frame_input_eligible
+    render_start_state: '@C01_NADIA turns toward @C06_ZARA — tactical exchange begins.'
+    render_end_state: '@C01_NADIA delivered comms-ping spacing analysis. Both stationary.'
+  - clip_id: CLIP_SC0089_05
+    order: 5
+    entry_state:
+      summary: 'ZARA: ''The broadcast signal.'' (A beat. Then understanding dawns.)'
+      key_positions: &id009
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id010
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: 'ZARA: ''One element went east.'''
+      key_positions: *id009
+      camera_state: *id010
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_05
+      to_clip_id: CLIP_SC0089_06
+      continuity_input_mode: frame_input_eligible
+    render_start_state: '@C06_ZARA receiving explanation. @C01_NADIA facing forward.'
+    render_end_state: '@C06_ZARA confirmed eastern deployment axis. Both stationary.'
+  - clip_id: CLIP_SC0089_06
+    order: 6
+    entry_state:
+      summary: 'NADIA: ''And one came here.'''
+      key_positions: &id011
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id012
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: 'NADIA: ''At least eight. Moving from the south junction. They have three minutes on us, maybe less.'' She is reading the hunt geometry and the speed of approach from the timing implicit in the comms activity.'
+      key_positions: *id011
+      camera_state: *id012
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_06
+      to_clip_id: CLIP_SC0089_07
+      continuity_input_mode: frame_input_eligible
+    render_start_state: '@C01_NADIA confirming second deployment axis. Both stationary.'
+    render_end_state: '@C01_NADIA delivered threat count — at least eight from south junction. Both stationary.'
+  - clip_id: CLIP_SC0089_07
+    order: 7
+    entry_state:
+      summary: She looks at the drainage embankment. Runs the geometry. The gap in the deployment documents — the coverage gap Zara's finger traced in the cache site, the gap Nadia had already moved to before Zara finished tracing it — runs along the northwest quadrant of the perimeter. Fifty meters past the junct...
+      key_positions: &id013
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id014
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: She looks at the drainage embankment. Runs the geometry. The gap in the deployment documents — the coverage gap Zara's finger traced in the cache site, the gap Nadia had already moved to before Zara finished tracing it — runs along the northwest quadrant of the perimeter. Fifty meters past the junct...
+      key_positions: *id013
+      camera_state: *id014
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_07
+      to_clip_id: CLIP_SC0089_08
+      continuity_input_mode: frame_input_eligible
+    render_start_state: '@C01_NADIA facing forward, running coverage-gap geometry. @C06_ZARA behind, stationary.'
+    render_end_state: '@C01_NADIA holding position, gap calculation complete. Silent.'
+  - clip_id: CLIP_SC0089_08
+    order: 8
+    entry_state:
+      summary: 'NADIA: ''The coverage gap holds for six minutes after the junction. If we''re past the drainage cut when the burst cycle ends.'' She is stating the condition: the decoy''s 12-minute cycle, the burst timing, the gap window. They have six minutes after crossing the junction to reach the cut, or the gap cl...'
+      key_positions: &id015
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id016
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: 'NADIA: ''We are.'' (Not a question. A declaration of intent and commitment.)'
+      key_positions: *id015
+      camera_state: *id016
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_08
+      to_clip_id: CLIP_SC0089_09
+      continuity_input_mode: frame_input_eligible
+    render_start_state: '@C01_NADIA stating coverage-gap timing to @C06_ZARA.'
+    render_end_state: '@C01_NADIA declared intent: committed. Both stationary.'
+  - clip_id: CLIP_SC0089_09
+    order: 9
+    entry_state:
+      summary: She moves into the third light pool. No sprint — controlled pace, economy of motion, the kind of movement that reads as normal to a wide-angle lens and doesn't produce a heat signature spike in ORACLE PRIME's infrared grid.
+      key_positions: &id017
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id018
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: They pass under the third light. Into darkness. Under the fourth.
+      key_positions: *id017
+      camera_state: *id018
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_09
+      to_clip_id: CLIP_SC0089_10
+      continuity_input_mode: frame_input_eligible
+    render_start_state: '@C01_NADIA begins controlled movement into third light pool. @C06_ZARA follows.'
+    render_end_state: Both @C01_NADIA and @C06_ZARA moving left-to-right through pool-dark-pool sequence.
+  - clip_id: CLIP_SC0089_10
+    order: 10
+    entry_state:
+      summary: 'Somewhere south of them — a frequency ping. Brief. Military economy. DIMITRI''s voice on the command channel, stripped to minimum. DIMITRI (V.O., on radio, distant): ''Northern corridor, confirm contact.'' A response, unintelligible at distance. Another ping.'
+      key_positions: &id019
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id020
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: They reach the fifth light. One hundred meters to the junction. The concrete drainage embankment curves west here, following the old canal bed. The wall's surface changes — newer pour, slightly lighter, where a section was repaired.
+      key_positions: *id019
+      camera_state: *id020
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_10
+      to_clip_id: CLIP_SC0089_11
+      continuity_input_mode: frame_input_eligible
+    render_start_state: Both @C01_NADIA and @C06_ZARA moving left-to-right, approaching fifth pool. Comms pings from south.
+    render_end_state: Both @C01_NADIA and @C06_ZARA at fifth pool, stationary. Embankment repair seam visible.
+  - clip_id: CLIP_SC0089_11
+    order: 11
+    entry_state:
+      summary: Nadia stops. She presses two fingers against the repair seam. Listens.
+      key_positions: &id021
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id022
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: 'NADIA (very low): ''There''s a team on the other side.'''
+      key_positions: *id021
+      camera_state: *id022
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_11
+      to_clip_id: CLIP_SC0089_12
+      continuity_input_mode: frame_input_eligible
+    render_start_state: '@C01_NADIA stops, presses fingers to repair seam. @C06_ZARA holds behind.'
+    render_end_state: '@C01_NADIA fingers on seam, alerted @C06_ZARA: team on far side.'
+  - clip_id: CLIP_SC0089_12
+    order: 12
+    entry_state:
+      summary: 'ZARA: ''How —'''
+      key_positions: &id023
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id024
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: A moment. Zara looks north at the junction. One hundred meters. The drainage cut is visible as a shadow against the embankment's base.
+      key_positions: *id023
+      camera_state: *id024
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_12
+      to_clip_id: CLIP_SC0089_13
+      continuity_input_mode: frame_input_eligible
+    render_start_state: '@C06_ZARA beginning to ask; @C01_NADIA explaining seam vibration.'
+    render_end_state: '@C06_ZARA looking north to junction — drainage cut shadow visible 100m ahead.'
+  - clip_id: CLIP_SC0089_13
+    order: 13
+    entry_state:
+      summary: 'ZARA: ''How many.'''
+      key_positions: &id025
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id026
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: 'ZARA: ''Advance element. They came around.'''
+      key_positions: *id025
+      camera_state: *id026
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_13
+      to_clip_id: CLIP_SC0089_14
+      continuity_input_mode: frame_input_eligible
+    render_start_state: '@C06_ZARA asking for count. @C01_NADIA responding.'
+    render_end_state: '@C06_ZARA confirmed advance element came around. Both stationary.'
+  - clip_id: CLIP_SC0089_14
+    order: 14
+    entry_state:
+      summary: Which means the main force is behind them. Which means the geometry has changed. They are not moving toward a gap. They are moving into a closing.
+      key_positions: &id027
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id028
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: Which means the main force is behind them. Which means the geometry has changed. They are not moving toward a gap. They are moving into a closing.
+      key_positions: *id027
+      camera_state: *id028
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_14
+      to_clip_id: CLIP_SC0089_15
+      continuity_input_mode: frame_input_eligible
+    render_start_state: Both @C01_NADIA and @C06_ZARA stationary. Advance element ahead; main force south.
+    render_end_state: Both still. @C01_NADIA computing least-bad move.
+  - clip_id: CLIP_SC0089_15
+    order: 15
+    entry_state:
+      summary: 'Nadia looks at the drainage cut. She looks at the timing. She looks at the embankment''s repair seam and the shadow of the cut and the distance. Running the compressed decision: Is there a path through this closing? What is the least-bad move?'
+      key_positions: &id029
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id030
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: 'NADIA: ''We go through, not around.'' (Not asking.)'
+      key_positions: *id029
+      camera_state: *id030
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_15
+      to_clip_id: CLIP_SC0089_16
+      continuity_input_mode: frame_input_eligible
+    render_start_state: "@C01_NADIA's gaze moving across seam, cut gap, south distance — running decision."
+    render_end_state: '@C01_NADIA declared decision: go through.'
+  - clip_id: CLIP_SC0089_16
+    order: 16
+    entry_state:
+      summary: 'ZARA: ''There are —'''
+      key_positions: &id031
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id032
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: 'NADIA: ''One. Maybe two. The main force is three minutes south. The cut is a hundred meters. We go through.'' She is not asking. She is restating the numbers and the compulsion. The decision is made.'
+      key_positions: *id031
+      camera_state: *id032
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_16
+      to_clip_id: CLIP_SC0089_17
+      continuity_input_mode: frame_input_eligible
+    render_start_state: '@C06_ZARA beginning to object. @C01_NADIA cutting across with numbers.'
+    render_end_state: '@C01_NADIA completed restatement — numbers, timing, decision closed. Both stationary.'
+  - clip_id: CLIP_SC0089_17
+    order: 17
+    entry_state:
+      summary: Zara reads her. A moment in which neither of them speaks and the calculation is made without words. The transactional logic — the parallel terms, the stated conditions, the ledger of what each woman owes the other — is suspended for exactly as long as the math requires. Then it isn't suspended anymo...
+      key_positions: &id033
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id034
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: 'ZARA: ''Through the seam or over?'''
+      key_positions: *id033
+      camera_state: *id034
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_17
+      to_clip_id: CLIP_SC0089_18
+      continuity_input_mode: frame_input_eligible
+    render_start_state: Both @C01_NADIA and @C06_ZARA facing each other — silent exchange.
+    render_end_state: '@C06_ZARA asked tactical question: through seam or over.'
+  - clip_id: CLIP_SC0089_18
+    order: 18
+    entry_state:
+      summary: 'NADIA: ''Over.'''
+      key_positions: &id035
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id036
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: Nadia drops. The operative goes down quickly. Not dead — she needs the corridor behind her quiet, not sounding an alarm. He is quiet.
+      key_positions: *id035
+      camera_state: *id036
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_18
+      to_clip_id: CLIP_SC0089_19
+      continuity_input_mode: frame_input_eligible
+    render_start_state: '@C01_NADIA declared: over. Moving to west embankment wall to climb.'
+    render_end_state: '@C01_NADIA on far side of embankment. Advance operative neutralized.'
+  - clip_id: CLIP_SC0089_19
+    order: 19
+    entry_state:
+      summary: She signals up to Zara.
+      key_positions: &id037
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id038
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: 'Nadia is at her side in the four seconds before the calculation catches up to the movement. NADIA (very low): ''Where.'''
+      key_positions: *id037
+      camera_state: *id038
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_19
+      to_clip_id: CLIP_SC0089_20
+      continuity_input_mode: frame_input_eligible
+    render_start_state: '@C01_NADIA signaled up. @C06_ZARA climbing embankment.'
+    render_end_state: '@C06_ZARA on one knee on far side. @C01_NADIA moving to @C06_ZARA.'
+  - clip_id: CLIP_SC0089_20
+    order: 20
+    entry_state:
+      summary: 'ZARA: ''Left side. High. Something from the north junction — I didn''t —'' She stops. Breathes. Her hand is at her side below the jacket. When she pulls it back the dark is darker. ZARA (CONT''D): ''I didn''t hear it.'''
+      key_positions: &id039
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id040
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: 'ZARA: ''Left side. High. Something from the north junction — I didn''t —'' She stops. Breathes. Her hand is at her side below the jacket. When she pulls it back the dark is darker. ZARA (CONT''D): ''I didn''t hear it.'''
+      key_positions: *id039
+      camera_state: *id040
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_20
+      to_clip_id: CLIP_SC0089_21
+      continuity_input_mode: frame_input_eligible
+    render_start_state: '@C06_ZARA reporting wound location. Hand pulled back from left side below jacket.'
+    render_end_state: '@C06_ZARA finished wound report. Both stationary.'
+  - clip_id: CLIP_SC0089_21
+    order: 21
+    entry_state:
+      summary: A suppressed round. From the north junction — an element they hadn't placed, a third vector, the part of Dimitri's deployment that exceeded what any standard-parameter hunt would have fielded. Roman deploys precision. Dimitri deployed area. Nadia looks at her hand. Looks at the direction of the nort...
+      key_positions: &id041
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id042
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: 'NADIA (still very low): ''Can you move.'' ZARA: ''Yes.'' She says it the way she states everything — flat, declarative, no performance in it. Her voice does not ask Nadia to believe her. It simply reports.'
+      key_positions: *id041
+      camera_state: *id042
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_21
+      to_clip_id: CLIP_SC0089_22
+      continuity_input_mode: frame_input_eligible
+    render_start_state: "@C01_NADIA assessing @C06_ZARA's wound silently."
+    render_end_state: '@C06_ZARA confirmed: can move. Both preparing to continue.'
+  - clip_id: CLIP_SC0089_22
+    order: 22
+    entry_state:
+      summary: 'NADIA: ''Then we move now.'''
+      key_positions: &id043
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id044
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: The drainage cut opens at the base of the embankment — a meter-wide conduit, three decades of concrete grime, running northwest into the outer perimeter's maintenance infrastructure. Low. They will have to bend. Zara will have to bend.
+      key_positions: *id043
+      camera_state: *id044
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    frame_continuity:
+      from_clip_id: CLIP_SC0089_22
+      to_clip_id: CLIP_SC0089_23
+      continuity_input_mode: frame_input_eligible
+    render_start_state: "@C01_NADIA's shoulder under @C06_ZARA's arm. Both moving left-to-right toward drainage cut."
+    render_end_state: Drainage cut entrance visible — @LOC005_CORRIDOR conduit opening at embankment base.
+  - clip_id: CLIP_SC0089_23
+    order: 23
+    entry_state:
+      summary: They reach it.
+      key_positions: &id045
+        - subject: Nadia
+          screen_position: lead
+        - subject: Zara
+          screen_position: trail
+      camera_state: &id046
+        shot_size: medium
+        angle: eye_level
+        movement: tracking
+        subject_screen_position: lead
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    exit_state:
+      summary: Nadia pulls the drainage cover. It is heavy and it is old and it moves. They go in.
+      key_positions: *id045
+      camera_state: *id046
+      screen_direction: left_to_right
+      offscreen:
+        - hunter teams
+    render_start_state: Both @C01_NADIA and @C06_ZARA at drainage cut entrance. Comms pinging from south.
+    render_end_state: '@C01_NADIA and @C06_ZARA inside conduit. Cover pulled shut.'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T00:00:00Z'

@@ -1,4 +1,4 @@
-prompt_id: SC0014__still-07__v01
+﻿prompt_id: SC0014__still-07__v01
 scene_id: SC0014
 prompt_type: still_generation
 lifecycle_stage: deprecated
@@ -8,7 +8,7 @@ source_refs:
   scene_card: planning/scenes/SC0014/scene_card.yaml
   scene_excerpt: planning/scenes/SC0014/manifests/CLIP_SC0014_03_manifest.yaml
 prompt_text: 'Generate a cinematic still photograph for a establish shot. Framing: medium_wide shot, eye_level angle (doorway
-  with three standing figures, Nadia and the child held center). Action/subject: The door of  opens — the intruding geometry
+  with three standing figures, Nadia and the child held center). Action/subject: The door of  opens â€” the intruding geometry
   against the room''s warmth. Lighting: practical source, soft quality, neutral tone. Visual anchors (identity reference):
   Locked  nursery: small carefully-made room, crib + low shelf + nursing chair, soft warm evening practicals. | Locked Dimitri
   identity: real three-dimensional lived-in human face, early 40s, lean contained build, dark neat hair, steady observant
@@ -31,22 +31,22 @@ generation_params:
   shot_order_index: 7
   archive_filename: SC0014_07_clip-sc0014-03_shot-sc0014-03-a.png
   input_reference_images:
-  - archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_1.png
-  - archive/nexuszero/SC0014/C04/stage3/images/dim3_4.png
-  - archive/nexuszero/SC0014/C04/stage3/images/dim3_2.png
-  - archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_47.png
-  - archive/nexuszero/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_55.png
-  - archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_28.png
-  - archive/nexuszero/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_18.png
-  - archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_28_02.png
-  - archive/nexuszero/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_27_53.png
-  - archive/nexuszero/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_30_00.png
-  - archive/nexuszero/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_34_52.png
-  - archive/nexuszero/SC0014/C08/stage3/images/jin3_4.png
-  - archive/nexuszero/SC0014/C08/stage3/images/jin3_2.png
-  - archive/nexuszero/_elements/C10/stage3/images/car_3_1.png
-  - archive/nexuszero/_elements/C10/stage3/images/car_3_3.png
-  - archive/nexuszero/_elements/C10/stage3/images/hol_3_1.png
+  - archive/closing_price/_elements/LOC001/stage3/images/loc001_3_1.png
+  - archive/closing_price/SC0014/C04/stage3/images/dim3_4.png
+  - archive/closing_price/SC0014/C04/stage3/images/dim3_2.png
+  - archive/closing_price/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_47.png
+  - archive/closing_price/SC0111/C01/stage3/images/ChatGPT Image 9 Haz 2026 15_10_55.png
+  - archive/closing_price/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_28.png
+  - archive/closing_price/SC0089/C01/stage3/images/ChatGPT Image 8 Haz 2026 23_31_18.png
+  - archive/closing_price/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_28_02.png
+  - archive/closing_price/SC0014/C01/stage3/images/ChatGPT Image 8 Haz 2026 20_27_53.png
+  - archive/closing_price/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_30_00.png
+  - archive/closing_price/SC0047/C01/stage3/images/ChatGPT Image 9 Haz 2026 14_34_52.png
+  - archive/closing_price/SC0014/C08/stage3/images/jin3_4.png
+  - archive/closing_price/SC0014/C08/stage3/images/jin3_2.png
+  - archive/closing_price/_elements/C10/stage3/images/car_3_1.png
+  - archive/closing_price/_elements/C10/stage3/images/car_3_3.png
+  - archive/closing_price/_elements/C10/stage3/images/hol_3_1.png
   protected_subject_flags:
   - C08_NO_CONTACT
   - C08_DISTRESS_OFF_FRAME

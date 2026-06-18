@@ -1,12 +1,12 @@
-element_id: PROP008
+﻿element_id: PROP008
 element_type: prop
 selection_round: 1
 source_prompt_ids:
   - SC0047__t2i-prop-prop008-handset-first-ref-chatgpt__v01
 candidate_images:
   - asset_id: PPACK_PROP008_HANDSET_V001__front_reference
-    path: "archive/nexuszero/_elements/PROP008/stage2/images/ChatGPT Image 17 Haz 2026 14_31_57.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/PROP008/stage2/images/ChatGPT Image 17 Haz 2026 14_31_57.png"
+    path: "archive/closing_price/_elements/PROP008/stage2/images/ChatGPT Image 17 Haz 2026 14_31_57.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/PROP008/stage2/images/ChatGPT Image 17 Haz 2026 14_31_57.png"
     repo_binary_committed: false
     status: selected
     reason: "PROP008 handset front_reference. Full face, casing + physical buttons + unlit screen, neutral background. Ordinary hardened field hardware, no logos. QC 92."
@@ -17,8 +17,8 @@ candidate_images:
       continuity: 5
       production_usability: 5
   - asset_id: PPACK_PROP008_HANDSET_V001__three_quarter_medium
-    path: "archive/nexuszero/_elements/PROP008/stage2/images/ChatGPT Image 17 Haz 2026 14_32_02.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/PROP008/stage2/images/ChatGPT Image 17 Haz 2026 14_32_02.png"
+    path: "archive/closing_price/_elements/PROP008/stage2/images/ChatGPT Image 17 Haz 2026 14_32_02.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/PROP008/stage2/images/ChatGPT Image 17 Haz 2026 14_32_02.png"
     repo_binary_committed: false
     status: selected
     reason: "PROP008 handset three_quarter_medium. Three-quarter angle showing device thickness, side buttons, rugged casing depth. QC 90."
@@ -29,11 +29,11 @@ candidate_images:
       continuity: 5
       production_usability: 4
   - asset_id: PPACK_PROP008_HANDSET_V001__three_quarter_close
-    path: "archive/nexuszero/_elements/PROP008/stage2/images/ChatGPT Image 17 Haz 2026 14_32_07.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/PROP008/stage2/images/ChatGPT Image 17 Haz 2026 14_32_07.png"
+    path: "archive/closing_price/_elements/PROP008/stage2/images/ChatGPT Image 17 Haz 2026 14_32_07.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/PROP008/stage2/images/ChatGPT Image 17 Haz 2026 14_32_07.png"
     repo_binary_committed: false
     status: selected
-    reason: "PROP008 handset three_quarter_close. Macro on unlit screen + keypad detail + matte casing texture — the code-entry beat detail. QC 91."
+    reason: "PROP008 handset three_quarter_close. Macro on unlit screen + keypad detail + matte casing texture â€” the code-entry beat detail. QC 91."
     quality_scores:
       identity_consistency: 5
       source_grounding: 5

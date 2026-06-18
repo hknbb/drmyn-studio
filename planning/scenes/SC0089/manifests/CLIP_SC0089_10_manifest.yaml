@@ -7,101 +7,131 @@ source_dialogue_beats_ref: planning/scenes/SC0089/dialogue_beats.yaml
 total_duration_seconds: 13
 continuity_input_mode: frame_input_eligible
 shots:
-- shot_id: SHOT_SC0089_10_A
-  duration_seconds: 5
-  source_beat_ids:
-  - DIMITRI_V_O_CONFIRM
-  prompt_action: Somewhere south of them — a frequency ping. Brief. Military economy. DIMITRI's voice on the command channel, stripped...
-  duration_reason: normal/pulse_check 5s
-  required_element_ids:
-  - C01
-  - C06
-  camera:
-    angle: eye_level
-    framing: medium_wide
-    movement: tracking
-    lens_bias: figures moving; radio comms as sonic threat-indicator
-  lighting:
-    source: practical
-    quality: hard
-    color_temp: cool
-    intensity: moderate
-  motion:
-    subject_intensity: 0.25
-    camera_intensity: 0.2
-    blocking_notes: Figures continue movement. Radio pings register as off-screen threat.
-- shot_id: SHOT_SC0089_10_B
-  duration_seconds: 3
-  source_beat_ids:
-  - DIMITRI_ACCELERATE
-  prompt_action: 'DIMITRI (V.O., on radio, closer now): ''Accelerate. He was ahead of us once.'' The ''he'' — wrong pronoun, wrong person. ...'
-  duration_reason: normal/dialogue 3s
-  dialogue_line_ids:
-  - DLG_DIMITRI_ACCELERATE
-  required_element_ids:
-  - C01
-  camera:
-    angle: eye_level
-    framing: medium_close
-    movement: tracking
-    lens_bias: favor Nadia's face amid the movement; her processing of the V.O.
-  lighting:
-    source: practical
-    quality: hard
-    color_temp: cool
-    intensity: moderate
-  motion:
-    subject_intensity: 0.25
-    camera_intensity: 0.15
-    blocking_notes: Nadia continues movement at same pace. The misgendering registers internally; posture does not change.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-- shot_id: SHOT_SC0089_10_C
-  duration_seconds: 5
-  source_beat_ids:
-  - REACH_FIFTH_LIGHT
-  prompt_action: They reach the fifth light. One hundred meters to the junction. The concrete drainage embankment curves west here, fo...
-  duration_reason: normal/establish 5s
-  required_element_ids:
-  - C01
-  - C06
-  camera:
-    angle: eye_level
-    framing: medium
-    movement: static
-    lens_bias: the fifth light pool; embankment detail becoming visible; repair seam
-  lighting:
-    source: practical
-    quality: hard
-    color_temp: cool
-    intensity: bright
-  motion:
-    subject_intensity: 0.1
-    camera_intensity: 0.0
-    blocking_notes: Both figures stop/slow in light pool. Detail of embankment repair seam becomes tactilely relevant.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-  - figure_id: FIG_ZARA
-    base_element_id: C06
-    kling_alias: '@C06_ZARA'
-    role: Zara, operative ally
+  - shot_id: SHOT_SC0089_10_A
+    duration_seconds: 5
+    source_beat_ids:
+      - DIMITRI_V_O_CONFIRM
+    prompt_action: Somewhere south of them — a frequency ping. Brief. Military economy. DIMITRI's voice on the command channel, stripped...
+    duration_reason: normal/pulse_check 5s
+    required_element_ids:
+      - C01
+      - C06
+    camera:
+      angle: eye_level
+      framing: medium_wide
+      movement: tracking
+      lens_bias: figures moving; radio comms as sonic threat-indicator
+    lighting:
+      source: practical
+      quality: hard
+      color_temp: cool
+      intensity: moderate
+    motion:
+      subject_intensity: 0.25
+      camera_intensity: 0.2
+      blocking_notes: Figures continue movement. Radio pings register as off-screen threat.
+    render_action: "@C01_NADIA and @C06_ZARA walk left-to-right at 8m separation, approaching the fifth pool. @C01_NADIA's head angle shifts slightly left — registering a sound from south."
+    render_camera: Medium-wide tracking left. Both figures at interval in fifth-pool approach.
+    render_diegetic_audio: Footsteps on concrete. Brief comms ping from south — military cadence.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: '@C01_NADIA walks left-to-right, head angle shifts slightly south.'
+        render_label: dark field jacket, night-transit build.
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: '@C06_ZARA'
+        role: Zara, operative ally
+        render_action: '@C06_ZARA follows 8 meters behind @C01_NADIA, controlled pace.'
+        render_label: khaki-olive jacket, field-night build.
+  - shot_id: SHOT_SC0089_10_B
+    duration_seconds: 3
+    source_beat_ids:
+      - DIMITRI_ACCELERATE
+    prompt_action: 'DIMITRI (V.O., on radio, closer now): ''Accelerate. He was ahead of us once.'' The ''he'' — wrong pronoun, wrong person. ...'
+    duration_reason: normal/dialogue 3s
+    dialogue_line_ids:
+      - DLG_DIMITRI_ACCELERATE
+    required_element_ids:
+      - C01
+    camera:
+      angle: eye_level
+      framing: medium_close
+      movement: tracking
+      lens_bias: favor Nadia's face amid the movement; her processing of the V.O.
+    lighting:
+      source: practical
+      quality: hard
+      color_temp: cool
+      intensity: moderate
+    motion:
+      subject_intensity: 0.25
+      camera_intensity: 0.15
+      blocking_notes: Nadia continues movement at same pace. The misgendering registers internally; posture does not change.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: '@C01_NADIA walks, jaw shifts registering the radio, pace unchanged, eyes ahead.'
+        render_label: dark field jacket, night-transit build.
+    render_action: "@C01_NADIA continues walking left-to-right. @C01_NADIA's jaw shifts — registers the radio. No change in pace. Eyes hold ahead. Comms-channel voice from south on the command channel (off-screen)."
+    render_camera: Medium-close tracking. @C01_NADIA dominant. Corridor moving behind.
+    render_diegetic_audio: '[FORMAT A — no native voice for off-screen comms] Command-channel static, then voice, then silence.'
+  - shot_id: SHOT_SC0089_10_C
+    duration_seconds: 5
+    source_beat_ids:
+      - REACH_FIFTH_LIGHT
+    prompt_action: They reach the fifth light. One hundred meters to the junction. The concrete drainage embankment curves west here, fo...
+    duration_reason: normal/establish 5s
+    required_element_ids:
+      - C01
+      - C06
+    camera:
+      angle: eye_level
+      framing: medium
+      movement: static
+      lens_bias: the fifth light pool; embankment detail becoming visible; repair seam
+    lighting:
+      source: practical
+      quality: hard
+      color_temp: cool
+      intensity: bright
+    motion:
+      subject_intensity: 0.1
+      camera_intensity: 0.0
+      blocking_notes: Both figures stop/slow in light pool. Detail of embankment repair seam becomes tactilely relevant.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: '@C01_NADIA stops, gaze moves to lighter repair-seam section on embankment.'
+        render_label: dark field jacket, night-transit build.
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: '@C06_ZARA'
+        role: Zara, operative ally
+        render_action: '@C06_ZARA stops behind @C01_NADIA, holds position.'
+        render_label: khaki-olive jacket, field-night build.
+    render_action: "@C01_NADIA and @C06_ZARA stop or slow at the fifth overhead pool. @C01_NADIA's gaze moves to the embankment surface: a repair-pour section, slightly lighter than the base concrete, runs at mid-height. @C01_NADIA does not yet move toward it."
+    render_camera: Medium static. Both figures at fifth pool. West embankment surface visible, lighter seam at mid-height.
+    render_diegetic_audio: Night wind. Pool hum.
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: Generated by omni_clip_planner packer_version=rhythm_aware_v1
+notes: 'SC0089 v07 text-only literal pass (kling_literal_alias_locked): render_* fields authored for model-facing literal grammar; poetic prompt_action/lens_bias remain for human review only. Legacy element ID refs fixed: LOC001→LOC005.'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T10:47:13Z'
+  render_fields_added_by: claude_code (M5 v07 SC0089 literal pass)
+  render_fields_added_at: '2026-06-17T00:00:00Z'
 dialogue_line_ids:
-- DLG_DIMITRI_ACCELERATE
+  - DLG_DIMITRI_ACCELERATE
 required_element_ids:
-- C01
-- C06
+  - C01
+  - C06

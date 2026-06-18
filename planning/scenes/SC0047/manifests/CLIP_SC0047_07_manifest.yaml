@@ -7,83 +7,95 @@ source_dialogue_beats_ref: planning/scenes/SC0047/dialogue_beats.yaml
 total_duration_seconds: 14
 continuity_input_mode: frame_input_eligible
 shots:
-- shot_id: SHOT_SC0047_07_A
-  duration_seconds: 3
-  source_beat_ids:
-  - MARCUS_FINAL_WORDS
-  prompt_action: 'Marcus (V.O., CONT''D): "Karev." One word. Her maiden name. His private anchor for her. Then: "Take Jin home." The mes...'
-  duration_reason: long_hold/dialogue 3s
-  dialogue_line_ids:
-  - DLG_MARCUS_KAREV
-  - DLG_MARCUS_TAKE_JIN
-  required_element_ids:
-  - PROP047
-  - C01
-  - C09
-  camera:
-    angle: eye_level
-    framing: medium_close
-    movement: static
-    lens_bias: Nadia after the message; Otto at window in background
-  lighting:
-    source: filtered_daylight
-    quality: soft
-    color_temp: cool
-    intensity: moderate
-  motion:
-    subject_intensity: 0.0
-    camera_intensity: 0.0
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-  - figure_id: FIG_OTTO
-    base_element_id: C09
-    kling_alias: '@C09_OTTO'
-    role: Otto, the quay contact
-    distinguishing_detail: Does not offer his hand; stands ready but does not greet.
-- shot_id: SHOT_SC0047_07_B
-  duration_seconds: 11
-  source_beat_ids:
-  - NADIA_CATALOGS_SILENCE
-  prompt_action: Nadia looks at the phone in her hand. She does not put it down. She catalogs — this is what she does when she needs t...
-  duration_reason: long_hold/hold 11s
-  required_element_ids:
-  - C01
-  - PROP047
-  camera:
-    angle: eye_level
-    framing: close
-    movement: static
-    lens_bias: Nadia's face and hands with phone; processing and turning inward
-  lighting:
-    source: filtered_daylight
-    quality: soft
-    color_temp: cool
-    intensity: moderate
-  motion:
-    subject_intensity: 0.05
-    camera_intensity: 0.0
-    blocking_notes: Nadia holds the phone in her hand; does not put it down; processes in silence.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
+  - shot_id: SHOT_SC0047_07_A
+    duration_seconds: 3
+    source_beat_ids:
+      - MARCUS_FINAL_WORDS
+    prompt_action: 'Marcus (V.O., CONT''D): "Karev." One word. Her maiden name. His private anchor for her. Then: "Take Jin home." The mes...'
+    duration_reason: long_hold/dialogue 3s
+    dialogue_line_ids:
+      - DLG_MARCUS_KAREV
+      - DLG_MARCUS_TAKE_JIN
+    required_element_ids:
+      - PROP008
+      - C01
+      - C09
+    camera:
+      angle: eye_level
+      framing: medium_close
+      movement: static
+      lens_bias: Nadia after the message; Otto at window in background
+    lighting:
+      source: filtered_daylight
+      quality: soft
+      color_temp: cool
+      intensity: moderate
+    motion:
+      subject_intensity: 0.0
+      camera_intensity: 0.0
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: keeps @PROP008_HANDSET in both hands as the recording ends; does not put it down.
+      - figure_id: FIG_OTTO
+        base_element_id: C09
+        kling_alias: '@C09_OTTO'
+        role: Otto, the quay contact
+        distinguishing_detail: Does not offer his hand; stands ready but does not greet.
+        render_action: stands at the far window, back to the room, does not turn.
+        render_label: weathered grey jacket, close-kept grey hair.
+    render_action: '@C01_NADIA holds @PROP008_HANDSET in both hands; @C09_OTTO stands at the far window, back to the room. The recording on @PROP008_HANDSET ends. @C01_NADIA keeps @PROP008_HANDSET in both hands; does not put it down. @C09_OTTO does not turn.'
+    render_camera: Medium-close shot on @C01_NADIA with @C09_OTTO out of focus in background, static.
+    render_diegetic_audio: final audio from @PROP008_HANDSET ends; then silence; no ambient sound.
+  - shot_id: SHOT_SC0047_07_B
+    duration_seconds: 11
+    source_beat_ids:
+      - NADIA_CATALOGS_SILENCE
+    prompt_action: Nadia looks at the phone in her hand. She does not put it down. She catalogs — this is what she does when she needs t...
+    duration_reason: long_hold/hold 11s
+    required_element_ids:
+      - C01
+      - PROP008
+    camera:
+      angle: eye_level
+      framing: close
+      movement: static
+      lens_bias: Nadia's face and hands with phone; processing and turning inward
+    lighting:
+      source: filtered_daylight
+      quality: soft
+      color_temp: cool
+      intensity: moderate
+    motion:
+      subject_intensity: 0.05
+      camera_intensity: 0.0
+      blocking_notes: Nadia holds the phone in her hand; does not put it down; processes in silence.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: holds @PROP008_HANDSET in both hands, still, jaw set, eyes on the screen.
+    render_action: '@C01_NADIA holds @PROP008_HANDSET in both hands, screen facing up. @C01_NADIA does not move; her eyes are on the screen; her jaw is set; she breathes slowly.'
+    render_camera: Close shot on @C01_NADIA face, static.
+    render_diegetic_audio: silence holds; a slow controlled breath from @C01_NADIA.
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: Generated by omni_clip_planner packer_version=rhythm_aware_v1
+notes: 'SC0047 v07 text-only literal pass (kling_literal_alias_locked): render_* fields authored for model-facing literal grammar; poetic prompt_action/lens_bias/diegetic_audio remain for human review only. Legacy element ID refs fixed: PROP047→PROP008, LOC001→LOC006.'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T10:43:15Z'
+  render_fields_added_by: claude_code (M5 v07 SC0047 literal pass)
+  render_fields_added_at: '2026-06-17T00:00:00Z'
 dialogue_line_ids:
-- DLG_MARCUS_KAREV
-- DLG_MARCUS_TAKE_JIN
+  - DLG_MARCUS_KAREV
+  - DLG_MARCUS_TAKE_JIN
 required_element_ids:
-- PROP047
-- C01
-- C09
+  - PROP008
+  - C01
+  - C09

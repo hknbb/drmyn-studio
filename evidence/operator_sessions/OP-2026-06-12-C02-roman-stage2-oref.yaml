@@ -1,10 +1,10 @@
-session_id: OP-2026-06-12-C02-roman-stage2-oref
+﻿session_id: OP-2026-06-12-C02-roman-stage2-oref
 created_at: "2026-06-12T00:00:00Z"
 scene_id: SC0111
 current_task: "C02 Roman Stage-2 MJ V7 --cref identity lock selection from R2 batch"
 status: complete
 recommended_files:
-  - archive/nexuszero/_elements/C02/stage2/images/rom_2.png
+  - archive/closing_price/_elements/C02/stage2/images/rom_2.png
   - visual_dev/elements/characters/C02/identity_anchor.yaml
   - visual_dev/elements/characters/C02/perspective_packs/PPACK_C02_COMPOUND_V001.yaml
 recommended_steps:

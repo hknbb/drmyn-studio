@@ -1,8 +1,8 @@
-# Shot Photography & Contact Sheet Playbook (Anchor & Animate)
+﻿# Shot Photography & Contact Sheet Playbook (Anchor & Animate)
 
-> ⚠️ **HISTORICAL / DEPRECATED for SC0014 (v07).** The still → contact-sheet →
+> âš ï¸ **HISTORICAL / DEPRECATED for SC0014 (v07).** The still â†’ contact-sheet â†’
 > `anchored_i2v` route below is retired for SC0014: the 22-still pass and contact
-> sheets proved too manual. The current route is **text_only literal multi-shot** —
+> sheets proved too manual. The current route is **text_only literal multi-shot** â€”
 > see [`kling_literal_multishot_playbook.md`](kling_literal_multishot_playbook.md).
 > This document is kept for historical reference only.
 
@@ -20,10 +20,10 @@ Visual continuity is carried by the images, not by prose. The motion text budget
 
 ```
 for each shot (22 for SC0014):
-    generate still → archive --subdir shots
+    generate still â†’ archive --subdir shots
 
 for each clip (8 for SC0014):
-    generate contact sheet → archive --subdir contact_sheets
+    generate contact sheet â†’ archive --subdir contact_sheets
     generate Kling anchored_i2v clip
 ```
 
@@ -42,7 +42,7 @@ Zero issues required before starting still generation.
 
 ---
 
-## 3. Step A — Generate shot stills (ChatGPT Images 2)
+## 3. Step A â€” Generate shot stills (ChatGPT Images 2)
 
 ### 3.1 Read the still prompts
 
@@ -51,9 +51,9 @@ prompts/draft/{SCENE_ID}__still-{NN}__v01.yaml
 ```
 
 Each record's `generation_params` carries:
-- `input_reference_images` — the perspective-view local paths to upload
-- `archive_filename` — the output filename to use when saving
-- `protected_subject_flags` — non-empty for shots containing C08 (infant)
+- `input_reference_images` â€” the perspective-view local paths to upload
+- `archive_filename` â€” the output filename to use when saving
+- `protected_subject_flags` â€” non-empty for shots containing C08 (infant)
 
 ### 3.2 Upload & generate in ChatGPT Images 2
 
@@ -78,16 +78,16 @@ python scripts/archive_media.py \
   --media-type image
 ```
 
-This writes to `archive/nexuszero/SC0014/shots/` (gitignored binary) and appends an entry
+This writes to `archive/closing_price/SC0014/shots/` (gitignored binary) and appends an entry
 to `evidence/local_media_indices/LOCAL_MEDIA_INDEX_{SCENE_ID}_ARCHIVE_V001.yaml`.
 
 ### 3.4 Repeat for all shots (scene-global order 01..22 for SC0014)
 
-Keep the global 01..22 order — it drives the frame-chain and contact-sheet upload order.
+Keep the global 01..22 order â€” it drives the frame-chain and contact-sheet upload order.
 
 ---
 
-## 4. Step B — Generate contact sheets (ChatGPT Images 2, multi-panel)
+## 4. Step B â€” Generate contact sheets (ChatGPT Images 2, multi-panel)
 
 ### 4.1 Read the contact-sheet prompts
 
@@ -101,7 +101,7 @@ for this clip's shots in order. Upload them in that order.
 ### 4.2 Generate the contact sheet
 
 1. Open ChatGPT Images 2.
-2. Upload the stills in `operator_upload_order` sequence (≤ 6 per clip, ≤ 16 total inputs).
+2. Upload the stills in `operator_upload_order` sequence (â‰¤ 6 per clip, â‰¤ 16 total inputs).
 3. Paste `prompt_text` verbatim.
 4. Save output as `{SCENE_ID}_clip{NN}_contact.png`.
 
@@ -123,7 +123,7 @@ Default is off (`contact_sheet_for_kling_default: off`).
 
 ---
 
-## 5. Step C — Generate Kling anchored_i2v clips
+## 5. Step C â€” Generate Kling anchored_i2v clips
 
 ### 5.1 Read the Kling prompts
 
@@ -137,7 +137,7 @@ Key `generation_params` fields:
 |---|---|
 | `input_mode` | `anchored_i2v` |
 | `start_frame_ref` | archive path of the previous clip's last shot still (pass-1) |
-| `visual_input_budget.total` | 7 max (1 start-frame + ≤ 6 element slots) |
+| `visual_input_budget.total` | 7 max (1 start-frame + â‰¤ 6 element slots) |
 | `frame_chain_source` | `designed_still_pass1` |
 | `required_element_aliases` | list of `@alias` values for this clip's elements |
 
@@ -146,14 +146,14 @@ Key `generation_params` fields:
 1. **Start-frame input:** upload the image at `start_frame_ref`.
 2. **Element refs:** upload each element's reference image (from KER records listed under
    `required_element_aliases`; priority views per `_CHAR_VIEW_PRIORITY` / `_LOC_VIEW_PRIORITY`).
-3. Total visual inputs ≤ 7 (enforced by `visual_input_budget`).
+3. Total visual inputs â‰¤ 7 (enforced by `visual_input_budget`).
 4. Paste `prompt_text` verbatim. **Do not exceed 2500 characters.**
 5. For clips containing C08 shots: operator human-approval gate remains in force.
 
 ### 5.3 Two-pass frame chain
 
 **Pass 1 (current):** `start_frame_ref` points to the *designed still* of the previous
-clip's last shot — the `designed_still_pass1` convention.
+clip's last shot â€” the `designed_still_pass1` convention.
 
 **Pass 2 (after takes are selected):** When a Kling take is selected and its last frame is
 extracted, write an `extracted_frame_reference` record and update the next clip's manifest
@@ -175,7 +175,7 @@ The `validate_shot_still_coverage` validator checks:
 |---|---|
 | `STILL_MISSING` | A manifest shot has no still_generation prompt |
 | `CONTACT_SHEET_MISSING` | A manifest clip has no shot_design prompt |
-| `CONTACT_SHEET_ORDER_MISMATCH` | Upload order ≠ manifest shot order |
+| `CONTACT_SHEET_ORDER_MISMATCH` | Upload order â‰  manifest shot order |
 | `ARCHIVE_FILENAME_DUPLICATE` | Two stills share the same archive filename |
 | `VISUAL_BUDGET_EXCEEDED` | anchored_i2v prompt budget > 7 |
 | `PROTECTED_FLAGS_MISSING` | C08 shot still missing safety flags |

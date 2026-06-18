@@ -7,131 +7,153 @@ source_dialogue_beats_ref: planning/scenes/SC0089/dialogue_beats.yaml
 total_duration_seconds: 15
 continuity_input_mode: metadata_only
 shots:
-- shot_id: SHOT_SC0089_05_A
-  duration_seconds: 3
-  source_beat_ids:
-  - ZARA_BROADCAST_SIGNAL
-  prompt_action: 'ZARA: ''The broadcast signal.'' (A beat. Then understanding dawns.)'
-  duration_reason: normal/dialogue 3s
-  dialogue_line_ids:
-  - DLG_ZARA_BROADCAST
-  required_element_ids:
-  - C06
-  camera:
-    angle: eye_level
-    framing: medium_close
-    movement: static
-    lens_bias: Zara's realization
-  lighting:
-    source: practical
-    quality: hard
-    color_temp: cool
-    intensity: dim
-  motion:
-    subject_intensity: 0.05
-    camera_intensity: 0.0
-    blocking_notes: Silent beat between statement and understanding; Zara processes.
-  figures:
-  - figure_id: FIG_ZARA
-    base_element_id: C06
-    kling_alias: '@C06_ZARA'
-    role: Zara, operative ally
-- shot_id: SHOT_SC0089_05_B
-  duration_seconds: 3
-  source_beat_ids:
-  - NADIA_STILL_RUNNING
-  prompt_action: 'NADIA: ''It''s still running.'' She confirms: the passive 12-minute burst cycle, the false position signal feeding into ...'
-  duration_reason: normal/dialogue 3s
-  dialogue_line_ids:
-  - DLG_NADIA_STILL_RUNNING
-  required_element_ids:
-  - C01
-  camera:
-    angle: eye_level
-    framing: medium_close
-    movement: static
-    lens_bias: Nadia confirming the operational status
-  lighting:
-    source: practical
-    quality: hard
-    color_temp: cool
-    intensity: dim
-  motion:
-    subject_intensity: 0.05
-    camera_intensity: 0.0
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-- shot_id: SHOT_SC0089_05_C
-  duration_seconds: 6
-  source_beat_ids:
-  - ZARA_PROCESSES_DECOY
-  prompt_action: Zara processes this. The passive burst cycle — twelve minutes, eastern approach junction node 7, a false position sig...
-  duration_reason: normal/hold 6s
-  required_element_ids:
-  - C06
-  camera:
-    angle: eye_level
-    framing: medium_close
-    movement: static
-    lens_bias: Zara's face; internal processing evident
-  lighting:
-    source: practical
-    quality: hard
-    color_temp: cool
-    intensity: dim
-  motion:
-    subject_intensity: 0.05
-    camera_intensity: 0.0
-    blocking_notes: Zara held silent; the mental calculation is visible via her composure and focus.
-  figures:
-  - figure_id: FIG_ZARA
-    base_element_id: C06
-    kling_alias: '@C06_ZARA'
-    role: Zara, operative ally
-- shot_id: SHOT_SC0089_05_D
-  duration_seconds: 3
-  source_beat_ids:
-  - ZARA_ONE_ELEMENT_EAST
-  prompt_action: 'ZARA: ''One element went east.'''
-  duration_reason: normal/dialogue 3s
-  dialogue_line_ids:
-  - DLG_ZARA_EAST
-  required_element_ids:
-  - C06
-  camera:
-    angle: eye_level
-    framing: medium_close
-    movement: static
-    lens_bias: Zara stating the deployment logic
-  lighting:
-    source: practical
-    quality: hard
-    color_temp: cool
-    intensity: dim
-  motion:
-    subject_intensity: 0.05
-    camera_intensity: 0.0
-  figures:
-  - figure_id: FIG_ZARA
-    base_element_id: C06
-    kling_alias: '@C06_ZARA'
-    role: Zara, operative ally
+  - shot_id: SHOT_SC0089_05_A
+    duration_seconds: 3
+    source_beat_ids:
+      - ZARA_BROADCAST_SIGNAL
+    prompt_action: 'ZARA: ''The broadcast signal.'' (A beat. Then understanding dawns.)'
+    duration_reason: normal/dialogue 3s
+    dialogue_line_ids:
+      - DLG_ZARA_BROADCAST
+    required_element_ids:
+      - C06
+    camera:
+      angle: eye_level
+      framing: medium_close
+      movement: static
+      lens_bias: Zara's realization
+    lighting:
+      source: practical
+      quality: hard
+      color_temp: cool
+      intensity: dim
+    motion:
+      subject_intensity: 0.05
+      camera_intensity: 0.0
+      blocking_notes: Silent beat between statement and understanding; Zara processes.
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: '@C06_ZARA'
+        role: Zara, operative ally
+        render_action: '@C06_ZARA stands still, eyes shift, lips move briefly.'
+        render_label: khaki-olive jacket, field-night build.
+    render_action: "@C06_ZARA stands still. @C06_ZARA's eyes shift. @C06_ZARA's lips move — two words at low volume. @C06_ZARA's expression stays flat as understanding registers."
+    render_camera: Medium-close static. @C06_ZARA direct. Dim overhead pool.
+    render_diegetic_audio: '[FORMAT A — no native voice] Night ambient.'
+  - shot_id: SHOT_SC0089_05_B
+    duration_seconds: 3
+    source_beat_ids:
+      - NADIA_STILL_RUNNING
+    prompt_action: 'NADIA: ''It''s still running.'' She confirms: the passive 12-minute burst cycle, the false position signal feeding into ...'
+    duration_reason: normal/dialogue 3s
+    dialogue_line_ids:
+      - DLG_NADIA_STILL_RUNNING
+    required_element_ids:
+      - C01
+    camera:
+      angle: eye_level
+      framing: medium_close
+      movement: static
+      lens_bias: Nadia confirming the operational status
+    lighting:
+      source: practical
+      quality: hard
+      color_temp: cool
+      intensity: dim
+    motion:
+      subject_intensity: 0.05
+      camera_intensity: 0.0
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: '@C01_NADIA eyes ahead, lips move at minimum volume, not turning.'
+        render_label: dark field jacket, night-transit build.
+    render_action: "@C01_NADIA's lips move at minimum volume. @C01_NADIA's eyes stay ahead — confirming without turning toward @C06_ZARA."
+    render_camera: Medium-close static. @C01_NADIA in dim corridor light, eyes ahead.
+    render_diegetic_audio: '[FORMAT A — no native voice] Night ambient.'
+  - shot_id: SHOT_SC0089_05_C
+    duration_seconds: 6
+    source_beat_ids:
+      - ZARA_PROCESSES_DECOY
+    prompt_action: Zara processes this. The passive burst cycle — twelve minutes, eastern approach junction node 7, a false position sig...
+    duration_reason: normal/hold 6s
+    required_element_ids:
+      - C06
+    camera:
+      angle: eye_level
+      framing: medium_close
+      movement: static
+      lens_bias: Zara's face; internal processing evident
+    lighting:
+      source: practical
+      quality: hard
+      color_temp: cool
+      intensity: dim
+    motion:
+      subject_intensity: 0.05
+      camera_intensity: 0.0
+      blocking_notes: Zara held silent; the mental calculation is visible via her composure and focus.
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: '@C06_ZARA'
+        role: Zara, operative ally
+        render_action: '@C06_ZARA stands still, eyes tracking forward, jaw set.'
+        render_label: khaki-olive jacket, field-night build.
+    render_action: "@C06_ZARA stands still, eyes tracking middle distance. Jaw set. No movement. @C06_ZARA's gaze holds forward."
+    render_camera: Medium-close static. @C06_ZARA face in dim overhead light.
+    render_diegetic_audio: Night wind. No voices.
+  - shot_id: SHOT_SC0089_05_D
+    duration_seconds: 3
+    source_beat_ids:
+      - ZARA_ONE_ELEMENT_EAST
+    prompt_action: 'ZARA: ''One element went east.'''
+    duration_reason: normal/dialogue 3s
+    dialogue_line_ids:
+      - DLG_ZARA_EAST
+    required_element_ids:
+      - C06
+    camera:
+      angle: eye_level
+      framing: medium_close
+      movement: static
+      lens_bias: Zara stating the deployment logic
+    lighting:
+      source: practical
+      quality: hard
+      color_temp: cool
+      intensity: dim
+    motion:
+      subject_intensity: 0.05
+      camera_intensity: 0.0
+    figures:
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: '@C06_ZARA'
+        role: Zara, operative ally
+        render_action: '@C06_ZARA lips move at low volume, eyes forward, head still.'
+        render_label: khaki-olive jacket, field-night build.
+    render_action: "@C06_ZARA's lips move at low volume. @C06_ZARA does not turn head. Eyes still forward."
+    render_camera: Medium-close static. @C06_ZARA in dim pool edge.
+    render_diegetic_audio: '[FORMAT A — no native voice] Night ambient.'
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: Generated by omni_clip_planner packer_version=rhythm_aware_v1
+notes: 'SC0089 v07 text-only literal pass (kling_literal_alias_locked): render_* fields authored for model-facing literal grammar; poetic prompt_action/lens_bias remain for human review only. Legacy element ID refs fixed: LOC001→LOC005.'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T10:47:13Z'
+  render_fields_added_by: claude_code (M5 v07 SC0089 literal pass)
+  render_fields_added_at: '2026-06-17T00:00:00Z'
 dialogue_line_ids:
-- DLG_ZARA_BROADCAST
-- DLG_NADIA_STILL_RUNNING
-- DLG_ZARA_EAST
+  - DLG_ZARA_BROADCAST
+  - DLG_NADIA_STILL_RUNNING
+  - DLG_ZARA_EAST
 required_element_ids:
-- C06
-- C01
+  - C06
+  - C01

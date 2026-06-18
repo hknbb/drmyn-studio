@@ -7,82 +7,98 @@ source_dialogue_beats_ref: planning/scenes/SC0089/dialogue_beats.yaml
 total_duration_seconds: 12
 continuity_input_mode: frame_input_eligible
 shots:
-- shot_id: SHOT_SC0089_19_A
-  duration_seconds: 7
-  source_beat_ids:
-  - NADIA_SIGNALS_UP
-  - ZARA_COMES_OVER
-  prompt_action: Zara comes over the top. She lands correctly — weight distributed, controlled — and then something is wrong. She goes...
-  duration_reason: NADIA_SIGNALS_UP (short_insert merged fwd); normal/action 5s
-  required_element_ids:
-  - C01
-  - C06
-  camera:
-    angle: eye_level
-    framing: medium
-    movement: tracking
-    lens_bias: Zara's descent; the landing; then the collapse onto one knee
-  lighting:
-    source: practical
-    quality: hard
-    color_temp: cool
-    intensity: dim
-  motion:
-    subject_intensity: 0.6
-    camera_intensity: 0.3
-    blocking_notes: Practiced landing disrupted by injury. The moment of realization visible in the kneeling posture.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-  - figure_id: FIG_ZARA
-    base_element_id: C06
-    kling_alias: '@C06_ZARA'
-    role: Zara, operative ally
-- shot_id: SHOT_SC0089_19_B
-  duration_seconds: 5
-  source_beat_ids:
-  - NADIA_AT_SIDE_FOUR_SECONDS
-  prompt_action: 'Nadia is at her side in the four seconds before the calculation catches up to the movement. NADIA (very low): ''Where.''
+  - shot_id: SHOT_SC0089_19_A
+    duration_seconds: 7
+    source_beat_ids:
+      - NADIA_SIGNALS_UP
+      - ZARA_COMES_OVER
+    prompt_action: Zara comes over the top. She lands correctly — weight distributed, controlled — and then something is wrong. She goes...
+    duration_reason: NADIA_SIGNALS_UP (short_insert merged fwd); normal/action 5s
+    required_element_ids:
+      - C01
+      - C06
+    camera:
+      angle: eye_level
+      framing: medium
+      movement: tracking
+      lens_bias: Zara's descent; the landing; then the collapse onto one knee
+    lighting:
+      source: practical
+      quality: hard
+      color_temp: cool
+      intensity: dim
+    motion:
+      subject_intensity: 0.6
+      camera_intensity: 0.3
+      blocking_notes: Practiced landing disrupted by injury. The moment of realization visible in the kneeling posture.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: '@C01_NADIA raises hand above rim signaling up, then watches @C06_ZARA.'
+        render_label: dark field jacket, night-transit build.
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: '@C06_ZARA'
+        role: Zara, operative ally
+        render_action: '@C06_ZARA climbs, descends far side, lands — drops to one knee.'
+        render_label: khaki-olive jacket, field-night build.
+    render_action: "@C01_NADIA's hand rises above embankment rim — upward signal. @C06_ZARA grips the bracket and climbs. @C06_ZARA reaches the top and descends the far side. @C06_ZARA's landing is weight-distributed but @C06_ZARA drops to one knee."
+    render_camera: Medium tracking. @C06_ZARA climbing and landing. @C01_NADIA in foreground at base.
+    render_diegetic_audio: Climb scrape. Weight landing on concrete.
+  - shot_id: SHOT_SC0089_19_B
+    duration_seconds: 5
+    source_beat_ids:
+      - NADIA_AT_SIDE_FOUR_SECONDS
+    prompt_action: 'Nadia is at her side in the four seconds before the calculation catches up to the movement. NADIA (very low): ''Where.''
 
-    '
-  duration_reason: normal/action 5s
-  required_element_ids:
-  - C01
-  - C06
-  camera:
-    angle: eye_level
-    framing: medium_close
-    movement: handheld
-    lens_bias: Nadia reaching Zara; their proximity; the injury check
-  lighting:
-    source: practical
-    quality: hard
-    color_temp: cool
-    intensity: dim
-  motion:
-    subject_intensity: 0.5
-    camera_intensity: 0.2
-    blocking_notes: Nadia's response is reflexive and immediate. 'Where' is tactical assessment, not emotional.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-  - figure_id: FIG_ZARA
-    base_element_id: C06
-    kling_alias: '@C06_ZARA'
-    role: Zara, operative ally
+      '
+    duration_reason: normal/action 5s
+    required_element_ids:
+      - C01
+      - C06
+    camera:
+      angle: eye_level
+      framing: medium_close
+      movement: handheld
+      lens_bias: Nadia reaching Zara; their proximity; the injury check
+    lighting:
+      source: practical
+      quality: hard
+      color_temp: cool
+      intensity: dim
+    motion:
+      subject_intensity: 0.5
+      camera_intensity: 0.2
+      blocking_notes: Nadia's response is reflexive and immediate. 'Where' is tactical assessment, not emotional.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: "@C01_NADIA crouches beside @C06_ZARA, hand toward @C06_ZARA's left side, lips move low."
+        render_label: dark field jacket, night-transit build.
+      - figure_id: FIG_ZARA
+        base_element_id: C06
+        kling_alias: '@C06_ZARA'
+        role: Zara, operative ally
+        render_action: '@C06_ZARA on one knee, controlled, not falling.'
+        render_label: khaki-olive jacket, field-night build.
+    render_action: "@C01_NADIA moves to @C06_ZARA — four steps, crouches. @C01_NADIA's hand moves toward @C06_ZARA's left side. @C01_NADIA's lips move at minimum volume."
+    render_camera: Medium-close handheld. @C01_NADIA crouching beside @C06_ZARA.
+    render_diegetic_audio: "[FORMAT A — no native voice for 'Where'] Controlled breathing. No footsteps."
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: Generated by omni_clip_planner packer_version=rhythm_aware_v1
+notes: 'SC0089 v07 text-only literal pass (kling_literal_alias_locked): render_* fields authored for model-facing literal grammar; poetic prompt_action/lens_bias remain for human review only. Legacy element ID refs fixed: LOC001→LOC005.'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T10:47:13Z'
+  render_fields_added_by: claude_code (M5 v07 SC0089 literal pass)
+  render_fields_added_at: '2026-06-17T00:00:00Z'
 required_element_ids:
-- C01
-- C06
+  - C01
+  - C06

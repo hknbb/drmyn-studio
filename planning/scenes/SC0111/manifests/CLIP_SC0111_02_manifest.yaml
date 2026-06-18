@@ -7,80 +7,96 @@ source_dialogue_beats_ref: ''
 total_duration_seconds: 12
 continuity_input_mode: frame_input_eligible
 shots:
-- shot_id: SHOT_SC0111_02_A
-  duration_seconds: 5
-  source_beat_ids:
-  - FLOOR_SEAM_USE
-  prompt_action: Roman uses the floor seam. Nadia knows it is there — he told her in SC0102 when he mapped the corridor. What she does...
-  duration_reason: normal/action 5s
-  required_element_ids:
-  - C01
-  - C02
-  camera:
-    angle: eye_level
-    framing: medium
-    movement: tracking
-    lens_bias: the floor line; Nadia being pushed toward the seam
-  lighting:
-    source: low_key
-    quality: hard
-    color_temp: cool
-    intensity: dim
-  motion:
-    subject_intensity: 0.7
-    camera_intensity: 0.4
-    blocking_notes: Nadia retreating; Roman advancing with purpose; the floor seam as a geometric weapon.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-  - figure_id: FIG_ROMAN
-    base_element_id: C02
-    kling_alias: '@C02_ROMAN'
-    role: Roman, the antagonist
-- shot_id: SHOT_SC0111_02_B
-  duration_seconds: 7
-  source_beat_ids:
-  - CATCH_STAGGER
-  - MANAGED_TO_DOOR_FRAME
-  prompt_action: The door frame of his retreat catches her right shoulder. Not thrown — she is managed into it, the geometry doing the...
-  duration_reason: CATCH_STAGGER (short_insert merged fwd); normal/action 5s
-  required_element_ids:
-  - C01
-  - C02
-  camera:
-    angle: eye_level
-    framing: medium
-    movement: handheld
-    lens_bias: her back hitting the frame; the corridor walls closing
-  lighting:
-    source: low_key
-    quality: hard
-    color_temp: cool
-    intensity: dim
-  motion:
-    subject_intensity: 0.6
-    camera_intensity: 0.3
-    blocking_notes: Contact with the frame; Nadia's back now pinned by geometry; Roman controlling space.
-  figures:
-  - figure_id: FIG_NADIA
-    base_element_id: C01
-    kling_alias: '@C01_NADIA'
-    role: Nadia, the protagonist
-  - figure_id: FIG_ROMAN
-    base_element_id: C02
-    kling_alias: '@C02_ROMAN'
-    role: Roman, the antagonist
+  - shot_id: SHOT_SC0111_02_A
+    duration_seconds: 5
+    source_beat_ids:
+      - FLOOR_SEAM_USE
+    prompt_action: Roman uses the floor seam. Nadia knows it is there — he told her in SC0102 when he mapped the corridor. What she does...
+    duration_reason: normal/action 5s
+    required_element_ids:
+      - C01
+      - C02
+    camera:
+      angle: eye_level
+      framing: medium
+      movement: tracking
+      lens_bias: the floor line; Nadia being pushed toward the seam
+    lighting:
+      source: low_key
+      quality: hard
+      color_temp: cool
+      intensity: dim
+    motion:
+      subject_intensity: 0.7
+      camera_intensity: 0.4
+      blocking_notes: Nadia retreating; Roman advancing with purpose; the floor seam as a geometric weapon.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: '@C01_NADIA retreats, left side managed, feet adjusting to diagonal floor.'
+        render_label: battle-worn field jacket, left arm limited range.
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: '@C02_ROMAN'
+        role: Roman, the antagonist
+        render_action: '@C02_ROMAN advances on diagonal, driving @C01_NADIA toward the corridor wall.'
+        render_label: dark close-fitted jacket.
+    render_action: "@C02_ROMAN advances, driving @C01_NADIA toward the far wall. @C02_ROMAN's footwork follows a diagonal, not the shortest path — angling @C01_NADIA toward a floor seam. @C01_NADIA retreats, managing her left side."
+    render_camera: Medium tracking. Floor surface visible. @C01_NADIA retreating on diagonal.
+    render_diegetic_audio: Footsteps on concrete. Controlled breathing.
+  - shot_id: SHOT_SC0111_02_B
+    duration_seconds: 7
+    source_beat_ids:
+      - CATCH_STAGGER
+      - MANAGED_TO_DOOR_FRAME
+    prompt_action: The door frame of his retreat catches her right shoulder. Not thrown — she is managed into it, the geometry doing the...
+    duration_reason: CATCH_STAGGER (short_insert merged fwd); normal/action 5s
+    required_element_ids:
+      - C01
+      - C02
+    camera:
+      angle: eye_level
+      framing: medium
+      movement: handheld
+      lens_bias: her back hitting the frame; the corridor walls closing
+    lighting:
+      source: low_key
+      quality: hard
+      color_temp: cool
+      intensity: dim
+    motion:
+      subject_intensity: 0.6
+      camera_intensity: 0.3
+      blocking_notes: Contact with the frame; Nadia's back now pinned by geometry; Roman controlling space.
+    figures:
+      - figure_id: FIG_NADIA
+        base_element_id: C01
+        kling_alias: '@C01_NADIA'
+        role: Nadia, the protagonist
+        render_action: "@C01_NADIA's right shoulder against door frame, back to server-core door."
+        render_label: battle-worn field jacket, left arm limited range.
+      - figure_id: FIG_ROMAN
+        base_element_id: C02
+        kling_alias: '@C02_ROMAN'
+        role: Roman, the antagonist
+        render_action: '@C02_ROMAN stands 60cm from @C01_NADIA, facing her, not touching — geometry did the work.'
+        render_label: dark close-fitted jacket.
+    render_action: "@C01_NADIA's right shoulder contacts the door frame — controlled into it, not thrown. @C01_NADIA's back is against the frame; server-core door behind her. @C02_ROMAN stands 60cm in front, not making contact. Geometry has closed the space."
+    render_camera: Medium handheld. @C01_NADIA's back against door frame. Corridor walls visible on both sides.
+    render_diegetic_audio: Right shoulder contacting frame. Controlled breathing — @C01_NADIA managing cost.
 kling_native_audio:
   enabled: false
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: Generated by omni_clip_planner packer_version=rhythm_aware_v1
+notes: 'SC0111 v07 text-only literal pass (kling_literal_alias_locked): render_* fields authored for model-facing literal grammar; poetic prompt_action/lens_bias remain for human review only. Silent action scene — no dialogue; Format A throughout.'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T10:50:27Z'
+  render_fields_added_by: claude_code (M5 v07 SC0111 literal pass)
+  render_fields_added_at: '2026-06-17T00:00:00Z'
 required_element_ids:
-- C01
-- C02
+  - C01
+  - C02

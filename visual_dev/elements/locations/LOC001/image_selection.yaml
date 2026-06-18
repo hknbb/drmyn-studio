@@ -1,12 +1,12 @@
-element_id: LOC001
+﻿element_id: LOC001
 element_type: location
 selection_round: 1
 source_prompt_ids:
   - SC0014__t2i-loc-loc001-nursery-first-ref-chatgpt__v01
 candidate_images:
   - asset_id: PPACK_LOC001_NURSERY_EVENING_V001__front_reference
-    path: "archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_1.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_1.png"
+    path: "archive/closing_price/_elements/LOC001/stage3/images/loc001_3_1.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/LOC001/stage3/images/loc001_3_1.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 front_reference for @LOC001_NURSERY; wide establishing master, deep foreground-to-background staging, generous floor space for SC0014 actor blocking (Nadia at chair, three men at doorway). QC 91."
@@ -17,8 +17,8 @@ candidate_images:
       continuity: 5
       production_usability: 5
   - asset_id: PPACK_LOC001_NURSERY_EVENING_V001__three_quarter_medium
-    path: "archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_2.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_2.png"
+    path: "archive/closing_price/_elements/LOC001/stage3/images/loc001_3_2.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/LOC001/stage3/images/loc001_3_2.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 three_quarter_medium for @LOC001_NURSERY; medium-depth angle favoring crib and nursing chair, consistent room objects and warm evening lighting. QC 88."
@@ -29,8 +29,8 @@ candidate_images:
       continuity: 5
       production_usability: 4
   - asset_id: PPACK_LOC001_NURSERY_EVENING_V001__three_quarter_close
-    path: "archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_3.png"
-    external_storage_ref: "external://local_manual/archive/nexuszero/_elements/LOC001/stage3/images/loc001_3_3.png"
+    path: "archive/closing_price/_elements/LOC001/stage3/images/loc001_3_3.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/_elements/LOC001/stage3/images/loc001_3_3.png"
     repo_binary_committed: false
     status: selected
     reason: "Stage-3 three_quarter_close for @LOC001_NURSERY; clear three-quarter angle, shelf and crib railing detail visible, warm lamp prominent, consistent room identity. QC 90."

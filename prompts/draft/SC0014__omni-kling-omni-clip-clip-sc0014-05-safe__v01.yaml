@@ -1,4 +1,4 @@
-prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-05-safe__v01
+﻿prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-05-safe__v01
 scene_id: SC0014
 prompt_type: omni_instruction
 lifecycle_stage: deprecated
@@ -9,7 +9,7 @@ source_refs:
   scene_excerpt: planning/scenes/SC0014/scene_excerpt.md
 prompt_text: 'Kling Omni element-based clip; duration 12s. Active elements: @C01_NADIA, @C08_JIN, @C10_HOLDER, @PROP001_BRACELET,
   @C10_CARRIER. Direct action and camera; @elements carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity,
-  restrained camera language, and conservative execution. Figures: exactly 4 distinct figure(s) — @C01_NADIA, @C08_JIN (Infant;
+  restrained camera language, and conservative execution. Figures: exactly 4 distinct figure(s) â€” @C01_NADIA, @C08_JIN (Infant;
   pale blue name bracelet on wrist.), @C10_CARRIER (Heavier build, buzzed hair, goatee; nearer Nadia.), @C10_HOLDER (Leaner
   build, short hair and beard; from the door side.). No additional, extra, or duplicated people; do not clone or multiply
   any figure. Continue from previous clip: The carrier (right) lifts Jin free of Nadia''s arms; Nadia center, resisting.;
@@ -17,11 +17,11 @@ prompt_text: 'Kling Omni element-based clip; duration 12s. Active elements: @C01
   her arms resisting with everything a person can give, and it is not enough. @C08_JIN is lifted free, fully and safely supported,
   calm, any distress kept off-frame. @C10_CARRIER reaches with both hands, careful and firm, and lifts @C08_JIN free. The
   frame holds steady; the lift, held; favor Nadia''s resisting arms. Audio: room tone; the soft displacement of fabric as
-  the child is lifted. [00:05 - 00:07] Insert: @C01_NADIA fingers find @PROP001_BRACELET — the pale blue band, the clasp,
-  the small type of his name — for one beat; then her hand is empty — the whole loss compresses into one beat of contact,
+  the child is lifted. [00:05 - 00:07] Insert: @C01_NADIA fingers find @PROP001_BRACELET â€” the pale blue band, the clasp,
+  the small type of his name â€” for one beat; then her hand is empty â€” the whole loss compresses into one beat of contact,
   then an empty hand. The frame holds steady; macro on fingers + pale blue bracelet. Audio: room tone narrows to near-silence;
   the faint sound of fingers leaving fabric. [00:07 - 00:12] Cutaway: The room returns, cool and flat, on the complete restraint.
-  @C01_NADIA is held, contained completely, not violently. @C10_HOLDER holds @C01_NADIA by both arms — not roughly, just completely.
+  @C01_NADIA is held, contained completely, not violently. @C10_HOLDER holds @C01_NADIA by both arms â€” not roughly, just completely.
   The frame holds steady; the complete, gentle restraint. Audio: room tone returns, cool and flat. End state for next clip:
   Jin is lifted away (right); Nadia''s hand finds then loses the bracelet; the second man holds her by both arms, center.;
   camera medium. Continuity: frame_input_eligible. Keep 12s; end settled. Do not add new story facts.'
@@ -50,7 +50,7 @@ generation_params:
   - '@PROP001_BRACELET'
   - '@C10_CARRIER'
   input_mode: anchored_i2v
-  start_frame_ref: archive/nexuszero/SC0014/shots/SC0014_12_clip-sc0014-04_shot-sc0014-04-c.png
+  start_frame_ref: archive/closing_price/SC0014/shots/SC0014_12_clip-sc0014-04_shot-sc0014-04-c.png
   visual_input_budget:
     total: 7
     start_frame: 1

@@ -1,4 +1,4 @@
-session_id: OP-2026-06-17-LOC005-LOC006-LOC007-PROP008-threeview
+﻿session_id: OP-2026-06-17-LOC005-LOC006-LOC007-PROP008-threeview
 created_at: "2026-06-17T00:00:00Z"
 scene_id: SC0047
 current_task: "Lock LOC005/LOC006/LOC007/PROP008 three-view perspective packs + write KER records (QC>=85)"
@@ -17,22 +17,22 @@ recommended_steps:
   - "Then proceed to SC0047/SC0089/SC0111 Kling Omni clip plan generation."
 status: complete
 notes: >
-  Operatör SC0047 (LOC006 Merin quay + PROP008 handset), SC0089 (LOC005 transit corridor),
-  ve SC0111 (LOC007 antechamber) için stage-1 first-ref + stage-2 three_view_scale_angle_v2
-  perspektif paketlerini ChatGPT Images'da ürettiğini bildirdi.
+  OperatÃ¶r SC0047 (LOC006 Merin quay + PROP008 handset), SC0089 (LOC005 transit corridor),
+  ve SC0111 (LOC007 antechamber) iÃ§in stage-1 first-ref + stage-2 three_view_scale_angle_v2
+  perspektif paketlerini ChatGPT Images'da Ã¼rettiÄŸini bildirdi.
 
-  Stage-1 first-ref görseller önceki oturumda (2026-06-17) arşivlenmişti.
-  Bu oturumda stage-2 görseller arşivlendi (toplam 12 görsel, 3 per element):
-  - LOC006: archive/nexuszero/_elements/LOC006/stage2/images/
-  - PROP008: archive/nexuszero/_elements/PROP008/stage2/images/
-  - LOC005: archive/nexuszero/_elements/LOC005/stage2/images/
-  - LOC007: archive/nexuszero/_elements/LOC007/stage2/images/
-  Tümü git-ignored, repo_binary_committed:false, sha256+size_bytes dahil.
+  Stage-1 first-ref gÃ¶rseller Ã¶nceki oturumda (2026-06-17) arÅŸivlenmiÅŸti.
+  Bu oturumda stage-2 gÃ¶rseller arÅŸivlendi (toplam 12 gÃ¶rsel, 3 per element):
+  - LOC006: archive/closing_price/_elements/LOC006/stage2/images/
+  - PROP008: archive/closing_price/_elements/PROP008/stage2/images/
+  - LOC005: archive/closing_price/_elements/LOC005/stage2/images/
+  - LOC007: archive/closing_price/_elements/LOC007/stage2/images/
+  TÃ¼mÃ¼ git-ignored, repo_binary_committed:false, sha256+size_bytes dahil.
 
-  Operatör "Hepsi tamam" ile 4 element × 3 perspektif = 12 görsel için QC>=85 onayı verdi.
-  PQC raporları yazıldı (en düşük 88, en yüksek 92). image_selection.yaml dosyaları
-  pending_review'dan complete/selected'a güncellendi. 4 KER kaydı yazıldı.
-  Perspektif paket YAML'ları draft→review, source_reference_id PENDING'den gerçek ID'ye güncellendi.
+  OperatÃ¶r "Hepsi tamam" ile 4 element Ã— 3 perspektif = 12 gÃ¶rsel iÃ§in QC>=85 onayÄ± verdi.
+  PQC raporlarÄ± yazÄ±ldÄ± (en dÃ¼ÅŸÃ¼k 88, en yÃ¼ksek 92). image_selection.yaml dosyalarÄ±
+  pending_review'dan complete/selected'a gÃ¼ncellendi. 4 KER kaydÄ± yazÄ±ldÄ±.
+  Perspektif paket YAML'larÄ± draftâ†’review, source_reference_id PENDING'den gerÃ§ek ID'ye gÃ¼ncellendi.
 
-  Lifecycle promotion (element status: review → created, canon_lock: true) human PR gerektirir.
-  Hiçbir binary commit edilmedi; hiçbir lifecycle alanı direkt değiştirilmedi.
+  Lifecycle promotion (element status: review â†’ created, canon_lock: true) human PR gerektirir.
+  HiÃ§bir binary commit edilmedi; hiÃ§bir lifecycle alanÄ± direkt deÄŸiÅŸtirilmedi.

@@ -1,4 +1,4 @@
-prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-04-safe__v01
+﻿prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-04-safe__v01
 scene_id: SC0014
 prompt_type: omni_instruction
 lifecycle_stage: deprecated
@@ -9,21 +9,21 @@ source_refs:
   scene_excerpt: planning/scenes/SC0014/scene_excerpt.md
 prompt_text: 'Kling Omni element-based clip; duration 13s. Active elements: @C01_NADIA, @C08_JIN, @C04_DIMITRI, @C10_HOLDER,
   @C10_CARRIER. Direct action and camera; @elements carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity,
-  restrained camera language, and conservative execution. Figures: exactly 4 distinct figure(s) — @C01_NADIA, @C08_JIN (Infant;
+  restrained camera language, and conservative execution. Figures: exactly 4 distinct figure(s) â€” @C01_NADIA, @C08_JIN (Infant;
   pale blue name bracelet on wrist.), @C04_DIMITRI, @C10_CARRIER (Heavier build, buzzed hair, goatee; nearer Nadia.). No additional,
   extra, or duplicated people; do not clone or multiply any figure. Continue from previous clip: Nadia stands holding Jin
   and takes one step back; Dimitri (right) says ''don''t make this harder''; the first man begins to advance.; camera medium.
   [00:00 - 00:05] Medium shot: The room tightens, cool and close, around a single soft step on the floor. @C01_NADIA stands,
-  still holding @C08_JIN, and takes one step back — cornered, no further. @C08_JIN stays fully supported through the movement,
+  still holding @C08_JIN, and takes one step back â€” cornered, no further. @C08_JIN stays fully supported through the movement,
   calm. @C04_DIMITRI stands in the background, not yet advancing. The camera tracks the movement; follow the single step back.
   Audio: room tone, cool and tight; a single soft step on the floor. [00:05 - 00:08] Reverse angle: The room holds low and
   flat between them. @C04_DIMITRI speaks once, even and quiet, the politeness of procedure. @C01_NADIA says nothing, holds
   @C08_JIN close, gives nothing back. @C08_JIN stays held close, calm. @C10_CARRIER holds his position, about to advance.
-  The frame holds steady; Dimitri central, Nadia silent. — @C04_DIMITRI (Even): "Please don''t make this harder." Audio: room
+  The frame holds steady; Dimitri central, Nadia silent. â€” @C04_DIMITRI (Even): "Please don''t make this harder." Audio: room
   tone, low and flat. [00:08 - 00:13] Medium shot: The frame holds a restrained unease as weight shifts. @C01_NADIA turns
   her body, shoulder between the man and @C08_JIN, both arms staying around the child. @C08_JIN stays supported and calm,
   shielded behind her shoulder. @C10_CARRIER moves toward @C01_NADIA and reaches, kept off @C08_JIN by her shoulder. A restrained
-  handheld frame; slight unease, still restrained. Audio: room tone; the shift of weight as he advances — fabric and a single
+  handheld frame; slight unease, still restrained. Audio: room tone; the shift of weight as he advances â€” fabric and a single
   footstep. End state for next clip: The first man (carrier) has closed in from the right; Nadia turns her body to shield
   Jin, still center.; camera medium_close. Continuity: frame_input_eligible. Keep 13s; end settled. Do not add new story facts.'
 negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
@@ -51,7 +51,7 @@ generation_params:
   - '@C10_HOLDER'
   - '@C10_CARRIER'
   input_mode: anchored_i2v
-  start_frame_ref: archive/nexuszero/SC0014/shots/SC0014_09_clip-sc0014-03_shot-sc0014-03-c.png
+  start_frame_ref: archive/closing_price/SC0014/shots/SC0014_09_clip-sc0014-03_shot-sc0014-03-c.png
   visual_input_budget:
     total: 7
     start_frame: 1
