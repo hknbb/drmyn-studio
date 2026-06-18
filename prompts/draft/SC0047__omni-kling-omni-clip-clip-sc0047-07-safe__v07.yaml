@@ -1,0 +1,62 @@
+prompt_id: SC0047__omni-kling-omni-clip-clip-sc0047-07-safe__v07
+scene_id: SC0047
+prompt_type: omni_instruction
+lifecycle_stage: draft
+target_models:
+- kling_omni
+source_refs:
+  scene_card: planning/scenes/SC0047/scene_card.yaml
+  scene_excerpt: planning/scenes/SC0047/scene_excerpt.md
+prompt_text: 'Kling Omni element-based clip; duration 14s. Active elements: @PROP008_HANDSET, @C01_NADIA, @C09_OTTO. Direct
+  action and camera; @elements carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity, restrained
+  camera language, and conservative execution. Figures: exactly 2 distinct figure(s) — @C01_NADIA, @C09_OTTO (weathered grey
+  jacket, close-kept grey hair.). No additional, extra, or duplicated people; do not clone or multiply any figure. Start state:
+  @C01_NADIA at the table, @PROP008_HANDSET held; @C09_OTTO background at the window. [00:00 - 00:03] Medium close-up: @C01_NADIA
+  holds @PROP008_HANDSET in both hands; @C09_OTTO stands at the far window, back to the room. The recording on @PROP008_HANDSET
+  ends. @C01_NADIA keeps @PROP008_HANDSET in both hands; does not put it down. @C09_OTTO does not turn. @C01_NADIA keeps @PROP008_HANDSET
+  in both hands as the recording ends; does not put it down. @C09_OTTO stands at the far window, back to the room, does not
+  turn. Medium-close shot on @C01_NADIA with @C09_OTTO out of focus in background, static. — @C05_MARCUS (offscreen): "Karev."
+  Immediately, @C05_MARCUS (offscreen): "Take Jin home." Audio: final audio from @PROP008_HANDSET ends; then silence; no ambient
+  sound. [00:03 - 00:14] Close-up: @C01_NADIA holds @PROP008_HANDSET in both hands, screen facing up. @C01_NADIA does not
+  move; her eyes are on the screen; her jaw is set; she breathes slowly. @C01_NADIA holds @PROP008_HANDSET in both hands,
+  still, jaw set, eyes on the screen. Close shot on @C01_NADIA face, static. Audio: silence holds; a slow controlled breath
+  from @C01_NADIA. End state: @C01_NADIA standing, @PROP008_HANDSET in both hands, in silence; @C09_OTTO background at the
+  window. Continuity: frame_input_eligible. Keep 14s; end settled. Do not add new story facts.'
+negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
+generation_params:
+  model_guidance_mode: dynamic_snapshot
+  adapter_name: kling_omni
+  clip_id: CLIP_SC0047_07
+  total_duration_seconds: 14
+  continuity_input_mode: frame_input_eligible
+  omni_clip_manifest_ref: planning/scenes/SC0047/manifests/CLIP_SC0047_07_manifest.yaml
+  source_scene_beat_plan_ref: planning/scenes/SC0047/scene_beat_plan.yaml
+  source_dialogue_beats_ref: planning/scenes/SC0047/dialogue_beats.yaml
+  repo_binary_committed: false
+  external_generation_required: true
+  recommended_cfg_scale: 0.5
+  recommended_ar: '16:9'
+  variant_mode: safe
+  render_pass: visual_test
+  quality_tier: test_720p
+  prompt_component_model: docs/methodology/omni_prompt_component_model.md
+  language_profile: kling_literal_alias_locked
+  input_mode: text_only
+  required_element_aliases:
+  - '@PROP008_HANDSET'
+  - '@C01_NADIA'
+  - '@C09_OTTO'
+  audio_gate_status: allowed_audio_off
+  audio_gate_reason: visual_test_default_audio_off
+  model_guidance_snapshot_ref: model_guidance_snapshots/kling/20260615T000000Z_kling_omni_video_best_available.yaml
+  provider: kling
+  provider_surface: manual_external
+  resolved_model_name: Kling VIDEO 3.0 Omni
+  resolved_model_role: best_for_this_task
+  guidance_observed_at: '2026-06-15T00:00:00Z'
+  guidance_expires_at: '2026-07-15T00:00:00Z'
+expected_output:
+  asset_type: clip
+  duration_seconds: 14
+status: active
+canon_lock: false

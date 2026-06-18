@@ -1,0 +1,61 @@
+prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-22-safe__v07
+scene_id: SC0089
+prompt_type: omni_instruction
+lifecycle_stage: draft
+target_models:
+- kling_omni
+source_refs:
+  scene_card: planning/scenes/SC0089/scene_card.yaml
+  scene_excerpt: planning/scenes/SC0089/scene_excerpt.md
+prompt_text: 'Kling Omni element-based clip; duration 14s. Active elements: @C01_NADIA, @C06_ZARA, @LOC005_CORRIDOR. Direct
+  action and camera; @elements carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity, restrained
+  camera language, and conservative execution. Figures: exactly 2 distinct figure(s) — @C01_NADIA (dark field jacket, night-transit
+  build.), @C06_ZARA (khaki-olive jacket, field-night build.). No additional, extra, or duplicated people; do not clone or
+  multiply any figure. Start state: @C01_NADIA''s shoulder under @C06_ZARA''s arm. Both moving left-to-right toward drainage
+  cut. [00:00 - 00:07] Medium shot: @C01_NADIA''s left shoulder moves under @C06_ZARA''s right arm. Both move left-to-right
+  at controlled pace — @C01_NADIA bearing partial weight. @C06_ZARA does not lean more than geometry requires. @C01_NADIA''s
+  left shoulder under @C06_ZARA''s right arm, both moving left-to-right. @C06_ZARA''s right arm over @C01_NADIA''s shoulder,
+  moving, weight controlled. Medium tracking left. Both figures moving together. @C01_NADIA bearing load. — @C01_NADIA: "Then
+  we move now." Audio: [FORMAT A — no native voice for ''Then we move now''] Footsteps on concrete. Controlled breathing.
+  [00:07 - 00:14] Wide shot: @LOC005_CORRIDOR drainage conduit entrance at embankment base — 1 meter wide, concrete grime
+  and calcite streaks, dark interior. No figures in frame. Wide static, low angle. Conduit opening at base of embankment.
+  Darkness inside. Audio: Night wind. No voices. End state: Drainage cut entrance visible — @LOC005_CORRIDOR conduit opening
+  at embankment base. Continuity: frame_input_eligible. Keep 14s; end settled. Do not add new story facts.'
+negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
+generation_params:
+  model_guidance_mode: dynamic_snapshot
+  adapter_name: kling_omni
+  clip_id: CLIP_SC0089_22
+  total_duration_seconds: 14
+  continuity_input_mode: frame_input_eligible
+  omni_clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_22_manifest.yaml
+  source_scene_beat_plan_ref: planning/scenes/SC0089/scene_beat_plan.yaml
+  source_dialogue_beats_ref: planning/scenes/SC0089/dialogue_beats.yaml
+  repo_binary_committed: false
+  external_generation_required: true
+  recommended_cfg_scale: 0.5
+  recommended_ar: '16:9'
+  variant_mode: safe
+  render_pass: visual_test
+  quality_tier: test_720p
+  prompt_component_model: docs/methodology/omni_prompt_component_model.md
+  language_profile: kling_literal_alias_locked
+  input_mode: text_only
+  required_element_aliases:
+  - '@C01_NADIA'
+  - '@C06_ZARA'
+  - '@LOC005_CORRIDOR'
+  audio_gate_status: allowed_audio_off
+  audio_gate_reason: visual_test_default_audio_off
+  model_guidance_snapshot_ref: model_guidance_snapshots/kling/20260615T000000Z_kling_omni_video_best_available.yaml
+  provider: kling
+  provider_surface: manual_external
+  resolved_model_name: Kling VIDEO 3.0 Omni
+  resolved_model_role: best_for_this_task
+  guidance_observed_at: '2026-06-15T00:00:00Z'
+  guidance_expires_at: '2026-07-15T00:00:00Z'
+expected_output:
+  asset_type: clip
+  duration_seconds: 14
+status: active
+canon_lock: false

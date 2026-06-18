@@ -1,0 +1,105 @@
+schema_version: "0.x-draft"
+record_type: gpt_images_perspective_pack
+prompt_pack_id: PPACK_C05_PRIVATE_MEETING_V001
+status: draft
+source_reference_id: >
+  DUAL SEED.
+  PRIMARY (geometry/pose/lighting/expression) = Stage-2 --oref lock
+  (C:/Users/babac/drmyn-studio-images/Marcus/stage 2/u9435212546_Man_late_30s_to_early_40s_controlled_watchful_pre_e724a825-5915-424b-b2a3-f53690c806af_0.png).
+  SECONDARY (skin tone, warmth, hair texture only) = Stage-1 hero
+  (C:/Users/babac/drmyn-studio-images/Marcus/stage-1/u9435212546_Marcus_late_30s_to_early_40s_controlled_watchful__d246ae27-fe63-42ea-a773-676c92bb990c_2.png).
+  Take pose/framing/neutral light/expression from PRIMARY; take only skin
+  warmth and hair texture from SECONDARY. Do NOT copy the Stage-1 directional
+  light, angle, or background.
+target_model: chatgpt_images_2
+target_role: multi_perspective_element_expander
+element_id: C05
+element_type: character
+perspective_policy: four_view_scale_angle_v3
+full_body_visible: true
+shared_preservation_instruction: >
+  Use TWO references: take face geometry, pose, framing, even neutral lighting
+  and expression from the PRIMARY reference (Stage-2 lock); take only skin
+  warmth and hair texture from the SECONDARY reference (Stage-1 hero). Do not
+  copy the Stage-1 directional light, angle, or background.
+  Preserve the locked Marcus identity exactly across all four views — same
+  controlled watchful man: late 30s to early 40s, dark slicked-back hair,
+  angular jaw, pale European complexion, controlled watchful silhouette with
+  weight slightly held back. Plain dark muted civilian clothes — simple dark
+  shirt or jacket, dark neutral trousers; no decoration, no insignia, no
+  operational kit. Quiet, real, emotionally load-bearing face; warmth under
+  operational restraint — not cold, not hard-edged, not a thriller poster.
+  Natural restrained realism; neutral clean background; no text, no watermark.
+source_refs:
+  scene_card_ref: planning/scenes/SC0004/scene_card.yaml
+  element_sheet_ref: visual_dev/elements/characters/C05/look_variants/C05_LOOK_PRIVATE_MEETING_V001.yaml
+prompts:
+  - prompt_id: PPACK_C05_PRIVATE_MEETING_V001__full_body_front
+    perspective: full_body_front
+    prompt_text: >
+      Full-body front view, head to feet in frame, of the locked reference
+      man in his private-meeting look: plain dark shirt, dark neutral
+      trousers, no decoration or insignia. Standing with controlled relaxed
+      posture, weight slightly held back, hands loosely at sides. Even soft
+      light, neutral clean background. Preserve identity and wardrobe exactly;
+      restrained realism, no redesign, no text, no watermark.
+    constraints:
+      - "Head-to-toe, no cropping of feet or head."
+      - "Same identity + private-meeting wardrobe as the locked reference."
+      - "Neutral background; no scene set dressing."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "2:3"
+  - prompt_id: PPACK_C05_PRIVATE_MEETING_V001__three_quarter_waist
+    perspective: three_quarter_waist
+    prompt_text: >
+      Three-quarter angle, waist-up framing, of the same locked reference man
+      in the identical private-meeting wardrobe. Body turned ~30-45 degrees,
+      head toward camera, controlled watchful gaze. Even soft light, neutral
+      clean background. Preserve identity and garments exactly; restrained
+      realism, no redesign, no text, no watermark.
+    constraints:
+      - "Waist-up scale; three-quarter body angle."
+      - "Identity + wardrobe identical to full_body_front."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+  - prompt_id: PPACK_C05_PRIVATE_MEETING_V001__close_portrait_front
+    perspective: close_portrait_front
+    prompt_text: >
+      Close front portrait, chest-up, of the same locked reference man —
+      full frontal face for identity lock. Dark slicked-back hair; angular
+      jaw; controlled watchful expression with warmth under restraint; real
+      weight in stillness, not a thriller cutout. Plain dark shirt visible
+      at chest. Even soft light, neutral clean background. Preserve identity
+      exactly; not cold, not hard-edged, no glamour, no redesign, no text,
+      no watermark.
+    constraints:
+      - "Chest/shoulders/head; fully frontal face."
+      - "Maximum face-geometry fidelity to the locked reference."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+  - prompt_id: PPACK_C05_PRIVATE_MEETING_V001__profile_full
+    perspective: profile_full
+    prompt_text: >
+      Side profile view of the same locked reference man in the identical
+      private-meeting wardrobe, for a 3D identity wrap. Clean lateral
+      profile, even soft light, neutral clean background. Preserve identity
+      and garments exactly; restrained realism, no redesign, no text,
+      no watermark.
+    constraints:
+      - "True side profile (90 degrees)."
+      - "Identity + wardrobe identical to the other three views."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+qc_gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  failed_perspective_revision_only: true
+downstream_use:
+  - kling_omni_3_shot_prompt

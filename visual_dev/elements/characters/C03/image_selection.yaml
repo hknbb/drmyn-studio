@@ -1,0 +1,61 @@
+element_id: C03
+element_type: character
+selection_round: 1
+source_prompt_ids:
+  - SC0001__t2i-char-c03-oref-lock-mj-v7__v01
+candidate_images:
+  - asset_id: PPACK_C03_DOMESTIC_ROUTINE_V001__close_portrait_front
+    path: "archive/closing_price/SC0001/C03/stage3/images/ChatGPT Image 18 Haz 2026 15_33_05.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/SC0001/C03/stage3/images/ChatGPT Image 18 Haz 2026 15_33_05.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 four-view close_portrait_front; full frontal identity lock, silver/white hair, warm direct gaze, sage-green blouse + cream apron. QC 93."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+  - asset_id: PPACK_C03_DOMESTIC_ROUTINE_V001__profile_full
+    path: "archive/closing_price/SC0001/C03/stage3/images/ChatGPT Image 18 Haz 2026 15_33_09.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/SC0001/C03/stage3/images/ChatGPT Image 18 Haz 2026 15_33_09.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 four-view profile_full; true 90 deg side profile, hair upswept, compact domestic silhouette, identity consistent. QC 92."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 4
+  - asset_id: PPACK_C03_DOMESTIC_ROUTINE_V001__three_quarter_waist
+    path: "archive/closing_price/SC0001/C03/stage3/images/ChatGPT Image 18 Haz 2026 15_33_11.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/SC0001/C03/stage3/images/ChatGPT Image 18 Haz 2026 15_33_11.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 four-view three_quarter_waist; ~30-45 deg, waist-up, black scarf (consistent with Stage-2 lock), identity and wardrobe consistent. QC 91."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 4
+  - asset_id: PPACK_C03_DOMESTIC_ROUTINE_V001__full_body_front
+    path: "archive/closing_price/SC0001/C03/stage3/images/ChatGPT Image 18 Haz 2026 15_33_14.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/SC0001/C03/stage3/images/ChatGPT Image 18 Haz 2026 15_33_14.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 four-view full_body_front; head-to-toe, compact domestic silhouette (sage-green dress + cream apron + black shoes). Face small at full scale. QC 89."
+    quality_scores:
+      identity_consistency: 4
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 4
+canonical_images:
+  - PPACK_C03_DOMESTIC_ROUTINE_V001__close_portrait_front
+  - PPACK_C03_DOMESTIC_ROUTINE_V001__profile_full
+  - PPACK_C03_DOMESTIC_ROUTINE_V001__three_quarter_waist
+  - PPACK_C03_DOMESTIC_ROUTINE_V001__full_body_front
+round_status: complete
+pack_manifest_sync: applied

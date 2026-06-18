@@ -1,0 +1,57 @@
+prompt_id: SC0047__omni-kling-omni-clip-clip-sc0047-04-safe__v07
+scene_id: SC0047
+prompt_type: omni_instruction
+lifecycle_stage: draft
+target_models:
+- kling_omni
+source_refs:
+  scene_card: planning/scenes/SC0047/scene_card.yaml
+  scene_excerpt: planning/scenes/SC0047/scene_excerpt.md
+prompt_text: 'Kling Omni element-based clip; duration 10s. Active elements: @PROP008_HANDSET, @C01_NADIA. Direct action and
+  camera; @elements carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity, restrained camera language,
+  and conservative execution. Figures: exactly 1 distinct figure(s) — @C01_NADIA. No additional, extra, or duplicated people;
+  do not clone or multiply any figure. Start state: @C01_NADIA at the table, @PROP008_HANDSET in her hand; @C09_OTTO at the
+  window, back to the room. [00:00 - 00:10] Medium close-up: @C01_NADIA stands at the folding table, @PROP008_HANDSET in her
+  hand. @C01_NADIA does not move; her eyes are fixed on @PROP008_HANDSET. @C01_NADIA stands at the table, @PROP008_HANDSET
+  in her hand, eyes fixed on the screen, not moving. Medium-close shot on @C01_NADIA, static. — @C05_MARCUS (offscreen): "If
+  you''re hearing this, then things went the way I was afraid they''d go. I''m sorry. I wanted more time." Audio: low wind
+  ambient from @PROP008_HANDSET; room tone holds; @PROP008_HANDSET audio plays (Format A — V.O. audio suppressed). End state:
+  @C01_NADIA standing, @PROP008_HANDSET held in both hands; @C09_OTTO background at the window. Continuity: metadata_only.
+  Keep 10s; end settled. Do not add new story facts.'
+negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
+generation_params:
+  model_guidance_mode: dynamic_snapshot
+  adapter_name: kling_omni
+  clip_id: CLIP_SC0047_04
+  total_duration_seconds: 10
+  continuity_input_mode: metadata_only
+  omni_clip_manifest_ref: planning/scenes/SC0047/manifests/CLIP_SC0047_04_manifest.yaml
+  source_scene_beat_plan_ref: planning/scenes/SC0047/scene_beat_plan.yaml
+  source_dialogue_beats_ref: planning/scenes/SC0047/dialogue_beats.yaml
+  repo_binary_committed: false
+  external_generation_required: true
+  recommended_cfg_scale: 0.5
+  recommended_ar: '16:9'
+  variant_mode: safe
+  render_pass: visual_test
+  quality_tier: test_720p
+  prompt_component_model: docs/methodology/omni_prompt_component_model.md
+  language_profile: kling_literal_alias_locked
+  input_mode: text_only
+  required_element_aliases:
+  - '@PROP008_HANDSET'
+  - '@C01_NADIA'
+  audio_gate_status: allowed_audio_off
+  audio_gate_reason: visual_test_default_audio_off
+  model_guidance_snapshot_ref: model_guidance_snapshots/kling/20260615T000000Z_kling_omni_video_best_available.yaml
+  provider: kling
+  provider_surface: manual_external
+  resolved_model_name: Kling VIDEO 3.0 Omni
+  resolved_model_role: best_for_this_task
+  guidance_observed_at: '2026-06-15T00:00:00Z'
+  guidance_expires_at: '2026-07-15T00:00:00Z'
+expected_output:
+  asset_type: clip
+  duration_seconds: 10
+status: active
+canon_lock: false

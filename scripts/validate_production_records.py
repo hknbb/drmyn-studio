@@ -58,6 +58,15 @@ from scripts.validators.validate_continuity_presence import (
 from scripts.validators.validate_state_chain import (
     validate_scene_state_chain,
 )
+from scripts.validators.validate_ledger_manifest_consistency import (
+    validate_scene_ledger_consistency,
+)
+from scripts.validators.validate_protected_subject import (
+    validate_scene_protected_subjects,
+)
+from scripts.validators.validate_model_guidance_reconciliation import (
+    validate_all_model_guidance,
+)
 from scripts.validators.validate_shot_still_coverage import (
     validate_shot_still_coverage,
 )
@@ -3030,6 +3039,33 @@ def run_validation(
             if issue.severity == "error":
                 invalid_files.add(manifests_dir)
 
+        # P4: ledger ↔ manifest exit-seam consistency (relation drift = error,
+        # prop-set drift = warning).
+        for issue in validate_scene_ledger_consistency(repo_root, scene_id):
+            all_issues.append(
+                ProductionValidationIssue(
+                    file=manifests_dir,
+                    record_type="ledger_manifest_consistency",
+                    field_path=issue.clip_id,
+                    message=f"{issue.error_code}: {issue.message}",
+                )
+            )
+            if issue.severity == "error":
+                invalid_files.add(manifests_dir)
+
+        # P13: protected-subject safety gate (unsafe-verb ban + safe-handling).
+        for issue in validate_scene_protected_subjects(repo_root, scene_id):
+            all_issues.append(
+                ProductionValidationIssue(
+                    file=manifests_dir,
+                    record_type="protected_subject",
+                    field_path=f"{issue.clip_id}/{issue.shot_id}",
+                    message=f"{issue.error_code}: {issue.message}",
+                )
+            )
+            if issue.severity == "error":
+                invalid_files.add(manifests_dir)
+
     gptimg2_registration_issues = validate_gptimg2_registration_gates(
         repo_root=repo_root,
         grouped_files=grouped_files,
@@ -3052,6 +3088,22 @@ def run_validation(
     if character_continuity_issues:
         all_issues.extend(character_continuity_issues)
         invalid_files.update(issue.file for issue in character_continuity_issues)
+
+    # P11: model guidance reconciliation (guide ↔ matrix ↔ snapshot). Runs once.
+    for issue in validate_all_model_guidance(repo_root):
+        recon_file = _relative(
+            repo_root / "docs" / "model_guides" / "model_capability_matrix.yaml",
+            repo_root,
+        )
+        all_issues.append(
+            ProductionValidationIssue(
+                file=recon_file,
+                record_type="model_guidance_reconciliation",
+                field_path=f"{issue.model_key}.{issue.field}",
+                message=str(issue),
+            )
+        )
+        invalid_files.add(recon_file)
 
     # Shot-still coverage: discover scenes from clip manifests, validate anchor-animate prompts.
     clip_manifest_scenes: set[str] = set()

@@ -1,0 +1,57 @@
+prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-15-safe__v07
+scene_id: SC0089
+prompt_type: omni_instruction
+lifecycle_stage: draft
+target_models:
+- kling_omni
+source_refs:
+  scene_card: planning/scenes/SC0089/scene_card.yaml
+  scene_excerpt: planning/scenes/SC0089/scene_excerpt.md
+prompt_text: 'Kling Omni element-based clip; duration 14s. Active elements: @C01_NADIA. Direct action and camera; @elements
+  carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity, restrained camera language, and conservative
+  execution. Figures: exactly 1 distinct figure(s) — @C01_NADIA (dark field jacket, night-transit build.). No additional,
+  extra, or duplicated people; do not clone or multiply any figure. Start state: @C01_NADIA''s gaze moving across seam, cut
+  gap, south distance — running decision. [00:00 - 00:11] Medium close-up: @C01_NADIA''s gaze moves: left to drainage cut
+  shadow at embankment base, right south along the corridor. @C01_NADIA''s eyes arc in small sweeps — seam, cut gap, south
+  distance. @C01_NADIA does not move her feet. @C01_NADIA gaze arcs between drainage cut, seam, and south distance. Medium-close
+  static. @C01_NADIA''s eyes in motion. Corridor depth behind. Audio: Night wind. No voices. [00:11 - 00:14] Medium close-up:
+  @C01_NADIA''s lips move at minimum volume. @C01_NADIA''s gaze holds forward. @C01_NADIA does not turn toward @C06_ZARA.
+  @C01_NADIA lips move at minimum volume, gaze forward, not turning. Medium-close static. @C01_NADIA direct, bright pool light.
+  — @C01_NADIA (Not asking): "We go through, not around." Audio: [FORMAT A — no native voice] Night ambient. End state: @C01_NADIA
+  declared decision: go through. Continuity: frame_input_eligible. Keep 14s; end settled. Do not add new story facts.'
+negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
+generation_params:
+  model_guidance_mode: dynamic_snapshot
+  adapter_name: kling_omni
+  clip_id: CLIP_SC0089_15
+  total_duration_seconds: 14
+  continuity_input_mode: frame_input_eligible
+  omni_clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_15_manifest.yaml
+  source_scene_beat_plan_ref: planning/scenes/SC0089/scene_beat_plan.yaml
+  source_dialogue_beats_ref: planning/scenes/SC0089/dialogue_beats.yaml
+  repo_binary_committed: false
+  external_generation_required: true
+  recommended_cfg_scale: 0.5
+  recommended_ar: '16:9'
+  variant_mode: safe
+  render_pass: visual_test
+  quality_tier: test_720p
+  prompt_component_model: docs/methodology/omni_prompt_component_model.md
+  language_profile: kling_literal_alias_locked
+  input_mode: text_only
+  required_element_aliases:
+  - '@C01_NADIA'
+  audio_gate_status: allowed_audio_off
+  audio_gate_reason: visual_test_default_audio_off
+  model_guidance_snapshot_ref: model_guidance_snapshots/kling/20260615T000000Z_kling_omni_video_best_available.yaml
+  provider: kling
+  provider_surface: manual_external
+  resolved_model_name: Kling VIDEO 3.0 Omni
+  resolved_model_role: best_for_this_task
+  guidance_observed_at: '2026-06-15T00:00:00Z'
+  guidance_expires_at: '2026-07-15T00:00:00Z'
+expected_output:
+  asset_type: clip
+  duration_seconds: 14
+status: active
+canon_lock: false

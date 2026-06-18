@@ -1,0 +1,62 @@
+prompt_id: SC0111__omni-kling-omni-clip-clip-sc0111-02-safe__v07
+scene_id: SC0111
+prompt_type: omni_instruction
+lifecycle_stage: draft
+target_models:
+- kling_omni
+source_refs:
+  scene_card: planning/scenes/SC0111/scene_card.yaml
+  scene_excerpt: planning/scenes/SC0111/scene_excerpt.md
+prompt_text: 'Kling Omni element-based clip; duration 12s. Active elements: @C01_NADIA, @C02_ROMAN. Direct action and camera;
+  @elements carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity, restrained camera language, and
+  conservative execution. Figures: exactly 2 distinct figure(s) — @C01_NADIA (battle-worn field jacket, left arm limited range.),
+  @C02_ROMAN (dark close-fitted jacket.). No additional, extra, or duplicated people; do not clone or multiply any figure.
+  Start state: @C02_ROMAN advancing on diagonal. @C01_NADIA retreating toward far wall. [00:00 - 00:05] Medium shot: @C02_ROMAN
+  advances, driving @C01_NADIA toward the far wall. @C02_ROMAN''s footwork follows a diagonal, not the shortest path — angling
+  @C01_NADIA toward a floor seam. @C01_NADIA retreats, managing her left side. @C01_NADIA retreats, left side managed, feet
+  adjusting to diagonal floor. @C02_ROMAN advances on diagonal, driving @C01_NADIA toward the corridor wall. Medium tracking.
+  Floor surface visible. @C01_NADIA retreating on diagonal. Audio: Footsteps on concrete. Controlled breathing. [00:05 - 00:12]
+  Medium shot: @C01_NADIA''s right shoulder contacts the door frame — controlled into it, not thrown. @C01_NADIA''s back is
+  against the frame; server-core door behind her. @C02_ROMAN stands 60cm in front, not making contact. Geometry has closed
+  the space. @C01_NADIA''s right shoulder against door frame, back to server-core door. @C02_ROMAN stands 60cm from @C01_NADIA,
+  facing her, not touching — geometry did the work. Medium handheld. @C01_NADIA''s back against door frame. Corridor walls
+  visible on both sides. Audio: Right shoulder contacting frame. Controlled breathing — @C01_NADIA managing cost. End state:
+  @C01_NADIA''s back against door frame, server-core door behind. @C02_ROMAN controlling space in front. Continuity: frame_input_eligible.
+  Keep 12s; end settled. Do not add new story facts.'
+negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
+generation_params:
+  model_guidance_mode: dynamic_snapshot
+  adapter_name: kling_omni
+  clip_id: CLIP_SC0111_02
+  total_duration_seconds: 12
+  continuity_input_mode: frame_input_eligible
+  omni_clip_manifest_ref: planning/scenes/SC0111/manifests/CLIP_SC0111_02_manifest.yaml
+  source_scene_beat_plan_ref: planning/scenes/SC0111/scene_beat_plan.yaml
+  source_dialogue_beats_ref: ''
+  repo_binary_committed: false
+  external_generation_required: true
+  recommended_cfg_scale: 0.5
+  recommended_ar: '16:9'
+  variant_mode: safe
+  render_pass: visual_test
+  quality_tier: test_720p
+  prompt_component_model: docs/methodology/omni_prompt_component_model.md
+  language_profile: kling_literal_alias_locked
+  input_mode: text_only
+  required_element_aliases:
+  - '@C01_NADIA'
+  - '@C02_ROMAN'
+  audio_gate_status: allowed_audio_off
+  audio_gate_reason: visual_test_default_audio_off
+  model_guidance_snapshot_ref: model_guidance_snapshots/kling/20260615T000000Z_kling_omni_video_best_available.yaml
+  provider: kling
+  provider_surface: manual_external
+  resolved_model_name: Kling VIDEO 3.0 Omni
+  resolved_model_role: best_for_this_task
+  guidance_observed_at: '2026-06-15T00:00:00Z'
+  guidance_expires_at: '2026-07-15T00:00:00Z'
+expected_output:
+  asset_type: clip
+  duration_seconds: 12
+status: active
+canon_lock: false

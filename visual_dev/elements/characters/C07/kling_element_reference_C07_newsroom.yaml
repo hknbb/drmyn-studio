@@ -1,0 +1,29 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KER_C07_NEWSROOM_V001
+status: approved
+element_id: C07
+element_type: character
+source_midjourney_reference:
+  reference_id: MJ_C07_OREFLOCK_V001
+  prompt_id: SC0040__t2i-char-c07-oref-lock-mj-v7__v01
+  operator_session_ref: OP-2026-06-18-C07-sera-stage1-scaffold
+gpt_images_2_perspectives:
+  full_body_front: PPACK_C07_NEWSROOM_V001__full_body_front
+  three_quarter_waist: PPACK_C07_NEWSROOM_V001__three_quarter_waist
+  close_portrait_front: PPACK_C07_NEWSROOM_V001__close_portrait_front
+  profile_full: PPACK_C07_NEWSROOM_V001__profile_full
+continuity_anchors:
+  - "Locked Sera identity: blonde/ash hair pulled back; upright contained posture with forward-moving energy; alert direct gaze; mid 30s to mid 40s."
+  - "Institutional fighter expression: controlled professional exterior with private determination and weight underneath."
+  - "Newsroom wardrobe: dark professional blazer (black/charcoal) over dark top, dark neutral trousers; no glamour, no anchor-studio styling."
+  - "Neutral grey background; even soft diffuse light; natural restrained realism."
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-2026-06-18-C07-sera-stage1-scaffold
+downstream_use:
+  - kling_omni_3_shot_prompt
+source_refs:
+  gpt_images_pack_ref: visual_dev/elements/characters/C07/perspective_packs/PPACK_C07_NEWSROOM_V001.yaml
+  element_sheet_ref: visual_dev/elements/characters/C07/look_variants/C07_LOOK_NEWSROOM_V001.yaml

@@ -1,0 +1,29 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KER_C05_PRIVATE_MEETING_V001
+status: approved
+element_id: C05
+element_type: character
+source_midjourney_reference:
+  reference_id: MJ_C05_OREFLOCK_V001
+  prompt_id: SC0004__t2i-char-c05-oref-lock-mj-v7__v01
+  operator_session_ref: OP-2026-06-18-C03-C05-stage2-lock-stage3-ppack
+gpt_images_2_perspectives:
+  full_body_front: PPACK_C05_PRIVATE_MEETING_V001__full_body_front
+  three_quarter_waist: PPACK_C05_PRIVATE_MEETING_V001__three_quarter_waist
+  close_portrait_front: PPACK_C05_PRIVATE_MEETING_V001__close_portrait_front
+  profile_full: PPACK_C05_PRIVATE_MEETING_V001__profile_full
+continuity_anchors:
+  - "Locked Marcus identity: white/European man, late 30s to early 40s; slicked-back dark hair; angular jaw; pale complexion; controlled watchful silhouette with weight slightly held back."
+  - "Controlled expression with warmth under operational restraint — real weight in stillness, not a thriller cutout."
+  - "Private-meeting wardrobe: plain dark shirt + dark neutral trousers + dark shoes; no decoration, no insignia, no kit."
+  - "Neutral grey background; even soft diffuse light; natural restrained realism (not cold, not hard-edged, not thriller-poster)."
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-2026-06-18-C03-C05-stage2-lock-stage3-ppack
+downstream_use:
+  - kling_omni_3_shot_prompt
+source_refs:
+  gpt_images_pack_ref: visual_dev/elements/characters/C05/perspective_packs/PPACK_C05_PRIVATE_MEETING_V001.yaml
+  element_sheet_ref: visual_dev/elements/characters/C05/look_variants/C05_LOOK_PRIVATE_MEETING_V001.yaml

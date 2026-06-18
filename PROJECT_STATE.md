@@ -5,14 +5,11 @@
 
 ## ğŸ‡¹ğŸ‡· Åu An Neredeyiz (TÃ¼rkÃ§e Ã–zet)
 
-Milestone M5'teyiz. **PR-BATCH-KEYCHAR-1 Stage-1 hero seÃ§imi tamamlandÄ± (2026-06-17):**
-**PR-BATCH-KEYCHAR-1 Stage-2 kilidleri tamamlandÄ± (2026-06-18):** C03 Birta â†’ Stage-2
-hero `0a07694e_0` (krem Ã¶nlÃ¼k, gri arka plan). C05 Marcus â†’ Stage-2 hero `e724a825_0`
-(koyu gri gÃ¶mlek, nÃ¶tr arka plan). Her iki `identity_anchor.yaml` `stage2_selected`.
-**Stage-3 PPACK'lar hazÄ±r:** `PPACK_C03_DOMESTIC_ROUTINE_V001` + `PPACK_C05_PRIVATE_MEETING_V001`.
-OperatÃ¶r sÄ±rasÄ±: ChatGPT Images 2'ye PRIMARY (Stage-2) + SECONDARY (Stage-1) yÃ¼kle â†’
-4 perspektif gÃ¶rÃ¼ntÃ¼ Ã¼ret â†’ PQC (â‰¥85) â†’ KER. **SC0047/SC0089/SC0111 Kling Omni v07**
-tamamlandÄ±. SC0014 v07 hazÄ±r; 8 klip arÅŸivlendi (QC bekliyor).
+Milestone M5’teyiz. **PR-BATCH-KEYCHAR-1 TAMAMLANDI (2026-06-18):** C03 Birta + C05
+Marcus ikisi de `binding: created` statüsüne ulaştı. Tüm key karakter pipeline’ı
+(C01-C06, C08-C10) created. **Sıradaki:** (1) SC0014 v07 klip QC — 8 klip arşivlendi,
+operatör izleyip skor vermeli; (2) C07 Sera + Halo Unit element production (agent-driven,
+başlayabiliriz). SC0047/SC0089/SC0111 Kling Omni v07 tamamlandı (40 prompt).
 
 ## Status
 
@@ -20,26 +17,26 @@ tamamlandÄ±. SC0014 v07 hazÄ±r; 8 klip arÅŸivlendi (QC bekliyor).
 |---|---|
 | Active branch | `feat/sc0014-scene-production` |
 | Milestone | M5 â€” character visual element pipeline |
-| Last updated | 2026-06-18 (C03/C05 Stage-2 lock + Stage-3 PPACK) |
+| Last updated | 2026-06-18 |
 | Public checkpoint | v0.18.0 (Zenodo DOI: 10.5281/zenodo.20735582) |
 
 ## Character Pipeline (C01â€“C10)
 
 <!-- AUTO:PIPELINE:START -->
-Stages: S1 = MJ v8.1 hero Â· S2 = MJ v7 --oref identity lock Â· S3 = four-view pack Â· Binding = lifecycle status
+Stages: S1 = MJ v8.1 hero · S2 = MJ v7 --oref identity lock · S3 = four-view pack · Binding = lifecycle status
 
 | ID | Name | S1 | S2 | S3 | Binding | Scene(s) | Notes |
 |---|---|---|---|---|---|---|---|
-| C01 | Nadia Vale | âœ… | âœ… | âœ… | **created** | SC0014, SC0047, SC0089, SC0111 | 4 look bindings created: base, field-night, transit, battle-worn |
-| C02 | Roman Vale | âœ… | âœ… | âœ… | **created** | SC0111 |  |
-| C03 | Birta | âœ… | âœ… | â€” | â€” | SC0001 | Stage-2 lock selected (0a07694e_0); Stage-3 PPACK ready |
-| C04 | Dimitri | âœ… | âœ… | âœ… | **created** | SC0014 |  |
-| C05 | Marcus | âœ… | âœ… | â€” | â€” | SC0004 (phys) / SC0047 (VO) | Stage-2 lock selected (e724a825_0); Stage-3 PPACK ready |
-| C06 | Zara | âœ… | âœ… | âœ… | **created** | SC0089 |  |
-| C07 | Sera | â€” | â€” | â€” | â€” | â€” | Queued after key-character batch |
-| C08 | Jin | âœ… | âœ… | âœ… | **created** | SC0014 |  |
-| C09 | Otto | âœ… | âœ… | âœ… | **created** | SC0047 |  |
-| C10 | Carrier+Holder | âœ… | âœ… | âœ… | **created** | SC0014 | Two enforcer figures (Carrier + Holder), per-figure packs |
+| C01 | Nadia Vale | ✅ | ✅ | ✅ | **created** | SC0014, SC0047, SC0089, SC0111 | 4 look bindings created: base, field-night, transit, battle-worn |
+| C02 | Roman Vale | ✅ | ✅ | ✅ | **created** | SC0111 |  |
+| C03 | Birta | ✅ | ✅ | ✅ | **created** | SC0001 | KER_C03_DOMESTIC_ROUTINE_V001 locked; PQC ≥89 all views |
+| C04 | Dimitri | ✅ | ✅ | ✅ | **created** | SC0014 |  |
+| C05 | Marcus | ✅ | ✅ | ✅ | **created** | SC0004 (phys) / SC0047 (VO) | KER_C05_PRIVATE_MEETING_V001 locked; PQC ≥90 all views |
+| C06 | Zara | ✅ | ✅ | ✅ | **created** | SC0089 |  |
+| C07 | Sera | ✅ | ✅ | ✅ | **created** | SC0040 | KER_C07_NEWSROOM_V001 locked; PQC ≥92 all views |
+| C08 | Jin | ✅ | ✅ | ✅ | **created** | SC0014 |  |
+| C09 | Otto | ✅ | ✅ | ✅ | **created** | SC0047 |  |
+| C10 | Carrier+Holder | ✅ | ✅ | ✅ | **created** | SC0014 | Two enforcer figures (Carrier + Holder), per-figure packs |
 <!-- AUTO:PIPELINE:END -->
 
 ## Active Scene Work
@@ -63,8 +60,8 @@ Stages: S1 = MJ v8.1 hero Â· S2 = MJ v7 --oref identity lock Â· S3 = four-vi
 2. ~~SC0047/SC0089 t2i oref schema drift~~ â€” **Ã§Ã¶zÃ¼ldÃ¼ 2026-06-16**: 3 kÃ¶k alan `generation_params` iÃ§ine taÅŸÄ±ndÄ±, validator 55/55 temiz.
 3. ~~LOC005/006/007/PROP008 lifecycle promotion~~ â€” **tamamlandÄ± 2026-06-17**: binding_status plannedâ†’created; @LOC005_CORRIDOR, @LOC006_QUAY, @LOC007_ANTECHAMBER, @PROP008_HANDSET alias baÄŸlandÄ±.
 4. ~~SC0047/SC0089/SC0111 Kling Omni clip planÄ±~~ â€” **tamamlandÄ± 2026-06-17**: 40 v07 prompt kaydÄ±; 3 inject scripti + validate 95/95.
-4. **PR-BATCH-KEYCHAR-1** â€” Stage-3 hazÄ±r. **OperatÃ¶r**: ChatGPT Images 2'ye her karakter iÃ§in PRIMARY (Stage-2 lock) + SECONDARY (Stage-1 hero) yÃ¼kle â†’ PPACK prompt metinlerini sÄ±rayla Ã§alÄ±ÅŸtÄ±r â†’ 4 perspektif gÃ¶rÃ¼ntÃ¼ Ã¼ret â†’ PQC â†’ KER â†’ binding 'created'.
-5. **C07 Sera** + **Halo Unit** element production.
+4. ~~PR-BATCH-KEYCHAR-1~~ — **tamamlandı 2026-06-18**: C03 Birta + C05 Marcus binding created; KER_C03_DOMESTIC_ROUTINE_V001 + KER_C05_PRIVATE_MEETING_V001 locked.
+5. **C07 Sera** — Stage-1 scaffold done. Operatör: MJ'de SC0040__t2i-char-c07-identity-mj-v8__v01 batch çalıştır → hero seç → Stage-2/3 pipeline. **Halo Unit** (Herald robot bedenleri) — compact planning ID yok, ayrı scaffold gerekiyor.
 
 ## Known Issues / Blockers
 
@@ -84,19 +81,21 @@ From `closingpriceclaudecodeanalysisforcode.md` (multi-agent analysis, 2026-06-0
 ## Session Log (newest first, keep ~10 lines)
 
 <!-- AUTO:SESSION_LOG:START -->
-- 2026-06-18 â€” feat(M5): PR-BATCH-KEYCHAR-1 Stage-2 lock + Stage-3 PPACK â€” C03 Birta (0a07694e_0) + C05 Marcus (e724a825_0); look_variants + perspective_packs oluÅŸturuldu
-- 2026-06-17 â€” feat(M5): PR-BATCH-KEYCHAR-1 Stage-2 --oref prompts drafted â€” C03 Birta (6acb8065) + C05 Marcus (9b0373c6); identity_anchor oref_url + prompt_ref kayÄ±tlandÄ±
-- 2026-06-17 â€” feat(M5): PR-BATCH-KEYCHAR-1 Stage-1 heroes selected â€” C03 Birta eadae384_2 + C05 Marcus d246ae27_2; identity_anchor.yaml stage1_ref populated
-- 2026-06-17 â€” chore(M5): PR-BATCH-KEYCHAR-1 Stage-1 scaffold â€” C03 Birta + C05 Marcus MJ prompt drafts + identity_anchor stubs; fix C05 pipeline status
-- 2026-06-17 â€” feat(M5): SC0047/SC0089/SC0111 v07 Kling Omni clip plans complete (40 prompts, 3 inject scripts, 95/95 valid)
-- 2026-06-17 â€” chore(citation): point CITATION metadata to v0.18.0 DOI 10.5281/zenodo.20735582
-- 2026-06-17 â€” fix(lint): reindent SC0014 manifests + omni_clip_plan for yamllint compliance
-- 2026-06-17 â€” chore(manifests): rebuild planning manifests Ã¢â‚¬â€ M5 pipeline additions (C09, LOC005/006/007, WD008-014, PROP007/008, SC0014/0047/0089/0111)
-- 2026-06-17 â€” chore(merge): resolve conflict Ã¢â‚¬â€ keep clean-slate teardown deletions (LOC001/PROP003 V002 image_selection)
-- 2026-06-17 â€” chore(release): v0.18.0 release artifacts Ã¢â‚¬â€ CHANGELOG + PROJECT_STATE update
-- 2026-06-17 â€” [fix] operator session schema Ã¢â‚¬â€ remove extra fields, add required recommended_steps
-- 2026-06-17 â€” promote @LOC005_CORRIDOR/@LOC006_QUAY/@LOC007_ANTECHAMBER/@PROP008_HANDSET to created (SC0047/SC0089/SC0111, QC>=85)
-- 2026-06-17 â€” lock LOC005/006/007/PROP008 three-view packs + KER records (QC>=85); promote pending human PR
-- 2026-06-17 â€” [fix] SC0047/SC0089 oref schema drift + archive LOC005/006/007/PROP008 stage-1 first-refs
-- 2026-06-17 â€” archive SC0014 v07 Kling clips (8 takes, git-ignored) + add clips subdir
+- 2026-06-18 — feat(M5): C07 Sera binding created — Stage-3 PQC >=92, KER_C07_NEWSROOM_V001 locked
+- 2026-06-18 — feat(M5): C07 Sera Stage-2 lock selected (9fcba347_3); identity_anchor stage2_selected
+- 2026-06-18 — feat(M5): C07 Sera Stage-1 hero selected (2c0bb89d_1); Stage-2 oref URL recorded; --oref prompt drafted
+- 2026-06-18 — chore(M5): C07 Sera Stage-1 scaffold — identity_anchor stub + MJ v8.1 prompt (SC0040, seed 514637)
+- 2026-06-18 — feat(M5): C05 Marcus binding created — Stage-3 PQC >=90, KER_C05_PRIVATE_MEETING_V001 locked
+- 2026-06-18 — feat(M5): C03 Birta binding created — Stage-3 PQC >=89, KER_C03_DOMESTIC_ROUTINE_V001 locked
+- 2026-06-18 — feat(M5): PR-BATCH-KEYCHAR-1 Stage-2 lock + Stage-3 PPACK (C03/C05); archive paths fixed to closing_price
+- 2026-06-18 — chore(archive): rename archive path nexuszero â†’ closing_price
+- 2026-06-17 — chore(citation): point CITATION metadata to v0.18.0 DOI 10.5281/zenodo.20735582
+- 2026-06-17 — fix(lint): reindent SC0014 manifests + omni_clip_plan for yamllint compliance
+- 2026-06-17 — chore(manifests): rebuild planning manifests â€” M5 pipeline additions (C09, LOC005/006/007, WD008-014, PROP007/008, SC0014/0047/0089/0111)
+- 2026-06-17 — chore(merge): resolve conflict â€” keep clean-slate teardown deletions (LOC001/PROP003 V002 image_selection)
+- 2026-06-17 — chore(release): v0.18.0 release artifacts â€” CHANGELOG + PROJECT_STATE update
+- 2026-06-17 — [fix] operator session schema â€” remove extra fields, add required recommended_steps
+- 2026-06-17 — promote @LOC005_CORRIDOR/@LOC006_QUAY/@LOC007_ANTECHAMBER/@PROP008_HANDSET to created (SC0047/SC0089/SC0111, QC>=85)
+- 2026-06-17 — lock LOC005/006/007/PROP008 three-view packs + KER records (QC>=85); promote pending human PR
+- 2026-06-17 — [fix] SC0047/SC0089 oref schema drift + archive LOC005/006/007/PROP008 stage-1 first-refs
 <!-- AUTO:SESSION_LOG:END -->

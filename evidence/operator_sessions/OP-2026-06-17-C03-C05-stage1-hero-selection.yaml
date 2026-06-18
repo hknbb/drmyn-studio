@@ -1,0 +1,34 @@
+session_id: OP-2026-06-17-C03-C05-stage1-hero-selection
+created_at: "2026-06-17T00:00:00Z"
+scene_id: null
+current_task: "PR-BATCH-KEYCHAR-1 — C03 Birta + C05 Marcus Stage-1 hero selection"
+status: complete
+recommended_files:
+  - visual_dev/elements/characters/C03/identity_anchor.yaml
+  - visual_dev/elements/characters/C05/identity_anchor.yaml
+recommended_steps:
+  - "C03 Birta Stage-2: Run MJ V7 --cref with selected hero as --cref reference. Target: single clean frontal identity lock (no grid/contact sheet). Folder: archive/nexuszero/_elements/C03/stage2/images/. Update identity_anchor.yaml stage2_ref on selection."
+  - "C05 Marcus Stage-2: Run MJ V7 --cref with selected hero as --cref reference. Same constraints. Folder: archive/nexuszero/_elements/C05/stage2/images/. Update identity_anchor.yaml stage2_ref on selection."
+  - "After Stage-2 heroes selected: run Stage-3 ChatGPT Images 2 four_view_scale_angle_v3 pack for each character."
+  - "QC each four-view pack → PQC_C03_PERSPECTIVE_PACK_V001.yaml + PQC_C05_PERSPECTIVE_PACK_V001.yaml → if can_advance_to_kling_reference: true, create kling_element_reference records."
+  - "On KER creation for each: promote S1→S2→S3→Binding in PROJECT_STATE.md pipeline table, update character_index.csv."
+notes: >
+  Operator selected Stage-1 heroes from MJ batches generated 2026-06-17:
+
+  C03 Birta hero: u9435212546_Birta_70s_compact_and_capable_domestic_silhouette_eadae384-f808-41e6-866c-1ead520a6fe1_2.png
+  Location: C:/Users/babac/drmyn-studio-images/Birta/Stage 1/
+  Rationale: Silver-haired close portrait, cream apron, black scarf. Warm
+  human face with real 70s age, quietly authoritative without caricature
+  coding. Strongest --cref surface in batch of 12.
+
+  C05 Marcus hero: u9435212546_Marcus_late_30s_to_early_40s_controlled_watchful__d246ae27-fe63-42ea-a773-676c92bb990c_2.png
+  Location: C:/Users/babac/drmyn-studio-images/Marcus/stage-1/
+  Rationale: White/European man, dark grey coat, plain dark shirt, 3/4 turn.
+  Correct late-30s/early-40s age, controlled watchful silhouette, warm
+  accessibility under restraint. No kit coding, no insignia. Clean --cref
+  surface in batch of 20. Batch contained no Asian candidates despite the
+  Chen surname; operator selected from available batch.
+
+  Both identity_anchor.yaml files updated: status stage1_selected,
+  front_hero_lock_ref.pending false, stage1_ref + external_ref + selection
+  notes populated. Next: Stage-2 --cref lock for each.

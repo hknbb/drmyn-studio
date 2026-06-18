@@ -1,0 +1,25 @@
+schema_version: "0.x-draft"
+record_type: character_look_variant
+look_id: C03_LOOK_DOMESTIC_ROUTINE_V001
+character_id: C03
+inherits_identity_anchor: C03_IDENTITY_ANCHOR_V001
+status: draft
+look_role: "Domestic routine — Birta at work in the Vale residence (SC0001)"
+wardrobe_refs:
+  primary_wardrobe_id: WD004
+  supplementary_wardrobe_ids: []
+appearance_state:
+  fatigue_level: nominal
+  damage_level: none
+  hair_state_within_anchor: "Silver/white hair neatly pinned or upswept; tidy working presentation."
+continuity_scope:
+  start_scene: SC0001
+  end_scene: SC0001
+change_reason: "Birta's only registered look: domestic opening. Baseline against which disrupted/alert states in later scenes would read."
+notes: >
+  Look 1 of 1 (initial) for Birta. Identity carried by C03_IDENTITY_ANCHOR_V001.
+  Wardrobe: practical apron + muted service neutral dress, no ornamentation.
+  Stage-3 four-view pack: perspective_packs/PPACK_C03_DOMESTIC_ROUTINE_V001.yaml.
+provenance:
+  created_by: "claude_code (M5 PR-BATCH-KEYCHAR-1)"
+  created_at: "2026-06-18T00:00:00Z"

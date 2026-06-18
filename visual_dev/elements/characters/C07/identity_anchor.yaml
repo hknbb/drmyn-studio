@@ -1,0 +1,67 @@
+schema_version: "0.x-draft"
+record_type: character_identity_anchor
+identity_anchor_id: C07_IDENTITY_ANCHOR_V001
+character_id: C07
+status: identity_locked_stage3
+source_reference_strategy:
+  reference_sheet_allowed_as_identity_source: false
+  final_hero_lock_requires_single_clean_image: true
+  contact_sheet_layout_forbidden_as_lock: true
+source_reference_sheet_ref: prompts/draft/SC0040__t2i-char-c07-identity-mj-v8__v01.yaml
+front_hero_lock_ref:
+  pending: false
+  stage1_ref: "u9435212546_Woman_mid_30s_to_mid_40s_senior_investigative_jou_2c0bb89d-e782-4db2-8a49-1d9846c418dd_1.png"
+  stage1_selected_at: "2026-06-18T00:00:00Z"
+  stage1_selection_notes: >
+    Blonde/ash-haired woman, mid 40s. Black blazer + dark blouse, dark trousers.
+    Excellent frontal, plain neutral grey background, even lighting. Strong
+    institutional authority read with warmth and real weight visible underneath.
+    Best --cref lock surface in batch of 27. Score: 22/25.
+  stage2_oref_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/d2c7150d0b8bc16bb0492c684a7a7b9e1ff85cd965dfef6c53dbe76a899dde92_384_N.png"
+  stage2_oref_weight: 250
+  stage2_prompt_ref: "prompts/draft/SC0040__t2i-char-c07-oref-lock-mj-v7__v01.yaml"
+  stage2_ref: "u9435212546_Woman_mid_30s_to_mid_40s_senior_investigative_jou_9fcba347-0027-42b2-8b2c-a17dc9c66776_3.png"
+  stage2_selected_at: "2026-06-18T00:00:00Z"
+  stage2_selection_notes: >
+    Black satin blazer + dark top + dark trousers, neutral blue-grey background,
+    near-frontal, even-ish lighting, hands at sides. Identity lock excellent.
+    Small earrings present — accepted by operator. Best available from batch
+    of 14; systemic jewelry drift noted across batch.
+  stage2_external_ref: "archive/closing_price/_elements/C07/stage2/images/u9435212546_Woman_mid_30s_to_mid_40s_senior_investigative_jou_9fcba347-0027-42b2-8b2c-a17dc9c66776_3.png"
+  external_ref: "archive/closing_price/_elements/C07/stage1/images/u9435212546_Woman_mid_30s_to_mid_40s_senior_investigative_jou_2c0bb89d-e782-4db2-8a49-1d9846c418dd_1.png"
+  locked_at: null
+  chain: "Stage1 MJ V8.1 narrative identity → Stage2 MJ V7 --oref lock → Stage3 ChatGPT Images 2 four_view_scale_angle_v3"
+fixed_identity_anchors:
+  - "Woman, mid 30s to mid 40s; face geometry and identity must stay constant across all scene looks."
+  - "Forward-moving institutional intelligence: alert eye contact, slightly leaned-in physical engagement, body language of someone always partially mid-question."
+  - "Hard-nosed professional skepticism as worn armor — performed distrust that covers private guilt and commitment."
+  - "Upright, slightly forward-leaning, dynamic but contained silhouette."
+  - "Senior investigative journalist practical wear: smart-casual newsroom/field hybrid, dark professional neutrals."
+  - "Heritage neutral and not visually asserted — identity built from professional posture and institutional fighter register, not ethnic cues."
+mutable_appearance_allowed:
+  - "Wardrobe per scene look (newsroom long-hours, field meeting, institutional confrontation)."
+  - "Hair state within anchor: pulled back, short practical, or showing fatigue from long hours."
+  - "Fatigue and pressure visible in small deviations from controlled professional baseline."
+  - "Environmental lighting register (newsroom fluorescent, exterior night, editorial office)."
+forbidden_drift:
+  - "Do not render as glamorous TV news anchor: no anchor-studio makeup, no broadcast-set context, no on-air styling."
+  - "Do not add scene-context props (notebook, recorder, press badge, lanyard) to base identity; those are scene-specific props only."
+  - "Do not over-perform femininity: no fashion-spread, no glamor cosmetics, no styling that fights the working-journalist register."
+  - "Do not assert specific ethnic identity from the name Seraphina Mast — heritage intentionally neutral."
+  - "Do not style as noir-detective trope (no trenchcoat, no fedora, no stylized smoking)."
+  - "Do not style as tech-journalist trope (no oversized headphones, no laptop as identity accessory)."
+  - "Do not alter face geometry, age read, or silhouette between looks."
+notes: >
+  Canonical identity anchor for Sera / Seraphina Mast (C07), secondary
+  supporting / ambiguous media ally. Primary scene anchor: SC0040 (NEWSROOM
+  SERA'S DESK). Character chain: Stage 1 MJ V8.1 narrative identity → Stage 2
+  MJ V7 --oref lock → Stage 3 ChatGPT Images 2 four_view_scale_angle_v3.
+  front_hero_lock_ref stays pending until the operator generates a Stage-1
+  batch and selects a hero (no fabricated lock). Key invariant: must read as
+  a real institutional fighter with private humanity underneath the professional
+  armor — not a stereotype, not glamorous, not cold.
+  Visual profile is operator-inferred (dossier does not state visual fields
+  directly); confirm or amend after operator review of Stage-1 batch.
+provenance:
+  created_by: "claude_code (M5 C07 Sera scaffold)"
+  created_at: "2026-06-18T00:00:00Z"

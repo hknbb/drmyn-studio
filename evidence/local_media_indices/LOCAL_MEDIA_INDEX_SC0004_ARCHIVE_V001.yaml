@@ -1,0 +1,44 @@
+scene_id: SC0004
+created_at: '2026-06-18T00:00:00Z'
+storage_policy: external_image_only
+entries:
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C05_PRIVATE_MEETING_V001__profile_full
+  storage_backend: local_manual
+  last_seen_at: '2026-06-18T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0004/C05/stage3/images/ChatGPT Image 18 Haz 2026 15_33_30.png
+  external_storage_ref: external://local_manual/archive/closing_price/SC0004/C05/stage3/images/ChatGPT Image 18 Haz 2026 15_33_30.png
+  sha256: e5fd3730bfdb0800d4d7317d8c7215f4397947ba889c0e77f369892529b74fbc
+  size_bytes: 1841948
+  notes: 'Stage-3 four-view: profile_full. Dual-ref seeded (Stage-2 primary + Stage-1 secondary).'
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C05_PRIVATE_MEETING_V001__close_portrait_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-18T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0004/C05/stage3/images/ChatGPT Image 18 Haz 2026 15_33_34.png
+  external_storage_ref: external://local_manual/archive/closing_price/SC0004/C05/stage3/images/ChatGPT Image 18 Haz 2026 15_33_34.png
+  sha256: 0216190e8f56b5503b6c0141db7a0eb74b5a9857136a7e5ee9775a8442b688b4
+  size_bytes: 1970892
+  notes: 'Stage-3 four-view: close_portrait_front.'
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C05_PRIVATE_MEETING_V001__three_quarter_waist
+  storage_backend: local_manual
+  last_seen_at: '2026-06-18T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0004/C05/stage3/images/ChatGPT Image 18 Haz 2026 15_33_37.png
+  external_storage_ref: external://local_manual/archive/closing_price/SC0004/C05/stage3/images/ChatGPT Image 18 Haz 2026 15_33_37.png
+  sha256: f578ce64f6d299b3d9c09f0f3d51485331851774c8709d7ecbef761f9e2e9c99
+  size_bytes: 1887702
+  notes: 'Stage-3 four-view: three_quarter_waist.'
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C05_PRIVATE_MEETING_V001__full_body_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-18T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0004/C05/stage3/images/ChatGPT Image 18 Haz 2026 15_33_40.png
+  external_storage_ref: external://local_manual/archive/closing_price/SC0004/C05/stage3/images/ChatGPT Image 18 Haz 2026 15_33_40.png
+  sha256: b1c7328e02e715eb353d121fb251378ea0d3a6c3d0b6ab05a88878e4f862ea90
+  size_bytes: 1926076
+  notes: 'Stage-3 four-view: full_body_front.'

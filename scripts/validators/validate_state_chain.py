@@ -95,6 +95,36 @@ def _strip_aliases(text: str) -> str:
     return _norm(_ALIAS_RE.sub("", text or ""))
 
 
+# Function words ignored when measuring content overlap so shared "the/and/her"
+# tokens do not inflate the score (P15).
+_STOPWORDS = frozenset(
+    {
+        "the", "a", "an", "and", "or", "but", "to", "of", "in", "on", "at", "by",
+        "with", "her", "his", "their", "its", "as", "is", "are", "into", "onto",
+        "from", "over", "she", "he", "they", "it",
+    }
+)
+
+
+def _content_tokens(text: str) -> set[str]:
+    words = re.findall(r"[a-z0-9]+", _norm(text))
+    return {w for w in words if w not in _STOPWORDS}
+
+
+def _content_overlap(a: str, b: str) -> float:
+    """Fraction of *a*'s content tokens that also appear in *b* (P15).
+
+    Directional (how much of the figure action is echoed by prompt_action),
+    so a short action embedded in a long environment line still scores high.
+    Returns 0.0 when *a* has no content tokens.
+    """
+    ta = _content_tokens(a)
+    if not ta:
+        return 0.0
+    tb = _content_tokens(b)
+    return len(ta & tb) / len(ta)
+
+
 def _normalize_relation(text: str) -> str:
     """Canonicalise a relation phrase so paraphrases compare equal."""
     base = _strip_aliases(text)
@@ -225,9 +255,13 @@ def _validate_clip(
                 alias = fig.get("kling_alias")
                 if not (isinstance(act, str) and act.strip() and isinstance(alias, str)):
                     continue
-                act_core = _strip_aliases(act)
-                first_words = " ".join(act_core.split()[:3])
-                if alias in prompt_action and first_words and first_words in _norm(prompt_action):
+                # P15: token-set overlap instead of a first-3-words substring
+                # probe. The old test missed reordered paraphrases and false-fired
+                # on incidental shared words. Flag only when the figure action and
+                # the prompt_action share a substantial content-word overlap.
+                if alias in prompt_action and _content_overlap(
+                    _strip_aliases(act), _strip_aliases(prompt_action)
+                ) >= 0.6:
                     issues.append(
                         StateChainIssue(
                             scene_id, clip_id, shot_id,

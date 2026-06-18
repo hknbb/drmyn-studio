@@ -1,0 +1,62 @@
+schema_version: "0.x-draft"
+record_type: character_identity_anchor
+identity_anchor_id: C03_IDENTITY_ANCHOR_V001
+character_id: C03
+status: identity_locked_stage3
+source_reference_strategy:
+  reference_sheet_allowed_as_identity_source: false
+  final_hero_lock_requires_single_clean_image: true
+  contact_sheet_layout_forbidden_as_lock: true
+source_reference_sheet_ref: prompts/draft/SC0001__t2i-char-c03-identity-mj-v8__v01.yaml
+front_hero_lock_ref:
+  pending: false
+  stage1_ref: "u9435212546_Birta_70s_compact_and_capable_domestic_silhouette_eadae384-f808-41e6-866c-1ead520a6fe1_2.png"
+  stage1_selected_at: "2026-06-17T00:00:00Z"
+  stage1_selection_notes: >
+    Silver-haired close portrait, cream apron, black scarf at neck. Quietly
+    authoritative face — real 70s age, warm human dignity, no ornamentation.
+    Strong close-crop surface for Stage-2 --cref lock.
+  stage2_oref_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/6acb8065845a2b7b494e8cae9f169811834b475d5b34fcd64ec9fd77f3720574_384_N.png"
+  stage2_oref_weight: 250
+  stage2_prompt_ref: "prompts/draft/SC0001__t2i-char-c03-oref-lock-mj-v7__v01.yaml"
+  stage2_ref: "u9435212546_70s_woman_compact_domestic_silhouette_warm_direct_0a07694e-c406-423a-ac35-c76ce62c2a7a_0.png"
+  stage2_selected_at: "2026-06-18T00:00:00Z"
+  stage2_selection_notes: >
+    Dark textured cardigan over cream apron, plain grey background, frontal,
+    even diffuse lighting. Best clean-lock surface from two-batch run (17+10
+    images). Small badge on apron pocket — acceptable for Stage-3 reference.
+    Approved by operator.
+  stage2_external_ref: "archive/closing_price/_elements/C03/stage2/images/u9435212546_70s_woman_compact_domestic_silhouette_warm_direct_0a07694e-c406-423a-ac35-c76ce62c2a7a_0.png"
+  external_ref: "archive/closing_price/_elements/C03/stage1/images/u9435212546_Birta_70s_compact_and_capable_domestic_silhouette_eadae384-f808-41e6-866c-1ead520a6fe1_2.png"
+  locked_at: null
+  chain: "Stage1 MJ V8.1 narrative identity → Stage2 MJ V7 --cref lock → Stage3 ChatGPT Images 2 four_view_scale_angle_v3"
+fixed_identity_anchors:
+  - "Woman, 70s; face geometry and identity must stay constant across all scene looks."
+  - "Compact, work-shaped body; decades of domestic labor visible in posture, hands, and unhurried economy of movement."
+  - "Quietly authoritative domestic presence; reads immediately as someone who knows the household and its rhythms better than anyone."
+  - "Warm, direct gaze — not fragile, not comic, not alarmed by default; full human dignity and long-service authority."
+  - "Muted practical working clothes, service neutrals; no ornament, no decoration, no caricature housekeeper coding."
+mutable_appearance_allowed:
+  - "Wardrobe per scene look (routine domestic / disrupted / alert states as scenes dictate)."
+  - "Stress and alarm tell (adjustment behavior, sharper emphasis on routine, visible distress at household change)."
+  - "Environmental lighting register (warm nursery practicals, corridor light, morning light)."
+forbidden_drift:
+  - "Do not reduce to comic relief or caricature housekeeper."
+  - "Do not over-style or glamorize; practical domestic workwear, no ornamentation."
+  - "Do not soften her real 70s age into a younger or idealized reading."
+  - "Do not render cold or editorial; she must read as warm and real — the house's human anchor."
+  - "Do not invent a larger subplot or independent backstory beyond service history."
+  - "Do not alter face geometry, age read, or body type between looks."
+notes: >
+  Canonical identity anchor for Birta (C03), domestic supporting anchor of the
+  Vale residence. Source-truth character: C23. One identity, scene-specific looks
+  grounded in SC0001 (domestic opening) and associated nursery/corridor spaces.
+  Character chain: Stage 1 MJ V8.1 narrative identity → Stage 2 MJ V7 --cref
+  lock → Stage 3 ChatGPT Images 2 four_view_scale_angle_v3. front_hero_lock_ref
+  stays pending until the operator generates a Stage-1 batch and selects a hero
+  (no fabricated lock). Key invariant: Birta must read warm, human, and quietly
+  authoritative — not a caricature or comedy figure. Her warmth is the household's
+  baseline; her distress only surfaces at actual disruption.
+provenance:
+  created_by: "claude_code (M5 PR-BATCH-KEYCHAR-1 prep)"
+  created_at: "2026-06-17T00:00:00Z"

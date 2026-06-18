@@ -1,0 +1,25 @@
+schema_version: "0.x-draft"
+record_type: character_look_variant
+look_id: C05_LOOK_PRIVATE_MEETING_V001
+character_id: C05
+inherits_identity_anchor: C05_IDENTITY_ANCHOR_V001
+status: draft
+look_role: "Private meeting — Marcus Chen at his first physical appearance (SC0004)"
+wardrobe_refs:
+  primary_wardrobe_id: WD006
+  supplementary_wardrobe_ids: []
+appearance_state:
+  fatigue_level: nominal
+  damage_level: none
+  hair_state_within_anchor: "Dark hair; controlled, slightly slicked-back — precise but not formal."
+continuity_scope:
+  start_scene: SC0004
+  end_scene: SC0009
+change_reason: "Marcus's physical identity look for SC0004/SC0008/SC0009 (pre-death appearances). V.O.-only in SC0047 Kling-era — this look is for future physical scene production."
+notes: >
+  Look 1 of 1 (initial) for Marcus physical appearances. Identity carried by
+  C05_IDENTITY_ANCHOR_V001. Wardrobe: plain dark civilian clothes, no kit.
+  Stage-3 four-view pack: perspective_packs/PPACK_C05_PRIVATE_MEETING_V001.yaml.
+provenance:
+  created_by: "claude_code (M5 PR-BATCH-KEYCHAR-1)"
+  created_at: "2026-06-18T00:00:00Z"

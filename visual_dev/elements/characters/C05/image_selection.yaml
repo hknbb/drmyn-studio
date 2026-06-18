@@ -1,0 +1,61 @@
+element_id: C05
+element_type: character
+selection_round: 1
+source_prompt_ids:
+  - SC0004__t2i-char-c05-oref-lock-mj-v7__v01
+candidate_images:
+  - asset_id: PPACK_C05_PRIVATE_MEETING_V001__profile_full
+    path: "archive/closing_price/SC0004/C05/stage3/images/ChatGPT Image 18 Haz 2026 15_33_30.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/SC0004/C05/stage3/images/ChatGPT Image 18 Haz 2026 15_33_30.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 four-view profile_full; true 90 deg side profile, plain dark shirt + dark trousers, identity consistent. QC 93."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 4
+  - asset_id: PPACK_C05_PRIVATE_MEETING_V001__close_portrait_front
+    path: "archive/closing_price/SC0004/C05/stage3/images/ChatGPT Image 18 Haz 2026 15_33_34.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/SC0004/C05/stage3/images/ChatGPT Image 18 Haz 2026 15_33_34.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 four-view close_portrait_front; full frontal identity lock, controlled watchful expression with warmth under restraint legible. QC 94."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+  - asset_id: PPACK_C05_PRIVATE_MEETING_V001__three_quarter_waist
+    path: "archive/closing_price/SC0004/C05/stage3/images/ChatGPT Image 18 Haz 2026 15_33_37.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/SC0004/C05/stage3/images/ChatGPT Image 18 Haz 2026 15_33_37.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 four-view three_quarter_waist; ~30-45 deg, waist-up, identity and dark civilian wardrobe consistent. QC 92."
+    quality_scores:
+      identity_consistency: 5
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 4
+  - asset_id: PPACK_C05_PRIVATE_MEETING_V001__full_body_front
+    path: "archive/closing_price/SC0004/C05/stage3/images/ChatGPT Image 18 Haz 2026 15_33_40.png"
+    external_storage_ref: "external://local_manual/archive/closing_price/SC0004/C05/stage3/images/ChatGPT Image 18 Haz 2026 15_33_40.png"
+    repo_binary_committed: false
+    status: selected
+    reason: "Stage-3 four-view full_body_front; head-to-toe, dark shirt + dark trousers + dark shoes, controlled posture with weight held back. QC 90."
+    quality_scores:
+      identity_consistency: 4
+      source_grounding: 5
+      style_compliance: 5
+      continuity: 5
+      production_usability: 5
+canonical_images:
+  - PPACK_C05_PRIVATE_MEETING_V001__profile_full
+  - PPACK_C05_PRIVATE_MEETING_V001__close_portrait_front
+  - PPACK_C05_PRIVATE_MEETING_V001__three_quarter_waist
+  - PPACK_C05_PRIVATE_MEETING_V001__full_body_front
+round_status: complete
+pack_manifest_sync: applied

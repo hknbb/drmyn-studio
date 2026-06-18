@@ -1,0 +1,29 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KER_C03_DOMESTIC_ROUTINE_V001
+status: approved
+element_id: C03
+element_type: character
+source_midjourney_reference:
+  reference_id: MJ_C03_OREFLOCK_V001
+  prompt_id: SC0001__t2i-char-c03-oref-lock-mj-v7__v01
+  operator_session_ref: OP-2026-06-18-C03-C05-stage2-lock-stage3-ppack
+gpt_images_2_perspectives:
+  full_body_front: PPACK_C03_DOMESTIC_ROUTINE_V001__full_body_front
+  three_quarter_waist: PPACK_C03_DOMESTIC_ROUTINE_V001__three_quarter_waist
+  close_portrait_front: PPACK_C03_DOMESTIC_ROUTINE_V001__close_portrait_front
+  profile_full: PPACK_C03_DOMESTIC_ROUTINE_V001__profile_full
+continuity_anchors:
+  - "Locked Birta identity: silver/white hair neatly pinned or upswept; compact work-shaped silhouette; warm direct gaze of quiet domestic authority; honest 70s age, full human dignity."
+  - "Calm warm resting expression — not alarmed, not fragile, not comic."
+  - "Domestic-routine wardrobe: sage-green work dress/blouse + plain cream cotton apron; service neutrals; no ornament, no jewellery, no decoration, no lipstick."
+  - "Neutral warm-grey background; even soft diffuse light; natural restrained realism (not cold, not editorial, not glamorous)."
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-2026-06-18-C03-C05-stage2-lock-stage3-ppack
+downstream_use:
+  - kling_omni_3_shot_prompt
+source_refs:
+  gpt_images_pack_ref: visual_dev/elements/characters/C03/perspective_packs/PPACK_C03_DOMESTIC_ROUTINE_V001.yaml
+  element_sheet_ref: visual_dev/elements/characters/C03/look_variants/C03_LOOK_DOMESTIC_ROUTINE_V001.yaml
