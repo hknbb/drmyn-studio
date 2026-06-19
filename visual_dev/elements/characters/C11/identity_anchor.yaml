@@ -2,20 +2,30 @@ schema_version: "0.x-draft"
 record_type: character_identity_anchor
 identity_anchor_id: C11_IDENTITY_ANCHOR_V001
 character_id: C11
-status: stage1_pending
+status: stage1_selected
 source_reference_strategy:
   reference_sheet_allowed_as_identity_source: false
   final_hero_lock_requires_single_clean_image: true
   contact_sheet_layout_forbidden_as_lock: true
 source_reference_sheet_ref: prompts/draft/SC0018__t2i-char-c11-identity-mj-v8__v01.yaml
 front_hero_lock_ref:
-  pending: true
+  pending: false
+  stage1_ref: "u9435212546_Near-future_autonomous_broadcast_unit_compact_ser_09a78bb3-7ce9-43b5-b0d1-fd8b7bc6bbfd_1.png"
+  stage1_selected_at: "2026-06-19T00:00:00Z"
+  stage1_selection_notes: >
+    Warm cream/grey, near-frontal. Clean conical body, recessed panel seams.
+    Sensor head: wide 360° disc/drum array — many lenses around the equator
+    plus small dome at apex. Best "broadcast capture" reading in the batch:
+    non-agressive, purposeful, professional AV infrastructure aesthetic.
+    No humanoid face, no threatening elements, no science-fiction styling.
+    Score: 9/10. Highest-scoring candidate across full 31-image batch.
+  stage2_oref_url: "TODO — operator uploads Stage-1 hero to MJ, pastes CDN URL here"
+  stage2_prompt_ref: "prompts/draft/SC0018__t2i-char-c11-oref-lock-mj-v7__v01.yaml"
   next_external_step: >
-    Stage 1 — run SC0018__t2i-char-c11-identity-mj-v8__v01 MJ v8.1 batch,
-    select cleanest design candidate (clearest sensor array, most legible broadcast-unit
-    form factor, most natural neutral-professional read). This is a non-human design
-    lock — evaluate for silhouette clarity, chassis coherence, and near-future groundedness
-    rather than human identity fidelity.
+    Stage 2 — upload Stage-1 hero to Midjourney, paste CDN URL to agent.
+    Agent will draft SC0018__t2i-char-c11-oref-lock-mj-v7__v01 with --oref.
+    Evaluate Stage-2 batch for: chassis geometry consistency, sensor dome
+    coherence, straight-on frontal, plain neutral background.
 fixed_identity_anchors:
   - "Compact autonomous broadcast unit; near-future service robot aesthetic, not science-fiction hardware."
   - "Smooth matte casing in neutral professional tones (cream, light grey, warm white)."

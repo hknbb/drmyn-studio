@@ -1,0 +1,36 @@
+session_id: OP-2026-06-19-C11-halo-unit-stage1-hero
+session_date: "2026-06-19"
+operator: human_operator
+agent: claude_code
+session_type: character_element_stage1_hero_selection
+status: completed
+summary: >
+  Stage-1 hero selected for C11 Halo Unit (The Herald's physical broadcast vessel).
+  Selected from a 31-image MJ v8.1 batch (2 runs). Hero: 09a78bb3_1.
+  identity_anchor.yaml updated to stage1_selected.
+actions_taken:
+  - action: select_stage1_hero
+    character_id: C11
+    selected_hero_filename: "u9435212546_Near-future_autonomous_broadcast_unit_compact_ser_09a78bb3-7ce9-43b5-b0d1-fd8b7bc6bbfd_1.png"
+    score: 9
+    selection_rationale: >
+      Warm cream/grey, near-frontal, clean conical body with 360° disc/drum sensor
+      array (many lenses around the equator + small dome at apex). Best "broadcast
+      capture" reading in the batch: non-aggressive, purposeful, professional AV
+      infrastructure. No humanoid face, no threatening elements, no science-fiction
+      styling. Highest-scoring candidate across full 31-image batch.
+    archive_path: "archive/closing_price/_elements/C11/stage1/images/09a78bb3_1.png"
+  - action: update_identity_anchor
+    file: visual_dev/elements/characters/C11/identity_anchor.yaml
+    status_change: stage1_pending -> stage1_selected
+recommended_steps:
+  - step: upload_to_midjourney
+    instruction: >
+      Upload the Stage-1 hero image to Midjourney (drag into MJ Discord or use
+      /imagine with image attachment). Copy the resulting CDN URL and paste it
+      to the agent. The agent will draft the Stage-2 --oref identity-lock prompt.
+  - step: stage2_batch
+    instruction: >
+      Run Stage-2 --oref batch with --ow 250 (raise to 400 if chassis drifts).
+      Evaluate for: straight-on frontal, plain neutral background, sensor dome
+      coherent with Stage-1 hero, cream/grey palette maintained.
