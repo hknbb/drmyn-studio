@@ -1,0 +1,25 @@
+scene_id: SC0014
+prompt_id: SC0014__omni-kling-omni-clip-clip-sc0014-02-safe__v07
+review_notes_path: evidence/video_reviews/VR_SC0014_TAKES_V07_R001_notes.md
+review_notes: >-
+  Operator review of SC0014 v07 Kling Omni text_only literal batch (8 clips).
+  Scores provided as overall 100-point ratings. CLIP 02 selected as scene anchor
+  (80/100, all dimensions 4/5). CLIP 03 also scores 80/100 — retained as candidate.
+  CLIPs 01, 06, 08 score 70/100 — candidate, usable for assembly.
+  CLIPs 04 and 05 score 40/100 — needs_revision (identity_drift), re-run same prompt.
+  CLIP 07 scores 50/100 — needs_revision (camera_drift), re-run same prompt.
+  Operator confirmed: no prompt revision needed (needs_prompt_revision: false).
+  Three clips require re-run before final scene assembly; five clips are usable.
+take_ids:
+  - SC0014_TAKE001
+  - SC0014_TAKE002
+  - SC0014_TAKE003
+  - SC0014_TAKE004
+  - SC0014_TAKE005
+  - SC0014_TAKE006
+  - SC0014_TAKE007
+  - SC0014_TAKE008
+selected_take: SC0014_TAKE002
+round_status: complete
+needs_prompt_revision: false
+storage_policy: external_video_only
