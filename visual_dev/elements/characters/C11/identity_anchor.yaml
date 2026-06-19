@@ -1,0 +1,45 @@
+schema_version: "0.x-draft"
+record_type: character_identity_anchor
+identity_anchor_id: C11_IDENTITY_ANCHOR_V001
+character_id: C11
+status: stage1_pending
+source_reference_strategy:
+  reference_sheet_allowed_as_identity_source: false
+  final_hero_lock_requires_single_clean_image: true
+  contact_sheet_layout_forbidden_as_lock: true
+source_reference_sheet_ref: prompts/draft/SC0018__t2i-char-c11-identity-mj-v8__v01.yaml
+front_hero_lock_ref:
+  pending: true
+  next_external_step: >
+    Stage 1 — run SC0018__t2i-char-c11-identity-mj-v8__v01 MJ v8.1 batch,
+    select cleanest design candidate (clearest sensor array, most legible broadcast-unit
+    form factor, most natural neutral-professional read). This is a non-human design
+    lock — evaluate for silhouette clarity, chassis coherence, and near-future groundedness
+    rather than human identity fidelity.
+fixed_identity_anchors:
+  - "Compact autonomous broadcast unit; near-future service robot aesthetic, not science-fiction hardware."
+  - "Smooth matte casing in neutral professional tones (cream, light grey, warm white)."
+  - "Sensor cluster / multi-camera dome array at head height — the unit's functional 'face.'"
+  - "No humanoid face, no expression surface, no human-mimicking feature; presence is purposeful and attentive."
+  - "Roughly waist-to-chest height on an adult; wheeled base, minimal footprint."
+mutable_appearance_allowed:
+  - "Exact chassis proportion and panel seam detail (to be confirmed by Stage-1 batch selection)."
+  - "Sensor dome specifics — cluster layout, passive indicator glow color, dome curvature."
+  - "Lighting environment and surface reflection (varies per scene environment)."
+forbidden_drift:
+  - "Do not introduce humanoid face, expressive display screen, or anthropomorphic emotional surface."
+  - "Do not style as military hardware, tactical robot, or science-fiction threat chassis."
+  - "Do not make the unit large or physically imposing; compact indoor broadcast scale."
+  - "Do not add arms, manipulators, or appendages unless source-stated."
+  - "Do not use aggressive color marking (red, yellow warning, dark matte military black)."
+notes: >
+  Identity anchor for The Herald's physical HALO UNIT robot body (C11). This is a
+  non-human visual element — the Stage-1/2/3 pipeline applies for design lock and
+  four-view production reference, but the evaluation criteria differ from human
+  characters: prioritize chassis coherence, sensor array legibility, silhouette
+  distinctiveness, and near-future tonal grounding over human identity fidelity.
+  Stage chain: Stage 1 MJ V8.1 design batch → operator hero selection → Stage 2
+  MJ V7 --oref chassis lock → Stage 3 ChatGPT Images 2 four_view_scale_angle_v3.
+provenance:
+  created_by: "claude_code (M5 Halo Unit scaffold)"
+  created_at: "2026-06-19T00:00:00Z"
