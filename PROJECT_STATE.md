@@ -5,11 +5,11 @@
 
 ## ğŸ‡¹ğŸ‡· Åu An Neredeyiz (TÃ¼rkÃ§e Ã–zet)
 
-Milestone M5’teyiz. **PR-BATCH-KEYCHAR-1 TAMAMLANDI (2026-06-18):** C03 Birta + C05
-Marcus ikisi de `binding: created` statüsüne ulaştı. Tüm key karakter pipeline’ı
-(C01-C06, C08-C10) created. **Sıradaki:** (1) SC0014 v07 klip QC — 8 klip arşivlendi,
-operatör izleyip skor vermeli; (2) C07 Sera + Halo Unit element production (agent-driven,
-başlayabiliriz). SC0047/SC0089/SC0111 Kling Omni v07 tamamlandı (40 prompt).
+Milestone M5’teyiz. **C07 Sera + C11 Halo Unit scaffold tamamlandı (2026-06-19):**
+C01-C10 tümü `binding: created`. C11 Halo Unit (Herald robot gövdesi) Stage-1
+scaffold hazır — MJ v8.1 batch koşulmayı bekliyor (SC0018, seed 728463).
+**Sıradaki:** (1) SC0014 v07 klip QC — operatör izleyip skor vermeli; (2) C11 Halo Unit
+MJ Stage-1 batch → hero seç → Stage-2/3 pipeline.
 
 ## Status
 
@@ -17,10 +17,10 @@ başlayabiliriz). SC0047/SC0089/SC0111 Kling Omni v07 tamamlandı (40 prompt).
 |---|---|
 | Active branch | `feat/sc0014-scene-production` |
 | Milestone | M5 â€” character visual element pipeline |
-| Last updated | 2026-06-18 |
+| Last updated | 2026-06-19 |
 | Public checkpoint | v0.18.0 (Zenodo DOI: 10.5281/zenodo.20735582) |
 
-## Character Pipeline (C01â€“C10)
+## Character Pipeline (C01–C11)
 
 <!-- AUTO:PIPELINE:START -->
 Stages: S1 = MJ v8.1 hero · S2 = MJ v7 --oref identity lock · S3 = four-view pack · Binding = lifecycle status
@@ -37,6 +37,7 @@ Stages: S1 = MJ v8.1 hero · S2 = MJ v7 --oref identity lock · S3 = four-view p
 | C08 | Jin | ✅ | ✅ | ✅ | **created** | SC0014 |  |
 | C09 | Otto | ✅ | ✅ | ✅ | **created** | SC0047 |  |
 | C10 | Carrier+Holder | ✅ | ✅ | ✅ | **created** | SC0014 | Two enforcer figures (Carrier + Holder), per-figure packs |
+| C11 | Halo Unit | ⏳ | — | — | scaffold | SC0016, SC0018, SC0095 | Non-human robot body; Stage-1 MJ batch koşulmayı bekliyor (seed 728463) |
 <!-- AUTO:PIPELINE:END -->
 
 ## Active Scene Work
@@ -61,7 +62,7 @@ Stages: S1 = MJ v8.1 hero · S2 = MJ v7 --oref identity lock · S3 = four-view p
 3. ~~LOC005/006/007/PROP008 lifecycle promotion~~ â€” **tamamlandÄ± 2026-06-17**: binding_status plannedâ†’created; @LOC005_CORRIDOR, @LOC006_QUAY, @LOC007_ANTECHAMBER, @PROP008_HANDSET alias baÄŸlandÄ±.
 4. ~~SC0047/SC0089/SC0111 Kling Omni clip planÄ±~~ â€” **tamamlandÄ± 2026-06-17**: 40 v07 prompt kaydÄ±; 3 inject scripti + validate 95/95.
 4. ~~PR-BATCH-KEYCHAR-1~~ — **tamamlandı 2026-06-18**: C03 Birta + C05 Marcus binding created; KER_C03_DOMESTIC_ROUTINE_V001 + KER_C05_PRIVATE_MEETING_V001 locked.
-5. **C07 Sera** — Stage-1 scaffold done. Operatör: MJ'de SC0040__t2i-char-c07-identity-mj-v8__v01 batch çalıştır → hero seç → Stage-2/3 pipeline. **Halo Unit** (Herald robot bedenleri) — compact planning ID yok, ayrı scaffold gerekiyor.
+5. **C11 Halo Unit** — Stage-1 scaffold hazır (2026-06-19). Operatör: MJ'de `SC0018__t2i-char-c11-identity-mj-v8__v01` batch çalıştır → en iyi robot gövde tasarımını seç (sensor dome netliği, chassis silüeti, near-future estetik) → hero paylaş → Stage-2/3 pipeline.
 
 ## Known Issues / Blockers
 
@@ -81,6 +82,7 @@ From `closingpriceclaudecodeanalysisforcode.md` (multi-agent analysis, 2026-06-0
 ## Session Log (newest first, keep ~10 lines)
 
 <!-- AUTO:SESSION_LOG:START -->
+- 2026-06-19 — chore(M5): C11 Halo Unit Stage-1 scaffold — character record (C11) + identity_anchor + MJ v8.1 prompt SC0018 (seed 728463)
 - 2026-06-18 — feat(M5): C07 Sera binding created — Stage-3 PQC >=92, KER_C07_NEWSROOM_V001 locked
 - 2026-06-18 — feat(M5): C07 Sera Stage-2 lock selected (9fcba347_3); identity_anchor stage2_selected
 - 2026-06-18 — feat(M5): C07 Sera Stage-1 hero selected (2c0bb89d_1); Stage-2 oref URL recorded; --oref prompt drafted
