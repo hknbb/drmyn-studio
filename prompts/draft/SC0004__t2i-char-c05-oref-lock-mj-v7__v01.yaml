@@ -10,7 +10,6 @@ source_refs:
   character_refs:
   - C05
   aesthetic_refs: []
-  stage1_hero_ref: visual_dev/elements/characters/C05/identity_anchor.yaml
 prompt_text: >-
   Man, late 30s to early 40s, controlled watchful presence, plain dark muted
   civilian clothes, no decoration. Face real and quiet — load-bearing without

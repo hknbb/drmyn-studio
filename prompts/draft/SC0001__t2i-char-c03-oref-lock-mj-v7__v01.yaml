@@ -11,7 +11,6 @@ source_refs:
   - C03
   aesthetic_refs:
   - LOC001_NURSERY_WARM
-  stage1_hero_ref: visual_dev/elements/characters/C03/identity_anchor.yaml
 prompt_text: >-
   70s woman, compact domestic silhouette, warm direct gaze, service-neutral
   working clothes, practical apron. Quiet authority, full human dignity,

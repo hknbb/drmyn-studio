@@ -10,7 +10,6 @@ source_refs:
   character_refs:
   - C07
   aesthetic_refs: []
-  stage1_hero_ref: visual_dev/elements/characters/C07/identity_anchor.yaml
 prompt_text: >-
   Woman, mid 30s to mid 40s, senior investigative journalist, upright
   contained posture, alert direct gaze. Dark professional blazer over dark
