@@ -1,0 +1,48 @@
+prompt_id: SC0040__t2i-char-c07-identity-mj-v8__v01
+scene_id: SC0040
+prompt_type: t2i_character_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0040/scene_card.yaml
+  scene_excerpt: "Canonical identity reference (Stage 1 of 3) for Sera (Seraphina Mast) across media-ally scenes (SC0040, SC0076, SC0077, SC0101); identity-only, not a final production view."
+  character_refs:
+  - C07
+  aesthetic_refs: []
+prompt_text: >-
+  Woman, mid 30s to mid 40s, senior investigative journalist, forward-moving
+  institutional intelligence. Alert direct eye contact; slightly leaned-in
+  physical engagement; body language of someone always partially mid-question —
+  upright, contained, dynamic. Smart-casual newsroom and field hybrid: jacket
+  over fitted dark top, dark neutral trousers; dark professional palette
+  (black, charcoal, deep navy), nothing fashion-forward, nothing glamorous.
+  Natural professional hair — pulled back or short and practical; can read
+  long-hours fatigue. Subtle or no makeup; no anchor-studio finish. She wears
+  her skepticism as armor but there is something genuine underneath it — the
+  face of someone who has lost something and decided to keep going anyway.
+  No props, no notebook, no press badge. Heritage neutral and not visually
+  asserted. Cinematic production character reference, neutral clean background,
+  identity readability, restrained realism, no glamour, no text, no watermark
+  --v 8.1 --style raw --ar 2:3 --seed 514637
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  identity_anchor_ref: visual_dev/elements/characters/C07/identity_anchor.yaml
+  stage: "1_of_3_narrative_identity"
+  aesthetic_keywords_injected:
+  - forward-moving institutional intelligence, alert direct eye contact
+  - slightly leaned-in, mid-question body language, contained dynamic energy
+  - smart-casual newsroom/field hybrid, dark professional neutrals
+  - natural practical hair, subtle or no makeup, long-hours journalist read
+  - real institutional fighter with private humanity underneath
+  - heritage neutral, identity from professional posture not ethnic cues
+  planning_name_filter:
+    forbidden:
+    - Sera
+    - Seraphina Mast
+  recommended_model_version: --v 8.1
+  recommended_style: --style raw

@@ -1,0 +1,41 @@
+session_id: OP-2026-06-18-C03-C05-stage2-lock-stage3-ppack
+created_at: "2026-06-18T00:00:00Z"
+scene_id: null
+current_task: "PR-BATCH-KEYCHAR-1 — C03 Birta + C05 Marcus Stage-2 lock selection + Stage-3 PPACK creation"
+status: complete
+recommended_files:
+  - visual_dev/elements/characters/C03/identity_anchor.yaml
+  - visual_dev/elements/characters/C03/look_variants/C03_LOOK_DOMESTIC_ROUTINE_V001.yaml
+  - visual_dev/elements/characters/C03/perspective_packs/PPACK_C03_DOMESTIC_ROUTINE_V001.yaml
+  - visual_dev/elements/characters/C05/identity_anchor.yaml
+  - visual_dev/elements/characters/C05/look_variants/C05_LOOK_PRIVATE_MEETING_V001.yaml
+  - visual_dev/elements/characters/C05/perspective_packs/PPACK_C05_PRIVATE_MEETING_V001.yaml
+recommended_steps:
+  - "C03 Birta Stage-3: Upload PRIMARY (0a07694e_0) + SECONDARY (eadae384_2) to ChatGPT Images 2. Run the 4 prompts in PPACK_C03_DOMESTIC_ROUTINE_V001.yaml sequentially: full_body_front → three_quarter_waist → close_portrait_front → profile_full."
+  - "C03 Birta Stage-3: QC each view (identity consistency, wardrobe, no drift) → PQC_C03_PERSPECTIVE_PACK_V001.yaml (all scores >=85, can_advance_to_kling_reference: true)."
+  - "C03 Birta Stage-3: Archive 4 views → image_selection.yaml → kling_element_reference_C03_domestic_routine.yaml → validate → binding_status: created."
+  - "C05 Marcus Stage-3: Upload PRIMARY (e724a825_0) + SECONDARY (d246ae27_2) to ChatGPT Images 2. Run the 4 prompts in PPACK_C05_PRIVATE_MEETING_V001.yaml sequentially."
+  - "C05 Marcus Stage-3: QC → PQC_C05_PERSPECTIVE_PACK_V001.yaml (>=85) → archive → image_selection.yaml → kling_element_reference_C05_private_meeting.yaml → validate → binding_status: created."
+  - "After both KERs created: update PROJECT_STATE.md pipeline table C03/C05 S3 ✅ + Binding created. Update character_index.csv."
+notes: >
+  Stage-2 hero selections confirmed by operator 2026-06-18:
+
+  C03 Birta Stage-2 hero: u9435212546_70s_woman_compact_domestic_silhouette_warm_direct_0a07694e-c406-423a-ac35-c76ce62c2a7a_0.png
+  Location: C:/Users/babac/drmyn-studio-images/Birta/Stage 2/
+  Rationale: Best from second batch (10 new images with --ow 450). Dark textured
+  cardigan + cream apron, plain grey background, frontal, even diffuse lighting.
+  Small badge on apron pocket accepted. First batch (17 images, --ow 250) had
+  systemic drift (dark glamour, lipstick, jewelry, industrial backgrounds) — second
+  batch corrected this.
+
+  C05 Marcus Stage-2 hero: u9435212546_Man_late_30s_to_early_40s_controlled_watchful_pre_e724a825-5915-424b-b2a3-f53690c806af_0.png
+  Location: C:/Users/babac/drmyn-studio-images/Marcus/stage 2/
+  Rationale: Cleanest in batch after dd598abc_3 eliminated (operator-confirmed
+  chin blemish). Dark grey plain shirt, neutral grey background, near-frontal,
+  even diffuse lighting, no logos/accessories.
+
+  Stage-3 files created:
+  - C03: look_variant C03_LOOK_DOMESTIC_ROUTINE_V001 + PPACK_C03_DOMESTIC_ROUTINE_V001
+  - C05: look_variant C05_LOOK_PRIVATE_MEETING_V001 + PPACK_C05_PRIVATE_MEETING_V001
+  Both identity_anchor.yaml updated to status: stage2_selected.
+  PROJECT_STATE pipeline table: C03/C05 S2 now ✅.

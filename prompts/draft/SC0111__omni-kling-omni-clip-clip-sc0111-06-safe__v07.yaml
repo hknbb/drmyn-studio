@@ -1,0 +1,62 @@
+prompt_id: SC0111__omni-kling-omni-clip-clip-sc0111-06-safe__v07
+scene_id: SC0111
+prompt_type: omni_instruction
+lifecycle_stage: draft
+target_models:
+- kling_omni
+source_refs:
+  scene_card: planning/scenes/SC0111/scene_card.yaml
+  scene_excerpt: planning/scenes/SC0111/scene_excerpt.md
+prompt_text: 'Kling Omni element-based clip; duration 13s. Active elements: @C01_NADIA, @C02_ROMAN. Direct action and camera;
+  @elements carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity, restrained camera language, and
+  conservative execution. Figures: exactly 2 distinct figure(s) — @C01_NADIA (battle-worn field jacket.), @C02_ROMAN (dark
+  close-fitted jacket.). No additional, extra, or duplicated people; do not clone or multiply any figure. Start state: @C01_NADIA
+  maintaining bilateral hold. @C02_ROMAN still upright, grip weakening. [00:00 - 00:06] Medium close-up: @C01_NADIA maintains
+  bilateral thumb pressure on @C02_ROMAN''s neck. @C02_ROMAN''s hands continue on @C01_NADIA''s forearms — grip weakening.
+  @C02_ROMAN is still upright. Both bodies locked. @C01_NADIA maintains hold — both thumbs sustained on @C02_ROMAN''s neck.
+  @C02_ROMAN upright, hands on @C01_NADIA''s forearms, grip weakening. Medium-close static. Hold sustained. @C02_ROMAN''s
+  face visible — body response beginning. Audio: Sustained effort. @C02_ROMAN''s breathing slowing. [00:06 - 00:13] Medium
+  shot: @C02_ROMAN''s knees unlock — legs lose load in a controlled descent, not a fall. @C02_ROMAN descends to the corridor
+  floor. @C01_NADIA goes with @C02_ROMAN — one knee on concrete. @C01_NADIA releases thumb pressure as @C02_ROMAN reaches
+  the floor. @C01_NADIA remains on one knee. @C01_NADIA goes down with @C02_ROMAN, one knee on floor, releases pressure as
+  @C02_ROMAN lands. @C02_ROMAN descends to floor — knees unlock, controlled loss of load-bearing. Medium handheld. Both descending.
+  Corridor floor. @C01_NADIA one knee down. Audio: Bodies controlled to floor. Release of held breath. End state: @C02_ROMAN
+  on corridor floor. @C01_NADIA on one knee beside @C02_ROMAN, hold released. Continuity: frame_input_eligible. Keep 13s;
+  end settled. Do not add new story facts.'
+negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
+generation_params:
+  model_guidance_mode: dynamic_snapshot
+  adapter_name: kling_omni
+  clip_id: CLIP_SC0111_06
+  total_duration_seconds: 13
+  continuity_input_mode: frame_input_eligible
+  omni_clip_manifest_ref: planning/scenes/SC0111/manifests/CLIP_SC0111_06_manifest.yaml
+  source_scene_beat_plan_ref: planning/scenes/SC0111/scene_beat_plan.yaml
+  source_dialogue_beats_ref: ''
+  repo_binary_committed: false
+  external_generation_required: true
+  recommended_cfg_scale: 0.5
+  recommended_ar: '16:9'
+  variant_mode: safe
+  render_pass: visual_test
+  quality_tier: test_720p
+  prompt_component_model: docs/methodology/omni_prompt_component_model.md
+  language_profile: kling_literal_alias_locked
+  input_mode: text_only
+  required_element_aliases:
+  - '@C01_NADIA'
+  - '@C02_ROMAN'
+  audio_gate_status: allowed_audio_off
+  audio_gate_reason: visual_test_default_audio_off
+  model_guidance_snapshot_ref: model_guidance_snapshots/kling/20260615T000000Z_kling_omni_video_best_available.yaml
+  provider: kling
+  provider_surface: manual_external
+  resolved_model_name: Kling VIDEO 3.0 Omni
+  resolved_model_role: best_for_this_task
+  guidance_observed_at: '2026-06-15T00:00:00Z'
+  guidance_expires_at: '2026-07-15T00:00:00Z'
+expected_output:
+  asset_type: clip
+  duration_seconds: 13
+status: active
+canon_lock: false

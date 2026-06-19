@@ -396,6 +396,16 @@ class KlingOmniAdapter:
         run_counter: int = 1,
         run_at: str | None = None,
     ) -> KlingOmniBuildResult:
+        # P2: legacy scene-card path — use generate_from_clip_manifest() instead.
+        # This path lacks state-anchors, per-figure actions, and the 2500-char gate;
+        # it will be removed in a future release.
+        import warnings
+        warnings.warn(
+            "KlingOmniAdapter.generate() is deprecated and will be removed. "
+            "Use generate_from_clip_manifest() with an omni_clip_manifest.yaml.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
         scene_card_path = self.repo_root / "planning" / "scenes" / scene_id / "scene_card.yaml"
         scene_card = _read_yaml(scene_card_path)
         if scene_card is None:
@@ -806,10 +816,15 @@ class KlingOmniAdapter:
             "negative_prompt": self._build_negative_prompt(
                 scene_card or {},
                 extra_terms=(
-                    ["subtitles", "visible-grid", "timecode-overlay"]
-                    if contact_sheet_ref
-                    else None
-                ),
+                    # P6: merge per-clip negatives from manifest with contact-sheet extras.
+                    # Manifest authors add clip-specific terms under negative_prompt_extra.
+                    (manifest.get("negative_prompt_extra") or [])
+                    + (
+                        ["subtitles", "visible-grid", "timecode-overlay"]
+                        if contact_sheet_ref
+                        else []
+                    )
+                ) or None,
             ),
             "generation_params": generation_params,
             "expected_output": {
@@ -1164,18 +1179,14 @@ class KlingOmniAdapter:
             _assert_no_canonical_id_leak(raw_joined)
         text = _sanitize_prompt_text(raw_joined)
 
-        # Hard limit: 2500 characters (Kling API). For a final pass the prompt is
-        # a delivery artifact, so overflow is fatal; earlier passes warn (the
-        # state anchor + per-figure actions make overflow more likely, so this
-        # gate is render_pass-aware rather than always-soft).
+        # P5: Hard limit: 2500 characters (Kling API). Always raise — a prompt over
+        # 2500 chars will be rejected by the API regardless of render pass; writing
+        # it to disk just wastes a Kling run. Shorten shot descriptions to fix.
         if len(text) > 2500:
-            message = (
+            raise KlingOmniAdapterError(
                 f"prompt_text is {len(text)} characters, exceeds 2500-char API limit. "
                 "Shorten shot descriptions."
             )
-            if render_pass in _FINAL_PASSES:
-                raise KlingOmniAdapterError(message)
-            all_warnings.append(message)
 
         return text, all_warnings
 
@@ -1271,14 +1282,12 @@ class KlingOmniAdapter:
         _assert_no_canonical_id_leak(raw_joined)
         text = _sanitize_prompt_text(raw_joined)
 
+        # P5: same hard ceiling as _build_prompt_text_with_aliases — always raise.
         if len(text) > 2500:
-            message = (
+            raise KlingOmniAdapterError(
                 f"prompt_text is {len(text)} characters, exceeds 2500-char API limit. "
                 "Shorten render_action descriptions."
             )
-            if render_pass in _FINAL_PASSES:
-                raise KlingOmniAdapterError(message)
-            warnings.append(message)
 
         return text, warnings
 
@@ -1527,6 +1536,24 @@ class KlingOmniAdapter:
         return " ".join(clauses)
 
     @staticmethod
+    def _sanitize_tone(raw: str) -> str:
+        """Normalise a speech-tone tag for ``@Alias (tone)`` rendering (P14).
+
+        Takes the first clause (before sentence punctuation), collapses
+        whitespace, drops a trailing conjunction, and caps length so a verbose
+        delivery_note cannot leak a malformed tag into the prompt.
+        """
+        text = (raw or "").strip()
+        if not text:
+            return ""
+        # First clause only — stop at sentence/clause punctuation.
+        text = re.split(r"[.,;:!?]", text)[0].strip()
+        text = re.sub(r"\s+", " ", text)
+        # Drop a dangling conjunction left by the clause split.
+        text = re.sub(r"\s+(and|but|or|then|with)$", "", text, flags=re.IGNORECASE)
+        return text[:40].strip()
+
+    @staticmethod
     def _compose_action_sentence(action: str, shot: dict[str, Any]) -> str:
         """Action prose with the shot's performance_note woven in (acting/emotion).
 
@@ -1534,15 +1561,12 @@ class KlingOmniAdapter:
         to the action sentence the way a director's note rides on a beat.
         """
         text = action.strip()
-        # When the shot carries per-figure actions, performance lives per-figure;
-        # weaving the shot-level performance_note here would duplicate it and cost
-        # scarce prompt budget, so skip it.
-        has_figure_actions = any(
-            isinstance(f, dict) and isinstance(f.get("action"), str) and f["action"].strip()
-            for f in (shot.get("figures") or [])
-        )
+        # P12: always attach shot-level performance_note — previously suppressed when
+        # per-figure actions were present, causing acting nuance to silently drop.
+        # Per-figure action text carries blocking/movement; shot-level performance_note
+        # carries emotional register and is distinct, not duplicative.
         perf = shot.get("performance_note")
-        if not has_figure_actions and isinstance(perf, str) and perf.strip():
+        if isinstance(perf, str) and perf.strip():
             text = text.rstrip(" .") + " — " + perf.strip()
         if not text.endswith((".", "!", "?", '"')):
             text += "."
@@ -1624,13 +1648,15 @@ class KlingOmniAdapter:
             if not line_text or not alias:
                 continue
             line_type = line.get("line_type", "spoken")
-            delivery = line.get("delivery_note", "") or ""
             if line_type == "offscreen":
                 tone = "offscreen"
-            elif delivery:
-                tone = re.split(r"[.,]", delivery)[0].strip()[:40]
             else:
-                tone = ""
+                # P14: prefer an authored `tone`; fall back to deriving one from
+                # the first clause of delivery_note. Either way, sanitize it.
+                authored = line.get("tone", "") or ""
+                tone = KlingOmniAdapter._sanitize_tone(
+                    authored or line.get("delivery_note", "") or ""
+                )
             tag = f"{alias} ({tone})" if tone else alias
             clauses.append(f'{tag}: "{line_text}"')
             if isinstance(lid, str):

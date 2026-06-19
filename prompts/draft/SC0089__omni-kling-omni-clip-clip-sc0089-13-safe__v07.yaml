@@ -1,0 +1,61 @@
+prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-13-safe__v07
+scene_id: SC0089
+prompt_type: omni_instruction
+lifecycle_stage: draft
+target_models:
+- kling_omni
+source_refs:
+  scene_card: planning/scenes/SC0089/scene_card.yaml
+  scene_excerpt: planning/scenes/SC0089/scene_excerpt.md
+prompt_text: 'Kling Omni element-based clip; duration 9s. Active elements: @C06_ZARA, @C01_NADIA. Direct action and camera;
+  @elements carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity, restrained camera language, and
+  conservative execution. Figures: exactly 2 distinct figure(s) — @C06_ZARA (khaki-olive jacket, field-night build.), @C01_NADIA
+  (dark field jacket, night-transit build.). No additional, extra, or duplicated people; do not clone or multiply any figure.
+  Start state: @C06_ZARA asking for count. @C01_NADIA responding. [00:00 - 00:03] Medium close-up: @C06_ZARA turns head toward
+  @C01_NADIA. @C06_ZARA''s lips move at minimum volume. No inflection — a formal question. @C06_ZARA turns head to @C01_NADIA,
+  lips move at minimum volume. Medium-close static. @C06_ZARA bright pool light. — @C06_ZARA: "How many." Audio: [FORMAT A
+  — no native voice] Night ambient. [00:03 - 00:06] Medium close-up: @C01_NADIA''s lips move. @C01_NADIA does not turn. Flat
+  delivery. @C01_NADIA lips move briefly, eyes forward, flat delivery. Medium-close static. @C01_NADIA bright pool light.
+  — @C01_NADIA: "One. Maybe two." Audio: [FORMAT A — no native voice] Night ambient. [00:06 - 00:09] Medium close-up: @C06_ZARA''s
+  eyes shift right, then return forward. @C06_ZARA''s lips move at low volume. @C06_ZARA absorbs the new threat geometry without
+  visible agitation. @C06_ZARA eyes shift right then forward, lips move low. Medium-close static. @C06_ZARA direct, pool light.
+  — @C06_ZARA: "Advance element. They came around." Audio: [FORMAT A — no native voice] Night ambient. End state: @C06_ZARA
+  confirmed advance element came around. Both stationary. Continuity: metadata_only. Keep 9s; end settled. Do not add new
+  story facts.'
+negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
+generation_params:
+  model_guidance_mode: dynamic_snapshot
+  adapter_name: kling_omni
+  clip_id: CLIP_SC0089_13
+  total_duration_seconds: 9
+  continuity_input_mode: metadata_only
+  omni_clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_13_manifest.yaml
+  source_scene_beat_plan_ref: planning/scenes/SC0089/scene_beat_plan.yaml
+  source_dialogue_beats_ref: planning/scenes/SC0089/dialogue_beats.yaml
+  repo_binary_committed: false
+  external_generation_required: true
+  recommended_cfg_scale: 0.5
+  recommended_ar: '16:9'
+  variant_mode: safe
+  render_pass: visual_test
+  quality_tier: test_720p
+  prompt_component_model: docs/methodology/omni_prompt_component_model.md
+  language_profile: kling_literal_alias_locked
+  input_mode: text_only
+  required_element_aliases:
+  - '@C06_ZARA'
+  - '@C01_NADIA'
+  audio_gate_status: allowed_audio_off
+  audio_gate_reason: visual_test_default_audio_off
+  model_guidance_snapshot_ref: model_guidance_snapshots/kling/20260615T000000Z_kling_omni_video_best_available.yaml
+  provider: kling
+  provider_surface: manual_external
+  resolved_model_name: Kling VIDEO 3.0 Omni
+  resolved_model_role: best_for_this_task
+  guidance_observed_at: '2026-06-15T00:00:00Z'
+  guidance_expires_at: '2026-07-15T00:00:00Z'
+expected_output:
+  asset_type: clip
+  duration_seconds: 9
+status: active
+canon_lock: false

@@ -1,0 +1,55 @@
+prompt_id: SC0111__omni-kling-omni-clip-clip-sc0111-07-safe__v07
+scene_id: SC0111
+prompt_type: omni_instruction
+lifecycle_stage: draft
+target_models:
+- kling_omni
+source_refs:
+  scene_card: planning/scenes/SC0111/scene_card.yaml
+  scene_excerpt: planning/scenes/SC0111/scene_excerpt.md
+prompt_text: 'Kling Omni element-based clip; duration 5s. Active elements: @C01_NADIA. Direct action and camera; @elements
+  carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity, restrained camera language, and conservative
+  execution. Figures: exactly 1 distinct figure(s) — @C01_NADIA (battle-worn field jacket.). No additional, extra, or duplicated
+  people; do not clone or multiply any figure. Start state: @C01_NADIA on one knee on corridor floor. @C02_ROMAN on floor
+  beside her. [00:00 - 00:05] Medium close-up: @C01_NADIA on one knee on corridor floor. @C01_NADIA presses right palm to
+  the ground. @C01_NADIA''s left side held close — not extending left arm. @C01_NADIA shifts weight right and rises to both
+  feet. @C01_NADIA stands. @C01_NADIA presses right palm to floor, left arm held in, rises to both feet. Medium-close handheld.
+  @C01_NADIA rising from floor. Left side protection visible. Audio: Controlled exhale on rise. Single footstep as @C01_NADIA
+  stands. End state: @C01_NADIA standing. @C02_ROMAN on corridor floor. Continuity: frame_input_eligible. Keep 5s; end settled.
+  Do not add new story facts.'
+negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
+generation_params:
+  model_guidance_mode: dynamic_snapshot
+  adapter_name: kling_omni
+  clip_id: CLIP_SC0111_07
+  total_duration_seconds: 5
+  continuity_input_mode: frame_input_eligible
+  omni_clip_manifest_ref: planning/scenes/SC0111/manifests/CLIP_SC0111_07_manifest.yaml
+  source_scene_beat_plan_ref: planning/scenes/SC0111/scene_beat_plan.yaml
+  source_dialogue_beats_ref: ''
+  repo_binary_committed: false
+  external_generation_required: true
+  recommended_cfg_scale: 0.5
+  recommended_ar: '16:9'
+  variant_mode: safe
+  render_pass: visual_test
+  quality_tier: test_720p
+  prompt_component_model: docs/methodology/omni_prompt_component_model.md
+  language_profile: kling_literal_alias_locked
+  input_mode: text_only
+  required_element_aliases:
+  - '@C01_NADIA'
+  audio_gate_status: allowed_audio_off
+  audio_gate_reason: visual_test_default_audio_off
+  model_guidance_snapshot_ref: model_guidance_snapshots/kling/20260615T000000Z_kling_omni_video_best_available.yaml
+  provider: kling
+  provider_surface: manual_external
+  resolved_model_name: Kling VIDEO 3.0 Omni
+  resolved_model_role: best_for_this_task
+  guidance_observed_at: '2026-06-15T00:00:00Z'
+  guidance_expires_at: '2026-07-15T00:00:00Z'
+expected_output:
+  asset_type: clip
+  duration_seconds: 5
+status: active
+canon_lock: false

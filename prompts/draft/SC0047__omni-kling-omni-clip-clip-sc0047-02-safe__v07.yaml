@@ -1,0 +1,65 @@
+prompt_id: SC0047__omni-kling-omni-clip-clip-sc0047-02-safe__v07
+scene_id: SC0047
+prompt_type: omni_instruction
+lifecycle_stage: draft
+target_models:
+- kling_omni
+source_refs:
+  scene_card: planning/scenes/SC0047/scene_card.yaml
+  scene_excerpt: planning/scenes/SC0047/scene_excerpt.md
+prompt_text: 'Kling Omni element-based clip; duration 13s. Active elements: @C09_OTTO, @C01_NADIA, @PROP008_HANDSET. Direct
+  action and camera; @elements carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity, restrained
+  camera language, and conservative execution. Figures: exactly 2 distinct figure(s) — @C09_OTTO (weathered grey jacket, close-kept
+  grey hair.), @C01_NADIA. No additional, extra, or duplicated people; do not clone or multiply any figure. Start state: @C01_NADIA
+  inside the doorway; @C09_OTTO near the table, facing her. [00:00 - 00:03] Medium shot: @C09_OTTO and @C01_NADIA face each
+  other across the folding table. @C09_OTTO lips move; @C01_NADIA is still, listening. Neither gestures. @C09_OTTO faces @C01_NADIA
+  across the table, lips moving, not gesturing. @C01_NADIA faces @C09_OTTO across the table, still, listening. Medium two-shot,
+  static. — @C09_OTTO (Flat): "He said you''d come." Audio: @C09_OTTO speaks; dialogue audio suppressed (Format A). [00:03
+  - 00:08] Medium shot: @C09_OTTO reaches beneath the folding table with both hands, lifts a locked case onto the table surface,
+  and opens it. @C09_OTTO removes @PROP008_HANDSET — a plain industrial handset with no markings — and sets @PROP008_HANDSET
+  on the table between them. @C09_OTTO lifts a locked case from beneath the table, opens it, removes @PROP008_HANDSET, and
+  sets it on the table. Medium shot on the table, static. Audio: case latch opening; @PROP008_HANDSET placed on the table;
+  room tone holds. [00:08 - 00:13] Medium close-up: @C09_OTTO and @C01_NADIA face each other across the table; @PROP008_HANDSET
+  lies on the table between them. @C09_OTTO lips move; @C01_NADIA lips move in a brief reply. Neither picks up @PROP008_HANDSET.
+  @C09_OTTO faces @C01_NADIA; lips move. @C01_NADIA faces @C09_OTTO across the table; lips move briefly in reply. Over-shoulder
+  medium close on @C09_OTTO, static. — @C09_OTTO: "He said you''d know the code." Audio: @C09_OTTO and @C01_NADIA speak in
+  sequence; dialogue audio suppressed (Format A). End state: @PROP008_HANDSET on the table between @C09_OTTO and @C01_NADIA;
+  neither has picked it up. Continuity: metadata_only. Keep 13s; end settled. Do not add new story facts.'
+negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
+generation_params:
+  model_guidance_mode: dynamic_snapshot
+  adapter_name: kling_omni
+  clip_id: CLIP_SC0047_02
+  total_duration_seconds: 13
+  continuity_input_mode: metadata_only
+  omni_clip_manifest_ref: planning/scenes/SC0047/manifests/CLIP_SC0047_02_manifest.yaml
+  source_scene_beat_plan_ref: planning/scenes/SC0047/scene_beat_plan.yaml
+  source_dialogue_beats_ref: planning/scenes/SC0047/dialogue_beats.yaml
+  repo_binary_committed: false
+  external_generation_required: true
+  recommended_cfg_scale: 0.5
+  recommended_ar: '16:9'
+  variant_mode: safe
+  render_pass: visual_test
+  quality_tier: test_720p
+  prompt_component_model: docs/methodology/omni_prompt_component_model.md
+  language_profile: kling_literal_alias_locked
+  input_mode: text_only
+  required_element_aliases:
+  - '@C09_OTTO'
+  - '@C01_NADIA'
+  - '@PROP008_HANDSET'
+  audio_gate_status: allowed_audio_off
+  audio_gate_reason: visual_test_default_audio_off
+  model_guidance_snapshot_ref: model_guidance_snapshots/kling/20260615T000000Z_kling_omni_video_best_available.yaml
+  provider: kling
+  provider_surface: manual_external
+  resolved_model_name: Kling VIDEO 3.0 Omni
+  resolved_model_role: best_for_this_task
+  guidance_observed_at: '2026-06-15T00:00:00Z'
+  guidance_expires_at: '2026-07-15T00:00:00Z'
+expected_output:
+  asset_type: clip
+  duration_seconds: 13
+status: active
+canon_lock: false

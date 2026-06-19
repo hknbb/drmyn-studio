@@ -1,0 +1,66 @@
+prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-10-safe__v07
+scene_id: SC0089
+prompt_type: omni_instruction
+lifecycle_stage: draft
+target_models:
+- kling_omni
+source_refs:
+  scene_card: planning/scenes/SC0089/scene_card.yaml
+  scene_excerpt: planning/scenes/SC0089/scene_excerpt.md
+prompt_text: 'Kling Omni element-based clip; duration 13s. Active elements: @C01_NADIA, @C06_ZARA. Direct action and camera;
+  @elements carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity, restrained camera language, and
+  conservative execution. Figures: exactly 2 distinct figure(s) — @C01_NADIA (dark field jacket, night-transit build.), @C06_ZARA
+  (khaki-olive jacket, field-night build.). No additional, extra, or duplicated people; do not clone or multiply any figure.
+  Start state: Both @C01_NADIA and @C06_ZARA moving left-to-right, approaching fifth pool. Comms pings from south. [00:00
+  - 00:05] Medium-wide shot: @C01_NADIA and @C06_ZARA walk left-to-right at 8m separation, approaching the fifth pool. @C01_NADIA''s
+  head angle shifts slightly left — registering a sound from south. @C01_NADIA walks left-to-right, head angle shifts slightly
+  south. @C06_ZARA follows 8 meters behind @C01_NADIA, controlled pace. Medium-wide tracking left. Both figures at interval
+  in fifth-pool approach. Audio: Footsteps on concrete. Brief comms ping from south — military cadence. [00:05 - 00:08] Medium
+  close-up: @C01_NADIA continues walking left-to-right. @C01_NADIA''s jaw shifts — registers the radio. No change in pace.
+  Eyes hold ahead. Comms-channel voice from south on the command channel (off-screen). @C01_NADIA walks, jaw shifts registering
+  the radio, pace unchanged, eyes ahead. Medium-close tracking. @C01_NADIA dominant. Corridor moving behind. — @C04_DIMITRI
+  (offscreen): "Accelerate. He was ahead of us once." Audio: [FORMAT A — no native voice for off-screen comms] Command-channel
+  static, then voice, then silence. [00:08 - 00:13] Medium shot: @C01_NADIA and @C06_ZARA stop or slow at the fifth overhead
+  pool. @C01_NADIA''s gaze moves to the embankment surface: a repair-pour section, slightly lighter than the base concrete,
+  runs at mid-height. @C01_NADIA does not yet move toward it. @C01_NADIA stops, gaze moves to lighter repair-seam section
+  on embankment. @C06_ZARA stops behind @C01_NADIA, holds position. Medium static. Both figures at fifth pool. West embankment
+  surface visible, lighter seam at mid-height. Audio: Night wind. Pool hum. End state: Both @C01_NADIA and @C06_ZARA at fifth
+  pool, stationary. Embankment repair seam visible. Continuity: frame_input_eligible. Keep 13s; end settled. Do not add new
+  story facts.'
+negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
+generation_params:
+  model_guidance_mode: dynamic_snapshot
+  adapter_name: kling_omni
+  clip_id: CLIP_SC0089_10
+  total_duration_seconds: 13
+  continuity_input_mode: frame_input_eligible
+  omni_clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_10_manifest.yaml
+  source_scene_beat_plan_ref: planning/scenes/SC0089/scene_beat_plan.yaml
+  source_dialogue_beats_ref: planning/scenes/SC0089/dialogue_beats.yaml
+  repo_binary_committed: false
+  external_generation_required: true
+  recommended_cfg_scale: 0.5
+  recommended_ar: '16:9'
+  variant_mode: safe
+  render_pass: visual_test
+  quality_tier: test_720p
+  prompt_component_model: docs/methodology/omni_prompt_component_model.md
+  language_profile: kling_literal_alias_locked
+  input_mode: text_only
+  required_element_aliases:
+  - '@C01_NADIA'
+  - '@C06_ZARA'
+  audio_gate_status: allowed_audio_off
+  audio_gate_reason: visual_test_default_audio_off
+  model_guidance_snapshot_ref: model_guidance_snapshots/kling/20260615T000000Z_kling_omni_video_best_available.yaml
+  provider: kling
+  provider_surface: manual_external
+  resolved_model_name: Kling VIDEO 3.0 Omni
+  resolved_model_role: best_for_this_task
+  guidance_observed_at: '2026-06-15T00:00:00Z'
+  guidance_expires_at: '2026-07-15T00:00:00Z'
+expected_output:
+  asset_type: clip
+  duration_seconds: 13
+status: active
+canon_lock: false

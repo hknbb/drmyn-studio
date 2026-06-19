@@ -1,0 +1,44 @@
+scene_id: SC0040
+created_at: '2026-06-18T00:00:00Z'
+storage_policy: external_image_only
+entries:
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C07_NEWSROOM_V001__profile_full
+  storage_backend: local_manual
+  last_seen_at: '2026-06-18T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0040/C07/stage3/images/ChatGPT Image 18 Haz 2026 21_30_48.png
+  external_storage_ref: external://local_manual/archive/closing_price/SC0040/C07/stage3/images/ChatGPT Image 18 Haz 2026 21_30_48.png
+  sha256: 09d9027091e44ae47875b2709327f84c38fc0c427abd8b1325761d8e4224dde1
+  size_bytes: 1740516
+  notes: 'Stage-3 four-view: profile_full. Dual-ref seeded (Stage-2 primary + Stage-1 secondary).'
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C07_NEWSROOM_V001__three_quarter_waist
+  storage_backend: local_manual
+  last_seen_at: '2026-06-18T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0040/C07/stage3/images/ChatGPT Image 18 Haz 2026 21_30_56.png
+  external_storage_ref: external://local_manual/archive/closing_price/SC0040/C07/stage3/images/ChatGPT Image 18 Haz 2026 21_30_56.png
+  sha256: 052a898b5b3c73a26ddebffb2b3238dec3970d1e174165f635575670987bb6c0
+  size_bytes: 1779660
+  notes: 'Stage-3 four-view: three_quarter_waist.'
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C07_NEWSROOM_V001__full_body_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-18T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0040/C07/stage3/images/ChatGPT Image 18 Haz 2026 21_31_00.png
+  external_storage_ref: external://local_manual/archive/closing_price/SC0040/C07/stage3/images/ChatGPT Image 18 Haz 2026 21_31_00.png
+  sha256: c984a33e2d51dba577567bde808ad3a7182b5553a49f1203e05f98a31fa8e356
+  size_bytes: 1630100
+  notes: 'Stage-3 four-view: full_body_front.'
+- kind: gpt_images_2_perspective_output
+  element_id_or_take_id: PPACK_C07_NEWSROOM_V001__close_portrait_front
+  storage_backend: local_manual
+  last_seen_at: '2026-06-18T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0040/C07/stage3/images/ChatGPT Image 18 Haz 2026 21_37_10.png
+  external_storage_ref: external://local_manual/archive/closing_price/SC0040/C07/stage3/images/ChatGPT Image 18 Haz 2026 21_37_10.png
+  sha256: 93fe5f20f593c907224933ccf3ff8ae909f91e0898036a183f7b1342148fc162
+  size_bytes: 1967447
+  notes: 'Stage-3 four-view: close_portrait_front.'

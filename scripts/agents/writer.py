@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import csv
 import io
+import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -42,6 +43,7 @@ class WriteResult:
     scene_map_appended: bool
     run_costs_appended: bool
     library_updated: bool
+    pruned_drafts: tuple[Path, ...] = ()
 
 
 # ---------------------------------------------------------------------------
@@ -126,6 +128,9 @@ class PromptWriter:
         scene_map_ok = self._append_scene_prompt_map(prompt_record)
         run_costs_ok = self._append_run_costs(prompt_record, run_record)
         library_ok = self._update_prompt_library(prompt_record)
+        # P9: a newer version supersedes older drafts of the same logical prompt —
+        # delete them (git history is the archive). Run/cost records stay as audit.
+        pruned = self._prune_superseded_drafts(prompt_record["prompt_id"])
 
         return WriteResult(
             prompt_path=prompt_path,
@@ -133,6 +138,7 @@ class PromptWriter:
             scene_map_appended=scene_map_ok,
             run_costs_appended=run_costs_ok,
             library_updated=library_ok,
+            pruned_drafts=tuple(pruned),
         )
 
     # ------------------------------------------------------------------
@@ -141,13 +147,98 @@ class PromptWriter:
 
     def _write_prompt_record(self, record: dict[str, Any]) -> Path:
         prompt_id = record["prompt_id"]
-        out_path = self.repo_root / "prompts" / "draft" / f"{prompt_id}.yaml"
+        # P7: derive short on-disk filename from the canonical prompt_id.
+        # The Kling Omni clip path embeds "omni-kling-omni-clip-" which
+        # is verbose on disk; strip it so file names stay readable.
+        # The prompt_id inside the YAML is unchanged (canonical tracking id).
+        filename = self._short_filename(prompt_id)
+        out_path = self.repo_root / "prompts" / "draft" / f"{filename}.yaml"
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(
             yaml.safe_dump(record, sort_keys=False, allow_unicode=True),
             encoding="utf-8",
         )
         return out_path
+
+    @staticmethod
+    def _short_filename(prompt_id: str) -> str:
+        """Shorten verbose Kling Omni clip prompt_ids for on-disk filenames.
+
+        SC####__omni-kling-omni-clip-X__vNN  →  SC####__clip-X__vNN
+        All other prompt types pass through unchanged.
+        """
+        return prompt_id.replace("__omni-kling-omni-clip-", "__clip-")
+
+    # ------------------------------------------------------------------
+    # P9: superseded-version pruning
+    # ------------------------------------------------------------------
+
+    _VERSION_RE = re.compile(r"^(?P<stem>.+)__v(?P<ver>\d+)$")
+
+    @classmethod
+    def _split_version(cls, prompt_id: str) -> tuple[str, int] | None:
+        """Return (logical_stem, version_int) for an ``…__vNN`` id, else None."""
+        m = cls._VERSION_RE.match(prompt_id)
+        if not m:
+            return None
+        return m.group("stem"), int(m.group("ver"))
+
+    def _prune_superseded_drafts(self, prompt_id: str) -> list[Path]:
+        """Delete older-version draft files for the same logical prompt + their
+        prompt_library entries. The just-written version is kept; run and cost
+        records are left untouched as an audit trail. Returns deleted paths.
+        """
+        current = self._split_version(self._short_filename(prompt_id))
+        if current is None:
+            return []
+        stem, curr_ver = current
+
+        draft_dir = self.repo_root / "prompts" / "draft"
+        if not draft_dir.exists():
+            return []
+
+        keep_filename = self._short_filename(prompt_id)
+        pruned: list[Path] = []
+        pruned_prompt_ids: list[str] = []
+        for path in draft_dir.glob(f"{stem}__v*.yaml"):
+            if path.stem == keep_filename:
+                continue
+            older = self._split_version(path.stem)
+            if older is None or older[0] != stem or older[1] >= curr_ver:
+                continue
+            # Capture the canonical prompt_id before deleting so we can drop the
+            # matching library entry too.
+            try:
+                doc = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+                old_pid = doc.get("prompt_id")
+                if isinstance(old_pid, str):
+                    pruned_prompt_ids.append(old_pid)
+            except Exception:
+                pass
+            path.unlink()
+            pruned.append(path)
+
+        if pruned_prompt_ids:
+            self._drop_library_entries(pruned_prompt_ids)
+        return pruned
+
+    def _drop_library_entries(self, prompt_ids: list[str]) -> None:
+        lib_path = self.repo_root / "prompts" / "prompt_library.yaml"
+        if not lib_path.exists():
+            return
+        lib = yaml.safe_load(lib_path.read_text(encoding="utf-8")) or {}
+        prompts = lib.get("prompts") or []
+        drop = set(prompt_ids)
+        kept = [
+            p for p in prompts
+            if not (isinstance(p, dict) and p.get("prompt_id") in drop)
+        ]
+        if len(kept) != len(prompts):
+            lib["prompts"] = kept
+            lib_path.write_text(
+                yaml.safe_dump(lib, sort_keys=False, allow_unicode=True),
+                encoding="utf-8",
+            )
 
     def _write_run_record(self, record: dict[str, Any]) -> Path:
         run_id = record["run_id"]
@@ -172,7 +263,7 @@ class PromptWriter:
             "article3_flag": "",
             "notes": "agent-generated draft; no image asset yet",
         }
-        return self._append_csv_row(csv_path, self._SCENE_MAP_COLUMNS, row)
+        return self._append_csv_row(csv_path, self._SCENE_MAP_COLUMNS, row, dedup_key="prompt_id")
 
     def _append_run_costs(
         self,
@@ -192,7 +283,7 @@ class PromptWriter:
             "cost_unit": str(cost.get("unit", "credits")),
             "status": run_record.get("status", "pending"),
         }
-        return self._append_csv_row(csv_path, self._RUN_COSTS_COLUMNS, row)
+        return self._append_csv_row(csv_path, self._RUN_COSTS_COLUMNS, row, dedup_key="run_id")
 
     def _update_prompt_library(self, record: dict[str, Any]) -> bool:
         """
@@ -246,13 +337,25 @@ class PromptWriter:
         csv_path: Path,
         columns: tuple[str, ...],
         row: dict[str, str],
+        dedup_key: str | None = None,
     ) -> bool:
         """
         Append *row* to *csv_path* using standard csv.writer quoting.
 
         Creates the file with a header row if it does not exist.
-        Returns True on success.
+        If *dedup_key* is given, skips the append when a row with the same
+        value for that column already exists (P8: prevents run_id / prompt_id
+        duplicates on regeneration).
+        Returns True if a row was written, False if deduped-skipped.
         """
+        # P8: dedup check — read existing rows once to detect collisions.
+        if dedup_key and csv_path.exists() and csv_path.stat().st_size > 0:
+            key_value = row.get(dedup_key, "")
+            with open(csv_path, newline="", encoding="utf-8") as fh:
+                reader = csv.DictReader(fh)
+                if any(r.get(dedup_key) == key_value for r in reader):
+                    return False
+
         write_header = not csv_path.exists() or csv_path.stat().st_size == 0
 
         with open(csv_path, "a", newline="", encoding="utf-8") as fh:

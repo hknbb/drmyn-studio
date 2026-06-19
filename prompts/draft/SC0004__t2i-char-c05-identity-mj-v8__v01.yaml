@@ -1,0 +1,42 @@
+prompt_id: SC0004__t2i-char-c05-identity-mj-v8__v01
+scene_id: SC0004
+prompt_type: t2i_character_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0004/scene_card.yaml
+  scene_excerpt: "Canonical identity reference (Stage 1 of 3) for Marcus Chen across physical appearance scenes (SC0004, SC0008, SC0009); identity-only, not a final production view. V.O.-only in current Kling-era production (SC0047)."
+  character_refs:
+  - C05
+  aesthetic_refs: []
+prompt_text: >-
+  Marcus, late 30s to early 40s, controlled watchful silhouette, weight
+  slightly held back — foot's-distance habit, not aloofness. Plain operational
+  private clothes, muted dark neutrals, no decoration. Quiet and competent;
+  face real and precise, not spectacular. He is load-bearing without
+  showmanship; something he is carrying reads in stillness rather than in
+  performance. Warm in the specific way of someone who loves genuinely and
+  does not show it publicly. Cinematic production character reference, neutral
+  clean background, identity readability, restrained realism, no text, no
+  watermark
+  --v 8.1 --style raw --ar 2:3 --seed 729485
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  identity_anchor_ref: visual_dev/elements/characters/C05/identity_anchor.yaml
+  stage: "1_of_3_narrative_identity"
+  aesthetic_keywords_injected:
+  - controlled watchful silhouette, slightly held-back stance
+  - plain operational private wear, muted dark neutrals
+  - quiet competent face, emotionally load-bearing without showmanship
+  - warmth under operational restraint, real weight in stillness
+  - identity over coverage, not cold or editorial
+  planning_name_filter:
+    forbidden:
+    - Marcus Chen
+  recommended_model_version: --v 8.1
+  recommended_style: --style raw

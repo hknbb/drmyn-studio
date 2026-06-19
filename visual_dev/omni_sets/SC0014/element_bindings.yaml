@@ -43,6 +43,7 @@ voice_capability: none
 native_audio_readiness: not_required
 kling_native_audio: { enabled: false, provider_policy: kling_native_only, external_tts_allowed: false, adr_vendor_allowed: false }
 notes: "Jin (infant). PROTECTED SUBJECT — operator authorized + approved every stage (2026-06-09); visual binding promoted to 'created' (KER_C08_NURSERY_EVENING_V001, QC>=85). Safe/supported-only constraints REMAIN binding for SC0014 omni generation: keep the infant calm/safe/supported, carry the taking via adult performance + Nadia POV, infant distress off-frame. No dialogue."
+protected_subject: true
 provenance: { created_by: "claude_code (M5 FAZ C)", created_at: "2026-06-04T00:00:00Z" }
 ---
 schema_version: "0.x-draft"

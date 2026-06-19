@@ -1,0 +1,44 @@
+prompt_id: SC0004__t2i-char-c05-oref-lock-mj-v7__v01
+scene_id: SC0004
+prompt_type: t2i_character_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0004/scene_card.yaml
+  scene_excerpt: "Stage-2 identity lock for Marcus Chen (C05). --oref from Stage-1 hero to freeze face geometry and silhouette for Stage-3 four-view production. V.O.-only in current Kling-era scenes (SC0047); physical appearance for SC0004/SC0008/SC0009."
+  character_refs:
+  - C05
+  aesthetic_refs: []
+prompt_text: >-
+  Man, late 30s to early 40s, controlled watchful presence, plain dark muted
+  civilian clothes, no decoration. Face real and quiet — load-bearing without
+  showmanship, warmth under operational restraint, weight slightly held back.
+  Straight-on frontal portrait, even diffuse lighting, plain neutral
+  background, identity-lock reference, no text, no watermark
+  --oref https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/9b0373c6e0e419f541e1db6a789e7fa095dc39791e69a27e98648a65999f4953_384_N.png --ow 250 --v 7 --style raw --ar 2:3
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  identity_anchor_ref: visual_dev/elements/characters/C05/identity_anchor.yaml
+  stage: "2_of_3_oref_identity_lock"
+  oref_source_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/9b0373c6e0e419f541e1db6a789e7fa095dc39791e69a27e98648a65999f4953_384_N.png"
+  oref_weight: 250
+  oref_weight_tuning_notes: >
+    Raise to 400-600 if face drifts from Stage-1 hero.
+    Lower to 100-150 if result reads stiff or over-copied.
+    Forbidden drift: do not let --oref push toward thriller-poster gloss,
+    cold/editorial, or operational kit — warmth under restraint must survive.
+  recommended_model_version: --v 7
+  recommended_style: --style raw
+  operator_goal: >
+    Approve the cleanest canonical result: straight-on, even light, plain bg,
+    face geometry consistent with Stage-1 hero, warmth still legible.
+    This image becomes the PRIMARY reference for Stage-3 ChatGPT Images 2
+    four_view_scale_angle_v3 (SC0004/SC0008/SC0009 looks).
+  planning_name_filter:
+    forbidden:
+    - Marcus Chen

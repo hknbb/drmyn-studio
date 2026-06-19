@@ -1,0 +1,25 @@
+schema_version: "0.x-draft"
+record_type: character_look_variant
+look_id: C07_LOOK_NEWSROOM_V001
+character_id: C07
+inherits_identity_anchor: C07_IDENTITY_ANCHOR_V001
+status: draft
+look_role: "Newsroom / field hybrid — Sera at her desk or in a professional meeting (SC0040)"
+wardrobe_refs:
+  primary_wardrobe_id: WD015
+  supplementary_wardrobe_ids: []
+appearance_state:
+  fatigue_level: nominal
+  damage_level: none
+  hair_state_within_anchor: "Blonde/ash hair pulled back or neatly contained; long-hours journalist read."
+continuity_scope:
+  start_scene: SC0040
+  end_scene: SC0040
+change_reason: "Sera's primary registered look: newsroom/field professional. Baseline for SC0040 and related media-ally scenes."
+notes: >
+  Look 1 of 1 (initial) for Sera. Identity carried by C07_IDENTITY_ANCHOR_V001.
+  Wardrobe: dark professional blazer + dark top, newsroom practical hybrid.
+  Stage-3 four-view pack: perspective_packs/PPACK_C07_NEWSROOM_V001.yaml.
+provenance:
+  created_by: "claude_code (M5 C07 Sera pipeline)"
+  created_at: "2026-06-18T00:00:00Z"

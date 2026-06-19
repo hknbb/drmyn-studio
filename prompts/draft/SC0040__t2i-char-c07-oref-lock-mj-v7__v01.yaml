@@ -1,0 +1,47 @@
+prompt_id: SC0040__t2i-char-c07-oref-lock-mj-v7__v01
+scene_id: SC0040
+prompt_type: t2i_character_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0040/scene_card.yaml
+  scene_excerpt: "Stage-2 identity lock for Sera / Seraphina Mast (C07). --oref from Stage-1 hero to freeze face geometry and professional silhouette for Stage-3 four-view production."
+  character_refs:
+  - C07
+  aesthetic_refs: []
+prompt_text: >-
+  Woman, mid 30s to mid 40s, senior investigative journalist, upright
+  contained posture, alert direct gaze. Dark professional blazer over dark
+  top, dark neutral trousers; no glamour, no ornamentation. Straight-on
+  frontal portrait, even diffuse lighting, plain neutral background,
+  identity-lock reference, no earrings, no jewelry, no props, no text,
+  no watermark
+  --oref https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/d2c7150d0b8bc16bb0492c684a7a7b9e1ff85cd965dfef6c53dbe76a899dde92_384_N.png --ow 250 --v 7 --style raw --ar 2:3
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  identity_anchor_ref: visual_dev/elements/characters/C07/identity_anchor.yaml
+  stage: "2_of_3_oref_identity_lock"
+  oref_source_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/d2c7150d0b8bc16bb0492c684a7a7b9e1ff85cd965dfef6c53dbe76a899dde92_384_N.png"
+  oref_weight: 250
+  oref_weight_tuning_notes: >
+    Raise to 400-600 if face drifts from Stage-1 hero.
+    Lower to 100-150 if result reads stiff or over-copied.
+    Watch for: arms-crossed default (unwanted), earring drift (forbidden),
+    editorial/dark bg drift. Target: straight-on, even light, plain bg,
+    hands relaxed at sides or in pockets.
+  recommended_model_version: --v 7
+  recommended_style: --style raw
+  operator_goal: >
+    Approve the cleanest canonical result: straight-on frontal, even diffuse
+    light, plain neutral background, face geometry consistent with Stage-1 hero,
+    institutional intelligence + warmth under restraint readable. This image
+    becomes PRIMARY reference for Stage-3 ChatGPT Images 2 four_view_scale_angle_v3.
+  planning_name_filter:
+    forbidden:
+    - Sera
+    - Seraphina Mast

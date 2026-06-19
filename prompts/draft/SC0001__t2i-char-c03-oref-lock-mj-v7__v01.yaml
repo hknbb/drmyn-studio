@@ -1,0 +1,42 @@
+prompt_id: SC0001__t2i-char-c03-oref-lock-mj-v7__v01
+scene_id: SC0001
+prompt_type: t2i_character_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0001/scene_card.yaml
+  scene_excerpt: "Stage-2 identity lock for Birta (C03). --oref from Stage-1 hero to freeze face geometry and body type for Stage-3 four-view production."
+  character_refs:
+  - C03
+  aesthetic_refs:
+  - LOC001_NURSERY_WARM
+prompt_text: >-
+  70s woman, compact domestic silhouette, warm direct gaze, service-neutral
+  working clothes, practical apron. Quiet authority, full human dignity,
+  honest age, no ornament. Straight-on frontal portrait, even diffuse
+  lighting, plain neutral background, identity-lock reference, no text,
+  no watermark
+  --oref https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/6acb8065845a2b7b494e8cae9f169811834b475d5b34fcd64ec9fd77f3720574_384_N.png --ow 250 --v 7 --style raw --ar 2:3
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  identity_anchor_ref: visual_dev/elements/characters/C03/identity_anchor.yaml
+  stage: "2_of_3_oref_identity_lock"
+  oref_source_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/6acb8065845a2b7b494e8cae9f169811834b475d5b34fcd64ec9fd77f3720574_384_N.png"
+  oref_weight: 250
+  oref_weight_tuning_notes: >
+    Raise to 400-600 if face drifts from Stage-1 hero.
+    Lower to 100-150 if result reads stiff or over-copied.
+  recommended_model_version: --v 7
+  recommended_style: --style raw
+  operator_goal: >
+    Approve the cleanest canonical result: straight-on, even light, plain bg,
+    face geometry consistent with Stage-1 hero. This image becomes the PRIMARY
+    reference for Stage-3 ChatGPT Images 2 four_view_scale_angle_v3.
+  planning_name_filter:
+    forbidden:
+    - Birta

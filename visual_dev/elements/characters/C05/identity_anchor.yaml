@@ -1,0 +1,64 @@
+schema_version: "0.x-draft"
+record_type: character_identity_anchor
+identity_anchor_id: C05_IDENTITY_ANCHOR_V001
+character_id: C05
+status: identity_locked_stage3
+source_reference_strategy:
+  reference_sheet_allowed_as_identity_source: false
+  final_hero_lock_requires_single_clean_image: true
+  contact_sheet_layout_forbidden_as_lock: true
+source_reference_sheet_ref: prompts/draft/SC0004__t2i-char-c05-identity-mj-v8__v01.yaml
+front_hero_lock_ref:
+  pending: false
+  stage1_ref: "u9435212546_Marcus_late_30s_to_early_40s_controlled_watchful__d246ae27-fe63-42ea-a773-676c92bb990c_2.png"
+  stage1_selected_at: "2026-06-17T00:00:00Z"
+  stage1_selection_notes: >
+    White/European man, dark grey coat over plain dark shirt, slight 3/4 turn.
+    Correct late-30s/early-40s age read. Controlled watchful silhouette with
+    emotional accessibility in the face — warm under restraint, plain civilian
+    clothes, no kit coding. Clean surface for Stage-2 --cref lock.
+  stage2_oref_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/9b0373c6e0e419f541e1db6a789e7fa095dc39791e69a27e98648a65999f4953_384_N.png"
+  stage2_oref_weight: 250
+  stage2_prompt_ref: "prompts/draft/SC0004__t2i-char-c05-oref-lock-mj-v7__v01.yaml"
+  stage2_ref: "u9435212546_Man_late_30s_to_early_40s_controlled_watchful_pre_e724a825-5915-424b-b2a3-f53690c806af_0.png"
+  stage2_selected_at: "2026-06-18T00:00:00Z"
+  stage2_selection_notes: >
+    Dark grey plain shirt, neutral grey background, near-frontal, even diffuse
+    lighting. Cleanest in batch after dd598abc_3 eliminated (chin blemish).
+    No logos, no accessories. Controlled watchful expression, warmth legible.
+    Approved by operator.
+  stage2_external_ref: "archive/closing_price/_elements/C05/stage2/images/u9435212546_Man_late_30s_to_early_40s_controlled_watchful_pre_e724a825-5915-424b-b2a3-f53690c806af_0.png"
+  external_ref: "archive/closing_price/_elements/C05/stage1/images/u9435212546_Marcus_late_30s_to_early_40s_controlled_watchful__d246ae27-fe63-42ea-a773-676c92bb990c_2.png"
+  locked_at: null
+  chain: "Stage1 MJ V8.1 narrative identity → Stage2 MJ V7 --cref lock → Stage3 ChatGPT Images 2 four_view_scale_angle_v3"
+fixed_identity_anchors:
+  - "Man, late 30s to early 40s; face geometry and identity must stay constant across all scene looks."
+  - "Controlled watchful silhouette; weight slightly held back, foot's-distance tactical habit — not aloofness."
+  - "Quiet, competent, emotionally load-bearing without showmanship; real weight in stillness rather than performance."
+  - "Warm in the private way of someone who loves genuinely but does not show it publicly."
+  - "Plain operational private clothes, muted dark neutrals; no professional insignia, no decorative markers."
+mutable_appearance_allowed:
+  - "Wardrobe per scene look (private meeting / clandestine operational / intimate as scenes SC0004/SC0008/SC0009 dictate)."
+  - "Fatigue and emotional weight visible in small deviations from controlled baseline — he lets precision slip only when truly off-guard."
+  - "Environmental lighting register (private dim room, anonymous location, late-night practical)."
+forbidden_drift:
+  - "Do not turn him into a spotless martyr or idealized hero; he operated near complicity."
+  - "Do not overwrite the warning-space intimacy with erotic stylization or thriller-poster gloss."
+  - "Do not render cold, hard-edged, or editorial; warmth under restraint must remain legible."
+  - "Do not alter face geometry, age read, or silhouette between looks."
+  - "Do not add professional insignia, weapons, or operational kit as identity props."
+notes: >
+  Canonical identity anchor for Marcus Chen (C05), catalyst/ghost character.
+  Source-truth character: C03. Physical appearance scenes: SC0004, SC0008,
+  SC0009 (alive; pre-death). V.O.-only status in current Kling-era production
+  (binding_status: planned in SC0047 element_bindings — no active @C05_MARCUS
+  alias in render_* fields). Visual identity is needed for future physical scene
+  production. Character chain: Stage 1 MJ V8.1 narrative identity → Stage 2
+  MJ V7 --cref lock → Stage 3 ChatGPT Images 2 four_view_scale_angle_v3.
+  front_hero_lock_ref stays pending until the operator generates a Stage-1
+  batch and selects a hero (no fabricated lock). Key invariant: must read warm
+  and human — the controlled exterior should hold private love, not just
+  operational discipline.
+provenance:
+  created_by: "claude_code (M5 PR-BATCH-KEYCHAR-1 prep)"
+  created_at: "2026-06-17T00:00:00Z"

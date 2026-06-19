@@ -135,6 +135,10 @@
       "maxLength": 2000,
       "description": "Human-readable notes about this binding, including voice provisioning status and any blockers."
     },
+    "protected_subject": {
+      "type": "boolean",
+      "description": "When true, this element is a protected subject (e.g. an infant). A structural validator (validate_protected_subject) enforces safe-handling language and bans unsafe-action verbs in any shot that references this alias, independent of prose notes."
+    },
     "provenance": {
       "type": "object",
       "additionalProperties": false,

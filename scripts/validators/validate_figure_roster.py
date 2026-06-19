@@ -18,11 +18,19 @@ production validator and from tests.
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 import yaml
+
+
+def _norm_role(role: str) -> str:
+    """Normalise a role string so trivial variation (case, spacing) compares
+    equal (P16). Distinct roles still differ; only whitespace/case noise merges.
+    """
+    return re.sub(r"\s+", " ", (role or "").strip().lower())
 
 
 @dataclass
@@ -93,7 +101,9 @@ def validate_figure_roster(
             alias_to_figures.setdefault(alias, set()).add(figure_id)
             figure_to_aliases.setdefault(figure_id, set()).add(alias)
         if isinstance(alias, str) and isinstance(role, str):
-            alias_to_roles.setdefault(alias, set()).add(role)
+            # P16: normalise so case/whitespace variants of the same role do not
+            # falsely trip ALIAS_MULTIPLE_FIGURES across the scene.
+            alias_to_roles.setdefault(alias, set()).add(_norm_role(role))
 
     for alias, figs in sorted(alias_to_figures.items()):
         if len(figs) > 1:

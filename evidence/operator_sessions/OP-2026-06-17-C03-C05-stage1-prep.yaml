@@ -1,0 +1,34 @@
+session_id: OP-2026-06-17-C03-C05-stage1-prep
+created_at: "2026-06-17T00:00:00Z"
+scene_id: null
+current_task: "PR-BATCH-KEYCHAR-1 — C03 Birta + C05 Marcus Stage-1 MJ scaffold"
+status: complete
+recommended_files:
+  - prompts/draft/SC0001__t2i-char-c03-identity-mj-v8__v01.yaml
+  - visual_dev/elements/characters/C03/identity_anchor.yaml
+  - prompts/draft/SC0004__t2i-char-c05-identity-mj-v8__v01.yaml
+  - visual_dev/elements/characters/C05/identity_anchor.yaml
+recommended_steps:
+  - "C03 Birta: Run Stage-1 MJ v8.1 batch using prompt in SC0001__t2i-char-c03-identity-mj-v8__v01.yaml (--seed 312741). Generate 4-8 candidates. Folder: archive/nexuszero/_elements/C03/stage1/images/."
+  - "C03 Birta: Select Stage-1 hero — warm, compact, quietly authoritative, honest 70s age, no caricature. Update visual_dev/elements/characters/C03/identity_anchor.yaml: front_hero_lock_ref.pending→false, stage1_ref and external_ref set."
+  - "C03 Birta: Run Stage-2 MJ V7 --cref lock using Stage-1 hero as --cref. Folder: archive/nexuszero/_elements/C03/stage2/images/."
+  - "C03 Birta: Select Stage-2 hero (best identity consistency). Run Stage-3 ChatGPT Images 2 four_view_scale_angle_v3 pack."
+  - "C03 Birta: QC four-view pack → PQC_C03_PERSPECTIVE_PACK_V001.yaml → if can_advance_to_kling_reference: true, create kling_element_reference."
+  - "C05 Marcus: Run Stage-1 MJ v8.1 batch using prompt in SC0004__t2i-char-c05-identity-mj-v8__v01.yaml (--seed 729485). Generate 4-8 candidates. Folder: archive/nexuszero/_elements/C05/stage1/images/."
+  - "C05 Marcus: Select Stage-1 hero — controlled watchful silhouette, warm under operational restraint, real weight in stillness, not a thriller cutout. Update identity_anchor.yaml."
+  - "C05 Marcus: Stage-2 --cref → Stage-3 GPT Images 2 four-view → PQC → KER (for SC0004/SC0008/SC0009 physical scenes). Note: C05 remains V.O.-only for SC0047 (no @C05_MARCUS alias in Kling-era scenes until physical scene production begins)."
+notes: >
+  PR-BATCH-KEYCHAR-1 investigation (2026-06-17) found that C03 Birta and C05 Marcus
+  have no visual dev files — the prior ✅ marks in PROJECT_STATE.md pipeline table
+  for C05 were incorrect. C02 and C04 are already fully registered. C03 and C05
+  are now scaffolded at Stage-1 level: prompt drafts in prompts/draft/,
+  identity_anchor.yaml stubs in visual_dev/elements/characters/{C03,C05}/.
+
+  C05 Marcus status: V.O.-only for current Kling-era scenes (SC0047
+  element_bindings binding_status: planned — no active alias). Physical scene
+  identity needed for SC0004, SC0008, SC0009 when those scenes enter production.
+  PROJECT_STATE.md pipeline table corrected: C05 S1/S2/S3/Binding all removed
+  from ✅/created to S1⏳/pending.
+
+  After operator runs both Stage-1 batches and selects heroes, return to agent
+  for Stage-2 oref scaffolding and subsequent pipeline steps.

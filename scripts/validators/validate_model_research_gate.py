@@ -54,6 +54,10 @@ PLACEHOLDER_STRINGS = frozenset({"", "TBD", "TODO", "unknown", "PLACEHOLDER", "u
 
 PLACEHOLDER_URL_FRAGMENTS = ("example.org/placeholder", "localhost", "127.0.0.1")
 
+# Final delivery passes: an expired snapshot is always a hard failure here — a
+# delivery artifact must be generated against current model guidance (P10).
+FINAL_PASSES = frozenset({"final_candidate", "final_locked"})
+
 KNOWN_TARGETS = (
     "kling_omni_video_best_available",
     "midjourney_image_best_available",
@@ -143,6 +147,8 @@ def _validate_target(
     snapshots_dir: Path,
     schema: dict | None,
     reference_time: datetime,
+    render_pass: str | None = None,
+    require_fresh: bool = False,
 ) -> TargetGateResult:
     hard: list[str] = []
     soft: list[str] = []
@@ -190,6 +196,15 @@ def _validate_target(
         )
 
     # 3. Expiry
+    # P10: expiry severity is render-pass-aware. For non-final passes (visual_test
+    # etc.) an expired snapshot is a soft warning so exploratory generation is not
+    # blocked; for final delivery passes (or when render_pass is unspecified, or
+    # require_fresh is set) it stays a hard failure.
+    expiry_is_soft = (
+        not require_fresh
+        and render_pass is not None
+        and render_pass not in FINAL_PASSES
+    )
     expires_at_str = data.get("expires_at")
     if not expires_at_str:
         hard.append("expires_at missing; cannot verify freshness.")
@@ -197,10 +212,17 @@ def _validate_target(
         try:
             expires_at = datetime.fromisoformat(expires_at_str.replace("Z", "+00:00"))
             if reference_time > expires_at:
-                hard.append(
+                msg = (
                     f"Snapshot expired at {expires_at_str}. "
                     "Refresh model research before generating prompts."
                 )
+                if expiry_is_soft:
+                    soft.append(
+                        msg + f" (soft for render_pass={render_pass!r}; "
+                        "use --require-fresh or a final pass to hard-block.)"
+                    )
+                else:
+                    hard.append(msg)
         except ValueError:
             hard.append(f"expires_at is not a valid ISO-8601 datetime: {expires_at_str!r}")
 
@@ -259,6 +281,8 @@ def validate_model_research_gate(
     reference_time: datetime | None = None,
     *,
     strict: bool = False,
+    render_pass: str | None = None,
+    require_fresh: bool = False,
 ) -> list[TargetGateResult]:
     """
     Validate model research freshness for all required targets.
@@ -268,6 +292,10 @@ def validate_model_research_gate(
         required_targets: List of internal_model_target strings to check.
         reference_time: UTC datetime for expiry checks (default: now).
         strict: If True, raise ModelResearchGateError on any failure.
+        render_pass: Intended render pass. For non-final passes an expired
+            snapshot is a soft warning (P10); for final passes (or when None /
+            require_fresh) expiry stays a hard failure.
+        require_fresh: Force expiry to hard-fail regardless of render_pass.
 
     Returns:
         List of TargetGateResult, one per target.
@@ -281,7 +309,10 @@ def validate_model_research_gate(
     schema = _load_schema(repo_root)
 
     results = [
-        _validate_target(target, snapshots_dir, schema, ref)
+        _validate_target(
+            target, snapshots_dir, schema, ref,
+            render_pass=render_pass, require_fresh=require_fresh,
+        )
         for target in required_targets
     ]
 
@@ -329,6 +360,21 @@ def _build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Exit with code 1 if any target fails (default: always exit 1 on failure).",
     )
+    parser.add_argument(
+        "--render-pass",
+        default=None,
+        metavar="PASS",
+        help=(
+            "Intended render pass. For non-final passes (e.g. visual_test) an "
+            "expired snapshot is a soft warning instead of a hard block (P10). "
+            "Final passes (final_candidate/final_locked) always hard-block."
+        ),
+    )
+    parser.add_argument(
+        "--require-fresh",
+        action="store_true",
+        help="Force an expired snapshot to hard-fail regardless of --render-pass.",
+    )
     return parser
 
 
@@ -340,6 +386,8 @@ def main(argv: list[str] | None = None) -> int:
     results = validate_model_research_gate(
         repo_root=repo_root,
         required_targets=args.targets,
+        render_pass=args.render_pass,
+        require_fresh=args.require_fresh,
     )
 
     passed = [r for r in results if r.passed]

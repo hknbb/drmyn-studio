@@ -1,0 +1,36 @@
+session_id: OP-2026-06-18-C07-sera-stage1-scaffold
+created_at: "2026-06-18T00:00:00Z"
+scene_id: SC0040
+current_task: "C07 Sera Stage-1 MJ v8.1 identity scaffold"
+status: complete
+recommended_files:
+  - prompts/draft/SC0040__t2i-char-c07-identity-mj-v8__v01.yaml
+  - visual_dev/elements/characters/C07/identity_anchor.yaml
+recommended_steps:
+  - "C07 Sera: Run Stage-1 MJ v8.1 batch using prompt in SC0040__t2i-char-c07-identity-mj-v8__v01.yaml (--seed 514637). Generate 4-8 candidates. Folder: archive/closing_price/_elements/C07/stage1/images/."
+  - "C07 Sera: Select Stage-1 hero — forward-moving institutional intelligence, alert eye contact, dark professional wear, warm/human underneath the armor, no props, heritage neutral. Update visual_dev/elements/characters/C07/identity_anchor.yaml: front_hero_lock_ref.pending→false, stage1_ref populated."
+  - "C07 Sera: Run Stage-2 MJ V7 --oref lock. Folder: archive/closing_price/_elements/C07/stage2/images/."
+  - "C07 Sera: Stage-3 ChatGPT Images 2 four_view_scale_angle_v3 → PQC (>=85) → KER → binding created."
+  - "Halo Unit: Define compact planning ID (e.g. C11 or separate UNIT-## designation), write character record and Stage-1 MJ prompt for Herald service-robot visual identity."
+notes: >
+  PR-BATCH-KEYCHAR-1 closed 2026-06-18 (C03 Birta + C05 Marcus both binding:
+  created). Proceeding to C07 Sera + Halo Unit per Next Steps #5.
+
+  C07 Sera: visual_profile is operator-inferred from dossier voice_fingerprint,
+  behavioral_tells, and institutional context (C07.yaml notes this explicitly).
+  Stage-1 batch should be evaluated with the open question: does the hero confirm
+  or require amendment to the inferred visual profile? Operator review of
+  Stage-1 batch is the ground-truth gate for visual_profile before Stage-2 lock.
+
+  Halo Unit clarification: Source dossier C05 = THE HERALD (system antagonist,
+  operates through HALO UNIT service robot bodies). Compact planning C05 = Marcus
+  Chen (different numbering). Halo Unit needs: (a) compact planning ID assignment,
+  (b) visual character record describing the robot/service-body aesthetic,
+  (c) Stage-1 MJ prompt for robot/android visual identity. Defer to next session
+  or operator assigns ID first.
+
+  Key forbidden drift for Sera Stage-1 selection:
+  - No anchor-studio glamour (wrong register entirely)
+  - No scene-context props in base identity (no notebook/recorder/badge)
+  - Heritage neutral — do not assert ethnicity from name Seraphina Mast
+  - Must read institutional fighter with private humanity, not cold professional
