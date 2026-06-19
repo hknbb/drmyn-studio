@@ -1,0 +1,65 @@
+schema_version: "0.x-draft"
+record_type: character_identity_anchor
+identity_anchor_id: C11_IDENTITY_ANCHOR_V001
+character_id: C11
+status: identity_locked_stage2
+source_reference_strategy:
+  reference_sheet_allowed_as_identity_source: false
+  final_hero_lock_requires_single_clean_image: true
+  contact_sheet_layout_forbidden_as_lock: true
+source_reference_sheet_ref: prompts/draft/SC0018__t2i-char-c11-identity-mj-v8__v01.yaml
+front_hero_lock_ref:
+  pending: false
+  stage1_ref: "u9435212546_Near-future_autonomous_broadcast_unit_compact_ser_09a78bb3-7ce9-43b5-b0d1-fd8b7bc6bbfd_1.png"
+  stage1_selected_at: "2026-06-19T00:00:00Z"
+  stage1_selection_notes: >
+    Warm cream/grey, near-frontal. Clean conical body, recessed panel seams.
+    Sensor head: wide 360° disc/drum array — many lenses around the equator
+    plus small dome at apex. Best "broadcast capture" reading in the batch:
+    non-agressive, purposeful, professional AV infrastructure aesthetic.
+    No humanoid face, no threatening elements, no science-fiction styling.
+    Score: 9/10. Highest-scoring candidate across full 31-image batch.
+  stage2_oref_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/1e683fa21c83e65d7331fb0d80552f2fa2c339e5139a6a40d0babddc3cc5f4d2_384_N.png"
+  stage2_oref_weight: 250
+  stage2_prompt_ref: "prompts/draft/SC0018__t2i-char-c11-oref-lock-mj-v7__v01.yaml"
+  stage2_ref: "u9435212546_Compact_near-future_autonomous_broadcast_unit_ser_a2b3f540-116b-47b9-b7ee-0eefe2cfb140_0.png"
+  stage2_selected_at: "2026-06-19T00:00:00Z"
+  stage2_selection_notes: >
+    Warm cream/grey, near-frontal slight ¾. 360° disc/drum sensor array
+    consistent with Stage-1 hero — lens ring clearly legible, dome apex intact.
+    Additional secondary 3-lens neck cluster present (minor addition vs Stage-1,
+    accepted by operator). Conical body proportions preserved, cream/grey palette
+    maintained, no aggressive elements. Score: 8.5/10. Accepted as Stage-2 lock.
+  stage2_external_ref: "archive/closing_price/_elements/C11/stage2/images/a2b3f540_0.png"
+  next_external_step: >
+    Stage 3 — run PPACK_C11_BROADCAST_PRESENCE_V001 in ChatGPT Images 2.
+    Upload Stage-2 lock as PRIMARY reference, Stage-1 hero as SECONDARY reference
+    (dual-ref seeding). Four views: profile_full, three_quarter_waist,
+    full_body_front, close_sensor_front. Evaluate for chassis consistency.
+fixed_identity_anchors:
+  - "Compact autonomous broadcast unit; near-future service robot aesthetic, not science-fiction hardware."
+  - "Smooth matte casing in neutral professional tones (cream, light grey, warm white)."
+  - "Sensor cluster / multi-camera dome array at head height — the unit's functional 'face.'"
+  - "No humanoid face, no expression surface, no human-mimicking feature; presence is purposeful and attentive."
+  - "Roughly waist-to-chest height on an adult; wheeled base, minimal footprint."
+mutable_appearance_allowed:
+  - "Exact chassis proportion and panel seam detail (to be confirmed by Stage-1 batch selection)."
+  - "Sensor dome specifics — cluster layout, passive indicator glow color, dome curvature."
+  - "Lighting environment and surface reflection (varies per scene environment)."
+forbidden_drift:
+  - "Do not introduce humanoid face, expressive display screen, or anthropomorphic emotional surface."
+  - "Do not style as military hardware, tactical robot, or science-fiction threat chassis."
+  - "Do not make the unit large or physically imposing; compact indoor broadcast scale."
+  - "Do not add arms, manipulators, or appendages unless source-stated."
+  - "Do not use aggressive color marking (red, yellow warning, dark matte military black)."
+notes: >
+  Identity anchor for The Herald's physical HALO UNIT robot body (C11). This is a
+  non-human visual element — the Stage-1/2/3 pipeline applies for design lock and
+  four-view production reference, but the evaluation criteria differ from human
+  characters: prioritize chassis coherence, sensor array legibility, silhouette
+  distinctiveness, and near-future tonal grounding over human identity fidelity.
+  Stage chain: Stage 1 MJ V8.1 design batch → operator hero selection → Stage 2
+  MJ V7 --oref chassis lock → Stage 3 ChatGPT Images 2 four_view_scale_angle_v3.
+provenance:
+  created_by: "claude_code (M5 Halo Unit scaffold)"
+  created_at: "2026-06-19T00:00:00Z"

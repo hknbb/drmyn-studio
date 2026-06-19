@@ -1,0 +1,14 @@
+session_id: OP-2026-06-19-C11-halo-unit-stage1-scaffold
+created_at: "2026-06-19T00:00:00Z"
+scene_id: SC0018
+current_task: "C11 Halo Unit Stage-1 scaffold — character record, identity anchor, MJ v8.1 prompt"
+recommended_files:
+  - planning/characters/C11.yaml
+  - visual_dev/elements/characters/C11/identity_anchor.yaml
+  - prompts/draft/SC0018__t2i-char-c11-identity-mj-v8__v01.yaml
+recommended_steps:
+  - "Run SC0018__t2i-char-c11-identity-mj-v8__v01 in Midjourney (v8.1, seed 728463)."
+  - "Evaluate for sensor dome clarity, chassis silhouette, near-future grounded aesthetic (not science-fiction)."
+  - "Select cleanest design candidate as Stage-1 hero; share filename with agent."
+status: complete
+notes: "C11.yaml (non-human ANTAGONIST, scenes SC0016/SC0018/SC0095), identity_anchor (stage1_pending), and Stage-1 MJ prompt created. Manifests rebuilt (11 characters)."

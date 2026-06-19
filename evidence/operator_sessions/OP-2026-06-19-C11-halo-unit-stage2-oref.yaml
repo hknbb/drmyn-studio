@@ -1,0 +1,12 @@
+session_id: OP-2026-06-19-C11-halo-unit-stage2-oref
+created_at: "2026-06-19T00:00:00Z"
+scene_id: SC0018
+current_task: "C11 Halo Unit Stage-2 oref-lock prompt drafted with operator CDN URL"
+recommended_files:
+  - prompts/draft/SC0018__t2i-char-c11-oref-lock-mj-v7__v01.yaml
+  - visual_dev/elements/characters/C11/identity_anchor.yaml
+recommended_steps:
+  - "Run SC0018__t2i-char-c11-oref-lock-mj-v7__v01 in Midjourney (--ow 250; raise to 400 if chassis drifts)."
+  - "Select cleanest lock candidate (straight-on frontal, sensor drum consistent); share filename with agent."
+status: complete
+notes: "oref_source_url from Stage-1 hero CDN recorded in identity_anchor. Stage-2 prompt drafted at --ow 250 --v 7 --style raw --ar 2:3."

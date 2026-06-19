@@ -1,0 +1,25 @@
+wardrobe_id: WD016
+name: "Halo Unit broadcast chassis"
+character_id: C11
+category: BROADCAST_CHASSIS
+description: >
+  The Herald's HALO UNIT physical chassis specification. Compact conical body
+  in smooth matte cream/light-grey/warm-white. 360-degree disc/drum sensor array
+  at head height with small apex dome. Low-profile wheeled base, minimal
+  footprint. No arms, no manipulators, no humanoid features. Professional
+  near-future broadcast equipment aesthetic — the visual register of a sophisticated
+  AV unit, not science-fiction hardware. Slightly unnerving precisely because it
+  is pleasant. Locked at Stage-2 (a2b3f540_0 oref lock).
+palette: "cream, light grey, warm white — neutral professional tones throughout"
+scene_refs:
+  - SC0016
+  - SC0018
+  - SC0095
+handling_notes:
+  - "No humanoid face, no expression surface; sensor dome is the functional 'face'."
+  - "No arms, no manipulators, no appendages; observation-only unit."
+  - "No aggressive color marking — no red, yellow warning, dark military black."
+  - "Compact indoor scale; roughly waist-to-chest height on an adult."
+status: review
+review_status: pending
+canon_lock: false

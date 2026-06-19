@@ -1,0 +1,55 @@
+prompt_id: SC0018__t2i-char-c11-identity-mj-v8__v01
+scene_id: SC0018
+prompt_type: t2i_character_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0018/scene_card.yaml
+  scene_excerpt: >
+    Canonical design reference (Stage 1 of 3) for the HALO UNIT robot body (C11)
+    — The Herald's physical broadcast vessel, first appearance SC0018. Design lock only;
+    not a final production view.
+  character_refs:
+  - C11
+  aesthetic_refs: []
+prompt_text: >-
+  Near-future autonomous broadcast unit, compact service robot. Smooth matte
+  casing in neutral professional tones — cream, light grey, warm white. Low-profile
+  wheeled base, minimal footprint. Cylindrical tapered torso, recessed panel
+  seams, no visible arms or manipulators. Sensor cluster at head height: multi-camera
+  dome array, passive indicator glow, no face, no expression surface. The form reads
+  as attentive and purposeful — professional AV infrastructure rather than
+  science-fiction hardware. Slightly unnerving because it is pleasant. Straight-on
+  reference view, neutral clean background, cinematic production character reference,
+  broadcast-equipment aesthetic, restrained near-future design, no text, no watermark
+  --v 8.1 --style raw --ar 2:3 --seed 728463
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  identity_anchor_ref: visual_dev/elements/characters/C11/identity_anchor.yaml
+  stage: "1_of_3_narrative_identity"
+  design_lock_note: >
+    C11 is a non-human design lock. Evaluate candidates for:
+    (1) sensor dome legibility and placement, (2) chassis silhouette coherence,
+    (3) near-future grounded aesthetic (not science-fiction), (4) neutral professional
+    tonal register (cream/grey/white; no aggressive color). Do NOT evaluate for
+    human identity fidelity.
+  aesthetic_keywords_injected:
+    - compact autonomous broadcast unit, near-future service robot
+    - smooth matte neutral casing (cream, light grey, warm white)
+    - sensor cluster dome at head height, multi-camera array, passive indicator glow
+    - no face, no expression, no humanoid feature
+    - professional AV infrastructure aesthetic, not science-fiction
+    - attentive and purposeful presence, slightly unnerving pleasantness
+    - wheeled base, minimal footprint, indoor broadcast scale
+  planning_name_filter:
+    forbidden:
+      - Herald
+      - HERALD
+      - Halo Unit
+  recommended_model_version: --v 8.1
+  recommended_style: --style raw

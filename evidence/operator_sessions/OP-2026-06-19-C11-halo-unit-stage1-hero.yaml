@@ -1,0 +1,12 @@
+session_id: OP-2026-06-19-C11-halo-unit-stage1-hero
+created_at: "2026-06-19T00:00:00Z"
+scene_id: SC0018
+current_task: "C11 Halo Unit Stage-1 hero selection from MJ v8.1 batch (31 images)"
+recommended_files:
+  - visual_dev/elements/characters/C11/identity_anchor.yaml
+  - prompts/draft/SC0018__t2i-char-c11-oref-lock-mj-v7__v01.yaml
+recommended_steps:
+  - "Upload Stage-1 hero (09a78bb3_1) to Midjourney; copy CDN URL for Stage-2 --oref prompt."
+  - "Run Stage-2 --oref batch (--ow 250); evaluate chassis/sensor dome consistency with Stage-1."
+status: complete
+notes: "09a78bb3_1 selected as Stage-1 hero — 360 disc/drum sensor array, near-frontal, cream/grey, 9/10. identity_anchor updated stage1_pending -> stage1_selected."

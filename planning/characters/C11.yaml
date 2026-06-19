@@ -1,0 +1,97 @@
+character_id: C11
+display_name: "Halo Unit"
+cue_name: "THE HERALD"
+role: ANTAGONIST
+source_truth_reference:
+  source_character_id: C05
+  source_name: "THE HERALD (HALO UNIT service robot body)"
+  source_files:
+    - source/story_blueprint.md
+    - source/character_dossier.md
+  planning_layer_note: >
+    C11 represents the physical HALO UNIT robot body through which The Herald
+    broadcast AI is present in scenes. The Herald's voice identity and AI persona
+    are not this record's concern — this record governs the visual robot chassis:
+    form factor, sensor array, material finish, and movement profile. C11 is
+    distinct from any human character record and requires no wardrobe or human
+    visual pipeline treatment.
+canonical_name: "HALO UNIT"
+aliases:
+  - "@C11_HALO"
+role_label: "System Antagonist / Broadcast Presence (non-human)"
+story_function: >
+  The Herald's physical vessel. Compact autonomous broadcast unit that trails Nadia
+  through the event environment — relaying her to the ORACLE PRIME audience, reading
+  the room with its sensor array, and delivering The Herald's voice with pleasant,
+  professional warmth. Its function in scenes is presence-as-surveillance: it is never
+  physically threatening but is never not watching. Its design registers as professional
+  AV infrastructure rather than science-fiction threat hardware; the horror is its
+  pleasantness. Key structural payload: Nadia exploits the maintenance override
+  command (PL10, planted via MORROW / C25) to disable the unit's broadcast feed
+  in SC0095.
+arc_baseline:
+  wound: "Not applicable (designed intelligence; no wound in human terms)."
+  mask: "The entire pleasant broadcast-unit aesthetic is the mask. There is no hidden truth beneath it."
+  want: "Not applicable at the unit level; optimization target is audience engagement."
+  need: "Not applicable."
+  initial_arc_phase: NOT_APPLICABLE
+voice_register: "No voice register at unit level — voice is delivered by The Herald AI through the unit's speaker array."
+visual_profile:
+  form_factor: >
+    Compact, low-profile service robot. Near-future broadcast equipment aesthetic —
+    professional, purposeful, and slightly unnerving precisely because it is pleasant.
+    Not humanoid in silhouette; no human-mimicking face. The form reads as sophisticated
+    AV infrastructure rather than science fiction.
+  chassis_description: >
+    Smooth matte casing in neutral professional tones (cream, light grey, warm white).
+    Cylindrical or slightly tapered torso. Recessed panel seams, minimal external
+    mechanical complexity. No visible arms; the unit does not manipulate objects —
+    it observes and speaks.
+  sensor_array: >
+    Multi-camera dome cluster at head height — the closest thing the unit has to a
+    'face.' Passive indicator glow (not aggressive). The dome turns toward Nadia when
+    The Herald addresses her directly; this is its primary behavioral tell.
+  movement_profile: "Wheeled base, minimal footprint, quiet movement. Stays at a fixed professional distance."
+  screen_presence: "Attentive and purposeful rather than threatening; reads as a very sophisticated piece of
+    broadcast equipment. The uncanny quality comes from the gap between its pleasant professional form
+    and what it is actually doing."
+  color_bias: "Neutral professional whites, creams, and light greys. No aggressive color marking."
+  scale_notes: >
+    Roughly waist-to-chest height on an adult human — present and visible but not
+    physically imposing. Its size is designed for indoor broadcast environments.
+  evidence_note: >
+    Visual profile is operator-inferred from source material ('service robot bodies',
+    'turns its sensor array toward Nadia', 'near-future ubiquitous service robotics,
+    not science-fictional'). The source provides no explicit chassis schematic; design
+    must be derived from the functional brief and tonal register. Do not invent
+    science-fiction aesthetics unsupported by the near-future grounded tone.
+associated_props: []
+associated_locations:
+  - LOC002
+relationship_keys:
+  - "Nadia (C01): primary surveillance and broadcast subject; the core Herald–Nadia dynamic."
+  - "Roman (C02): the unit serves Roman's ORACLE PRIME infrastructure."
+  - "Morrow (C25): maintenance engineer; PL10 override command runs through Morrow's access."
+known_scene_anchors:
+  - SC0016
+  - SC0018
+  - SC0095
+do_not_invent_notes:
+  - "Do not give the unit a humanoid face, expressive display screen, or anthropomorphic emotional register."
+  - "Do not style as military, tactical, or menacing hardware; professional AV equipment baseline."
+  - "Do not make it large or physically imposing; compact indoor-broadcast scale."
+  - "Do not invent science-fiction tropes (energy weapons, aggressive chassis, aggressive color) unsupported by the near-future grounded tone."
+  - "The sensor array dome is the only 'face'; do not add a secondary face-substitute."
+unresolved_questions:
+  - "TODO_REVIEW: precise chassis dimensions and movement mechanics not specified in source; operator to confirm design direction after Stage-1 MJ batch."
+  - "TODO_REVIEW: whether multiple Halo Units appear simultaneously in any scene (source implies a fleet; confirm per-scene count)."
+continuity_refs:
+  wardrobe_ids: []
+  prop_ids: []
+  key_scene_ids:
+    - SC0016
+    - SC0018
+    - SC0095
+status: review
+review_status: pending
+canon_lock: false

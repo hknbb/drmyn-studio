@@ -1,0 +1,100 @@
+schema_version: "0.x-draft"
+record_type: gpt_images_perspective_pack
+prompt_pack_id: PPACK_C11_BROADCAST_PRESENCE_V001
+status: draft
+source_reference_id: >
+  DUAL SEED.
+  PRIMARY (chassis geometry / sensor array / lighting) = Stage-2 --oref lock
+  (archive/closing_price/_elements/C11/stage2/images/a2b3f540_0.png).
+  SECONDARY (chassis tone warmth, panel detail texture) = Stage-1 hero
+  (archive/closing_price/_elements/C11/stage1/images/09a78bb3_1.png).
+  Take chassis form, sensor disc/drum layout, and lighting from PRIMARY;
+  take only surface tone warmth and texture from SECONDARY. Do NOT copy
+  Stage-1 angle, background, or secondary neck-cluster detail.
+target_model: chatgpt_images_2
+target_role: multi_perspective_element_expander
+element_id: C11
+element_type: character
+perspective_policy: four_view_scale_angle_v3
+full_body_visible: true
+shared_preservation_instruction: >
+  Use TWO references: take chassis geometry, sensor array layout, and lighting
+  from the PRIMARY reference (Stage-2 lock); take only surface tone warmth from
+  the SECONDARY reference (Stage-1 hero). Preserve the locked Halo Unit chassis
+  design exactly across all four views — same 360-degree disc/drum sensor array
+  with lens ring and apex dome, same conical tapered torso in cream/light-grey/
+  warm-white matte finish, same low-profile wheeled base. No arms, no humanoid
+  face, no expression surface. Professional near-future broadcast equipment
+  aesthetic throughout. Neutral clean background; no text, no watermark.
+source_refs:
+  scene_card_ref: planning/scenes/SC0018/scene_card.yaml
+  element_sheet_ref: visual_dev/elements/characters/C11/look_variants/C11_LOOK_BROADCAST_V001.yaml
+prompts:
+  - prompt_id: PPACK_C11_BROADCAST_PRESENCE_V001__full_body_front
+    perspective: full_body_front
+    prompt_text: >
+      Full-body front view of the locked reference broadcast robot, from
+      wheeled base to sensor dome apex, fully in frame. Even soft neutral light,
+      plain neutral background. 360-degree disc/drum sensor array at head height
+      clearly visible, conical tapered torso, low-profile wheeled base.
+      Cream/light-grey matte finish. No arms, no face, no text, no watermark.
+      Preserve chassis design exactly from reference.
+    constraints:
+      - "Full height in frame — base wheels to sensor dome apex, no cropping."
+      - "Straight-on frontal; chassis exactly as in the locked reference."
+      - "Neutral background; no scene environment."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "2:3"
+  - prompt_id: PPACK_C11_BROADCAST_PRESENCE_V001__three_quarter_waist
+    perspective: three_quarter_waist
+    prompt_text: >
+      Three-quarter angle view of the locked reference broadcast robot, upper
+      body and sensor head framing (mid-torso to apex), body turned ~30-45
+      degrees. Sensor disc/drum array clearly visible from this angle showing
+      the lens ring geometry. Even soft neutral light, plain neutral background.
+      Cream/light-grey finish. No arms, no face, no text, no watermark.
+    constraints:
+      - "Mid-torso to apex framing; three-quarter body angle."
+      - "Sensor disc/drum lens ring legible from this angle."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+  - prompt_id: PPACK_C11_BROADCAST_PRESENCE_V001__close_sensor_front
+    perspective: close_portrait_front
+    prompt_text: >
+      Close frontal view of the locked reference broadcast robot's sensor head
+      and upper torso — from mid-torso up, fully frontal. 360-degree disc/drum
+      sensor array dominates frame: lens ring detail, apex dome, passive indicator
+      glow. Upper conical torso visible below. Even soft neutral light, plain
+      neutral background. Maximum chassis-detail fidelity. No text, no watermark.
+    constraints:
+      - "Sensor head and upper torso; fully frontal."
+      - "Maximum disc/drum sensor-array detail from reference."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+  - prompt_id: PPACK_C11_BROADCAST_PRESENCE_V001__profile_full
+    perspective: profile_full
+    prompt_text: >
+      True side profile view of the locked reference broadcast robot, full
+      height in frame from base wheels to sensor dome apex. Clean 90-degree
+      lateral profile showing the conical body silhouette, wheeled base
+      footprint, and sensor disc/drum stack from the side. Even soft neutral
+      light, plain neutral background. Cream/light-grey finish. No arms, no
+      face, no text, no watermark.
+    constraints:
+      - "True side profile (90 degrees); full height in frame."
+      - "Chassis silhouette and sensor drum side profile legible."
+      - "Neutral background."
+    expected_output:
+      asset_type: still
+      aspect_ratio: "3:4"
+qc_gate:
+  minimum_score: 85
+  all_perspectives_required: true
+  failed_perspective_revision_only: true
+downstream_use:
+  - kling_omni_3_shot_prompt
