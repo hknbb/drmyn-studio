@@ -1,0 +1,35 @@
+session_id: OP-2026-06-19-C11-halo-unit-stage2-oref
+session_date: "2026-06-19"
+operator: human_operator
+agent: claude_code
+session_type: character_element_stage2_oref_prompt
+status: completed
+summary: >
+  Operator uploaded the C11 Halo Unit Stage-1 hero (09a78bb3_1) to Midjourney
+  and pasted the resulting CDN URL. Recorded stage2_oref_url in the C11
+  identity_anchor and drafted the Stage-2 --oref design-lock prompt
+  (SC0018__t2i-char-c11-oref-lock-mj-v7__v01) at --ow 250. Non-human design
+  lock; evaluation prioritizes chassis/sensor coherence over human identity.
+actions_taken:
+  - action: record_stage2_oref_url
+    character_id: C11
+    file: visual_dev/elements/characters/C11/identity_anchor.yaml
+    oref_source_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/1e683fa21c83e65d7331fb0d80552f2fa2c339e5139a6a40d0babddc3cc5f4d2_384_N.png"
+    oref_weight: 250
+  - action: draft_stage2_oref_prompt
+    file: prompts/draft/SC0018__t2i-char-c11-oref-lock-mj-v7__v01.yaml
+    stage: "2_of_3_oref_identity_lock"
+recommended_steps:
+  - step: stage2_batch
+    instruction: >
+      Run the Stage-2 --oref batch with --ow 250 (raise to 400-600 if chassis
+      geometry or sensor-array layout drifts from the Stage-1 hero; lower to
+      100-150 if over-copied/flat). Evaluate for: straight-on frontal, plain
+      neutral background, sensor dome + conical body coherent with Stage-1
+      hero, cream/grey/white palette maintained, no humanoid face, no arms,
+      no military/science-fiction restyle.
+  - step: select_stage2_hero
+    instruction: >
+      Select the cleanest canonical lock result and paste its CDN URL / filename
+      to the agent. The agent will record stage2_ref + stage2_selection_notes
+      and draft the Stage-3 ChatGPT Images 2 four_view_scale_angle_v3 pack.

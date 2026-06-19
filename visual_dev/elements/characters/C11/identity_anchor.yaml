@@ -19,13 +19,14 @@ front_hero_lock_ref:
     non-agressive, purposeful, professional AV infrastructure aesthetic.
     No humanoid face, no threatening elements, no science-fiction styling.
     Score: 9/10. Highest-scoring candidate across full 31-image batch.
-  stage2_oref_url: "TODO — operator uploads Stage-1 hero to MJ, pastes CDN URL here"
+  stage2_oref_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/1e683fa21c83e65d7331fb0d80552f2fa2c339e5139a6a40d0babddc3cc5f4d2_384_N.png"
+  stage2_oref_weight: 250
   stage2_prompt_ref: "prompts/draft/SC0018__t2i-char-c11-oref-lock-mj-v7__v01.yaml"
   next_external_step: >
-    Stage 2 — upload Stage-1 hero to Midjourney, paste CDN URL to agent.
-    Agent will draft SC0018__t2i-char-c11-oref-lock-mj-v7__v01 with --oref.
-    Evaluate Stage-2 batch for: chassis geometry consistency, sensor dome
-    coherence, straight-on frontal, plain neutral background.
+    Stage 2 — run SC0018__t2i-char-c11-oref-lock-mj-v7__v01 in Midjourney.
+    Evaluate batch for: chassis geometry consistent with Stage-1 hero, sensor
+    disc-drum dome coherent, straight-on frontal, plain neutral background,
+    cream/grey palette maintained. Select cleanest lock candidate.
 fixed_identity_anchors:
   - "Compact autonomous broadcast unit; near-future service robot aesthetic, not science-fiction hardware."
   - "Smooth matte casing in neutral professional tones (cream, light grey, warm white)."

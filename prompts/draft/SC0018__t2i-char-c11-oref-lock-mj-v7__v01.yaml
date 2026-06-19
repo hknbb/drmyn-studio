@@ -1,0 +1,59 @@
+prompt_id: SC0018__t2i-char-c11-oref-lock-mj-v7__v01
+scene_id: SC0018
+prompt_type: t2i_character_element
+lifecycle_stage: draft
+target_models:
+- midjourney
+source_refs:
+  scene_card: planning/scenes/SC0018/scene_card.yaml
+  scene_excerpt: "Stage-2 design lock for the HALO UNIT robot body (C11). --oref from Stage-1 hero to freeze chassis geometry and sensor-array silhouette for Stage-3 four-view production. Non-human design lock; evaluate chassis/sensor coherence, not human identity."
+  character_refs:
+  - C11
+  aesthetic_refs: []
+prompt_text: >-
+  Compact near-future autonomous broadcast unit, service-robot chassis.
+  Smooth matte casing in neutral professional tones — cream, light grey,
+  warm white. Cylindrical tapered torso, recessed panel seams, low-profile
+  wheeled base, no arms, no manipulators. Sensor cluster at head height —
+  multi-camera dome / 360° disc array, passive indicator glow, no face,
+  no expression surface. Straight-on frontal reference view, even diffuse
+  lighting, plain neutral background, design-lock reference,
+  broadcast-equipment aesthetic, restrained near-future design, no text,
+  no watermark
+  --oref https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/1e683fa21c83e65d7331fb0d80552f2fa2c339e5139a6a40d0babddc3cc5f4d2_384_N.png --ow 250 --v 7 --style raw --ar 2:3
+status: active
+canon_lock: false
+generation_params:
+  model_guidance_mode: locked_guide
+  model_guidance_ref: docs/model_guides/midjourney.yaml
+  adapter_name: midjourney
+  identity_anchor_ref: visual_dev/elements/characters/C11/identity_anchor.yaml
+  stage: "2_of_3_oref_identity_lock"
+  oref_source_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/1e683fa21c83e65d7331fb0d80552f2fa2c339e5139a6a40d0babddc3cc5f4d2_384_N.png"
+  oref_weight: 250
+  oref_weight_tuning_notes: >
+    Raise to 400-600 if chassis geometry or sensor-array layout drifts from
+    Stage-1 hero. Lower to 100-150 if result reads over-copied or flat.
+    Watch for: humanoid face / expression-surface creep (forbidden), arms or
+    manipulators (forbidden), aggressive color or military-hardware styling
+    (forbidden), science-fiction restyle, background clutter. Target:
+    straight-on frontal, even light, plain neutral background, sensor dome
+    and conical body coherent with Stage-1 hero.
+  recommended_model_version: --v 7
+  recommended_style: --style raw
+  operator_goal: >
+    Approve the cleanest canonical result: straight-on frontal, even diffuse
+    light, plain neutral background, chassis geometry and sensor-dome array
+    consistent with Stage-1 hero, near-future professional AV register (not
+    science-fiction, not military). This image becomes PRIMARY reference for
+    Stage-3 ChatGPT Images 2 four_view_scale_angle_v3.
+  design_lock_note: >
+    C11 is a non-human design lock. Evaluate candidates for chassis silhouette
+    coherence, sensor dome legibility/placement, neutral professional tonal
+    register (cream/grey/white), and near-future grounded aesthetic. Do NOT
+    evaluate for human identity fidelity.
+  planning_name_filter:
+    forbidden:
+    - Herald
+    - HERALD
+    - Halo Unit
