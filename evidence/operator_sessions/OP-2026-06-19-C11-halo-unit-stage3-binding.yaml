@@ -1,0 +1,15 @@
+session_id: OP-2026-06-19-C11-halo-unit-stage3-binding
+created_at: "2026-06-19T19:00:00Z"
+scene_id: SC0018
+current_task: "C11 Halo Unit Stage-3 complete — four-view pack evaluated, PQC >=89 all views, binding: created"
+recommended_files:
+  - visual_dev/elements/characters/C11/image_selection.yaml
+  - visual_dev/elements/characters/C11/identity_anchor.yaml
+  - visual_dev/elements/characters/C11/kling_element_reference_C11_broadcast_presence.yaml
+  - evidence/perspective_qc/PQC_C11_BROADCAST_PRESENCE_V001.yaml
+  - evidence/local_media_indices/LOCAL_MEDIA_INDEX_SC0018_ARCHIVE_V001.yaml
+recommended_steps:
+  - "Review PR and merge to promote C11 to binding: created."
+  - "Proceed to SC0014 video take QC (v07) — 8 clips archived, operator scores each clip."
+status: complete
+notes: "Stage-3 ChatGPT Images 2 four-view pack (full_body_front, three_quarter_waist, close_sensor_front, profile_full) archived to archive/closing_price/SC0018/C11/stage3/images/. All four views PQC >=89 (full_body_front 96, close_sensor_front 96, three_quarter_waist 89, profile_full 89). KER_C11_BROADCAST_PRESENCE_V001 created. identity_anchor promoted to binding_created."

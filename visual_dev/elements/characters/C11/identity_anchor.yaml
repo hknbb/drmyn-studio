@@ -2,7 +2,7 @@ schema_version: "0.x-draft"
 record_type: character_identity_anchor
 identity_anchor_id: C11_IDENTITY_ANCHOR_V001
 character_id: C11
-status: identity_locked_stage2
+status: binding_created
 source_reference_strategy:
   reference_sheet_allowed_as_identity_source: false
   final_hero_lock_requires_single_clean_image: true
@@ -31,11 +31,12 @@ front_hero_lock_ref:
     accepted by operator). Conical body proportions preserved, cream/grey palette
     maintained, no aggressive elements. Score: 8.5/10. Accepted as Stage-2 lock.
   stage2_external_ref: "archive/closing_price/_elements/C11/stage2/images/a2b3f540_0.png"
-  next_external_step: >
-    Stage 3 — run PPACK_C11_BROADCAST_PRESENCE_V001 in ChatGPT Images 2.
-    Upload Stage-2 lock as PRIMARY reference, Stage-1 hero as SECONDARY reference
-    (dual-ref seeding). Four views: profile_full, three_quarter_waist,
-    full_body_front, close_sensor_front. Evaluate for chassis consistency.
+  stage3_pack_ref: "visual_dev/elements/characters/C11/perspective_packs/PPACK_C11_BROADCAST_PRESENCE_V001.yaml"
+  stage3_selected_at: "2026-06-19T19:00:00Z"
+  stage3_selection_notes: >
+    Four-view ChatGPT Images 2 pack generated 2026-06-19 using dual-ref seeding
+    (Stage-2 lock a2b3f540_0 as PRIMARY, Stage-1 hero 09a78bb3_1 as SECONDARY).
+    All four views maintain chassis identity. Pack QC >=89 all views. Binding: created.
 fixed_identity_anchors:
   - "Compact autonomous broadcast unit; near-future service robot aesthetic, not science-fiction hardware."
   - "Smooth matte casing in neutral professional tones (cream, light grey, warm white)."
