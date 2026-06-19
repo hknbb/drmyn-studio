@@ -1,0 +1,31 @@
+schema_version: "0.x-draft"
+record_type: kling_element_reference_record
+kling_element_reference_id: KER_C11_BROADCAST_PRESENCE_V001
+status: approved
+element_id: C11
+element_type: character
+source_midjourney_reference:
+  reference_id: MJ_C11_OREFLOCK_V001
+  prompt_id: SC0018__t2i-char-c11-oref-lock-mj-v7__v01
+  operator_session_ref: OP-2026-06-19-C11-halo-unit-stage2-lock
+gpt_images_2_perspectives:
+  full_body_front: PPACK_C11_BROADCAST_PRESENCE_V001__full_body_front
+  three_quarter_waist: PPACK_C11_BROADCAST_PRESENCE_V001__three_quarter_waist
+  close_portrait_front: PPACK_C11_BROADCAST_PRESENCE_V001__close_sensor_front
+  profile_full: PPACK_C11_BROADCAST_PRESENCE_V001__profile_full
+continuity_anchors:
+  - "Compact autonomous broadcast unit; near-future service robot, not science-fiction hardware."
+  - "Smooth matte casing in neutral professional tones: cream, light grey, warm white."
+  - "360 deg sensor disc/drum array at head height — multiple circular camera lenses in ring; small apex dome above."
+  - "No humanoid face, no expression surface, no anthropomorphic feature; presence is purposeful and attentive."
+  - "Roughly waist-to-chest height on an adult; wheeled base, minimal footprint, compact indoor scale."
+  - "Neutral warm-grey background; even diffuse light; natural restrained realism — not cold, not sci-fi, not threatening."
+approval_gate:
+  all_perspectives_score_85_plus: true
+  operator_approved: true
+  operator_session_ref: OP-2026-06-19-C11-halo-unit-stage2-lock
+downstream_use:
+  - kling_omni_3_shot_prompt
+source_refs:
+  gpt_images_pack_ref: visual_dev/elements/characters/C11/perspective_packs/PPACK_C11_BROADCAST_PRESENCE_V001.yaml
+  element_sheet_ref: visual_dev/elements/characters/C11/look_variants/C11_LOOK_BROADCAST_V001.yaml

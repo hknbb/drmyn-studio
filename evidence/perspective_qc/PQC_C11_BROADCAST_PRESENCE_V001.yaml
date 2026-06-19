@@ -1,0 +1,71 @@
+schema_version: "0.x-draft"
+record_type: perspective_qc_report
+perspective_qc_id: PQC_C11_BROADCAST_PRESENCE_V001
+status: approved
+scene_id: SC0018
+element_id: C11
+prompt_pack_id: PPACK_C11_BROADCAST_PRESENCE_V001
+operator_session_ref: OP-2026-06-19-C11-halo-unit-stage2-lock
+perspective_scores:
+  - prompt_id: PPACK_C11_BROADCAST_PRESENCE_V001__full_body_front
+    perspective: full_body_front
+    identity_preservation: 96
+    perspective_usefulness: 96
+    material_palette_continuity: 95
+    production_reference_cleanliness: 96
+    hallucination_absence: 95
+    silhouette_readability: 97
+    scale_distinction: 96
+    total_score: 96
+    decision: pass
+  - prompt_id: PPACK_C11_BROADCAST_PRESENCE_V001__three_quarter_waist
+    perspective: three_quarter_waist
+    identity_preservation: 91
+    perspective_usefulness: 86
+    material_palette_continuity: 90
+    production_reference_cleanliness: 90
+    hallucination_absence: 92
+    silhouette_readability: 88
+    view_distinction: 85
+    total_score: 89
+    decision: pass
+  - prompt_id: PPACK_C11_BROADCAST_PRESENCE_V001__close_sensor_front
+    perspective: close_portrait_front
+    identity_preservation: 96
+    perspective_usefulness: 97
+    material_palette_continuity: 94
+    production_reference_cleanliness: 95
+    hallucination_absence: 95
+    character_description_strength: 97
+    identity_readability: 97
+    total_score: 96
+    decision: pass
+  - prompt_id: PPACK_C11_BROADCAST_PRESENCE_V001__profile_full
+    perspective: profile_full
+    identity_preservation: 90
+    perspective_usefulness: 87
+    material_palette_continuity: 90
+    production_reference_cleanliness: 90
+    hallucination_absence: 92
+    silhouette_readability: 88
+    view_distinction: 86
+    total_score: 89
+    decision: pass
+gate:
+  minimum_score: 85
+  all_four_required: true
+  all_perspectives_required: true
+  can_advance_to_kling_reference: true
+notes: >
+  Stage-3 ChatGPT Images 2 set generated 2026-06-19 using dual-ref seeding (Stage-2
+  lock a2b3f540_0 as PRIMARY chassis ref, Stage-1 hero 09a78bb3_1 as SECONDARY surface
+  warmth ref). All four views maintain locked C11 identity: compact conical cream/grey
+  matte chassis, 360 deg sensor disc/drum array at head height with multiple large
+  circular camera lenses, small apex dome, wheeled base, no humanoid face or
+  anthropomorphic feature. full_body_front delivers the clearest silhouette read —
+  clean vertical axis from sensor dome to wheel. close_sensor_front provides the best
+  identity lock detail for Kling reference injection — lens ring and apex dome both
+  clearly legible. three_quarter_waist and profile_full show slight frontal bias (not
+  a true 3/4 or 90 deg side) which is acceptable for a non-humanoid chassis where
+  sensor array legibility matters more than strict angular coverage. All four views
+  score >=85. Pack advances to kling_element_reference (binding: created).
