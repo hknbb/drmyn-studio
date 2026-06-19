@@ -1,0 +1,30 @@
+schema_version: "0.x-draft"
+record_type: character_look_variant
+look_id: C11_LOOK_BROADCAST_V001
+character_id: C11
+inherits_identity_anchor: C11_IDENTITY_ANCHOR_V001
+status: draft
+look_role: "Halo Unit broadcast presence — SC0018 first contact, SC0016 broadcast open, SC0095 override"
+wardrobe_refs:
+  primary_wardrobe_id: WD016
+  supplementary_wardrobe_ids: []
+appearance_state:
+  fatigue_level: nominal
+  damage_level: none
+continuity_scope:
+  start_scene: SC0016
+  end_scene: SC0095
+change_reason: >
+  Single unified look for all C11 Halo Unit appearances. The robot chassis does
+  not change between scenes; it is the same unit throughout all Herald interactions.
+  Damage state changes only in SC0095 (maintenance override disruption) — that
+  variant can be addressed per-scene if required.
+notes: >
+  Non-human character look variant. 'Wardrobe' WD016 specifies the chassis
+  visual design rather than clothing. Identity is the chassis itself: 360-degree
+  disc/drum sensor array, conical cream/grey body, wheeled base. Locked at
+  Stage-2 (a2b3f540_0). Stage-3 four-view pack:
+  perspective_packs/PPACK_C11_BROADCAST_PRESENCE_V001.yaml.
+provenance:
+  created_by: "claude_code (M5 Halo Unit Stage-2 lock)"
+  created_at: "2026-06-19T00:00:00Z"

@@ -2,7 +2,7 @@ schema_version: "0.x-draft"
 record_type: character_identity_anchor
 identity_anchor_id: C11_IDENTITY_ANCHOR_V001
 character_id: C11
-status: stage1_selected
+status: identity_locked_stage2
 source_reference_strategy:
   reference_sheet_allowed_as_identity_source: false
   final_hero_lock_requires_single_clean_image: true
@@ -22,11 +22,20 @@ front_hero_lock_ref:
   stage2_oref_url: "https://cdn.midjourney.com/u/0ab65b69-70ed-4bf8-94fd-dd244a112b04/1e683fa21c83e65d7331fb0d80552f2fa2c339e5139a6a40d0babddc3cc5f4d2_384_N.png"
   stage2_oref_weight: 250
   stage2_prompt_ref: "prompts/draft/SC0018__t2i-char-c11-oref-lock-mj-v7__v01.yaml"
+  stage2_ref: "u9435212546_Compact_near-future_autonomous_broadcast_unit_ser_a2b3f540-116b-47b9-b7ee-0eefe2cfb140_0.png"
+  stage2_selected_at: "2026-06-19T00:00:00Z"
+  stage2_selection_notes: >
+    Warm cream/grey, near-frontal slight ¾. 360° disc/drum sensor array
+    consistent with Stage-1 hero — lens ring clearly legible, dome apex intact.
+    Additional secondary 3-lens neck cluster present (minor addition vs Stage-1,
+    accepted by operator). Conical body proportions preserved, cream/grey palette
+    maintained, no aggressive elements. Score: 8.5/10. Accepted as Stage-2 lock.
+  stage2_external_ref: "archive/closing_price/_elements/C11/stage2/images/a2b3f540_0.png"
   next_external_step: >
-    Stage 2 — run SC0018__t2i-char-c11-oref-lock-mj-v7__v01 in Midjourney.
-    Evaluate batch for: chassis geometry consistent with Stage-1 hero, sensor
-    disc-drum dome coherent, straight-on frontal, plain neutral background,
-    cream/grey palette maintained. Select cleanest lock candidate.
+    Stage 3 — run PPACK_C11_BROADCAST_PRESENCE_V001 in ChatGPT Images 2.
+    Upload Stage-2 lock as PRIMARY reference, Stage-1 hero as SECONDARY reference
+    (dual-ref seeding). Four views: profile_full, three_quarter_waist,
+    full_body_front, close_sensor_front. Evaluate for chassis consistency.
 fixed_identity_anchors:
   - "Compact autonomous broadcast unit; near-future service robot aesthetic, not science-fiction hardware."
   - "Smooth matte casing in neutral professional tones (cream, light grey, warm white)."

@@ -1,0 +1,16 @@
+session_id: OP-2026-06-19-C11-halo-unit-stage2-lock
+created_at: "2026-06-19T00:00:00Z"
+scene_id: SC0018
+current_task: "C11 Halo Unit Stage-2 lock selected (a2b3f540_0); Stage-3 PPACK scaffolded"
+recommended_files:
+  - visual_dev/elements/characters/C11/identity_anchor.yaml
+  - visual_dev/elements/characters/C11/perspective_packs/PPACK_C11_BROADCAST_PRESENCE_V001.yaml
+  - visual_dev/elements/characters/C11/look_variants/C11_LOOK_BROADCAST_V001.yaml
+  - visual_dev/elements/characters/C11/image_selection.yaml
+  - planning/wardrobe/WD016.yaml
+recommended_steps:
+  - "Upload Stage-2 lock (a2b3f540_0) as PRIMARY ref and Stage-1 hero (09a78bb3_1) as SECONDARY ref in ChatGPT Images 2."
+  - "Run PPACK_C11_BROADCAST_PRESENCE_V001 — four views: full_body_front, three_quarter_waist, close_sensor_front, profile_full."
+  - "Share four image paths with agent for PQC scoring, KER creation, and binding promotion."
+status: complete
+notes: "a2b3f540_0 selected as Stage-2 lock (8.5/10). identity_anchor stage1_selected -> identity_locked_stage2. WD016 chassis record, C11_LOOK_BROADCAST_V001, PPACK, and image_selection stub created."
