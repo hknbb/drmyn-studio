@@ -1,0 +1,12 @@
+session_id: OP-2026-06-23-SC0047-video-take-qc
+created_at: "2026-06-23T22:10:00Z"
+scene_id: SC0047
+current_task: "SC0047 v07 video take QC — 9 clips scored, TAKE007 selected as anchor, all clips usable"
+recommended_files:
+  - visual_dev/omni_sets/SC0047/video_takes.yaml
+  - evidence/video_reviews/VR_SC0047_TAKES_V07_R001.yaml
+recommended_steps:
+  - "Merge PR and proceed to next scene (SC0089 or SC0111) Kling Omni production."
+  - "Optional: re-run CLIP 03/06/08 (70/100) for a stronger continuity pass before final assembly."
+status: complete
+notes: "Operator scored 9 SC0047 v07 clips: 01 75, 02 80, 03 70, 04 85, 05 75, 06 70, 07 85, 08 70, 09 80. All >=70 (usable, no re-runs required). CLIP 07 selected as scene anchor (emotional core, frame_input_eligible); CLIP 04 co-top at 85. needs_prompt_revision: false."

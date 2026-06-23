@@ -1,0 +1,142 @@
+scene_id: SC0047
+prompt_id: SC0047__omni-kling-omni-clip-clip-sc0047-07-safe__v07
+takes:
+- take_id: SC0047_TAKE001
+  platform_asset_ref: null
+  external_storage_ref: external://local_manual/archive/closing_price/SC0047/clips/1.mp4
+  local_proxy_ref: null
+  repo_binary_committed: false
+  storage_status: stored_external
+  status: candidate
+  reason: "CLIP 01 (establish, @LOC006_QUAY empty -> Otto+Nadia enter). Score 75/100. Location grounding and entry blocking read well; identity consistent. Usable for assembly."
+  quality_scores:
+    identity_consistency: 4
+    source_grounding: 4
+    style_compliance: 4
+    continuity: 3
+    production_usability: 4
+  failure_reason: null
+- take_id: SC0047_TAKE002
+  platform_asset_ref: null
+  external_storage_ref: external://local_manual/archive/closing_price/SC0047/clips/2.mp4
+  local_proxy_ref: null
+  repo_binary_committed: false
+  storage_status: stored_external
+  status: candidate
+  reason: "CLIP 02 (case open, @PROP008_HANDSET placed on table). Score 80/100. Prop handoff blocking clean, two-figure separation held, identity consistent. Strong candidate."
+  quality_scores:
+    identity_consistency: 4
+    source_grounding: 4
+    style_compliance: 4
+    continuity: 4
+    production_usability: 4
+  failure_reason: null
+- take_id: SC0047_TAKE003
+  platform_asset_ref: null
+  external_storage_ref: external://local_manual/archive/closing_price/SC0047/clips/3.mp4
+  local_proxy_ref: null
+  repo_binary_committed: false
+  storage_status: stored_external
+  status: candidate
+  reason: "CLIP 03 (Otto to window, Nadia keys handset). Score 70/100. Action choreography acceptable; continuity slightly soft on the tracking-to-window move but within candidate threshold."
+  quality_scores:
+    identity_consistency: 4
+    source_grounding: 3
+    style_compliance: 4
+    continuity: 3
+    production_usability: 4
+  failure_reason: null
+- take_id: SC0047_TAKE004
+  platform_asset_ref: null
+  external_storage_ref: external://local_manual/archive/closing_price/SC0047/clips/4.mp4
+  local_proxy_ref: null
+  repo_binary_committed: false
+  storage_status: stored_external
+  status: candidate
+  reason: "CLIP 04 (Marcus V.O. begins, Nadia still). Score 85/100. Co-top take. Sustained single-figure hold, identity and stillness strong, production-clean. Top candidate alongside CLIP 07."
+  quality_scores:
+    identity_consistency: 4
+    source_grounding: 4
+    style_compliance: 4
+    continuity: 4
+    production_usability: 5
+  failure_reason: null
+- take_id: SC0047_TAKE005
+  platform_asset_ref: null
+  external_storage_ref: external://local_manual/archive/closing_price/SC0047/clips/5.mp4
+  local_proxy_ref: null
+  repo_binary_committed: false
+  storage_status: stored_external
+  status: candidate
+  reason: "CLIP 05 (Marcus V.O. continues, 15s static hold). Score 75/100. Long static hold maintained; identity consistent; minor softening over the long take. Usable for assembly."
+  quality_scores:
+    identity_consistency: 4
+    source_grounding: 4
+    style_compliance: 4
+    continuity: 3
+    production_usability: 4
+  failure_reason: null
+- take_id: SC0047_TAKE006
+  platform_asset_ref: null
+  external_storage_ref: external://local_manual/archive/closing_price/SC0047/clips/6.mp4
+  local_proxy_ref: null
+  repo_binary_committed: false
+  storage_status: stored_external
+  status: candidate
+  reason: "CLIP 06 (jaw tightens, single nod). Score 70/100. Micro-performance reads; identity consistent; continuity slightly soft. Within candidate threshold."
+  quality_scores:
+    identity_consistency: 4
+    source_grounding: 3
+    style_compliance: 4
+    continuity: 3
+    production_usability: 4
+  failure_reason: null
+- take_id: SC0047_TAKE007
+  platform_asset_ref: null
+  external_storage_ref: external://local_manual/archive/closing_price/SC0047/clips/7.mp4
+  local_proxy_ref: null
+  repo_binary_committed: false
+  storage_status: stored_external
+  status: selected
+  reason: "CLIP 07 (recording ends -> silence; 'Take Jin home'). Score 85/100. Selected as scene anchor — emotional core of the scene, two-figure depth held (Nadia sharp, Otto soft background), silence beat lands, frame_input_eligible for downstream continuity."
+  quality_scores:
+    identity_consistency: 4
+    source_grounding: 4
+    style_compliance: 4
+    continuity: 4
+    production_usability: 5
+  failure_reason: null
+- take_id: SC0047_TAKE008
+  platform_asset_ref: null
+  external_storage_ref: external://local_manual/archive/closing_price/SC0047/clips/8.mp4
+  local_proxy_ref: null
+  repo_binary_committed: false
+  storage_status: stored_external
+  status: candidate
+  reason: "CLIP 08 (second code, partition opens, Nadia reads). Score 70/100. Keypad/partition action reads; slow drift to face acceptable; continuity slightly soft. Within candidate threshold."
+  quality_scores:
+    identity_consistency: 4
+    source_grounding: 3
+    style_compliance: 4
+    continuity: 3
+    production_usability: 4
+  failure_reason: null
+- take_id: SC0047_TAKE009
+  platform_asset_ref: null
+  external_storage_ref: external://local_manual/archive/closing_price/SC0047/clips/9.mp4
+  local_proxy_ref: null
+  repo_binary_committed: false
+  storage_status: stored_external
+  status: candidate
+  reason: "CLIP 09 (closing exchange, Otto turns back to window). Score 80/100. Scene-closing two-shot clean, brief dialogue blocking held, identity consistent. Strong candidate for final shot."
+  quality_scores:
+    identity_consistency: 4
+    source_grounding: 4
+    style_compliance: 4
+    continuity: 4
+    production_usability: 4
+  failure_reason: null
+selected_take: SC0047_TAKE007
+round_status: complete
+needs_prompt_revision: false
+storage_policy: external_video_only

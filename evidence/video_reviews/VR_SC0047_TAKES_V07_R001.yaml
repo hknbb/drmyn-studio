@@ -1,0 +1,25 @@
+scene_id: SC0047
+prompt_id: SC0047__omni-kling-omni-clip-clip-sc0047-07-safe__v07
+review_notes_path: evidence/video_reviews/VR_SC0047_TAKES_V07_R001_notes.md
+review_notes: >-
+  Operator review of SC0047 v07 Kling Omni text_only literal batch (9 clips).
+  Scores provided as overall 100-point ratings: CLIP 01 75, 02 80, 03 70, 04 85,
+  05 75, 06 70, 07 85, 08 70, 09 80. All nine clips pass the usable threshold (>=70);
+  no clip requires re-run. CLIP 07 selected as scene anchor (85/100) — the emotional
+  core (recording ends into silence, 'Take Jin home'), two-figure depth held,
+  frame_input_eligible. CLIP 04 also scores 85 (co-top candidate). Remaining clips
+  candidate, usable for assembly. Operator confirmed no prompt revision needed.
+take_ids:
+  - SC0047_TAKE001
+  - SC0047_TAKE002
+  - SC0047_TAKE003
+  - SC0047_TAKE004
+  - SC0047_TAKE005
+  - SC0047_TAKE006
+  - SC0047_TAKE007
+  - SC0047_TAKE008
+  - SC0047_TAKE009
+selected_take: SC0047_TAKE007
+round_status: complete
+needs_prompt_revision: false
+storage_policy: external_video_only
