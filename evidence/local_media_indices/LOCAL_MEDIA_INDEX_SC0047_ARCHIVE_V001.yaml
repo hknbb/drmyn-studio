@@ -50,3 +50,93 @@ entries:
   sha256: 1b2ced2f17aa9d7306c594b21a885bcbb4506af8e4e500e1df7102f23b6aac20
   size_bytes: 1951223
   notes: Stage-3 transit four-view full_body_front.
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0047_01_v07_take01
+  storage_backend: local_manual
+  last_seen_at: '2026-06-23T22:04:57Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0047/clips/1.mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0047/clips/1.mp4
+  sha256: e45a6d15e249b1fc198205f36508fa6f86209cc4117fc4a2942c12e3e1045574
+  size_bytes: 27407674
+  notes: Kling Omni v07 text_only literal output for CLIP_SC0047_01; QC pending.
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0047_02_v07_take01
+  storage_backend: local_manual
+  last_seen_at: '2026-06-23T22:05:03Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0047/clips/2.mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0047/clips/2.mp4
+  sha256: 2f825d9ad69edf54d037d91461dc60bdba170698526058231d10d0d200401c17
+  size_bytes: 17840519
+  notes: Kling Omni v07 text_only literal output for CLIP_SC0047_02; QC pending.
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0047_03_v07_take01
+  storage_backend: local_manual
+  last_seen_at: '2026-06-23T22:05:12Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0047/clips/3.mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0047/clips/3.mp4
+  sha256: 8839d67bc4334c32dc5e327a827376661bdd58bb106c1a72440be260b14448c0
+  size_bytes: 18679653
+  notes: Kling Omni v07 text_only literal output for CLIP_SC0047_03; QC pending.
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0047_04_v07_take01
+  storage_backend: local_manual
+  last_seen_at: '2026-06-23T22:05:23Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0047/clips/4.mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0047/clips/4.mp4
+  sha256: 921c1cff7a4a3581d4dd51d36cb2ba99101d41d37557ea9f4748ee699212c157
+  size_bytes: 10713277
+  notes: Kling Omni v07 text_only literal output for CLIP_SC0047_04; QC pending.
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0047_05_v07_take01
+  storage_backend: local_manual
+  last_seen_at: '2026-06-23T22:05:59Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0047/clips/5.mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0047/clips/5.mp4
+  sha256: 0814dc2e7e904afc6bfe0449c04aaf3c7a3f1b4a75e337ab7458040e8641dd3e
+  size_bytes: 10824592
+  notes: Kling Omni v07 text_only literal output for CLIP_SC0047_05; QC pending.
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0047_06_v07_take01
+  storage_backend: local_manual
+  last_seen_at: '2026-06-23T22:05:33Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0047/clips/6.mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0047/clips/6.mp4
+  sha256: eb6b15f6f086cb825176275f85acf96e596a58272c1b48209070c07ddd096835
+  size_bytes: 16319366
+  notes: Kling Omni v07 text_only literal output for CLIP_SC0047_06; QC pending.
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0047_07_v07_take01
+  storage_backend: local_manual
+  last_seen_at: '2026-06-23T22:05:43Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0047/clips/7.mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0047/clips/7.mp4
+  sha256: 6b250ffb36007d45c1cc194db0c29f621ca346f05f4f434413d8ae7dc0c6bf81
+  size_bytes: 17005140
+  notes: Kling Omni v07 text_only literal output for CLIP_SC0047_07; QC pending.
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0047_08_v07_take01
+  storage_backend: local_manual
+  last_seen_at: '2026-06-23T22:05:36Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0047/clips/8.mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0047/clips/8.mp4
+  sha256: c11821b0496ca29be96c938f16b627a95f1133b2dbd661472457bee8f3b3862b
+  size_bytes: 12282954
+  notes: Kling Omni v07 text_only literal output for CLIP_SC0047_08; QC pending.
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0047_09_v07_take01
+  storage_backend: local_manual
+  last_seen_at: '2026-06-23T22:05:52Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0047/clips/9.mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0047/clips/9.mp4
+  sha256: 69d6d9e77e6364baf5750743b4ce45a69aca94641ee27a79a42e7fa05eb37a5f
+  size_bytes: 13840159
+  notes: Kling Omni v07 text_only literal output for CLIP_SC0047_09; QC pending.
