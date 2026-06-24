@@ -1,0 +1,18 @@
+schema_version: "0.x-draft"
+record_type: voice_binding_record
+voice_binding_id: VOICE_C06_V001
+status: approved
+character_id: C06
+binding_status: prebound
+binding_method: prompt_described
+visual_reference_pack: KER_C06_FIELD_NIGHT_V001
+language: English
+operator_approved: true
+operator_session_ref: OP-2026-06-24-SC0089-native-audio-phase2
+asset_clearance_ref: ASSET_CLEARANCE_C06_KLING_NATIVE
+audio_source:
+  type: kling_native
+  duration_seconds: 0
+  background_noise: low_exterior_night_wind
+  speech_speed: controlled
+  emotion_style: contained_tactical_strained

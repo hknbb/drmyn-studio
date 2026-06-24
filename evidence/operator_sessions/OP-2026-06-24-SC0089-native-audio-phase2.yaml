@@ -1,0 +1,14 @@
+session_id: OP-2026-06-24-SC0089-native-audio-phase2
+created_at: "2026-06-24T00:00:00Z"
+scene_id: SC0089
+current_task: "SC0089 native audio Phase 2/3 — operator approved 3 voices; element bindings promoted to audio-ready"
+recommended_files:
+  - planning/dialogue/VOICE_C01_V001.yaml
+  - planning/dialogue/VOICE_C06_V001.yaml
+  - planning/dialogue/VOICE_C04_V001.yaml
+  - visual_dev/omni_sets/SC0089/element_bindings.yaml
+recommended_steps:
+  - "Phase 4: update SC0089 manifests render_diegetic_audio (remove FORMAT A) + render_pass visual_test -> performance_test, regenerate 23 clip prompts audio-on as v08."
+  - "Operator: run the 23 v08 audio-on prompts in Kling; archive + QC as usual."
+status: complete
+notes: "Operator approved (command: yes) the three SC0089 speaker voice bindings VOICE_C01/C06/C04 (operator_approved: true, status: approved). SC0089 element_bindings C01/C06/C04 promoted: native_audio_readiness blocked->ready, kling_native_audio.enabled true, voice_capability library_provided. Audio readiness gate now satisfied for performance_test. binding_method prompt_described (Kling generates voice from prompt + visual ref; no uploaded sample). C04 visual binding stays planned (offscreen radio only)."

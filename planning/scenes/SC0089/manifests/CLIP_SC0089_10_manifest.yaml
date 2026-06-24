@@ -79,7 +79,7 @@ shots:
         render_label: dark field jacket, night-transit build.
     render_action: "@C01_NADIA continues walking left-to-right. @C01_NADIA's jaw shifts — registers the radio. No change in pace. Eyes hold ahead. Comms-channel voice from south on the command channel (off-screen)."
     render_camera: Medium-close tracking. @C01_NADIA dominant. Corridor moving behind.
-    render_diegetic_audio: '[FORMAT A — no native voice for off-screen comms] Command-channel static, then voice, then silence.'
+    render_diegetic_audio: '@C04_DIMITRI offscreen comms line voiced (Kling-native). Command-channel static, then voice, then silence.'
   - shot_id: SHOT_SC0089_10_C
     duration_seconds: 5
     source_beat_ids:
@@ -120,16 +120,18 @@ shots:
     render_camera: Medium static. Both figures at fifth pool. West embankment surface visible, lighter seam at mid-height.
     render_diegetic_audio: Night wind. Pool hum.
 kling_native_audio:
-  enabled: false
+  enabled: true
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: 'SC0089 v07 text-only literal pass (kling_literal_alias_locked): render_* fields authored for model-facing literal grammar; poetic prompt_action/lens_bias remain for human review only. Legacy element ID refs fixed: LOC001→LOC005.'
+notes: 'SC0089 v08 native-audio pass (kling_literal_alias_locked): render_diegetic_audio rewritten from FORMAT A (audio-off) to Kling-native voiced dialogue; kling_native_audio.enabled=true. Speakers C01/C06/C04 audio-ready (Phase 2/3).'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T10:47:13Z'
   render_fields_added_by: claude_code (M5 v07 SC0089 literal pass)
   render_fields_added_at: '2026-06-17T00:00:00Z'
+  audio_pass_added_by: claude_code (M5 v08 SC0089 native audio)
+  audio_pass_added_at: '2026-06-24T00:00:00Z'
 dialogue_line_ids:
   - DLG_DIMITRI_ACCELERATE
 required_element_ids:

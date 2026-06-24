@@ -1,0 +1,13 @@
+session_id: OP-2026-06-24-SC0089-native-audio-phase1
+created_at: "2026-06-24T00:00:00Z"
+scene_id: SC0089
+current_task: "SC0089 native audio pipeline Phase 1 — draft voice bindings for C06 + C04 (the two missing speakers)"
+recommended_files:
+  - planning/dialogue/VOICE_C06_V001.yaml
+  - planning/dialogue/VOICE_C04_V001.yaml
+recommended_steps:
+  - "Operator: review and approve the three SC0089 speaker voice bindings (VOICE_C01_V001, VOICE_C06_V001, VOICE_C04_V001) — set operator_approved: true and asset clearance per character."
+  - "Phase 2 (after voice approval): promote SC0089 element_bindings C01/C06/C04 native_audio_readiness blocked -> ready, kling_native_audio.enabled -> true."
+  - "Phase 3: change render_pass visual_test -> performance_test and regenerate the 23 SC0089 clip prompts audio-on (FORMAT A -> spoken dialogue) as v08."
+status: complete
+notes: "SC0089 speakers are C01 (Nadia), C06 (Zara), C04 (Dimitri offscreen radio). Only C01 had a draft voice binding; C06 and C04 had none. Created VOICE_C06_V001 (contained tactical, wounded mid-scene) and VOICE_C04_V001 (cold command radio) as draft (operator_approved: false). These unblock the audio readiness gate once the operator approves all three voices. Per Kling Native Audio Pass Policy, audio requires render_pass performance_test+ and every speaking binding marked ready. Lifecycle promotion (readiness/enabled) and operator_approved flips are operator/PR-gated — not done in this phase."
