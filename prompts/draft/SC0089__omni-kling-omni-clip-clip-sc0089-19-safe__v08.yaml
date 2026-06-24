@@ -1,0 +1,63 @@
+prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-19-safe__v08
+scene_id: SC0089
+prompt_type: omni_instruction
+lifecycle_stage: draft
+target_models:
+- kling_omni
+source_refs:
+  scene_card: planning/scenes/SC0089/scene_card.yaml
+  scene_excerpt: planning/scenes/SC0089/scene_excerpt.md
+prompt_text: 'Kling Omni element-based clip; duration 12s. Active elements: @C01_NADIA, @C06_ZARA. Direct action and camera;
+  @elements carry identity, wardrobe, and look. Variant SAFE: prioritize stable continuity, restrained camera language, and
+  conservative execution. Figures: exactly 2 distinct figure(s) — @C01_NADIA (dark field jacket, night-transit build.), @C06_ZARA
+  (khaki-olive jacket, field-night build.). No additional, extra, or duplicated people; do not clone or multiply any figure.
+  Start state: @C01_NADIA signaled up. @C06_ZARA climbing embankment. [00:00 - 00:07] Medium shot: @C01_NADIA''s hand rises
+  above embankment rim — upward signal. @C06_ZARA grips the bracket and climbs. @C06_ZARA reaches the top and descends the
+  far side. @C06_ZARA''s landing is weight-distributed but @C06_ZARA drops to one knee. @C01_NADIA raises hand above rim signaling
+  up, then watches @C06_ZARA. @C06_ZARA climbs, descends far side, lands — drops to one knee. Medium tracking. @C06_ZARA climbing
+  and landing. @C01_NADIA in foreground at base. Audio: Climb scrape. Weight landing on concrete. [00:07 - 00:12] Medium close-up:
+  @C01_NADIA moves to @C06_ZARA — four steps, crouches. @C01_NADIA''s hand moves toward @C06_ZARA''s left side. @C01_NADIA''s
+  lips move at minimum volume. @C01_NADIA crouches beside @C06_ZARA, hand toward @C06_ZARA''s left side, lips move low. @C06_ZARA
+  on one knee, controlled, not falling. Medium-close handheld. @C01_NADIA crouching beside @C06_ZARA. Audio: @C01_NADIA''s
+  line voiced (Kling-native). Controlled breathing. No footsteps. End state: @C06_ZARA on one knee on far side. @C01_NADIA
+  moving to @C06_ZARA. Continuity: frame_input_eligible. Keep 12s; end settled. Do not add new story facts.'
+negative_prompt: sliding-feet, morphing, floating-objects, flickering, lens-distortion
+generation_params:
+  model_guidance_mode: dynamic_snapshot
+  adapter_name: kling_omni
+  clip_id: CLIP_SC0089_19
+  total_duration_seconds: 12
+  continuity_input_mode: frame_input_eligible
+  omni_clip_manifest_ref: planning/scenes/SC0089/manifests/CLIP_SC0089_19_manifest.yaml
+  source_scene_beat_plan_ref: planning/scenes/SC0089/scene_beat_plan.yaml
+  source_dialogue_beats_ref: planning/scenes/SC0089/dialogue_beats.yaml
+  repo_binary_committed: false
+  external_generation_required: true
+  recommended_cfg_scale: 0.5
+  recommended_ar: '16:9'
+  variant_mode: safe
+  render_pass: performance_test
+  quality_tier: test_720p
+  prompt_component_model: docs/methodology/omni_prompt_component_model.md
+  language_profile: kling_literal_alias_locked
+  input_mode: text_only
+  required_element_aliases:
+  - '@C01_NADIA'
+  - '@C06_ZARA'
+  kling_native_audio:
+    enabled: true
+    provider_policy: kling_native_only
+  audio_gate_status: allowed
+  audio_gate_reason: speakers_ready
+  model_guidance_snapshot_ref: model_guidance_snapshots/kling/20260615T000000Z_kling_omni_video_best_available.yaml
+  provider: kling
+  provider_surface: manual_external
+  resolved_model_name: Kling VIDEO 3.0 Omni
+  resolved_model_role: best_for_this_task
+  guidance_observed_at: '2026-06-15T00:00:00Z'
+  guidance_expires_at: '2026-07-15T00:00:00Z'
+expected_output:
+  asset_type: clip
+  duration_seconds: 12
+status: active
+canon_lock: false

@@ -1,7 +1,7 @@
 run_id: RUN_SC0089_CLIP_SC0089_01_KO_0001
-prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-01-safe__v07
+prompt_id: SC0089__omni-kling-omni-clip-clip-sc0089-01-safe__v08
 model: kling_omni
-run_at: '2026-06-17T16:53:15Z'
+run_at: '2026-06-24T05:34:19Z'
 outputs_expected: 1
 cost:
   unit: unknown

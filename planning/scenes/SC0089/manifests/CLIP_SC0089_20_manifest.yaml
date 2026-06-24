@@ -41,18 +41,20 @@ shots:
         render_label: khaki-olive jacket, field-night build.
     render_action: "@C06_ZARA's mouth moves. @C06_ZARA stops mid-sentence. @C06_ZARA breathes — controlled. @C06_ZARA's right hand goes to @C06_ZARA's left side below the jacket. Hand pulls back; the dark is darker. @C06_ZARA's eyes hold @C01_NADIA."
     render_camera: Medium-close handheld. @C06_ZARA dominant. @C01_NADIA edge-of-frame.
-    render_diegetic_audio: '[FORMAT A — no native voice] Controlled breath. Night ambient.'
+    render_diegetic_audio: 'Native dialogue audio on (Kling-native voice). Controlled breath. Night ambient.'
 kling_native_audio:
-  enabled: false
+  enabled: true
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: 'SC0089 v07 text-only literal pass (kling_literal_alias_locked): render_* fields authored for model-facing literal grammar; poetic prompt_action/lens_bias remain for human review only. Legacy element ID refs fixed: LOC001→LOC005.'
+notes: 'SC0089 v08 native-audio pass (kling_literal_alias_locked): render_diegetic_audio rewritten from FORMAT A (audio-off) to Kling-native voiced dialogue; kling_native_audio.enabled=true. Speakers C01/C06/C04 audio-ready (Phase 2/3).'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T10:47:13Z'
   render_fields_added_by: claude_code (M5 v07 SC0089 literal pass)
   render_fields_added_at: '2026-06-17T00:00:00Z'
+  audio_pass_added_by: claude_code (M5 v08 SC0089 native audio)
+  audio_pass_added_at: '2026-06-24T00:00:00Z'
 dialogue_line_ids:
   - DLG_ZARA_WOUND1
   - DLG_ZARA_WOUND2

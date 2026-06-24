@@ -42,7 +42,7 @@ shots:
         render_label: dark field jacket, night-transit build.
     render_action: "@C01_NADIA turns head left toward @C06_ZARA. @C01_NADIA's lips move at minimum volume. @C01_NADIA's jaw stays flat — tactical report, no inflection. Both @C01_NADIA and @C06_ZARA are stationary at the pool edge."
     render_camera: Medium-close static. @C01_NADIA head turned left. Dim corridor behind.
-    render_diegetic_audio: '[FORMAT A — no native voice] Night ambient.'
+    render_diegetic_audio: 'Native dialogue audio on (Kling-native voice). Night ambient.'
   - shot_id: SHOT_SC0089_04_B
     duration_seconds: 3
     source_beat_ids:
@@ -76,7 +76,7 @@ shots:
         render_label: khaki-olive jacket, field-night build.
     render_action: "@C06_ZARA turns head toward @C01_NADIA. @C06_ZARA's lips move at low volume. @C06_ZARA's face is in partial shadow at the pool edge."
     render_camera: Medium-close static, slight over-shoulder. @C06_ZARA dominant. @C01_NADIA foreground edge.
-    render_diegetic_audio: '[FORMAT A — no native voice] Night ambient.'
+    render_diegetic_audio: 'Native dialogue audio on (Kling-native voice). Night ambient.'
   - shot_id: SHOT_SC0089_04_C
     duration_seconds: 7
     source_beat_ids:
@@ -109,18 +109,20 @@ shots:
         render_label: dark field jacket, night-transit build.
     render_action: "@C01_NADIA faces forward, eyes ahead. @C01_NADIA's lips move at minimum volume — delivering information without turning. Jaw tight. No hand gesture."
     render_camera: Medium-close static. @C01_NADIA direct. Dim corridor pool behind.
-    render_diegetic_audio: '[FORMAT A — no native voice] Night ambient.'
+    render_diegetic_audio: 'Native dialogue audio on (Kling-native voice). Night ambient.'
 kling_native_audio:
-  enabled: false
+  enabled: true
   provider_policy: kling_native_only
   external_tts_allowed: false
   adr_vendor_allowed: false
-notes: 'SC0089 v07 text-only literal pass (kling_literal_alias_locked): render_* fields authored for model-facing literal grammar; poetic prompt_action/lens_bias remain for human review only. Legacy element ID refs fixed: LOC001→LOC005.'
+notes: 'SC0089 v08 native-audio pass (kling_literal_alias_locked): render_diegetic_audio rewritten from FORMAT A (audio-off) to Kling-native voiced dialogue; kling_native_audio.enabled=true. Speakers C01/C06/C04 audio-ready (Phase 2/3).'
 provenance:
   created_by: claude_code (M5 FAZ C)
   created_at: '2026-06-04T10:47:13Z'
   render_fields_added_by: claude_code (M5 v07 SC0089 literal pass)
   render_fields_added_at: '2026-06-17T00:00:00Z'
+  audio_pass_added_by: claude_code (M5 v08 SC0089 native audio)
+  audio_pass_added_at: '2026-06-24T00:00:00Z'
 dialogue_line_ids:
   - DLG_NADIA_TWO_TEAMS
   - DLG_ZARA_HOW_KNOW

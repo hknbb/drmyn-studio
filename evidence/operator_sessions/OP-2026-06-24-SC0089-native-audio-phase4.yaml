@@ -1,0 +1,13 @@
+session_id: OP-2026-06-24-SC0089-native-audio-phase4
+created_at: "2026-06-24T00:00:00Z"
+scene_id: SC0089
+current_task: "SC0089 native audio Phase 4 — 23 manifests audio-on + 23 v08 prompts regenerated (performance_test, audio_gate allowed)"
+recommended_files:
+  - scripts/generate_sc0089_v08_audio.py
+  - prompts/draft/SC0089__omni-kling-omni-clip-clip-sc0089-01-safe__v08.yaml
+  - planning/scenes/SC0089/manifests/CLIP_SC0089_04_manifest.yaml
+recommended_steps:
+  - "Operator: run the 23 v08 audio-on prompts in Kling (native dialogue voice on); upload the same element references as v07."
+  - "Archive outputs + QC as usual (video_takes); compare speech quality / lip-sync vs the audio-off v07 set."
+status: complete
+notes: "Phase 4 complete. 23 SC0089 manifests patched: kling_native_audio.enabled=true and 26 shot-level render_diegetic_audio lines rewritten from FORMAT A (audio-off) to Kling-native voiced dialogue. Regenerated 23 v08 prompts via generate_sc0089_v08_audio.py at render_pass=performance_test; all show audio_gate_status=allowed (speakers C01/C06/C04 ready). Dialogue text renders as '— @Alias (tone): \"line\"' with native audio cue. v07 (audio-off) prompts left intact as reference. prompt_library + scene_prompt_map upserted with 23 v08 rows. Policy note: performance_test guidance prefers one speaker per shot; SC0089 has alternating two-speaker exchanges — watch lip-sync/speech-artifact risk in QC."
