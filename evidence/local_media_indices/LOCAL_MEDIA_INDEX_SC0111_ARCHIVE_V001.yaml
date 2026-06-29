@@ -50,3 +50,83 @@ entries:
   sha256: d7d56b5f117aeebf833b272bde7e16d23fe0130d6dc9d5be5d592e738d901fd1
   size_bytes: 2209495
   notes: Stage-3 battle-worn four-view full_body_front.
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0111_01
+  storage_backend: local_manual
+  last_seen_at: '2026-06-24T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0111/clips/kling_20260624_VIDEO__Kling_Omn_4404_0 (1).mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0111/clips/kling_20260624_VIDEO__Kling_Omn_4404_0 (1).mp4
+  sha256: ''
+  size_bytes: 0
+  notes: SC0111 v07 CLIP_01 — 15s, @C01_NADIA+@C02_ROMAN, Roman düşük hat saldırısı. prompt_id SC0111__omni-kling-omni-clip-clip-sc0111-01-safe__v07
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0111_02
+  storage_backend: local_manual
+  last_seen_at: '2026-06-24T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0111/clips/kling_20260624_VIDEO_Kling_Omni_4413_0 (1).mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0111/clips/kling_20260624_VIDEO_Kling_Omni_4413_0 (1).mp4
+  sha256: ''
+  size_bytes: 0
+  notes: SC0111 v07 CLIP_02 — 12s, @C01_NADIA+@C02_ROMAN, diagonal köşeleme. prompt_id SC0111__omni-kling-omni-clip-clip-sc0111-02-safe__v07
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0111_03
+  storage_backend: local_manual
+  last_seen_at: '2026-06-24T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0111/clips/kling_20260624_VIDEO_Kling_Omni_4414_0 (1).mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0111/clips/kling_20260624_VIDEO_Kling_Omni_4414_0 (1).mp4
+  sha256: ''
+  size_bytes: 0
+  notes: SC0111 v07 CLIP_03 — 11s, @C01_NADIA+@C02_ROMAN, Roman bekliyor. prompt_id SC0111__omni-kling-omni-clip-clip-sc0111-03-safe__v07
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0111_04
+  storage_backend: local_manual
+  last_seen_at: '2026-06-24T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0111/clips/kling_20260624_VIDEO_Kling_Omni_4417_0 (1).mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0111/clips/kling_20260624_VIDEO_Kling_Omni_4417_0 (1).mp4
+  sha256: ''
+  size_bytes: 0
+  notes: SC0111 v07 CLIP_04 — 5s, @C01_NADIA, karar anı. prompt_id SC0111__omni-kling-omni-clip-clip-sc0111-04-safe__v07
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0111_05
+  storage_backend: local_manual
+  last_seen_at: '2026-06-24T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0111/clips/kling_20260624_VIDEO_Kling_Omni_4418_0 (1).mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0111/clips/kling_20260624_VIDEO_Kling_Omni_4418_0 (1).mp4
+  sha256: ''
+  size_bytes: 0
+  notes: SC0111 v07 CLIP_05 — 15s, @C01_NADIA+@C02_ROMAN, bilateral karotid baskısı. prompt_id SC0111__omni-kling-omni-clip-clip-sc0111-05-safe__v07
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0111_06
+  storage_backend: local_manual
+  last_seen_at: '2026-06-24T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0111/clips/kling_20260624_VIDEO_Kling_Omni_4421_0 (1).mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0111/clips/kling_20260624_VIDEO_Kling_Omni_4421_0 (1).mp4
+  sha256: ''
+  size_bytes: 0
+  notes: SC0111 v07 CLIP_06 — 13s, @C01_NADIA+@C02_ROMAN, Roman çöküyor. prompt_id SC0111__omni-kling-omni-clip-clip-sc0111-06-safe__v07
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0111_07
+  storage_backend: local_manual
+  last_seen_at: '2026-06-24T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0111/clips/kling_20260624_VIDEO_Kling_Omni_4424_0 (1).mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0111/clips/kling_20260624_VIDEO_Kling_Omni_4424_0 (1).mp4
+  sha256: ''
+  size_bytes: 0
+  notes: SC0111 v07 CLIP_07 — 5s, @C01_NADIA, ayağa kalkış. prompt_id SC0111__omni-kling-omni-clip-clip-sc0111-07-safe__v07
+- kind: kling_omni_v07_text_only_take
+  element_id_or_take_id: CLIP_SC0111_08
+  storage_backend: local_manual
+  last_seen_at: '2026-06-24T00:00:00Z'
+  repo_binary_committed: false
+  local_path: archive/closing_price/SC0111/clips/kling_20260624_VIDEO_Kling_Omni_4426_0 (1).mp4
+  external_storage_ref: external://local_manual/archive/closing_price/SC0111/clips/kling_20260624_VIDEO_Kling_Omni_4426_0 (1).mp4
+  sha256: ''
+  size_bytes: 0
+  notes: SC0111 v07 CLIP_08 — 13s, @C01_NADIA+@C02_ROMAN, Nadia ilerliyor sahne kapanışı. prompt_id SC0111__omni-kling-omni-clip-clip-sc0111-08-safe__v07
