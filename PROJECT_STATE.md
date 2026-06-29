@@ -5,13 +5,13 @@
 
 ## ğŸ‡¹ğŸ‡· Åu An Neredeyiz (TÃ¼rkÃ§e Ã–zet)
 
-Milestone M5’teyiz. **Sahne üretimi sürüyor (2026-06-24):** C01-C11 tümü
+Milestone M5’teyiz. **Sahne üretimi sürüyor (2026-06-30):** C01-C11 tümü
 `binding: created`. SC0047 (9 klip) üretildi + QC yapıldı (TAKE007 anchor, hepsi
 kullanılabilir). SC0014 v07 QC tamam (TAKE002, 3 klip re-run bekliyor).
-**SC0089 native audio pipeline tamamlandı:** 3 konuşmacı sesi (C01/C06/C04)
-operatör-onaylı, binding'ler audio-ready, 23 v08 audio-on prompt üretildi
-(performance_test, audio_gate=allowed) — PR #253. **Sıradaki:** SC0089 v08
-klipleri Kling'de üret → arşivle → QC; ardından SC0111 (8 klip).
+**SC0089 v08 audio-on:** 20/23 klip üretildi + arşivlendi (CLIP_21-23 eksik, QC
+bekliyor). **SC0111 v07:** 8 klip üretildi + arşivlendi (QC bekliyor).
+**Sıradaki:** SC0089 CLIP_21-23 üret → her iki sahne için QC skorları ver →
+video_takes.yaml yaz → commit.
 
 ## Status
 
