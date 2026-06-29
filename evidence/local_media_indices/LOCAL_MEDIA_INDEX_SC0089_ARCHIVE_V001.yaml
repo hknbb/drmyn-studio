@@ -57,8 +57,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3532_01.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3532_01.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: '0c9a162edc82b289aa8e225e2e4569a888126b56366476e768ad41c07a9b67e6'
+  size_bytes: 12078665
   notes: SC0089 v08 audio-on CLIP_01 — 15s, @LOC005+@C01+@C06, koridor giriş kurulum. prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-01-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_02
@@ -67,8 +67,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3526_02.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3526_02.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: 'a0e07233eca7377be6537be53ab3ef9a3d5072836b5080f73557c341c3b3a9b0'
+  size_bytes: 31586964
   notes: SC0089 v08 audio-on CLIP_02 — 5s, @C01, dur işareti. prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-02-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_03
@@ -77,8 +77,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3543_03.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3543_03.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: '19abc1c5e63db774e5183cbbea3933d8c38e9f5c21c90d5e3405033d36e7d339'
+  size_bytes: 28571054
   notes: SC0089 v08 audio-on CLIP_03 — 11s, @C01, Nadia tarama. prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-03-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_04
@@ -87,8 +87,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3542_04.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3542_04.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: 'f46e10463336beb5052ad14a5e8a032948cddc932acb124c4f02f3f10de8a682'
+  size_bytes: 16958561
   notes: SC0089 v08 audio-on CLIP_04 — 15s, @C01+@C06, "Two teams. Not one." prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-04-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_05
@@ -97,8 +97,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3540_05.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3540_05.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: '3039ad778a35999e66ef7de937760e2e60e16fb9c55d36ee245733e555683365'
+  size_bytes: 10950965
   notes: SC0089 v08 audio-on CLIP_05 — 15s, @C06+@C01, "The broadcast signal." prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-05-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_06
@@ -107,8 +107,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3544_06.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3544_06.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: 'a2b34f9039943f41b88a6e4061d141b533bb829599da6ef2e02d58b837babb45'
+  size_bytes: 12959449
   notes: SC0089 v08 audio-on CLIP_06 — 13s, @C01+@C06, "At least eight." prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-06-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_07
@@ -117,8 +117,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3673_07.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3673_07.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: '179480dae181ccd2034869ec2869e1568a8a29aa57d75637359c34c07f0ed91e'
+  size_bytes: 7394154
   notes: SC0089 v08 audio-on CLIP_07 — 11s, @C01, sessiz tarama. prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-07-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_08
@@ -127,8 +127,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3671_08.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3671_08.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: 'b2d47d42604dd8725c83f7d91a5ee718a889ae83cf893da05e2edfa32ee3296a'
+  size_bytes: 9184519
   notes: SC0089 v08 audio-on CLIP_08 — 15s, @C01+@C06, "We are." prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-08-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_09
@@ -137,8 +137,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3677_09.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3677_09.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: 'eeef31e14aefe6634b67269c853572d6133d610657be935298cdd649b0c5ba4c'
+  size_bytes: 24021767
   notes: SC0089 v08 audio-on CLIP_09 — 12s, @C01+@C06, havuz geçişi. prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-09-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_10
@@ -147,8 +147,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3689_10.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3689_10.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: '037e1dece3dbc76a10c9c391b1ba49f722edbc64771848902c51cefdf690d379'
+  size_bytes: 24276097
   notes: SC0089 v08 audio-on CLIP_10 — 13s, @C01+@C06, Dimitri offscreen comms. prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-10-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_11
@@ -157,8 +157,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3693_11.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3693_11.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: '1801f2b9481ca6691e586165caff20f41d596ceb7461c15afb918ee63ebc8825'
+  size_bytes: 10560939
   notes: SC0089 v08 audio-on CLIP_11 — 8s, @C01, duvar dinleme. prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-11-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_12
@@ -167,8 +167,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3741_12.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3741_12.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: 'cd66dd2cdf5420b44e37e465432d235d08616479ef5a9c1fc5c2b6384c038efc'
+  size_bytes: 15162778
   notes: SC0089 v08 audio-on CLIP_12 — 14s, @C06+@C01, vibrasyon açıklaması. prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-12-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_13
@@ -177,8 +177,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3733_13.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3733_13.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: '0d609ab0d6307f2275bd3447ea4535c5782ffb4df4152abdba3d58dc61708e51'
+  size_bytes: 7547694
   notes: SC0089 v08 audio-on CLIP_13 — 9s, @C06+@C01, kaç kişi. prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-13-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_14
@@ -187,8 +187,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3745_14.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3745_14.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: '25e7a3027cf12fe8f7cd19d03942aefba80f86bb1fa6f9fa7c285b587c8ccbe6'
+  size_bytes: 11826229
   notes: SC0089 v08 audio-on CLIP_14 — 10s, @C01+@C06, sessiz duraklama. prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-14-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_15
@@ -197,8 +197,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3755_15.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_3755_15.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: '519629eba7ee1ea1b1d20790066fcd83f73a5f68faf80cb860a1fc74804dcac5'
+  size_bytes: 13046171
   notes: SC0089 v08 audio-on CLIP_15 — 14s, @C01, "We go through, not around." prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-15-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_16
@@ -207,8 +207,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_4772_16.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_4772_16.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: '8b90704a66c5b4afbf06159db1f64dbd63dd6f14962383059faf5f6b1220fe0b'
+  size_bytes: 10186595
   notes: SC0089 v08 audio-on CLIP_16 — 10s, @C06+@C01, itiraz kesilir. prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-16-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_17
@@ -217,8 +217,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_4782_17.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_4782_17.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: '3513a48993be6a15eaf7d54cdc6baee4670eb5227776070d7d69c9eaafda787c'
+  size_bytes: 27832022
   notes: SC0089 v08 audio-on CLIP_17 — 14s, @C01+@C06, "Through the seam or over?" prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-17-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_18
@@ -227,8 +227,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_4792_18.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_4792_18.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: '54b1cdfe812cb936d86ebcfe419e32f7b7e88e59358786f0088736ab4aa50f57'
+  size_bytes: 28652954
   notes: SC0089 v08 audio-on CLIP_18 — 14s, @C01, "Over." + tırmanma + nötralizasyon. prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-18-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_19
@@ -237,8 +237,8 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_4788_19.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_4788_19.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: 'ad13984e9081af0c87186d684e8785bcbfaf440c955cf1e5481a36ec4f0c8e65'
+  size_bytes: 19295067
   notes: SC0089 v08 audio-on CLIP_19 — 12s, @C01+@C06, Zara iner diz çöker. prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-19-safe__v08
 - kind: kling_omni_v08_audio_on_take
   element_id_or_take_id: CLIP_SC0089_20
@@ -247,6 +247,6 @@ entries:
   repo_binary_committed: false
   local_path: archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_4798_20.mp4
   external_storage_ref: external://local_manual/archive/closing_price/SC0089/clips/kling_20260624_VIDEO_Kling_Omni_4798_20.mp4
-  sha256: ''
-  size_bytes: 0
+  sha256: '101402d4f2dcff3249c4039c14dde687b1422e7e00f20173f7ac311c4e010288'
+  size_bytes: 9193776
   notes: SC0089 v08 audio-on CLIP_20 — 7s, @C06, yara raporu. prompt_id SC0089__omni-kling-omni-clip-clip-sc0089-20-safe__v08
